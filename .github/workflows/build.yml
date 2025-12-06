@@ -1,0 +1,22 @@
+name: Building
+
+on:
+    pull_request:
+        types: [opened, reopened]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        if: contains(github.head_ref, 'feat/')
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v1
+
+            - name: Install dependencies
+              run: bun install
+
+            - name: Build
+              run: bun run build
