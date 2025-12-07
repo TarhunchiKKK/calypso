@@ -18,10 +18,15 @@ export function BoardEditor() {
     const viewModel = useViewModel({ nodesModel, canvasRect });
 
     return (
-        <Layout>
+        <Layout onKeyDown={viewModel.layout?.onKeyDown}>
             <Dots />
 
-            <Canvas ref={canvasRef} overlay={<Overlay />} onClick={viewModel.canvas?.onClick}>
+            <Canvas
+                ref={canvasRef}
+                overlay={<Overlay onKeyDown={viewModel.overlay?.onKeyDown} />}
+                onClick={viewModel.canvas?.onClick}
+                onKeyDown={viewModel.canvas?.onKeyDown}
+            >
                 {viewModel.nodes.map(node => node.render())}
             </Canvas>
 

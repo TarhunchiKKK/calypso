@@ -1,15 +1,29 @@
 import { Geometry } from "../domain/geometry";
 import { NodesFactory } from "../nodes/compose/nodes-factory";
 import { ViewModel, ViewModelParams } from "./types";
+import { switchToIdle } from "./use-idle-view-model";
 
 export type StickersViewState = {
     type: "stickers";
 };
 
-export function useStickersViewModel({ nodesModel, canvasRect }: ViewModelParams) {
+export function switchToStickers(): StickersViewState {
+    return {
+        type: "stickers"
+    };
+}
+
+export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
     return (): ViewModel => {
         return {
             nodes: nodesModel.nodes,
+            layout: {
+                onKeyDown: e => {
+                    if (e.key === "Escape") {
+                        setViewState(switchToIdle());
+                    }
+                }
+            },
             canvas: {
                 onClick(e) {
                     const clickPoint = Geometry.recalculatePosition(

@@ -8,6 +8,8 @@ export type ViewModelParams = {
     nodesModel: NodesModel;
 
     canvasRect?: Rect;
+
+    setViewState: (viewState: ViewState) => void;
 };
 
 export type ViewState = IdleViewState | StickersViewState;
@@ -18,15 +20,17 @@ export type ViewModel = {
     selectionWindow?: Rect;
 
     layout?: {
-        _?: () => void;
+        onKeyDown?: React.KeyboardEventHandler;
     };
 
     canvas?: {
         onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+        onKeyDown?: React.KeyboardEventHandler;
     };
 
     overlay?: {
         _?: () => void;
+        onKeyDown?: React.KeyboardEventHandler;
     };
 
     window?: {

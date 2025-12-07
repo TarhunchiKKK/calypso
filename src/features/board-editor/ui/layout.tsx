@@ -1,10 +1,10 @@
-import { PropsWithChildren } from "react";
+import { HTMLAttributes, PropsWithChildren } from "react";
 
-type Props = PropsWithChildren;
+type Props = HTMLAttributes<HTMLDivElement> & PropsWithChildren;
 
-export function Layout({ children }: Props) {
+export function Layout({ children, ...props }: Props) {
     return (
-        <div data-testid="layout" className="grow relative">
+        <div data-testid="layout" className="grow relative" {...props} tabIndex={0}>
             {children}
         </div>
     );
