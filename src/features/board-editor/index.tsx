@@ -3,17 +3,16 @@
 import { useRef } from "react";
 import { Canvas } from "./ui/canvas";
 import { Dots } from "./ui/dots";
+import { Layout } from "./ui/layout";
 
 export function BoardEditor() {
     const canvasRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div>
+        <Layout>
             <Dots />
 
-            <Canvas ref={canvasRef} overlay={<div></div>}>
-                <div>This is canvas</div>
-            </Canvas>
-        </div>
+            <Canvas ref={canvasRef} overlay={<div></div>}></Canvas>
+        </Layout>
     );
 }
