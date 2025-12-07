@@ -7,6 +7,8 @@ import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
 import { useCanvasRect } from "./canvas/use-canvas-rect";
 import { useViewModel } from "./view-model/use-view-model";
+import { ActionButton, ActionsBar } from "./ui/action-bar";
+import { MousePointer2, StickerIcon } from "lucide-react";
 
 export function BoardEditor() {
     const { canvasRect, canvasRef } = useCanvasRect();
@@ -22,6 +24,16 @@ export function BoardEditor() {
             <Canvas ref={canvasRef} overlay={<Overlay />} onClick={viewModel.canvas?.onClick}>
                 {viewModel.nodes.map(node => node.render())}
             </Canvas>
+
+            <ActionsBar>
+                <ActionButton isActive={true} onClick={() => {}}>
+                    <MousePointer2 />
+                </ActionButton>
+
+                <ActionButton isActive={true} onClick={() => {}}>
+                    <StickerIcon />
+                </ActionButton>
+            </ActionsBar>
         </Layout>
     );
 }
