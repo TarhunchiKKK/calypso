@@ -6,7 +6,7 @@ import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
-import { Sticker } from "lucide-react";
+import { Sticker } from "./nodes/sticker/ui";
 
 export function BoardEditor() {
     const canvasRef = useRef<HTMLDivElement>(null);
