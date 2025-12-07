@@ -15,6 +15,17 @@ export function useIdleViewModel({ nodesModel, setViewState }: ViewModelParams) 
     return (): ViewModel => {
         return {
             nodes: nodesModel.nodes,
+            layout: {
+                onKeyDown: e => {
+                    if (e.key === "i") {
+                        setViewState(switchToIdle());
+                    }
+
+                    if (e.key === "s") {
+                        setViewState(switchToStickers());
+                    }
+                }
+            },
             actions: {
                 idle: {
                     isActive: true

@@ -22,6 +22,14 @@ export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: V
                     if (e.key === "Escape") {
                         setViewState(switchToIdle());
                     }
+
+                    if (e.key === "i") {
+                        setViewState(switchToIdle());
+                    }
+
+                    if (e.key === "s") {
+                        setViewState(switchToStickers());
+                    }
                 }
             },
             canvas: {
