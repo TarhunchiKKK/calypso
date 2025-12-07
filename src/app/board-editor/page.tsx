@@ -1,3 +1,5 @@
+import { BoardEditor } from "@/features/board-editor";
+
 export default function BoardEditorPage() {
-    return <div>Editor</div>;
+    return <BoardEditor />;
 }
