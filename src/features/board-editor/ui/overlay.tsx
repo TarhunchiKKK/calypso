@@ -1,3 +1,7 @@
-export function Overlay() {
-    return <div className="absolute inset-0"></div>;
+import { HTMLAttributes } from "react";
+
+type Props = HTMLAttributes<HTMLDivElement>;
+
+export function Overlay(props: Props) {
+    return <div {...props} className="absolute inset-0"></div>;
 }
