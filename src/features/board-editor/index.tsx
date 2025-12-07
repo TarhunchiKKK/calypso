@@ -6,7 +6,6 @@ import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
-import { Sticker } from "./nodes/sticker/ui";
 
 export function BoardEditor() {
     const canvasRef = useRef<HTMLDivElement>(null);
@@ -18,9 +17,7 @@ export function BoardEditor() {
             <Dots />
 
             <Canvas ref={canvasRef} overlay={<Overlay />}>
-                {nodes.map(node => (
-                    <Sticker key={node.id} sticker={node} />
-                ))}
+                {nodes.map(node => node.render())}
             </Canvas>
         </Layout>
     );
