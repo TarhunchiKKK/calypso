@@ -1,9 +1,8 @@
 import { CSSProperties, ReactNode } from "react";
 import { NodeBase, NodeImpl } from "../types";
+import { OmitFields } from "@/shared/lib/typescript";
 
 export type StickerNode = NodeBase & {
-    type: "sticker";
-
     x: number;
 
     y: number;
@@ -16,7 +15,7 @@ export type StickerNode = NodeBase & {
 };
 
 export class Sticker extends NodeImpl {
-    public constructor(protected node: StickerNode) {
+    public constructor(protected node: OmitFields<StickerNode, "type">) {
         super(node);
     }
 

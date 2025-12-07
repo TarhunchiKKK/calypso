@@ -25,7 +25,13 @@ const mockNodes: AnyNode[] = [
 ];
 
 export function useNodes() {
-    const [nodes] = useState<NodeImpl[]>(() => mockNodes.map(node => NodesFactory.create(node)));
+    const [nodes, setNodes] = useState<NodeImpl[]>(() => mockNodes.map(node => NodesFactory.create(node)));
 
-    return { nodes };
+    const add = (node: NodeImpl) => {
+        setNodes(nodes => [...nodes, node]);
+    };
+
+    return { nodes, add };
 }
+
+export type NodesModel = ReturnType<typeof useNodes>;
