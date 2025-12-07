@@ -1,8 +1,8 @@
 import { Geometry } from "../domain/geometry";
 import { NodesFactory } from "../nodes/compose/nodes-factory";
+import { useActions } from "./hooks/use-actions";
 import { useHotKeys } from "./hooks/use-hotkeys";
 import { ViewModel, ViewModelParams } from "./types";
-import { switchToIdle } from "./use-idle-view-model";
 
 export type StickersViewState = {
     type: "stickers";
@@ -16,6 +16,7 @@ export function switchToStickers(): StickersViewState {
 
 export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
     const { handleHotkeys } = useHotKeys({ type: "stickers", setViewState });
+    const actions = useActions({ type: "stickers", setViewState });
 
     return (): ViewModel => {
         return {
@@ -38,15 +39,7 @@ export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: V
                     nodesModel.add(NodesFactory.sticker(clickPoint));
                 }
             },
-            actions: {
-                idle: {
-                    isActive: false,
-                    onClick: () => setViewState(switchToIdle())
-                },
-                stickers: {
-                    isActive: true
-                }
-            }
+            actions: actions
         };
     };
 }

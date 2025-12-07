@@ -1,6 +1,6 @@
+import { useActions } from "./hooks/use-actions";
 import { useHotKeys } from "./hooks/use-hotkeys";
 import { ViewModel, ViewModelParams } from "./types";
-import { switchToStickers } from "./use-stickers-view-model";
 
 export type IdleViewState = {
     type: "idle";
@@ -14,6 +14,7 @@ export function switchToIdle(): IdleViewState {
 
 export function useIdleViewModel({ nodesModel, setViewState }: ViewModelParams) {
     const { handleHotkeys } = useHotKeys({ type: "idle", setViewState });
+    const actions = useActions({ type: "idle", setViewState });
 
     return (): ViewModel => {
         return {
@@ -23,15 +24,7 @@ export function useIdleViewModel({ nodesModel, setViewState }: ViewModelParams) 
                     handleHotkeys(e);
                 }
             },
-            actions: {
-                idle: {
-                    isActive: true
-                },
-                stickers: {
-                    isActive: false,
-                    onClick: () => setViewState(switchToStickers())
-                }
-            }
+            actions: actions
         };
     };
 }
