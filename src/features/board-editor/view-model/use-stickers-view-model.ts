@@ -1,4 +1,5 @@
-import { Sticker } from "../nodes/variants/sticker";
+import { Geometry } from "../domain/geometry";
+import { NodesFactory } from "../nodes/compose/nodes-factory";
 import { ViewModel, ViewModelParams } from "./types";
 
 export type StickersViewState = {
@@ -11,24 +12,15 @@ export function useStickersViewModel({ nodesModel, canvasRect }: ViewModelParams
             nodes: nodesModel.nodes,
             canvas: {
                 onClick(e) {
-                    if (!canvasRect) {
-                        console.log("Empty canvas");
-                        return;
-                    }
-
-                    const x = e.clientX - canvasRect.x;
-                    const y = e.clientY - canvasRect.y;
-
-                    nodesModel.add(
-                        new Sticker({
-                            id: crypto.randomUUID(),
-                            x,
-                            y,
-                            width: 100,
-                            height: 100,
-                            text: "Hello"
-                        })
+                    const clickPoint = Geometry.recalculatePosition(
+                        {
+                            x: e.clientX,
+                            y: e.clientY
+                        },
+                        canvasRect
                     );
+
+                    nodesModel.add(NodesFactory.sticker(clickPoint));
                 }
             }
         };
