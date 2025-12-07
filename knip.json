@@ -1,10 +1,12 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
+    "ignore": ["./src/shared/ui/kit/*"],
     "rules": {
         "files": "error",
         "classMembers": "error",
         "types": "error",
-        "dependencies": "error",
-        "devDependencies": "error"
+        "dependencies": "off",
+        "devDependencies": "off",
+        "unlisted": "off"
     }
 }

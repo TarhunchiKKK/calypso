@@ -1,7 +1,7 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { ReactNode } from "react";
 
-export type NodeTypes = "sticker" | "arrow" | "notes";
+type NodeTypes = "sticker" | "arrow" | "notes";
 
 export type NodeBase = {
     id: string;
