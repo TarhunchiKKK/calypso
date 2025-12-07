@@ -12,9 +12,9 @@ export function ActionsBar({ children }: ActionsBarProps) {
 }
 
 type ActionButtonProps = PropsWithChildren<{
-    isActive: boolean;
+    isActive?: boolean;
 
-    onClick: React.MouseEventHandler;
+    onClick?: React.MouseEventHandler;
 }>;
 
 export function ActionButton({ isActive, onClick, children }: ActionButtonProps) {

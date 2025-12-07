@@ -36,4 +36,16 @@ export type ViewModel = {
     window?: {
         _?: () => void;
     };
+
+    actions?: {
+        idle?: {
+            isActive: boolean;
+            onClick?: React.MouseEventHandler;
+        };
+
+        stickers?: {
+            isActive: boolean;
+            onClick?: React.MouseEventHandler;
+        };
+    };
 };

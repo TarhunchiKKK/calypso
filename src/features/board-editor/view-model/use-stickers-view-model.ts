@@ -36,6 +36,15 @@ export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: V
 
                     nodesModel.add(NodesFactory.sticker(clickPoint));
                 }
+            },
+            actions: {
+                idle: {
+                    isActive: false,
+                    onClick: () => setViewState(switchToIdle())
+                },
+                stickers: {
+                    isActive: true
+                }
             }
         };
     };

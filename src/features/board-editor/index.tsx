@@ -31,11 +31,14 @@ export function BoardEditor() {
             </Canvas>
 
             <ActionsBar>
-                <ActionButton isActive={true} onClick={() => {}}>
+                <ActionButton isActive={viewModel.actions?.idle?.isActive} onClick={viewModel.actions?.idle?.onClick}>
                     <MousePointer2 />
                 </ActionButton>
 
-                <ActionButton isActive={true} onClick={() => {}}>
+                <ActionButton
+                    isActive={viewModel.actions?.stickers?.isActive}
+                    onClick={viewModel.actions?.stickers?.onClick}
+                >
                     <StickerIcon />
                 </ActionButton>
             </ActionsBar>
