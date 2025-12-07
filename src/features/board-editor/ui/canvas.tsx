@@ -9,7 +9,7 @@ type Props = HTMLAttributes<HTMLDivElement> &
 
 export function Canvas({ ref, overlay, children, ...props }: Props) {
     return (
-        <div ref={ref} className="absolute  select-none overflow-hidden" {...props}>
+        <div data-testid="canvas" ref={ref} className="absolute  select-none overflow-hidden" {...props}>
             {overlay}
 
             {children}
