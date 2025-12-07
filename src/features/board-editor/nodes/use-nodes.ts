@@ -1,22 +1,7 @@
 import { useState } from "react";
+import { StickerNode } from "./sticker/types";
 
-export type StickerNode = {
-    id: string;
-
-    type: "sticker";
-
-    x: number;
-
-    y: number;
-
-    width: number;
-
-    height: number;
-
-    text: string;
-};
-
-export function useNodesModel() {
+export function useNodes() {
     const [nodes] = useState<StickerNode[]>([
         {
             id: crypto.randomUUID(),

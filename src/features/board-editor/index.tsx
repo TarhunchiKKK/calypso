@@ -5,13 +5,13 @@ import { Canvas } from "./ui/canvas";
 import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
-import { useNodesModel } from "./model/nodes";
-import { Sticker } from "./ui/sticker";
+import { useNodes } from "./nodes/use-nodes";
+import { Sticker } from "lucide-react";
 
 export function BoardEditor() {
     const canvasRef = useRef<HTMLDivElement>(null);
 
-    const { nodes } = useNodesModel();
+    const { nodes } = useNodes();
 
     return (
         <Layout>

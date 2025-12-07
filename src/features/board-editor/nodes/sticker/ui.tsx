@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { StickerNode } from "../model/nodes";
+import { StickerNode } from "./types";
 
 type Props = {
     sticker: StickerNode;
