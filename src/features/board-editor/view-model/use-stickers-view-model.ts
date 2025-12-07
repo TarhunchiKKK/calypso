@@ -1,5 +1,6 @@
 import { Geometry } from "../domain/geometry";
 import { NodesFactory } from "../nodes/compose/nodes-factory";
+import { useHotKeys } from "./hooks/use-hotkeys";
 import { ViewModel, ViewModelParams } from "./types";
 import { switchToIdle } from "./use-idle-view-model";
 
@@ -14,22 +15,14 @@ export function switchToStickers(): StickersViewState {
 }
 
 export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
+    const { handleHotkeys } = useHotKeys({ type: "stickers", setViewState });
+
     return (): ViewModel => {
         return {
             nodes: nodesModel.nodes,
             layout: {
                 onKeyDown: e => {
-                    if (e.key === "Escape") {
-                        setViewState(switchToIdle());
-                    }
-
-                    if (e.key === "i") {
-                        setViewState(switchToIdle());
-                    }
-
-                    if (e.key === "s") {
-                        setViewState(switchToStickers());
-                    }
+                    handleHotkeys(e);
                 }
             },
             canvas: {
