@@ -5,15 +5,23 @@ import { Canvas } from "./ui/canvas";
 import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
+import { useNodesModel } from "./model/nodes";
+import { Sticker } from "./ui/sticker";
 
 export function BoardEditor() {
     const canvasRef = useRef<HTMLDivElement>(null);
+
+    const { nodes } = useNodesModel();
 
     return (
         <Layout>
             <Dots />
 
-            <Canvas ref={canvasRef} overlay={<Overlay />}></Canvas>
+            <Canvas ref={canvasRef} overlay={<Overlay />}>
+                {nodes.map(node => (
+                    <Sticker key={node.id} sticker={node} />
+                ))}
+            </Canvas>
         </Layout>
     );
 }
