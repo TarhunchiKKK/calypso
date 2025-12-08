@@ -1,18 +1,22 @@
-import { Rect } from "../domain/rect";
+import React from "react";
+import { Rect } from "../domain/geometry";
 import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
-import { IdleViewState } from "./use-idle-view-model";
-import { StickersViewState } from "./use-stickers-view-model";
+import { IdleViewState } from "./variants/use-idle-view-model";
+import { SelectionViewState } from "./variants/use-selection-view-model";
+import { StickersViewState } from "./variants/use-stickers-view-model";
+
+export type ViewState = IdleViewState | StickersViewState | SelectionViewState;
 
 export type ViewModelParams = {
     nodesModel: NodesModel;
 
     canvasRect?: Rect;
 
+    viewState: ViewState;
+
     setViewState: (viewState: ViewState) => void;
 };
-
-export type ViewState = IdleViewState | StickersViewState;
 
 export type ViewModel = {
     nodes: NodeImpl[];
@@ -29,12 +33,13 @@ export type ViewModel = {
     };
 
     overlay?: {
-        _?: () => void;
         onKeyDown?: React.KeyboardEventHandler;
+        onMouseDown?: React.MouseEventHandler;
     };
 
     window?: {
-        _?: () => void;
+        onMouseMove?: (e: MouseEvent) => void;
+        onMouseUp?: (e: MouseEvent) => void;
     };
 
     actions?: {

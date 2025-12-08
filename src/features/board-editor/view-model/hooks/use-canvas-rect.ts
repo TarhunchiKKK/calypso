@@ -1,5 +1,5 @@
 import { RefCallback, useCallback, useState } from "react";
-import { Rect } from "../domain/rect";
+import { Rect } from "../../domain/geometry";
 
 export function useCanvasRect() {
     const [canvasRect, setCanvasRect] = useState<Rect>();

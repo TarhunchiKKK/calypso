@@ -1,8 +1,8 @@
-import { Geometry } from "../domain/geometry";
-import { NodesFactory } from "../nodes/compose/nodes-factory";
-import { useActions } from "./hooks/use-actions";
-import { useHotKeys } from "./hooks/use-hotkeys";
-import { ViewModel, ViewModelParams } from "./types";
+import { OmitFields } from "@/shared/lib/typescript";
+import { Geometry } from "../../domain/geometry";
+import { NodesFactory } from "../../nodes/compose/nodes-factory";
+import { useHotKeys } from "../hooks/use-hot-keys";
+import { ViewModel, ViewModelParams } from "../types";
 
 export type StickersViewState = {
     type: "stickers";
@@ -14,16 +14,17 @@ export function switchToStickers(): StickersViewState {
     };
 }
 
-export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
-    const { handleHotkeys } = useHotKeys({ type: "stickers", setViewState });
-    const actions = useActions({ type: "stickers", setViewState });
+export function useStickersViewModel(params: ViewModelParams) {
+    const { nodesModel, canvasRect } = params;
 
-    return (): ViewModel => {
+    const { handleHotKeys } = useHotKeys(params);
+
+    return (): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: nodesModel.nodes,
             layout: {
                 onKeyDown: e => {
-                    handleHotkeys(e);
+                    handleHotKeys(e);
                 }
             },
             canvas: {
@@ -38,8 +39,7 @@ export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: V
 
                     nodesModel.add(NodesFactory.sticker(clickPoint));
                 }
-            },
-            actions: actions
+            }
         };
     };
 }

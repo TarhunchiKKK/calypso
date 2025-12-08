@@ -1,5 +1,6 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { ReactNode } from "react";
+import { Rect } from "../domain/geometry";
 
 type NodeTypes = "sticker" | "arrow" | "notes";
 
@@ -12,7 +13,23 @@ export type NodeBase = {
 export abstract class NodeImpl {
     protected isSelected = false;
 
-    public constructor(protected node: OmitFields<NodeBase, "type">) {}
+    public constructor(
+        protected node: OmitFields<NodeBase, "type">,
+        protected onClick?: React.MouseEventHandler
+    ) {}
+
+    public get id() {
+        return this.node.id;
+    }
+
+    public setOnClick(onClick: React.MouseEventHandler) {
+        this.onClick = onClick;
+        return this;
+    }
+
+    public abstract toSelected(): NodeImpl;
+
+    public abstract rect(): Rect;
 
     public abstract render(): ReactNode;
 }
