@@ -1,6 +1,7 @@
 import { selectNodes } from "../../domain/selection";
 import { useActions } from "../hooks/use-actions";
 import { useHotKeys } from "../hooks/use-hotkeys";
+import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 
 export type SelectionViewState = {
@@ -16,10 +17,12 @@ export function switchToSelection(selectedIds?: Set<string>): SelectionViewState
 }
 
 export function useSelectionViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState } = params;
+    const { nodesModel, setViewState, canvasRect } = params;
 
     const { handleHotkeys } = useHotKeys("selection", params);
     const actions = useActions({ type: "selection", setViewState });
+
+    const selectionWindow = useSelectionWindow(canvasRect);
 
     return (viewState: SelectionViewState): ViewModel => {
         const handleClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
@@ -40,6 +43,14 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     handleHotkeys(e);
                 }
             },
+            overlay: {
+                onMouseDown: selectionWindow.onMouseDown
+            },
+            window: {
+                onMouseMove: selectionWindow.onMouseMove,
+                onMouseUp: selectionWindow.onMouseUp
+            },
+            selectionWindow: selectionWindow.rect,
             actions: actions
         };
     };

@@ -10,6 +10,7 @@ import { useViewModel } from "./view-model/use-view-model";
 import { ActionButton, ActionsBar } from "./ui/action-bar";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import { useWindowEvents } from "./view-model/hooks/use-window-events";
+import { SelectionWindow } from "./ui/selection-window";
 
 export function BoardEditor() {
     const { canvasRect, canvasRef } = useCanvasRect();
@@ -33,6 +34,8 @@ export function BoardEditor() {
                 onKeyDown={viewModel.canvas?.onKeyDown}
             >
                 {viewModel.nodes.map(node => node.render())}
+
+                {viewModel.selectionWindow && <SelectionWindow {...viewModel.selectionWindow} />}
             </Canvas>
 
             <ActionsBar>

@@ -15,12 +15,12 @@ export function switchToIdle(): IdleViewState {
 }
 
 export function useIdleViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState } = params;
+    const { nodesModel, setViewState, canvasRect } = params;
 
     const { handleHotkeys } = useHotKeys("idle", params);
     const actions = useActions({ type: "idle", setViewState });
 
-    const selectionWindow = useSelectionWindow();
+    const selectionWindow = useSelectionWindow(canvasRect);
 
     const handleClick = (nodeId: string) => {
         setViewState(switchToSelection(new Set([nodeId])));
@@ -41,6 +41,7 @@ export function useIdleViewModel(params: ViewModelParams) {
                 onMouseMove: selectionWindow.onMouseMove,
                 onMouseUp: selectionWindow.onMouseUp
             },
+            selectionWindow: selectionWindow.rect,
             actions: actions
         };
     };
