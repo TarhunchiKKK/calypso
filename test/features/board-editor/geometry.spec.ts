@@ -31,4 +31,15 @@ describe("Geometry", () => {
             expect(result).toBe(5);
         });
     });
+
+    describe("rectFromPoints", () => {
+        test("should create a rectangle from two points", () => {
+            const pointA = { x: 1, y: 1 };
+            const pointB = { x: 4, y: 5 };
+
+            const result = Geometry.rectFromPoints(pointA, pointB);
+
+            expect(result).toEqual({ x: 1, y: 1, width: 3, height: 4 });
+        });
+    });
 });
