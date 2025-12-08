@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 import { NodeBase, NodeImpl } from "../types";
 import { OmitFields } from "@/shared/lib/typescript";
 import clsx from "clsx";
@@ -16,12 +16,15 @@ export type StickerNode = NodeBase & {
 };
 
 export class Sticker extends NodeImpl {
-    public constructor(protected node: OmitFields<StickerNode, "type">) {
-        super(node);
+    public constructor(
+        protected node: OmitFields<StickerNode, "type">,
+        protected onClick?: React.MouseEventHandler
+    ) {
+        super(node, onClick);
     }
 
     public toSelected() {
-        const sticker = new Sticker(this.node);
+        const sticker = new Sticker(this.node, this.onClick);
         sticker.isSelected = true;
         return sticker;
     }
