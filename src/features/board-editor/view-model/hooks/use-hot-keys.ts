@@ -1,19 +1,19 @@
-import { ViewModelParams, ViewState } from "../types";
+import { ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/use-idle-view-model";
 import { switchToSelection } from "../variants/use-selection-view-model";
 import { switchToStickers } from "../variants/use-stickers-view-model";
 
-export function useHotKeys(type: ViewState["type"], { nodesModel, setViewState }: ViewModelParams) {
-    const handleHotkeys = (e: React.KeyboardEvent) => {
-        if (e.key === "Escape" && type !== "idle") {
+export function useHotKeys({ viewState, setViewState, nodesModel }: ViewModelParams) {
+    const handleHotKeys = (e: React.KeyboardEvent) => {
+        if (e.key === "Escape" && viewState.type !== "idle") {
             setViewState(switchToIdle());
         }
 
-        if (e.key === "i" && type !== "idle") {
+        if (e.key === "i" && viewState.type !== "idle") {
             setViewState(switchToIdle());
         }
 
-        if (e.key === "s" && type !== "stickers") {
+        if (e.key === "s" && viewState.type !== "stickers") {
             setViewState(switchToStickers());
         }
 
@@ -23,5 +23,5 @@ export function useHotKeys(type: ViewState["type"], { nodesModel, setViewState }
         }
     };
 
-    return { handleHotkeys };
+    return { handleHotKeys };
 }

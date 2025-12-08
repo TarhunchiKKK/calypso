@@ -1,7 +1,6 @@
-import { Geometry } from "../../domain/geometry";
+import { OmitFields } from "@/shared/lib/typescript";
 import { selectNodes } from "../../domain/selection";
-import { useActions } from "../hooks/use-actions";
-import { useHotKeys } from "../hooks/use-hotkeys";
+import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 
@@ -20,12 +19,11 @@ export function switchToSelection(selectedIds?: Set<string>): SelectionViewState
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
-    const { handleHotkeys } = useHotKeys("selection", params);
-    const actions = useActions({ type: "selection", setViewState });
+    const { handleHotKeys } = useHotKeys(params);
 
     const selectionWindow = useSelectionWindow(params);
 
-    return (viewState: SelectionViewState): ViewModel => {
+    return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
@@ -42,7 +40,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .map(node => node.setOnClick(handleClick.bind(null, node.id))),
             layout: {
                 onKeyDown: e => {
-                    handleHotkeys(e);
+                    handleHotKeys(e);
                 }
             },
             overlay: {
@@ -52,8 +50,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 onMouseMove: selectionWindow.onMouseMove,
                 onMouseUp: selectionWindow.onMouseUp
             },
-            selectionWindow: selectionWindow.rect,
-            actions: actions
+            selectionWindow: selectionWindow.rect
         };
     };
 }

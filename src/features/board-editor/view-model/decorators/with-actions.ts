@@ -1,18 +1,15 @@
-import { ViewModel, ViewState } from "../types";
+import { ViewModel, ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/use-idle-view-model";
 import { switchToStickers } from "../variants/use-stickers-view-model";
 
-type Props = {
-    type: ViewState["type"];
+export function withActions(
+    { viewState, setViewState }: ViewModelParams,
+    viewModel: Omit<ViewModel, "actions">
+): ViewModel {
+    const isIdle = viewState.type === "idle";
+    const isStickers = viewState.type === "stickers";
 
-    setViewState: (viewState: ViewState) => void;
-};
-
-export function useActions({ type, setViewState }: Props): ViewModel["actions"] {
-    const isIdle = type === "idle";
-    const isStickers = type === "stickers";
-
-    return {
+    const actions: ViewModel["actions"] = {
         idle: {
             isActive: isIdle,
             onClick: !isIdle ? () => setViewState(switchToIdle()) : undefined
@@ -21,5 +18,10 @@ export function useActions({ type, setViewState }: Props): ViewModel["actions"] 
             isActive: isStickers,
             onClick: !isStickers ? () => setViewState(switchToStickers()) : undefined
         }
+    };
+
+    return {
+        ...viewModel,
+        actions
     };
 }

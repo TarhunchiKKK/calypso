@@ -1,5 +1,5 @@
-import { useActions } from "../hooks/use-actions";
-import { useHotKeys } from "../hooks/use-hotkeys";
+import { OmitFields } from "@/shared/lib/typescript";
+import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { switchToSelection } from "./use-selection-view-model";
@@ -17,8 +17,7 @@ export function switchToIdle(): IdleViewState {
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
-    const { handleHotkeys } = useHotKeys("idle", params);
-    const actions = useActions({ type: "idle", setViewState });
+    const { handleHotKeys } = useHotKeys(params);
 
     const selectionWindow = useSelectionWindow(params);
 
@@ -26,12 +25,12 @@ export function useIdleViewModel(params: ViewModelParams) {
         setViewState(switchToSelection(new Set([nodeId])));
     };
 
-    return (): ViewModel => {
+    return (): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: nodesModel.nodes.map(node => node.setOnClick(() => handleClick(node.id))),
             layout: {
                 onKeyDown: e => {
-                    handleHotkeys(e);
+                    handleHotKeys(e);
                 }
             },
             overlay: {
@@ -41,8 +40,7 @@ export function useIdleViewModel(params: ViewModelParams) {
                 onMouseMove: selectionWindow.onMouseMove,
                 onMouseUp: selectionWindow.onMouseUp
             },
-            selectionWindow: selectionWindow.rect,
-            actions: actions
+            selectionWindow: selectionWindow.rect
         };
     };
 }

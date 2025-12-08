@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ViewModelParams, ViewState } from "./types";
+import { ViewModel, ViewModelParams, ViewState } from "./types";
 import { switchToIdle, useIdleViewModel } from "./variants/use-idle-view-model";
 import { useStickersViewModel } from "./variants/use-stickers-view-model";
 import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionViewModel } from "./variants/use-selection-view-model";
+import { withActions } from "./decorators/with-actions";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
@@ -18,14 +19,20 @@ export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "
     const stickersViewModel = useStickersViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
 
+    let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
         case "idle":
-            return idleViewModel();
+            viewModel = idleViewModel();
+            break;
         case "stickers":
-            return stickersViewModel();
+            viewModel = stickersViewModel();
+            break;
         case "selection":
-            return selectionViewModel(viewState);
+            viewModel = selectionViewModel(viewState);
+            break;
         default:
             throw new Error("Unknown view state");
     }
+
+    return withActions(newParams, viewModel);
 }
