@@ -42,4 +42,24 @@ describe("Geometry", () => {
             expect(result).toEqual({ x: 1, y: 1, width: 3, height: 4 });
         });
     });
+
+    describe("rectsIntersecting", () => {
+        test("should return true for intersecting rectangles", () => {
+            const rectA = { x: 0, y: 0, width: 5, height: 5 };
+            const rectB = { x: 3, y: 3, width: 5, height: 5 };
+
+            const result = Geometry.rectsIntersecting(rectA, rectB);
+
+            expect(result).toBe(true);
+        });
+
+        test("should return false for non-intersecting rectangles", () => {
+            const rectA = { x: 0, y: 0, width: 2, height: 2 };
+            const rectB = { x: 3, y: 3, width: 2, height: 2 };
+
+            const result = Geometry.rectsIntersecting(rectA, rectB);
+
+            expect(result).toBe(false);
+        });
+    });
 });
