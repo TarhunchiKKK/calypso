@@ -14,8 +14,10 @@ export function switchToStickers(): StickersViewState {
     };
 }
 
-export function useStickersViewModel({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
-    const { handleHotkeys } = useHotKeys({ type: "stickers", setViewState });
+export function useStickersViewModel(params: ViewModelParams) {
+    const { nodesModel, setViewState, canvasRect } = params;
+
+    const { handleHotkeys } = useHotKeys("stickers", params);
     const actions = useActions({ type: "stickers", setViewState });
 
     return (): ViewModel => {

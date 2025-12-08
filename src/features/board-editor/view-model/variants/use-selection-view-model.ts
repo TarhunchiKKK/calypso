@@ -15,8 +15,10 @@ export function switchToSelection(selectedIds?: Set<string>): SelectionViewState
     };
 }
 
-export function useSelectionViewModel({ nodesModel, setViewState }: ViewModelParams) {
-    const { handleHotkeys } = useHotKeys({ type: "selection", setViewState });
+export function useSelectionViewModel(params: ViewModelParams) {
+    const { nodesModel, setViewState } = params;
+
+    const { handleHotkeys } = useHotKeys("selection", params);
     const actions = useActions({ type: "selection", setViewState });
 
     return (viewState: SelectionViewState): ViewModel => {

@@ -13,12 +13,13 @@ export function switchToIdle(): IdleViewState {
     };
 }
 
-export function useIdleViewModel({ nodesModel, setViewState }: ViewModelParams) {
-    const { handleHotkeys } = useHotKeys({ type: "idle", setViewState });
+export function useIdleViewModel(params: ViewModelParams) {
+    const { nodesModel, setViewState } = params;
+
+    const { handleHotkeys } = useHotKeys("idle", params);
     const actions = useActions({ type: "idle", setViewState });
 
     const handleClick = (nodeId: string) => {
-        console.log("handle");
         setViewState(switchToSelection(new Set([nodeId])));
     };
 
