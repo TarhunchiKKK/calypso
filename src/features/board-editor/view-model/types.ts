@@ -2,7 +2,7 @@ import { Rect } from "../domain/rect";
 import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
 import { IdleViewState } from "./variants/use-idle-view-model";
-import { SelectionViewState } from "./variants/use-selection-view-state";
+import { SelectionViewState } from "./variants/use-selection-view-model";
 import { StickersViewState } from "./variants/use-stickers-view-model";
 
 export type ViewModelParams = {

@@ -60,10 +60,12 @@ export function useSelectionViewModel({ nodesModel, setViewState }: ViewModelPar
             });
         };
 
+        console.log(viewState.selectedIds);
+
         return {
             nodes: nodesModel.nodes
-                .map(node => (viewState.selectedIds.has(node.id) ? node.toSelected() : node))
-                .map(node => node.setOnClick(handleClick.bind(null, node.id))),
+                .map(node => node.setOnClick(handleClick.bind(null, node.id)))
+                .map(node => (viewState.selectedIds.has(node.id) ? node.toSelected() : node)),
             layout: {
                 onKeyDown: e => {
                     handleHotkeys(e);

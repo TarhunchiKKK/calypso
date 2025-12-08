@@ -1,7 +1,7 @@
 import { useActions } from "../hooks/use-actions";
 import { useHotKeys } from "../hooks/use-hotkeys";
 import { ViewModel, ViewModelParams } from "../types";
-import { switchToSelection } from "./use-selection-view-state";
+import { switchToSelection } from "./use-selection-view-model";
 
 export type IdleViewState = {
     type: "idle";
