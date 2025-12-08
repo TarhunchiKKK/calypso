@@ -25,6 +25,8 @@ export function useIdleViewModel(params: ViewModelParams) {
         setViewState(switchToSelection(new Set([nodeId])));
     };
 
+    console.log("idle:   " + selectionWindow.rect);
+
     return (): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: nodesModel.nodes.map(node => node.setOnClick(() => handleClick(node.id))),
@@ -39,8 +41,7 @@ export function useIdleViewModel(params: ViewModelParams) {
             window: {
                 onMouseMove: selectionWindow.onMouseMove,
                 onMouseUp: selectionWindow.onMouseUp
-            },
-            selectionWindow: selectionWindow.rect
+            }
         };
     };
 }
