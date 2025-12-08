@@ -21,8 +21,6 @@ export function BoardEditor() {
 
     useWindowEvents(viewModel.window || {});
 
-    console.log(viewModel.selectionWindow);
-
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
             <Dots />

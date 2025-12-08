@@ -20,4 +20,15 @@ describe("Geometry", () => {
             expect(result).toEqual({ x: 40, y: 50 });
         });
     });
+
+    describe("pointsDistance", () => {
+        test("should calculate the distance between two points", () => {
+            const pointA = { x: 0, y: 0 };
+            const pointB = { x: 3, y: 4 };
+
+            const result = Geometry.pointsDistance(pointA, pointB);
+
+            expect(result).toBe(5);
+        });
+    });
 });
