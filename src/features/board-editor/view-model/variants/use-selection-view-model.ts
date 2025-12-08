@@ -23,8 +23,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
-    console.log("selection:   " + selectionWindow.rect);
-
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
