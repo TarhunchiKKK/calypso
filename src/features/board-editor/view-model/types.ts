@@ -6,15 +6,17 @@ import { IdleViewState } from "./variants/use-idle-view-model";
 import { SelectionViewState } from "./variants/use-selection-view-model";
 import { StickersViewState } from "./variants/use-stickers-view-model";
 
+export type ViewState = IdleViewState | StickersViewState | SelectionViewState;
+
 export type ViewModelParams = {
     nodesModel: NodesModel;
 
     canvasRect?: Rect;
 
+    viewState: ViewState;
+
     setViewState: (viewState: ViewState) => void;
 };
-
-export type ViewState = IdleViewState | StickersViewState | SelectionViewState;
 
 export type ViewModel = {
     nodes: NodeImpl[];

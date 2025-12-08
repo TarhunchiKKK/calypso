@@ -15,12 +15,12 @@ export function switchToIdle(): IdleViewState {
 }
 
 export function useIdleViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState, canvasRect } = params;
+    const { nodesModel, setViewState } = params;
 
     const { handleHotkeys } = useHotKeys("idle", params);
     const actions = useActions({ type: "idle", setViewState });
 
-    const selectionWindow = useSelectionWindow(canvasRect);
+    const selectionWindow = useSelectionWindow(params);
 
     const handleClick = (nodeId: string) => {
         setViewState(switchToSelection(new Set([nodeId])));

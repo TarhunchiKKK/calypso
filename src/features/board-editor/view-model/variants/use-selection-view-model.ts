@@ -1,3 +1,4 @@
+import { Geometry } from "../../domain/geometry";
 import { selectNodes } from "../../domain/selection";
 import { useActions } from "../hooks/use-actions";
 import { useHotKeys } from "../hooks/use-hotkeys";
@@ -17,12 +18,12 @@ export function switchToSelection(selectedIds?: Set<string>): SelectionViewState
 }
 
 export function useSelectionViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState, canvasRect } = params;
+    const { nodesModel, setViewState } = params;
 
     const { handleHotkeys } = useHotKeys("selection", params);
     const actions = useActions({ type: "selection", setViewState });
 
-    const selectionWindow = useSelectionWindow(canvasRect);
+    const selectionWindow = useSelectionWindow(params);
 
     return (viewState: SelectionViewState): ViewModel => {
         const handleClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
@@ -37,6 +38,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
         return {
             nodes: nodesModel.nodes
                 .map(node => (viewState.selectedIds.has(node.id) ? node.toSelected() : node))
+                .map(node => (selectionWindow.selectedNodesIds.has(node.id) ? node.toSelected() : node))
                 .map(node => node.setOnClick(handleClick.bind(null, node.id))),
             layout: {
                 onKeyDown: e => {

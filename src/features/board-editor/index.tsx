@@ -1,11 +1,11 @@
 "use client";
 
-import { Canvas } from "./canvas/canvas";
+import { Canvas } from "./ui/canvas";
 import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
-import { useCanvasRect } from "./canvas/use-canvas-rect";
+import { useCanvasRect } from "./view-model/hooks/use-canvas-rect";
 import { useViewModel } from "./view-model/use-view-model";
 import { ActionButton, ActionsBar } from "./ui/action-bar";
 import { MousePointer2, StickerIcon } from "lucide-react";

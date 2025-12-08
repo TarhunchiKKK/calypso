@@ -5,11 +5,12 @@ import { useStickersViewModel } from "./variants/use-stickers-view-model";
 import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionViewModel } from "./variants/use-selection-view-model";
 
-export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
+export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
 
     const newParams = {
         ...params,
+        viewState,
         setViewState
     };
 

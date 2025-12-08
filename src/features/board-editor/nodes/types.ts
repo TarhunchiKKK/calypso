@@ -1,5 +1,6 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { ReactNode } from "react";
+import { Rect } from "../domain/geometry";
 
 type NodeTypes = "sticker" | "arrow" | "notes";
 
@@ -27,6 +28,8 @@ export abstract class NodeImpl {
     }
 
     public abstract toSelected(): NodeImpl;
+
+    public abstract rect(): Rect;
 
     public abstract render(): ReactNode;
 }

@@ -29,6 +29,15 @@ export class Sticker extends NodeImpl {
         return sticker;
     }
 
+    public rect() {
+        return {
+            x: this.node.x,
+            y: this.node.y,
+            width: this.node.width,
+            height: this.node.height
+        };
+    }
+
     public render(): ReactNode {
         const styles: CSSProperties = {
             width: this.node.width,
