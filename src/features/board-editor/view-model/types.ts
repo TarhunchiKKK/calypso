@@ -1,8 +1,9 @@
 import { Rect } from "../domain/rect";
 import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
-import { IdleViewState } from "./use-idle-view-model";
-import { StickersViewState } from "./use-stickers-view-model";
+import { IdleViewState } from "./variants/use-idle-view-model";
+import { SelectionViewState } from "./variants/use-selection-view-state";
+import { StickersViewState } from "./variants/use-stickers-view-model";
 
 export type ViewModelParams = {
     nodesModel: NodesModel;
@@ -12,7 +13,7 @@ export type ViewModelParams = {
     setViewState: (viewState: ViewState) => void;
 };
 
-export type ViewState = IdleViewState | StickersViewState;
+export type ViewState = IdleViewState | StickersViewState | SelectionViewState;
 
 export type ViewModel = {
     nodes: NodeImpl[];

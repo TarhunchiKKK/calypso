@@ -1,6 +1,6 @@
 import { ViewState } from "../types";
-import { switchToIdle } from "../use-idle-view-model";
-import { switchToStickers } from "../use-stickers-view-model";
+import { switchToIdle } from "../variants/use-idle-view-model";
+import { switchToStickers } from "../variants/use-stickers-view-model";
 
 type Props = {
     type: ViewState["type"];

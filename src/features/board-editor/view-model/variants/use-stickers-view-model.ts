@@ -1,8 +1,8 @@
-import { Geometry } from "../domain/geometry";
-import { NodesFactory } from "../nodes/compose/nodes-factory";
-import { useActions } from "./hooks/use-actions";
-import { useHotKeys } from "./hooks/use-hotkeys";
-import { ViewModel, ViewModelParams } from "./types";
+import { Geometry } from "../../domain/geometry";
+import { NodesFactory } from "../../nodes/compose/nodes-factory";
+import { useActions } from "../hooks/use-actions";
+import { useHotKeys } from "../hooks/use-hotkeys";
+import { ViewModel, ViewModelParams } from "../types";
 
 export type StickersViewState = {
     type: "stickers";
