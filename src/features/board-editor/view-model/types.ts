@@ -1,4 +1,5 @@
-import { Rect } from "../domain/rect";
+import React from "react";
+import { Rect } from "../domain/geometry";
 import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
 import { IdleViewState } from "./variants/use-idle-view-model";
@@ -30,12 +31,13 @@ export type ViewModel = {
     };
 
     overlay?: {
-        _?: () => void;
         onKeyDown?: React.KeyboardEventHandler;
+        onMouseDown?: React.MouseEventHandler;
     };
 
     window?: {
-        _?: () => void;
+        onMouseMove?: (e: MouseEvent) => void;
+        onMouseUp?: (e: MouseEvent) => void;
     };
 
     actions?: {

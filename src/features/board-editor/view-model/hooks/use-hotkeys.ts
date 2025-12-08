@@ -17,7 +17,7 @@ export function useHotKeys(type: ViewState["type"], { nodesModel, setViewState }
             setViewState(switchToStickers());
         }
 
-        if (e.key === "a" && e.ctrlKey && type !== "selection") {
+        if (e.key === "a" && e.ctrlKey) {
             e.preventDefault();
             setViewState(switchToSelection(new Set(nodesModel.nodes.map(node => node.id))));
         }

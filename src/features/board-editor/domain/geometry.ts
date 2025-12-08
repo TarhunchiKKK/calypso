@@ -1,5 +1,18 @@
-import { Point } from "./point";
-import { Rect } from "./rect";
+export type Point = {
+    x: number;
+
+    y: number;
+};
+
+export type Rect = {
+    x: number;
+
+    y: number;
+
+    width: number;
+
+    height: number;
+};
 
 export class Geometry {
     public static recalculatePosition(point: Point, canvasRect?: Rect): Point {
@@ -11,5 +24,18 @@ export class Geometry {
             x: point.x - canvasRect.x,
             y: point.y - canvasRect.y
         };
+    }
+
+    public static pointsDistance(a: Point, b: Point): number {
+        return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+    }
+
+    public static rectFromPoints(a: Point, b: Point): Rect {
+        const x = Math.min(a.x, b.x);
+        const y = Math.min(a.y, b.y);
+        const width = Math.abs(b.x - a.x);
+        const height = Math.abs(b.y - a.y);
+
+        return { x, y, width, height };
     }
 }

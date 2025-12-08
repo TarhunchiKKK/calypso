@@ -1,5 +1,6 @@
 import { useActions } from "../hooks/use-actions";
 import { useHotKeys } from "../hooks/use-hotkeys";
+import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { switchToSelection } from "./use-selection-view-model";
 
@@ -19,6 +20,8 @@ export function useIdleViewModel(params: ViewModelParams) {
     const { handleHotkeys } = useHotKeys("idle", params);
     const actions = useActions({ type: "idle", setViewState });
 
+    const selectionWindow = useSelectionWindow();
+
     const handleClick = (nodeId: string) => {
         setViewState(switchToSelection(new Set([nodeId])));
     };
@@ -30,6 +33,13 @@ export function useIdleViewModel(params: ViewModelParams) {
                 onKeyDown: e => {
                     handleHotkeys(e);
                 }
+            },
+            overlay: {
+                onMouseDown: selectionWindow.onMouseDown
+            },
+            window: {
+                onMouseMove: selectionWindow.onMouseMove,
+                onMouseUp: selectionWindow.onMouseUp
             },
             actions: actions
         };
