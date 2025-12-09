@@ -22,6 +22,10 @@ export function withHotKeys(
             e.preventDefault();
             setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));
         }
+        if (viewState.type === "selection" && (e.key === "Delete" || e.key === "Backspace")) {
+            nodesModel.remove(viewState.selectedIds);
+            setViewState(switchToIdle());
+        }
     };
 
     return {
