@@ -1,9 +1,10 @@
-import { ViewModel, ViewModelParams } from "../types";
+import { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle";
 import { switchToStickers } from "../variants/stickers";
 
 export function withActions(
-    { viewState, setViewState }: ViewModelParams,
+    viewState: ViewState,
+    setViewState: ViewModelParams["setViewState"],
     viewModel: Omit<ViewModel, "actions">
 ): ViewModel {
     const isIdle = viewState.type === "idle";

@@ -25,9 +25,9 @@ export function useIdleViewModel(params: ViewModelParams) {
         setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
     };
 
-    return (): OmitFields<ViewModel, "actions"> => {
+    return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes.map(node => node.setOnMouseDown(() => handleMouseDown(node.id))),
+            nodes: nodesModel.nodes.map(node => node.clone().setOnMouseDown(() => handleMouseDown(node.id))),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);
@@ -37,8 +37,8 @@ export function useIdleViewModel(params: ViewModelParams) {
                 onMouseDown: selectionWindow.onMouseDown
             },
             window: {
-                onMouseMove: selectionWindow.onMouseMove,
-                onMouseUp: selectionWindow.onMouseUp
+                onMouseMove: e => selectionWindow.onMouseMove(viewState, e),
+                onMouseUp: () => selectionWindow.onMouseUp(viewState)
             }
         };
     };

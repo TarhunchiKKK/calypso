@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Geometry, Point } from "../../domain/geometry";
 import { ViewModel, ViewModelParams } from "../types";
-import { switchToSelection } from "../variants/selection";
+import { SelectionViewState, switchToSelection } from "../variants/selection";
+import { IdleViewState } from "../variants/idle";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
-export function useSelectionWindow(
-    { nodesModel, canvasRect, setViewState, viewState }: ViewModelParams,
-    initialPoint?: Point
-) {
+export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams, initialPoint?: Point) {
     const [startPoint, setStartPoint] = useState(initialPoint);
     const [selectionWindowRect, setSelectionWindowRect] = useState<ViewModel["selectionWindow"] | undefined>(undefined);
 
@@ -24,7 +22,7 @@ export function useSelectionWindow(
         setSelectionWindowRect(undefined);
     };
 
-    const onMouseMove = (e: MouseEvent) => {
+    const onMouseMove = (viewState: IdleViewState | SelectionViewState, e: MouseEvent) => {
         if (!startPoint) {
             return;
         }
@@ -40,7 +38,7 @@ export function useSelectionWindow(
         }
     };
 
-    const onMouseUp = () => {
+    const onMouseUp = (viewState: IdleViewState | SelectionViewState) => {
         if (viewState.type === "selection" && selectionWindowRect) {
             setViewState({
                 ...viewState,

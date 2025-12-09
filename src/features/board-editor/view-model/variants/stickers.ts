@@ -21,7 +21,7 @@ export function useStickersViewModel(params: ViewModelParams) {
 
     return (): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes,
+            nodes: nodesModel.nodes.map(node => node.clone()),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);

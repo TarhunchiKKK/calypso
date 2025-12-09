@@ -7,12 +7,11 @@ import { useSelectionViewModel } from "./variants/selection";
 import { withActions } from "./decorators/with-actions";
 import { useDraggingViewModel } from "./variants/dragging";
 
-export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "setViewState">) {
+export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
 
     const newParams = {
         ...params,
-        viewState,
         setViewState
     };
 
@@ -24,22 +23,20 @@ export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "
     let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
         case "idle":
-            viewModel = idleViewModel();
+            viewModel = idleViewModel(viewState);
             break;
         case "stickers":
             viewModel = stickersViewModel();
             break;
         case "selection":
-            console.log("selection");
             viewModel = selectionViewModel(viewState);
             break;
         case "dragging":
-            console.log("dragging");
             viewModel = draggingViewModel(viewState);
             break;
         default:
             throw new Error("Unknown view state");
     }
 
-    return withActions(newParams, viewModel);
+    return withActions(viewState, setViewState, viewModel);
 }

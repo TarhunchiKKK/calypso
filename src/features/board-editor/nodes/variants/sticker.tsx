@@ -2,6 +2,7 @@ import React, { CSSProperties, ReactNode } from "react";
 import { NodeBase, NodeHandlers, NodeImpl } from "../types";
 import { OmitFields } from "@/shared/lib/typescript";
 import clsx from "clsx";
+import { Point } from "../../domain/geometry";
 
 export type StickerNode = NodeBase & {
     x: number;
@@ -23,10 +24,8 @@ export class Sticker extends NodeImpl {
         super(node, handlers);
     }
 
-    public toSelected() {
-        const sticker = new Sticker(this.node, this.handlers);
-        sticker.isSelected = true;
-        return sticker;
+    public clone() {
+        return new Sticker({ ...this.node }, { ...this.handlers });
     }
 
     public rect() {
@@ -36,6 +35,12 @@ export class Sticker extends NodeImpl {
             width: this.node.width,
             height: this.node.height
         };
+    }
+
+    public moveTo(point: Point) {
+        this.node.x = point.x;
+        this.node.y = point.y;
+        return this;
     }
 
     public render(): ReactNode {

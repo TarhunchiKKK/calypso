@@ -1,6 +1,6 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { HTMLAttributes, ReactNode } from "react";
-import { Rect } from "../domain/geometry";
+import { Point, Rect } from "../domain/geometry";
 
 type NodeTypes = "sticker" | "arrow" | "notes";
 
@@ -34,9 +34,16 @@ export abstract class NodeImpl {
         return this;
     }
 
-    public abstract toSelected(): NodeImpl;
+    public abstract moveTo(point: Point): NodeImpl;
+
+    public select() {
+        this.isSelected = true;
+        return this;
+    }
 
     public abstract rect(): Rect;
+
+    public abstract clone(): NodeImpl;
 
     public abstract render(): ReactNode;
 }

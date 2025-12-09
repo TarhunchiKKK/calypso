@@ -55,4 +55,17 @@ export class Geometry {
             dy: end.y - start.y
         };
     }
+
+    public static applyOffset(point: Point, offset?: Offset): Point {
+        if (!offset) {
+            return point;
+        }
+
+        console.log(point);
+
+        return {
+            x: point.x + offset.dx,
+            y: point.y + offset.dy
+        };
+    }
 }

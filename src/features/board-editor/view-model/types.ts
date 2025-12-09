@@ -14,8 +14,6 @@ export type ViewModelParams = {
 
     canvasRect?: Rect;
 
-    viewState: ViewState;
-
     setViewState: (viewState: ViewState) => void;
 };
 
