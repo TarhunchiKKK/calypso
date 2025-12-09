@@ -47,12 +47,14 @@ export function useSelectionViewModel(params: ViewModelParams) {
             });
         };
 
+        const onlyOneNodeSelected = viewState.selectedIds.size === 1;
+
         return {
             nodes: nodesModel.nodes
                 .map(node => node.clone())
                 .map(node =>
                     viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node.select()
+                        ? node.select(onlyOneNodeSelected)
                         : node
                 )
                 .map(node => node.setOnClick(handleNodeClick.bind(null, node.id)).setOnMouseDown(dragging.onMouseDown)),
