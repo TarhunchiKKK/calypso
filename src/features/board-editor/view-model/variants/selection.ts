@@ -29,10 +29,13 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
+    // const dragging = useDragging(params);
+
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handleClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleMouseDown = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
+            console.log(selectionMode);
             setViewState({
                 ...viewState,
                 selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
@@ -43,7 +46,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             nodes: nodesModel.nodes
                 .map(node => (viewState.selectedIds.has(node.id) ? node.toSelected() : node))
                 .map(node => (selectionWindow.selectedNodesIds.has(node.id) ? node.toSelected() : node))
-                .map(node => node.setOnClick(handleClick.bind(null, node.id))),
+                .map(node => node.setOnMouseDown(handleMouseDown.bind(null, node.id))),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);

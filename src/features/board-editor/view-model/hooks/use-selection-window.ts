@@ -9,7 +9,7 @@ export function useSelectionWindow(
     { nodesModel, canvasRect, setViewState, viewState }: ViewModelParams,
     initialPoint?: Point
 ) {
-    const [startPoint, setStartPoint] = useState<Point | undefined>(initialPoint);
+    const [startPoint, setStartPoint] = useState(initialPoint);
     const [selectionWindowRect, setSelectionWindowRect] = useState<ViewModel["selectionWindow"] | undefined>(undefined);
 
     let selectedNodesIds: string[] = [];

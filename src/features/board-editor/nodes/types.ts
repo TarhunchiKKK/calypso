@@ -1,5 +1,5 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { Rect } from "../domain/geometry";
 
 type NodeTypes = "sticker" | "arrow" | "notes";
@@ -10,20 +10,27 @@ export type NodeBase = {
     type: NodeTypes;
 };
 
+export type NodeHandlers = Pick<HTMLAttributes<HTMLDivElement>, "onClick" | "onMouseDown">;
+
 export abstract class NodeImpl {
     protected isSelected = false;
 
     public constructor(
         protected node: OmitFields<NodeBase, "type">,
-        protected onClick?: React.MouseEventHandler
+        protected handlers: NodeHandlers = {}
     ) {}
 
     public get id() {
         return this.node.id;
     }
 
-    public setOnClick(onClick: React.MouseEventHandler) {
-        this.onClick = onClick;
+    public setOnClick(onClick?: React.MouseEventHandler) {
+        this.handlers.onClick = onClick;
+        return this;
+    }
+
+    public setOnMouseDown(onMouseDown?: React.MouseEventHandler) {
+        this.handlers.onMouseDown = onMouseDown;
         return this;
     }
 

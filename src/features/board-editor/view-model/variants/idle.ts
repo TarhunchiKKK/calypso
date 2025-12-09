@@ -21,13 +21,13 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
-    const handleClick = (nodeId: string) => {
+    const handleMouseDown = (nodeId: string) => {
         setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
     };
 
     return (): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes.map(node => node.setOnClick(() => handleClick(node.id))),
+            nodes: nodesModel.nodes.map(node => node.setOnMouseDown(() => handleMouseDown(node.id))),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);

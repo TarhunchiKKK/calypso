@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode } from "react";
-import { NodeBase, NodeImpl } from "../types";
+import { NodeBase, NodeHandlers, NodeImpl } from "../types";
 import { OmitFields } from "@/shared/lib/typescript";
 import clsx from "clsx";
 
@@ -18,13 +18,13 @@ export type StickerNode = NodeBase & {
 export class Sticker extends NodeImpl {
     public constructor(
         protected node: OmitFields<StickerNode, "type">,
-        protected onClick?: React.MouseEventHandler
+        protected handlers: NodeHandlers = {}
     ) {
-        super(node, onClick);
+        super(node, handlers);
     }
 
     public toSelected() {
-        const sticker = new Sticker(this.node, this.onClick);
+        const sticker = new Sticker(this.node, this.handlers);
         sticker.isSelected = true;
         return sticker;
     }
@@ -49,7 +49,7 @@ export class Sticker extends NodeImpl {
         return (
             <div
                 key={this.node.id}
-                onClick={this.onClick}
+                {...this.handlers}
                 className={clsx(
                     "absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center",
                     this.isSelected && "outline outline-2 outline-blue-500 "

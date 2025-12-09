@@ -14,6 +14,12 @@ export type Rect = {
     height: number;
 };
 
+export type Offset = {
+    dx: number;
+
+    dy: number;
+};
+
 export class Geometry {
     public static recalculatePosition(point: Point, canvasRect?: Rect): Point {
         if (!canvasRect) {
@@ -41,5 +47,12 @@ export class Geometry {
 
     public static rectsIntersecting(a: Rect, b: Rect): boolean {
         return !(a.x > b.x + b.width || a.x + a.width < b.x || a.y > b.y + b.height || a.y + a.height < b.y);
+    }
+
+    public static calculateOffset(start: Point, end: Point): Offset {
+        return {
+            dx: end.x - start.x,
+            dy: end.y - start.y
+        };
     }
 }
