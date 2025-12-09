@@ -4,7 +4,7 @@ import { ViewModelParams } from "../types";
 import { DraggingViewState, switchToDragging } from "../variants/dragging";
 import { SelectionViewState, switchToSelection } from "../variants/selection";
 
-const DRAGGING_MIN_DIFF = 60;
+const DRAGGING_MIN_DIFF = 5;
 
 export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const [startPoint, setStartPoint] = useState<Point>();
@@ -46,12 +46,13 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
                 nodesModel.nodes.map(node =>
                     viewState.selectedIds.has(node.id)
                         ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
-                        : node
+                        : node.clone()
                 )
             );
             setViewState(
                 switchToSelection({
-                    selectedIds: viewState.selectedIds
+                    selectedIds: viewState.selectedIds,
+                    skipNextClick: true
                 })
             );
         }
@@ -60,5 +61,5 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
         setOffset(undefined);
     };
 
-    return { offset, onMouseDown, onMouseMove, onMouseUp };
+    return { startPoint, offset, onMouseDown, onMouseMove, onMouseUp };
 }

@@ -27,11 +27,13 @@ export function useDraggingViewModel(params: ViewModelParams) {
 
     return (viewState: DraggingViewState): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes.map(node =>
-                viewState.selectedIds.has(node.id)
-                    ? node.clone().select().moveTo(Geometry.applyOffset(node.rect(), dragging.offset))
-                    : node
-            ),
+            nodes: nodesModel.nodes
+                .map(node => node.clone())
+                .map(node =>
+                    viewState.selectedIds.has(node.id)
+                        ? node.select().moveTo(Geometry.applyOffset(node.rect(), dragging.offset))
+                        : node
+                ),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);

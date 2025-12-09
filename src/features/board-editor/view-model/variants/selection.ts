@@ -10,16 +10,19 @@ export type SelectionViewState = {
     type: "selection";
     selectedIds: Set<string>;
     selectionWindow?: Rect;
+    skipNextClick?: boolean;
 };
 
 export function switchToSelection({
     selectedIds,
-    selectionWindow
+    selectionWindow,
+    skipNextClick
 }: Partial<SelectionViewState> = {}): SelectionViewState {
     return {
         type: "selection",
         selectedIds: selectedIds ?? new Set(),
-        selectionWindow: selectionWindow
+        selectionWindow: selectionWindow,
+        skipNextClick: skipNextClick
     };
 }
 
@@ -33,25 +36,29 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const dragging = useDragging(params);
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handleMouseDown = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleNodeClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+            if (viewState.skipNextClick) {
+                setViewState({ ...viewState, skipNextClick: undefined });
+                return;
+            }
+
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
             setViewState({
                 ...viewState,
                 selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
             });
-
-            dragging.onMouseDown(e);
         };
 
         return {
             nodes: nodesModel.nodes
+                .map(node => node.clone())
                 .map(node =>
                     viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node.clone().select()
+                        ? node.select()
                         : node
                 )
-                .map(node => node.setOnMouseDown(handleMouseDown.bind(null, node.id))),
+                .map(node => node.setOnClick(handleNodeClick.bind(null, node.id)).setOnMouseDown(dragging.onMouseDown)),
             layout: {
                 onKeyDown: e => {
                     handleHotKeys(e);

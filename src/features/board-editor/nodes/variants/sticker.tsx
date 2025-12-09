@@ -25,7 +25,7 @@ export class Sticker extends NodeImpl {
     }
 
     public clone() {
-        return new Sticker({ ...this.node }, { ...this.handlers });
+        return new Sticker({ ...this.node });
     }
 
     public rect() {
