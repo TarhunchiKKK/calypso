@@ -22,7 +22,7 @@ export function useIdleViewModel(params: ViewModelParams) {
     const selectionWindow = useSelectionWindow(params);
 
     const handleClick = (nodeId: string) => {
-        setViewState(switchToSelection(new Set([nodeId])));
+        setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
     };
 
     return (): OmitFields<ViewModel, "actions"> => {
