@@ -2,11 +2,12 @@ import React from "react";
 import { Rect } from "../domain/geometry";
 import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
-import { IdleViewState } from "./variants/use-idle-view-model";
-import { SelectionViewState } from "./variants/use-selection-view-model";
-import { StickersViewState } from "./variants/use-stickers-view-model";
+import { IdleViewState } from "./variants/idle";
+import { SelectionViewState } from "./variants/selection";
+import { StickersViewState } from "./variants/stickers";
+import { DraggingViewState } from "./variants/dragging";
 
-export type ViewState = IdleViewState | StickersViewState | SelectionViewState;
+export type ViewState = IdleViewState | StickersViewState | SelectionViewState | DraggingViewState;
 
 export type ViewModelParams = {
     nodesModel: NodesModel;

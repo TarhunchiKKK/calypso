@@ -2,7 +2,7 @@ import { OmitFields } from "@/shared/lib/typescript";
 import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
-import { switchToSelection } from "./use-selection-view-model";
+import { switchToSelection } from "./selection";
 
 export type IdleViewState = {
     type: "idle";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Geometry, Point } from "../../domain/geometry";
 import { ViewModel, ViewModelParams } from "../types";
-import { switchToSelection } from "../variants/use-selection-view-model";
+import { switchToSelection } from "../variants/selection";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 

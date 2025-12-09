@@ -1,7 +1,7 @@
 import { ViewModelParams } from "../types";
-import { switchToIdle } from "../variants/use-idle-view-model";
-import { switchToSelection } from "../variants/use-selection-view-model";
-import { switchToStickers } from "../variants/use-stickers-view-model";
+import { switchToIdle } from "../variants/idle";
+import { switchToSelection } from "../variants/selection";
+import { switchToStickers } from "../variants/stickers";
 
 export function useHotKeys({ viewState, setViewState, nodesModel }: ViewModelParams) {
     const handleHotKeys = (e: React.KeyboardEvent) => {
@@ -19,7 +19,7 @@ export function useHotKeys({ viewState, setViewState, nodesModel }: ViewModelPar
 
         if (e.key === "a" && e.ctrlKey) {
             e.preventDefault();
-            setViewState(switchToSelection(new Set(nodesModel.nodes.map(node => node.id))));
+            setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));
         }
     };
 
