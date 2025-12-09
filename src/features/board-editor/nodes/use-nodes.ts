@@ -31,7 +31,11 @@ export function useNodes() {
         setNodes(nodes => [...nodes, node]);
     };
 
-    return { nodes, setNodes, add };
+    const remove = (id: Set<string>) => {
+        setNodes(nodes => nodes.filter(node => !id.has(node.id)));
+    };
+
+    return { nodes, setNodes, add, remove };
 }
 
 export type NodesModel = ReturnType<typeof useNodes>;
