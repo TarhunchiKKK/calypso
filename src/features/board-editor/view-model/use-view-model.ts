@@ -30,9 +30,11 @@ export function useViewModel(params: OmitFields<ViewModelParams, "viewState" | "
             viewModel = stickersViewModel();
             break;
         case "selection":
+            console.log("selection");
             viewModel = selectionViewModel(viewState);
             break;
         case "dragging":
+            console.log("dragging");
             viewModel = draggingViewModel(viewState);
             break;
         default:

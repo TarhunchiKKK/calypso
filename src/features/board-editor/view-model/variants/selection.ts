@@ -4,6 +4,7 @@ import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { Rect } from "../../domain/geometry";
+import { useDragging } from "../hooks/use-dragging";
 
 export type SelectionViewState = {
     type: "selection";
@@ -29,7 +30,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
-    // const dragging = useDragging(params);
+    const dragging = useDragging(params);
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleMouseDown = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
@@ -40,6 +41,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 ...viewState,
                 selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
             });
+
+            dragging.onMouseDown(e);
         };
 
         return {
@@ -56,8 +59,14 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 onMouseDown: selectionWindow.onMouseDown
             },
             window: {
-                onMouseMove: selectionWindow.onMouseMove,
-                onMouseUp: selectionWindow.onMouseUp
+                onMouseMove: e => {
+                    selectionWindow.onMouseMove(e);
+                    dragging.onMouseMove(e);
+                },
+                onMouseUp: () => {
+                    selectionWindow.onMouseUp();
+                    dragging.onMouseUp();
+                }
             },
             selectionWindow: selectionWindow.rect
         };
