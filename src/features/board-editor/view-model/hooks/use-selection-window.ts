@@ -5,8 +5,11 @@ import { switchToSelection } from "../variants/use-selection-view-model";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
-export function useSelectionWindow({ nodesModel, canvasRect, setViewState, viewState }: ViewModelParams) {
-    const [startPoint, setStartPoint] = useState<Point>();
+export function useSelectionWindow(
+    { nodesModel, canvasRect, setViewState, viewState }: ViewModelParams,
+    initialPoint?: Point
+) {
+    const [startPoint, setStartPoint] = useState<Point | undefined>(initialPoint);
     const [selectionWindowRect, setSelectionWindowRect] = useState<ViewModel["selectionWindow"] | undefined>(undefined);
 
     let selectedNodesIds: string[] = [];

@@ -3,16 +3,22 @@ import { selectNodes } from "../../domain/selection";
 import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
+import { Rect } from "../../domain/geometry";
 
 export type SelectionViewState = {
     type: "selection";
     selectedIds: Set<string>;
+    selectionWindow?: Rect;
 };
 
-export function switchToSelection(selectedIds?: Set<string>): SelectionViewState {
+export function switchToSelection({
+    selectedIds,
+    selectionWindow
+}: Partial<SelectionViewState> = {}): SelectionViewState {
     return {
         type: "selection",
-        selectedIds: selectedIds ?? new Set()
+        selectedIds: selectedIds ?? new Set(),
+        selectionWindow: selectionWindow
     };
 }
 
