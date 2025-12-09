@@ -4,8 +4,8 @@ import { switchToIdle, useIdleViewModel } from "./variants/idle";
 import { useStickersViewModel } from "./variants/stickers";
 import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionViewModel } from "./variants/selection";
-import { withActions } from "./decorators/with-actions";
 import { useDraggingViewModel } from "./variants/dragging";
+import { applyDecorators } from "./decorators/apply-decorators";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
@@ -38,5 +38,5 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    return withActions(viewState, setViewState, viewModel);
+    return applyDecorators(viewModel, viewState, newParams);
 }

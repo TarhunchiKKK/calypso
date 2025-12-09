@@ -1,6 +1,5 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { selectNodes } from "../../domain/selection";
-import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { Rect } from "../../domain/geometry";
@@ -28,8 +27,6 @@ export function switchToSelection({
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
-
-    const { handleHotKeys } = useHotKeys(params);
 
     const selectionWindow = useSelectionWindow(params);
 
@@ -59,11 +56,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         : node
                 )
                 .map(node => node.setOnClick(handleNodeClick.bind(null, node.id)).setOnMouseDown(dragging.onMouseDown)),
-            layout: {
-                onKeyDown: e => {
-                    handleHotKeys(e);
-                }
-            },
+            layout: {},
             overlay: {
                 onMouseDown: selectionWindow.onMouseDown
             },

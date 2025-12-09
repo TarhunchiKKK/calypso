@@ -30,8 +30,11 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         if (Geometry.pointsDistance(startPoint, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
-            if (viewState.type !== "selection") {
+            if (viewState.type === "idle") {
                 setViewState(switchToSelection());
+                setStartPoint(undefined);
+                setSelectionWindowRect(undefined);
+                return;
             }
 
             setSelectionWindowRect(Geometry.rectFromPoints(startPoint, currentPoint));

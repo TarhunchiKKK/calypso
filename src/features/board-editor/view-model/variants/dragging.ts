@@ -1,6 +1,5 @@
 import { OmitFields } from "@/shared/lib/typescript";
 import { Geometry, Point } from "../../domain/geometry";
-import { useHotKeys } from "../hooks/use-hot-keys";
 import { ViewModel, ViewModelParams } from "../types";
 import { useDragging } from "../hooks/use-dragging";
 
@@ -21,8 +20,6 @@ export function switchToDragging({ startPoint, selectedIds }: Partial<DraggingVi
 export function useDraggingViewModel(params: ViewModelParams) {
     const { nodesModel } = params;
 
-    const { handleHotKeys } = useHotKeys(params);
-
     const dragging = useDragging(params);
 
     return (viewState: DraggingViewState): OmitFields<ViewModel, "actions"> => {
@@ -34,11 +31,7 @@ export function useDraggingViewModel(params: ViewModelParams) {
                         ? node.select().moveTo(Geometry.applyOffset(node.rect(), dragging.offset))
                         : node
                 ),
-            layout: {
-                onKeyDown: e => {
-                    handleHotKeys(e);
-                }
-            },
+            layout: {},
             window: {
                 onMouseMove: e => dragging.onMouseMove(viewState, e),
                 onMouseUp: () => dragging.onMouseUp(viewState)

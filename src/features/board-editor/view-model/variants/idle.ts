@@ -1,5 +1,4 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { useHotKeys } from "../hooks/use-hot-keys";
 import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { switchToSelection } from "./selection";
@@ -17,22 +16,16 @@ export function switchToIdle(): IdleViewState {
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
-    const { handleHotKeys } = useHotKeys(params);
-
     const selectionWindow = useSelectionWindow(params);
 
-    const handleMouseDown = (nodeId: string) => {
-        setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
-    };
-
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
+        const handleMouseDown = (nodeId: string) => {
+            setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
+        };
+
         return {
             nodes: nodesModel.nodes.map(node => node.clone().setOnMouseDown(() => handleMouseDown(node.id))),
-            layout: {
-                onKeyDown: e => {
-                    handleHotKeys(e);
-                }
-            },
+            layout: {},
             overlay: {
                 onMouseDown: selectionWindow.onMouseDown
             },

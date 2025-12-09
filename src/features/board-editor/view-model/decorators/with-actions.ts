@@ -7,7 +7,7 @@ export function withActions(
     setViewState: ViewModelParams["setViewState"],
     viewModel: Omit<ViewModel, "actions">
 ): ViewModel {
-    const isIdle = viewState.type === "idle";
+    const isIdle = viewState.type === "idle" || viewState.type === "selection" || viewState.type === "dragging";
     const isStickers = viewState.type === "stickers";
 
     const actions: ViewModel["actions"] = {
