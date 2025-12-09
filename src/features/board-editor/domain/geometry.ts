@@ -61,8 +61,6 @@ export class Geometry {
             return point;
         }
 
-        console.log(point);
-
         return {
             x: point.x + offset.dx,
             y: point.y + offset.dy

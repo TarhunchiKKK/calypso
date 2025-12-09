@@ -31,7 +31,7 @@ export function useNodes() {
         setNodes(nodes => [...nodes, node]);
     };
 
-    return { nodes, add };
+    return { nodes, setNodes, add };
 }
 
 export type NodesModel = ReturnType<typeof useNodes>;

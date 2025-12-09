@@ -25,8 +25,6 @@ export function useDraggingViewModel(params: ViewModelParams) {
 
     const dragging = useDragging(params);
 
-    // console.log(dragging.offset);
-
     return (viewState: DraggingViewState): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: nodesModel.nodes.map(node =>
