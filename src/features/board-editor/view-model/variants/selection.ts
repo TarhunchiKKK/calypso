@@ -4,6 +4,7 @@ import { useSelectionWindow } from "../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../types";
 import { Rect } from "../../domain/geometry";
 import { useDragging } from "../hooks/use-dragging";
+import { useResizing } from "../hooks/use-resizing";
 
 export type SelectionViewState = {
     type: "selection";
@@ -32,6 +33,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const dragging = useDragging(params);
 
+    const { onResizeStart } = useResizing(params);
+
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleNodeClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
             if (viewState.skipNextClick) {
@@ -54,7 +57,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .map(node => node.clone())
                 .map(node =>
                     viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node.select(onlyOneNodeSelected)
+                        ? node.select(onlyOneNodeSelected).setHandler("onResizeStart", () => onResizeStart(node.id))
                         : node
                 )
                 .map(node => node.setOnClick(handleNodeClick.bind(null, node.id)).setOnMouseDown(dragging.onMouseDown)),

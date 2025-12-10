@@ -4,6 +4,7 @@ import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
 import { Geometry, Point, Rect } from "@/features/board-editor/domain/geometry";
 import { ResizeDirection } from "@/features/board-editor/domain/dom";
+import { Sticker } from "./entity";
 
 type Props = {
     node: StickerNode;
@@ -30,6 +31,7 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
 
     const onResizeStart = (direction: ResizeDirection) => {
         setResizeDirection(direction);
+        handlers.onResizeStart?.();
     };
 
     useEffect(() => {
@@ -37,7 +39,13 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             return;
         }
 
+        console.log("fire");
+
         const onResizePending = (e: MouseEvent) => {
+            if (!resizeDirection) {
+                return;
+            }
+
             const currentPoint: Point = { x: e.clientX, y: e.clientY };
 
             setSizes(prev => Geometry.applyResizing(prev, currentPoint, resizeDirection));
@@ -45,6 +53,12 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
 
         const onResizeEnd = () => {
             setResizeDirection(undefined);
+            handlers.onResizeEnd?.(
+                new Sticker({
+                    ...node,
+                    ...sizes
+                })
+            );
         };
 
         window.addEventListener("mousemove", onResizePending);
@@ -54,7 +68,7 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             window.removeEventListener("mousemove", onResizePending);
             window.removeEventListener("mouseup", onResizeEnd);
         };
-    }, [resizeDirection]);
+    }, [handlers, node, resizeDirection, sizes]);
 
     return (
         <div
@@ -69,19 +83,19 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             {resizable && (
                 <>
                     <div
-                        className="absolute -inset-x-1 w-1 h-full cursor-w-resize"
+                        className="absolute -inset-x-1 w-3 h-full cursor-w-resize"
                         onMouseDown={() => onResizeStart("w")}
                     ></div>
                     <div
-                        className="absolute inset-x-full w-1 h-full cursor-w-resize"
+                        className="absolute inset-x-full w-3 h-full cursor-w-resize"
                         onMouseDown={() => onResizeStart("e")}
                     ></div>
                     <div
-                        className="absolute -inset-y-1 w-full h-1 cursor-n-resize"
+                        className="absolute -inset-y-1 w-full h-3 cursor-n-resize"
                         onMouseDown={() => onResizeStart("n")}
                     ></div>
                     <div
-                        className="absolute inset-y-full w-full h-1 cursor-n-resize"
+                        className="absolute inset-y-full w-full h-3 cursor-n-resize"
                         onMouseDown={() => onResizeStart("s")}
                     ></div>
                 </>

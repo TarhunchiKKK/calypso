@@ -7,7 +7,9 @@ export type NodeHandlers = {
 
     onMouseDown?: React.MouseEventHandler;
 
-    onResize?: () => void;
+    onResizeStart?: () => void;
+
+    onResizeEnd?: (node: NodeImpl) => void;
 };
 
 export abstract class NodeImpl<T extends NodeBase = NodeBase> {
@@ -40,6 +42,11 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
     public select(resizable: boolean = true) {
         this.isSelected = true;
         this.resizable = resizable;
+        return this;
+    }
+
+    public setHandler<Key extends keyof NodeHandlers>(key: Key, handler: NodeHandlers[Key] | undefined) {
+        this.handlers[key] = handler;
         return this;
     }
 

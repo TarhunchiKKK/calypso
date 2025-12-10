@@ -1,13 +1,14 @@
 import React from "react";
 import { Rect } from "../domain/geometry";
-import { NodeImpl } from "../nodes/types";
 import { NodesModel } from "../nodes/use-nodes";
 import { IdleViewState } from "./variants/idle";
 import { SelectionViewState } from "./variants/selection";
 import { StickersViewState } from "./variants/stickers";
 import { DraggingViewState } from "./variants/dragging";
+import { ResizingViewState } from "./variants/resizing";
+import { NodeImpl } from "../nodes/variants/base";
 
-export type ViewState = IdleViewState | StickersViewState | SelectionViewState | DraggingViewState;
+export type ViewState = IdleViewState | StickersViewState | SelectionViewState | DraggingViewState | ResizingViewState;
 
 export type ViewModelParams = {
     nodesModel: NodesModel;
