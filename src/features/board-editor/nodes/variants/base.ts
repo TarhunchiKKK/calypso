@@ -1,4 +1,3 @@
-import { OmitFields } from "@/shared/lib/typescript";
 import { ReactNode } from "react";
 import { Point, Rect } from "../../domain/geometry";
 import { NodeBase } from "../types";
@@ -11,13 +10,14 @@ export type NodeHandlers = {
     onResize?: () => void;
 };
 
-export abstract class NodeImpl {
+export abstract class NodeImpl<T extends NodeBase = NodeBase> {
     protected isSelected = false;
 
     protected resizable = false;
 
     public constructor(
-        protected node: OmitFields<NodeBase, "type">,
+        protected node: T,
+        protected updateOne?: (node: NodeImpl<NodeBase>) => void,
         protected handlers: NodeHandlers = {}
     ) {}
 
@@ -35,7 +35,7 @@ export abstract class NodeImpl {
         return this;
     }
 
-    public abstract moveTo(point: Point): NodeImpl;
+    public abstract moveTo(point: Point): NodeImpl<T>;
 
     public select(resizable: boolean = true) {
         this.isSelected = true;
@@ -45,7 +45,7 @@ export abstract class NodeImpl {
 
     public abstract rect(): Rect;
 
-    public abstract clone(): NodeImpl;
+    public abstract clone(): NodeImpl<T>;
 
     public abstract render(): ReactNode;
 }

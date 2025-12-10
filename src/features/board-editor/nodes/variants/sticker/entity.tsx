@@ -1,17 +1,10 @@
 import { Point } from "@/features/board-editor/domain/geometry";
 import { ReactNode } from "react";
-import { NodeImpl, NodeHandlers } from "../base";
+import { NodeImpl } from "../base";
 import { StickerNode } from "./type";
 import { StickerComponent } from "./ui";
 
-export class Sticker extends NodeImpl {
-    public constructor(
-        protected node: StickerNode,
-        protected handlers: NodeHandlers = {}
-    ) {
-        super(node, handlers);
-    }
-
+export class Sticker extends NodeImpl<StickerNode> {
     public clone() {
         return new Sticker({ ...this.node });
     }

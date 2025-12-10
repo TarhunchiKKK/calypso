@@ -16,11 +16,20 @@ const mockNodes: AnyNode[] = [
     {
         id: crypto.randomUUID(),
         type: "sticker",
-        x: 200,
-        y: 200,
+        x: 220,
+        y: 220,
         width: 150,
         height: 150,
         text: "Hello 2"
+    },
+    {
+        id: crypto.randomUUID(),
+        type: "sticker",
+        x: 460,
+        y: 180,
+        width: 100,
+        height: 100,
+        text: "Hello 3"
     }
 ];
 

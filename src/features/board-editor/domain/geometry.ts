@@ -1,3 +1,5 @@
+import { ResizeDirection } from "./dom";
+
 export type Point = {
     x: number;
 
@@ -65,5 +67,33 @@ export class Geometry {
             x: point.x + offset.dx,
             y: point.y + offset.dy
         };
+    }
+
+    public static applyResizing(rect: Rect, point: Point, direction: ResizeDirection): Rect {
+        const right = rect.x + rect.width;
+        const bottom = rect.y + rect.height;
+
+        switch (direction) {
+            case "e": {
+                const width = Math.max(0, point.x - rect.x);
+                return { ...rect, width };
+            }
+            case "w": {
+                const x = Math.min(point.x, right);
+                const width = Math.max(0, right - x);
+                return { ...rect, x, width };
+            }
+            case "s": {
+                const height = Math.max(0, point.y - rect.y);
+                return { ...rect, height };
+            }
+            case "n": {
+                const y = Math.min(point.y, bottom);
+                const height = Math.max(0, bottom - y);
+                return { ...rect, y, height };
+            }
+            default:
+                return rect;
+        }
     }
 }

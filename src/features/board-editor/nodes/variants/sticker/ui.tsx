@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
+import { Geometry, Point, Rect } from "@/features/board-editor/domain/geometry";
+import { ResizeDirection } from "@/features/board-editor/domain/dom";
 
 type Props = {
     node: StickerNode;
@@ -11,12 +13,48 @@ type Props = {
 };
 
 export function StickerComponent({ node, isSelected, resizable, handlers }: Props) {
-    const styles: CSSProperties = {
+    const [sizes, setSizes] = useState<Rect>({
+        x: node.x,
+        y: node.y,
         width: node.width,
-        height: node.height,
-        left: node.x,
-        top: node.y
+        height: node.height
+    });
+    const [resizeDirection, setResizeDirection] = useState<ResizeDirection>();
+
+    const styles: CSSProperties = {
+        width: sizes.width,
+        height: sizes.height,
+        left: sizes.x,
+        top: sizes.y
     };
+
+    const onResizeStart = (direction: ResizeDirection) => {
+        setResizeDirection(direction);
+    };
+
+    useEffect(() => {
+        if (!resizeDirection) {
+            return;
+        }
+
+        const onResizePending = (e: MouseEvent) => {
+            const currentPoint: Point = { x: e.clientX, y: e.clientY };
+
+            setSizes(prev => Geometry.applyResizing(prev, currentPoint, resizeDirection));
+        };
+
+        const onResizeEnd = () => {
+            setResizeDirection(undefined);
+        };
+
+        window.addEventListener("mousemove", onResizePending);
+        window.addEventListener("mouseup", onResizeEnd);
+
+        return () => {
+            window.removeEventListener("mousemove", onResizePending);
+            window.removeEventListener("mouseup", onResizeEnd);
+        };
+    }, [resizeDirection]);
 
     return (
         <div
@@ -30,10 +68,22 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
         >
             {resizable && (
                 <>
-                    <div className="absolute -inset-y-1 w-full h-1 cursor-n-resize"></div>
-                    <div className="absolute inset-y-full w-full h-1 cursor-n-resize"></div>
-                    <div className="absolute -inset-x-1 w-1 h-full cursor-w-resize"></div>
-                    <div className="absolute inset-x-full w-1 h-full cursor-w-resize"></div>
+                    <div
+                        className="absolute -inset-x-1 w-1 h-full cursor-w-resize"
+                        onMouseDown={() => onResizeStart("w")}
+                    ></div>
+                    <div
+                        className="absolute inset-x-full w-1 h-full cursor-w-resize"
+                        onMouseDown={() => onResizeStart("e")}
+                    ></div>
+                    <div
+                        className="absolute -inset-y-1 w-full h-1 cursor-n-resize"
+                        onMouseDown={() => onResizeStart("n")}
+                    ></div>
+                    <div
+                        className="absolute inset-y-full w-full h-1 cursor-n-resize"
+                        onMouseDown={() => onResizeStart("s")}
+                    ></div>
                 </>
             )}
             {node.text}
