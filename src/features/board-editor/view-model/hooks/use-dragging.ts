@@ -10,7 +10,11 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
     const [startPoint, setStartPoint] = useState<Point>();
     const [offset, setOffset] = useState<Offset>();
 
-    const onMouseDown = (e: React.MouseEvent) => {
+    const onMouseDown = (viewState: SelectionViewState, e: React.MouseEvent) => {
+        if (viewState.skipNextClick) {
+            setViewState({ ...viewState, skipNextClick: undefined });
+            return;
+        }
         setStartPoint({ x: e.clientX, y: e.clientY });
     };
 

@@ -33,10 +33,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const dragging = useDragging(params);
 
-    const { onResizeStart } = useResizing(params);
+    const resizing = useResizing(params);
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handleNodeClick = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
                 return;
@@ -57,10 +57,14 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .map(node => node.clone())
                 .map(node =>
                     viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node.select(onlyOneNodeSelected).setHandler("onResizeStart", () => onResizeStart(node.id))
+                        ? node.select(onlyOneNodeSelected).setHandler("onResizeStart", resizing.onMouseDown)
                         : node
                 )
-                .map(node => node.setOnClick(handleNodeClick.bind(null, node.id)).setOnMouseDown(dragging.onMouseDown)),
+                .map(node =>
+                    node
+                        .setOnClick(handleSelectNode.bind(null, node.id))
+                        .setOnMouseDown(e => dragging.onMouseDown(viewState, e))
+                ),
             layout: {},
             overlay: {
                 onMouseDown: selectionWindow.onMouseDown

@@ -1,4 +1,4 @@
-import { Point } from "@/features/board-editor/domain/geometry";
+import { Point, Rect } from "@/features/board-editor/domain/geometry";
 import { ReactNode } from "react";
 import { NodeImpl } from "../base";
 import { StickerNode } from "./type";
@@ -21,6 +21,14 @@ export class Sticker extends NodeImpl<StickerNode> {
     public moveTo(point: Point) {
         this.node.x = point.x;
         this.node.y = point.y;
+        return this;
+    }
+
+    public resize(rect: Rect) {
+        this.node.x = rect.x;
+        this.node.y = rect.y;
+        this.node.width = rect.width;
+        this.node.height = rect.height;
         return this;
     }
 
