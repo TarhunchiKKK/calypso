@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 import { NodesFactory } from "@/features/board-editor/nodes/compose/nodes-factory";
 import { AnyNode } from "@/features/board-editor/nodes/compose/types";
-import { Sticker } from "@/features/board-editor/nodes/variants/sticker";
+import { Sticker } from "@/features/board-editor/nodes/variants/sticker/entity";
 
 describe("NodesFactory", () => {
     describe("create", () => {

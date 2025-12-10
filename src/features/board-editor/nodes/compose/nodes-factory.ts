@@ -1,4 +1,5 @@
-import { Sticker, StickerNode } from "../variants/sticker";
+import { Sticker } from "../variants/sticker/entity";
+import { StickerNode } from "../variants/sticker/type";
 import { AnyNode } from "./types";
 
 export class NodesFactory {
@@ -14,7 +15,9 @@ export class NodesFactory {
     public static sticker(data: Pick<StickerNode, "x" | "y">) {
         return new Sticker({
             ...data,
+
             id: crypto.randomUUID(),
+            type: "sticker",
             width: 100,
             height: 100,
             text: "Hello"
