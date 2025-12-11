@@ -73,4 +73,15 @@ describe("Geometry", () => {
             expect(result).toEqual({ x: 3, y: 3 });
         });
     });
+
+    describe("applyOffset", () => {
+        test("should apply an offset to a point", () => {
+            const point = { x: 0, y: 0 };
+            const offset = { dx: 3, dy: 3 };
+
+            const result = Geometry.applyOffset(point, offset);
+
+            expect(result).toEqual({ x: 3, y: 3 });
+        });
+    });
 });
