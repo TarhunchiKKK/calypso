@@ -15,10 +15,12 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             setViewState({ ...viewState, skipNextClick: undefined });
             return;
         }
-        setStartPoint({ x: e.clientX, y: e.clientY });
+
+        const currentPoint = { x: e.clientX, y: e.clientY };
+        setStartPoint(Geometry.recalculatePosition(currentPoint, canvasRect));
     };
 
-    const onMouseMove = (viewState: SelectionViewState | DraggingViewState, e: MouseEvent) => {
+    const onWindowMouseMove = (viewState: SelectionViewState | DraggingViewState, e: MouseEvent) => {
         const start = viewState.type === "dragging" && viewState.startPoint ? viewState.startPoint : startPoint;
 
         if (!start) {
@@ -44,7 +46,7 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
         }
     };
 
-    const onMouseUp = (viewState: SelectionViewState | DraggingViewState) => {
+    const onWindowMouseUp = (viewState: SelectionViewState | DraggingViewState) => {
         if (viewState.type === "dragging") {
             nodesModel.setNodes(
                 nodesModel.nodes.map(node =>
@@ -65,5 +67,5 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
         setOffset(undefined);
     };
 
-    return { startPoint, offset, onMouseDown, onMouseMove, onMouseUp };
+    return { startPoint, offset, onMouseDown, onWindowMouseMove, onWindowMouseUp };
 }

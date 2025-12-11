@@ -67,16 +67,16 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 ),
             layout: {},
             overlay: {
-                onMouseDown: selectionWindow.onMouseDown
+                onMouseDown: selectionWindow.onOverlayMouseDown
             },
             window: {
                 onMouseMove: e => {
-                    selectionWindow.onMouseMove(viewState, e);
-                    dragging.onMouseMove(viewState, e);
+                    selectionWindow.onWindowMouseMove(viewState, e);
+                    dragging.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {
-                    selectionWindow.onMouseUp(viewState);
-                    dragging.onMouseUp(viewState);
+                    selectionWindow.onWindowMouseUp(viewState);
+                    dragging.onWindowMouseUp(viewState);
                 }
             },
             selectionWindow: selectionWindow.rect
