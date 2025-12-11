@@ -1,32 +1,12 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { selectNodes } from "../../domain/selection";
-import { useSelectionWindow } from "../hooks/use-selection-window";
-import { ViewModel, ViewModelParams } from "../types";
-import { Rect } from "../../domain/geometry";
-import { useDragging } from "../hooks/use-dragging";
-import { useResizing } from "../hooks/use-resizing";
-import { ResizeDirection } from "../../domain/dom";
-import { switchToIdle } from "./idle";
-
-export type SelectionViewState = {
-    type: "selection";
-    selectedIds: Set<string>;
-    selectionWindow?: Rect;
-    skipNextClick?: boolean;
-};
-
-export function switchToSelection({
-    selectedIds,
-    selectionWindow,
-    skipNextClick
-}: Partial<SelectionViewState> = {}): SelectionViewState {
-    return {
-        type: "selection",
-        selectedIds: selectedIds ?? new Set(),
-        selectionWindow: selectionWindow,
-        skipNextClick: skipNextClick
-    };
-}
+import { selectNodes } from "../../../domain/selection";
+import { useSelectionWindow } from "../../hooks/use-selection-window";
+import { ViewModel, ViewModelParams } from "../../types";
+import { useDragging } from "../../hooks/use-dragging";
+import { useResizing } from "../../hooks/use-resizing";
+import { ResizeDirection } from "../../../domain/dom";
+import { SelectionViewState } from "./view-state";
+import { switchToIdle } from "../idle/switcher";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;

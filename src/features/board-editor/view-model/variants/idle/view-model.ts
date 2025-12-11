@@ -1,17 +1,8 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { useSelectionWindow } from "../hooks/use-selection-window";
-import { ViewModel, ViewModelParams } from "../types";
-import { switchToSelection } from "./selection";
-
-export type IdleViewState = {
-    type: "idle";
-};
-
-export function switchToIdle(): IdleViewState {
-    return {
-        type: "idle"
-    };
-}
+import { useSelectionWindow } from "../../hooks/use-selection-window";
+import { ViewModel, ViewModelParams } from "../../types";
+import { IdleViewState } from "./view-state";
+import { switchToSelection } from "../selection/switcher";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -20,7 +11,7 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
         const handleMouseDown = (nodeId: string) => {
-            setViewState(switchToSelection({ selectedIds: new Set([nodeId]), selectionWindow: selectionWindow.rect }));
+            setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
         };
 
         return {

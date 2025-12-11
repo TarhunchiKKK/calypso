@@ -1,21 +1,8 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { Geometry, Point } from "../../domain/geometry";
-import { ViewModel, ViewModelParams } from "../types";
-import { useDragging } from "../hooks/use-dragging";
-
-export type DraggingViewState = {
-    type: "dragging";
-    selectedIds: Set<string>;
-    startPoint?: Point;
-};
-
-export function switchToDragging({ startPoint, selectedIds }: Partial<DraggingViewState> = {}): DraggingViewState {
-    return {
-        type: "dragging",
-        startPoint: startPoint,
-        selectedIds: selectedIds ?? new Set()
-    };
-}
+import { Geometry } from "../../../domain/geometry";
+import { ViewModel, ViewModelParams } from "../../types";
+import { useDragging } from "../../hooks/use-dragging";
+import { DraggingViewState } from "./view-state";
 
 export function useDraggingViewModel(params: ViewModelParams) {
     const { nodesModel } = params;
