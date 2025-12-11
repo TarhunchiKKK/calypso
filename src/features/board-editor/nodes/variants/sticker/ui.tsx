@@ -37,19 +37,19 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             {resizable && (
                 <>
                     <div
-                        className="absolute -inset-x-2 w-4 h-full cursor-w-resize"
+                        className="absolute -left-2 w-4 h-full cursor-w-resize"
                         onMouseDown={e => handleResizeStart("w", e)}
                     ></div>
                     <div
-                        className="absolute inset-x-full w-3 h-full cursor-w-resize z-20"
+                        className="absolute -right-2  w-4 h-full cursor-w-resize z-20"
                         onMouseDown={e => handleResizeStart("e", e)}
                     ></div>
                     <div
-                        className="absolute -inset-y-1 w-full h-3 cursor-n-resize"
+                        className="absolute -top-2 w-full h-4 cursor-n-resize"
                         onMouseDown={e => handleResizeStart("n", e)}
                     ></div>
                     <div
-                        className="absolute inset-y-full w-full h-3 cursor-n-resize"
+                        className="absolute -bottom-2 w-full h-4 cursor-n-resize"
                         onMouseDown={e => handleResizeStart("s", e)}
                     ></div>
                 </>
