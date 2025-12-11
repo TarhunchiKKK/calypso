@@ -18,7 +18,6 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public constructor(
         protected node: T,
-        protected updateOne?: (node: NodeImpl<NodeBase>) => void,
         protected handlers: NodeHandlers = {}
     ) {}
 
