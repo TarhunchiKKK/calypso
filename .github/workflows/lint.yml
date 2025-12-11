@@ -2,8 +2,8 @@ name: Linting
 
 on:
     push:
-        branches:
-            - "feat/*"
+        branches-ignore:
+            - "main"
 
 jobs:
     lint:
