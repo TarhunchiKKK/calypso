@@ -1,13 +1,26 @@
 import React, { useState } from "react";
 import { Geometry, Point, Rect } from "../../domain/geometry";
 import { ViewModelParams } from "../types";
-import { SelectionViewState, switchToSelection } from "../variants/selection";
-import { IdleViewState } from "../variants/idle";
+import { NodesSelectionMode, selectNodes } from "../../domain/selection";
+import { switchToIdle } from "../variants/idle/switcher";
+import { IdleViewState } from "../variants/idle/view-state";
+import { switchToSelectionWindow } from "../variants/selection-window/switcher";
+import { SelectionWindowViewState } from "../variants/selection-window/view-state";
+import { switchToSelection } from "../variants/selection/switcher";
+import { SelectionViewState } from "../variants/selection/view-state";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
-export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams, initialPoint?: Point) {
-    const [startPoint, setStartPoint] = useState(initialPoint);
+const defineSelectedIds = (viewState: IdleViewState | SelectionViewState, selectionMode: NodesSelectionMode) => {
+    if (viewState.type === "idle") {
+        return undefined;
+    }
+
+    return selectionMode === "add" ? viewState.selectedIds : undefined;
+};
+
+export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
+    const [startPoint, setStartPoint] = useState<Point>();
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
 
     let selectedNodesIds: string[] = [];
@@ -22,33 +35,45 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         setSelectionWindowRect(undefined);
     };
 
-    const onWindowMouseMove = (viewState: IdleViewState | SelectionViewState, e: MouseEvent) => {
-        if (!startPoint) {
+    const onWindowMouseMove = (
+        viewState: IdleViewState | SelectionViewState | SelectionWindowViewState,
+        e: MouseEvent
+    ) => {
+        const start = viewState.type === "selection-window" ? viewState.startPoint : startPoint;
+
+        if (!start) {
             return;
         }
 
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
-        if (Geometry.pointsDistance(startPoint, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
-            if (viewState.type === "idle") {
-                setViewState(switchToSelection());
+        if (Geometry.pointsDistance(start, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
+            if (viewState.type === "idle" || viewState.type === "selection") {
+                const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
+
+                setViewState(
+                    switchToSelectionWindow({
+                        startPoint: start,
+                        selectionMode: selectionMode,
+                        selectedIds: defineSelectedIds(viewState, selectionMode)
+                    })
+                );
                 reset();
                 return;
+            } else {
+                setSelectionWindowRect(Geometry.rectFromPoints(start, currentPoint));
             }
-
-            setSelectionWindowRect(Geometry.rectFromPoints(startPoint, currentPoint));
         }
     };
 
-    const onWindowMouseUp = (viewState: IdleViewState | SelectionViewState) => {
-        if (viewState.type === "selection" && selectionWindowRect) {
-            setViewState({
-                ...viewState,
-                selectedIds: new Set([...Array.from(viewState.selectedIds), ...selectedNodesIds])
-            });
-        }
+    const onWindowMouseUp = (viewState: SelectionWindowViewState) => {
+        const selection = selectNodes(selectedNodesIds, viewState.selectionMode, viewState.selectedIds);
 
-        reset();
+        if (selection.size === 0) {
+            setViewState(switchToIdle());
+        } else {
+            setViewState(switchToSelection({ selectedIds: selection, skipNextClick: true }));
+        }
     };
 
     const reset = () => {

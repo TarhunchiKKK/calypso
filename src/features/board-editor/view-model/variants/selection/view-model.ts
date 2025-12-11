@@ -1,31 +1,12 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { selectNodes } from "../../domain/selection";
-import { useSelectionWindow } from "../hooks/use-selection-window";
-import { ViewModel, ViewModelParams } from "../types";
-import { Rect } from "../../domain/geometry";
-import { useDragging } from "../hooks/use-dragging";
-import { useResizing } from "../hooks/use-resizing";
-import { ResizeDirection } from "../../domain/dom";
-
-export type SelectionViewState = {
-    type: "selection";
-    selectedIds: Set<string>;
-    selectionWindow?: Rect;
-    skipNextClick?: boolean;
-};
-
-export function switchToSelection({
-    selectedIds,
-    selectionWindow,
-    skipNextClick
-}: Partial<SelectionViewState> = {}): SelectionViewState {
-    return {
-        type: "selection",
-        selectedIds: selectedIds ?? new Set(),
-        selectionWindow: selectionWindow,
-        skipNextClick: skipNextClick
-    };
-}
+import { selectNodes } from "../../../domain/selection";
+import { useSelectionWindow } from "../../hooks/use-selection-window";
+import { ViewModel, ViewModelParams } from "../../types";
+import { useDragging } from "../../hooks/use-dragging";
+import { useResizing } from "../../hooks/use-resizing";
+import { ResizeDirection } from "../../../domain/dom";
+import { SelectionViewState } from "./view-state";
+import { switchToIdle } from "../idle/switcher";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -37,11 +18,15 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const resizing = useResizing(params);
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
                 return;
             }
+        };
+
+        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+            handleSkipNextClick();
 
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
@@ -71,9 +56,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         .setHandler("onClick", handleSelectNode.bind(null, node.id))
                         .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
                 ),
-            layout: {},
             overlay: {
-                onMouseDown: selectionWindow.onOverlayMouseDown
+                onMouseDown: selectionWindow.onOverlayMouseDown,
+                onClick: () => {
+                    handleSkipNextClick();
+                    setViewState(switchToIdle());
+                }
             },
             window: {
                 onMouseMove: e => {
@@ -81,11 +69,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     dragging.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {
-                    selectionWindow.onWindowMouseUp(viewState);
-                    dragging.onWindowMouseUp(viewState);
+                    selectionWindow.reset();
+                    dragging.reset();
                 }
-            },
-            selectionWindow: selectionWindow.rect
+            }
         };
     };
 }

@@ -1,23 +1,8 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { ViewModel, ViewModelParams } from "../types";
-import { useResizing } from "../hooks/use-resizing";
-import { ResizeDirection } from "../../domain/dom";
+import { ViewModel, ViewModelParams } from "../../types";
+import { useResizing } from "../../hooks/use-resizing";
+import { ResizingViewState } from "./view-state";
 
-export type ResizingViewState = {
-    type: "resizing";
-
-    nodeId: string;
-
-    direction: ResizeDirection;
-};
-
-export function switchToResizing({ nodeId, direction }: OmitFields<ResizingViewState, "type">): ResizingViewState {
-    return {
-        type: "resizing",
-        nodeId: nodeId,
-        direction: direction
-    };
-}
 export function useResizingViewModel(params: ViewModelParams) {
     const resizing = useResizing(params);
 
@@ -26,7 +11,6 @@ export function useResizingViewModel(params: ViewModelParams) {
 
         return {
             nodes: nodesModel.nodes,
-            layout: {},
             window: {
                 onMouseMove: e => resizing.onMouseMove(viewState, e),
                 onMouseUp: e => {

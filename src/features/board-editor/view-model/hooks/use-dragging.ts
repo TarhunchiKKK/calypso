@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Geometry, Offset, Point } from "../../domain/geometry";
 import { ViewModelParams } from "../types";
-import { DraggingViewState, switchToDragging } from "../variants/dragging";
-import { SelectionViewState, switchToSelection } from "../variants/selection";
+import { switchToDragging } from "../variants/dragging/switcher";
+import { DraggingViewState } from "../variants/dragging/view-state";
+import { switchToSelection } from "../variants/selection/switcher";
+import { SelectionViewState } from "../variants/selection/view-state";
 
 const DRAGGING_MIN_DIFF = 5;
 
@@ -33,7 +35,7 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             if (viewState.type === "selection") {
                 setViewState(
                     switchToDragging({
-                        startPoint: startPoint,
+                        startPoint: start,
                         selectedIds: viewState.selectedIds
                     })
                 );
@@ -45,22 +47,21 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
         }
     };
 
-    const onWindowMouseUp = (viewState: SelectionViewState | DraggingViewState) => {
-        if (viewState.type === "dragging") {
-            nodesModel.setNodes(
-                nodesModel.nodes.map(node =>
-                    viewState.selectedIds.has(node.id)
-                        ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
-                        : node.clone()
-                )
-            );
-            setViewState(
-                switchToSelection({
-                    selectedIds: viewState.selectedIds,
-                    skipNextClick: true
-                })
-            );
-        }
+    const onWindowMouseUp = (viewState: DraggingViewState) => {
+        nodesModel.setNodes(
+            nodesModel.nodes.map(node =>
+                viewState.selectedIds.has(node.id)
+                    ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
+                    : node.clone()
+            )
+        );
+
+        setViewState(
+            switchToSelection({
+                selectedIds: viewState.selectedIds,
+                skipNextClick: true
+            })
+        );
 
         reset();
     };

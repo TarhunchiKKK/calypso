@@ -1,8 +1,9 @@
 import { ViewModelParams } from "../types";
-import { ResizingViewState, switchToResizing } from "../variants/resizing";
-import { switchToSelection } from "../variants/selection";
 import { ResizeDirection } from "../../domain/dom";
 import { Geometry } from "../../domain/geometry";
+import { switchToResizing } from "../variants/resizing/switcher";
+import { ResizingViewState } from "../variants/resizing/view-state";
+import { switchToSelection } from "../variants/selection/switcher";
 
 export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const onMouseDown = (nodeId: string, direction: ResizeDirection) => {

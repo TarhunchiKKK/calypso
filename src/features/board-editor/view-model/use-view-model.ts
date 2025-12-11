@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { ViewModel, ViewModelParams, ViewState } from "./types";
-import { switchToIdle, useIdleViewModel } from "./variants/idle";
-import { useStickersViewModel } from "./variants/stickers";
+import { useIdleViewModel } from "./variants/idle/view-model";
+import { useStickersViewModel } from "./variants/stickers/view-model";
 import { OmitFields } from "@/shared/lib/typescript";
-import { useSelectionViewModel } from "./variants/selection";
-import { useDraggingViewModel } from "./variants/dragging";
+import { useSelectionViewModel } from "./variants/selection/view-model";
+import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { applyDecorators } from "./decorators/apply-decorators";
-import { useResizingViewModel } from "./variants/resizing";
+import { useResizingViewModel } from "./variants/resizing/view-model";
+import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
+import { switchToIdle } from "./variants/idle/switcher";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
@@ -19,6 +21,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const idleViewModel = useIdleViewModel(newParams);
     const stickersViewModel = useStickersViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
+    const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
     const resizingVewModel = useResizingViewModel(newParams);
 
@@ -33,6 +36,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "selection":
             viewModel = selectionViewModel(viewState);
             break;
+        case "selection-window":
+            viewModel = selectionWindowViewModel(viewState);
+            break;
         case "dragging":
             viewModel = draggingViewModel(viewState);
             break;
@@ -43,7 +49,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    // console.log(viewState);
+    console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

@@ -1,4 +1,4 @@
-type NodesSelectionMode = "toggle" | "add" | "replace";
+export type NodesSelectionMode = "toggle" | "add" | "replace";
 
 export function selectNodes(nodeIds: string[], mode: NodesSelectionMode, currentSelection: Set<string>): Set<string> {
     switch (mode) {

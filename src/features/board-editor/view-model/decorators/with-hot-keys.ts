@@ -1,7 +1,7 @@
 import { ViewModel, ViewModelParams, ViewState } from "../types";
-import { switchToIdle } from "../variants/idle";
-import { switchToSelection } from "../variants/selection";
-import { switchToStickers } from "../variants/stickers";
+import { switchToIdle } from "../variants/idle/switcher";
+import { switchToSelection } from "../variants/selection/switcher";
+import { switchToStickers } from "../variants/stickers/switcher";
 
 export function withHotKeys(
     viewState: ViewState,
@@ -47,7 +47,7 @@ export function withHotKeys(
     return {
         ...viewModel,
         layout: {
-            ...viewModel.layout,
+            ...(viewModel.layout ?? {}),
             onKeyDown: e => {
                 handleHotKeys(e);
             }

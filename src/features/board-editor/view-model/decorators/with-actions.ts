@@ -1,6 +1,6 @@
 import { ViewModel, ViewModelParams, ViewState } from "../types";
-import { switchToIdle } from "../variants/idle";
-import { switchToStickers } from "../variants/stickers";
+import { switchToIdle } from "../variants/idle/switcher";
+import { switchToStickers } from "../variants/stickers/switcher";
 
 export function withActions(
     viewState: ViewState,
