@@ -4,9 +4,17 @@ import { ViewModelParams } from "../types";
 import { SelectionViewState, switchToSelection } from "../variants/selection";
 import { IdleViewState, switchToIdle } from "../variants/idle";
 import { SelectionWindowViewState, switchToSelectionWindow } from "../variants/selection-window";
-import { joinSets } from "@/shared/lib/javascript";
+import { NodesSelectionMode, selectNodes } from "../../domain/selection";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
+
+const defineSelectedIds = (viewState: IdleViewState | SelectionViewState, selectionMode: NodesSelectionMode) => {
+    if (viewState.type === "idle") {
+        return undefined;
+    }
+
+    return selectionMode === "add" ? viewState.selectedIds : undefined;
+};
 
 export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
     const [startPoint, setStartPoint] = useState<Point>();
@@ -29,6 +37,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         e: MouseEvent
     ) => {
         const start = viewState.type === "selection-window" ? viewState.startPoint : startPoint;
+
         if (!start) {
             return;
         }
@@ -43,36 +52,24 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
                     switchToSelectionWindow({
                         startPoint: start,
                         selectionMode: selectionMode,
-                        selectedIds:
-                            viewState.type === "selection"
-                                ? selectionMode === "add"
-                                    ? viewState.selectedIds
-                                    : undefined
-                                : undefined
+                        selectedIds: defineSelectedIds(viewState, selectionMode)
                     })
                 );
                 reset();
                 return;
+            } else {
+                setSelectionWindowRect(Geometry.rectFromPoints(start, currentPoint));
             }
-
-            setSelectionWindowRect(Geometry.rectFromPoints(start, currentPoint));
         }
     };
 
     const onWindowMouseUp = (viewState: SelectionWindowViewState) => {
-        if (viewState.selectedIds.size > 0 && selectedNodesIds.length > 0) {
-            setViewState(
-                switchToSelection({
-                    selectedIds: joinSets(viewState.selectedIds, new Set(selectedNodesIds)),
-                    skipNextClick: true
-                })
-            );
-        } else if (viewState.selectedIds.size > 0) {
-            setViewState(switchToSelection({ selectedIds: viewState.selectedIds, skipNextClick: true }));
-        } else if (selectedNodesIds.length > 0) {
-            setViewState(switchToSelection({ selectedIds: new Set(selectedNodesIds), skipNextClick: true }));
-        } else {
+        const selection = selectNodes(selectedNodesIds, viewState.selectionMode, viewState.selectedIds);
+
+        if (selection.size === 0) {
             setViewState(switchToIdle());
+        } else {
+            setViewState(switchToSelection({ selectedIds: selection, skipNextClick: true }));
         }
     };
 
