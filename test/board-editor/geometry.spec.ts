@@ -70,7 +70,7 @@ describe("Geometry", () => {
 
             const result = Geometry.calculateOffset(start, end);
 
-            expect(result).toEqual({ x: 3, y: 3 });
+            expect(result).toEqual({ dx: 3, dy: 3 });
         });
     });
 
@@ -82,6 +82,97 @@ describe("Geometry", () => {
             const result = Geometry.applyOffset(point, offset);
 
             expect(result).toEqual({ x: 3, y: 3 });
+        });
+    });
+
+    describe("applyResizing", () => {
+        test("should apply north resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "n";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 0, y: 10, width: 10, height: 0 });
+        });
+
+        test("should apply south resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "s";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 0, y: 0, width: 10, height: 20 });
+        });
+
+        test("should apply west resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "w";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 10, y: 0, width: 0, height: 10 });
+        });
+
+        test("should apply east resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "e";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 0, y: 0, width: 20, height: 10 });
+        });
+
+        test("should apply north-west resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "nw";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 10, y: 10, width: 0, height: 0 });
+        });
+
+        test("should apply north-east resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "ne";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 0, y: 10, width: 20, height: 0 });
+        });
+
+        test("should apply south-west resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "sw";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 10, y: 0, width: 0, height: 20 });
+        });
+
+        test("should apply south-east resizing", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            const direction = "se";
+
+            const result = Geometry.applyResizing(rect, point, direction);
+
+            expect(result).toEqual({ x: 0, y: 0, width: 20, height: 20 });
+        });
+
+        test("should return the original rect for an unknown direction", () => {
+            const rect = { x: 0, y: 0, width: 10, height: 10 };
+            const point = { x: 20, y: 20 };
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const direction = "unknown" as any;
+
+            expect(() => Geometry.applyResizing(rect, point, direction)).toThrow();
         });
     });
 });
