@@ -24,7 +24,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: nodesModel.nodes.map(node => node.clone().setOnMouseDown(() => handleMouseDown(node.id))),
+            nodes: nodesModel.nodes.map(node => node.clone().setHandler("onMouseDown", () => handleMouseDown(node.id))),
             layout: {},
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown

@@ -18,22 +18,11 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public constructor(
         protected node: T,
-        protected updateOne?: (node: NodeImpl<NodeBase>) => void,
         protected handlers: NodeHandlers = {}
     ) {}
 
     public get id() {
         return this.node.id;
-    }
-
-    public setOnClick(onClick?: React.MouseEventHandler) {
-        this.handlers.onClick = onClick;
-        return this;
-    }
-
-    public setOnMouseDown(onMouseDown?: React.MouseEventHandler) {
-        this.handlers.onMouseDown = onMouseDown;
-        return this;
     }
 
     public abstract moveTo(point: Point): NodeImpl<T>;

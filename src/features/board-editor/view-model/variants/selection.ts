@@ -68,8 +68,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 )
                 .map(node =>
                     node
-                        .setOnClick(handleSelectNode.bind(null, node.id))
-                        .setOnMouseDown(e => dragging.onMouseDown(viewState, e))
+                        .setHandler("onClick", handleSelectNode.bind(null, node.id))
+                        .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
                 ),
             layout: {},
             overlay: {
