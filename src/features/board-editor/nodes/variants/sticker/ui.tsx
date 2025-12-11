@@ -3,6 +3,7 @@ import { CSSProperties } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
 import { ResizeDirection } from "@/features/board-editor/domain/dom";
+import { ResizeBorders } from "@/features/board-editor/ui/resizing-borders";
 
 type Props = {
     node: StickerNode;
@@ -34,26 +35,8 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             )}
             style={styles}
         >
-            {resizable && (
-                <>
-                    <div
-                        className="absolute -left-2 w-4 h-full cursor-w-resize"
-                        onMouseDown={e => handleResizeStart("w", e)}
-                    ></div>
-                    <div
-                        className="absolute -right-2  w-4 h-full cursor-w-resize z-20"
-                        onMouseDown={e => handleResizeStart("e", e)}
-                    ></div>
-                    <div
-                        className="absolute -top-2 w-full h-4 cursor-n-resize"
-                        onMouseDown={e => handleResizeStart("n", e)}
-                    ></div>
-                    <div
-                        className="absolute -bottom-2 w-full h-4 cursor-n-resize"
-                        onMouseDown={e => handleResizeStart("s", e)}
-                    ></div>
-                </>
-            )}
+            {resizable && <ResizeBorders main cross diagonal handleResizeStart={handleResizeStart} />}
+
             {node.text}
         </div>
     );
