@@ -26,16 +26,6 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
         return this.node.id;
     }
 
-    public setOnClick(onClick?: React.MouseEventHandler) {
-        this.handlers.onClick = onClick;
-        return this;
-    }
-
-    public setOnMouseDown(onMouseDown?: React.MouseEventHandler) {
-        this.handlers.onMouseDown = onMouseDown;
-        return this;
-    }
-
     public abstract moveTo(point: Point): NodeImpl<T>;
 
     public abstract resize(rect: Rect): NodeImpl<T>;
