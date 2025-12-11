@@ -62,4 +62,15 @@ describe("Geometry", () => {
             expect(result).toBe(false);
         });
     });
+
+    describe("calculateOffset", () => {
+        test("should calculate the offset between two points", () => {
+            const start = { x: 0, y: 0 };
+            const end = { x: 3, y: 3 };
+
+            const result = Geometry.calculateOffset(start, end);
+
+            expect(result).toEqual({ x: 3, y: 3 });
+        });
+    });
 });
