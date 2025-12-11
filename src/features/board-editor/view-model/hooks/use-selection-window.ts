@@ -32,8 +32,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         if (Geometry.pointsDistance(startPoint, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
             if (viewState.type === "idle") {
                 setViewState(switchToSelection());
-                setStartPoint(undefined);
-                setSelectionWindowRect(undefined);
+                reset();
                 return;
             }
 
@@ -49,6 +48,10 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
             });
         }
 
+        reset();
+    };
+
+    const reset = () => {
         setStartPoint(undefined);
         setSelectionWindowRect(undefined);
     };
@@ -58,6 +61,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         selectedNodesIds: new Set(selectedNodesIds),
         onOverlayMouseDown,
         onWindowMouseMove,
-        onWindowMouseUp
+        onWindowMouseUp,
+        reset
     };
 }

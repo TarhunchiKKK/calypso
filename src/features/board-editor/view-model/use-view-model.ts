@@ -43,7 +43,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    console.log(viewState);
+    // console.log(viewState);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { CSSProperties } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
+import { ResizeDirection } from "@/features/board-editor/domain/dom";
 
 type Props = {
     node: StickerNode;
@@ -18,6 +19,11 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
         top: node.y
     };
 
+    const handleResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
+        e.stopPropagation();
+        handlers.onResizeStart?.(node.id, direction);
+    };
+
     return (
         <div
             onClick={handlers.onClick}
@@ -31,20 +37,20 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
             {resizable && (
                 <>
                     <div
-                        className="absolute -inset-x-1 w-3 h-full cursor-w-resize"
-                        onMouseDown={() => handlers.onResizeStart?.(node.id, "w")}
+                        className="absolute -inset-x-2 w-4 h-full cursor-w-resize"
+                        onMouseDown={e => handleResizeStart("w", e)}
                     ></div>
                     <div
-                        className="absolute inset-x-full w-3 h-full cursor-w-resize"
-                        onMouseDown={() => handlers.onResizeStart?.(node.id, "e")}
+                        className="absolute inset-x-full w-3 h-full cursor-w-resize z-20"
+                        onMouseDown={e => handleResizeStart("e", e)}
                     ></div>
                     <div
                         className="absolute -inset-y-1 w-full h-3 cursor-n-resize"
-                        onMouseDown={() => handlers.onResizeStart?.(node.id, "n")}
+                        onMouseDown={e => handleResizeStart("n", e)}
                     ></div>
                     <div
                         className="absolute inset-y-full w-full h-3 cursor-n-resize"
-                        onMouseDown={() => handlers.onResizeStart?.(node.id, "s")}
+                        onMouseDown={e => handleResizeStart("s", e)}
                     ></div>
                 </>
             )}
