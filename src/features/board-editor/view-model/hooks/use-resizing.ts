@@ -4,7 +4,7 @@ import { switchToSelection } from "../variants/selection";
 import { ResizeDirection } from "../../domain/dom";
 import { Geometry } from "../../domain/geometry";
 
-export function useResizing({ nodesModel, setViewState }: ViewModelParams) {
+export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
         setViewState(switchToResizing({ nodeId, direction }));
     };
@@ -16,7 +16,7 @@ export function useResizing({ nodesModel, setViewState }: ViewModelParams) {
             return;
         }
 
-        const currentPoint = { x: e.clientX, y: e.clientY };
+        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         const newSizes = Geometry.applyResizing(node.rect(), currentPoint, viewState.direction);
 

@@ -5,6 +5,7 @@ import { ViewModel, ViewModelParams } from "../types";
 import { Rect } from "../../domain/geometry";
 import { useDragging } from "../hooks/use-dragging";
 import { useResizing } from "../hooks/use-resizing";
+import { ResizeDirection } from "../../domain/dom";
 
 export type SelectionViewState = {
     type: "selection";
@@ -57,7 +58,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .map(node => node.clone())
                 .map(node =>
                     viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node.select(onlyOneNodeSelected).setHandler("onResizeStart", resizing.onMouseDown)
+                        ? node
+                              .select(onlyOneNodeSelected)
+                              .setHandler("onResizeStart", (nodeId: string, direction: ResizeDirection) => {
+                                  dragging.reset();
+                                  resizing.onMouseDown(nodeId, direction);
+                              })
                         : node
                 )
                 .map(node =>

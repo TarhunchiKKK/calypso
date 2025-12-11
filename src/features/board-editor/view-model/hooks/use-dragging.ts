@@ -33,12 +33,11 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             if (viewState.type === "selection") {
                 setViewState(
                     switchToDragging({
-                        startPoint: start,
+                        startPoint: startPoint,
                         selectedIds: viewState.selectedIds
                     })
                 );
-                setStartPoint(undefined);
-                setOffset(undefined);
+                reset();
                 return;
             }
 
@@ -63,9 +62,13 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             );
         }
 
+        reset();
+    };
+
+    const reset = () => {
         setStartPoint(undefined);
         setOffset(undefined);
     };
 
-    return { startPoint, offset, onMouseDown, onWindowMouseMove, onWindowMouseUp };
+    return { startPoint, offset, onMouseDown, onWindowMouseMove, onWindowMouseUp, reset };
 }
