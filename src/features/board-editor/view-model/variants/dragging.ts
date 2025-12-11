@@ -33,8 +33,8 @@ export function useDraggingViewModel(params: ViewModelParams) {
                 ),
             layout: {},
             window: {
-                onMouseMove: e => dragging.onMouseMove(viewState, e),
-                onMouseUp: () => dragging.onMouseUp(viewState)
+                onMouseMove: e => dragging.onWindowMouseMove(viewState, e),
+                onMouseUp: () => dragging.onWindowMouseUp(viewState)
             }
         };
     };

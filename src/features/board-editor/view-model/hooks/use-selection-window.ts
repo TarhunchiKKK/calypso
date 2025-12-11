@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Geometry, Point } from "../../domain/geometry";
-import { ViewModel, ViewModelParams } from "../types";
+import { Geometry, Point, Rect } from "../../domain/geometry";
+import { ViewModelParams } from "../types";
 import { SelectionViewState, switchToSelection } from "../variants/selection";
 import { IdleViewState } from "../variants/idle";
 
@@ -8,7 +8,7 @@ const SELECTION_WINDOW_MIN_DIFF = 20;
 
 export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams, initialPoint?: Point) {
     const [startPoint, setStartPoint] = useState(initialPoint);
-    const [selectionWindowRect, setSelectionWindowRect] = useState<ViewModel["selectionWindow"] | undefined>(undefined);
+    const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
 
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
@@ -17,12 +17,12 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
             .map(node => node.id);
     }
 
-    const onMouseDown = (e: React.MouseEvent) => {
+    const onOverlayMouseDown = (e: React.MouseEvent) => {
         setStartPoint(Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect));
         setSelectionWindowRect(undefined);
     };
 
-    const onMouseMove = (viewState: IdleViewState | SelectionViewState, e: MouseEvent) => {
+    const onWindowMouseMove = (viewState: IdleViewState | SelectionViewState, e: MouseEvent) => {
         if (!startPoint) {
             return;
         }
@@ -41,7 +41,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         }
     };
 
-    const onMouseUp = (viewState: IdleViewState | SelectionViewState) => {
+    const onWindowMouseUp = (viewState: IdleViewState | SelectionViewState) => {
         if (viewState.type === "selection" && selectionWindowRect) {
             setViewState({
                 ...viewState,
@@ -56,8 +56,8 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
     return {
         rect: selectionWindowRect,
         selectedNodesIds: new Set(selectedNodesIds),
-        onMouseDown,
-        onMouseMove,
-        onMouseUp
+        onOverlayMouseDown,
+        onWindowMouseMove,
+        onWindowMouseUp
     };
 }
