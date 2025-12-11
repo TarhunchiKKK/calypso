@@ -28,7 +28,11 @@ export function BoardEditor() {
             <Canvas
                 ref={canvasRef}
                 overlay={
-                    <Overlay onKeyDown={viewModel.overlay?.onKeyDown} onMouseDown={viewModel.overlay?.onMouseDown} />
+                    <Overlay
+                        onKeyDown={viewModel.overlay?.onKeyDown}
+                        onMouseDown={viewModel.overlay?.onMouseDown}
+                        onClick={viewModel.overlay?.onClick}
+                    />
                 }
                 onClick={viewModel.canvas?.onClick}
                 onKeyDown={viewModel.canvas?.onKeyDown}

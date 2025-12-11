@@ -6,6 +6,7 @@ import { Rect } from "../../domain/geometry";
 import { useDragging } from "../hooks/use-dragging";
 import { useResizing } from "../hooks/use-resizing";
 import { ResizeDirection } from "../../domain/dom";
+import { switchToIdle } from "./idle";
 
 export type SelectionViewState = {
     type: "selection";
@@ -37,11 +38,15 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const resizing = useResizing(params);
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
                 return;
             }
+        };
+
+        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+            handleSkipNextClick();
 
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
@@ -72,7 +77,11 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
                 ),
             overlay: {
-                onMouseDown: selectionWindow.onOverlayMouseDown
+                onMouseDown: selectionWindow.onOverlayMouseDown,
+                onClick: () => {
+                    handleSkipNextClick();
+                    setViewState(switchToIdle());
+                }
             },
             window: {
                 onMouseMove: e => {

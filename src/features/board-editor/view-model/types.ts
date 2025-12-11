@@ -42,6 +42,7 @@ export type ViewModel = {
     overlay?: {
         onKeyDown?: React.KeyboardEventHandler;
         onMouseDown?: React.MouseEventHandler;
+        onClick?: React.MouseEventHandler;
     };
 
     window?: {

@@ -8,8 +8,8 @@ import { joinSets } from "@/shared/lib/javascript";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
-export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams, initialPoint?: Point) {
-    const [startPoint, setStartPoint] = useState(initialPoint);
+export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: ViewModelParams) {
+    const [startPoint, setStartPoint] = useState<Point>();
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
 
     let selectedNodesIds: string[] = [];
@@ -37,10 +37,18 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
 
         if (Geometry.pointsDistance(start, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
             if (viewState.type === "idle" || viewState.type === "selection") {
+                const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
+
                 setViewState(
                     switchToSelectionWindow({
                         startPoint: start,
-                        selectedIds: viewState.type === "selection" ? viewState.selectedIds : new Set()
+                        selectionMode: selectionMode,
+                        selectedIds:
+                            viewState.type === "selection"
+                                ? selectionMode === "add"
+                                    ? viewState.selectedIds
+                                    : undefined
+                                : undefined
                     })
                 );
                 reset();
