@@ -15,7 +15,7 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             setViewState({ ...viewState, skipNextClick: undefined });
             return;
         }
-        setStartPoint({ x: e.clientX, y: e.clientY });
+        setStartPoint(Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect));
     };
 
     const onMouseMove = (viewState: SelectionViewState | DraggingViewState, e: MouseEvent) => {
