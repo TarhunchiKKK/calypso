@@ -7,8 +7,15 @@ import { StickersViewState } from "./variants/stickers";
 import { DraggingViewState } from "./variants/dragging";
 import { ResizingViewState } from "./variants/resizing";
 import { NodeImpl } from "../nodes/variants/base";
+import { SelectionWindowViewState } from "./variants/selection-window";
 
-export type ViewState = IdleViewState | StickersViewState | SelectionViewState | DraggingViewState | ResizingViewState;
+export type ViewState =
+    | IdleViewState
+    | StickersViewState
+    | SelectionViewState
+    | SelectionWindowViewState
+    | DraggingViewState
+    | ResizingViewState;
 
 export type ViewModelParams = {
     nodesModel: NodesModel;

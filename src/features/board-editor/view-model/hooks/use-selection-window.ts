@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Geometry, Point, Rect } from "../../domain/geometry";
 import { ViewModelParams } from "../types";
 import { SelectionViewState, switchToSelection } from "../variants/selection";
-import { IdleViewState } from "../variants/idle";
+import { IdleViewState, switchToIdle } from "../variants/idle";
+import { SelectionWindowViewState, switchToSelectionWindow } from "../variants/selection-window";
+import { joinSets } from "@/shared/lib/javascript";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
@@ -22,30 +24,55 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         setSelectionWindowRect(undefined);
     };
 
-    const onWindowMouseMove = (viewState: IdleViewState | SelectionViewState, e: MouseEvent) => {
-        if (!startPoint) {
+    const onWindowMouseMove = (
+        viewState: IdleViewState | SelectionViewState | SelectionWindowViewState,
+        e: MouseEvent
+    ) => {
+        const start = viewState.type === "selection-window" ? viewState.startPoint : startPoint;
+        if (!start) {
             return;
         }
 
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
-        if (Geometry.pointsDistance(startPoint, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
-            if (viewState.type === "idle") {
-                setViewState(switchToSelection());
+        if (Geometry.pointsDistance(start, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {
+            if (viewState.type === "idle" || viewState.type === "selection") {
+                setViewState(
+                    switchToSelectionWindow({
+                        startPoint: start,
+                        selectedIds: viewState.type === "selection" ? viewState.selectedIds : new Set()
+                    })
+                );
                 reset();
                 return;
             }
 
-            setSelectionWindowRect(Geometry.rectFromPoints(startPoint, currentPoint));
+            setSelectionWindowRect(Geometry.rectFromPoints(start, currentPoint));
         }
     };
 
-    const onWindowMouseUp = (viewState: IdleViewState | SelectionViewState) => {
-        if (viewState.type === "selection" && selectionWindowRect) {
-            setViewState({
-                ...viewState,
-                selectedIds: new Set([...Array.from(viewState.selectedIds), ...selectedNodesIds])
-            });
+    const onWindowMouseUp = (viewState: IdleViewState | SelectionViewState | SelectionWindowViewState) => {
+        // if (viewState.type === "idle" || viewState.type === "selection") {
+        //     setViewState({
+        //         ...viewState
+        //     });
+        // }
+
+        if (viewState.type === "selection-window") {
+            if (viewState.selectedIds.size > 0 && selectedNodesIds.length > 0) {
+                setViewState(
+                    switchToSelection({
+                        selectedIds: joinSets(viewState.selectedIds, new Set(selectedNodesIds)),
+                        skipNextClick: true
+                    })
+                );
+            } else if (viewState.selectedIds.size > 0) {
+                setViewState(switchToSelection({ selectedIds: viewState.selectedIds, skipNextClick: true }));
+            } else if (selectedNodesIds.length > 0) {
+                setViewState(switchToSelection({ selectedIds: new Set(selectedNodesIds), skipNextClick: true }));
+            } else {
+                setViewState(switchToIdle());
+            }
         }
 
         reset();

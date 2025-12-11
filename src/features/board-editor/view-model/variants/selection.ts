@@ -84,8 +84,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     selectionWindow.onWindowMouseUp(viewState);
                     dragging.onWindowMouseUp(viewState);
                 }
-            },
-            selectionWindow: selectionWindow.rect
+            }
         };
     };
 }

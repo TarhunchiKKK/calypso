@@ -7,6 +7,7 @@ import { useSelectionViewModel } from "./variants/selection";
 import { useDraggingViewModel } from "./variants/dragging";
 import { applyDecorators } from "./decorators/apply-decorators";
 import { useResizingViewModel } from "./variants/resizing";
+import { useSelectionWindowViewModel } from "./variants/selection-window";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
@@ -19,6 +20,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const idleViewModel = useIdleViewModel(newParams);
     const stickersViewModel = useStickersViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
+    const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
     const resizingVewModel = useResizingViewModel(newParams);
 
@@ -33,6 +35,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "selection":
             viewModel = selectionViewModel(viewState);
             break;
+        case "selection-window":
+            viewModel = selectionWindowViewModel(viewState);
+            break;
         case "dragging":
             viewModel = draggingViewModel(viewState);
             break;
@@ -43,7 +48,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    // console.log(viewState);
+    console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }
