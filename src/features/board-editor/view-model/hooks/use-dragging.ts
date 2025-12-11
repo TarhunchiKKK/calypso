@@ -45,22 +45,21 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
         }
     };
 
-    const onWindowMouseUp = (viewState: SelectionViewState | DraggingViewState) => {
-        if (viewState.type === "dragging") {
-            nodesModel.setNodes(
-                nodesModel.nodes.map(node =>
-                    viewState.selectedIds.has(node.id)
-                        ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
-                        : node.clone()
-                )
-            );
-            setViewState(
-                switchToSelection({
-                    selectedIds: viewState.selectedIds,
-                    skipNextClick: true
-                })
-            );
-        }
+    const onWindowMouseUp = (viewState: DraggingViewState) => {
+        nodesModel.setNodes(
+            nodesModel.nodes.map(node =>
+                viewState.selectedIds.has(node.id)
+                    ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
+                    : node.clone()
+            )
+        );
+
+        setViewState(
+            switchToSelection({
+                selectedIds: viewState.selectedIds,
+                skipNextClick: true
+            })
+        );
 
         reset();
     };

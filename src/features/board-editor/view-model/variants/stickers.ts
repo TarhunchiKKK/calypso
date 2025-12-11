@@ -19,7 +19,6 @@ export function useStickersViewModel(params: ViewModelParams) {
     return (): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: nodesModel.nodes.map(node => node.clone()),
-            layout: {},
             canvas: {
                 onClick(e) {
                     const clickPoint = Geometry.recalculatePosition(

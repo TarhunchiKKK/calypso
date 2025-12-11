@@ -71,7 +71,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         .setHandler("onClick", handleSelectNode.bind(null, node.id))
                         .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
                 ),
-            layout: {},
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },
@@ -81,8 +80,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     dragging.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {
-                    selectionWindow.onWindowMouseUp(viewState);
-                    dragging.onWindowMouseUp(viewState);
+                    selectionWindow.reset();
+                    dragging.reset();
                 }
             }
         };

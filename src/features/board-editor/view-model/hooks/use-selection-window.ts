@@ -51,31 +51,21 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         }
     };
 
-    const onWindowMouseUp = (viewState: IdleViewState | SelectionViewState | SelectionWindowViewState) => {
-        // if (viewState.type === "idle" || viewState.type === "selection") {
-        //     setViewState({
-        //         ...viewState
-        //     });
-        // }
-
-        if (viewState.type === "selection-window") {
-            if (viewState.selectedIds.size > 0 && selectedNodesIds.length > 0) {
-                setViewState(
-                    switchToSelection({
-                        selectedIds: joinSets(viewState.selectedIds, new Set(selectedNodesIds)),
-                        skipNextClick: true
-                    })
-                );
-            } else if (viewState.selectedIds.size > 0) {
-                setViewState(switchToSelection({ selectedIds: viewState.selectedIds, skipNextClick: true }));
-            } else if (selectedNodesIds.length > 0) {
-                setViewState(switchToSelection({ selectedIds: new Set(selectedNodesIds), skipNextClick: true }));
-            } else {
-                setViewState(switchToIdle());
-            }
+    const onWindowMouseUp = (viewState: SelectionWindowViewState) => {
+        if (viewState.selectedIds.size > 0 && selectedNodesIds.length > 0) {
+            setViewState(
+                switchToSelection({
+                    selectedIds: joinSets(viewState.selectedIds, new Set(selectedNodesIds)),
+                    skipNextClick: true
+                })
+            );
+        } else if (viewState.selectedIds.size > 0) {
+            setViewState(switchToSelection({ selectedIds: viewState.selectedIds, skipNextClick: true }));
+        } else if (selectedNodesIds.length > 0) {
+            setViewState(switchToSelection({ selectedIds: new Set(selectedNodesIds), skipNextClick: true }));
+        } else {
+            setViewState(switchToIdle());
         }
-
-        reset();
     };
 
     const reset = () => {

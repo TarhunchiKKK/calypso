@@ -31,7 +31,6 @@ export function useDraggingViewModel(params: ViewModelParams) {
                         ? node.select().moveTo(Geometry.applyOffset(node.rect(), dragging.offset))
                         : node
                 ),
-            layout: {},
             window: {
                 onMouseMove: e => dragging.onWindowMouseMove(viewState, e),
                 onMouseUp: () => dragging.onWindowMouseUp(viewState)

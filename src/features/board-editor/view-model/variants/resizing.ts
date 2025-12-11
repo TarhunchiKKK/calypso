@@ -26,7 +26,6 @@ export function useResizingViewModel(params: ViewModelParams) {
 
         return {
             nodes: nodesModel.nodes,
-            layout: {},
             window: {
                 onMouseMove: e => resizing.onMouseMove(viewState, e),
                 onMouseUp: e => {

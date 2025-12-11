@@ -47,7 +47,7 @@ export function withHotKeys(
     return {
         ...viewModel,
         layout: {
-            ...viewModel.layout,
+            ...(viewModel.layout ?? {}),
             onKeyDown: e => {
                 handleHotKeys(e);
             }
