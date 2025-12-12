@@ -11,6 +11,8 @@ export type NodeHandlers = {
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
 
     onDoubleClick?: (e: React.MouseEvent) => void;
+
+    onEditingEnd?: (node: NodeImpl) => void;
 };
 
 export abstract class NodeImpl<T extends NodeBase = NodeBase> {
@@ -18,7 +20,7 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     protected resizable = false;
 
-    protected updateOne?: (node: NodeImpl) => void;
+    protected isEditing = false;
 
     public constructor(
         protected node: T,
@@ -39,8 +41,8 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
         return this;
     }
 
-    public setUpdateOne(updateOne: typeof this.updateOne) {
-        this.updateOne = updateOne;
+    public setEditing() {
+        this.isEditing = true;
         return this;
     }
 

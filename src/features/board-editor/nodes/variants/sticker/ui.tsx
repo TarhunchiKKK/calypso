@@ -3,16 +3,19 @@ import { CSSProperties } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
 import { ResizeDirection } from "@/features/board-editor/domain/dom";
-import { ResizeBorders } from "@/features/board-editor/ui/resizing-borders";
+import { ResizeBorders } from "@/features/board-editor/nodes/ui/resizing-borders";
+import { TextareaAutoSize } from "../../ui/textarea-auto-size";
+import { Sticker } from "./entity";
 
 type Props = {
     node: StickerNode;
     isSelected: boolean;
     resizable: boolean;
+    isEditing: boolean;
     handlers: NodeHandlers;
 };
 
-export function StickerComponent({ node, isSelected, resizable, handlers }: Props) {
+export function StickerComponent({ node, isSelected, resizable, isEditing, handlers }: Props) {
     const styles: CSSProperties = {
         width: node.width,
         height: node.height,
@@ -23,6 +26,11 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
     const handleResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
         e.stopPropagation();
         handlers.onResizeStart?.(node.id, direction);
+    };
+
+    const handleEditingEnd = (newText: string) => {
+        const newNode = { ...node, text: newText };
+        handlers.onEditingEnd?.(new Sticker(newNode));
     };
 
     return (
@@ -38,7 +46,7 @@ export function StickerComponent({ node, isSelected, resizable, handlers }: Prop
         >
             {resizable && <ResizeBorders main cross diagonal handleResizeStart={handleResizeStart} />}
 
-            {node.text}
+            <TextareaAutoSize isActive={isEditing} initialValue={node.text} onEditingEnd={handleEditingEnd} />
         </div>
     );
 }

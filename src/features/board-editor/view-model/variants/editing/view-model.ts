@@ -12,7 +12,7 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         return {
             nodes: nodesModel.nodes.map(node =>
                 viewState.selectedNodeId === node.id
-                    ? node.clone().select()
+                    ? node.clone().select().setEditing().setHandler("onEditingEnd", nodesModel.updateOne)
                     : node.setHandler("onClick", () => handleSwitchToSelection(node.id))
             ),
             overlay: {

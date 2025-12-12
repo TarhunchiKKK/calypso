@@ -39,6 +39,7 @@ export class Sticker extends NodeImpl<StickerNode> {
                 node={this.node}
                 isSelected={this.isSelected}
                 resizable={this.resizable}
+                isEditing={this.isEditing}
                 handlers={this.handlers}
             />
         );
