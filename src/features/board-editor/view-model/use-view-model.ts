@@ -48,13 +48,13 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = resizingVewModel(viewState);
             break;
         case "editing":
-            viewModel = editingViewModel();
+            viewModel = editingViewModel(viewState);
             break;
         default:
             throw new Error("Unknown view state");
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

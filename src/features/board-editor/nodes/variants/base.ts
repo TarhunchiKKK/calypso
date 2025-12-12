@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Point, Rect } from "../../domain/geometry";
 import { NodeBase } from "../types";
 import { ResizeDirection } from "../../domain/dom";
@@ -9,12 +9,16 @@ export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
+
+    onDoubleClick?: (e: React.MouseEvent) => void;
 };
 
 export abstract class NodeImpl<T extends NodeBase = NodeBase> {
     protected isSelected = false;
 
     protected resizable = false;
+
+    protected updateOne?: (node: NodeImpl) => void;
 
     public constructor(
         protected node: T,
@@ -32,6 +36,11 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
     public select(resizable: boolean = true) {
         this.isSelected = true;
         this.resizable = resizable;
+        return this;
+    }
+
+    public setUpdateOne(updateOne: typeof this.updateOne) {
+        this.updateOne = updateOne;
         return this;
     }
 

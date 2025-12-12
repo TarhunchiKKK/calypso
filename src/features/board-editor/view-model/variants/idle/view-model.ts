@@ -3,6 +3,7 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
+import { switchToEditing } from "../editing/switcher";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -14,8 +15,15 @@ export function useIdleViewModel(params: ViewModelParams) {
             setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
         };
 
+        const handleDoubleClick = (nodeId: string) => {
+            setViewState(switchToEditing({ selectedNodeId: nodeId }));
+        };
+
         return {
-            nodes: nodesModel.nodes.map(node => node.clone().setHandler("onMouseDown", () => handleMouseDown(node.id))),
+            nodes: nodesModel.nodes
+                .map(node => node.clone())
+                .map(node => node.setHandler("onMouseDown", () => handleMouseDown(node.id)))
+                .map(node => node.setHandler("onDoubleClick", () => handleDoubleClick(node.id))),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },
