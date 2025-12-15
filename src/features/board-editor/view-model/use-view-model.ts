@@ -9,8 +9,9 @@ import { applyDecorators } from "./decorators/apply-decorators";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
+import { useEditingViewModel } from "./variants/editing/view-model";
 
-export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">) {
+export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
 
     const newParams = {
@@ -24,6 +25,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
     const resizingVewModel = useResizingViewModel(newParams);
+    const editingViewModel = useEditingViewModel(newParams);
 
     let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
@@ -45,11 +47,14 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "resizing":
             viewModel = resizingVewModel(viewState);
             break;
+        case "editing":
+            viewModel = editingViewModel(viewState);
+            break;
         default:
             throw new Error("Unknown view state");
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

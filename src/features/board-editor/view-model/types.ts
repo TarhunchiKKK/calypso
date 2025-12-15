@@ -8,6 +8,7 @@ import { ResizingViewState } from "./variants/resizing/view-state";
 import { SelectionWindowViewState } from "./variants/selection-window/view-state";
 import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
+import { EditingViewState } from "./variants/editing/view-state";
 
 export type ViewState =
     | IdleViewState
@@ -15,7 +16,8 @@ export type ViewState =
     | SelectionViewState
     | SelectionWindowViewState
     | DraggingViewState
-    | ResizingViewState;
+    | ResizingViewState
+    | EditingViewState;
 
 export type ViewModelParams = {
     nodesModel: NodesModel;

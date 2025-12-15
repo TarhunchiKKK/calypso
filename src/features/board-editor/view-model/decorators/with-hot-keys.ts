@@ -12,9 +12,15 @@ export function withHotKeys(
         if (e.key === "Escape" && viewState.type !== "idle") {
             setViewState(switchToIdle());
         }
+
+        if (viewState.type === "editing") {
+            return;
+        }
+
         if (e.key === "i" && viewState.type !== "idle") {
             setViewState(switchToIdle());
         }
+
         if (e.key === "s" && viewState.type !== "stickers") {
             setViewState(switchToStickers());
         }
@@ -32,6 +38,10 @@ export function withHotKeys(
     };
 
     const handleGlobalHotKeys = (e: React.KeyboardEvent) => {
+        if (viewState.type === "editing") {
+            return;
+        }
+
         if (e.key === "a" && e.ctrlKey) {
             e.preventDefault();
             setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));

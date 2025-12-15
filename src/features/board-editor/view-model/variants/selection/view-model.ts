@@ -7,6 +7,7 @@ import { useResizing } from "../../hooks/use-resizing";
 import { ResizeDirection } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
+import { switchToEditing } from "../editing/switcher";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -36,6 +37,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
             });
         };
 
+        const handleDoubleClick = (nodeId: string) => {
+            setViewState(switchToEditing({ selectedNodeId: nodeId }));
+        };
+
         const onlyOneNodeSelected = viewState.selectedIds.size === 1;
 
         return {
@@ -55,6 +60,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     node
                         .setHandler("onClick", handleSelectNode.bind(null, node.id))
                         .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
+                        .setHandler("onDoubleClick", () => handleDoubleClick(node.id))
                 ),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown,
