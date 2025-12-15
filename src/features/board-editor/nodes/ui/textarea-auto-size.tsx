@@ -84,7 +84,10 @@ export function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) 
     return (
         <div ref={wrapperRef} className="relative w-full h-full flex flex-col">
             <div
-                className={clsx("whitespace-pre-wrap w-full h-full overflow-hidden", isActive && "opacity-0")}
+                className={clsx(
+                    "whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all",
+                    isActive && "opacity-0"
+                )}
                 style={{ fontSize }}
             >
                 {value}
@@ -136,7 +139,7 @@ function Textarea({ value, onValueChange, onEditingEnd, fontSize }: TextareaProp
     return (
         <textarea
             wrap="soft"
-            className="absolute inset-0 m-1 resize-none overflow-auto focus:outline-none text-center whitespace-pre-wrap wrap-break-word break-all"
+            className="absolute inset-0 m-1 resize-none overflow-auto focus:outline-none text-center whitespace-pre-wrap wrap-break-word break-all scrollbar-none"
             value={value}
             autoFocus
             onKeyDown={handleKeyDown}
