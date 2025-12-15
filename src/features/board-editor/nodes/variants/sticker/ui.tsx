@@ -46,7 +46,7 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
         >
             {resizable && <ResizeBorders main cross diagonal handleResizeStart={handleResizeStart} />}
 
-            <TextareaAutoSize isActive={isEditing} initialValue={node.text} onEditingEnd={handleEditingEnd} />
+            <TextareaAutoSize isActive={isEditing} value={node.text} onEditingEnd={handleEditingEnd} />
         </div>
     );
 }
