@@ -8,11 +8,13 @@ import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { applyDecorators } from "./decorators/apply-decorators";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
-import { switchToIdle } from "./variants/idle/switcher";
 import { useEditingViewModel } from "./variants/editing/view-model";
+import { switchToSelection } from "./variants/selection/switcher";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const [viewState, setViewState] = useState<ViewState>(switchToIdle());
+    const [viewState, setViewState] = useState<ViewState>(
+        switchToSelection({ selectedIds: new Set([params.nodesModel.nodes[0].id]) })
+    );
 
     const newParams = {
         ...params,
@@ -54,7 +56,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    // console.log(viewState.type);
+    console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

@@ -8,6 +8,8 @@ import { ResizeDirection } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
+import React from "react";
+import { useMouseEventsMediator } from "@/shared/lib/react/mouse-events-mediator";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -18,6 +20,11 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
+    const eventsMediator = useMouseEventsMediator<React.MouseEvent>({
+        clickDelay: 700,
+        mouseDownDelay: 400
+    });
+
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
@@ -26,7 +33,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         };
 
-        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
+        const handleSelectNode = (nodeId: string, e: React.MouseEvent) => {
+            console.log("Model: click");
+
             handleSkipNextClick();
 
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
@@ -38,10 +47,13 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         const handleDoubleClick = (nodeId: string) => {
+            console.log("Model: double click");
             setViewState(switchToEditing({ selectedNodeId: nodeId }));
         };
 
         const onlyOneNodeSelected = viewState.selectedIds.size === 1;
+
+        console.log("render");
 
         return {
             nodes: nodesModel.nodes
@@ -56,12 +68,19 @@ export function useSelectionViewModel(params: ViewModelParams) {
                               })
                         : node
                 )
-                .map(node =>
-                    node
-                        .setHandler("onClick", handleSelectNode.bind(null, node.id))
-                        .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
-                        .setHandler("onDoubleClick", () => handleDoubleClick(node.id))
-                ),
+                .map(node => {
+                    const handlers = eventsMediator.createHandlers({
+                        onMouseDown: e => dragging.onMouseDown(viewState, e),
+                        onClick: handleSelectNode.bind(null, node.id),
+                        onDoubleClick: () => handleDoubleClick(node.id)
+                    });
+
+                    return node
+                        .setHandler("onClick", handlers.onClick)
+                        .setHandler("onMouseDown", handlers.onMouseDown)
+                        .setHandler("onMouseUp", handlers.onMouseUp)
+                        .setHandler("onDoubleClick", handlers.onDoubleClick);
+                }),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown,
                 onClick: () => {

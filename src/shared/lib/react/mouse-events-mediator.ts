@@ -1,12 +1,10 @@
-import React from "react";
+import { useEffect, useMemo, useState } from "react";
 
-type HandledEvent = MouseEvent | React.MouseEvent;
-
-type MouseEventHandlers = {
-    onClick?: (e: HandledEvent) => void;
-    onDoubleClick?: (e: HandledEvent) => void;
-    onMouseDown?: (e: HandledEvent) => void;
-    onMouseUp?: (e: HandledEvent) => void;
+type MouseEventHandlers<E> = {
+    onClick?: (e: E) => void;
+    onDoubleClick?: (e: E) => void;
+    onMouseDown?: (e: E) => void;
+    onMouseUp?: (e: E) => void;
 };
 
 type MouseEventsMediatorOptions = {
@@ -17,19 +15,21 @@ type MouseEventsMediatorOptions = {
 const DEFAULT_CLICK_DELAY = 250;
 const DEFAULT_MOUSE_DOWN_DELAY = 250;
 
-export class MouseEventsMediator {
+export class MouseEventsMediator<E = never> {
     private clickDelay: number;
     private mouseDownDelay: number;
 
     private clickTimeout: ReturnType<typeof setTimeout> | null = null;
     private mouseDownTimeout: ReturnType<typeof setTimeout> | null = null;
 
+    private skipNextClick = false;
+
     public constructor(options: MouseEventsMediatorOptions = {}) {
         this.clickDelay = options.clickDelay ?? DEFAULT_CLICK_DELAY;
         this.mouseDownDelay = options.mouseDownDelay ?? DEFAULT_MOUSE_DOWN_DELAY;
     }
 
-    public createHandlers(handlers: MouseEventHandlers): MouseEventHandlers {
+    public createHandlers(handlers: MouseEventHandlers<E>): MouseEventHandlers<E> {
         return {
             onMouseDown: this.createMouseDown(handlers),
             onMouseUp: this.createMouseUp(handlers),
@@ -37,21 +37,24 @@ export class MouseEventsMediator {
         };
     }
 
-    private createMouseDown(handlers: MouseEventHandlers) {
-        return (e: HandledEvent) => {
+    private createMouseDown(handlers: MouseEventHandlers<E>) {
+        return (e: E) => {
             if (!handlers.onMouseDown) {
                 return;
             }
 
-            setTimeout(() => {
+            this.skipNextClick = false;
+
+            this.mouseDownTimeout = setTimeout(() => {
                 handlers.onMouseDown?.(e);
                 this.mouseDownTimeout = null;
+                this.skipNextClick = true;
             }, this.mouseDownDelay);
         };
     }
 
-    private createMouseUp(handlers: MouseEventHandlers) {
-        return (e: HandledEvent) => {
+    private createMouseUp(handlers: MouseEventHandlers<E>) {
+        return (e: E) => {
             if (this.mouseDownTimeout) {
                 clearTimeout(this.mouseDownTimeout);
                 this.mouseDownTimeout = null;
@@ -61,22 +64,40 @@ export class MouseEventsMediator {
         };
     }
 
-    private createClick(handlers: MouseEventHandlers) {
-        return (e: HandledEvent) => {
+    private createClick(handlers: MouseEventHandlers<E>) {
+        return (e: E) => {
+            const needSkip = this.skipNextClick;
+
             if (!this.clickTimeout) {
                 this.clickTimeout = setTimeout(() => {
-                    handlers.onClick?.(e);
+                    if (needSkip) {
+                        this.skipNextClick = false;
+                    } else {
+                        handlers.onClick?.(e);
+                    }
+
                     this.clickTimeout = null;
                 }, this.clickDelay);
             } else {
+                if (needSkip) {
+                    this.skipNextClick = false;
+                } else {
+                    handlers.onDoubleClick?.(e);
+                }
+
                 clearTimeout(this.clickTimeout);
                 this.clickTimeout = null;
-                handlers.onDoubleClick?.(e);
             }
         };
     }
 
+    public needSkipNextClick() {
+        return this.skipNextClick;
+    }
+
     public reset() {
+        console.log("resetting");
+
         if (this.clickTimeout) {
             clearTimeout(this.clickTimeout);
             this.clickTimeout = null;
@@ -87,4 +108,18 @@ export class MouseEventsMediator {
             this.mouseDownTimeout = null;
         }
     }
+}
+
+export function useMouseEventsMediator<E>(initialOptions: MouseEventsMediatorOptions = {}) {
+    const [options] = useState(initialOptions);
+
+    const mediator = useMemo(() => {
+        return new MouseEventsMediator<E>(options);
+    }, [options]);
+
+    useEffect(() => {
+        return () => mediator.reset();
+    }, [mediator]);
+
+    return mediator;
 }
