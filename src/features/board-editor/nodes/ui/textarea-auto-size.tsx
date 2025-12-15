@@ -1,7 +1,42 @@
 import clsx from "clsx";
-import React, { useRef, useState, RefObject } from "react";
+import React, { useRef, useState, RefObject, useEffect, useLayoutEffect, useCallback } from "react";
 
-type WrapperProps = {
+const recalculateFontSize = (
+    value: string,
+    setFontSize: (_: number) => void,
+    wrapper: HTMLDivElement,
+    measure: HTMLDivElement
+) => {
+    const { width: maxW, height: maxH } = wrapper.getBoundingClientRect();
+
+    measure.style.width = `${Math.max(10, Math.floor(maxW))}px`;
+    measure.style.height = `${maxH}px`;
+
+    const text = value || " ";
+
+    let lo = 8;
+    let hi = Math.max(8, Math.floor(maxH));
+    let best = lo;
+
+    while (lo <= hi) {
+        const mid = Math.floor((lo + hi) / 2);
+        measure.style.fontSize = `${mid}px`;
+        measure.textContent = text;
+
+        const fits = measure.scrollWidth <= maxW + 1 && measure.scrollHeight <= maxH + 1;
+
+        if (fits) {
+            best = mid;
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+
+    setFontSize(best);
+};
+
+type Props = {
     value: string;
 
     isActive: boolean;
@@ -9,50 +44,105 @@ type WrapperProps = {
     onEditingEnd?: (value: string) => void;
 };
 
-function Wrapper({ value, isActive, onEditingEnd }: WrapperProps) {
-    const ref = useRef<HTMLDivElement>(null);
+export function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) {
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const measureRef = useRef<HTMLDivElement | null>(null);
+
+    const [value, setValue] = useState(initialValue);
+    const [fontSize, setFontSize] = useState<number>(24);
+
+    const measureAndFit = useCallback(() => {
+        if (!wrapperRef.current || !measureRef.current) {
+            return;
+        }
+
+        recalculateFontSize(value, setFontSize, wrapperRef.current, measureRef.current);
+    }, [value]);
+
+    useLayoutEffect(() => {
+        measureAndFit();
+    }, [value, measureAndFit]);
+
+    useEffect(() => {
+        if (!wrapperRef.current) {
+            return;
+        }
+
+        const observer = new ResizeObserver(() => measureAndFit());
+
+        observer.observe(wrapperRef.current);
+
+        return () => observer.disconnect();
+    }, [measureAndFit]);
+
+    const handleEditingEnd = (v: string) => {
+        setValue(v);
+
+        onEditingEnd?.(v);
+    };
 
     return (
-        <div ref={ref} className="relative w-full h-full flex flex-col">
-            <div className={clsx("whitespace-pre-wrap w-full h-full overflow-hidden", isActive && "opacity-0")}>
+        <div ref={wrapperRef} className="relative w-full h-full flex flex-col">
+            <div
+                className={clsx("whitespace-pre-wrap w-full h-full overflow-hidden", isActive && "opacity-0")}
+                style={{ fontSize }}
+            >
                 {value}
             </div>
 
-            {isActive && <Textarea initialValue={value} onEditingEnd={onEditingEnd} wrapperRef={ref} />}
+            {isActive && (
+                <>
+                    <Textarea
+                        value={value}
+                        onValueChange={setValue}
+                        onEditingEnd={handleEditingEnd}
+                        fontSize={fontSize}
+                        wrapperRef={wrapperRef}
+                    />
+
+                    <div
+                        ref={measureRef}
+                        className="absolute top-0 left-0 invisible pointer-events-none whitespace-pre-wrap w-full h-full wrap-break-word break-all"
+                        style={{ wordWrap: "break-word" }}
+                    />
+                </>
+            )}
         </div>
     );
 }
 
-type TextareaPops = {
-    initialValue: string;
-
+type TextareaProps = {
+    value: string;
+    onValueChange: (v: string) => void;
     onEditingEnd?: (_: string) => void;
-
+    fontSize: number;
     wrapperRef: RefObject<HTMLDivElement | null>;
 };
 
-function Textarea({ initialValue, onEditingEnd }: TextareaPops) {
-    const [value, setValue] = useState(initialValue);
-
+function Textarea({ value, onValueChange, onEditingEnd, fontSize }: TextareaProps) {
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
+            onEditingEnd?.(value);
+        }
+        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
             onEditingEnd?.(value);
         }
     };
 
     const handleBlur = () => onEditingEnd?.(value);
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value);
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => onValueChange(e.target.value);
 
     return (
         <textarea
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 resize-none overflow-visible focus:outline-none text-center"
+            wrap="soft"
+            className="absolute inset-0 m-1 resize-none overflow-auto focus:outline-none text-center whitespace-pre-wrap wrap-break-word break-all"
             value={value}
             autoFocus
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
             onChange={handleChange}
-            // style={{ width: width + 2, height: height + 2 }}
+            style={{ fontSize, width: "calc(100% - 2px)", height: "calc(100% - 2px)" }}
         />
     );
 }
