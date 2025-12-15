@@ -35,7 +35,7 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public abstract resize(rect: Rect): NodeImpl<T>;
 
-    public select(resizable: boolean = true) {
+    public select(resizable: boolean = false) {
         this.isSelected = true;
         this.resizable = resizable;
         return this;

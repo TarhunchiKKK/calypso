@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useRef, useState, useLayoutEffect, RefObject } from "react";
+import React, { useRef, useState, RefObject } from "react";
 
 type WrapperProps = {
     value: string;
@@ -13,10 +13,11 @@ function Wrapper({ value, isActive, onEditingEnd }: WrapperProps) {
     const ref = useRef<HTMLDivElement>(null);
 
     return (
-        <div className="relative">
-            <div ref={ref} className={clsx("whitespace-pre-wrap ", isActive && "opacity-0")}>
+        <div ref={ref} className="relative w-full h-full flex flex-col">
+            <div className={clsx("whitespace-pre-wrap w-full h-full overflow-hidden", isActive && "opacity-0")}>
                 {value}
             </div>
+
             {isActive && <Textarea initialValue={value} onEditingEnd={onEditingEnd} wrapperRef={ref} />}
         </div>
     );
@@ -30,18 +31,8 @@ type TextareaPops = {
     wrapperRef: RefObject<HTMLDivElement | null>;
 };
 
-function Textarea({ initialValue, onEditingEnd, wrapperRef }: TextareaPops) {
+function Textarea({ initialValue, onEditingEnd }: TextareaPops) {
     const [value, setValue] = useState(initialValue);
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-
-    useLayoutEffect(() => {
-        if (!wrapperRef.current) return;
-
-        const { scrollWidth, clientHeight } = wrapperRef.current;
-        setHeight(clientHeight);
-        setWidth(scrollWidth);
-    }, [value, wrapperRef]);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
@@ -55,67 +46,15 @@ function Textarea({ initialValue, onEditingEnd, wrapperRef }: TextareaPops) {
 
     return (
         <textarea
-            className="absolute left-0 top-0 resize-none overflow-hidden focus:outline-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 resize-none overflow-visible focus:outline-none text-center"
             value={value}
             autoFocus
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
             onChange={handleChange}
-            style={{ width: width + 2, height: height + 2 }}
+            // style={{ width: width + 2, height: height + 2 }}
         />
     );
 }
 
 export const TextareaAutoSize = Wrapper;
-
-// type Props = {
-//     initialValue: string;
-
-//     isActive: boolean;
-
-//     onEditingEnd?: (value: string) => void;
-// };
-
-// export function TextareaAutoSize({ isActive, initialValue, onEditingEnd }: Props) {
-//     const ref = useRef<HTMLDivElement>(null);
-//     const [value, setValue] = useState(initialValue);
-//     const [height, setHeight] = useState(0);
-//     const [width, setWidth] = useState(0);
-
-//     useLayoutEffect(() => {
-//         if (!ref.current) return;
-
-//         const { scrollWidth, clientHeight } = ref.current;
-//         setHeight(clientHeight);
-//         setWidth(scrollWidth);
-//     }, [value]);
-
-//     const handleKeyDown = (e: React.KeyboardEvent) => {
-//         if (e.key === "Escape") {
-//             onEditingEnd?.(value);
-//         }
-//     };
-
-//     const handleBlur = () => onEditingEnd?.(value);
-
-//     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value);
-
-//     return (
-//         <div className="relative">
-//             <div ref={ref} className={clsx("whitespace-pre-wrap ", isActive && "opacity-0")}>
-//                 {value}
-//             </div>
-//             {isActive && (
-//                 <textarea
-//                     className="absolute left-0 top-0 resize-none overflow-hidden focus:outline-none"
-//                     value={value}
-//                     autoFocus
-//                     onKeyDown={handleKeyDown}
-//                     onBlur={handleBlur}
-//                     onChange={handleChange}
-//                     style={{ width: width + 2, height: height + 2 }}
-//                 />
-//             )}
-//         </div>
-//     );
-// }
