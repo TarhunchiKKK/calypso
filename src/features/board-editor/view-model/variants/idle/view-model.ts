@@ -6,16 +6,23 @@ import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 import { withNodeId } from "@/features/board-editor/domain/dom";
+import { useDragging } from "../../hooks/use-dragging";
+import { IdleNodesMapper } from "./helpers";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSelectionWindow(params);
 
+    const dragging = useDragging(params);
+
     const mediators = useMouseEventsMediators();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
         const handlers = mediators.node.createHandlers({
+            onMouseDown: withNodeId((nodeId, e) => {
+                dragging.onMouseDown(viewState, e, new Set([nodeId]));
+            }),
             onClick: withNodeId(nodeId => {
                 setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
             }),
@@ -25,7 +32,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: nodesModel.nodes.map(node => node.clone().setHandler("onClick", handlers.onClick)),
+            nodes: IdleNodesMapper.from(nodesModel.nodes).clone().applyHandlers(handlers).get(),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },

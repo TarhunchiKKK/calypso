@@ -11,13 +11,17 @@ import { DraggingNodesMapper } from "../variants/dragging/helpers";
 export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
 
-    const onMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
+    const onMouseDown = (
+        viewState: IdleViewState | SelectionViewState,
+        e: React.MouseEvent,
+        selectedIds: Set<string>
+    ) => {
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         setViewState(
             switchToDragging({
                 startPoint: currentPoint,
-                selectedIds: viewState.type === "selection" ? viewState.selectedIds : undefined
+                selectedIds: selectedIds
             })
         );
     };
