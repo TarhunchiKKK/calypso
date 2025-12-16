@@ -72,8 +72,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     return node
                         .setHandler("onClick", handlers.onClick)
                         .setHandler("onMouseDown", handlers.onMouseDown)
-                        .setHandler("onMouseUp", handlers.onMouseUp)
-                        .setHandler("onDoubleClick", handlers.onDoubleClick);
+                        .setHandler("onMouseUp", handlers.onMouseUp);
                 }),
             overlay: mediators.overlay.createHandlers({
                 onMouseDown: selectionWindow.onOverlayMouseDown,
@@ -82,14 +81,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     setViewState(switchToIdle());
                 }
             }),
-
-            // {
-            //     onMouseDown: selectionWindow.onOverlayMouseDown,
-            //     onClick: () => {
-            //         handleSkipNextClick();
-            //         setViewState(switchToIdle());
-            //     }
-            // },
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);

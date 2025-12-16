@@ -29,7 +29,7 @@ export class MouseEventsMediator<E = never> {
         this.mouseDownDelay = options.mouseDownDelay ?? DEFAULT_MOUSE_DOWN_DELAY;
     }
 
-    public createHandlers(handlers: MouseEventHandlers<E>): MouseEventHandlers<E> {
+    public createHandlers(handlers: MouseEventHandlers<E>) {
         return {
             onMouseDown: this.createMouseDown(handlers),
             onMouseUp: this.createMouseUp(handlers),
