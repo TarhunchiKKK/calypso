@@ -9,12 +9,10 @@ import { applyDecorators } from "./decorators/apply-decorators";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
-import { switchToSelection } from "./variants/selection/switcher";
+import { switchToIdle } from "./variants/idle/switcher";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const [viewState, setViewState] = useState<ViewState>(
-        switchToSelection({ selectedIds: new Set([params.nodesModel.nodes[0].id]) })
-    );
+    const [viewState, setViewState] = useState<ViewState>(switchToIdle());
 
     const newParams = {
         ...params,

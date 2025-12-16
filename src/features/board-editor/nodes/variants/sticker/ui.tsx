@@ -35,6 +35,7 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
 
     return (
         <div
+            data-id={node.id}
             onClick={handlers.onClick}
             onMouseDown={handlers.onMouseDown}
             onMouseUp={handlers.onMouseUp}

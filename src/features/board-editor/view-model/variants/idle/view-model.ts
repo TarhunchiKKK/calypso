@@ -14,6 +14,7 @@ export function useIdleViewModel(params: ViewModelParams) {
     const mediators = useMouseEventsMediators();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
+        // FIXME: switching to selection view model should happen on click (not mouse down)
         const handleMouseDown = (nodeId: string) => {
             setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
         };
@@ -32,8 +33,6 @@ export function useIdleViewModel(params: ViewModelParams) {
                     });
                     return node.setHandler("onMouseDown", handlers.onMouseDown).setHandler("onClick", handlers.onClick);
                 }),
-            // .map(node => node.setHandler("onMouseDown", () => handleMouseDown(node.id)))
-            // .map(node => node.setHandler("onDoubleClick", () => handleDoubleClick(node.id))),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },

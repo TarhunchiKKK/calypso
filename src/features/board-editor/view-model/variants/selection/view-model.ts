@@ -47,8 +47,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         const onlyOneNodeSelected = viewState.selectedIds.size === 1;
 
-        console.log("render");
-
         return {
             nodes: nodesModel.nodes
                 .map(node => node.clone())
