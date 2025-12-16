@@ -1,8 +1,8 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { Geometry } from "../../../domain/geometry";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { DraggingViewState } from "./view-state";
+import { DraggingNodesMapper } from "./helpers";
 
 export function useDraggingViewModel(params: ViewModelParams) {
     const { nodesModel } = params;
@@ -11,13 +11,7 @@ export function useDraggingViewModel(params: ViewModelParams) {
 
     return (viewState: DraggingViewState): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes
-                .map(node => node.clone())
-                .map(node =>
-                    viewState.selectedIds.has(node.id)
-                        ? node.select().moveTo(Geometry.applyOffset(node.rect(), dragging.offset))
-                        : node
-                ),
+            nodes: DraggingNodesMapper.from(nodesModel.nodes, viewState).applyOffset(dragging.offset).get(),
             window: {
                 onMouseMove: e => dragging.onWindowMouseMove(viewState, e),
                 onMouseUp: () => dragging.onWindowMouseUp(viewState)
