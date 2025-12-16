@@ -9,7 +9,7 @@ import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import React from "react";
-import { MouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
+import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -20,7 +20,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
-    return (viewState: SelectionViewState, mediators: MouseEventsMediators): OmitFields<ViewModel, "actions"> => {
+    const mediators = useMouseEventsMediators();
+
+    return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
@@ -73,13 +75,21 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         .setHandler("onMouseUp", handlers.onMouseUp)
                         .setHandler("onDoubleClick", handlers.onDoubleClick);
                 }),
-            overlay: {
+            overlay: mediators.overlay.createHandlers({
                 onMouseDown: selectionWindow.onOverlayMouseDown,
                 onClick: () => {
                     handleSkipNextClick();
                     setViewState(switchToIdle());
                 }
-            },
+            }),
+
+            // {
+            //     onMouseDown: selectionWindow.onOverlayMouseDown,
+            //     onClick: () => {
+            //         handleSkipNextClick();
+            //         setViewState(switchToIdle());
+            //     }
+            // },
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);

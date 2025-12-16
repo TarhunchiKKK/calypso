@@ -31,6 +31,7 @@ export function BoardEditor() {
                     <Overlay
                         onKeyDown={viewModel.overlay?.onKeyDown}
                         onMouseDown={viewModel.overlay?.onMouseDown}
+                        onMouseUp={viewModel.overlay?.onMouseUp}
                         onClick={viewModel.overlay?.onClick}
                     />
                 }

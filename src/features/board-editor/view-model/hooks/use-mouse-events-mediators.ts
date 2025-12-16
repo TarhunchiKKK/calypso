@@ -2,13 +2,13 @@ import { MouseEventsMediator } from "@/shared/lib/react";
 import React, { useEffect, useMemo } from "react";
 
 const nodeMouseEventOptions = {
-    mouseDownDelay: 250,
-    clickDelay: 250
+    mouseDownDelay: 700,
+    clickDelay: 500
 };
 
 const overlayMouseEventsOptions = {
-    mouseDownDelay: 250,
-    clickDelay: 250
+    mouseDownDelay: 7000,
+    clickDelay: 500
 };
 
 export function useMouseEventsMediators() {

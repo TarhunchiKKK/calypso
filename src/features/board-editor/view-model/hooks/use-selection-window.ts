@@ -33,6 +33,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
     const onOverlayMouseDown = (e: React.MouseEvent) => {
         setStartPoint(Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect));
         setSelectionWindowRect(undefined);
+        console.log("overlay mouse down");
     };
 
     const onWindowMouseMove = (
@@ -44,8 +45,6 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
         if (!start) {
             return;
         }
-
-        console.log("selection-window");
 
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
