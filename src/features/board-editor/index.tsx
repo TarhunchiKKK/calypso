@@ -11,11 +11,16 @@ import { ActionButton, ActionsBar } from "./ui/action-bar";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import { useWindowEvents } from "./view-model/hooks/use-window-events";
 import { SelectionWindow } from "./ui/selection-window";
+import { AnyNode } from "./nodes/compose/types";
 
-export function BoardEditor() {
+type Props = {
+    nodes: AnyNode[];
+};
+
+export function BoardEditor({ nodes }: Props) {
     const { canvasRect, canvasRef } = useCanvasRect();
 
-    const nodesModel = useNodes();
+    const nodesModel = useNodes(nodes);
 
     const viewModel = useViewModel({ nodesModel, canvasRect });
 
@@ -31,6 +36,7 @@ export function BoardEditor() {
                     <Overlay
                         onKeyDown={viewModel.overlay?.onKeyDown}
                         onMouseDown={viewModel.overlay?.onMouseDown}
+                        onMouseUp={viewModel.overlay?.onMouseUp}
                         onClick={viewModel.overlay?.onClick}
                     />
                 }

@@ -4,26 +4,28 @@ import { ViewModel, ViewModelParams } from "../../types";
 import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
+import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
+import { withNodeId } from "@/features/board-editor/domain/dom";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSelectionWindow(params);
 
-    return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
-        const handleMouseDown = (nodeId: string) => {
-            setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
-        };
+    const mediators = useMouseEventsMediators();
 
-        const handleDoubleClick = (nodeId: string) => {
-            setViewState(switchToEditing({ selectedNodeId: nodeId }));
-        };
+    return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
+        const handlers = mediators.node.createHandlers({
+            onClick: withNodeId(nodeId => {
+                setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+            }),
+            onDoubleClick: withNodeId(nodeId => {
+                setViewState(switchToEditing({ selectedNodeId: nodeId }));
+            })
+        });
 
         return {
-            nodes: nodesModel.nodes
-                .map(node => node.clone())
-                .map(node => node.setHandler("onMouseDown", () => handleMouseDown(node.id)))
-                .map(node => node.setHandler("onDoubleClick", () => handleDoubleClick(node.id))),
+            nodes: nodesModel.nodes.map(node => node.clone().setHandler("onClick", handlers.onClick)),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },

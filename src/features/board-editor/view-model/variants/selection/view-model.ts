@@ -4,10 +4,12 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { useResizing } from "../../hooks/use-resizing";
-import { ResizeDirection } from "../../../domain/dom";
+import { ResizeDirection, withNodeId } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
+import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
+import { SelectionNodesMapper } from "./helpers";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -18,7 +20,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
+    const mediators = useMouseEventsMediators();
+
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
+        // ? should this handler exists
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
@@ -26,49 +31,41 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         };
 
-        const handleSelectNode = (nodeId: string, e: React.MouseEvent<HTMLDivElement>) => {
-            handleSkipNextClick();
+        const handlers = mediators.node.createHandlers({
+            onMouseDown: e => dragging.onMouseDown(viewState, e),
+            onClick: withNodeId((nodeId, e) => {
+                handleSkipNextClick();
 
-            const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
+                const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
-            setViewState({
-                ...viewState,
-                selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
-            });
+                setViewState({
+                    ...viewState,
+                    selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
+                });
+            }),
+            onDoubleClick: withNodeId(nodeId => {
+                setViewState(switchToEditing({ selectedNodeId: nodeId }));
+            })
+        });
+
+        const handleResize = (nodeId: string, direction: ResizeDirection) => {
+            dragging.reset();
+            resizing.onMouseDown(nodeId, direction);
         };
-
-        const handleDoubleClick = (nodeId: string) => {
-            setViewState(switchToEditing({ selectedNodeId: nodeId }));
-        };
-
-        const onlyOneNodeSelected = viewState.selectedIds.size === 1;
 
         return {
-            nodes: nodesModel.nodes
-                .map(node => node.clone())
-                .map(node =>
-                    viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node
-                              .select(onlyOneNodeSelected)
-                              .setHandler("onResizeStart", (nodeId: string, direction: ResizeDirection) => {
-                                  dragging.reset();
-                                  resizing.onMouseDown(nodeId, direction);
-                              })
-                        : node
-                )
-                .map(node =>
-                    node
-                        .setHandler("onClick", handleSelectNode.bind(null, node.id))
-                        .setHandler("onMouseDown", e => dragging.onMouseDown(viewState, e))
-                        .setHandler("onDoubleClick", () => handleDoubleClick(node.id))
-                ),
-            overlay: {
+            nodes: SelectionNodesMapper.from(nodesModel.nodes, viewState)
+                .clone()
+                .applySelection(selectionWindow.selectedNodesIds, handleResize)
+                .applyHandlers(handlers)
+                .get(),
+            overlay: mediators.overlay.createHandlers({
                 onMouseDown: selectionWindow.onOverlayMouseDown,
                 onClick: () => {
                     handleSkipNextClick();
                     setViewState(switchToIdle());
                 }
-            },
+            }),
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);

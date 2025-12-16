@@ -4,9 +4,11 @@ import { NodeBase } from "../types";
 import { ResizeDirection } from "../../domain/dom";
 
 export type NodeHandlers = {
-    onClick?: React.MouseEventHandler;
+    onClick?: (e: React.MouseEvent) => void;
 
     onMouseDown?: React.MouseEventHandler;
+
+    onMouseUp?: (e: React.MouseEvent) => void;
 
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
 

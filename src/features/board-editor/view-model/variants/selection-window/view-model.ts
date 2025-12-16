@@ -2,6 +2,7 @@ import { OmitFields } from "@/shared/lib/typescript";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { SelectionWindowViewState } from "./view-state";
+import { SelectionWindowNodesMapper } from "./helpers";
 
 export function useSelectionWindowViewModel(params: ViewModelParams) {
     const { nodesModel } = params;
@@ -10,11 +11,9 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
 
     return (viewState: SelectionWindowViewState): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: nodesModel.nodes.map(node =>
-                viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                    ? node.clone().select()
-                    : node
-            ),
+            nodes: SelectionWindowNodesMapper.from(nodesModel.nodes, viewState)
+                .applySelection(selectionWindow.selectedNodesIds)
+                .get(),
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);

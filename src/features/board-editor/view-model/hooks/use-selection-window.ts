@@ -11,6 +11,7 @@ import { SelectionViewState } from "../variants/selection/view-state";
 
 const SELECTION_WINDOW_MIN_DIFF = 20;
 
+// FIXME: remove waiting for selection window distance overcome
 const defineSelectedIds = (viewState: IdleViewState | SelectionViewState, selectionMode: NodesSelectionMode) => {
     if (viewState.type === "idle") {
         return undefined;

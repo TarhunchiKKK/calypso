@@ -8,8 +8,8 @@ import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { applyDecorators } from "./decorators/apply-decorators";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
-import { switchToIdle } from "./variants/idle/switcher";
 import { useEditingViewModel } from "./variants/editing/view-model";
+import { switchToIdle } from "./variants/idle/switcher";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());

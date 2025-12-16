@@ -8,6 +8,7 @@ import { SelectionViewState } from "../variants/selection/view-state";
 
 const DRAGGING_MIN_DIFF = 5;
 
+// FIXME: remove waiting for dragging distance overcome
 export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const [startPoint, setStartPoint] = useState<Point>();
     const [offset, setOffset] = useState<Offset>();

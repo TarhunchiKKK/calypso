@@ -3,6 +3,7 @@ import { ViewModel, ViewModelParams } from "../../types";
 import { useResizing } from "../../hooks/use-resizing";
 import { ResizingViewState } from "./view-state";
 
+// FIXME: logic from useResizing hook should be moved into view model
 export function useResizingViewModel(params: ViewModelParams) {
     const resizing = useResizing(params);
 
