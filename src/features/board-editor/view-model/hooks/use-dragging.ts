@@ -29,6 +29,8 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             return;
         }
 
+        console.log("dragging");
+
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         if (Geometry.pointsDistance(start, currentPoint) > DRAGGING_MIN_DIFF) {

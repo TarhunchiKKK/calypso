@@ -45,6 +45,8 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
             return;
         }
 
+        console.log("selection-window");
+
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         if (Geometry.pointsDistance(start, currentPoint) > SELECTION_WINDOW_MIN_DIFF) {

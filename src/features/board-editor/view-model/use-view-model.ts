@@ -10,6 +10,7 @@ import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToSelection } from "./variants/selection/switcher";
+import { useMouseEventsMediators } from "./hooks/use-mouse-events-mediators";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(
@@ -29,6 +30,8 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const resizingVewModel = useResizingViewModel(newParams);
     const editingViewModel = useEditingViewModel(newParams);
 
+    const mediators = useMouseEventsMediators();
+
     let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
         case "idle":
@@ -38,7 +41,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = stickersViewModel();
             break;
         case "selection":
-            viewModel = selectionViewModel(viewState);
+            viewModel = selectionViewModel(viewState, mediators);
             break;
         case "selection-window":
             viewModel = selectionWindowViewModel(viewState);
@@ -56,7 +59,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

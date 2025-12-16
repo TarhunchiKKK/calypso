@@ -9,7 +9,7 @@ import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import React from "react";
-import { useMouseEventsMediator } from "@/shared/lib/react/mouse-events-mediator";
+import { MouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -20,12 +20,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
-    const eventsMediator = useMouseEventsMediator<React.MouseEvent>({
-        clickDelay: 700,
-        mouseDownDelay: 400
-    });
-
-    return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: SelectionViewState, mediators: MouseEventsMediators): OmitFields<ViewModel, "actions"> => {
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
@@ -34,8 +29,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         const handleSelectNode = (nodeId: string, e: React.MouseEvent) => {
-            console.log("Model: click");
-
             handleSkipNextClick();
 
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
@@ -47,7 +40,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         const handleDoubleClick = (nodeId: string) => {
-            console.log("Model: double click");
             setViewState(switchToEditing({ selectedNodeId: nodeId }));
         };
 
@@ -69,7 +61,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         : node
                 )
                 .map(node => {
-                    const handlers = eventsMediator.createHandlers({
+                    const handlers = mediators.node.createHandlers({
                         onMouseDown: e => dragging.onMouseDown(viewState, e),
                         onClick: handleSelectNode.bind(null, node.id),
                         onDoubleClick: () => handleDoubleClick(node.id)

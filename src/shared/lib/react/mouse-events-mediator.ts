@@ -91,13 +91,7 @@ export class MouseEventsMediator<E = never> {
         };
     }
 
-    public needSkipNextClick() {
-        return this.skipNextClick;
-    }
-
     public reset() {
-        console.log("resetting");
-
         if (this.clickTimeout) {
             clearTimeout(this.clickTimeout);
             this.clickTimeout = null;
