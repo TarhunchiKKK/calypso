@@ -5,11 +5,11 @@ import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
-import { useCanvasRect } from "./view-model/hooks/use-canvas-rect";
+import { useCanvasRect } from "./hooks/use-canvas-rect";
 import { useViewModel } from "./view-model/use-view-model";
 import { ActionButton, ActionsBar } from "./ui/action-bar";
 import { MousePointer2, StickerIcon } from "lucide-react";
-import { useWindowEvents } from "./view-model/hooks/use-window-events";
+import { useWindowEvents } from "./hooks/use-window-events";
 import { SelectionWindow } from "./ui/selection-window";
 import { AnyNode } from "./nodes/compose/types";
 
