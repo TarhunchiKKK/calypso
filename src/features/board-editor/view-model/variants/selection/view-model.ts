@@ -4,11 +4,10 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { useResizing } from "../../hooks/use-resizing";
-import { getNodeId, ResizeDirection } from "../../../domain/dom";
+import { ResizeDirection, withNodeId } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
-import React from "react";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 import { SelectionNodesMapper } from "./helpers";
 
@@ -34,12 +33,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         const handlers = mediators.node.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState, e),
-            onClick: (e: React.MouseEvent) => {
-                const nodeId = getNodeId(e);
-                if (!nodeId) {
-                    return;
-                }
-
+            onClick: withNodeId((nodeId, e) => {
                 handleSkipNextClick();
 
                 const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
@@ -48,15 +42,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
                     ...viewState,
                     selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
                 });
-            },
-            onDoubleClick: (e: React.MouseEvent) => {
-                const nodeId = getNodeId(e);
-                if (!nodeId) {
-                    return;
-                }
-
+            }),
+            onDoubleClick: withNodeId(nodeId => {
                 setViewState(switchToEditing({ selectedNodeId: nodeId }));
-            }
+            })
         });
 
         const handleResize = (nodeId: string, direction: ResizeDirection) => {

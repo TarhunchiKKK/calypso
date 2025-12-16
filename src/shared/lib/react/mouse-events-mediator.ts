@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
+// TODO: This class need documentation
+
 type MouseEventHandlers<E> = {
     onClick?: (e: E) => void;
     onDoubleClick?: (e: E) => void;

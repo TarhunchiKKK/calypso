@@ -19,3 +19,23 @@ export function getNodeId(e: React.MouseEvent) {
 
     return null;
 }
+
+// export function withNodeId(e: React.MouseEvent, fn: (nodeId: string) => void) {
+//     const nodeId = getNodeId(e);
+//     if (!nodeId) {
+//         return;
+//     }
+
+//     fn(nodeId);
+// }
+
+export function withNodeId(callback: (nodeId: string, e: React.MouseEvent) => void) {
+    return (e: React.MouseEvent) => {
+        const nodeId = getNodeId(e);
+        if (!nodeId) {
+            return;
+        }
+
+        callback(nodeId, e);
+    };
+}
