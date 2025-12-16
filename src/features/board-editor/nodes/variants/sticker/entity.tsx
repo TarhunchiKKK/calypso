@@ -6,7 +6,7 @@ import { StickerComponent } from "./ui";
 
 export class Sticker extends NodeImpl<StickerNode> {
     public clone() {
-        return new Sticker(this.node);
+        return new Sticker({ ...this.node });
     }
 
     public rect() {

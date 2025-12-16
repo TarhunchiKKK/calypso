@@ -49,7 +49,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
         });
 
         const handleResize = (nodeId: string, direction: ResizeDirection) => {
-            dragging.reset();
             resizing.onMouseDown(nodeId, direction);
         };
 
@@ -69,11 +68,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);
-                    dragging.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {
                     selectionWindow.reset();
-                    dragging.reset();
                 }
             }
         };
