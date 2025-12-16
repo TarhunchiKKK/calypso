@@ -1,11 +1,15 @@
 import { ViewModelParams } from "../types";
 import { ResizeDirection } from "../../domain/dom";
-import { Geometry } from "../../domain/geometry";
+import { Geometry, Rect } from "../../domain/geometry";
 import { switchToResizing } from "../variants/resizing/switcher";
 import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
+import { useState } from "react";
+import { ResizingNodesMapper } from "../variants/resizing/helpers";
 
 export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
+    const [newSize, setNewSize] = useState<Rect>();
+
     const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
         setViewState(switchToResizing({ nodeId, direction }));
     };
@@ -19,20 +23,21 @@ export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelP
 
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
-        const newSizes = Geometry.applyResizing(node.rect(), currentPoint, viewState.direction);
-
-        nodesModel.setNodes(
-            nodesModel.nodes.map(node =>
-                node.id === viewState.nodeId ? node.clone().select(true).resize(newSizes) : node
-            )
-        );
+        setNewSize(Geometry.applyResizing(node.rect(), currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
+        nodesModel.setNodes(
+            ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(newSize).unselectCurrent().get()
+        );
+
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));
+
+        setNewSize(undefined);
     };
 
     return {
+        newSize,
         onMouseDown,
         onMouseMove,
         onMouseUp
