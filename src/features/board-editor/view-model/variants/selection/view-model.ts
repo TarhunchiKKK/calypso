@@ -54,9 +54,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes)
+            nodes: SelectionNodesMapper.from(nodesModel.nodes, viewState)
                 .clone()
-                .applySelection(viewState.selectedIds, selectionWindow.selectedNodesIds, handleResize)
+                .applySelection(selectionWindow.selectedNodesIds, handleResize)
                 .applyHandlers(handlers)
                 .get(),
             overlay: mediators.overlay.createHandlers({

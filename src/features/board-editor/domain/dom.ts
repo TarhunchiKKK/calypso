@@ -2,7 +2,7 @@ import React from "react";
 
 export type ResizeDirection = "n" | "s" | "w" | "e" | "nw" | "ne" | "sw" | "se";
 
-export function getNodeId(e: React.MouseEvent) {
+function getNodeId(e: React.MouseEvent) {
     const nodeId = (e.target as HTMLElement).getAttribute("data-id");
 
     if (nodeId) {
@@ -15,8 +15,6 @@ export function getNodeId(e: React.MouseEvent) {
         return parentNode.getAttribute("data-id");
     }
 
-    console.error("Node id not found: " + e);
-
     return null;
 }
 
@@ -24,6 +22,7 @@ export function withNodeId(callback: (nodeId: string, e: React.MouseEvent) => vo
     return (e: React.MouseEvent) => {
         const nodeId = getNodeId(e);
         if (!nodeId) {
+            console.error("Node id not found");
             return;
         }
 

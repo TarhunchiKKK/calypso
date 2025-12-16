@@ -1,5 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
-
 // TODO: This class need documentation
 
 type MouseEventHandlers<E> = {
@@ -104,18 +102,4 @@ export class MouseEventsMediator<E = never> {
             this.mouseDownTimeout = null;
         }
     }
-}
-
-export function useMouseEventsMediator<E>(initialOptions: MouseEventsMediatorOptions = {}) {
-    const [options] = useState(initialOptions);
-
-    const mediator = useMemo(() => {
-        return new MouseEventsMediator<E>(options);
-    }, [options]);
-
-    useEffect(() => {
-        return () => mediator.reset();
-    }, [mediator]);
-
-    return mediator;
 }

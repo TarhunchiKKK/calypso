@@ -25,5 +25,3 @@ export function useMouseEventsMediators() {
 
     return { node: nodeMediator, overlay: overlayMediator };
 }
-
-export type MouseEventsMediators = ReturnType<typeof useMouseEventsMediators>;

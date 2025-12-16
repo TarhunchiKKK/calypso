@@ -44,7 +44,7 @@ type Props = {
     onEditingEnd?: (value: string) => void;
 };
 
-export function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) {
+function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const measureRef = useRef<HTMLDivElement | null>(null);
 

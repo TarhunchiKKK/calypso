@@ -1,6 +1,6 @@
 import { NodeImpl } from "../nodes/variants/base";
 
-export abstract class NodesMapper {
+export class NodesMapper {
     public constructor(protected nodes: NodeImpl[]) {}
 
     public clone() {

@@ -2,25 +2,28 @@ import { ResizeDirection } from "@/features/board-editor/domain/dom";
 import { NodesMapper } from "@/features/board-editor/domain/nodes-mapping";
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { MouseEventsMediator } from "@/shared/lib/react";
+import { SelectionViewState } from "./view-state";
 
 export class SelectionNodesMapper extends NodesMapper {
-    private constructor(nodes: NodeImpl[]) {
+    private constructor(
+        nodes: NodeImpl[],
+        private viewState: SelectionViewState
+    ) {
         super(nodes);
     }
 
-    public static from(nodes: NodeImpl[]) {
-        return new SelectionNodesMapper(nodes);
+    public static from(nodes: NodeImpl[], viewState: SelectionViewState) {
+        return new SelectionNodesMapper(nodes, viewState);
     }
 
     public applySelection(
-        viewStateIds: Set<string>,
         selectionWindowIds: Set<string>,
         resizeHandler: (nodeId: string, direction: ResizeDirection) => void
     ) {
-        const onlyOneNodeSelected = viewStateIds.size === 1;
+        const onlyOneNodeSelected = this.viewState.selectedIds.size === 1;
 
         this.nodes = this.nodes.map(node => {
-            if (viewStateIds.has(node.id) || selectionWindowIds.has(node.id)) {
+            if (this.viewState.selectedIds.has(node.id) || selectionWindowIds.has(node.id)) {
                 if (onlyOneNodeSelected) {
                     return node.select(true).setHandler("onResizeStart", resizeHandler);
                 }
