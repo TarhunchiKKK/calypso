@@ -4,12 +4,13 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { useResizing } from "../../hooks/use-resizing";
-import { ResizeDirection } from "../../../domain/dom";
+import { getNodeId, ResizeDirection } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import React from "react";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
+import { SelectionNodesMapper } from "./helpers";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -30,7 +31,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         };
 
-        const handleSelectNode = (nodeId: string, e: React.MouseEvent) => {
+        const handleSelectNode = (e: React.MouseEvent) => {
+            const nodeId = getNodeId(e);
+            if (!nodeId) {
+                return;
+            }
+
             handleSkipNextClick();
 
             const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
@@ -41,37 +47,32 @@ export function useSelectionViewModel(params: ViewModelParams) {
             });
         };
 
-        const handleDoubleClick = (nodeId: string) => {
+        const handleDoubleClick = (e: React.MouseEvent) => {
+            const nodeId = getNodeId(e);
+            if (!nodeId) {
+                return;
+            }
+
             setViewState(switchToEditing({ selectedNodeId: nodeId }));
         };
 
-        const onlyOneNodeSelected = viewState.selectedIds.size === 1;
+        const handlers = mediators.node.createHandlers({
+            onMouseDown: e => dragging.onMouseDown(viewState, e),
+            onClick: handleSelectNode,
+            onDoubleClick: handleDoubleClick
+        });
+
+        const handleResize = (nodeId: string, direction: ResizeDirection) => {
+            dragging.reset();
+            resizing.onMouseDown(nodeId, direction);
+        };
 
         return {
-            nodes: nodesModel.nodes
-                .map(node => node.clone())
-                .map(node =>
-                    viewState.selectedIds.has(node.id) || selectionWindow.selectedNodesIds.has(node.id)
-                        ? node
-                              .select(onlyOneNodeSelected)
-                              .setHandler("onResizeStart", (nodeId: string, direction: ResizeDirection) => {
-                                  dragging.reset();
-                                  resizing.onMouseDown(nodeId, direction);
-                              })
-                        : node
-                )
-                .map(node => {
-                    const handlers = mediators.node.createHandlers({
-                        onMouseDown: e => dragging.onMouseDown(viewState, e),
-                        onClick: handleSelectNode.bind(null, node.id),
-                        onDoubleClick: () => handleDoubleClick(node.id)
-                    });
-
-                    return node
-                        .setHandler("onClick", handlers.onClick)
-                        .setHandler("onMouseDown", handlers.onMouseDown)
-                        .setHandler("onMouseUp", handlers.onMouseUp);
-                }),
+            nodes: SelectionNodesMapper.from(nodesModel.nodes)
+                .clone()
+                .applySelection(viewState.selectedIds, selectionWindow.selectedNodesIds, handleResize)
+                .applyHandlers(handlers)
+                .get(),
             overlay: mediators.overlay.createHandlers({
                 onMouseDown: selectionWindow.onOverlayMouseDown,
                 onClick: () => {
