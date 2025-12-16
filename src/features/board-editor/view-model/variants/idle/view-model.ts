@@ -5,6 +5,8 @@ import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
+import React from "react";
+import { getNodeId } from "@/features/board-editor/domain/dom";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -14,25 +16,27 @@ export function useIdleViewModel(params: ViewModelParams) {
     const mediators = useMouseEventsMediators();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
-        // FIXME: switching to selection view model should happen on click (not mouse down)
-        const handleMouseDown = (nodeId: string) => {
-            setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
-        };
+        const handlers = mediators.node.createHandlers({
+            onClick: (e: React.MouseEvent) => {
+                const nodeId = getNodeId(e);
+                if (!nodeId) {
+                    return;
+                }
 
-        const handleDoubleClick = (nodeId: string) => {
-            setViewState(switchToEditing({ selectedNodeId: nodeId }));
-        };
+                setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+            },
+            onDoubleClick: (e: React.MouseEvent) => {
+                const nodeId = getNodeId(e);
+                if (!nodeId) {
+                    return;
+                }
+
+                setViewState(switchToEditing({ selectedNodeId: nodeId }));
+            }
+        });
 
         return {
-            nodes: nodesModel.nodes
-                .map(node => node.clone())
-                .map(node => {
-                    const handlers = mediators.node.createHandlers({
-                        onMouseDown: () => handleMouseDown(node.id),
-                        onDoubleClick: () => handleDoubleClick(node.id)
-                    });
-                    return node.setHandler("onMouseDown", handlers.onMouseDown).setHandler("onClick", handlers.onClick);
-                }),
+            nodes: nodesModel.nodes.map(node => node.clone().setHandler("onClick", handlers.onClick)),
             overlay: {
                 onMouseDown: selectionWindow.onOverlayMouseDown
             },

@@ -15,5 +15,7 @@ export function getNodeId(e: React.MouseEvent) {
         return parentNode.getAttribute("data-id");
     }
 
+    console.error("Node id not found: " + e);
+
     return null;
 }
