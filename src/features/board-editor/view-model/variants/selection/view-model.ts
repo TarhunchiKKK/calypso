@@ -59,20 +59,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .applyHandlers(handlers)
                 .get(),
             overlay: mediators.overlay.createHandlers({
-                onMouseDown: selectionWindow.onOverlayMouseDown,
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => {
                     handleSkipNextClick();
                     setViewState(switchToIdle());
                 }
-            }),
-            window: {
-                onMouseMove: e => {
-                    selectionWindow.onWindowMouseMove(viewState, e);
-                },
-                onMouseUp: () => {
-                    selectionWindow.reset();
-                }
-            }
+            })
         };
     };
 }

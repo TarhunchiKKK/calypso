@@ -34,11 +34,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         return {
             nodes: IdleNodesMapper.from(nodesModel.nodes).clone().applyHandlers(handlers).get(),
             overlay: {
-                onMouseDown: selectionWindow.onOverlayMouseDown
-            },
-            window: {
-                onMouseMove: e => selectionWindow.onWindowMouseMove(viewState, e),
-                onMouseUp: selectionWindow.reset
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
             }
         };
     };
