@@ -32,7 +32,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         const handlers = mediators.node.createHandlers({
-            onMouseDown: e => dragging.onMouseDown(viewState, e),
+            onMouseDown: e => dragging.onMouseDown(viewState, e, viewState.selectedIds),
             onClick: withNodeId((nodeId, e) => {
                 handleSkipNextClick();
 
@@ -49,7 +49,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
         });
 
         const handleResize = (nodeId: string, direction: ResizeDirection) => {
-            dragging.reset();
             resizing.onMouseDown(nodeId, direction);
         };
 
@@ -60,22 +59,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .applyHandlers(handlers)
                 .get(),
             overlay: mediators.overlay.createHandlers({
-                onMouseDown: selectionWindow.onOverlayMouseDown,
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => {
                     handleSkipNextClick();
                     setViewState(switchToIdle());
                 }
-            }),
-            window: {
-                onMouseMove: e => {
-                    selectionWindow.onWindowMouseMove(viewState, e);
-                    dragging.onWindowMouseMove(viewState, e);
-                },
-                onMouseUp: () => {
-                    selectionWindow.reset();
-                    dragging.reset();
-                }
-            }
+            })
         };
     };
 }

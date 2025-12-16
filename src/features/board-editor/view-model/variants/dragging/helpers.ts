@@ -18,7 +18,7 @@ export class DraggingNodesMapper extends NodesMapper {
     public applyOffset(offset?: Offset) {
         this.nodes = this.nodes.map(node => {
             if (this.viewState.selectedIds.has(node.id)) {
-                return node.select().moveTo(Geometry.applyOffset(node.rect(), offset));
+                return node.clone().select().moveTo(Geometry.applyOffset(node.rect(), offset));
             }
 
             return node;

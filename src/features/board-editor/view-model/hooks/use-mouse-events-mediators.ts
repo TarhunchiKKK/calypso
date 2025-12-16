@@ -7,7 +7,7 @@ const nodeMouseEventOptions = {
 };
 
 const overlayMouseEventsOptions = {
-    mouseDownDelay: 7000,
+    mouseDownDelay: 700,
     clickDelay: 500
 };
 

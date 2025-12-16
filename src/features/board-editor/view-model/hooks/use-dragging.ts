@@ -1,61 +1,39 @@
 import React, { useState } from "react";
-import { Geometry, Offset, Point } from "../../domain/geometry";
+import { Geometry, Offset } from "../../domain/geometry";
 import { ViewModelParams } from "../types";
 import { switchToDragging } from "../variants/dragging/switcher";
 import { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
+import { IdleViewState } from "../variants/idle/view-state";
+import { DraggingNodesMapper } from "../variants/dragging/helpers";
 
-const DRAGGING_MIN_DIFF = 5;
-
-// FIXME: remove waiting for dragging distance overcome
 export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
-    const [startPoint, setStartPoint] = useState<Point>();
     const [offset, setOffset] = useState<Offset>();
 
-    const onMouseDown = (viewState: SelectionViewState, e: React.MouseEvent) => {
-        if (viewState.skipNextClick) {
-            setViewState({ ...viewState, skipNextClick: undefined });
-            return;
-        }
-
-        const currentPoint = { x: e.clientX, y: e.clientY };
-        setStartPoint(Geometry.recalculatePosition(currentPoint, canvasRect));
-    };
-
-    const onWindowMouseMove = (viewState: SelectionViewState | DraggingViewState, e: MouseEvent) => {
-        const start = viewState.type === "dragging" && viewState.startPoint ? viewState.startPoint : startPoint;
-
-        if (!start) {
-            return;
-        }
-
+    const onMouseDown = (
+        viewState: IdleViewState | SelectionViewState,
+        e: React.MouseEvent,
+        selectedIds: Set<string>
+    ) => {
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
-        if (Geometry.pointsDistance(start, currentPoint) > DRAGGING_MIN_DIFF) {
-            if (viewState.type === "selection") {
-                setViewState(
-                    switchToDragging({
-                        startPoint: start,
-                        selectedIds: viewState.selectedIds
-                    })
-                );
-                reset();
-                return;
-            }
+        setViewState(
+            switchToDragging({
+                startPoint: currentPoint,
+                selectedIds: selectedIds
+            })
+        );
+    };
 
-            setOffset(Geometry.calculateOffset(start, currentPoint));
-        }
+    const onWindowMouseMove = (viewState: DraggingViewState, e: MouseEvent) => {
+        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+
+        setOffset(Geometry.calculateOffset(viewState.startPoint, currentPoint));
     };
 
     const onWindowMouseUp = (viewState: DraggingViewState) => {
-        nodesModel.setNodes(
-            nodesModel.nodes.map(node =>
-                viewState.selectedIds.has(node.id)
-                    ? node.clone().moveTo(Geometry.applyOffset(node.rect(), offset))
-                    : node.clone()
-            )
-        );
+        nodesModel.setNodes(DraggingNodesMapper.from(nodesModel.nodes, viewState).applyOffset(offset).get());
 
         setViewState(
             switchToSelection({
@@ -64,13 +42,8 @@ export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelP
             })
         );
 
-        reset();
-    };
-
-    const reset = () => {
-        setStartPoint(undefined);
         setOffset(undefined);
     };
 
-    return { startPoint, offset, onMouseDown, onWindowMouseMove, onWindowMouseUp, reset };
+    return { offset, onMouseDown, onWindowMouseMove, onWindowMouseUp };
 }
