@@ -24,6 +24,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const mediators = useMouseEventsMediators();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
+        // ? should this handler exists
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
@@ -31,35 +32,31 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         };
 
-        const handleSelectNode = (e: React.MouseEvent) => {
-            const nodeId = getNodeId(e);
-            if (!nodeId) {
-                return;
-            }
-
-            handleSkipNextClick();
-
-            const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
-
-            setViewState({
-                ...viewState,
-                selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
-            });
-        };
-
-        const handleDoubleClick = (e: React.MouseEvent) => {
-            const nodeId = getNodeId(e);
-            if (!nodeId) {
-                return;
-            }
-
-            setViewState(switchToEditing({ selectedNodeId: nodeId }));
-        };
-
         const handlers = mediators.node.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState, e),
-            onClick: handleSelectNode,
-            onDoubleClick: handleDoubleClick
+            onClick: (e: React.MouseEvent) => {
+                const nodeId = getNodeId(e);
+                if (!nodeId) {
+                    return;
+                }
+
+                handleSkipNextClick();
+
+                const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
+
+                setViewState({
+                    ...viewState,
+                    selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
+                });
+            },
+            onDoubleClick: (e: React.MouseEvent) => {
+                const nodeId = getNodeId(e);
+                if (!nodeId) {
+                    return;
+                }
+
+                setViewState(switchToEditing({ selectedNodeId: nodeId }));
+            }
         });
 
         const handleResize = (nodeId: string, direction: ResizeDirection) => {
