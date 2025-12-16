@@ -5,8 +5,7 @@ import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
-import React from "react";
-import { getNodeId } from "@/features/board-editor/domain/dom";
+import { withNodeId } from "@/features/board-editor/domain/dom";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -17,22 +16,12 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
         const handlers = mediators.node.createHandlers({
-            onClick: (e: React.MouseEvent) => {
-                const nodeId = getNodeId(e);
-                if (!nodeId) {
-                    return;
-                }
-
+            onClick: withNodeId(nodeId => {
                 setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
-            },
-            onDoubleClick: (e: React.MouseEvent) => {
-                const nodeId = getNodeId(e);
-                if (!nodeId) {
-                    return;
-                }
-
+            }),
+            onDoubleClick: withNodeId(nodeId => {
                 setViewState(switchToEditing({ selectedNodeId: nodeId }));
-            }
+            })
         });
 
         return {
