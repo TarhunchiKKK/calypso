@@ -21,7 +21,7 @@ export function useIdleViewModel(params: ViewModelParams) {
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
         const handlers = mediators.node.createHandlers({
             onMouseDown: withNodeId((nodeId, e) => {
-                dragging.onMouseDown(viewState, e, new Set([nodeId]));
+                dragging.onMouseDown(new Set([nodeId]), e);
             }),
             onClick: withNodeId(nodeId => {
                 setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));

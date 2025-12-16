@@ -4,18 +4,12 @@ import { ViewModelParams } from "../types";
 import { switchToDragging } from "../variants/dragging/switcher";
 import { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
-import { SelectionViewState } from "../variants/selection/view-state";
-import { IdleViewState } from "../variants/idle/view-state";
 import { DraggingNodesMapper } from "../variants/dragging/helpers";
 
 export function useDragging({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
 
-    const onMouseDown = (
-        viewState: IdleViewState | SelectionViewState,
-        e: React.MouseEvent,
-        selectedIds: Set<string>
-    ) => {
+    const onMouseDown = (selectedIds: Set<string>, e: React.MouseEvent) => {
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         setViewState(

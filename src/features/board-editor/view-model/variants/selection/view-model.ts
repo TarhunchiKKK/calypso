@@ -32,7 +32,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         const handlers = mediators.node.createHandlers({
-            onMouseDown: e => dragging.onMouseDown(viewState, e, viewState.selectedIds),
+            onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
                 handleSkipNextClick();
 
