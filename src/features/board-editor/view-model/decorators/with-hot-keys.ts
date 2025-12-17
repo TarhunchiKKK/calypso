@@ -3,6 +3,17 @@ import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
 import { switchToStickers } from "../variants/stickers/switcher";
 
+/**
+ * A decorator function that enhances a ViewModel with keyboard shortcuts (hotkeys).
+ * It attaches an `onKeyDown` event handler to the main layout, allowing for global hotkey support.
+ * This function centralizes all keyboard-related interactions, such as switching states, selecting nodes,
+ * and deleting them.
+ *
+ * @param viewState - The current `ViewState` of the application.
+ * @param viewModelParams - The parameters required to construct the ViewModel, including the nodes model and state setter.
+ * @param viewModel - The base `ViewModel` to be decorated with hotkey functionality.
+ * @returns A new `ViewModel` instance that includes the `onKeyDown` handler for hotkeys.
+ */
 export function withHotKeys(
     viewState: ViewState,
     { nodesModel, setViewState }: ViewModelParams,
