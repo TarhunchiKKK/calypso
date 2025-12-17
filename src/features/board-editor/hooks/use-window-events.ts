@@ -1,6 +1,15 @@
 import { useRef, useLayoutEffect, useEffect } from "react";
 import { ViewModel } from "../view-model/types";
 
+/**
+ * A custom hook that attaches global mouse event listeners (`mousemove` and `mouseup`) to the `window` object.
+ * It's designed to handle events that need to be captured regardless of where the mouse is on the page,
+ * such as during a drag operation that might go outside the component's bounds.
+ *
+ * @param events - An object containing the event handlers to be attached.
+ *   These handlers are stored in a `ref` to ensure that the latest versions are always used
+ *   without needing to re-attach the event listeners on every render.
+ */
 export function useWindowEvents(events: ViewModel["window"]) {
     const eventsRef = useRef(events);
 
