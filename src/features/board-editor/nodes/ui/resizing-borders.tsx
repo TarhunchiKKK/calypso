@@ -10,6 +10,17 @@ type Props = {
     handleResizeStart: (direction: ResizeDirection, e: React.MouseEvent) => void;
 };
 
+/**
+ * A UI component that renders the interactive borders around a node, allowing it to be resized.
+ * It displays different sets of resize handles based on the props provided.
+ *
+ * @param {boolean} [main] - If true, displays the top and bottom resize handles.
+ * @param {boolean} [cross] - If true, displays the left and right resize handles.
+ * @param {boolean} [diagonal] - If true, displays the corner resize handles.
+ * @param {(direction: ResizeDirection, e: React.MouseEvent) => void} handleResizeStart - A callback function
+ *   that is invoked when a resize operation is initiated. It receives the direction of the resize
+ *   and the original mouse event.
+ */
 export function ResizeBorders({ main, cross, diagonal, handleResizeStart }: Props) {
     return (
         <>
