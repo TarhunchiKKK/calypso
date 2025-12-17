@@ -1,17 +1,3 @@
-/**
- * The MouseEventsMediator class is a utility designed to manage and distinguish between single-clicks, double-clicks, and long-press mouse events.
- * It is useful in scenarios where different actions need to be triggered based on these distinct user interactions on the same UI element.
- *
- * How it works:
- * - It uses a system of timeouts to differentiate between event types.
- * - A single-click is registered if no second click occurs within a specified delay.
- * - A double-click is registered if a second click follows the first one within the same delay.
- * - A long-press (onMouseDown) is registered if the mouse button is held down for a specified duration.
- *
- * This class helps in creating more interactive and intuitive user interfaces
- * by providing granular control over mouse event handling.
- */
-
 type MouseEventHandlers<E> = {
     onClick?: (e: E) => void;
     onDoubleClick?: (e: E) => void;
@@ -27,6 +13,19 @@ type MouseEventsMediatorOptions = {
 const DEFAULT_CLICK_DELAY = 250;
 const DEFAULT_MOUSE_DOWN_DELAY = 250;
 
+/**
+ * The MouseEventsMediator class is a utility designed to manage and distinguish between single-clicks, double-clicks, and long-press mouse events.
+ * It is useful in scenarios where different actions need to be triggered based on these distinct user interactions on the same UI element.
+ *
+ * How it works:
+ * - It uses a system of timeouts to differentiate between event types.
+ * - A single-click is registered if no second click occurs within a specified delay.
+ * - A double-click is registered if a second click follows the first one within the same delay.
+ * - A long-press (onMouseDown) is registered if the mouse button is held down for a specified duration.
+ *
+ * This class helps in creating more interactive and intuitive user interfaces
+ * by providing granular control over mouse event handling.
+ */
 export class MouseEventsMediator<E = never> {
     private clickDelay: number;
     private mouseDownDelay: number;
