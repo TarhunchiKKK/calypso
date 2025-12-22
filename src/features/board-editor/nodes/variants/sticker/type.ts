@@ -1,6 +1,8 @@
 import { NodeBase } from "../../types";
 
 export type StickerNode = NodeBase & {
+    type: "sticker";
+
     x: number;
 
     y: number;

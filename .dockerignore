@@ -21,6 +21,8 @@ vitest.config.mts
 
 
 # Docs 
+.storybook
+stories
 assets
 readme.md
 
