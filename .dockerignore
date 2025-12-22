@@ -1,0 +1,29 @@
+# Build files and dependencies
+.next
+node_modules
+
+
+# Git files
+.git
+.github
+.gitignore
+
+
+# Code styling 
+.prettierrc
+eslint.config.js
+knip.json
+
+
+# Testing
+test
+vitest.config.mts
+
+
+# Docs 
+assets
+readme.md
+
+
+# Editor configuration
+.vscode
