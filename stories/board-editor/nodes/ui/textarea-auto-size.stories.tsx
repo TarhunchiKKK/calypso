@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
 
 const meta = {
-    title: "BoardEditor/nodes/ui/TextareaAutoSize",
+    title: "Board Editor/nodes/ui/Textarea Auto Size",
     component: TextareaAutoSize
 } satisfies Meta<typeof TextareaAutoSize>;
 

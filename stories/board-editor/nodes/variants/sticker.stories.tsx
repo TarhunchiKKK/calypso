@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
 
 const meta = {
-    title: "BoardEditor/nodes/variants",
+    title: "Board Editor/nodes/variants/Sticker",
     component: StickerComponent
 } satisfies Meta<typeof StickerComponent>;
 

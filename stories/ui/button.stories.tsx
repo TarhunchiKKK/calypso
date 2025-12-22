@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Center } from "../common/center";
 
 const meta = {
-    title: "Ui/Kit/Button",
+    title: "ui/kit/Button",
     component: Button
 } satisfies Meta<typeof Button>;
 
