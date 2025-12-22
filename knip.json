@@ -5,8 +5,8 @@
         "files": "error",
         "classMembers": "error",
         "types": "error",
-        "dependencies": "off",
-        "devDependencies": "off",
+        "dependencies": "error",
+        "devDependencies": "error",
         "unlisted": "off"
     }
 }
