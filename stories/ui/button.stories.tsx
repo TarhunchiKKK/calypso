@@ -1,5 +1,6 @@
 import { Button } from "@/shared/ui/kit/button";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Center } from "../common/center";
 
 const meta = {
     title: "Ui/Kit/Button",
@@ -13,5 +14,12 @@ export const Primary: StoryObj<typeof meta> = {
         type: "button",
         size: "lg",
         children: "Button"
+    },
+    decorators: Story => {
+        return (
+            <Center>
+                <Story />
+            </Center>
+        );
     }
 };
