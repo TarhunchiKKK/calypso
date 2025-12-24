@@ -7,9 +7,10 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint .",
-        "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
         "format:check": "prettier --check \"**/*.{js,ts,tsx,json}\"",
+        "format:fix": "prettier --write \"**/*.{js,ts,tsx,json}\"",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint . --fix",
         "knip": "knip",
         "storybook:dev": "storybook dev -p 6006",
         "storybook:build": "storybook build"
