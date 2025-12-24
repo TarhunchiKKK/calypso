@@ -22,4 +22,4 @@ jobs:
               run: bun format:check
 
             - name: Lint
-              run: bun lint
+              run: bun lint:check
