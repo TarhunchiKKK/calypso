@@ -1,3 +1,4 @@
+import { applyLayoutShift } from "../../modules/layout-shifting";
 import { ResizeDirection, applyResizing } from "../../modules/resizing";
 import { Point, Rect, Offset } from "./types";
 
@@ -15,14 +16,7 @@ export class Geometry {
      * @returns A new point with coordinates relative to the canvas.
      */
     public static recalculatePosition(point: Point, canvasRect?: Rect): Point {
-        if (!canvasRect) {
-            return point;
-        }
-
-        return {
-            x: point.x - canvasRect.x,
-            y: point.y - canvasRect.y
-        };
+        return applyLayoutShift(point, canvasRect);
     }
 
     /**

@@ -1,5 +1,9 @@
 import { useRef, useLayoutEffect, useEffect } from "react";
-import { ViewModel } from "../view-model/types";
+
+type WindowEvents = {
+    onMouseMove?: (e: MouseEvent) => void;
+    onMouseUp?: (e: MouseEvent) => void;
+};
 
 /**
  * A custom hook that attaches global mouse event listeners (`mousemove` and `mouseup`) to the `window` object.
@@ -10,7 +14,7 @@ import { ViewModel } from "../view-model/types";
  *   These handlers are stored in a `ref` to ensure that the latest versions are always used
  *   without needing to re-attach the event listeners on every render.
  */
-export function useWindowEvents(events: ViewModel["window"]) {
+export function useWindowEvents(events: WindowEvents) {
     const eventsRef = useRef(events);
 
     useLayoutEffect(() => {

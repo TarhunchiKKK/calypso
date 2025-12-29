@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { WindowShift } from "./types";
-import { Geometry, Point } from "../../lib/geometry";
+import { Geometry, Point } from "@/features/board-editor/lib/geometry";
 
 const defaultWindowShift: WindowShift = {
     x: 0,

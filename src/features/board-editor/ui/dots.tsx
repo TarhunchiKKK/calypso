@@ -1,4 +1,4 @@
-import { createWindowShiftCssProperties, WindowShiftingModel } from "../modules/window-shifting";
+import { createWindowShiftCssProperties, WindowShiftingModel } from "../modules/layout-shifting";
 
 type Props = {
     windowShift: WindowShiftingModel["windowShift"];

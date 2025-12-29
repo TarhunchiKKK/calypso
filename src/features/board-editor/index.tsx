@@ -5,14 +5,13 @@ import { Dots } from "./ui/dots";
 import { Layout } from "./ui/layout";
 import { Overlay } from "./ui/overlay";
 import { useNodes } from "./nodes/use-nodes";
-import { useCanvasRect } from "./hooks/use-canvas-rect";
 import { useViewModel } from "./view-model/use-view-model";
 import { ActionButton, ActionsBar } from "./ui/action-bar";
 import { MousePointer2, StickerIcon } from "lucide-react";
-import { useWindowEvents } from "./hooks/use-window-events";
 import { SelectionWindow } from "./ui/selection-window";
 import { AnyNode } from "./nodes/compose/types";
-import { useWindowShifting } from "./modules/window-shifting";
+import { useCanvasRect, useWindowShifting } from "./modules/layout-shifting";
+import { useWindowEvents } from "./lib/window";
 
 type Props = {
     nodes: AnyNode[];

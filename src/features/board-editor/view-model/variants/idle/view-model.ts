@@ -5,7 +5,7 @@ import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
-import { withNodeId } from "@/features/board-editor/lib/dom";
+import { withNodeId } from "@/features/board-editor/nodes/lib/dom";
 import { useDragging } from "../../hooks/use-dragging";
 import { IdleNodesMapper } from "./helpers";
 

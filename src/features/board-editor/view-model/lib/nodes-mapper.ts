@@ -1,4 +1,4 @@
-import { NodeImpl } from "../nodes/variants/base";
+import { NodeImpl } from "../../nodes/variants/base";
 
 export class NodesMapper {
     public constructor(protected nodes: NodeImpl[]) {}

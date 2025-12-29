@@ -1,4 +1,4 @@
-import { NodesMapper } from "@/features/board-editor/lib/nodes-mapping";
+import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper";
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { MouseEventsMediator } from "@/shared/lib/react";
 import { SelectionViewState } from "./view-state";

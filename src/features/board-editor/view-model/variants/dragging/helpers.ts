@@ -1,5 +1,5 @@
 import { Geometry, Offset } from "@/features/board-editor/lib/geometry";
-import { NodesMapper } from "@/features/board-editor/lib/nodes-mapping";
+import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper";
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { DraggingViewState } from "./view-state";
 

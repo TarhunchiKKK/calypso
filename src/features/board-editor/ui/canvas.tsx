@@ -1,5 +1,5 @@
 import { HTMLAttributes, PropsWithChildren, ReactNode, Ref } from "react";
-import { WindowShiftingModel, WindowShiftWrapper } from "../modules/window-shifting";
+import { WindowShiftingModel, WindowShiftWrapper } from "../modules/layout-shifting";
 
 type Props = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren<{

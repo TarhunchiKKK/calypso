@@ -4,7 +4,7 @@ import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
 import { Sticker } from "./entity";
 import { ResizeDirection, ResizeBorders } from "@/features/board-editor/modules/resizing";
-import { TextareaAutoSize } from "../../ui/textarea-auto-size";
+import { TextareaAutoSize } from "@/shared/ui";
 
 type Props = {
     node: StickerNode;
