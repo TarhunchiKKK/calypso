@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import { Point, Rect } from "../../domain/geometry";
+import React from "react";
 import { NodeBase } from "../types";
-import { ResizeDirection } from "../../domain/dom";
+import { ResizeDirection } from "../../modules/resizing";
+import { Point, Rect } from "../../lib/geometry";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -57,5 +57,5 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public abstract clone(): NodeImpl<T>;
 
-    public abstract render(): ReactNode;
+    public abstract render(): React.ReactNode;
 }

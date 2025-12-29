@@ -1,4 +1,4 @@
-import { Rect } from "@/features/board-editor/domain/geometry";
+import { Rect } from "@/features/board-editor/lib/geometry";
 
 export type SelectionViewState = {
     type: "selection";

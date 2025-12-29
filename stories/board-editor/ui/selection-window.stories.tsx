@@ -1,4 +1,4 @@
-import { SelectionWindow } from "@/features/board-editor/ui/selection-window";
+import { SelectionWindow } from "@/features/board-editor/ui/selection-window.component";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {

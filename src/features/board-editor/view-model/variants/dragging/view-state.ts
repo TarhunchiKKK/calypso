@@ -1,4 +1,4 @@
-import { Point } from "@/features/board-editor/domain/geometry";
+import { Point } from "@/features/board-editor/lib/geometry";
 
 export type DraggingViewState = {
     type: "dragging";

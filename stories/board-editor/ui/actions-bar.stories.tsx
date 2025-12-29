@@ -1,4 +1,4 @@
-import { ActionButton, ActionsBar } from "@/features/board-editor/ui/action-bar";
+import { ActionButton, ActionsBar } from "@/features/board-editor/ui/action-bar.component";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { MousePointer2, StickerIcon } from "lucide-react";
 

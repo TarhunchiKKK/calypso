@@ -1,5 +1,5 @@
-import { Point } from "@/features/board-editor/domain/geometry";
-import { NodesSelectionMode } from "@/features/board-editor/domain/selection";
+import { Point } from "@/features/board-editor/lib/geometry";
+import { NodesSelectionMode } from "@/features/board-editor/modules/selection";
 
 export type SelectionWindowViewState = {
     type: "selection-window";

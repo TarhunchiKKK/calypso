@@ -1,1 +1,1 @@
-export { MouseEventsMediator } from "./mouse-events-mediator";
+export { MouseEventsMediator } from "./mouse-events.mediator";

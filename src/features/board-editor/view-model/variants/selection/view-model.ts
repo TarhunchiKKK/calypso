@@ -1,15 +1,16 @@
-import { OmitFields } from "@/shared/lib/typescript";
-import { selectNodes } from "../../../domain/selection";
-import { useSelectionWindow } from "../../hooks/use-selection-window";
+import { OmitFields } from "@/shared/lib/typescript.lib";
+import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import { ViewModel, ViewModelParams } from "../../types";
-import { useDragging } from "../../hooks/use-dragging";
-import { useResizing } from "../../hooks/use-resizing";
-import { ResizeDirection, withNodeId } from "../../../domain/dom";
+import { useDragging } from "../../hooks/use-dragging.hook";
+import { useResizing } from "../../hooks/use-resizing.hook";
+import { withNodeId } from "../../../nodes/lib/dom.lib";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
-import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
-import { SelectionNodesMapper } from "./helpers";
+import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
+import { SelectionNodesMapper } from "./nodes-mapper.lib";
+import { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import { selectNodes } from "@/features/board-editor/modules/selection";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;

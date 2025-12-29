@@ -1,4 +1,4 @@
-import { StickerComponent } from "@/features/board-editor/nodes/variants/sticker/ui";
+import { StickerComponent } from "@/features/board-editor/nodes/variants/sticker/component";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
 

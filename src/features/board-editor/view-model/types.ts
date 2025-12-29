@@ -1,6 +1,6 @@
 import React from "react";
-import { Rect } from "../domain/geometry";
-import { NodesModel } from "../nodes/use-nodes";
+import { Rect } from "../lib/geometry";
+import { NodesModel } from "../nodes/use-nodes.hook";
 import { NodeImpl } from "../nodes/variants/base";
 import { IdleViewState } from "./variants/idle/view-state";
 import { DraggingViewState } from "./variants/dragging/view-state";
@@ -9,7 +9,7 @@ import { SelectionWindowViewState } from "./variants/selection-window/view-state
 import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
 import { EditingViewState } from "./variants/editing/view-state";
-import { WindowShiftingModel } from "../hooks/use-window-shifting";
+import { WindowShiftModel } from "../modules/layout-shifting";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.
@@ -39,7 +39,7 @@ export type ViewModelParams = {
 
     setViewState: (viewState: ViewState) => void;
 
-    windowShiftingModel: WindowShiftingModel;
+    windowShiftModel: WindowShiftModel;
 };
 
 /**

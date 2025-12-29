@@ -1,6 +1,6 @@
-import { ResizeBorders } from "@/features/board-editor/nodes/ui/resizing-borders";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
+import { ResizeBorders } from "@/features/board-editor/modules/resizing";
 
 const meta = {
     title: "Board Editor/nodes/ui/Resize Borders",
