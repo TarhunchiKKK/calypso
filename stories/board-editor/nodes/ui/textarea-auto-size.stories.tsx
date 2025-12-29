@@ -1,4 +1,4 @@
-import { TextareaAutoSize } from "@/shared/ui/textarea-auto-size";
+import { TextareaAutoSize } from "@/shared/ui/textarea-auto-size.component";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
 

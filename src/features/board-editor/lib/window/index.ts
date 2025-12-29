@@ -1,1 +1,1 @@
-export { useWindowEvents } from "./use-window-events";
+export { useWindowEvents } from "./use-window-events.hook";

@@ -1,1 +1,1 @@
-export * from "./textarea-auto-size";
+export * from "./textarea-auto-size.component";

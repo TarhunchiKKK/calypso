@@ -1,2 +1,2 @@
-export * from "./helpers";
+export * from "./geometry.facade";
 export type * from "./types";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NodesFactory } from "./compose/nodes-factory";
+import { NodesFactory } from "./compose/nodes.factory";
 import { AnyNode } from "./compose/types";
 import { NodeImpl } from "./variants/base";
 

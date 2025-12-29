@@ -4,7 +4,7 @@ import { switchToResizing } from "../variants/resizing/switcher";
 import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
-import { ResizingNodesMapper } from "../variants/resizing/helpers";
+import { ResizingNodesMapper } from "../variants/resizing/nodes-mapper.lib";
 import { ResizeDirection } from "../../modules/resizing";
 
 export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {

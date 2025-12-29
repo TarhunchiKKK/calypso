@@ -1,3 +1,3 @@
-export * from "./helpers";
+export * from "./geometry.lib";
 export * from "./types";
-export * from "./ui";
+export * from "./resize-borders.component";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Rect } from "../lib/geometry";
-import { NodesModel } from "../nodes/use-nodes";
+import { NodesModel } from "../nodes/use-nodes.hook";
 import { NodeImpl } from "../nodes/variants/base";
 import { IdleViewState } from "./variants/idle/view-state";
 import { DraggingViewState } from "./variants/dragging/view-state";

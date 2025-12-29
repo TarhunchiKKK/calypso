@@ -2,7 +2,7 @@ import { Point, Rect } from "@/features/board-editor/lib/geometry";
 import { ReactNode } from "react";
 import { NodeImpl } from "../base";
 import { StickerNode } from "./type";
-import { StickerComponent } from "./ui";
+import { StickerComponent } from "./component";
 
 export class Sticker extends NodeImpl<StickerNode> {
     public clone() {

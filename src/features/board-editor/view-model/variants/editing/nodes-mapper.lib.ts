@@ -1,4 +1,4 @@
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper";
+import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { EditingViewState } from "./view-state";
 import React from "react";

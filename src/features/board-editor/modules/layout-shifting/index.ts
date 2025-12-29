@@ -1,5 +1,5 @@
-export { useWindowShift, type WindowShiftModel } from "./window-shifting/use-window-shifting";
-export { createWindowShiftCssProperties } from "./window-shifting/helpers";
-export { WindowShiftWrapper } from "./window-shifting/ui";
-export { useCanvasRect } from "./canvas-rect/use-canvas-rect";
-export { applyLayoutShift } from "./helpers";
+export { useWindowShift, type WindowShiftModel } from "./use-window-shift.hook";
+export { createWindowShiftCssProperties } from "./css.lib";
+export { WindowShiftWrapper } from "./window-shift-wrapper.component";
+export { useCanvasRect } from "./use-canvas-rect.hook";
+export { applyLayoutShift } from "./geometry.lib";

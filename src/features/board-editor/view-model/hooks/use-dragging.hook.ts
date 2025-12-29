@@ -4,7 +4,7 @@ import { ViewModelParams } from "../types";
 import { switchToDragging } from "../variants/dragging/switcher";
 import { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
-import { DraggingNodesMapper } from "../variants/dragging/helpers";
+import { DraggingNodesMapper } from "../variants/dragging/nodes-mapper.lib";
 
 export function useDragging({ nodesModel, setViewState, canvasRect, windowShiftModel }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
