@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Geometry, Rect } from "../../domain/geometry";
 import { ViewModelParams } from "../types";
-import { selectNodes } from "../../domain/selection";
 import { switchToIdle } from "../variants/idle/switcher";
 import { IdleViewState } from "../variants/idle/view-state";
 import { switchToSelectionWindow } from "../variants/selection-window/switcher";
 import { SelectionWindowViewState } from "../variants/selection-window/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
+import { selectNodes } from "../../modules/selection";
 
 export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windowShiftingModel }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();

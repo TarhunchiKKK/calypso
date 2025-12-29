@@ -1,4 +1,4 @@
-export type NodesSelectionMode = "toggle" | "add" | "replace";
+import { NodesSelectionMode } from "./types";
 
 export function selectNodes(nodeIds: string[], mode: NodesSelectionMode, currentSelection: Set<string>): Set<string> {
     switch (mode) {

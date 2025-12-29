@@ -1,5 +1,4 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { selectNodes } from "../../../domain/selection";
 import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
@@ -11,6 +10,7 @@ import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 import { SelectionNodesMapper } from "./helpers";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import { selectNodes } from "@/features/board-editor/modules/selection";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
