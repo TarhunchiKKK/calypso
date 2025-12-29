@@ -1,7 +1,5 @@
 import React from "react";
 
-export type ResizeDirection = "n" | "s" | "w" | "e" | "nw" | "ne" | "sw" | "se";
-
 /**
  * Extracts a node's ID from a mouse event by looking for a `data-id` attribute.
  * It first checks the event's target element and then traverses up the DOM tree

@@ -1,4 +1,4 @@
-import { ResizeDirection } from "../../domain/dom";
+import { ResizeDirection } from "./types";
 
 type Props = {
     main?: boolean;

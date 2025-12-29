@@ -1,4 +1,4 @@
-import { ResizeDirection } from "@/features/board-editor/domain/dom";
+import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { ResizingViewState } from "./view-state";
 
 type Params = {

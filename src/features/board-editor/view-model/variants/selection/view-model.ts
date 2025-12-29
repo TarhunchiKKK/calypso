@@ -4,12 +4,13 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { useResizing } from "../../hooks/use-resizing";
-import { ResizeDirection, withNodeId } from "../../../domain/dom";
+import { withNodeId } from "../../../domain/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators";
 import { SelectionNodesMapper } from "./helpers";
+import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;

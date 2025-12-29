@@ -1,11 +1,11 @@
 import { ViewModelParams } from "../types";
-import { ResizeDirection } from "../../domain/dom";
 import { Geometry, Rect } from "../../domain/geometry";
 import { switchToResizing } from "../variants/resizing/switcher";
 import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
 import { ResizingNodesMapper } from "../variants/resizing/helpers";
+import { ResizeDirection } from "../../modules/resizing";
 
 export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();

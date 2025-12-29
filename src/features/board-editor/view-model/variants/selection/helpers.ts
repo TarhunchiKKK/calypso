@@ -1,8 +1,8 @@
-import { ResizeDirection } from "@/features/board-editor/domain/dom";
 import { NodesMapper } from "@/features/board-editor/domain/nodes-mapping";
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { MouseEventsMediator } from "@/shared/lib/react";
 import { SelectionViewState } from "./view-state";
+import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 
 export class SelectionNodesMapper extends NodesMapper {
     private constructor(

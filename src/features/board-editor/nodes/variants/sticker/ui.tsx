@@ -2,10 +2,9 @@ import clsx from "clsx";
 import { CSSProperties } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
-import { ResizeDirection } from "@/features/board-editor/domain/dom";
-import { ResizeBorders } from "@/features/board-editor/nodes/ui/resizing-borders";
-import { TextareaAutoSize } from "../../ui/textarea-auto-size";
 import { Sticker } from "./entity";
+import { ResizeDirection, ResizeBorders } from "@/features/board-editor/modules/resizing";
+import { TextareaAutoSize } from "../../ui/textarea-auto-size";
 
 type Props = {
     node: StickerNode;
