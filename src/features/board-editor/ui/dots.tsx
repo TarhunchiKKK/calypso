@@ -1,7 +1,7 @@
-import { createWindowShiftCssProperties, WindowShiftingModel } from "../modules/layout-shifting";
+import { createWindowShiftCssProperties, WindowShiftModel } from "../modules/layout-shifting";
 
 type Props = {
-    windowShift: WindowShiftingModel["windowShift"];
+    windowShift: WindowShiftModel["windowShift"];
 };
 
 export function Dots({ windowShift }: Props) {

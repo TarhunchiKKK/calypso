@@ -9,7 +9,7 @@ import { SelectionWindowViewState } from "./variants/selection-window/view-state
 import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
 import { EditingViewState } from "./variants/editing/view-state";
-import { WindowShiftingModel } from "../modules/layout-shifting";
+import { WindowShiftModel } from "../modules/layout-shifting";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.
@@ -39,7 +39,7 @@ export type ViewModelParams = {
 
     setViewState: (viewState: ViewState) => void;
 
-    windowShiftingModel: WindowShiftingModel;
+    windowShiftModel: WindowShiftModel;
 };
 
 /**

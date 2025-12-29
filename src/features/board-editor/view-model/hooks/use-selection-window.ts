@@ -9,7 +9,7 @@ import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
 import { selectNodes } from "../../modules/selection";
 
-export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windowShiftingModel }: ViewModelParams) {
+export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windowShiftModel }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
 
     let selectedNodesIds: string[] = [];
@@ -20,7 +20,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windo
     }
 
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
-        if (windowShiftingModel.is(e)) {
+        if (windowShiftModel.is(e)) {
             return;
         }
 

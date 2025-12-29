@@ -1,5 +1,5 @@
 import { HTMLAttributes, PropsWithChildren, ReactNode, Ref } from "react";
-import { WindowShiftingModel, WindowShiftWrapper } from "../modules/layout-shifting";
+import { WindowShiftModel, WindowShiftWrapper } from "../modules/layout-shifting";
 
 type Props = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren<{
@@ -7,7 +7,7 @@ type Props = HTMLAttributes<HTMLDivElement> &
 
         overlay: ReactNode;
 
-        windowShift: WindowShiftingModel["windowShift"];
+        windowShift: WindowShiftModel["windowShift"];
     }>;
 
 export function Canvas({ ref, overlay, windowShift, children, ...props }: Props) {

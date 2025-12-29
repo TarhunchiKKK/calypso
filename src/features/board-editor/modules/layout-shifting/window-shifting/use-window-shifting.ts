@@ -8,10 +8,10 @@ const defaultWindowShift: WindowShift = {
 };
 
 /**
- * `useWindowShifting` is a custom hook that provides functionality for panning or shifting a window.
+ * `useWindowShift` is a custom hook that provides functionality for panning or shifting a window.
  * It tracks the window's offset based on user mouse movements, specifically when dragging with the right mouse button.
  *
- * @returns {WindowShiftingModel} An object containing the window shift state and event handlers.
+ * @returns {WindowShiftModel} An object containing the window shift state and event handlers.
  *
  * @property {WindowShift} windowShift - The current offset of the window, with `x` and `y` properties.
  * @property {React.Dispatch<React.SetStateAction<WindowShift>>} setWindowShift - Function to directly set the window shift state.
@@ -20,7 +20,7 @@ const defaultWindowShift: WindowShift = {
  * @property {(e: MouseEvent) => void} handleMouseMove - Mouse move event handler. Calculates and applies the window shift based on the drag movement.
  * @property {() => void} handleMouseUp - Mouse up event handler. Finalizes the window shifting action.
  */
-export function useWindowShifting() {
+export function useWindowShift() {
     const [windowShift, setWindowShift] = useState<WindowShift>(defaultWindowShift);
     const [startPoint, setStartPoint] = useState<Point>();
 
@@ -62,4 +62,4 @@ export function useWindowShifting() {
     return { windowShift, setWindowShift, is, handleMouseDown, handleMouseMove, handleMouseUp };
 }
 
-export type WindowShiftingModel = ReturnType<typeof useWindowShifting>;
+export type WindowShiftModel = ReturnType<typeof useWindowShift>;

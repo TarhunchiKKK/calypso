@@ -6,11 +6,11 @@ import { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { DraggingNodesMapper } from "../variants/dragging/helpers";
 
-export function useDragging({ nodesModel, setViewState, canvasRect, windowShiftingModel }: ViewModelParams) {
+export function useDragging({ nodesModel, setViewState, canvasRect, windowShiftModel }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
 
     const onMouseDown = (selectedIds: Set<string>, e: React.MouseEvent) => {
-        if (windowShiftingModel.is(e)) {
+        if (windowShiftModel.is(e)) {
             return;
         }
 
