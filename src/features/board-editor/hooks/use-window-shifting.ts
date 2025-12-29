@@ -15,8 +15,12 @@ export function useWindowShifting() {
     const [windowShift, setWindowShift] = useState<WindowShift>(defaultWindowShift);
     const [startPoint, setStartPoint] = useState<Point>();
 
+    const is = (e: React.MouseEvent) => {
+        return e.button === 2;
+    };
+
     const handleMouseDown = (e: React.MouseEvent) => {
-        if (e.button === 2) {
+        if (is(e)) {
             setStartPoint({
                 x: e.clientX,
                 y: e.clientY
@@ -46,7 +50,7 @@ export function useWindowShifting() {
         setStartPoint(undefined);
     };
 
-    return { windowShift, setWindowShift, handleMouseDown, handleMouseMove, handleMouseUp };
+    return { windowShift, setWindowShift, is, handleMouseDown, handleMouseMove, handleMouseUp };
 }
 
 export type WindowShiftingModel = ReturnType<typeof useWindowShifting>;

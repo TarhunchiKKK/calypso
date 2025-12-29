@@ -10,7 +10,7 @@ import { useDragging } from "../../hooks/use-dragging";
 import { IdleNodesMapper } from "./helpers";
 
 export function useIdleViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState, windowShiftingModel } = params;
+    const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSelectionWindow(params);
 
@@ -34,14 +34,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         return {
             nodes: IdleNodesMapper.from(nodesModel.nodes).clone().applyHandlers(handlers).get(),
             overlay: {
-                onMouseDown: e => {
-                    selectionWindow.onOverlayMouseDown(viewState, e);
-                    windowShiftingModel.handleMouseDown(e);
-                }
-            },
-            window: {
-                onMouseMove: windowShiftingModel.handleMouseMove,
-                onMouseUp: windowShiftingModel.handleMouseUp
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
             }
         };
     };
