@@ -12,6 +12,7 @@ import { MousePointer2, StickerIcon } from "lucide-react";
 import { useWindowEvents } from "./hooks/use-window-events";
 import { SelectionWindow } from "./ui/selection-window";
 import { AnyNode } from "./nodes/compose/types";
+import { useWindowShifting } from "./hooks/use-window-shifting";
 
 type Props = {
     nodes: AnyNode[];
@@ -22,16 +23,19 @@ export function BoardEditor({ nodes }: Props) {
 
     const nodesModel = useNodes(nodes);
 
-    const viewModel = useViewModel({ nodesModel, canvasRect });
+    const windowShiftingModel = useWindowShifting();
+
+    const viewModel = useViewModel({ nodesModel, canvasRect, windowShiftingModel });
 
     useWindowEvents(viewModel.window || {});
 
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
-            <Dots />
+            <Dots windowShift={windowShiftingModel.windowShift} />
 
             <Canvas
                 ref={canvasRef}
+                windowShift={windowShiftingModel.windowShift}
                 overlay={
                     <Overlay
                         onKeyDown={viewModel.overlay?.onKeyDown}

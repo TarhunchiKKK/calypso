@@ -20,6 +20,10 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState }: Vie
     }
 
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
+        if (e.button === 2) {
+            return;
+        }
+
         const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
 
         const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
