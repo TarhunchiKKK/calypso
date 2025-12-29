@@ -1,4 +1,4 @@
-import { Rect, Point } from "../../domain/geometry/types";
+import { Rect, Point } from "../../lib/geometry/types";
 import { ResizeDirection } from "./types";
 
 export function applyResizing(rect: Rect, point: Point, direction: ResizeDirection): Rect {

@@ -1,5 +1,5 @@
 import { OmitFields } from "@/shared/lib/typescript";
-import { Geometry } from "../../../domain/geometry";
+import { Geometry } from "../../../lib/geometry";
 import { NodesFactory } from "../../../nodes/compose/nodes-factory";
 import { ViewModel, ViewModelParams } from "../../types";
 import React from "react";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Geometry, Offset } from "../../domain/geometry";
+import { Geometry, Offset } from "../../lib/geometry";
 import { ViewModelParams } from "../types";
 import { switchToDragging } from "../variants/dragging/switcher";
 import { DraggingViewState } from "../variants/dragging/view-state";

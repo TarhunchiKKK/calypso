@@ -1,4 +1,4 @@
-import { Point } from "@/features/board-editor/domain/geometry";
+import { Point } from "@/features/board-editor/lib/geometry";
 import { SelectionWindowViewState } from "./view-state";
 import { NodesSelectionMode } from "@/features/board-editor/modules/selection";
 

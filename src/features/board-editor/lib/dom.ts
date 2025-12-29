@@ -35,6 +35,7 @@ function getNodeId(e: React.MouseEvent) {
 export function withNodeId(callback: (nodeId: string, e: React.MouseEvent) => void) {
     return (e: React.MouseEvent) => {
         const nodeId = getNodeId(e);
+
         if (!nodeId) {
             console.error("Node id not found");
             return;

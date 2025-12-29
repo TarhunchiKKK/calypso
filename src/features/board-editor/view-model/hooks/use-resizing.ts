@@ -1,5 +1,5 @@
 import { ViewModelParams } from "../types";
-import { Geometry, Rect } from "../../domain/geometry";
+import { Geometry, Rect } from "../../lib/geometry";
 import { switchToResizing } from "../variants/resizing/switcher";
 import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";

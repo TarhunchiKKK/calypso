@@ -1,4 +1,4 @@
-import { Rect } from "../domain/geometry";
+import { Rect } from "../lib/geometry";
 
 export function SelectionWindow({ height, width, x, y }: Rect) {
     return (

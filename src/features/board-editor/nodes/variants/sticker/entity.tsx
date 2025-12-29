@@ -1,4 +1,4 @@
-import { Point, Rect } from "@/features/board-editor/domain/geometry";
+import { Point, Rect } from "@/features/board-editor/lib/geometry";
 import { ReactNode } from "react";
 import { NodeImpl } from "../base";
 import { StickerNode } from "./type";

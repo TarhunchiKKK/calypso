@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Geometry, Rect } from "../../domain/geometry";
+import { Geometry, Rect } from "../../lib/geometry";
 import { ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { IdleViewState } from "../variants/idle/view-state";

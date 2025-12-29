@@ -1,4 +1,4 @@
-import { withNodeId } from "@/features/board-editor/domain/dom";
+import { withNodeId } from "@/features/board-editor/lib/dom";
 import { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";

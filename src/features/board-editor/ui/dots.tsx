@@ -1,14 +1,11 @@
-import { WindowShiftingModel } from "../hooks/use-window-shifting";
+import { createWindowShiftCssProperties, WindowShiftingModel } from "../modules/window-shifting";
 
 type Props = {
     windowShift: WindowShiftingModel["windowShift"];
 };
 
 export function Dots({ windowShift }: Props) {
-    const style = {
-        "--x": windowShift.x + "px",
-        "--y": windowShift.y + "px"
-    } as React.CSSProperties;
+    const style = createWindowShiftCssProperties(windowShift);
 
     return (
         <div

@@ -3,7 +3,7 @@ import { useSelectionWindow } from "../../hooks/use-selection-window";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging";
 import { useResizing } from "../../hooks/use-resizing";
-import { withNodeId } from "../../../domain/dom";
+import { withNodeId } from "../../../lib/dom";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";

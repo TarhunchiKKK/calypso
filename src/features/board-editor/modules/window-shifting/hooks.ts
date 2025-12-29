@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { Geometry, Point } from "../domain/geometry";
-
-type WindowShift = {
-    x: number;
-    y: number;
-};
+import { WindowShift } from "./types";
+import { Geometry, Point } from "../../lib/geometry";
 
 const defaultWindowShift: WindowShift = {
     x: 0,

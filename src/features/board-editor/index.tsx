@@ -12,7 +12,7 @@ import { MousePointer2, StickerIcon } from "lucide-react";
 import { useWindowEvents } from "./hooks/use-window-events";
 import { SelectionWindow } from "./ui/selection-window";
 import { AnyNode } from "./nodes/compose/types";
-import { useWindowShifting } from "./hooks/use-window-shifting";
+import { useWindowShifting } from "./modules/window-shifting";
 
 type Props = {
     nodes: AnyNode[];

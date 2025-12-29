@@ -1,7 +1,7 @@
 import React from "react";
 import { NodeBase } from "../types";
 import { ResizeDirection } from "../../modules/resizing";
-import { Point, Rect } from "../../domain/geometry";
+import { Point, Rect } from "../../lib/geometry";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
