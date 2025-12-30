@@ -6,15 +6,15 @@ import { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { DraggingNodesMapper } from "../variants/dragging/nodes-mapper.lib";
 
-export function useDragging({ nodesModel, setViewState, canvasRect, windowShiftModel }: ViewModelParams) {
+export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
 
     const onMouseDown = (selectedIds: Set<string>, e: React.MouseEvent) => {
-        if (windowShiftModel.is(e)) {
+        if (layoutDimensionsModel.layoutOffset.is(e)) {
             return;
         }
 
-        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
         setViewState(
             switchToDragging({
@@ -25,7 +25,7 @@ export function useDragging({ nodesModel, setViewState, canvasRect, windowShiftM
     };
 
     const onWindowMouseMove = (viewState: DraggingViewState, e: MouseEvent) => {
-        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
         setOffset(Geometry.calculateOffset(viewState.startPoint, currentPoint));
     };

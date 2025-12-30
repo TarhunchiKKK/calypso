@@ -1,11 +1,14 @@
-import { createWindowShiftCssProperties, WindowShiftModel } from "../modules/layout-dimensions";
+import { Offset } from "../lib/geometry";
+import { createLayoutDimensionsStyles } from "../modules/layout-dimensions";
 
 type Props = {
-    windowShift: WindowShiftModel["windowShift"];
+    offset: Offset;
+
+    zoom: number;
 };
 
-export function Dots({ windowShift }: Props) {
-    const style = createWindowShiftCssProperties(windowShift);
+export function Dots({ offset, zoom }: Props) {
+    const style = createLayoutDimensionsStyles(offset, zoom);
 
     return (
         <div

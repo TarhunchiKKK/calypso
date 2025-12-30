@@ -1,4 +1,4 @@
-import { applyLayoutShift, applyLayoutShift2 } from "../../modules/layout-dimensions";
+import { applyLayoutDimensions, LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import { ResizeDirection, applyResizing } from "../../modules/resizing";
 import { Point, Rect, Offset } from "./types";
 
@@ -8,19 +8,8 @@ import { Point, Rect, Offset } from "./types";
  * This class centralizes the geometry logic, making it easier to maintain and reuse.
  */
 export class Geometry {
-    /**
-     * Recalculates the position of a point relative to a canvas's bounding rectangle.
-     * This is useful for converting global mouse coordinates to local canvas coordinates.
-     * @param point - The original point with global coordinates.
-     * @param canvasRect - The bounding rectangle of the canvas.
-     * @returns A new point with coordinates relative to the canvas.
-     */
-    public static recalculatePosition(point: Point, canvasRect?: Rect): Point {
-        return applyLayoutShift(point, canvasRect);
-    }
-
-    public static recalculatePosition2(point: Point, canvasRect: Rect | undefined, windowShift: Offset, zoom: number) {
-        return applyLayoutShift2(point, canvasRect, windowShift, zoom);
+    public static applyLayoutDimensions(point: Point, model: LayoutDimensionsModel) {
+        return applyLayoutDimensions(point, model.canvas.rect, model.layoutOffset.offset, model.layoutZoom.zoom);
     }
 
     /**

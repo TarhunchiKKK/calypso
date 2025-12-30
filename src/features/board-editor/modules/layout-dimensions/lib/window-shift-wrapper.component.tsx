@@ -3,6 +3,8 @@ import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
     offset: Offset;
+
+    zoom: number;
 }>;
 
 export function LayoutDimensionsWrapper({ offset, children }: Props) {

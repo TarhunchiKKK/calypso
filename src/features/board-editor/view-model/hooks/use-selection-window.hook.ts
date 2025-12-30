@@ -9,7 +9,7 @@ import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
 import { selectNodes } from "../../modules/selection";
 
-export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windowShiftModel }: ViewModelParams) {
+export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
 
     let selectedNodesIds: string[] = [];
@@ -20,11 +20,11 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windo
     }
 
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
-        if (windowShiftModel.is(e)) {
+        if (layoutDimensionsModel.layoutOffset.is(e)) {
             return;
         }
 
-        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
         const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
 
@@ -40,7 +40,7 @@ export function useSelectionWindow({ nodesModel, canvasRect, setViewState, windo
     };
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {
-        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
         setSelectionWindowRect(Geometry.rectFromPoints(viewState.startPoint, currentPoint));
     };

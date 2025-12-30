@@ -4,7 +4,7 @@ import { Rect } from "../../../lib/geometry";
 export function useCanvasRect() {
     const [rect, setRect] = useState<Rect>();
 
-    const ref: RefCallback<HTMLDivElement> = useCallback(el => {
+    const callbackRef: RefCallback<HTMLDivElement> = useCallback(el => {
         const observer = new ResizeObserver(entries => {
             for (const entry of entries) {
                 const { x, y, width, height } = entry.target.getBoundingClientRect();
@@ -24,5 +24,5 @@ export function useCanvasRect() {
         };
     }, []);
 
-    return { rect, ref };
+    return { rect, callbackRef };
 }

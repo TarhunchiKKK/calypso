@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ResizingNodesMapper } from "../variants/resizing/nodes-mapper.lib";
 import { ResizeDirection } from "../../modules/resizing";
 
-export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelParams) {
+export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();
 
     const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
@@ -21,7 +21,7 @@ export function useResizing({ nodesModel, setViewState, canvasRect }: ViewModelP
             return;
         }
 
-        const currentPoint = Geometry.recalculatePosition({ x: e.clientX, y: e.clientY }, canvasRect);
+        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
         setNewSize(Geometry.applyResizing(node.rect(), currentPoint, viewState.direction));
     };
