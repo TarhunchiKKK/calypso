@@ -20,7 +20,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     }
 
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.is(e)) {
+        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
             return;
         }
 

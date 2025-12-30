@@ -14,7 +14,12 @@ export function Dots({ offset, zoom }: Props) {
         <div
             data-testid="dots"
             style={style}
-            className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [background-position:var(--x)_var(--y)]"
+            className="
+            absolute inset-0 
+            bg-[radial-gradient(#e5e7eb_calc(1px*var(--zoom)),transparent_calc(1px*var(--zoom)))] 
+            [background-position:var(--x)_var(--y)]
+            [background-size:calc(16px*var(--zoom))_calc(16px*var(--zoom))]
+          "
         ></div>
     );
 }

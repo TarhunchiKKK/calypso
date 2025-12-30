@@ -7,9 +7,14 @@ type Props = PropsWithChildren<{
     zoom: number;
 }>;
 
-export function LayoutDimensionsWrapper({ offset, children }: Props) {
+export function LayoutDimensionsWrapper({ offset, zoom, children }: Props) {
     return (
-        <div style={{ transformOrigin: "left top", transform: `translate(${offset.dx}px, ${offset.dy}px)` }}>
+        <div
+            style={{
+                transformOrigin: "left top",
+                transform: `scale(${zoom}) translate(${-offset.dx}px, ${-offset.dy}px)`
+            }}
+        >
             {children}
         </div>
     );

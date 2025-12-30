@@ -11,7 +11,7 @@ import { ViewModel, ViewModelParams } from "../types";
  * @param {ViewModel} viewModel - The base view model to be decorated.
  * @returns {ViewModel} A new `ViewModel` instance with the integrated window shifting functionality.
  */
-export function withLayoutShifting({ layoutDimensionsModel }: ViewModelParams, viewModel: ViewModel): ViewModel {
+export function withLayoutDimensions({ layoutDimensionsModel }: ViewModelParams, viewModel: ViewModel): ViewModel {
     return {
         ...viewModel,
         overlay: {
@@ -30,7 +30,8 @@ export function withLayoutShifting({ layoutDimensionsModel }: ViewModelParams, v
             onMouseUp: e => {
                 viewModel.window?.onMouseUp?.(e);
                 layoutDimensionsModel.layoutOffset.endShifting();
-            }
+            },
+            onWheel: layoutDimensionsModel.layoutZoom.handleZoom
         }
     };
 }

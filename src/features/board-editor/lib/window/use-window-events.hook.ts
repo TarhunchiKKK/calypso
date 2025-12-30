@@ -3,6 +3,7 @@ import { useRef, useLayoutEffect, useEffect } from "react";
 type WindowEvents = {
     onMouseMove?: (e: MouseEvent) => void;
     onMouseUp?: (e: MouseEvent) => void;
+    onWheel?: (e: WheelEvent) => void;
 };
 
 /**
@@ -25,16 +26,23 @@ export function useWindowEvents(events: WindowEvents) {
         const onMouseMove = (e: MouseEvent) => {
             eventsRef.current?.onMouseMove?.(e);
         };
+
         const onMouseUp = (e: MouseEvent) => {
             eventsRef.current?.onMouseUp?.(e);
         };
 
+        const onWheel = (e: WheelEvent) => {
+            eventsRef.current?.onWheel?.(e);
+        };
+
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseup", onMouseUp);
+        window.addEventListener("wheel", onWheel);
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseup", onMouseUp);
+            window.removeEventListener("wheel", onWheel);
         };
     }, [eventsRef]);
 }

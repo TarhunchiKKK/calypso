@@ -77,6 +77,7 @@ export type ViewModel = {
     window?: {
         onMouseMove?: (e: MouseEvent) => void;
         onMouseUp?: (e: MouseEvent) => void;
+        onWheel?: (e: WheelEvent) => void;
     };
 
     actions?: {

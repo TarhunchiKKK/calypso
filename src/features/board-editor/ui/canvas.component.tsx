@@ -15,7 +15,13 @@ type Props = HTMLAttributes<HTMLDivElement> &
 
 export function Canvas({ ref, overlay, offset, zoom, children, ...props }: Props) {
     return (
-        <div data-testid="canvas" ref={ref} className="absolute inset-0 select-none overflow-hidden" {...props}>
+        <div
+            data-testid="canvas"
+            ref={ref}
+            onContextMenu={e => e.preventDefault()}
+            className="absolute inset-0 select-none overflow-hidden"
+            {...props}
+        >
             {overlay}
 
             <LayoutDimensionsWrapper offset={offset} zoom={zoom}>

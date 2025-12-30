@@ -10,7 +10,7 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
     const [offset, setOffset] = useState<Offset>();
 
     const onMouseDown = (selectedIds: Set<string>, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.is(e)) {
+        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
             return;
         }
 
