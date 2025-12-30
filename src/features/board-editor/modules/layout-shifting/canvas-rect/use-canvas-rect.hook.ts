@@ -1,5 +1,5 @@
 import { RefCallback, useCallback, useState } from "react";
-import { Rect } from "../../lib/geometry";
+import { Rect } from "../../../lib/geometry";
 
 /**
  * A custom hook that tracks the bounding rectangle of a canvas element.

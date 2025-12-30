@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { WindowShift } from "./types";
-import { Geometry, Point } from "@/features/board-editor/lib/geometry";
+import { Geometry, Offset, Point } from "@/features/board-editor/lib/geometry";
 
-const defaultWindowShift: WindowShift = {
-    x: 0,
-    y: 0
+const defaultWindowShift: Offset = {
+    dx: 0,
+    dy: 0
 };
 
 /**
@@ -21,7 +20,7 @@ const defaultWindowShift: WindowShift = {
  * @property {() => void} handleMouseUp - Mouse up event handler. Finalizes the window shifting action.
  */
 export function useWindowShift() {
-    const [windowShift, setWindowShift] = useState<WindowShift>(defaultWindowShift);
+    const [windowShift, setWindowShift] = useState(defaultWindowShift);
     const [startPoint, setStartPoint] = useState<Point>();
 
     const is = (e: React.MouseEvent) => {
@@ -49,10 +48,7 @@ export function useWindowShift() {
 
         const offset = Geometry.calculateOffset(startPoint, currentPoint);
 
-        setWindowShift({
-            x: offset.dx,
-            y: offset.dy
-        });
+        setWindowShift(offset);
     };
 
     const handleMouseUp = () => {

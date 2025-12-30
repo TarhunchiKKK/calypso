@@ -1,4 +1,4 @@
-import { applyLayoutShift } from "../../modules/layout-shifting";
+import { applyLayoutShift, applyLayoutShift2 } from "../../modules/layout-shifting";
 import { ResizeDirection, applyResizing } from "../../modules/resizing";
 import { Point, Rect, Offset } from "./types";
 
@@ -17,6 +17,10 @@ export class Geometry {
      */
     public static recalculatePosition(point: Point, canvasRect?: Rect): Point {
         return applyLayoutShift(point, canvasRect);
+    }
+
+    public static recalculatePosition2(point: Point, canvasRect: Rect | undefined, windowShift: Offset, zoom: number) {
+        return applyLayoutShift2(point, canvasRect, windowShift, zoom);
     }
 
     /**

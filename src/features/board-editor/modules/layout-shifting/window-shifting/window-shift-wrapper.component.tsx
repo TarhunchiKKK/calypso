@@ -1,13 +1,13 @@
+import { Offset } from "@/features/board-editor/lib/geometry";
 import { PropsWithChildren } from "react";
-import { WindowShift } from "./types";
 
 type Props = PropsWithChildren<{
-    shift: WindowShift;
+    shift: Offset;
 }>;
 
 export function WindowShiftWrapper({ shift, children }: Props) {
     return (
-        <div style={{ transformOrigin: "left top", transform: `translate(${shift.x}px, ${shift.y}px)` }}>
+        <div style={{ transformOrigin: "left top", transform: `translate(${shift.dx}px, ${shift.dy}px)` }}>
             {children}
         </div>
     );
