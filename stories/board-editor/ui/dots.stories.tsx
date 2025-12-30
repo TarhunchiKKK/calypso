@@ -10,9 +10,10 @@ export default meta;
 
 export const Default: StoryObj<typeof meta> = {
     args: {
-        windowShift: {
-            x: 0,
-            y: 0
-        }
+        offset: {
+            dx: 0,
+            dy: 0
+        },
+        zoom: 1.0
     }
 };

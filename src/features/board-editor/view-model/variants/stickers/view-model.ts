@@ -5,16 +5,16 @@ import { ViewModel, ViewModelParams } from "../../types";
 import React from "react";
 
 export function useStickersViewModel(params: ViewModelParams) {
-    const { nodesModel, canvasRect } = params;
+    const { nodesModel, layoutDimensionsModel } = params;
 
     return (): OmitFields<ViewModel, "actions"> => {
         const handleCanvasClick = (e: React.MouseEvent) => {
-            const clickPoint = Geometry.recalculatePosition(
+            const clickPoint = Geometry.applyLayoutDimensions(
                 {
                     x: e.clientX,
                     y: e.clientY
                 },
-                canvasRect
+                layoutDimensionsModel
             );
 
             nodesModel.add(NodesFactory.sticker(clickPoint));

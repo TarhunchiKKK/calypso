@@ -9,7 +9,7 @@ import { SelectionWindowViewState } from "./variants/selection-window/view-state
 import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
 import { EditingViewState } from "./variants/editing/view-state";
-import { WindowShiftModel } from "../modules/layout-shifting";
+import { LayoutDimensionsModel } from "../modules/layout-dimensions";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.
@@ -35,11 +35,9 @@ export type ViewState =
 export type ViewModelParams = {
     nodesModel: NodesModel;
 
-    canvasRect?: Rect;
+    layoutDimensionsModel: LayoutDimensionsModel;
 
     setViewState: (viewState: ViewState) => void;
-
-    windowShiftModel: WindowShiftModel;
 };
 
 /**
@@ -79,6 +77,7 @@ export type ViewModel = {
     window?: {
         onMouseMove?: (e: MouseEvent) => void;
         onMouseUp?: (e: MouseEvent) => void;
+        onWheel?: (e: WheelEvent) => void;
     };
 
     actions?: {

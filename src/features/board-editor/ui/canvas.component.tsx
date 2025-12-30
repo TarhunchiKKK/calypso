@@ -1,5 +1,6 @@
 import { HTMLAttributes, PropsWithChildren, ReactNode, Ref } from "react";
-import { WindowShiftModel, WindowShiftWrapper } from "../modules/layout-shifting";
+import { LayoutDimensionsWrapper } from "../modules/layout-dimensions";
+import { Offset } from "../lib/geometry";
 
 type Props = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren<{
@@ -7,15 +8,25 @@ type Props = HTMLAttributes<HTMLDivElement> &
 
         overlay: ReactNode;
 
-        windowShift: WindowShiftModel["windowShift"];
+        offset: Offset;
+
+        zoom: number;
     }>;
 
-export function Canvas({ ref, overlay, windowShift, children, ...props }: Props) {
+export function Canvas({ ref, overlay, offset, zoom, children, ...props }: Props) {
     return (
-        <div data-testid="canvas" ref={ref} className="absolute inset-0 select-none overflow-hidden" {...props}>
+        <div
+            data-testid="canvas"
+            ref={ref}
+            onContextMenu={e => e.preventDefault()}
+            className="absolute inset-0 select-none overflow-hidden"
+            {...props}
+        >
             {overlay}
 
-            <WindowShiftWrapper shift={windowShift}>{children}</WindowShiftWrapper>
+            <LayoutDimensionsWrapper offset={offset} zoom={zoom}>
+                {children}
+            </LayoutDimensionsWrapper>
         </div>
     );
 }

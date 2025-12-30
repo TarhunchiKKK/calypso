@@ -10,31 +10,34 @@ import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import { SelectionWindow } from "./ui/selection-window.component";
 import { AnyNode } from "./nodes/compose/types";
-import { useCanvasRect, useWindowShift } from "./modules/layout-shifting";
 import { useWindowEvents } from "./lib/window";
+import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 
 type Props = {
     nodes: AnyNode[];
 };
 
 export function BoardEditor({ nodes }: Props) {
-    const { canvasRect, canvasRef } = useCanvasRect();
-
     const nodesModel = useNodes(nodes);
 
-    const windowShiftModel = useWindowShift();
+    const layoutDimensionsModel = useLayoutDimensionsModel();
 
-    const viewModel = useViewModel({ nodesModel, canvasRect, windowShiftModel });
+    const viewModel = useViewModel({
+        nodesModel,
+        layoutDimensionsModel
+    });
 
     useWindowEvents(viewModel.window || {});
 
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
-            <Dots windowShift={windowShiftModel.windowShift} />
+            <Dots offset={layoutDimensionsModel.layoutOffset.offset} zoom={layoutDimensionsModel.layoutZoom.zoom} />
 
             <Canvas
-                ref={canvasRef}
-                windowShift={windowShiftModel.windowShift}
+                // eslint-disable react-hooks/exhaustive-deps
+                ref={layoutDimensionsModel.canvas.callbackRef}
+                offset={layoutDimensionsModel.layoutOffset.offset}
+                zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={
                     <Overlay
                         onKeyDown={viewModel.overlay?.onKeyDown}
