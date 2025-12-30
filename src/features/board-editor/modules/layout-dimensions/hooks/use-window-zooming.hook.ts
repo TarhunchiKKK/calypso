@@ -1,37 +1,37 @@
 import { Geometry, Rect } from "@/features/board-editor/lib/geometry";
 import { useState } from "react";
-import { applyLayoutShift2 } from "../geometry.lib";
-import { WindowShiftModel } from "../window-shifting/use-window-shift.hook";
+import { LayoutOffsetModel } from "./use-layout-offset.hook";
+import { applyLayoutDimensions } from "../lib/geometry.lib";
 
-const defaultWindowZoom = 1.0;
+const defaultLayoutZoom = 1.0;
 const zoomUp = 1.1;
 const zoomDown = 0.9;
 
-export function useWindowZooming(windowShift: WindowShiftModel, canvasRect?: Rect) {
-    const [zoom, setZoom] = useState(defaultWindowZoom);
+export function useLayoutZoom(layoutOffset: LayoutOffsetModel, canvasRect?: Rect) {
+    const [zoom, setZoom] = useState(defaultLayoutZoom);
 
     const handleZoom = (e: WheelEvent) => {
         const delta = e.deltaY > 0 ? zoomDown : zoomUp;
 
         const newZoom = zoom * delta;
 
-        const currentMousePoint = applyLayoutShift2(
+        const currentMousePoint = applyLayoutDimensions(
             { x: e.clientX, y: e.clientY },
             canvasRect,
-            windowShift.windowShift,
+            layoutOffset.offset,
             zoom
         );
 
-        const newMousePoint = applyLayoutShift2(
+        const newMousePoint = applyLayoutDimensions(
             { x: e.clientX, y: e.clientY },
             canvasRect,
-            windowShift.windowShift,
+            layoutOffset.offset,
             newZoom
         );
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
-        windowShift.setWindowShift(prev => ({
+        layoutOffset.setOffset(prev => ({
             dx: prev.dx - mouseDiff.dx,
             dy: prev.dy - mouseDiff.dy
         }));

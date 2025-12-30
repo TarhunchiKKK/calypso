@@ -1,4 +1,4 @@
-import { Offset, Point, Rect } from "../../lib/geometry";
+import { Offset, Point, Rect } from "../../../lib/geometry";
 
 export function applyLayoutShift(point: Point, canvasRect?: Rect): Point {
     if (!canvasRect) {
@@ -11,7 +11,7 @@ export function applyLayoutShift(point: Point, canvasRect?: Rect): Point {
     };
 }
 
-export function applyLayoutShift2(point: Point, canvasRect: Rect | undefined, windowShift: Offset, zoom: number) {
+export function applyLayoutDimensions(point: Point, canvasRect: Rect | undefined, windowShift: Offset, zoom: number) {
     if (!canvasRect) {
         return point;
     }

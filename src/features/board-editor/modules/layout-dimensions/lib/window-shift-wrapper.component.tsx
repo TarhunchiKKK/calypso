@@ -2,12 +2,12 @@ import { Offset } from "@/features/board-editor/lib/geometry";
 import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
-    shift: Offset;
+    offset: Offset;
 }>;
 
-export function WindowShiftWrapper({ shift, children }: Props) {
+export function LayoutDimensionsWrapper({ offset, children }: Props) {
     return (
-        <div style={{ transformOrigin: "left top", transform: `translate(${shift.dx}px, ${shift.dy}px)` }}>
+        <div style={{ transformOrigin: "left top", transform: `translate(${offset.dx}px, ${offset.dy}px)` }}>
             {children}
         </div>
     );

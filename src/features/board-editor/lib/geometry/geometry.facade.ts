@@ -1,4 +1,4 @@
-import { applyLayoutShift, applyLayoutShift2 } from "../../modules/layout-shifting";
+import { applyLayoutShift, applyLayoutShift2 } from "../../modules/layout-dimensions";
 import { ResizeDirection, applyResizing } from "../../modules/resizing";
 import { Point, Rect, Offset } from "./types";
 

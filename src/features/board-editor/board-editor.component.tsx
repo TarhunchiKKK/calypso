@@ -10,7 +10,7 @@ import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import { SelectionWindow } from "./ui/selection-window.component";
 import { AnyNode } from "./nodes/compose/types";
-import { useCanvasRect, useWindowShift } from "./modules/layout-shifting";
+import { useCanvasRect, useWindowShift } from "./modules/layout-dimensions";
 import { useWindowEvents } from "./lib/window";
 
 type Props = {
