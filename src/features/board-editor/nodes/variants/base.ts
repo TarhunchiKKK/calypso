@@ -15,7 +15,7 @@ export type NodeHandlers = {
 
     onDoubleClick?: (e: React.MouseEvent) => void;
 
-    onEditingEnd?: (node: NodeWrapper) => void;
+    onEditingEnd?: (node: AnyNode) => void;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = AnyNode> {

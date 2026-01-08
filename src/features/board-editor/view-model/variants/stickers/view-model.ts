@@ -18,7 +18,7 @@ export function useStickersViewModel(params: ViewModelParams) {
                 layoutDimensionsModel
             );
 
-            nodesModel.add(NodesFactory.sticker(clickPoint));
+            nodesModel.add(NodesFactory.sticker(clickPoint).data);
         };
 
         return {

@@ -1,5 +1,4 @@
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeWrapper } from "@/features/board-editor/nodes/variants/base";
 import { EditingViewState } from "./view-state";
 import React from "react";
 import { AnyNode } from "@/features/board-editor/nodes/compose/types";
@@ -16,10 +15,7 @@ export class EditingNodesMapper extends NodesMapper {
         return new EditingNodesMapper(nodes, viewState);
     }
 
-    public applyHandlers(
-        endEditingHandler: (node: NodeWrapper<AnyNode>) => void,
-        clickHandler: (e: React.MouseEvent) => void
-    ) {
+    public applyHandlers(endEditingHandler: (node: AnyNode) => void, clickHandler: (e: React.MouseEvent) => void) {
         this.nodes = this.nodes.map(node => {
             if ((this.viewState.selectedNodeId = node.id)) {
                 return node.clone().select().setEditing().setHandler("onEditingEnd", endEditingHandler);
