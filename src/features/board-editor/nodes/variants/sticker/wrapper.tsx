@@ -1,15 +1,14 @@
 import { Point, Rect } from "@/features/board-editor/lib/geometry";
-import { ReactNode } from "react";
 import { NodeWrapper } from "../base";
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
-    public clone() {
+    public override clone() {
         return new StickerNodeWrapper({ ...this.node });
     }
 
-    public rect() {
+    public override rect() {
         return {
             x: this.node.x,
             y: this.node.y,
@@ -18,13 +17,13 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         };
     }
 
-    public moveTo(point: Point) {
+    public override moveTo(point: Point) {
         this.node.x = point.x;
         this.node.y = point.y;
         return this;
     }
 
-    public resize(rect: Rect) {
+    public override resize(rect: Rect) {
         this.node.x = rect.x;
         this.node.y = rect.y;
         this.node.width = rect.width;
@@ -32,7 +31,7 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         return this;
     }
 
-    public render(): ReactNode {
+    public override render() {
         return (
             <StickerComponent
                 key={this.node.id}

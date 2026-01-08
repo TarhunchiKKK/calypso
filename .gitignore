@@ -18,6 +18,8 @@
 next-env.d.ts
 tsconfig.tsbuildinfo
 
-/.vscode/
+.vscode/*
 *storybook.log
 storybook-static
+
+!.vscode/*.code-snippets

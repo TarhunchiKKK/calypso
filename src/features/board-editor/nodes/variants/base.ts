@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { NodeBase } from "../types";
 import { ResizeDirection } from "../../modules/resizing";
 import { Point, Rect } from "../../lib/geometry";
@@ -62,5 +62,5 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
 
     public abstract clone(): NodeWrapper<T>;
 
-    public abstract render(): React.ReactNode;
+    public abstract render(): ReactNode;
 }
