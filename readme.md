@@ -2,26 +2,94 @@
   <a href="https://nestjs.com/" target="_blank"><img src="./assets/calypso.svg" width="270" alt="Nest Logo" /></a>
 </p>
 
-<h1 align="center">Calypso Board Editor</h1>
+<h1 align="center">Calypso Board Editor🚀</h1>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
 ## Stack
 
-| Scope          | Solution                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------ |
-| Language🧠     | [TypeScript](https://www.typescriptlang.org/)                                              |
-| Runtime⚡      | [Node.js](https://nodejs.org/), [Bun Package Manager](https://bun.sh/)                     |
-| Framework🎭    | [Next.js](https://nextjs.org/)                                                             |
-| Styling🎨      | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)      |
-| Docs📚         | [Storybook](https://storybook.js.org/)                                                     |
-| Backend🚀      | [Supabase](https://supabase.com/)                                                          |
-| Database🗃️     | [Postgres](https://www.postgresql.org/)                                                    |
-| Storage☁️      | [Minio S3](https://www.min.io/)                                                            |
-| Debug⚙️        | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                         |
-| Code style✨   | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Knip](https://knip.dev/) |
-| Architecture🏫 | [Evolution Design](https://ed.evocomm.space/)                                              |
-| CI🔄           | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)    |
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Scope</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Language🧠</td>
+      <td>
+        <a href="https://www.typescriptlang.org/">TypeScript</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Runtime⚡</td>
+      <td>
+        <a href="https://nodejs.org/">Node.js</a>, <a href="https://bun.sh/">Bun Package Manager</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Framework🎭</td>
+      <td>
+        <a href="https://nextjs.org/">Next.js</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Styling🎨</td>
+      <td>
+        <a href="https://tailwindcss.com/?ref=yon.fun">TailwindCSS</a>, <a href="https://ui.shadcn.com/">Shadcn</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Docs📚</td>
+      <td>
+        <a href="https://storybook.js.org/">Storybook</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Backend🚀</td>
+      <td>
+        <a href="https://supabase.com/">Supabase</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Database🗃️</td>
+      <td>
+        <a href="https://www.postgresql.org/">Postgres</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Storage☁️</td>
+      <td>
+        <a href="https://www.min.io/">Minio S3</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Debug⚙</td>
+      <td>
+        <a href="https://sentry.io/welcome/?ref=shopstorm">Sentry</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Code style✨</td>
+      <td>
+        <a href="https://eslint.org/">ESLint</a>, <a href="https://prettier.io/">Prettier</a>, <a href="https://knip.dev/">Knip</a>
+      </td>
+    </tr>
+      <tr>
+      <td>Architecture🏫</td>
+      <td>
+        <a href="https://ed.evocomm.space/">Evolution Design</a>
+      </td>
+    </tr>
+      <tr>
+      <td>CI🔄</td>
+      <td>
+        <a href="https://www.docker.com/">Docker</a>, <a href="https://docs.github.com/en/actions">Github Actions</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Run Calypso Locally
 
@@ -66,3 +134,35 @@ Now you application is still running.
 6. Open application:
 
 In browser open the https://localhost:3000 to access the app.
+
+## Features🚀
+
+### Node Types
+
+- Stickers
+- Arrows
+- Simple text
+- Formattable notes
+- Shapes (circles, rectangles, etc.)
+- Media (images and videos)
+- Drawing
+
+### Editor features
+
+- Nodes selecting
+- Selection window
+- Nodes dragging
+- Nodes resizing
+- Nodes blocking
+- Copy/Paste
+- Undo/Redo
+- Multiple nodes styling (Font formatting, text/background color, etc.)
+- Window shifting
+- Window zooming
+
+### Other features
+
+- Dark mode
+- Localization
+- Offline mode
+- OAuth 2.0 Providers ([Google](https://www.google.com/), [Microsoft](https://www.microsoft.com/), etc...)
