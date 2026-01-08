@@ -8,19 +8,20 @@
 
 ## Stack
 
-| Scope        | Solution                                                                                   |
-| ------------ | ------------------------------------------------------------------------------------------ |
-| Language🧠   | [TypeScript](https://www.typescriptlang.org/)                                              |
-| Runtime⚡    | [Node.js](https://nodejs.org/), [Bun Package Manager](https://bun.sh/)                     |
-| Framework🎭  | [Next.js](https://nextjs.org/)                                                             |
-| Styling🎨    | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)      |
-| Docs📚       | [Storybook](https://storybook.js.org/)                                                     |
-| Backend🚀    | [Supabase](https://supabase.com/)                                                          |
-| Database🗃️   | [Postgres](https://www.postgresql.org/)                                                    |
-| Storage☁️    | [Minio S3](https://www.min.io/)                                                            |
-| Debug⚙️      | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                         |
-| Code style✨ | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Knip](https://knip.dev/) |
-| CI🔄         | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)    |
+| Scope          | Solution                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------ |
+| Language🧠     | [TypeScript](https://www.typescriptlang.org/)                                              |
+| Runtime⚡      | [Node.js](https://nodejs.org/), [Bun Package Manager](https://bun.sh/)                     |
+| Framework🎭    | [Next.js](https://nextjs.org/)                                                             |
+| Styling🎨      | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)      |
+| Docs📚         | [Storybook](https://storybook.js.org/)                                                     |
+| Backend🚀      | [Supabase](https://supabase.com/)                                                          |
+| Database🗃️     | [Postgres](https://www.postgresql.org/)                                                    |
+| Storage☁️      | [Minio S3](https://www.min.io/)                                                            |
+| Debug⚙️        | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                         |
+| Code style✨   | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Knip](https://knip.dev/) |
+| Architecture🏫 | [Evolution Design](https://ed.evocomm.space/)                                              |
+| CI🔄           | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)    |
 
 ## Run Calypso Locally
 
