@@ -3,7 +3,7 @@ import { StickerNode } from "../variants/sticker/type";
 import { AnyNode } from "./types";
 
 export class NodesFactory {
-    public static create(node: AnyNode) {
+    public static wrap(node: AnyNode) {
         switch (node.type) {
             case "sticker":
                 return new Sticker(node);

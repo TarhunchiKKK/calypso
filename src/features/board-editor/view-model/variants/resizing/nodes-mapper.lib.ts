@@ -1,17 +1,17 @@
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { ResizingViewState } from "./view-state";
 import { Rect } from "@/features/board-editor/lib/geometry";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class ResizingNodesMapper extends NodesMapper {
     private constructor(
-        nodes: NodeImpl[],
+        inputNodes: AnyNode[],
         private viewState: ResizingViewState
     ) {
-        super(nodes);
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[], viewState: ResizingViewState) {
+    public static from(nodes: AnyNode[], viewState: ResizingViewState) {
         return new ResizingNodesMapper(nodes, viewState);
     }
 

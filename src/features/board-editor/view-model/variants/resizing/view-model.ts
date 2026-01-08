@@ -11,7 +11,7 @@ export function useResizingViewModel(params: ViewModelParams) {
         const { nodesModel } = params;
 
         return {
-            nodes: ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(resizing.newSize).get(),
+            nodes: ResizingNodesMapper.from(nodesModel.nodes, viewState).wrap().applyResizing(resizing.newSize).get(),
             window: {
                 onMouseMove: e => resizing.onMouseMove(viewState, e),
                 onMouseUp: e => {

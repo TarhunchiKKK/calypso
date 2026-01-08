@@ -1,17 +1,17 @@
 import { Geometry, Offset } from "@/features/board-editor/lib/geometry";
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { DraggingViewState } from "./view-state";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class DraggingNodesMapper extends NodesMapper {
     private constructor(
-        nodes: NodeImpl[],
+        inputNodes: AnyNode[],
         private viewState: DraggingViewState
     ) {
-        super(nodes);
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[], viewState: DraggingViewState) {
+    public static from(nodes: AnyNode[], viewState: DraggingViewState) {
         return new DraggingNodesMapper(nodes, viewState);
     }
 

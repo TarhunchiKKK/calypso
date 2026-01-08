@@ -1,16 +1,16 @@
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { SelectionWindowViewState } from "./view-state";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
     private constructor(
-        nodes: NodeImpl[],
+        inputNodes: AnyNode[],
         private viewState: SelectionWindowViewState
     ) {
-        super(nodes);
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[], viewState: SelectionWindowViewState) {
+    public static from(nodes: AnyNode[], viewState: SelectionWindowViewState) {
         return new SelectionWindowNodesMapper(nodes, viewState);
     }
 

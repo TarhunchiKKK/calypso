@@ -1,18 +1,18 @@
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { MouseEventsMediator } from "@/shared/lib/react";
 import { SelectionViewState } from "./view-state";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class SelectionNodesMapper extends NodesMapper {
     private constructor(
-        nodes: NodeImpl[],
+        inputNodes: AnyNode[],
         private viewState: SelectionViewState
     ) {
-        super(nodes);
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[], viewState: SelectionViewState) {
+    public static from(nodes: AnyNode[], viewState: SelectionViewState) {
         return new SelectionNodesMapper(nodes, viewState);
     }
 

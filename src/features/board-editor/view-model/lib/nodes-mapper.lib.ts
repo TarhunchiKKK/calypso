@@ -1,10 +1,14 @@
+import { NodesFactory } from "../../nodes/compose/nodes.factory";
+import { AnyNode } from "../../nodes/compose/types";
 import { NodeImpl } from "../../nodes/variants/base";
 
 export class NodesMapper {
-    public constructor(protected nodes: NodeImpl[]) {}
+    protected nodes: NodeImpl[] = [];
 
-    public clone() {
-        this.nodes = this.nodes.map(node => node.clone());
+    public constructor(protected inputNodes: AnyNode[]) {}
+
+    public wrap() {
+        this.nodes = this.inputNodes.map(node => NodesFactory.wrap(node));
         return this;
     }
 

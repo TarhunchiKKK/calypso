@@ -3,6 +3,7 @@ import { Geometry } from "../../../lib/geometry";
 import { NodesFactory } from "../../../nodes/compose/nodes.factory";
 import { ViewModel, ViewModelParams } from "../../types";
 import React from "react";
+import { NodesMapper } from "../../lib/nodes-mapper.lib";
 
 export function useStickersViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
@@ -21,7 +22,7 @@ export function useStickersViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: nodesModel.nodes.map(node => node.clone()),
+            nodes: new NodesMapper(nodesModel.nodes).wrap().get(),
             canvas: {
                 onClick: handleCanvasClick
             }

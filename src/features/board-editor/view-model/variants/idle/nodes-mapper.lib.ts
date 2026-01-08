@@ -1,13 +1,13 @@
 import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
-import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { MouseEventsMediator } from "@/shared/lib/react";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class IdleNodesMapper extends NodesMapper {
-    private constructor(nodes: NodeImpl[]) {
-        super(nodes);
+    private constructor(inputNodes: AnyNode[]) {
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[]) {
+    public static from(nodes: AnyNode[]) {
         return new IdleNodesMapper(nodes);
     }
 

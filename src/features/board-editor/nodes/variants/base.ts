@@ -2,6 +2,7 @@ import React from "react";
 import { NodeBase } from "../types";
 import { ResizeDirection } from "../../modules/resizing";
 import { Point, Rect } from "../../lib/geometry";
+import { AnyNode } from "../compose/types";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -17,7 +18,7 @@ export type NodeHandlers = {
     onEditingEnd?: (node: NodeImpl) => void;
 };
 
-export abstract class NodeImpl<T extends NodeBase = NodeBase> {
+export abstract class NodeImpl<T extends NodeBase = AnyNode> {
     protected isSelected = false;
 
     protected resizable = false;
@@ -31,6 +32,10 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public get id() {
         return this.node.id;
+    }
+
+    public get data() {
+        return this.node;
     }
 
     public abstract moveTo(point: Point): NodeImpl<T>;

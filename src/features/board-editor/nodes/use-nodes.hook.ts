@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { NodesFactory } from "./compose/nodes.factory";
 import { AnyNode } from "./compose/types";
 import { NodeImpl } from "./variants/base";
 
 export function useNodes(inputNodes: AnyNode[]) {
-    const [nodes, setNodes] = useState<NodeImpl[]>(() => inputNodes.map(node => NodesFactory.create(node)));
+    const [nodes, setNodes] = useState<AnyNode[]>(inputNodes);
 
-    const add = (node: NodeImpl) => {
-        setNodes(nodes => [...nodes, node]);
+    const add = (node: NodeImpl<AnyNode>) => {
+        setNodes(nodes => [...nodes, node.data]);
     };
 
-    const updateOne = (newNode: NodeImpl) => {
-        setNodes(nodes => nodes.map(node => (node.id === newNode.id ? newNode : node)));
+    const updateOne = (newNode: NodeImpl<AnyNode>) => {
+        setNodes(nodes => nodes.map(node => (node.id === newNode.id ? newNode.data : node)));
     };
 
     const remove = (id: Set<string>) => {

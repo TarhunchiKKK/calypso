@@ -2,20 +2,24 @@ import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper
 import { NodeImpl } from "@/features/board-editor/nodes/variants/base";
 import { EditingViewState } from "./view-state";
 import React from "react";
+import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class EditingNodesMapper extends NodesMapper {
     private constructor(
-        nodes: NodeImpl[],
+        inputNodes: AnyNode[],
         private viewState: EditingViewState
     ) {
-        super(nodes);
+        super(inputNodes);
     }
 
-    public static from(nodes: NodeImpl[], viewState: EditingViewState) {
+    public static from(nodes: AnyNode[], viewState: EditingViewState) {
         return new EditingNodesMapper(nodes, viewState);
     }
 
-    public applyHandlers(endEditingHandler: (node: NodeImpl) => void, clickHandler: (e: React.MouseEvent) => void) {
+    public applyHandlers(
+        endEditingHandler: (node: NodeImpl<AnyNode>) => void,
+        clickHandler: (e: React.MouseEvent) => void
+    ) {
         this.nodes = this.nodes.map(node => {
             if ((this.viewState.selectedNodeId = node.id)) {
                 return node.clone().select().setEditing().setHandler("onEditingEnd", endEditingHandler);
