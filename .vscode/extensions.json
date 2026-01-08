@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "Gruntfuggly.todo-tree",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+    ]
+}
