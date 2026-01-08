@@ -1,0 +1,144 @@
+{
+    // * View Model Snippets
+
+    "Create View Model": {
+        "prefix": "v-model",
+        "body": [
+            "import { OmitFields } from \"@/shared/lib/typescript.lib\";",
+            "import { ViewModel, ViewModelParams } from \"../../types\";",
+            "import { $1ViewState } from \"./view-state\";",
+            "import { $1NodesMapper } from \"./nodes-mapper.lib\";",
+            "",
+            "export function use$1ViewModel(params: ViewModelParams) {",
+            "    const { nodesModel } = params;",
+            "",
+            "    return (viewState: $1ViewState): OmitFields<ViewModel, \"actions\"> => {",
+            "        return {",
+            "            nodes: $1NodesMapper.from(nodesModel.nodes).get(),",
+            "            canvas: {},",
+            "            layout: {},",
+            "            overlay: {},",
+            "            window: {}",
+            "        };",
+            "    };",
+            "}"
+        ]
+    },
+    "Create View State": {
+        "prefix": "v-state",
+        "body": ["export type $1ViewState = {", "    type: \"$2\";", "};"]
+    },
+    "Create View State Switch": {
+        "prefix": "v-switcher",
+        "body": [
+            "import { $1ViewState } from \"./view-state\";",
+            "",
+            "type Params = {};",
+            "",
+            "export function switchTo$1({}: Params): $1ViewState {",
+            "    return {",
+            "        type: \"$2\"",
+            "    };",
+            "}"
+        ]
+    },
+    "Create Nodes Mapper": {
+        "prefix": "n-mapper",
+        "body": [
+            "import { NodesMapper } from \"@/features/board-editor/view-model/lib/nodes-mapper.lib\";",
+            "import { AnyNode } from \"@/features/board-editor/nodes/compose/types\";",
+            "",
+            "export class $1NodesMapper extends NodesMapper {",
+            "    private constructor(inputNodes: AnyNode[]) {",
+            "        super(inputNodes);",
+            "    }",
+            "",
+            "    public static from(nodes: AnyNode[]) {",
+            "        return new $1NodesMapper(nodes);",
+            "    }",
+            "}"
+        ]
+    },
+
+    // * Node Snippets
+
+    "Create Node Type": {
+        "prefix": "n-type",
+        "body": [
+            "import { NodeBase } from \"../../types\";",
+            "",
+            "export type $1Node = NodeBase & {",
+            "    type: \"$2\";",
+            "};"
+        ]
+    },
+    "Create Node Wrapper": {
+        "prefix": "n-wrapper",
+        "body": [
+            "import { Point, Rect } from \"@/features/board-editor/lib/geometry\";",
+            "import { NodeWrapper } from \"../base\";",
+            "",
+            "export class $1NodeWrapper extends NodeWrapper<$1Node> {",
+            "    public override clone() {",
+            "        // implementation...",
+            "        return this;",
+            "    }",
+            "",
+            "    public override rect() {",
+            "        return {",
+            "            // implementation",
+            "        };",
+            "    }",
+            "",
+            "    public override moveTo(point: Point) {",
+            "        // implementation...",
+            "        return this;",
+            "    }",
+            "",
+            "    public override resize(rect: Rect) {",
+            "        // implementation...",
+            "        return this;",
+            "    }",
+            "",
+            "    public override render() {",
+            "        return <>{/* implementation... */}</>;",
+            "    }",
+            "}"
+        ]
+    },
+
+    // * React Snippets
+
+    "Create React Hook": {
+        "prefix": "r-hook",
+        "body": ["export function use$1() {", "    $2", "}"]
+    },
+    "Create React Component": {
+        "prefix": "r-component",
+        "body": ["type Props = {", "    $2", "};", "", "export function $1({}: Props) {", "    return <></>;", "}"]
+    },
+
+    // * Storybook Snippets
+
+    "Create Storybook Story": {
+        "prefix": "s-story",
+        "body": [
+            "import { Meta, StoryObj } from \"@storybook/nextjs-vite\";",
+            "",
+            "const meta = {",
+            "    title: \"TITLE_HERE\",",
+            "    component: $1",
+            "} satisfies Meta<typeof $1>;",
+            "",
+            "export default meta;",
+            "",
+            "type Story = StoryObj<typeof meta>;",
+            "",
+            "export const Default: Story = {",
+            "    args: {",
+            "        ",
+            "    }",
+            "};"
+        ]
+    }
+}
