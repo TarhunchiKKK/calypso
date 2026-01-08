@@ -12,6 +12,10 @@ export class NodesMapper {
         return this;
     }
 
+    public unwrap() {
+        return this.nodes.map(node => node.data);
+    }
+
     public get() {
         return this.nodes;
     }
