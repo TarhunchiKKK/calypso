@@ -55,7 +55,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         return {
             nodes: SelectionNodesMapper.from(nodesModel.nodes, viewState)
-                .clone()
+                .wrap()
                 .applySelection(selectionWindow.selectedNodesIds, handleResize)
                 .applyHandlers(handlers)
                 .get(),

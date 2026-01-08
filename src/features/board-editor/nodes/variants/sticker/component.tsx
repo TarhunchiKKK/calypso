@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { CSSProperties } from "react";
 import { NodeHandlers } from "../base";
 import { StickerNode } from "./type";
-import { Sticker } from "./entity";
 import { ResizeDirection, ResizeBorders } from "@/features/board-editor/modules/resizing";
 import { TextareaAutoSize } from "@/shared/ui";
 
@@ -29,7 +28,7 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
 
     const handleEditingEnd = (newText: string) => {
         const newNode = { ...node, text: newText };
-        handlers.onEditingEnd?.(new Sticker(newNode));
+        handlers.onEditingEnd?.(newNode);
     };
 
     return (

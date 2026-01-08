@@ -2,6 +2,7 @@ import React from "react";
 import { NodeBase } from "../types";
 import { ResizeDirection } from "../../modules/resizing";
 import { Point, Rect } from "../../lib/geometry";
+import { AnyNode } from "../compose/types";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -14,10 +15,10 @@ export type NodeHandlers = {
 
     onDoubleClick?: (e: React.MouseEvent) => void;
 
-    onEditingEnd?: (node: NodeImpl) => void;
+    onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeImpl<T extends NodeBase = NodeBase> {
+export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
     protected isSelected = false;
 
     protected resizable = false;
@@ -33,9 +34,13 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
         return this.node.id;
     }
 
-    public abstract moveTo(point: Point): NodeImpl<T>;
+    public get data() {
+        return this.node;
+    }
 
-    public abstract resize(rect: Rect): NodeImpl<T>;
+    public abstract moveTo(point: Point): NodeWrapper<T>;
+
+    public abstract resize(rect: Rect): NodeWrapper<T>;
 
     public select(resizable: boolean = false) {
         this.isSelected = true;
@@ -55,7 +60,7 @@ export abstract class NodeImpl<T extends NodeBase = NodeBase> {
 
     public abstract rect(): Rect;
 
-    public abstract clone(): NodeImpl<T>;
+    public abstract clone(): NodeWrapper<T>;
 
     public abstract render(): React.ReactNode;
 }

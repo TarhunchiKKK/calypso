@@ -11,7 +11,7 @@ export function useDraggingViewModel(params: ViewModelParams) {
 
     return (viewState: DraggingViewState): OmitFields<ViewModel, "actions"> => {
         return {
-            nodes: DraggingNodesMapper.from(nodesModel.nodes, viewState).applyOffset(dragging.offset).get(),
+            nodes: DraggingNodesMapper.from(nodesModel.nodes, viewState).wrap().applyOffset(dragging.offset).get(),
             window: {
                 onMouseMove: e => dragging.onWindowMouseMove(viewState, e),
                 onMouseUp: () => dragging.onWindowMouseUp(viewState)

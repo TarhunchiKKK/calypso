@@ -6,6 +6,7 @@ import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
 import { ResizingNodesMapper } from "../variants/resizing/nodes-mapper.lib";
 import { ResizeDirection } from "../../modules/resizing";
+import { NodesFactory } from "../../nodes/compose/nodes.factory";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();
@@ -23,12 +24,12 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
-        setNewSize(Geometry.applyResizing(node.rect(), currentPoint, viewState.direction));
+        setNewSize(Geometry.applyResizing(NodesFactory.wrap(node).rect(), currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
         nodesModel.setNodes(
-            ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(newSize).unselectCurrent().get()
+            ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(newSize).unselectCurrent().unwrap()
         );
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));

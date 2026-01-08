@@ -1,19 +1,19 @@
-import { Sticker } from "../variants/sticker/entity";
+import { StickerNodeWrapper } from "../variants/sticker/wrapper";
 import { StickerNode } from "../variants/sticker/type";
 import { AnyNode } from "./types";
 
 export class NodesFactory {
-    public static create(node: AnyNode) {
+    public static wrap(node: AnyNode) {
         switch (node.type) {
             case "sticker":
-                return new Sticker(node);
+                return new StickerNodeWrapper(node);
             default:
                 throw Error("Unknown node type");
         }
     }
 
     public static sticker(data: Pick<StickerNode, "x" | "y">) {
-        return new Sticker({
+        return new StickerNodeWrapper({
             ...data,
 
             id: crypto.randomUUID(),

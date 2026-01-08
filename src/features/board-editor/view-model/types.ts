@@ -1,7 +1,7 @@
 import React from "react";
 import { Rect } from "../lib/geometry";
 import { NodesModel } from "../nodes/use-nodes.hook";
-import { NodeImpl } from "../nodes/variants/base";
+import { NodeWrapper } from "../nodes/variants/base";
 import { IdleViewState } from "./variants/idle/view-state";
 import { DraggingViewState } from "./variants/dragging/view-state";
 import { ResizingViewState } from "./variants/resizing/view-state";
@@ -45,7 +45,7 @@ export type ViewModelParams = {
  * for the UI components to render the current state and respond to user interactions.
  * It is derived from the current `ViewState` and is recalculated whenever the state changes.
  *
- * @property {NodeImpl[]} nodes - The array of nodes to be rendered on the canvas.
+ * @property {NodeWrapper[]} nodes - The array of nodes to be rendered on the canvas.
  * @property {Rect} [selectionWindow] - The rectangle representing the selection window, if active.
  * @property {object} [layout] - Event handlers for the main layout component, such as keyboard events.
  * @property {object} [canvas] - Event handlers for the canvas, such as clicks and keyboard events.
@@ -54,7 +54,7 @@ export type ViewModelParams = {
  * @property {Function} [onNodeChange] - A callback for when a node's properties are changed.
  */
 export type ViewModel = {
-    nodes: NodeImpl[];
+    nodes: NodeWrapper[];
 
     selectionWindow?: Rect;
 

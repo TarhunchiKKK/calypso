@@ -31,7 +31,7 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
     };
 
     const onWindowMouseUp = (viewState: DraggingViewState) => {
-        nodesModel.setNodes(DraggingNodesMapper.from(nodesModel.nodes, viewState).applyOffset(offset).get());
+        nodesModel.setNodes(DraggingNodesMapper.from(nodesModel.nodes, viewState).applyOffset(offset).unwrap());
 
         setViewState(
             switchToSelection({

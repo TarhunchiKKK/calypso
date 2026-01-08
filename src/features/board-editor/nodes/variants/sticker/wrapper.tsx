@@ -1,12 +1,12 @@
 import { Point, Rect } from "@/features/board-editor/lib/geometry";
 import { ReactNode } from "react";
-import { NodeImpl } from "../base";
+import { NodeWrapper } from "../base";
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
 
-export class Sticker extends NodeImpl<StickerNode> {
+export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     public clone() {
-        return new Sticker({ ...this.node });
+        return new StickerNodeWrapper({ ...this.node });
     }
 
     public rect() {
