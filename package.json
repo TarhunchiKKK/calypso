@@ -1,7 +1,13 @@
 {
     "name": "calypso",
-    "version": "0.1.0",
-    "private": true,
+    "description": "Virtual whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": {
+        "name": "Konstantin Barilo",
+        "email": "kostabarilo12@gmail.com",
+        "url": "https://github.com/TarhunchiKKK"
+    },
     "type": "module",
     "scripts": {
         "dev": "next dev",
