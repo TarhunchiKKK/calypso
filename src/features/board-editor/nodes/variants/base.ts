@@ -15,10 +15,10 @@ export type NodeHandlers = {
 
     onDoubleClick?: (e: React.MouseEvent) => void;
 
-    onEditingEnd?: (node: NodeImpl) => void;
+    onEditingEnd?: (node: NodeWrapper) => void;
 };
 
-export abstract class NodeImpl<T extends NodeBase = AnyNode> {
+export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
     protected isSelected = false;
 
     protected resizable = false;
@@ -38,9 +38,9 @@ export abstract class NodeImpl<T extends NodeBase = AnyNode> {
         return this.node;
     }
 
-    public abstract moveTo(point: Point): NodeImpl<T>;
+    public abstract moveTo(point: Point): NodeWrapper<T>;
 
-    public abstract resize(rect: Rect): NodeImpl<T>;
+    public abstract resize(rect: Rect): NodeWrapper<T>;
 
     public select(resizable: boolean = false) {
         this.isSelected = true;
@@ -60,7 +60,7 @@ export abstract class NodeImpl<T extends NodeBase = AnyNode> {
 
     public abstract rect(): Rect;
 
-    public abstract clone(): NodeImpl<T>;
+    public abstract clone(): NodeWrapper<T>;
 
     public abstract render(): React.ReactNode;
 }

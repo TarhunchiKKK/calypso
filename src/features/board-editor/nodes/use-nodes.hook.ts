@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { AnyNode } from "./compose/types";
-import { NodeImpl } from "./variants/base";
+import { NodeWrapper } from "./variants/base";
 
 export function useNodes(inputNodes: AnyNode[]) {
     const [nodes, setNodes] = useState<AnyNode[]>(inputNodes);
 
-    const add = (node: NodeImpl<AnyNode>) => {
+    const add = (node: NodeWrapper<AnyNode>) => {
         setNodes(nodes => [...nodes, node.data]);
     };
 
-    const updateOne = (newNode: NodeImpl<AnyNode>) => {
+    const updateOne = (newNode: NodeWrapper<AnyNode>) => {
         setNodes(nodes => nodes.map(node => (node.id === newNode.id ? newNode.data : node)));
     };
 

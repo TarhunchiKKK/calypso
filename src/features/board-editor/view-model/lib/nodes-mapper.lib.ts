@@ -1,9 +1,9 @@
 import { NodesFactory } from "../../nodes/compose/nodes.factory";
 import { AnyNode } from "../../nodes/compose/types";
-import { NodeImpl } from "../../nodes/variants/base";
+import { NodeWrapper } from "../../nodes/variants/base";
 
 export class NodesMapper {
-    protected nodes: NodeImpl[] = [];
+    protected nodes: NodeWrapper[] = [];
 
     public constructor(protected inputNodes: AnyNode[]) {}
 
