@@ -14,7 +14,7 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         return {
             nodes: EditingNodesMapper.from(nodesModel.nodes, viewState)
                 .wrap()
-                .applyHandlers(nodesModel.updateOne, handleClick)
+                .applyHandlers(nodesModel.service.updateOne, handleClick)
                 .get(),
             overlay: {
                 onClick: () => setViewState(switchToIdle())

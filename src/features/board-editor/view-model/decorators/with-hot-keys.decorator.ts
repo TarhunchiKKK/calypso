@@ -43,7 +43,7 @@ export function withHotKeys(
         }
 
         if (e.key === "Delete" || e.key === "Backspace") {
-            nodesModel.remove(viewState.selectedIds);
+            nodesModel.service.removeMany(viewState.selectedIds);
             setViewState(switchToIdle());
         }
     };

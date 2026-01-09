@@ -28,7 +28,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
-        nodesModel.setNodes(
+        nodesModel.service.replaceAl(
             ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(newSize).unselectCurrent().unwrap()
         );
 
