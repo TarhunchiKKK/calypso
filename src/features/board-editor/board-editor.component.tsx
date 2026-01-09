@@ -7,11 +7,11 @@ import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { MousePointer2, StickerIcon } from "lucide-react";
-import { SelectionWindow } from "./ui/selection-window.component";
 import { AnyNode } from "./nodes/compose/types";
 import { useWindowEvents } from "../../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
+import { SelectionWindow } from "./modules/selection";
 
 type Props = {
     nodes: AnyNode[];

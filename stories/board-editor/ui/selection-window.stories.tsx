@@ -1,4 +1,4 @@
-import { SelectionWindow } from "@/features/board-editor/ui/selection-window.component";
+import { SelectionWindow } from "@/features/board-editor/modules/selection";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
@@ -8,7 +8,9 @@ const meta = {
 
 export default meta;
 
-export const Default: StoryObj<typeof meta> = {
+type Story = StoryObj<typeof meta>;
+
+export const Default: StoryObj<Story> = {
     args: {
         x: 100,
         y: 100,
