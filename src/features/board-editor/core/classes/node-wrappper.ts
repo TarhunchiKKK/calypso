@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { ResizeDirection } from "../../modules/resizing";
 import { AnyNode } from "../../nodes";
-import { NodeBase } from "../types/node.types";
-import { Renderable } from "../types/ui.types";
+import { NodeBase } from "../types/node";
+import { Renderable } from "../types/ui";
 import { Point, Rect } from "../lib/geometry";
+import { Decoratoratable } from "../types/decorators";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -19,7 +20,7 @@ export type NodeHandlers = {
     onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable {
+export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratoratable<T> {
     // REFACTOR: this field should be in decorator/proxy
     protected isSelected = false;
 
