@@ -14,9 +14,6 @@ export type NodeHandlers = {
     // REFACTOR: this handler should be in decorator/proxy
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
 
-    // DELETE: this code is not useable
-    onDoubleClick?: (e: React.MouseEvent) => void;
-
     // REFACTOR: this handler should be in decorator/proxy
     onEditingEnd?: (node: AnyNode) => void;
 };
@@ -30,15 +27,16 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
 
     protected isEditing = false;
 
-    public constructor(
-        protected node: T,
+    protected handlers: NodeHandlers = {};
 
-        // DELETE: this parameter is not usable
-        protected handlers: NodeHandlers = {}
-    ) {}
+    public constructor(protected node: T) {}
 
     public get id() {
         return this.node.id;
+    }
+
+    public get type() {
+        return this.node.type;
     }
 
     public get data() {
