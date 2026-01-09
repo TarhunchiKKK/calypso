@@ -23,6 +23,7 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         return this;
     }
 
+    // RECHECK: maybe extract thi method to another class
     public override resize(rect: Rect) {
         this.node.x = rect.x;
         this.node.y = rect.y;

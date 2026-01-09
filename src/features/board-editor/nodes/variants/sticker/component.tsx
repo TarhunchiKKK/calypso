@@ -7,9 +7,13 @@ import { TextareaAutoSize } from "@/shared/ui";
 
 type Props = {
     node: StickerNode;
+
+    // REFACTOR: this props should be in apropriate decorator/proxy
     isSelected: boolean;
     resizable: boolean;
+
     isEditing: boolean;
+
     handlers: NodeHandlers;
 };
 
@@ -21,6 +25,7 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
         top: node.y
     };
 
+    // REFACTOR: this handler should be in decorator/proxy
     const handleResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
         e.stopPropagation();
         handlers.onResizeStart?.(node.id, direction);
@@ -44,6 +49,7 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
             )}
             style={styles}
         >
+            {/* REFACTOR: this UI should be in wrapper */}
             {resizable && <ResizeBorders main cross diagonal handleResizeStart={handleResizeStart} />}
 
             <TextareaAutoSize isActive={isEditing} value={node.text} onEditingEnd={handleEditingEnd} />
