@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Geometry, Rect } from "../../lib/geometry";
 import { ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { IdleViewState } from "../variants/idle/view-state";
@@ -8,7 +7,8 @@ import { SelectionWindowViewState } from "../variants/selection-window/view-stat
 import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
 import { selectNodes } from "../../modules/selection";
-import { NodesFactory } from "../../nodes/compose/nodes.factory";
+import { NodesFactory } from "../../nodes";
+import { Geometry, Rect } from "../../core";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();

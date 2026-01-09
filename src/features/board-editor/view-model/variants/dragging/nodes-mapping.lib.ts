@@ -1,7 +1,6 @@
-import { Geometry, Offset } from "@/features/board-editor/lib/geometry";
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
 import { DraggingViewState } from "./view-state";
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
+import { AnyNode } from "@/features/board-editor/nodes";
+import { Geometry, NodesMapper, Offset } from "@/features/board-editor/core";
 
 export class DraggingNodesMapper extends NodesMapper {
     private constructor(

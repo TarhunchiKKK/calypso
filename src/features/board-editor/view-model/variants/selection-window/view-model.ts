@@ -1,8 +1,8 @@
-import { OmitFields } from "@/shared/lib/typescript.lib";
+import { OmitFields } from "@/shared/lib/typescript";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import { SelectionWindowViewState } from "./view-state";
-import { SelectionWindowNodesMapper } from "./nodes-mapper.lib";
+import { SelectionWindowNodesMapper } from "./nodes-mapping.lib";
 
 export function useSelectionWindowViewModel(params: ViewModelParams) {
     const { nodesModel } = params;

@@ -1,6 +1,6 @@
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
+import { NodesMapper } from "@/features/board-editor/core";
+import { AnyNode } from "@/features/board-editor/nodes";
 import { SelectionWindowViewState } from "./view-state";
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
     private constructor(

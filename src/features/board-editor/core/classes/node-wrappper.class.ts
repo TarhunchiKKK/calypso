@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { Point, Rect } from "../../lib/geometry";
 import { ResizeDirection } from "../../modules/resizing";
-import { AnyNode } from "../../nodes/compose/types";
+import { AnyNode } from "../../nodes";
 import { NodeBase } from "../types/node.types";
 import { Renderable } from "../types/ui.types";
+import { Point, Rect } from "../lib/geometry";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;

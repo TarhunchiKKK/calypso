@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { AnyNode } from "./compose/types";
+import { AnyNode } from "../compose/types";
 
 export function useNodesService(setNodes: Dispatch<SetStateAction<AnyNode[]>>) {
     const createOne = (node: AnyNode) => {

@@ -4,21 +4,21 @@ import { Canvas } from "./ui/canvas.component";
 import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
-import { useNodes } from "./nodes/use-nodes-model.hook";
 import { useViewModel } from "./view-model/use-view-model.hook";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import { SelectionWindow } from "./ui/selection-window.component";
 import { AnyNode } from "./nodes/compose/types";
-import { useWindowEvents } from "./lib/window";
+import { useWindowEvents } from "../../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
+import { useNodesModel } from "./nodes";
 
 type Props = {
     nodes: AnyNode[];
 };
 
 export function BoardEditor({ nodes }: Props) {
-    const nodesModel = useNodes(nodes);
+    const nodesModel = useNodesModel(nodes);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
 

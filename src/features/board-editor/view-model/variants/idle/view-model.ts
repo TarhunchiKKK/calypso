@@ -1,4 +1,4 @@
-import { OmitFields } from "@/shared/lib/typescript.lib";
+import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import { ViewModel, ViewModelParams } from "../../types";
 import { IdleViewState } from "./view-state";
@@ -6,7 +6,7 @@ import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
 import { useDragging } from "../../hooks/use-dragging.hook";
-import { IdleNodesMapper } from "./nodes-mapper.lib";
+import { IdleNodesMapper } from "./nodes-mapping.lib";
 import { withNodeId } from "@/features/board-editor/core";
 
 export function useIdleViewModel(params: ViewModelParams) {

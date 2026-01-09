@@ -1,6 +1,5 @@
 import React from "react";
-import { Rect } from "../lib/geometry";
-import { NodesModel } from "../nodes/use-nodes-model.hook";
+import { NodesModel } from "../nodes/hooks/use-nodes-model.hook";
 import { IdleViewState } from "./variants/idle/view-state";
 import { DraggingViewState } from "./variants/dragging/view-state";
 import { ResizingViewState } from "./variants/resizing/view-state";
@@ -9,7 +8,7 @@ import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
 import { EditingViewState } from "./variants/editing/view-state";
 import { LayoutDimensionsModel } from "../modules/layout-dimensions";
-import { Renderable } from "../core";
+import { Rect, Renderable } from "../core";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.

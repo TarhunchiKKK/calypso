@@ -1,4 +1,4 @@
-import { Offset } from "@/features/board-editor/lib/geometry";
+import { Offset } from "@/features/board-editor/core";
 
 export function createLayoutDimensionsStyles(offset: Offset, zoom: number) {
     return {

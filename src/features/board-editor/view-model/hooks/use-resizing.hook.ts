@@ -1,12 +1,12 @@
 import { ViewModelParams } from "../types";
-import { Geometry, Rect } from "../../lib/geometry";
 import { switchToResizing } from "../variants/resizing/switcher";
 import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
-import { ResizingNodesMapper } from "../variants/resizing/nodes-mapper.lib";
+import { ResizingNodesMapper } from "../variants/resizing/nodes-mapping.lib";
 import { ResizeDirection } from "../../modules/resizing";
-import { NodesFactory } from "../../nodes/compose/nodes.factory";
+import { NodesFactory } from "../../nodes";
+import { Geometry, Rect } from "../../core";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();

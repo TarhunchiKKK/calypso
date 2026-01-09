@@ -1,6 +1,6 @@
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
 import { MouseEventsMediator } from "@/shared/lib/react";
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
+import { AnyNode } from "@/features/board-editor/nodes";
+import { NodesMapper } from "@/features/board-editor/core";
 
 export class IdleNodesMapper extends NodesMapper {
     private constructor(inputNodes: AnyNode[]) {

@@ -1,8 +1,8 @@
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
+import { NodesMapper } from "@/features/board-editor/core";
 import { MouseEventsMediator } from "@/shared/lib/react";
 import { SelectionViewState } from "./view-state";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
+import { AnyNode } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private constructor(

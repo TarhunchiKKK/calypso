@@ -2,7 +2,7 @@ import { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { EditingViewState } from "./view-state";
-import { EditingNodesMapper } from "./nodes-mapper.lib";
+import { EditingNodesMapper } from "./nodes-mapping.lib";
 import { withNodeId } from "@/features/board-editor/core";
 
 export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParams) {

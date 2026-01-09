@@ -1,4 +1,4 @@
-import { NodeWrapper } from "../../core";
+import { NodeWrapper, Renderable } from "..";
 import { NodesFactory } from "../../nodes/compose/nodes.factory";
 import { AnyNode } from "../../nodes/compose/types";
 
@@ -16,7 +16,7 @@ export class NodesMapper {
         return this.nodes.map(node => node.data);
     }
 
-    public get() {
+    public get(): Renderable[] {
         return this.nodes;
     }
 }

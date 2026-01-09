@@ -1,7 +1,6 @@
-import { Point, Rect } from "@/features/board-editor/lib/geometry";
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
-import { NodeWrapper } from "@/features/board-editor/core";
+import { NodeWrapper, Point, Rect } from "@/features/board-editor/core";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     public override clone() {

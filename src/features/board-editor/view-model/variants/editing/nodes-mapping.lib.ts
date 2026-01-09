@@ -1,7 +1,7 @@
-import { NodesMapper } from "@/features/board-editor/view-model/lib/nodes-mapper.lib";
 import { EditingViewState } from "./view-state";
 import React from "react";
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
+import { AnyNode } from "@/features/board-editor/nodes";
+import { NodesMapper } from "@/features/board-editor/core";
 
 export class EditingNodesMapper extends NodesMapper {
     private constructor(

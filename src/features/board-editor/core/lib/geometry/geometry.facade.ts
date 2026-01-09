@@ -1,5 +1,5 @@
-import { applyLayoutDimensions, LayoutDimensionsModel } from "../../modules/layout-dimensions";
-import { ResizeDirection, applyResizing } from "../../modules/resizing";
+import { LayoutDimensionsModel, applyLayoutDimensions } from "../../../modules/layout-dimensions";
+import { ResizeDirection, applyResizing } from "../../../modules/resizing";
 import { Point, Rect, Offset } from "./types";
 
 /**
@@ -77,6 +77,7 @@ export class Geometry {
         };
     }
 
+    // DELETE: this method can be deleted after moving `applyResizing` function to resizing decorators/proxies
     /**
      * Calculates the new dimensions and position of a rectangle after a resize operation.
      * @param rect - The original rectangle.

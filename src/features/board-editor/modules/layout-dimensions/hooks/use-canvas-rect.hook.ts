@@ -1,5 +1,5 @@
+import { Rect } from "@/features/board-editor/core";
 import { RefCallback, useCallback, useState } from "react";
-import { Rect } from "../../../lib/geometry";
 
 export function useCanvasRect() {
     const [rect, setRect] = useState<Rect>();
