@@ -1,7 +1,6 @@
 import React from "react";
 import { Rect } from "../lib/geometry";
 import { NodesModel } from "../nodes/use-nodes-model.hook";
-import { NodeWrapper } from "../nodes/variants/base";
 import { IdleViewState } from "./variants/idle/view-state";
 import { DraggingViewState } from "./variants/dragging/view-state";
 import { ResizingViewState } from "./variants/resizing/view-state";
@@ -10,6 +9,7 @@ import { SelectionViewState } from "./variants/selection/view-state";
 import { StickersViewState } from "./variants/stickers/view-state";
 import { EditingViewState } from "./variants/editing/view-state";
 import { LayoutDimensionsModel } from "../modules/layout-dimensions";
+import { Renderable } from "../core";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.
@@ -54,7 +54,7 @@ export type ViewModelParams = {
  * @property {Function} [onNodeChange] - A callback for when a node's properties are changed.
  */
 export type ViewModel = {
-    nodes: NodeWrapper[];
+    nodes: Renderable[];
 
     selectionWindow?: Rect;
 

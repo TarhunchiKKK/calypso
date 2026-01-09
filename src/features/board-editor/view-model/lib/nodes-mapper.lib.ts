@@ -1,6 +1,6 @@
+import { NodeWrapper } from "../../core";
 import { NodesFactory } from "../../nodes/compose/nodes.factory";
 import { AnyNode } from "../../nodes/compose/types";
-import { NodeWrapper } from "../../nodes/variants/base";
 
 export class NodesMapper {
     protected nodes: NodeWrapper[] = [];

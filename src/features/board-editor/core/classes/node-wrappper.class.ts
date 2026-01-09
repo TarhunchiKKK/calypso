@@ -1,8 +1,9 @@
-import React, { ReactNode } from "react";
-import { NodeBase } from "../types";
-import { ResizeDirection } from "../../modules/resizing";
+import { ReactNode } from "react";
 import { Point, Rect } from "../../lib/geometry";
-import { AnyNode } from "../compose/types";
+import { ResizeDirection } from "../../modules/resizing";
+import { AnyNode } from "../../nodes/compose/types";
+import { NodeBase } from "../types/node.types";
+import { Renderable } from "../types/ui.types";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -18,7 +19,7 @@ export type NodeHandlers = {
     onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
+export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable {
     // REFACTOR: this field should be in decorator/proxy
     protected isSelected = false;
 
@@ -47,6 +48,7 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
 
     public abstract resize(rect: Rect): NodeWrapper<T>;
 
+    // REFACTOR: this method should be in decorator/proxy
     public select(resizable: boolean = false) {
         this.isSelected = true;
         this.resizable = resizable;
