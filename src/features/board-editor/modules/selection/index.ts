@@ -1,2 +1,2 @@
-export * from "./selection.lib";
+export * from "./lib";
 export * from "./types";

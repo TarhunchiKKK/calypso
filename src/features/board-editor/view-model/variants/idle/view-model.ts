@@ -5,9 +5,9 @@ import { IdleViewState } from "./view-state";
 import { switchToSelection } from "../selection/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
-import { withNodeId } from "@/features/board-editor/nodes/lib/dom.lib";
 import { useDragging } from "../../hooks/use-dragging.hook";
 import { IdleNodesMapper } from "./nodes-mapper.lib";
+import { withNodeId } from "@/features/board-editor/core";
 
 export function useIdleViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
