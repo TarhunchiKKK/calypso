@@ -3,7 +3,7 @@ import { NodesFactory } from "../../nodes/compose/nodes.factory";
 import { AnyNode } from "../../nodes/compose/types";
 
 export class NodesMapper {
-    protected nodes: NodeWrapper[] = [];
+    protected nodes: NodeWrapper<AnyNode>[] = [];
 
     public constructor(protected inputNodes: AnyNode[]) {}
 

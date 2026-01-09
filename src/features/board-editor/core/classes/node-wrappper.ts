@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React from "react";
 import { ResizeDirection } from "../../modules/resizing";
 import { AnyNode } from "../../nodes";
 import { NodeBase } from "../types/node";
@@ -45,6 +45,10 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this.node;
     }
 
+    public get wrapper() {
+        return this;
+    }
+
     public abstract moveTo(point: Point): NodeWrapper<T>;
 
     public abstract resize(rect: Rect): NodeWrapper<T>;
@@ -66,10 +70,14 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this;
     }
 
+    public getAdditionalUi(): React.ReactNode {
+        return null;
+    }
+
     public abstract rect(): Rect;
 
     // DELETE: this method is not neccessary and should be deleted
     public abstract clone(): NodeWrapper<T>;
 
-    public abstract render(): ReactNode;
+    public abstract render(children?: React.ReactNode): React.ReactNode;
 }

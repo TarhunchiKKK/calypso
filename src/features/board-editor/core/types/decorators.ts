@@ -1,4 +1,6 @@
+import React from "react";
 import { NodeBase } from "./node";
+import { NodeWrapper } from "../classes/node-wrappper";
 
 export type Decoratoratable<T extends NodeBase> = {
     get id(): string;
@@ -7,5 +9,7 @@ export type Decoratoratable<T extends NodeBase> = {
 
     get data(): T;
 
-    render(): React.ReactNode;
+    get wrapper(): NodeWrapper<T>;
+
+    render(children?: React.ReactNode): React.ReactNode;
 };

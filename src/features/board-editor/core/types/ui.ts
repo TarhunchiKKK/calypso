@@ -1,5 +1,7 @@
+import React from "react";
+
 export type Renderable = {
     get id(): string;
 
-    render(): React.ReactNode;
+    render(children?: React.ReactNode): React.ReactNode;
 };
