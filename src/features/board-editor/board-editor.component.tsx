@@ -35,7 +35,7 @@ export function BoardEditor({ nodes }: Props) {
 
             <Canvas
                 // eslint-disable react-hooks/exhaustive-deps
-                ref={layoutDimensionsModel.canvas.callbackRef}
+                ref={layoutDimensionsModel.canvas.ref}
                 offset={layoutDimensionsModel.layoutOffset.offset}
                 zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={
