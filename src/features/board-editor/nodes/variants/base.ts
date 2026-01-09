@@ -11,22 +11,29 @@ export type NodeHandlers = {
 
     onMouseUp?: (e: React.MouseEvent) => void;
 
+    // REFACTOR: this handler should be in decorator/proxy
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
 
+    // DELETE: this code is not useable
     onDoubleClick?: (e: React.MouseEvent) => void;
 
+    // REFACTOR: this handler should be in decorator/proxy
     onEditingEnd?: (node: AnyNode) => void;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
+    // REFACTOR: this field should be in decorator/proxy
     protected isSelected = false;
 
+    // REFACTOR: this field should be in decorator/proxy
     protected resizable = false;
 
     protected isEditing = false;
 
     public constructor(
         protected node: T,
+
+        // DELETE: this parameter is not usable
         protected handlers: NodeHandlers = {}
     ) {}
 
@@ -60,6 +67,7 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> {
 
     public abstract rect(): Rect;
 
+    // DELETE: this method is not neccessary and should be deleted
     public abstract clone(): NodeWrapper<T>;
 
     public abstract render(): ReactNode;

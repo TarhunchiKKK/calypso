@@ -12,11 +12,14 @@ export class NodesFactory {
         }
     }
 
+    // REFACTOR: `Point` type should be used as parameter
     public static sticker(data: Pick<StickerNode, "x" | "y">) {
         return new StickerNodeWrapper({
             ...data,
 
             id: crypto.randomUUID(),
+
+            // REFACTOR: this values should be moved to constant
             type: "sticker",
             width: 100,
             height: 100,
