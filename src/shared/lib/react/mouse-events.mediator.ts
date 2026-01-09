@@ -40,6 +40,8 @@ export class MouseEventsMediator<E = never> {
         this.mouseDownDelay = options.mouseDownDelay ?? DEFAULT_MOUSE_DOWN_DELAY;
     }
 
+    // OPTIMIZE: result of handlers creating can be saved in this class
+
     /**
      * Creates a set of mouse event handlers that are mediated by the class instance.
      * @param handlers - An object containing the original event handlers to be called by the mediator.

@@ -8,7 +8,18 @@ _This configurations should be applied to global `settings.json` file._
 
 ```json
 {
-    "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "RECHECK", "INCOMPLETE", "TODO", "USEFUL", "REFACTOR", "DELETE"],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "RECHECK",
+        "INCOMPLETE",
+        "TODO",
+        "USEFUL",
+        "REFACTOR",
+        "DELETE",
+        "OPTIMIZE"
+    ],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
         "type": "text-and-comment",
@@ -48,6 +59,10 @@ _This configurations should be applied to global `settings.json` file._
         "DELETE": {
             "icon": "checkbox",
             "iconColour": "crimson"
+        },
+        "OPTIMIZE": {
+            "icon": "verified",
+            "iconColour": "mediumvioletred"
         }
     }
 }

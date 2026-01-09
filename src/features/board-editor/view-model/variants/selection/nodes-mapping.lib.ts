@@ -1,5 +1,4 @@
-import { NodesMapper, NodeWrapper } from "@/features/board-editor/core";
-import { MouseEventsMediator } from "@/shared/lib/react";
+import { NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 import { SelectionViewState } from "./view-state";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { AnyNode } from "@/features/board-editor/nodes";
@@ -33,9 +32,9 @@ export class SelectionNodesMapper extends NodesMapper {
         return this;
     }
 
-    public applyHandlers(handlers: ReturnType<typeof MouseEventsMediator.prototype.createHandlers>) {
+    public applyHandlers(handlers: NodeHandlers) {
         this.nodes = this.nodes.map(node =>
-            node.wrapper
+            node
                 .setHandler("onClick", handlers.onClick)
                 .setHandler("onMouseDown", handlers.onMouseDown)
                 .setHandler("onMouseUp", handlers.onMouseUp)
