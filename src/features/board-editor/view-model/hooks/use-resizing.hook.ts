@@ -28,8 +28,8 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
-        nodesModel.service.replaceAl(
-            ResizingNodesMapper.from(nodesModel.nodes, viewState).applyResizing(newSize).unselectCurrent().unwrap()
+        nodesModel.service.replaceAll(
+            ResizingNodesMapper.from(nodesModel.nodes).map(viewState, newSize).unselectCurrent(viewState).unwrap()
         );
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));

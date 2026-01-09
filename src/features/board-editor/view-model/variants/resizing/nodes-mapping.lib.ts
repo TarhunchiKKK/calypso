@@ -4,20 +4,13 @@ import { Rect } from "@/features/board-editor/core";
 import { AnyNode } from "@/features/board-editor/nodes";
 
 export class ResizingNodesMapper extends NodesMapper {
-    private constructor(
-        inputNodes: AnyNode[],
-        private viewState: ResizingViewState
-    ) {
-        super(inputNodes);
+    public static from(nodes: AnyNode[]) {
+        return new ResizingNodesMapper(nodes);
     }
 
-    public static from(nodes: AnyNode[], viewState: ResizingViewState) {
-        return new ResizingNodesMapper(nodes, viewState);
-    }
-
-    public applyResizing(newSize?: Rect) {
+    public map(viewState: ResizingViewState, newSize?: Rect) {
         this.nodes = this.nodes.map(node => {
-            if (this.viewState.nodeId === node.id) {
+            if (viewState.nodeId === node.id) {
                 const temp = node.clone().select(true);
 
                 return newSize ? temp.resize(newSize) : temp;
@@ -29,9 +22,9 @@ export class ResizingNodesMapper extends NodesMapper {
         return this;
     }
 
-    public unselectCurrent() {
+    public unselectCurrent(viewState: ResizingViewState) {
         this.nodes = this.nodes.map(node => {
-            if (this.viewState.nodeId === node.id) {
+            if (viewState.nodeId === node.id) {
                 return node.clone();
             }
 

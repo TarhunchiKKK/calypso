@@ -6,25 +6,19 @@ import { AnyNode } from "@/features/board-editor/nodes";
 import { SelectedNodeDecorator } from "@/features/board-editor/modules/selection";
 
 export class SelectionNodesMapper extends NodesMapper {
-    private constructor(
-        inputNodes: AnyNode[],
-        private viewState: SelectionViewState
-    ) {
-        super(inputNodes);
+    public static from(nodes: AnyNode[]) {
+        return new SelectionNodesMapper(nodes);
     }
 
-    public static from(nodes: AnyNode[], viewState: SelectionViewState) {
-        return new SelectionNodesMapper(nodes, viewState);
-    }
-
-    public applySelection(
+    public map(
+        viewState: SelectionViewState,
         selectionWindowIds: Set<string>,
         resizeHandler: (nodeId: string, direction: ResizeDirection) => void
     ) {
-        const onlyOneNodeSelected = this.viewState.selectedIds.size === 1;
+        const onlyOneNodeSelected = viewState.selectedIds.size === 1;
 
         this.nodes = this.nodes.map(node => {
-            if (this.viewState.selectedIds.has(node.id) || selectionWindowIds.has(node.id)) {
+            if (viewState.selectedIds.has(node.id) || selectionWindowIds.has(node.id)) {
                 if (onlyOneNodeSelected) {
                     return new SelectedNodeDecorator(
                         node.wrapper.select(true).setHandler("onResizeStart", resizeHandler)

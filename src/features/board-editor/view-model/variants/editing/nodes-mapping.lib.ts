@@ -4,20 +4,17 @@ import { AnyNode } from "@/features/board-editor/nodes";
 import { NodesMapper } from "@/features/board-editor/core";
 
 export class EditingNodesMapper extends NodesMapper {
-    private constructor(
-        inputNodes: AnyNode[],
-        private viewState: EditingViewState
+    public static from(nodes: AnyNode[]) {
+        return new EditingNodesMapper(nodes);
+    }
+
+    public map(
+        viewState: EditingViewState,
+        endEditingHandler: (node: AnyNode) => void,
+        clickHandler: (e: React.MouseEvent) => void
     ) {
-        super(inputNodes);
-    }
-
-    public static from(nodes: AnyNode[], viewState: EditingViewState) {
-        return new EditingNodesMapper(nodes, viewState);
-    }
-
-    public applyHandlers(endEditingHandler: (node: AnyNode) => void, clickHandler: (e: React.MouseEvent) => void) {
         this.nodes = this.nodes.map(node => {
-            if ((this.viewState.selectedNodeId = node.id)) {
+            if ((viewState.selectedNodeId = node.id)) {
                 return node.clone().select().setEditing().setHandler("onEditingEnd", endEditingHandler);
             }
 

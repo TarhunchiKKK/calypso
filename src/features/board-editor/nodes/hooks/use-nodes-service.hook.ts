@@ -22,7 +22,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<AnyNode[]>>) {
         setNodes([]);
     };
 
-    return { createOne, updateOne, replaceAl: setNodes, removeOne, removeMany, removeAll };
+    return { createOne, updateOne, replaceAll: setNodes, removeOne, removeMany, removeAll };
 }
 
 export type NodesService = ReturnType<typeof useNodesService>;

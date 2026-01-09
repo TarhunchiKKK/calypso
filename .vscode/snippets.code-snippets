@@ -45,14 +45,10 @@
     "Create Nodes Mapper": {
         "prefix": "n-mapper",
         "body": [
-            "import { NodesMapper } from \"@/features/board-editor/view-model/lib/nodes-mapper.lib\";",
-            "import { AnyNode } from \"@/features/board-editor/nodes/compose/types\";",
+            "import { NodesMapper } from \"@/features/board-editor/core\";",
+            "import { AnyNode } from \"@/features/board-editor/nodes\";",
             "",
             "export class $1NodesMapper extends NodesMapper {",
-            "    private constructor(inputNodes: AnyNode[]) {",
-            "        super(inputNodes);",
-            "    }",
-            "",
             "    public static from(nodes: AnyNode[]) {",
             "        return new $1NodesMapper(nodes);",
             "    }",

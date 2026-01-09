@@ -5,11 +5,8 @@ import { AnyNode } from "../../nodes/compose/types";
 export class NodesMapper {
     protected nodes: NodeWrapper<AnyNode>[] = [];
 
-    public constructor(protected inputNodes: AnyNode[]) {}
-
-    public wrap() {
-        this.nodes = this.inputNodes.map(node => NodesFactory.wrap(node));
-        return this;
+    public constructor(protected inputNodes: AnyNode[]) {
+        this.nodes = inputNodes.map(NodesFactory.wrap);
     }
 
     public unwrap() {

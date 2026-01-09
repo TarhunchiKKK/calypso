@@ -56,10 +56,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
         console.log(viewState);
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes, viewState)
-                .wrap()
+            nodes: SelectionNodesMapper.from(nodesModel.nodes)
                 .applyHandlers(handlers)
-                .applySelection(selectionWindow.selectedNodesIds, handleResize)
+                .map(viewState, selectionWindow.selectedNodesIds, handleResize)
                 .get(),
             overlay: mediators.overlay.createHandlers({
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
