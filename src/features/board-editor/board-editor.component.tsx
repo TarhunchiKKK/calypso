@@ -4,7 +4,7 @@ import { Canvas } from "./ui/canvas.component";
 import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
-import { useNodes } from "./nodes/use-nodes.hook";
+import { useNodes } from "./nodes/use-nodes-model.hook";
 import { useViewModel } from "./view-model/use-view-model.hook";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { MousePointer2, StickerIcon } from "lucide-react";
@@ -35,7 +35,7 @@ export function BoardEditor({ nodes }: Props) {
 
             <Canvas
                 // eslint-disable react-hooks/exhaustive-deps
-                ref={layoutDimensionsModel.canvas.callbackRef}
+                ref={layoutDimensionsModel.canvas.ref}
                 offset={layoutDimensionsModel.layoutOffset.offset}
                 zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={

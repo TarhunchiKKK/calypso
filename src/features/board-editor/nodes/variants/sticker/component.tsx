@@ -42,7 +42,6 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
             onClick={handlers.onClick}
             onMouseDown={handlers.onMouseDown}
             onMouseUp={handlers.onMouseUp}
-            onDoubleClick={handlers.onDoubleClick}
             className={clsx(
                 "absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer",
                 isSelected && "outline-2 outline-blue-500"
