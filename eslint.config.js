@@ -57,13 +57,13 @@ export default tseslint.config(
                             from: "shared",
                             disallow: ["app", "features"],
                             message:
-                                "Модуль нижележащего слоя (${file.type}) не может импортировать модуль вышележащего слоя (${dependency.type})"
+                                "The underlying layer module (${file.type}) cannot import overlying layer module (${dependency.type})"
                         },
                         {
                             from: "features",
                             disallow: ["app"],
                             message:
-                                "Модуль нижележащего слоя (${file.type}) не может импортировать модуль вышележащего слоя (${dependency.type})"
+                                "The underlying layer module (${file.type}) cannot import overlying layer module (${dependency.type})"
                         }
                     ]
                 }
@@ -73,7 +73,7 @@ export default tseslint.config(
                 {
                     default: "disallow",
                     message:
-                        "Модуль (${file.type}) должен импортироваться через public API. Прямой импорт из ${dependency.source} запрещен",
+                        "Module (${file.type}) should be imported via public API. Domain import from ${dependency.source} is forbidden",
 
                     rules: [
                         {

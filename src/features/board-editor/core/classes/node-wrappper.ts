@@ -13,17 +13,18 @@ export type NodeHandlers = {
 
     onMouseUp?: (e: React.MouseEvent) => void;
 
-    // REFACTOR: this handler should be in decorator/proxy
+    // DELETE: this handler should be in decorator/proxy
     onResizeStart?: (nodeId: string, direction: ResizeDirection) => void;
 
-    // REFACTOR: this handler should be in decorator/proxy
+    // DELETE: this handler should be in decorator/proxy
     onEditingEnd?: (node: AnyNode) => void;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratoratable<T> {
-    // REFACTOR: this field should be in decorator/proxy
+    // DELETE: this field should be in decorator/proxy
     protected resizable = false;
 
+    // DELETE: this field should be in decorator/proxy
     protected isEditing = false;
 
     protected handlers: NodeHandlers = {};
@@ -42,12 +43,14 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this.node;
     }
 
+    // DELETE: this method should not exist here
     public get wrapper() {
         return this;
     }
 
     public abstract moveTo(point: Point): NodeWrapper<T>;
 
+    // DELETE: this method should be moved to decorator/proxy
     public abstract resize(rect: Rect): NodeWrapper<T>;
 
     public setEditing() {
@@ -60,6 +63,7 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this;
     }
 
+    // DELETE: this method is useless
     public getAdditionalUi(): React.ReactNode {
         return null;
     }
