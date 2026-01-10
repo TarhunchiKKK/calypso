@@ -1,6 +1,5 @@
 import { NodesMapper } from "@/features/board-editor/core";
-import { SelectedNodeDecorator } from "@/features/board-editor/modules/selection";
-import { AnyNode } from "@/features/board-editor/nodes";
+import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
@@ -24,7 +23,7 @@ export class SelectionWindowNodesMapper extends NodesMapper {
     public override get() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id) || this.selectionWIndowIds.has(node.id)) {
-                return new SelectedNodeDecorator(node);
+                return NodesFactory.select(node);
             }
 
             return node;

@@ -37,7 +37,6 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
             <StickerComponent
                 key={this.node.id}
                 node={this.node}
-                isSelected={this.isSelected}
                 resizable={this.resizable}
                 isEditing={this.isEditing}
                 handlers={this.handlers}

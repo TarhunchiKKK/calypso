@@ -9,7 +9,6 @@ type Props = PropsWithChildren<{
     node: StickerNode;
 
     // REFACTOR: this props should be in apropriate decorator/proxy
-    isSelected: boolean;
     resizable: boolean;
 
     isEditing: boolean;
@@ -17,7 +16,7 @@ type Props = PropsWithChildren<{
     handlers: NodeHandlers;
 }>;
 
-export function StickerComponent({ node, isSelected, resizable, isEditing, handlers, children }: Props) {
+export function StickerComponent({ node, resizable, isEditing, handlers, children }: Props) {
     const styles: CSSProperties = {
         width: node.width,
         height: node.height,
@@ -43,10 +42,6 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
             onMouseDown={handlers.onMouseDown}
             onMouseUp={handlers.onMouseUp}
             className="absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
-            // className={clsx(
-            //     "absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer",
-            //     isSelected && "outline-2 outline-blue-500"
-            // )}
             style={styles}
         >
             {/* REFACTOR: this UI should be in wrapper */}

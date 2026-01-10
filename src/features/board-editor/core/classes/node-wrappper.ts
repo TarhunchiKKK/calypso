@@ -22,9 +22,6 @@ export type NodeHandlers = {
 
 export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratoratable<T> {
     // REFACTOR: this field should be in decorator/proxy
-    protected isSelected = false;
-
-    // REFACTOR: this field should be in decorator/proxy
     protected resizable = false;
 
     protected isEditing = false;
@@ -52,13 +49,6 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
     public abstract moveTo(point: Point): NodeWrapper<T>;
 
     public abstract resize(rect: Rect): NodeWrapper<T>;
-
-    // REFACTOR: this method should be in decorator/proxy
-    public select(resizable: boolean = false) {
-        this.isSelected = true;
-        this.resizable = resizable;
-        return this;
-    }
 
     public setEditing() {
         this.isEditing = true;

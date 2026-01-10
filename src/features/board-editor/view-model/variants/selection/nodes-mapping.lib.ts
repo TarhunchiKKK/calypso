@@ -1,11 +1,11 @@
 import { Decoratoratable, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
-import { AnyNode } from "@/features/board-editor/nodes";
-import { SelectedNodeDecorator } from "@/features/board-editor/modules/selection";
+import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
 
+    // QUESTION: should selection window appears here ?
     private selectionWindowIds!: Set<string>;
 
     private resizeHandler!: (nodeId: string, direction: ResizeDirection) => void;
@@ -51,7 +51,7 @@ export class SelectionNodesMapper extends NodesMapper {
         selection2: Set<string>
     ): Decoratoratable[] {
         return wrappers.map(wrapper =>
-            selection1.has(wrapper.id) || selection2.has(wrapper.id) ? new SelectedNodeDecorator(wrapper) : wrapper
+            selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodesFactory.select(wrapper) : wrapper
         );
     }
 
