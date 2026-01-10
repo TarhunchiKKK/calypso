@@ -8,7 +8,21 @@ _This configurations should be applied to global `settings.json` file._
 
 ```json
 {
-    "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "RECHECK", "INCOMPLETE", "TODO", "USEFUL"],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "RECHECK",
+        "INCOMPLETE",
+        "TODO",
+        "USEFUL",
+        "REFACTOR",
+        "DELETE",
+        "OPTIMIZE",
+        "DOC",
+        "WARN",
+        "QUESTION"
+    ],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
         "type": "text-and-comment",
@@ -22,151 +36,49 @@ _This configurations should be applied to global `settings.json` file._
             "iconColour": "yellow"
         },
         "USEFUL": {
-            "icon": "verified",
+            "icon": "comment",
             "iconColour": "mediumaquamarine"
         },
         "FIXME": {
             "icon": "tools",
             "iconColour": "burlywood"
         },
+        "WARN": {
+            "icon": "alert",
+            "iconColour": "yellow"
+        },
         "RECHECK": {
             "icon": "codescan",
             "iconColour": "chocolate"
         },
         "INCOMPLETE": {
-            "icon": "alert",
-            "iconColour": "mediumvioletred"
+            "icon": "beaker",
+            "iconColour": "aquamarine"
         },
         "BUG": {
             "icon": "bug",
             "iconColour": "crimson"
+        },
+        "REFACTOR": {
+            "icon": "code",
+            "iconColour": "mediumvioletred"
+        },
+        "DELETE": {
+            "icon": "trash",
+            "iconColour": "crimson"
+        },
+        "OPTIMIZE": {
+            "icon": "rocket",
+            "iconColour": "mediumaquamarine"
+        },
+        "DOC": {
+            "icon": "note",
+            "iconColour": "mediumvioletred"
+        },
+        "QUESTION": {
+            "icon": "question",
+            "iconColour": "yellow"
         }
     }
-}
-```
-
-### [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
-
-```json
-{
-    "better-comments.tags": [
-        {
-            "tag": "*",
-            "color": "#98C379",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "!",
-            "color": "#FF2D00",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "?",
-            "color": "#3498DB",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "//",
-            "color": "#474747",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": true
-        },
-        {
-            "tag": "todo",
-            "color": "#FF8C00",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "fixme",
-            "color": "#DEB887",
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "bug",
-            "color": "#DC143C",
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "note",
-            "color": "#6495ED",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "useful",
-            "color": "#66DDAA",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "comment",
-            "color": "gray",
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "learn",
-            "color": "#FF69B4",
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "recheck",
-            "color": "#7B3F00",
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        },
-        {
-            "tag": "incomplete",
-            "color": "#C71585",
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false,
-            "underline": false,
-            "strikethrough": false
-        }
-    ]
 }
 ```

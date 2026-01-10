@@ -1,4 +1,4 @@
-import { Point } from "@/features/board-editor/lib/geometry";
+import { Point } from "@/features/board-editor/core";
 import { DraggingViewState } from "./view-state";
 
 type Params = {

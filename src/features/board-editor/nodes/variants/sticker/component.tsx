@@ -1,23 +1,22 @@
 import clsx from "clsx";
-import { CSSProperties } from "react";
-import { NodeHandlers } from "../base";
+import { CSSProperties, PropsWithChildren } from "react";
 import { StickerNode } from "./type";
 import { ResizeDirection, ResizeBorders } from "@/features/board-editor/modules/resizing";
 import { TextareaAutoSize } from "@/shared/ui";
+import { NodeHandlers } from "@/features/board-editor/core";
 
-type Props = {
+type Props = PropsWithChildren<{
     node: StickerNode;
 
     // REFACTOR: this props should be in apropriate decorator/proxy
-    isSelected: boolean;
     resizable: boolean;
 
     isEditing: boolean;
 
     handlers: NodeHandlers;
-};
+}>;
 
-export function StickerComponent({ node, isSelected, resizable, isEditing, handlers }: Props) {
+export function StickerComponent({ node, resizable, isEditing, handlers, children }: Props) {
     const styles: CSSProperties = {
         width: node.width,
         height: node.height,
@@ -42,16 +41,15 @@ export function StickerComponent({ node, isSelected, resizable, isEditing, handl
             onClick={handlers.onClick}
             onMouseDown={handlers.onMouseDown}
             onMouseUp={handlers.onMouseUp}
-            className={clsx(
-                "absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer",
-                isSelected && "outline-2 outline-blue-500"
-            )}
+            className="absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
             style={styles}
         >
             {/* REFACTOR: this UI should be in wrapper */}
             {resizable && <ResizeBorders main cross diagonal handleResizeStart={handleResizeStart} />}
 
             <TextareaAutoSize isActive={isEditing} value={node.text} onEditingEnd={handleEditingEnd} />
+
+            {children}
         </div>
     );
 }

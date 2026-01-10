@@ -1,9 +1,9 @@
-import { OmitFields } from "@/shared/lib/typescript.lib";
-import { Geometry } from "../../../lib/geometry";
-import { NodesFactory } from "../../../nodes/compose/nodes.factory";
+import { OmitFields } from "@/shared/lib/typescript";
 import { ViewModel, ViewModelParams } from "../../types";
 import React from "react";
-import { NodesMapper } from "../../lib/nodes-mapper.lib";
+import { Geometry, NodesMapper } from "@/features/board-editor/core";
+import { NodesFactory } from "@/features/board-editor/nodes";
+import { StickersNodesMapper } from "./nodes-mapping.lib";
 
 export function useStickersViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
@@ -22,7 +22,7 @@ export function useStickersViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: new NodesMapper(nodesModel.nodes).wrap().get(),
+            nodes: new StickersNodesMapper(nodesModel.nodes).get(),
             canvas: {
                 onClick: handleCanvasClick
             }

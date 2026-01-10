@@ -1,9 +1,9 @@
-import { withNodeId } from "@/features/board-editor/nodes/lib/dom.lib";
 import { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { EditingViewState } from "./view-state";
-import { EditingNodesMapper } from "./nodes-mapper.lib";
+import { EditingNodesMapper } from "./nodes-mapping.lib";
+import { withNodeId } from "@/features/board-editor/core";
 
 export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParams) {
     return (viewState: EditingViewState): ViewModel => {
@@ -12,9 +12,8 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         });
 
         return {
-            nodes: EditingNodesMapper.from(nodesModel.nodes, viewState)
-                .wrap()
-                .applyHandlers(nodesModel.service.updateOne, handleClick)
+            nodes: EditingNodesMapper.from(nodesModel.nodes)
+                .map(viewState, nodesModel.service.updateOne, handleClick)
                 .get(),
             overlay: {
                 onClick: () => setViewState(switchToIdle())

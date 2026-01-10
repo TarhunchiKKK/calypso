@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ViewModel, ViewModelParams, ViewState } from "./types";
 import { useIdleViewModel } from "./variants/idle/view-model";
 import { useStickersViewModel } from "./variants/stickers/view-model";
-import { OmitFields } from "@/shared/lib/typescript.lib";
+import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { applyDecorators } from "./decorators/apply-decorators.facade";

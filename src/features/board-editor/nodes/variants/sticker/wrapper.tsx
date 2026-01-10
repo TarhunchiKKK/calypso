@@ -1,7 +1,7 @@
-import { Point, Rect } from "@/features/board-editor/lib/geometry";
-import { NodeWrapper } from "../base";
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
+import { NodeWrapper, Point, Rect } from "@/features/board-editor/core";
+import React from "react";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     public override clone() {
@@ -32,15 +32,15 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         return this;
     }
 
-    public override render() {
+    public override render(children?: React.ReactNode) {
         return (
             <StickerComponent
                 key={this.node.id}
                 node={this.node}
-                isSelected={this.isSelected}
                 resizable={this.resizable}
                 isEditing={this.isEditing}
                 handlers={this.handlers}
+                children={children}
             />
         );
     }

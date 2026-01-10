@@ -1,4 +1,4 @@
-import { Offset } from "@/features/board-editor/lib/geometry";
+import { Offset } from "@/features/board-editor/core";
 import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{

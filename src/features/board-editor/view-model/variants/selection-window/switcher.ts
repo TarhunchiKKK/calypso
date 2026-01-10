@@ -1,6 +1,6 @@
-import { Point } from "@/features/board-editor/lib/geometry";
-import { SelectionWindowViewState } from "./view-state";
+import { Point } from "@/features/board-editor/core";
 import { NodesSelectionMode } from "@/features/board-editor/modules/selection";
+import { SelectionWindowViewState } from "./view-state";
 
 type Params = {
     selectedIds?: Set<string>;

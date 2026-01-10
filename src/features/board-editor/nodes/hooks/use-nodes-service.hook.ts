@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { AnyNode } from "./compose/types";
+import { AnyNode } from "../compose/types";
 
 export function useNodesService(setNodes: Dispatch<SetStateAction<AnyNode[]>>) {
     const createOne = (node: AnyNode) => {
@@ -22,7 +22,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<AnyNode[]>>) {
         setNodes([]);
     };
 
-    return { createOne, updateOne, replaceAl: setNodes, removeOne, removeMany, removeAll };
+    return { createOne, updateOne, replaceAll: setNodes, removeOne, removeMany, removeAll };
 }
 
 export type NodesService = ReturnType<typeof useNodesService>;

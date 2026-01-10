@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { AnyNode } from "./compose/types";
+import { AnyNode } from "../compose/types";
 import { useNodesService } from "./use-nodes-service.hook";
 
-export function useNodes(inputNodes: AnyNode[]) {
+export function useNodesModel(inputNodes: AnyNode[]) {
     const [nodes, setNodes] = useState<AnyNode[]>(inputNodes);
 
     const nodesService = useNodesService(setNodes);
@@ -10,4 +10,4 @@ export function useNodes(inputNodes: AnyNode[]) {
     return { nodes, service: nodesService };
 }
 
-export type NodesModel = ReturnType<typeof useNodes>;
+export type NodesModel = ReturnType<typeof useNodesModel>;

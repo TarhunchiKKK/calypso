@@ -1,6 +1,6 @@
 import { HTMLAttributes, PropsWithChildren, ReactNode, Ref } from "react";
 import { LayoutDimensionsWrapper } from "../modules/layout-dimensions";
-import { Offset } from "../lib/geometry";
+import { Offset } from "../core";
 
 type Props = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren<{

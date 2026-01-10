@@ -1,16 +1,16 @@
-import { OmitFields } from "@/shared/lib/typescript.lib";
+import { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging.hook";
 import { useResizing } from "../../hooks/use-resizing.hook";
-import { withNodeId } from "../../../nodes/lib/dom.lib";
 import { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
-import { SelectionNodesMapper } from "./nodes-mapper.lib";
+import { SelectionNodesMapper } from "./nodes-mapping.lib";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { selectNodes } from "@/features/board-editor/modules/selection";
+import { withNodeId } from "@/features/board-editor/core";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -24,7 +24,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const mediators = useMouseEventsMediators();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        // ? should this handler exists
+        // QUESTION: should this handler exists ?
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
@@ -54,10 +54,13 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes, viewState)
-                .wrap()
-                .applySelection(selectionWindow.selectedNodesIds, handleResize)
-                .applyHandlers(handlers)
+            nodes: SelectionNodesMapper.from(nodesModel.nodes)
+                .setHandlers(handlers)
+                .setSelectedIds(viewState.selectedIds)
+
+                // QUESTION: should selection window figure here ?
+                .setSelectionWindowIds(selectionWindow.selectedNodesIds)
+                .setResizeHandler(handleResize)
                 .get(),
             overlay: mediators.overlay.createHandlers({
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
