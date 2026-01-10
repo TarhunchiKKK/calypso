@@ -20,7 +20,8 @@ _This configurations should be applied to global `settings.json` file._
         "DELETE",
         "OPTIMIZE",
         "DOC",
-        "WARN"
+        "WARN",
+        "QUESTION"
     ],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
@@ -73,6 +74,10 @@ _This configurations should be applied to global `settings.json` file._
         "DOC": {
             "icon": "note",
             "iconColour": "mediumvioletred"
+        },
+        "QUESTION": {
+            "icon": "question",
+            "iconColour": "yellow"
         }
     }
 }

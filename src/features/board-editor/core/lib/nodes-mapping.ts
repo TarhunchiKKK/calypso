@@ -13,6 +13,7 @@ export class NodesMapper {
         return this.nodes.map(node => node.data);
     }
 
+    // REFACTOR: this method should become abstract
     public get(): Renderable[] {
         return this.nodes;
     }

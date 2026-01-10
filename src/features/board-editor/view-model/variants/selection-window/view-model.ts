@@ -12,7 +12,8 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
     return (viewState: SelectionWindowViewState): OmitFields<ViewModel, "actions"> => {
         return {
             nodes: SelectionWindowNodesMapper.from(nodesModel.nodes)
-                .map(viewState, selectionWindow.selectedNodesIds)
+                .setSelectedIds(viewState.selectedIds)
+                .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .get(),
             window: {
                 onMouseMove: e => {
