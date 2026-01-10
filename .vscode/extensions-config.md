@@ -18,7 +18,9 @@ _This configurations should be applied to global `settings.json` file._
         "USEFUL",
         "REFACTOR",
         "DELETE",
-        "OPTIMIZE"
+        "OPTIMIZE",
+        "DOC",
+        "WARN"
     ],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
@@ -33,35 +35,43 @@ _This configurations should be applied to global `settings.json` file._
             "iconColour": "yellow"
         },
         "USEFUL": {
-            "icon": "verified",
+            "icon": "comment",
             "iconColour": "mediumaquamarine"
         },
         "FIXME": {
             "icon": "tools",
             "iconColour": "burlywood"
         },
+        "WARN": {
+            "icon": "alert",
+            "iconColour": "yellow"
+        },
         "RECHECK": {
             "icon": "codescan",
             "iconColour": "chocolate"
         },
         "INCOMPLETE": {
-            "icon": "alert",
-            "iconColour": "mediumvioletred"
+            "icon": "beaker",
+            "iconColour": "aquamarine"
         },
         "BUG": {
             "icon": "bug",
             "iconColour": "crimson"
         },
         "REFACTOR": {
-            "icon": "alert",
+            "icon": "code",
             "iconColour": "mediumvioletred"
         },
         "DELETE": {
-            "icon": "checkbox",
+            "icon": "trash",
             "iconColour": "crimson"
         },
         "OPTIMIZE": {
-            "icon": "verified",
+            "icon": "rocket",
+            "iconColour": "mediumaquamarine"
+        },
+        "DOC": {
+            "icon": "note",
             "iconColour": "mediumvioletred"
         }
     }
