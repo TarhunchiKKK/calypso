@@ -18,10 +18,5 @@ export abstract class NodeDecorator<T extends NodeBase> implements Renderable, D
         return this.entry.data;
     }
 
-    // DELETE: this method should not exist here
-    public get wrapper() {
-        return this.entry.wrapper;
-    }
-
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

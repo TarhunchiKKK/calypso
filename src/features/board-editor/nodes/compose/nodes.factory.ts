@@ -25,7 +25,7 @@ export class NodesFactory {
 
     public static resizable(node: Decoratable<AnyNode>, handler?: ResizeHandler) {
         const ResizeStrategy = ResizeStrategiesMap[node.type];
-        return new ResizableNodeDecorator(node, new ResizeStrategy(node.id, handler));
+        return new ResizableNodeDecorator(node, new ResizeStrategy(handler));
     }
 
     public static sticker(point: Point) {

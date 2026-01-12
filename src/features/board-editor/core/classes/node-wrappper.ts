@@ -36,11 +36,6 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this.node;
     }
 
-    // DELETE: this method should not exist here
-    public get wrapper() {
-        return this;
-    }
-
     public abstract moveTo(point: Point): NodeWrapper<T>;
 
     public setEditing() {
