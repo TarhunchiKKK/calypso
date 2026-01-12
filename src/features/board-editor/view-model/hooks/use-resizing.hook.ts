@@ -4,7 +4,7 @@ import { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
 import { ResizeDirection } from "../../modules/resizing";
-import { NodesFactory } from "../../nodes";
+import { NodeDecoratorsFactory } from "../../nodes";
 import { Geometry, Rect } from "../../core";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
@@ -29,14 +29,14 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
-        setNewSize(Geometry.applyResizing(NodesFactory.wrap(node).rect(), currentPoint, viewState.direction));
+        setNewSize(Geometry.applyResizing(NodeDecoratorsFactory.wrap(node).rect(), currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
         const node = getResizingNode(viewState.nodeId);
 
         if (newSize) {
-            nodesModel.service.updateOne(NodesFactory.wrap(node).setRect(newSize).data);
+            nodesModel.service.updateOne(NodeDecoratorsFactory.wrap(node).setRect(newSize).data);
         }
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));

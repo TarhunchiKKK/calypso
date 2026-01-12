@@ -1,6 +1,6 @@
 import { Decoratable, NodeBase, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 import { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
-import { NodesFactory } from "@/features/board-editor/nodes";
+import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
@@ -47,12 +47,14 @@ export class SelectionNodesMapper extends NodesMapper {
 
     private applySelection(wrappers: NodeWrapper[], selection1: Set<string>, selection2: Set<string>): Decoratable[] {
         return wrappers.map(wrapper =>
-            selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodesFactory.select(wrapper) : wrapper
+            selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodeDecoratorsFactory.select(wrapper) : wrapper
         );
     }
 
     private applyResizing(wrappers: NodeWrapper[], nodeId: string, handler: ResizeHandler) {
-        return wrappers.map(wrapper => (wrapper.id === nodeId ? NodesFactory.resizable(wrapper, handler) : wrapper));
+        return wrappers.map(wrapper =>
+            wrapper.id === nodeId ? NodeDecoratorsFactory.resizable(wrapper, handler) : wrapper
+        );
     }
 
     public override get() {
