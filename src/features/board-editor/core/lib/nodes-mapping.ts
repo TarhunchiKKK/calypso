@@ -1,11 +1,11 @@
 import { NodeBase, NodeWrapper, Renderable } from "..";
-import { NodesFactory } from "../../nodes/compose/nodes.factory";
+import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
 
 export class NodesMapper {
     protected nodes: NodeWrapper[] = [];
 
     public constructor(protected inputNodes: NodeBase[]) {
-        this.nodes = inputNodes.map(NodesFactory.wrap);
+        this.nodes = inputNodes.map(NodeDecoratorsFactory.wrap);
     }
 
     public unwrap() {

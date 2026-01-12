@@ -7,7 +7,7 @@ import { SelectionWindowViewState } from "../variants/selection-window/view-stat
 import { switchToSelection } from "../variants/selection/switcher";
 import { SelectionViewState } from "../variants/selection/view-state";
 import { selectNodes } from "../../modules/selection";
-import { NodesFactory } from "../../nodes";
+import { NodeDecoratorsFactory } from "../../nodes";
 import { Geometry, Rect } from "../../core";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
@@ -16,7 +16,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
         selectedNodesIds = nodesModel.nodes
-            .map(node => NodesFactory.wrap(node))
+            .map(node => NodeDecoratorsFactory.wrap(node))
             .filter(node => Geometry.rectsIntersecting(selectionWindowRect, node.rect()))
             .map(node => node.id);
     }
