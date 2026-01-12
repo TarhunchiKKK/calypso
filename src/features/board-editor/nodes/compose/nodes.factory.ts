@@ -1,5 +1,4 @@
 import { StickerNodeWrapper } from "../variants/sticker/wrapper";
-import { AnyNode } from "./types";
 import { SelectedNodeDecorator } from "../../modules/selection";
 import { Point, Decoratable, NodeBase } from "../../core";
 import { ResizeHandler } from "../../modules/resizing";
@@ -12,13 +11,8 @@ import { EditableNodeDecorator } from "../../modules/editing";
 
 export class NodesFactory {
     public static wrap(node: NodeBase) {
-        const Wrapper = WrapperConstructorsMap[node.type];
-
-        if (!Wrapper) {
-            throw Error("Unknown node type");
-        }
-
-        return new Wrapper(node as AnyNode);
+        const creator = WrapperConstructorsMap[node.type];
+        return creator(node);
     }
 
     public static select(node: Decoratable) {
@@ -26,8 +20,8 @@ export class NodesFactory {
     }
 
     public static resizable(node: Decoratable, handler?: ResizeHandler) {
-        const ResizeStrategy = ResizeStrategiesMap[node.type];
-        return new ResizableNodeDecorator(node, new ResizeStrategy(handler));
+        const strategyCreator = ResizeStrategiesMap[node.type];
+        return new ResizableNodeDecorator(node, strategyCreator(handler));
     }
 
     public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
