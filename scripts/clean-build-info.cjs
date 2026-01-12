@@ -1,6 +1,9 @@
-// import fs from "fs";
-// import path from "path";
-
+/**
+ * This script removes all '.tsbuildinfo' files from the project root.
+ * These files are created by TypeScript during the build process (`tsc`) or executing `bun run type-check`
+ * and contain information about the build.
+ * Deleting them can help when you want to do a clean rebuild.
+ */
 const fs = require("fs");
 const path = require("path");
 

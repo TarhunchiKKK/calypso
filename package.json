@@ -21,6 +21,7 @@
         "knip": "knip",
         "storybook:dev": "storybook dev -p 6006",
         "storybook:build": "storybook build",
+        "clean:next": "node ./scripts/clean-next-cache.cjs",
         "clean:ts": "node ./scripts/clean-build-info.cjs"
     },
     "dependencies": {
