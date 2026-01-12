@@ -1,10 +1,9 @@
 import { Decoratable, NodeDecorator } from "../../../core";
-import { AnyNode } from "../../../nodes";
 import { ResizeStrategy } from "./resize.strategy";
 
-export class ResizableNodeDecorator extends NodeDecorator<AnyNode> {
+export class ResizableNodeDecorator extends NodeDecorator {
     public constructor(
-        protected readonly entry: Decoratable<AnyNode>,
+        protected readonly entry: Decoratable,
         protected readonly strategy: ResizeStrategy
     ) {
         super(entry);

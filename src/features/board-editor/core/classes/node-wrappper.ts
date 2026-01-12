@@ -16,7 +16,7 @@ export type NodeHandlers = {
     onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratable<T> {
+export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     // DELETE: this field should be in decorator/proxy
     protected isEditing = false;
 
@@ -36,8 +36,6 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this.node;
     }
 
-    public abstract moveTo(point: Point): NodeWrapper<T>;
-
     public setEditing() {
         this.isEditing = true;
         return this;
@@ -48,9 +46,13 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this;
     }
 
+    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
+
     public abstract rect(): Rect;
 
-    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
+    public abstract setRect(rect: Rect): NodeWrapper<T>;
+
+    public abstract moveTo(point: Point): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

@@ -1,6 +1,6 @@
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
-import { NodeWrapper, Point } from "@/features/board-editor/core";
+import { NodeWrapper, Point, Rect } from "@/features/board-editor/core";
 import React from "react";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
@@ -15,6 +15,14 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
             width: this.node.width,
             height: this.node.height
         };
+    }
+
+    public override setRect(rect: Rect) {
+        this.node.x = rect.x;
+        this.node.y = rect.y;
+        this.node.width = rect.width;
+        this.node.height = rect.height;
+        return this;
     }
 
     public override moveTo(point: Point) {

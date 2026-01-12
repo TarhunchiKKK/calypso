@@ -1,10 +1,10 @@
 import { EditingViewState } from "./view-state";
 import React from "react";
 import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
-import { NodesMapper, NodeWrapper } from "@/features/board-editor/core";
+import { NodeBase, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 
 export class EditingNodesMapper extends NodesMapper {
-    public static from(nodes: AnyNode[]) {
+    public static from(nodes: NodeBase[]) {
         return new EditingNodesMapper(nodes);
     }
 
