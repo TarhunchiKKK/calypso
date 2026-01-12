@@ -1,18 +1,16 @@
 import { CSSProperties, PropsWithChildren } from "react";
 import { StickerNode } from "./type";
-import { TextareaAutoSize } from "@/shared/ui";
 import { NodeHandlers } from "@/features/board-editor/core";
 
 type Props = PropsWithChildren<{
     node: StickerNode;
 
-    // CURRENT: this field will be deleted
-    isEditing: boolean;
-
     handlers: NodeHandlers;
+
+    showContent: boolean;
 }>;
 
-export function StickerComponent({ node, isEditing, handlers, children }: Props) {
+export function StickerComponent({ node, handlers, showContent, children }: Props) {
     const styles: CSSProperties = {
         width: node.width,
         height: node.height,
@@ -20,22 +18,18 @@ export function StickerComponent({ node, isEditing, handlers, children }: Props)
         top: node.y
     };
 
-    // CURRENT: this handler will be deleted
-    const handleEditingEnd = (newText: string) => {
-        const newNode = { ...node, text: newText };
-        handlers.onEditingEnd?.(newNode);
-    };
-
     return (
         <div
             data-id={node.id}
-            onClick={handlers.onClick}
-            onMouseDown={handlers.onMouseDown}
-            onMouseUp={handlers.onMouseUp}
             className="absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
             style={styles}
+            {...handlers}
         >
-            <TextareaAutoSize isActive={isEditing} value={node.text} onEditingEnd={handleEditingEnd} />
+            {showContent && (
+                <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
+                    {node.text}
+                </div>
+            )}
 
             {children}
         </div>

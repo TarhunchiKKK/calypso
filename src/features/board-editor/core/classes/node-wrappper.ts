@@ -1,5 +1,4 @@
 import React from "react";
-import { AnyNode } from "../../nodes";
 import { NodeBase } from "../types/node";
 import { Renderable } from "../types/ui";
 import { Point, Rect } from "../lib/geometry";
@@ -11,14 +10,10 @@ export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: (e: React.MouseEvent) => void;
-
-    // CURRENT: this handler should be in decorator
-    onEditingEnd?: (node: AnyNode) => void;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
-    // CURRENT: this field should be in decorator
-    protected isEditing = false;
+    protected showContent = true;
 
     protected handlers: NodeHandlers = {};
 
@@ -36,10 +31,13 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this.node;
     }
 
-    // CURRENT: this method should be in decorator
-    public setEditing() {
-        this.isEditing = true;
+    public get wrapper() {
         return this;
+    }
+
+    public hideContent() {
+        this.showContent = false;
+        return true;
     }
 
     public setHandler<Key extends keyof NodeHandlers>(key: Key, handler: NodeHandlers[Key] | undefined) {

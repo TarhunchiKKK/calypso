@@ -36,9 +36,8 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
             <StickerComponent
                 key={this.node.id}
                 node={this.node}
-                // CURRENT: this prop will be deleted
-                isEditing={this.isEditing}
                 handlers={this.handlers}
+                showContent={this.showContent}
                 children={children}
             />
         );

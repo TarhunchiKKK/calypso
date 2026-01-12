@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React, { useRef, useState, RefObject, useEffect, useLayoutEffect, useCallback } from "react";
 
 const recalculateFontSize = (
@@ -39,12 +38,10 @@ const recalculateFontSize = (
 type Props = {
     value: string;
 
-    isActive: boolean;
-
     onEditingEnd?: (value: string) => void;
 };
 
-function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) {
+function Wrapper({ value: initialValue, onEditingEnd }: Props) {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const measureRef = useRef<HTMLDivElement | null>(null);
 
@@ -83,33 +80,19 @@ function Wrapper({ value: initialValue, isActive, onEditingEnd }: Props) {
 
     return (
         <div ref={wrapperRef} className="relative w-full h-full flex flex-col">
+            <Textarea
+                value={value}
+                onValueChange={setValue}
+                onEditingEnd={handleEditingEnd}
+                fontSize={fontSize}
+                wrapperRef={wrapperRef}
+            />
+
             <div
-                className={clsx(
-                    "whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all",
-                    isActive && "opacity-0"
-                )}
-                style={{ fontSize }}
-            >
-                {value}
-            </div>
-
-            {isActive && (
-                <>
-                    <Textarea
-                        value={value}
-                        onValueChange={setValue}
-                        onEditingEnd={handleEditingEnd}
-                        fontSize={fontSize}
-                        wrapperRef={wrapperRef}
-                    />
-
-                    <div
-                        ref={measureRef}
-                        className="absolute top-0 left-0 invisible pointer-events-none whitespace-pre-wrap w-full h-full wrap-break-word break-all"
-                        style={{ wordWrap: "break-word" }}
-                    />
-                </>
-            )}
+                ref={measureRef}
+                className="absolute top-0 left-0 invisible pointer-events-none whitespace-pre-wrap w-full h-full wrap-break-word break-all"
+                style={{ wordWrap: "break-word" }}
+            />
         </div>
     );
 }
