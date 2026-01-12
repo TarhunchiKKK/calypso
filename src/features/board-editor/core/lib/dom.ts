@@ -8,7 +8,7 @@ import React from "react";
  * @param e - The React mouse event from which to extract the node ID.
  * @returns The node ID if found, otherwise `null`.
  */
-function getNodeId(e: React.MouseEvent) {
+export function getNodeId(e: React.MouseEvent) {
     const nodeId = (e.target as HTMLElement).getAttribute("data-id");
 
     if (nodeId) {

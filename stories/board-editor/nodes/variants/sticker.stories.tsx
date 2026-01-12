@@ -14,7 +14,6 @@ const node = { id: "id", type: "sticker", x: 100, y: 100, width: 200, height: 20
 export const Default: StoryObj<typeof meta> = {
     args: {
         node: node,
-        resizable: false,
         isEditing: false,
         handlers: {}
     },
@@ -24,7 +23,6 @@ export const Default: StoryObj<typeof meta> = {
 export const Selected: StoryObj<typeof meta> = {
     args: {
         node: node,
-        resizable: false,
         isEditing: false,
         handlers: {}
     },
@@ -34,7 +32,6 @@ export const Selected: StoryObj<typeof meta> = {
 export const Resizable: StoryObj<typeof meta> = {
     args: {
         node: node,
-        resizable: true,
         isEditing: false,
         handlers: {}
     },
@@ -44,7 +41,6 @@ export const Resizable: StoryObj<typeof meta> = {
 export const Editing: StoryObj<typeof meta> = {
     args: {
         node: node,
-        resizable: false,
         isEditing: true,
         handlers: {}
     },

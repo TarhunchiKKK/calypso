@@ -1,11 +1,11 @@
 import { StickerNode } from "./type";
 import { StickerComponent } from "./component";
-import { NodeWrapper, Point, Rect } from "@/features/board-editor/core";
+import { NodeWrapper, Point } from "@/features/board-editor/core";
 import React from "react";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
-    public override clone() {
-        return new StickerNodeWrapper({ ...this.node });
+    public override clone(data: Partial<StickerNode> = {}) {
+        return new StickerNodeWrapper({ ...this.node, ...data });
     }
 
     public override rect() {
@@ -23,21 +23,11 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         return this;
     }
 
-    // RECHECK: maybe extract thi method to another class
-    public override resize(rect: Rect) {
-        this.node.x = rect.x;
-        this.node.y = rect.y;
-        this.node.width = rect.width;
-        this.node.height = rect.height;
-        return this;
-    }
-
     public override render(children?: React.ReactNode) {
         return (
             <StickerComponent
                 key={this.node.id}
                 node={this.node}
-                resizable={this.resizable}
                 isEditing={this.isEditing}
                 handlers={this.handlers}
                 children={children}

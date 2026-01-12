@@ -1,5 +1,7 @@
+export type NodeTypes = "sticker";
+
 export type NodeBase = {
     id: string;
 
-    type: string;
+    type: NodeTypes;
 };
