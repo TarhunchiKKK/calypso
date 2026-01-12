@@ -7,6 +7,8 @@ import { ResizableNodeDecorator } from "../../modules/resizing/lib/resizable-nod
 import { WrapperConstructorsMap } from "./constants/wrapper-constructors.map";
 import { ResizeStrategiesMap } from "./constants/resize-strategies.map";
 import { DefaultNodePayloadsMap } from "./constants/default-node-payloads.map";
+import { EditStrategiesMap } from "./constants/edit-strategies.map";
+import { EditableNodeDecorator } from "../../modules/editing";
 
 export class NodesFactory {
     public static wrap(node: NodeBase) {
@@ -26,6 +28,11 @@ export class NodesFactory {
     public static resizable(node: Decoratable, handler?: ResizeHandler) {
         const ResizeStrategy = ResizeStrategiesMap[node.type];
         return new ResizableNodeDecorator(node, new ResizeStrategy(handler));
+    }
+
+    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
+        const strategyCreator = EditStrategiesMap[node.type];
+        return new EditableNodeDecorator(node, strategyCreator(handler));
     }
 
     public static sticker(point: Point) {
