@@ -6,6 +6,7 @@ import { NodeHandlers } from "@/features/board-editor/core";
 type Props = PropsWithChildren<{
     node: StickerNode;
 
+    // CURRENT: this field will be deleted
     isEditing: boolean;
 
     handlers: NodeHandlers;
@@ -19,6 +20,7 @@ export function StickerComponent({ node, isEditing, handlers, children }: Props)
         top: node.y
     };
 
+    // CURRENT: this handler will be deleted
     const handleEditingEnd = (newText: string) => {
         const newNode = { ...node, text: newText };
         handlers.onEditingEnd?.(newNode);

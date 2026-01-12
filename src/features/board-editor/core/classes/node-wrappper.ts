@@ -12,12 +12,12 @@ export type NodeHandlers = {
 
     onMouseUp?: (e: React.MouseEvent) => void;
 
-    // DELETE: this handler should be in decorator/proxy
+    // CURRENT: this handler should be in decorator
     onEditingEnd?: (node: AnyNode) => void;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
-    // DELETE: this field should be in decorator/proxy
+    // CURRENT: this field should be in decorator
     protected isEditing = false;
 
     protected handlers: NodeHandlers = {};
@@ -36,6 +36,7 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this.node;
     }
 
+    // CURRENT: this method should be in decorator
     public setEditing() {
         this.isEditing = true;
         return this;
@@ -48,6 +49,7 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
 
     public abstract clone(data?: Partial<T>): NodeWrapper<T>;
 
+    // REFACTOR: this method should be switched to getter
     public abstract rect(): Rect;
 
     public abstract setRect(rect: Rect): NodeWrapper<T>;

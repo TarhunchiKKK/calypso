@@ -1,10 +1,10 @@
 import { Decoratable, NodeDecorator } from "../../core";
 import { EditNodeStrategy } from "./edit-node.strategy";
 
-export class EditableNodeDecorator<Data> extends NodeDecorator {
+export class EditableNodeDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: EditNodeStrategy<Data>
+        protected readonly strategy: EditNodeStrategy
     ) {
         super(entry);
     }
