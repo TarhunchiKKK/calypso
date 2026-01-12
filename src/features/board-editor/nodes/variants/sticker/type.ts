@@ -1,15 +1,9 @@
-import { NodeBase } from "@/features/board-editor/core";
+import { NodeBase, Rect } from "@/features/board-editor/core";
 
 export type StickerNode = NodeBase & {
     type: "sticker";
 
-    x: number;
-
-    y: number;
-
-    width: number;
-
-    height: number;
+    rect: Rect;
 
     text: string;
 };

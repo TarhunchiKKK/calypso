@@ -6,10 +6,7 @@ const mockNodes: AnyNode[] = [
     {
         id: crypto.randomUUID(),
         type: "sticker",
-        x: 100,
-        y: 100,
-        width: 100,
-        height: 100,
+        rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1"
     }
     // {
