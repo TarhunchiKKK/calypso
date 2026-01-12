@@ -8,8 +8,11 @@ export class NodesFactory {
 
         return new StickerNodeWrapper({
             id: crypto.randomUUID(),
-            ...point,
-            ...payload
+            ...payload,
+            rect: {
+                ...point,
+                ...payload.rect
+            }
         });
     }
 }

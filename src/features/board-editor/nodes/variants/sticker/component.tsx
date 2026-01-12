@@ -12,10 +12,10 @@ type Props = PropsWithChildren<{
 
 export function StickerComponent({ node, handlers, showContent, children }: Props) {
     const styles: CSSProperties = {
-        width: node.width,
-        height: node.height,
-        left: node.x,
-        top: node.y
+        width: node.rect.width,
+        height: node.rect.height,
+        left: node.rect.x,
+        top: node.rect.y
     };
 
     return (

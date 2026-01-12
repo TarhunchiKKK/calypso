@@ -9,25 +9,17 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     }
 
     public override rect() {
-        return {
-            x: this.node.x,
-            y: this.node.y,
-            width: this.node.width,
-            height: this.node.height
-        };
+        return this.node.rect;
     }
 
     public override setRect(rect: Rect) {
-        this.node.x = rect.x;
-        this.node.y = rect.y;
-        this.node.width = rect.width;
-        this.node.height = rect.height;
+        this.node.rect = rect;
         return this;
     }
 
     public override moveTo(point: Point) {
-        this.node.x = point.x;
-        this.node.y = point.y;
+        this.node.rect.x = point.x;
+        this.node.rect.y = point.y;
         return this;
     }
 

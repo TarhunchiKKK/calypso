@@ -10,7 +10,9 @@ const meta = {
 
 export default meta;
 
-export const Default: StoryObj<typeof meta> = {
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
     args: {
         isActive: false,
         onClick: () => {},
@@ -19,7 +21,7 @@ export const Default: StoryObj<typeof meta> = {
     decorators: centered
 };
 
-export const Active: StoryObj<typeof meta> = {
+export const Active: Story = {
     args: {
         isActive: true,
         onClick: () => {},
