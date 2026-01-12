@@ -20,7 +20,8 @@
         "lint:fix": "eslint . --fix",
         "knip": "knip",
         "storybook:dev": "storybook dev -p 6006",
-        "storybook:build": "storybook build"
+        "storybook:build": "storybook build",
+        "clean:ts": "node ./scripts/clean-build-info.cjs"
     },
     "dependencies": {
         "@eslint/js": "^9.39.2",
