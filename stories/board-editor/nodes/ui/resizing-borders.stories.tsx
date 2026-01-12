@@ -24,7 +24,7 @@ export const Default: StoryObj<typeof meta> = {
         main: true,
         cross: true,
         diagonal: true,
-        handleResizeStart: () => {}
+        onResizeStart: () => {}
     },
     decorators: centered,
     render: renderFn
@@ -33,7 +33,7 @@ export const Default: StoryObj<typeof meta> = {
 export const OnlyMain: StoryObj<typeof meta> = {
     args: {
         main: true,
-        handleResizeStart: () => {}
+        onResizeStart: () => {}
     },
     decorators: centered,
     render: renderFn
@@ -42,7 +42,7 @@ export const OnlyMain: StoryObj<typeof meta> = {
 export const OnlyCross: StoryObj<typeof meta> = {
     args: {
         cross: true,
-        handleResizeStart: () => {}
+        onResizeStart: () => {}
     },
     decorators: centered,
     render: renderFn
@@ -51,7 +51,7 @@ export const OnlyCross: StoryObj<typeof meta> = {
 export const OnlyDiagonal: StoryObj<typeof meta> = {
     args: {
         diagonal: true,
-        handleResizeStart: () => {}
+        onResizeStart: () => {}
     },
     decorators: centered,
     render: renderFn

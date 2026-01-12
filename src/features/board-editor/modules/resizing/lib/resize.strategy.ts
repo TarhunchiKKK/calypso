@@ -1,4 +1,4 @@
-import { ResizeDirection } from "../types";
+import { ResizeHandler } from "../types";
 
 export abstract class ResizeStrategy {
     public constructor(
@@ -8,7 +8,7 @@ export abstract class ResizeStrategy {
         */
         protected readonly nodeId: string,
 
-        protected readonly handler: (nodeId: string, direction: ResizeDirection) => void
+        protected readonly handler?: ResizeHandler
     ) {}
 
     public abstract ui(): React.ReactNode;

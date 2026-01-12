@@ -3,11 +3,11 @@ import React from "react";
 
 export class StickerNodeResizeStrategy extends ResizeStrategy {
     public ui() {
-        const resizeHandler = (direction: ResizeDirection, e: React.MouseEvent) => {
+        const onResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
             e.stopPropagation();
-            this.handler(this.nodeId, direction);
+            this.handler?.(this.nodeId, direction);
         };
 
-        return <ResizeBorders main cross diagonal handleResizeStart={resizeHandler} />;
+        return <ResizeBorders main cross diagonal onResizeStart={onResizeStart} />;
     }
 }

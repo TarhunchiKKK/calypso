@@ -11,25 +11,17 @@ export class ResizingNodesMapper extends NodesMapper {
     public map(viewState: ResizingViewState, newSize?: Rect) {
         this.nodes = this.nodes.map(node => {
             if (viewState.nodeId === node.id) {
-                return newSize ? NodesFactory.select(node.clone().resize(newSize)) : NodesFactory.select(node.clone());
+                const clonedNode = node.clone(newSize);
+
+                const selectedNode = NodesFactory.select(clonedNode);
+
+                return NodesFactory.resizable(selectedNode);
             }
 
             return node;
 
             // DELETE: type casting
         }) as NodeWrapper[];
-
-        return this;
-    }
-
-    public unselectCurrent(viewState: ResizingViewState) {
-        this.nodes = this.nodes.map(node => {
-            if (viewState.nodeId === node.id) {
-                return node.clone();
-            }
-
-            return node;
-        });
 
         return this;
     }

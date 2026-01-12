@@ -1,5 +1,5 @@
 import { Decoratable, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
-import { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
 import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
@@ -8,7 +8,7 @@ export class SelectionNodesMapper extends NodesMapper {
     // QUESTION: should selection window appears here ?
     private selectionWindowIds!: Set<string>;
 
-    private resizeHandler!: (nodeId: string, direction: ResizeDirection) => void;
+    private resizeHandler!: ResizeHandler;
 
     private nodeHandlers!: NodeHandlers;
 
@@ -51,14 +51,8 @@ export class SelectionNodesMapper extends NodesMapper {
         );
     }
 
-    private applyResizing(
-        wrappers: NodeWrapper[],
-        nodeId: string,
-        resizeHandler: (nodeId: string, direction: ResizeDirection) => void
-    ) {
-        return wrappers.map(wrapper =>
-            wrapper.id === nodeId ? wrapper.setHandler("onResizeStart", resizeHandler) : wrapper
-        );
+    private applyResizing(wrappers: NodeWrapper[], nodeId: string, handler: ResizeHandler) {
+        return wrappers.map(wrapper => (wrapper.id === nodeId ? NodesFactory.resizable(wrapper, handler) : wrapper));
     }
 
     public override get() {
@@ -69,7 +63,9 @@ export class SelectionNodesMapper extends NodesMapper {
                 wrappers,
                 this.selectedIds.values().next().value as string,
                 this.resizeHandler
-            );
+
+                // DELETE: type casting
+            ) as NodeWrapper[];
         }
 
         return this.applySelection(wrappers, this.selectedIds, this.selectionWindowIds);

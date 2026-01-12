@@ -2,7 +2,7 @@ import { StickerNodeWrapper } from "../variants/sticker/wrapper";
 import { AnyNode } from "./types";
 import { SelectedNodeDecorator } from "../../modules/selection";
 import { Point, Decoratable } from "../../core";
-import { ResizeDirection } from "../../modules/resizing";
+import { ResizeHandler } from "../../modules/resizing";
 import { ResizableNodeDecorator } from "../../modules/resizing/lib/resizable-node.decorator";
 import { WrapperConstructorsMap } from "./constants/wrapper-constructors.map";
 import { ResizeStrategiesMap } from "./constants/resize-strategies.map";
@@ -23,7 +23,7 @@ export class NodesFactory {
         return new SelectedNodeDecorator(node);
     }
 
-    public resizable(node: Decoratable<AnyNode>, handler: (nodeId: string, direction: ResizeDirection) => void) {
+    public static resizable(node: Decoratable<AnyNode>, handler?: ResizeHandler) {
         const ResizeStrategy = ResizeStrategiesMap[node.type];
         return new ResizableNodeDecorator(node, new ResizeStrategy(node.id, handler));
     }
