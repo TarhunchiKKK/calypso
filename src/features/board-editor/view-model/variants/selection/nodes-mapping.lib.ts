@@ -1,4 +1,4 @@
-import { Decoratoratable, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
+import { Decoratable, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 import { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
 
@@ -45,11 +45,7 @@ export class SelectionNodesMapper extends NodesMapper {
         );
     }
 
-    private applySelection(
-        wrappers: NodeWrapper[],
-        selection1: Set<string>,
-        selection2: Set<string>
-    ): Decoratoratable[] {
+    private applySelection(wrappers: NodeWrapper[], selection1: Set<string>, selection2: Set<string>): Decoratable[] {
         return wrappers.map(wrapper =>
             selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodesFactory.select(wrapper) : wrapper
         );

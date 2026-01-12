@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { CSSProperties, PropsWithChildren } from "react";
 import { StickerNode } from "./type";
 import { ResizeDirection, ResizeBorders } from "@/features/board-editor/modules/resizing";
@@ -8,7 +7,7 @@ import { NodeHandlers } from "@/features/board-editor/core";
 type Props = PropsWithChildren<{
     node: StickerNode;
 
-    // REFACTOR: this props should be in apropriate decorator/proxy
+    // REFACTOR: this props should be in appropriate decorator/proxy
     resizable: boolean;
 
     isEditing: boolean;

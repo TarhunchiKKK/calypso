@@ -4,7 +4,7 @@ import { AnyNode } from "../../nodes";
 import { NodeBase } from "../types/node";
 import { Renderable } from "../types/ui";
 import { Point, Rect } from "../lib/geometry";
-import { Decoratoratable } from "../types/decorators";
+import { Decoratable } from "../types/decorators";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;
@@ -20,7 +20,7 @@ export type NodeHandlers = {
     onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratoratable<T> {
+export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratable<T> {
     // DELETE: this field should be in decorator/proxy
     protected resizable = false;
 

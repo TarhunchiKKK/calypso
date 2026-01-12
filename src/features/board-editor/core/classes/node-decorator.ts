@@ -1,10 +1,10 @@
 import React from "react";
-import { Decoratoratable } from "../types/decorators";
+import { Decoratable } from "../types/decorators";
 import { NodeBase } from "../types/node";
 import { Renderable } from "../types/ui";
 
-export abstract class NodeDecorator<T extends NodeBase> implements Renderable, Decoratoratable<T> {
-    public constructor(protected readonly entry: Decoratoratable<T>) {}
+export abstract class NodeDecorator<T extends NodeBase> implements Renderable, Decoratable<T> {
+    public constructor(protected readonly entry: Decoratable<T>) {}
 
     public get id() {
         return this.entry.id;

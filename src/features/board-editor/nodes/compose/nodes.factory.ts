@@ -1,11 +1,21 @@
 import { StickerNodeWrapper } from "../variants/sticker/wrapper";
-import { AnyNode } from "./types";
+import { AnyNode, NodeTypes } from "./types";
 import { SelectedNodeDecorator } from "../../modules/selection";
-import { Point, Decoratoratable } from "../../core";
+import { Point, Decoratable } from "../../core";
+import { StickerNodeResizeStrategy } from "../variants/sticker/lib/resize.strategy";
+import { ResizeDirection, ResizeStrategy } from "../../modules/resizing";
+import { ResizableNodeDecorator } from "../../modules/resizing/lib/resizable-node.decorator";
 
 const WrapperConstructors = {
     sticker: StickerNodeWrapper
 };
+
+const ResizeStrategies: Record<
+    NodeTypes,
+    new (nodeId: string, handler: (nodeId: string, direction: ResizeDirection) => void) => ResizeStrategy
+> = {
+    sticker: StickerNodeResizeStrategy
+} as const;
 
 const DefaultNodePayloads = {
     sticker: {
@@ -27,8 +37,13 @@ export class NodesFactory {
         return new Wrapper(node);
     }
 
-    public static select(node: Decoratoratable<AnyNode>) {
+    public static select(node: Decoratable<AnyNode>) {
         return new SelectedNodeDecorator(node);
+    }
+
+    public resizable(node: Decoratable<AnyNode>, handler: (nodeId: string, direction: ResizeDirection) => void) {
+        const ResizeStrategy = ResizeStrategies[node.type];
+        return new ResizableNodeDecorator(node, new ResizeStrategy(node.id, handler));
     }
 
     public static sticker(point: Point) {
