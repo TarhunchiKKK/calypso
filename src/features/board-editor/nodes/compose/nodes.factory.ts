@@ -1,34 +1,16 @@
 import { StickerNodeWrapper } from "../variants/sticker/wrapper";
-import { AnyNode, NodeTypes } from "./types";
+import { AnyNode } from "./types";
 import { SelectedNodeDecorator } from "../../modules/selection";
 import { Point, Decoratable } from "../../core";
-import { StickerNodeResizeStrategy } from "../variants/sticker/lib/resize.strategy";
-import { ResizeDirection, ResizeStrategy } from "../../modules/resizing";
+import { ResizeDirection } from "../../modules/resizing";
 import { ResizableNodeDecorator } from "../../modules/resizing/lib/resizable-node.decorator";
-
-const WrapperConstructors = {
-    sticker: StickerNodeWrapper
-};
-
-const ResizeStrategies: Record<
-    NodeTypes,
-    new (nodeId: string, handler: (nodeId: string, direction: ResizeDirection) => void) => ResizeStrategy
-> = {
-    sticker: StickerNodeResizeStrategy
-} as const;
-
-const DefaultNodePayloads = {
-    sticker: {
-        type: "sticker" as const,
-        width: 100,
-        height: 100,
-        text: "Hello"
-    }
-};
+import { WrapperConstructorsMap } from "./constants/wrapper-constructors.map";
+import { ResizeStrategiesMap } from "./constants/resize-strategies.map";
+import { DefaultNodePayloadsMap } from "./constants/default-node-payloads.map";
 
 export class NodesFactory {
     public static wrap(node: AnyNode) {
-        const Wrapper = WrapperConstructors[node.type];
+        const Wrapper = WrapperConstructorsMap[node.type];
 
         if (!Wrapper) {
             throw Error("Unknown node type");
@@ -42,12 +24,12 @@ export class NodesFactory {
     }
 
     public resizable(node: Decoratable<AnyNode>, handler: (nodeId: string, direction: ResizeDirection) => void) {
-        const ResizeStrategy = ResizeStrategies[node.type];
+        const ResizeStrategy = ResizeStrategiesMap[node.type];
         return new ResizableNodeDecorator(node, new ResizeStrategy(node.id, handler));
     }
 
     public static sticker(point: Point) {
-        const payload = DefaultNodePayloads["sticker"];
+        const payload = DefaultNodePayloadsMap["sticker"];
 
         return new StickerNodeWrapper({
             id: crypto.randomUUID(),
