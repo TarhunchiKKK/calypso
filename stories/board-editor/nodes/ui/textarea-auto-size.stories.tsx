@@ -9,7 +9,9 @@ const meta = {
 
 export default meta;
 
-const renderFn = (args: StoryObj<typeof meta>["args"]) => {
+type Story = StoryObj<typeof meta>;
+
+const renderFn = (args: Story["args"]) => {
     return (
         <div className="w-72 h-72">
             <TextareaAutoSize {...args} />
@@ -17,7 +19,7 @@ const renderFn = (args: StoryObj<typeof meta>["args"]) => {
     );
 };
 
-export const Default: StoryObj<typeof meta> = {
+export const Default: Story = {
     args: {
         value: "Value",
         onEditingEnd: () => {}
@@ -26,7 +28,7 @@ export const Default: StoryObj<typeof meta> = {
     render: renderFn
 };
 
-export const Active: StoryObj<typeof meta> = {
+export const Active: Story = {
     args: {
         value: "Value",
         onEditingEnd: () => {}

@@ -11,7 +11,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const node = { id: "id", type: "sticker", x: 100, y: 100, width: 200, height: 200, text: "Hello" } as const;
+const node = {
+    id: "id",
+    type: "sticker",
+    rect: {
+        x: 100,
+        y: 100,
+        width: 200,
+        height: 200
+    },
+    text: "Hello"
+} as const;
 
 export const Default: Story = {
     args: {

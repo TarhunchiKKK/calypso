@@ -9,7 +9,9 @@ const meta = {
 
 export default meta;
 
-const renderFn = (args: StoryObj<typeof meta>["args"]) => {
+type Story = StoryObj<typeof meta>;
+
+const renderFn = (args: Story["args"]) => {
     return (
         <div className="relative w-32 h-32">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Content</div>
@@ -19,7 +21,7 @@ const renderFn = (args: StoryObj<typeof meta>["args"]) => {
     );
 };
 
-export const Default: StoryObj<typeof meta> = {
+export const Default: Story = {
     args: {
         main: true,
         cross: true,
@@ -30,7 +32,7 @@ export const Default: StoryObj<typeof meta> = {
     render: renderFn
 };
 
-export const OnlyMain: StoryObj<typeof meta> = {
+export const OnlyMain: Story = {
     args: {
         main: true,
         onResizeStart: () => {}
@@ -39,7 +41,7 @@ export const OnlyMain: StoryObj<typeof meta> = {
     render: renderFn
 };
 
-export const OnlyCross: StoryObj<typeof meta> = {
+export const OnlyCross: Story = {
     args: {
         cross: true,
         onResizeStart: () => {}
@@ -48,7 +50,7 @@ export const OnlyCross: StoryObj<typeof meta> = {
     render: renderFn
 };
 
-export const OnlyDiagonal: StoryObj<typeof meta> = {
+export const OnlyDiagonal: Story = {
     args: {
         diagonal: true,
         onResizeStart: () => {}
