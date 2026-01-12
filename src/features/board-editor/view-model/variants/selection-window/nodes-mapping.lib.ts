@@ -1,5 +1,5 @@
-import { NodesMapper } from "@/features/board-editor/core";
-import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
+import { NodeBase, NodesMapper } from "@/features/board-editor/core";
+import { NodesFactory } from "@/features/board-editor/nodes";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
@@ -16,7 +16,7 @@ export class SelectionWindowNodesMapper extends NodesMapper {
         return this;
     }
 
-    public static from(nodes: AnyNode[]) {
+    public static from(nodes: NodeBase[]) {
         return new SelectionWindowNodesMapper(nodes);
     }
 

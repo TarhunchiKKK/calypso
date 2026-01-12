@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { AnyNode } from "../compose/types";
 import { useNodesService } from "./use-nodes-service.hook";
+import { NodeBase } from "../../core";
 
-export function useNodesModel(inputNodes: AnyNode[]) {
-    const [nodes, setNodes] = useState<AnyNode[]>(inputNodes);
+export function useNodesModel(inputNodes: NodeBase[]) {
+    const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
 
     const nodesService = useNodesService(setNodes);
 

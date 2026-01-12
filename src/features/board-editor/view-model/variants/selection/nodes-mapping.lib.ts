@@ -1,6 +1,6 @@
-import { Decoratable, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
+import { Decoratable, NodeBase, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
 import { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
-import { AnyNode, NodesFactory } from "@/features/board-editor/nodes";
+import { NodesFactory } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
@@ -32,7 +32,7 @@ export class SelectionNodesMapper extends NodesMapper {
         return this;
     }
 
-    public static from(nodes: AnyNode[]) {
+    public static from(nodes: NodeBase[]) {
         return new SelectionNodesMapper(nodes);
     }
 

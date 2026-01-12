@@ -1,8 +1,7 @@
 import React from "react";
 import { NodeDecorator } from "../../core";
-import { AnyNode } from "../../nodes";
 
-export class SelectedNodeDecorator extends NodeDecorator<AnyNode> {
+export class SelectedNodeDecorator extends NodeDecorator {
     public override render(children?: React.ReactNode) {
         return this.entry.render(
             <>

@@ -9,40 +9,23 @@ const meta = {
 
 export default meta;
 
+type Story = StoryObj<typeof meta>;
+
 const node = { id: "id", type: "sticker", x: 100, y: 100, width: 200, height: 200, text: "Hello" } as const;
 
-export const Default: StoryObj<typeof meta> = {
+export const Default: Story = {
     args: {
         node: node,
-        isEditing: false,
+        showContent: true,
         handlers: {}
     },
     decorators: centered
 };
 
-export const Selected: StoryObj<typeof meta> = {
+export const WithNoContent: Story = {
     args: {
         node: node,
-        isEditing: false,
+        showContent: false,
         handlers: {}
-    },
-    decorators: centered
-};
-
-export const Resizable: StoryObj<typeof meta> = {
-    args: {
-        node: node,
-        isEditing: false,
-        handlers: {}
-    },
-    decorators: centered
-};
-
-export const Editing: StoryObj<typeof meta> = {
-    args: {
-        node: node,
-        isEditing: true,
-        handlers: {}
-    },
-    decorators: centered
+    }
 };

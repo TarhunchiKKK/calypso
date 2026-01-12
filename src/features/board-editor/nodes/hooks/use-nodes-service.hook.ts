@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
-import { AnyNode } from "../compose/types";
+import { NodeBase } from "../../core";
 
-export function useNodesService(setNodes: Dispatch<SetStateAction<AnyNode[]>>) {
-    const createOne = (node: AnyNode) => {
+export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
+    const createOne = (node: NodeBase) => {
         setNodes(nodes => [...nodes, node]);
     };
 
-    const updateOne = (newNode: AnyNode) => {
+    const updateOne = (newNode: NodeBase) => {
         setNodes(nodes => nodes.map(node => (node.id === newNode.id ? newNode : node)));
     };
 

@@ -1,31 +1,32 @@
 import { StickerNodeWrapper } from "../variants/sticker/wrapper";
-import { AnyNode } from "./types";
 import { SelectedNodeDecorator } from "../../modules/selection";
-import { Point, Decoratable } from "../../core";
+import { Point, Decoratable, NodeBase } from "../../core";
 import { ResizeHandler } from "../../modules/resizing";
 import { ResizableNodeDecorator } from "../../modules/resizing/lib/resizable-node.decorator";
 import { WrapperConstructorsMap } from "./constants/wrapper-constructors.map";
 import { ResizeStrategiesMap } from "./constants/resize-strategies.map";
 import { DefaultNodePayloadsMap } from "./constants/default-node-payloads.map";
+import { EditStrategiesMap } from "./constants/edit-strategies.map";
+import { EditableNodeDecorator } from "../../modules/editing";
 
 export class NodesFactory {
-    public static wrap(node: AnyNode) {
-        const Wrapper = WrapperConstructorsMap[node.type];
-
-        if (!Wrapper) {
-            throw Error("Unknown node type");
-        }
-
-        return new Wrapper(node);
+    public static wrap(node: NodeBase) {
+        const creator = WrapperConstructorsMap[node.type];
+        return creator(node);
     }
 
-    public static select(node: Decoratable<AnyNode>) {
+    public static select(node: Decoratable) {
         return new SelectedNodeDecorator(node);
     }
 
-    public static resizable(node: Decoratable<AnyNode>, handler?: ResizeHandler) {
-        const ResizeStrategy = ResizeStrategiesMap[node.type];
-        return new ResizableNodeDecorator(node, new ResizeStrategy(handler));
+    public static resizable(node: Decoratable, handler?: ResizeHandler) {
+        const strategyCreator = ResizeStrategiesMap[node.type];
+        return new ResizableNodeDecorator(node, strategyCreator(handler));
+    }
+
+    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
+        const strategyCreator = EditStrategiesMap[node.type];
+        return new EditableNodeDecorator(node, strategyCreator(handler));
     }
 
     public static sticker(point: Point) {

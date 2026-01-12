@@ -1,5 +1,6 @@
 import React from "react";
 import { NodeBase, NodeTypes } from "./node";
+import { NodeWrapper } from "../classes/node-wrappper";
 
 export type Decoratable<T extends NodeBase = NodeBase> = {
     get id(): string;
@@ -7,6 +8,8 @@ export type Decoratable<T extends NodeBase = NodeBase> = {
     get type(): NodeTypes;
 
     get data(): T;
+
+    get wrapper(): NodeWrapper<T>;
 
     render(children?: React.ReactNode): React.ReactNode;
 };

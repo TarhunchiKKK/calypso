@@ -1,9 +1,8 @@
 import { MouseEventsMediator } from "@/shared/lib/react";
-import { AnyNode } from "@/features/board-editor/nodes";
-import { NodesMapper } from "@/features/board-editor/core";
+import { NodeBase, NodesMapper } from "@/features/board-editor/core";
 
 export class IdleNodesMapper extends NodesMapper {
-    public static from(nodes: AnyNode[]) {
+    public static from(nodes: NodeBase[]) {
         return new IdleNodesMapper(nodes);
     }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { AnyNode } from "../../nodes";
 import { NodeBase } from "../types/node";
 import { Renderable } from "../types/ui";
 import { Point, Rect } from "../lib/geometry";
@@ -11,14 +10,10 @@ export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: (e: React.MouseEvent) => void;
-
-    // DELETE: this handler should be in decorator/proxy
-    onEditingEnd?: (node: AnyNode) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Renderable, Decoratable<T> {
-    // DELETE: this field should be in decorator/proxy
-    protected isEditing = false;
+export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
+    protected showContent = true;
 
     protected handlers: NodeHandlers = {};
 
@@ -36,11 +31,13 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this.node;
     }
 
-    public abstract moveTo(point: Point): NodeWrapper<T>;
-
-    public setEditing() {
-        this.isEditing = true;
+    public get wrapper() {
         return this;
+    }
+
+    public hideContent() {
+        this.showContent = false;
+        return true;
     }
 
     public setHandler<Key extends keyof NodeHandlers>(key: Key, handler: NodeHandlers[Key] | undefined) {
@@ -48,9 +45,14 @@ export abstract class NodeWrapper<T extends NodeBase = AnyNode> implements Rende
         return this;
     }
 
+    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
+
+    // REFACTOR: this method should be switched to getter
     public abstract rect(): Rect;
 
-    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
+    public abstract setRect(rect: Rect): NodeWrapper<T>;
+
+    public abstract moveTo(point: Point): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

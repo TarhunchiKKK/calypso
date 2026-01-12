@@ -19,7 +19,6 @@ const renderFn = (args: StoryObj<typeof meta>["args"]) => {
 
 export const Default: StoryObj<typeof meta> = {
     args: {
-        isActive: false,
         value: "Value",
         onEditingEnd: () => {}
     },
@@ -29,7 +28,6 @@ export const Default: StoryObj<typeof meta> = {
 
 export const Active: StoryObj<typeof meta> = {
     args: {
-        isActive: true,
         value: "Value",
         onEditingEnd: () => {}
     },

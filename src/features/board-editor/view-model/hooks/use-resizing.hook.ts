@@ -35,7 +35,9 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
     const onMouseUp = (viewState: ResizingViewState) => {
         const node = getResizingNode(viewState.nodeId);
 
-        nodesModel.service.updateOne(NodesFactory.wrap(node).clone(newSize).data);
+        if (newSize) {
+            nodesModel.service.updateOne(NodesFactory.wrap(node).setRect(newSize).data);
+        }
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));
 

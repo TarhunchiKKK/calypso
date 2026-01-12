@@ -1,7 +1,7 @@
-import { NodeTypes, NodeWrapper } from "@/features/board-editor/core";
+import { NodeBase, NodeTypes, NodeWrapper } from "@/features/board-editor/core";
 import { StickerNodeWrapper } from "../../variants/sticker/wrapper";
-import { AnyNode } from "../types";
+import { StickerNode } from "../../variants/sticker/type";
 
-export const WrapperConstructorsMap: Record<NodeTypes, new (node: AnyNode) => NodeWrapper> = {
-    sticker: StickerNodeWrapper
+export const WrapperConstructorsMap: Record<NodeTypes, (node: NodeBase) => NodeWrapper> = {
+    sticker: node => new StickerNodeWrapper(node as StickerNode)
 };
