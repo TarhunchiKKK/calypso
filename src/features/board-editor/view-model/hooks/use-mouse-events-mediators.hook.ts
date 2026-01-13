@@ -1,5 +1,6 @@
 import { MouseEventsMediator } from "@/shared/lib/react";
-import React, { useEffect, useMemo } from "react";
+import type React from "react";
+import { useEffect, useMemo } from "react";
 
 const nodeMouseEventOptions = {
     mouseDownDelay: 700,

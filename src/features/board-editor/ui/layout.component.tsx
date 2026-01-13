@@ -1,8 +1,9 @@
-import { HTMLAttributes, PropsWithChildren, useEffect, useRef } from "react";
+import { type HTMLAttributes, type PropsWithChildren, useEffect, useRef } from "react";
 
 function useLayoutFocus() {
     const layoutRef = useRef<HTMLDivElement>(null);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: If extra dependency become removed - this not work as expected
     useEffect(() => {
         if (layoutRef.current) {
             layoutRef.current.focus();

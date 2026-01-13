@@ -1,20 +1,20 @@
 "use client";
 
+import { MousePointer2, StickerIcon } from "lucide-react";
+import { useWindowEvents } from "../../shared/lib/window";
+import type { NodeBase } from "./core";
+import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
+import { SelectionWindow } from "./modules/selection";
+import { useNodesModel } from "./nodes";
+import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { Canvas } from "./ui/canvas.component";
 import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
-import { ActionButton, ActionsBar } from "./ui/action-bar.component";
-import { MousePointer2, StickerIcon } from "lucide-react";
-import { AnyNode } from "./nodes/compose/types";
-import { useWindowEvents } from "../../shared/lib/window";
-import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
-import { useNodesModel } from "./nodes";
-import { SelectionWindow } from "./modules/selection";
 
 type Props = {
-    nodes: AnyNode[];
+    nodes: NodeBase[];
 };
 
 export function BoardEditor({ nodes }: Props) {

@@ -1,6 +1,6 @@
-import { NodeBase, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
-import { ResizingViewState } from "./view-state";
-import { Rect } from "@/features/board-editor/core";
+import { type NodeBase, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
+import type { ResizingViewState } from "./view-state";
+import type { Rect } from "@/features/board-editor/core";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 
 export class ResizingNodesMapper extends NodesMapper {

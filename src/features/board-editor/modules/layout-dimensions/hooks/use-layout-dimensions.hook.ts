@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import type React from "react";
+import { useRef, useState } from "react";
 import { applyLayoutDimensions } from "../lib/geometry.lib";
-import { Geometry, Offset, Rect, Point } from "@/features/board-editor/core";
+import { Geometry, type Offset, type Rect, type Point } from "@/features/board-editor/core";
 
 const defaultLayoutOffset: Offset = {
     dx: 0,

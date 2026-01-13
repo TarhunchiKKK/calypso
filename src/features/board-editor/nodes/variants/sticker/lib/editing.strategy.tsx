@@ -1,5 +1,5 @@
 import { EditNodeStrategy } from "@/features/board-editor/modules/editing";
-import { StickerNode } from "../type";
+import type { StickerNode } from "../type";
 import { TextareaAutoSize } from "@/shared/ui";
 
 export class EditStickerNodeStrategy extends EditNodeStrategy {

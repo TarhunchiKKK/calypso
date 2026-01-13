@@ -1,5 +1,5 @@
-import { Point } from "@/features/board-editor/core";
-import { DraggingViewState } from "./view-state";
+import type { Point } from "@/features/board-editor/core";
+import type { DraggingViewState } from "./view-state";
 
 type Params = {
     startPoint: Point;

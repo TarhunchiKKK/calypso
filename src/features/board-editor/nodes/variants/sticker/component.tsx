@@ -1,6 +1,6 @@
-import { CSSProperties, PropsWithChildren } from "react";
-import { StickerNode } from "./type";
-import { NodeHandlers } from "@/features/board-editor/core";
+import type { CSSProperties, PropsWithChildren } from "react";
+import type { StickerNode } from "./type";
+import type { NodeHandlers } from "@/features/board-editor/core";
 
 type Props = PropsWithChildren<{
     node: StickerNode;

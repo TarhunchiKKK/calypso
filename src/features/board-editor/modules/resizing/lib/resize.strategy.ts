@@ -1,5 +1,5 @@
-import { NodeWrapper, Rect } from "@/features/board-editor/core";
-import { ResizeHandler } from "../types";
+import type { NodeWrapper, Rect } from "@/features/board-editor/core";
+import type { ResizeHandler } from "../types";
 
 export abstract class ResizeStrategy {
     public constructor(protected readonly handler?: ResizeHandler) {}

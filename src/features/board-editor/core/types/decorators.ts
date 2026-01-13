@@ -1,6 +1,6 @@
-import React from "react";
-import { NodeBase, NodeTypes } from "./node";
-import { NodeWrapper } from "../classes/node-wrappper";
+import type React from "react";
+import type { NodeWrapper } from "../classes/node-wrapper";
+import type { NodeBase, NodeTypes } from "./node";
 
 export type Decoratable<T extends NodeBase = NodeBase> = {
     get id(): string;

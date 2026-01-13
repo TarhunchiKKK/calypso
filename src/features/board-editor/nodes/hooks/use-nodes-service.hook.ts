@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import { NodeBase } from "../../core";
+import type { Dispatch, SetStateAction } from "react";
+import type { NodeBase } from "../../core";
 
 export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
     const createOne = (node: NodeBase) => {
@@ -24,5 +24,3 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
 
     return { createOne, updateOne, replaceAll: setNodes, removeOne, removeMany, removeAll };
 }
-
-export type NodesService = ReturnType<typeof useNodesService>;

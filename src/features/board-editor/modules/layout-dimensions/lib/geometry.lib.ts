@@ -1,4 +1,4 @@
-import { Point, Rect, Offset } from "@/features/board-editor/core";
+import type { Point, Rect, Offset } from "@/features/board-editor/core";
 
 export function applyLayoutDimensions(point: Point, canvasRect: Rect | undefined, offset: Offset, zoom: number) {
     if (!canvasRect) {

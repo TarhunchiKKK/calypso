@@ -73,7 +73,7 @@
       <tr>
       <td>Code style✨</td>
       <td>
-        <a href="https://eslint.org/">ESLint</a>, <a href="https://prettier.io/">Prettier</a>, <a href="https://knip.dev/">Knip</a>
+        <a href="https://biomejs.dev/">BiomeJS</a> 
       </td>
     </tr>
       <tr>
@@ -141,7 +141,7 @@ In browser open the https://localhost:3000 to access the app.
 
 - Stickers
 - Arrows
-- Simple text
+- Text
 - Formattable notes
 - Shapes (circles, rectangles, etc.)
 - Media (images and videos)
@@ -163,6 +163,5 @@ In browser open the https://localhost:3000 to access the app.
 ### Other features
 
 - Dark mode
-- Localization
 - Offline mode
 - OAuth 2.0 Providers ([Google](https://www.google.com/), [Microsoft](https://www.microsoft.com/), etc...)

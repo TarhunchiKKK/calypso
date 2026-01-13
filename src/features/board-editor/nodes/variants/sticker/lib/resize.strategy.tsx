@@ -1,7 +1,7 @@
-import { getNodeId, Rect } from "@/features/board-editor/core";
-import { ResizeBorders, ResizeDirection, ResizeStrategy } from "@/features/board-editor/modules/resizing";
-import React from "react";
-import { StickerNodeWrapper } from "../wrapper";
+import { getNodeId, type Rect } from "@/features/board-editor/core";
+import { ResizeBorders, type ResizeDirection, ResizeStrategy } from "@/features/board-editor/modules/resizing";
+import type React from "react";
+import type { StickerNodeWrapper } from "../wrapper";
 
 export class StickerNodeResizeStrategy extends ResizeStrategy {
     public override updateNode(wrapper: StickerNodeWrapper, size: Rect): void {

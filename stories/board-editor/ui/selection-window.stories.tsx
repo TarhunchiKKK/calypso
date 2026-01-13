@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { SelectionWindow } from "@/features/board-editor/modules/selection";
-import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
     title: "Board Editor/ui/Selection Window",

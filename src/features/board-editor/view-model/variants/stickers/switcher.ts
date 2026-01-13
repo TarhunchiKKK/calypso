@@ -1,4 +1,4 @@
-import { StickersViewState } from "./view-state";
+import type { StickersViewState } from "./view-state";
 
 export function switchToStickers(): StickersViewState {
     return {

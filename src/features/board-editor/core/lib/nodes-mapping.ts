@@ -1,4 +1,4 @@
-import { NodeBase, NodeWrapper, Renderable } from "..";
+import type { NodeBase, NodeWrapper, Renderable } from "..";
 import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
 
 export class NodesMapper {

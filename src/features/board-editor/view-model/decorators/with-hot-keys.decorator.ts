@@ -1,4 +1,4 @@
-import { ViewModel, ViewModelParams, ViewState } from "../types";
+import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
 import { switchToStickers } from "../variants/stickers/switcher";

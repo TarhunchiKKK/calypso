@@ -1,5 +1,5 @@
-import React from "react";
-import { ResizeDirection } from "./types";
+import type React from "react";
+import type { ResizeDirection } from "./types";
 
 type Props = {
     main?: boolean;

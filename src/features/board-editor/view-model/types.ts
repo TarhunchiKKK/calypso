@@ -1,14 +1,14 @@
-import React from "react";
-import { NodesModel } from "../nodes/hooks/use-nodes-model.hook";
-import { IdleViewState } from "./variants/idle/view-state";
-import { DraggingViewState } from "./variants/dragging/view-state";
-import { ResizingViewState } from "./variants/resizing/view-state";
-import { SelectionWindowViewState } from "./variants/selection-window/view-state";
-import { SelectionViewState } from "./variants/selection/view-state";
-import { StickersViewState } from "./variants/stickers/view-state";
-import { EditingViewState } from "./variants/editing/view-state";
-import { LayoutDimensionsModel } from "../modules/layout-dimensions";
-import { Rect, Renderable } from "../core";
+import type React from "react";
+import type { Rect, Renderable } from "../core";
+import type { LayoutDimensionsModel } from "../modules/layout-dimensions";
+import type { NodesModel } from "../nodes";
+import type { DraggingViewState } from "./variants/dragging/view-state";
+import type { EditingViewState } from "./variants/editing/view-state";
+import type { IdleViewState } from "./variants/idle/view-state";
+import type { ResizingViewState } from "./variants/resizing/view-state";
+import type { SelectionViewState } from "./variants/selection/view-state";
+import type { SelectionWindowViewState } from "./variants/selection-window/view-state";
+import type { StickersViewState } from "./variants/stickers/view-state";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.

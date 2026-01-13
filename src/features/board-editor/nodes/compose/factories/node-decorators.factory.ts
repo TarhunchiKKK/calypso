@@ -1,11 +1,11 @@
-import { SelectedNodeDecorator } from "../../../modules/selection";
-import { Decoratable, NodeBase, Rect } from "../../../core";
-import { ResizeHandler } from "../../../modules/resizing";
-import { ResizableNodeDecorator } from "../../../modules/resizing/lib/resizable-node.decorator";
-import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
-import { ResizeStrategiesMap } from "../constants/resize-strategies.map";
-import { EditStrategiesMap } from "../constants/edit-strategies.map";
+import type { Decoratable, NodeBase, Rect } from "../../../core";
 import { EditableNodeDecorator } from "../../../modules/editing";
+import type { ResizeHandler } from "../../../modules/resizing";
+import { ResizableNodeDecorator } from "../../../modules/resizing/lib/resizable-node.decorator";
+import { SelectedNodeDecorator } from "../../../modules/selection";
+import { EditStrategiesMap } from "../constants/edit-strategies.map";
+import { ResizeStrategiesMap } from "../constants/resize-strategies.map";
+import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
 
 export class NodeDecoratorsFactory {
     public static wrap(node: NodeBase) {

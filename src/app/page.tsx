@@ -1,8 +1,8 @@
 "use client";
 
-import { ROUTES } from "@/shared/model/routes";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
+import { ROUTES } from "@/shared/model/routes";
 
 export default function Home() {
     const router = useRouter();
@@ -11,5 +11,5 @@ export default function Home() {
         router.push(ROUTES.BOARDS.EDITOR);
     }, [router]);
 
-    return <></>;
+    return <div>Home</div>;
 }

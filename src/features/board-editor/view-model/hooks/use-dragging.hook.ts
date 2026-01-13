@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { ViewModelParams } from "../types";
+import type React from "react";
+import { useState } from "react";
+import type { ViewModelParams } from "../types";
 import { switchToDragging } from "../variants/dragging/switcher";
-import { DraggingViewState } from "../variants/dragging/view-state";
+import type { DraggingViewState } from "../variants/dragging/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { DraggingNodesMapper } from "../variants/dragging/nodes-mapping.lib";
-import { Offset, Geometry } from "../../core";
+import { type Offset, Geometry } from "../../core";
 
 export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();

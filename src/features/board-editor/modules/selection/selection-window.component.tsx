@@ -1,4 +1,4 @@
-import { Rect } from "@/features/board-editor/core";
+import type { Rect } from "@/features/board-editor/core";
 
 type Props = Rect;
 

@@ -1,5 +1,5 @@
 import { TextareaAutoSize } from "@/shared/ui/textarea-auto-size.component";
-import { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "../../../common/center";
 
 const meta = {

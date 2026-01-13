@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 type WindowEvents = {
     onMouseMove?: (e: MouseEvent) => void;
@@ -22,6 +22,7 @@ export function useWindowEvents(events: WindowEvents) {
         eventsRef.current = events;
     }, [events]);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Else this will notwork like expected
     useEffect(() => {
         const onMouseMove = (e: MouseEvent) => {
             eventsRef.current?.onMouseMove?.(e);

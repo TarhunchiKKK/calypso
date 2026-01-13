@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Dots } from "@/features/board-editor/ui/dots.component";
-import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
     title: "Board Editor/ui/Dots",
