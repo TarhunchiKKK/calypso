@@ -1,4 +1,4 @@
-import { IdleViewState } from "./view-state";
+import type { IdleViewState } from "./view-state";
 
 export function switchToIdle(): IdleViewState {
     return {

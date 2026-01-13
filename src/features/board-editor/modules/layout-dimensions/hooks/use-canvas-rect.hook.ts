@@ -1,5 +1,5 @@
-import { Rect } from "@/features/board-editor/core";
-import { RefCallback, useCallback, useState } from "react";
+import type { Rect } from "@/features/board-editor/core";
+import { type RefCallback, useCallback, useState } from "react";
 
 export function useCanvasRect() {
     const [rect, setRect] = useState<Rect>();

@@ -1,4 +1,4 @@
-import { Offset } from "../core";
+import type { Offset } from "../core";
 import { createLayoutDimensionsStyles } from "../modules/layout-dimensions";
 
 type Props = {

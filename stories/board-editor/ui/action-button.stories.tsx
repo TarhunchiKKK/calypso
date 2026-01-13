@@ -1,5 +1,5 @@
 import { ActionButton } from "@/features/board-editor/ui/action-bar.component";
-import { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { StickerIcon } from "lucide-react";
 import { centered } from "../../common/center";
 

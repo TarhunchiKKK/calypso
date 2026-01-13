@@ -1,4 +1,4 @@
-import { NodeBase, NodesMapper } from "@/features/board-editor/core";
+import { type NodeBase, NodesMapper } from "@/features/board-editor/core";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 
 export class SelectionWindowNodesMapper extends NodesMapper {

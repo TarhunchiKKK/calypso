@@ -1,6 +1,6 @@
-import { LayoutDimensionsModel, applyLayoutDimensions } from "../../../modules/layout-dimensions";
-import { ResizeDirection, applyResizing } from "../../../modules/resizing";
-import { Point, Rect, Offset } from "./types";
+import { applyLayoutDimensions, type LayoutDimensionsModel } from "../../../modules/layout-dimensions";
+import { applyResizing, type ResizeDirection } from "../../../modules/resizing";
+import type { Offset, Point, Rect } from "./types";
 
 /**
  * A utility class that provides a collection of static methods for geometric calculations.
@@ -19,7 +19,7 @@ export class Geometry {
      * @returns The distance between the two points.
      */
     public static pointsDistance(a: Point, b: Point): number {
-        return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+        return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2);
     }
 
     /**

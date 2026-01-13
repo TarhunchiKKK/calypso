@@ -1,14 +1,14 @@
-import { OmitFields } from "@/shared/lib/typescript";
+import type { OmitFields } from "@/shared/lib/typescript";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
-import { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModel, ViewModelParams } from "../../types";
 import { useDragging } from "../../hooks/use-dragging.hook";
 import { useResizing } from "../../hooks/use-resizing.hook";
-import { SelectionViewState } from "./view-state";
+import type { SelectionViewState } from "./view-state";
 import { switchToIdle } from "../idle/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
 import { SelectionNodesMapper } from "./nodes-mapping.lib";
-import { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { selectNodes } from "@/features/board-editor/modules/selection";
 import { withNodeId } from "@/features/board-editor/core";
 

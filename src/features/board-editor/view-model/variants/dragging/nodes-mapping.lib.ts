@@ -1,6 +1,6 @@
-import { DraggingViewState } from "./view-state";
+import type { DraggingViewState } from "./view-state";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
-import { Geometry, NodeBase, NodesMapper, NodeWrapper, Offset } from "@/features/board-editor/core";
+import { Geometry, type NodeBase, NodesMapper, type NodeWrapper, type Offset } from "@/features/board-editor/core";
 
 export class DraggingNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {

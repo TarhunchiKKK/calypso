@@ -1,7 +1,7 @@
-import { EditingViewState } from "./view-state";
-import React from "react";
+import type React from "react";
+import { type NodeBase, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
-import { NodeBase, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
+import type { EditingViewState } from "./view-state";
 
 export class EditingNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {
@@ -14,7 +14,7 @@ export class EditingNodesMapper extends NodesMapper {
         clickHandler: (e: React.MouseEvent) => void
     ) {
         this.nodes = this.nodes.map(node => {
-            if ((viewState.selectedNodeId = node.id)) {
+            if (viewState.selectedNodeId === node.id) {
                 return NodeDecoratorsFactory.editable(NodeDecoratorsFactory.select(node.clone()), endEditingHandler);
             }
 

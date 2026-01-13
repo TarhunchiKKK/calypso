@@ -1,5 +1,5 @@
-import { Decoratable, NodeBase, NodeHandlers, NodesMapper, NodeWrapper } from "@/features/board-editor/core";
-import { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
+import { type Decoratable, type NodeBase, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
+import type { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {

@@ -1,4 +1,4 @@
-import { SelectionViewState } from "./view-state";
+import type { SelectionViewState } from "./view-state";
 
 type Params = {
     selectedIds?: Set<string>;

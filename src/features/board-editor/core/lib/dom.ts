@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 /**
  * Extracts a node's ID from a mouse event by looking for a `data-id` attribute.

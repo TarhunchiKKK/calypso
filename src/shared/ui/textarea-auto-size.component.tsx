@@ -1,4 +1,4 @@
-import React, { useRef, useState, RefObject, useEffect, useLayoutEffect, useCallback } from "react";
+import React, { type RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const recalculateFontSize = (
     value: string,
@@ -58,7 +58,7 @@ function Wrapper({ value: initialValue, onEditingEnd }: Props) {
 
     useLayoutEffect(() => {
         measureAndFit();
-    }, [value, measureAndFit]);
+    }, [measureAndFit]);
 
     useEffect(() => {
         if (!wrapperRef.current) {

@@ -1,5 +1,5 @@
-import { ResizeDirection } from "@/features/board-editor/modules/resizing";
-import { ResizingViewState } from "./view-state";
+import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import type { ResizingViewState } from "./view-state";
 
 type Params = {
     nodeId: string;

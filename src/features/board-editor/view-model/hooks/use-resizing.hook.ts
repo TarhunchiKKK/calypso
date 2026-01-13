@@ -1,11 +1,11 @@
-import { ViewModelParams } from "../types";
+import type { ViewModelParams } from "../types";
 import { switchToResizing } from "../variants/resizing/switcher";
-import { ResizingViewState } from "../variants/resizing/view-state";
+import type { ResizingViewState } from "../variants/resizing/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
-import { ResizeDirection } from "../../modules/resizing";
+import type { ResizeDirection } from "../../modules/resizing";
 import { NodeDecoratorsFactory } from "../../nodes";
-import { Geometry, Rect } from "../../core";
+import { Geometry, type Rect } from "../../core";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();

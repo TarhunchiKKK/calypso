@@ -1,5 +1,5 @@
-import { Decoratable, NodeBase, NodeDecorator } from "../../core";
-import { EditNodeStrategy } from "./edit-node.strategy";
+import { type Decoratable, type NodeBase, NodeDecorator } from "../../core";
+import type { EditNodeStrategy } from "./edit-node.strategy";
 
 export class EditableNodeDecorator<T extends NodeBase = NodeBase> extends NodeDecorator<T> {
     public constructor(

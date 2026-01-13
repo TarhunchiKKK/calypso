@@ -1,5 +1,5 @@
-import React from "react";
-import { NodeBase } from "../../core";
+import type React from "react";
+import type { NodeBase } from "../../core";
 
 export abstract class EditNodeStrategy {
     public constructor(protected readonly handler: (node: NodeBase) => void) {}

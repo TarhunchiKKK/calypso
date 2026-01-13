@@ -1,7 +1,7 @@
-import React from "react";
-import { Decoratable } from "../types/decorators";
-import { Renderable } from "../types/ui";
-import { NodeBase } from "../types/node";
+import type React from "react";
+import type { Decoratable } from "../types/decorators";
+import type { Renderable } from "../types/ui";
+import type { NodeBase } from "../types/node";
 
 export abstract class NodeDecorator<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     public constructor(protected readonly entry: Decoratable<T>) {}

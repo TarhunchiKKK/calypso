@@ -1,4 +1,4 @@
-import { EditingViewState } from "./view-state";
+import type { EditingViewState } from "./view-state";
 
 type Params = {
     selectedNodeId: string;

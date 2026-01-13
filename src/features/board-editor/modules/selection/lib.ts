@@ -1,4 +1,4 @@
-import { NodesSelectionMode } from "./types";
+import type { NodesSelectionMode } from "./types";
 
 export function selectNodes(nodeIds: string[], mode: NodesSelectionMode, currentSelection: Set<string>): Set<string> {
     switch (mode) {
@@ -7,7 +7,7 @@ export function selectNodes(nodeIds: string[], mode: NodesSelectionMode, current
         }
         case "add": {
             const newSelection = new Set(currentSelection);
-            nodeIds.forEach(id => newSelection.add(id));
+            nodeIds.forEach(id => void newSelection.add(id));
             return newSelection;
         }
         case "toggle": {

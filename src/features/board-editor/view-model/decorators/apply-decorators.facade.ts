@@ -1,4 +1,4 @@
-import { ViewModel, ViewModelParams, ViewState } from "../types";
+import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { withActions } from "./with-actions.decorator";
 import { withHotKeys } from "./with-hot-keys.decorator";
 import { withLayoutDimensions } from "./with-layout-dimensions.decorator";

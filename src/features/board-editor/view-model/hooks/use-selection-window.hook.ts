@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { ViewModelParams } from "../types";
+import type React from "react";
+import { useState } from "react";
+import type { ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
-import { IdleViewState } from "../variants/idle/view-state";
+import type { IdleViewState } from "../variants/idle/view-state";
 import { switchToSelectionWindow } from "../variants/selection-window/switcher";
-import { SelectionWindowViewState } from "../variants/selection-window/view-state";
+import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
-import { SelectionViewState } from "../variants/selection/view-state";
+import type { SelectionViewState } from "../variants/selection/view-state";
 import { selectNodes } from "../../modules/selection";
 import { NodeDecoratorsFactory } from "../../nodes";
-import { Geometry, Rect } from "../../core";
+import { Geometry, type Rect } from "../../core";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();

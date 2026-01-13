@@ -1,5 +1,5 @@
-import { Point, Rect } from "../../../core";
-import { ResizeDirection } from "../types";
+import type { Point, Rect } from "../../../core";
+import type { ResizeDirection } from "../types";
 
 export function applyResizing(rect: Rect, point: Point, direction: ResizeDirection): Rect {
     const right = rect.x + rect.width;

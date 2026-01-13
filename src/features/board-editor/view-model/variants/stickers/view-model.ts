@@ -1,6 +1,6 @@
-import { OmitFields } from "@/shared/lib/typescript";
-import { ViewModel, ViewModelParams } from "../../types";
-import React from "react";
+import type { OmitFields } from "@/shared/lib/typescript";
+import type { ViewModel, ViewModelParams } from "../../types";
+import type React from "react";
 import { Geometry } from "@/features/board-editor/core";
 import { NodesFactory } from "@/features/board-editor/nodes";
 import { StickersNodesMapper } from "./nodes-mapping.lib";

@@ -1,4 +1,4 @@
-import { ViewModel, ViewModelParams } from "../types";
+import type { ViewModel, ViewModelParams } from "../types";
 
 /**
  * `withWindowShift` is a decorator function that enhances a `ViewModel` with window shifting capabilities.

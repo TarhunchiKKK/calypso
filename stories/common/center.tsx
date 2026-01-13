@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/nextjs-vite";
+import type { StoryObj } from "@storybook/nextjs-vite";
 
 export const centered: StoryObj["decorators"] = Story => {
     return (

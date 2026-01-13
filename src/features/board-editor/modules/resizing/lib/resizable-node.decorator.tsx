@@ -1,5 +1,5 @@
-import { Decoratable, NodeDecorator, Rect } from "../../../core";
-import { ResizeStrategy } from "./resize.strategy";
+import { type Decoratable, NodeDecorator, type Rect } from "../../../core";
+import type { ResizeStrategy } from "./resize.strategy";
 
 export class ResizableNodeDecorator extends NodeDecorator {
     public constructor(

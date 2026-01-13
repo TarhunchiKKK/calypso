@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { NodeDecorator } from "../../core";
 
 export class SelectedNodeDecorator extends NodeDecorator {

@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/kit/button";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 type ActionsBarProps = PropsWithChildren;
 

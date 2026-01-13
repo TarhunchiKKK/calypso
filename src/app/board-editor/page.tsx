@@ -1,6 +1,6 @@
 import { BoardEditor } from "@/features/board-editor";
 // eslint-disable-next-line boundaries/entry-point
-import { AnyNode } from "@/features/board-editor/nodes/compose/types";
+import type { AnyNode } from "@/features/board-editor/nodes/compose/types";
 
 const mockNodes: AnyNode[] = [
     {
