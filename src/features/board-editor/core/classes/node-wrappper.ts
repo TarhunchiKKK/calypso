@@ -39,6 +39,8 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
+    public abstract get rect(): Rect;
+
     public hideContent() {
         this.showContent = false;
         return true;
@@ -50,9 +52,6 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
     }
 
     public abstract clone(data?: Partial<T>): NodeWrapper<T>;
-
-    // REFACTOR: this method should be switched to getter
-    public abstract rect(): Rect;
 
     public abstract moveTo(point: Point): NodeWrapper<T>;
 

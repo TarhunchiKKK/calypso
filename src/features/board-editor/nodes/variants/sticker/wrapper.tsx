@@ -4,12 +4,12 @@ import { NodeWrapper, Point } from "@/features/board-editor/core";
 import React from "react";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
-    public override clone(data: Partial<StickerNode> = {}) {
-        return new StickerNodeWrapper({ ...this.node, ...data });
+    public override get rect() {
+        return this.node.rect;
     }
 
-    public override rect() {
-        return this.node.rect;
+    public override clone(data: Partial<StickerNode> = {}) {
+        return new StickerNodeWrapper({ ...this.node, ...data });
     }
 
     public override moveTo(point: Point) {

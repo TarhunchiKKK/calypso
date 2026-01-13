@@ -17,7 +17,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     if (selectionWindowRect) {
         selectedNodesIds = nodesModel.nodes
             .map(node => NodeDecoratorsFactory.wrap(node))
-            .filter(node => Geometry.rectsIntersecting(selectionWindowRect, node.rect()))
+            .filter(node => Geometry.rectsIntersecting(selectionWindowRect, node.rect))
             .map(node => node.id);
     }
 

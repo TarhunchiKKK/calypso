@@ -29,14 +29,16 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
 
-        setNewSize(Geometry.applyResizing(NodeDecoratorsFactory.wrap(node).rect(), currentPoint, viewState.direction));
+        setNewSize(Geometry.applyResizing(NodeDecoratorsFactory.wrap(node).rect, currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
         const node = getResizingNode(viewState.nodeId);
 
         if (newSize) {
-            nodesModel.service.updateOne(NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data);
+            nodesModel.service.updateOne(
+                NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data
+            );
         }
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));

@@ -10,7 +10,7 @@ export class DraggingNodesMapper extends NodesMapper {
     public map(viewState: DraggingViewState, offset?: Offset) {
         this.nodes = this.nodes.map(node => {
             if (viewState.selectedIds.has(node.id)) {
-                return NodeDecoratorsFactory.select(node.clone().moveTo(Geometry.applyOffset(node.rect(), offset)));
+                return NodeDecoratorsFactory.select(node.clone().moveTo(Geometry.applyOffset(node.rect, offset)));
             }
 
             return node;
