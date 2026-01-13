@@ -11,11 +11,13 @@ export class ResizingNodesMapper extends NodesMapper {
     public map(viewState: ResizingViewState, newSize?: Rect) {
         this.nodes = this.nodes.map(node => {
             if (viewState.nodeId === node.id) {
-                const selectedNode = newSize
-                    ? NodeDecoratorsFactory.select(node.setRect(newSize))
-                    : NodeDecoratorsFactory.select(node);
+                const selectedNode = NodeDecoratorsFactory.select(node);
 
-                return NodeDecoratorsFactory.resizable(selectedNode);
+                if (!newSize) {
+                    return selectedNode;
+                }
+
+                return NodeDecoratorsFactory.resizable(selectedNode, newSize);
             }
 
             return node;

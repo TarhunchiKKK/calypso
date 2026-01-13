@@ -53,7 +53,7 @@ export class SelectionNodesMapper extends NodesMapper {
 
     private applyResizing(wrappers: NodeWrapper[], nodeId: string, handler: ResizeHandler) {
         return wrappers.map(wrapper =>
-            wrapper.id === nodeId ? NodeDecoratorsFactory.resizable(wrapper, handler) : wrapper
+            wrapper.id === nodeId ? NodeDecoratorsFactory.resizable(wrapper, undefined, handler) : wrapper
         );
     }
 

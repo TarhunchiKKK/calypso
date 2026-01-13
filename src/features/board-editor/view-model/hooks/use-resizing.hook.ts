@@ -36,7 +36,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
         const node = getResizingNode(viewState.nodeId);
 
         if (newSize) {
-            nodesModel.service.updateOne(NodeDecoratorsFactory.wrap(node).setRect(newSize).data);
+            nodesModel.service.updateOne(NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data);
         }
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));
