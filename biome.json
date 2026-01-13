@@ -38,7 +38,7 @@
         "bracketSameLine": false,
         "bracketSpacing": true,
         "expand": "auto",
-        "useEditorconfig": true
+        "useEditorconfig": false
     },
     "javascript": {
         "formatter": {

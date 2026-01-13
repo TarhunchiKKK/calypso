@@ -1,4 +1,10 @@
-import { type Decoratable, type NodeBase, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
+import {
+    type Decoratable,
+    type NodeBase,
+    type NodeHandlers,
+    NodesMapper,
+    type NodeWrapper
+} from "@/features/board-editor/core";
 import type { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 

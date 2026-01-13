@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNodesService } from "./use-nodes-service.hook";
 import type { NodeBase } from "../../core";
+import { useNodesService } from "./use-nodes-service.hook";
 
 export function useNodesModel(inputNodes: NodeBase[]) {
     const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);

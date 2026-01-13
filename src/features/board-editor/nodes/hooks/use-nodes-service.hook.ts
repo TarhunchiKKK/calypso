@@ -24,5 +24,3 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
 
     return { createOne, updateOne, replaceAll: setNodes, removeOne, removeMany, removeAll };
 }
-
-export type NodesService = ReturnType<typeof useNodesService>;
