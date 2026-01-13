@@ -1,8 +1,13 @@
-import { getNodeId } from "@/features/board-editor/core";
+import { getNodeId, Rect } from "@/features/board-editor/core";
 import { ResizeBorders, ResizeDirection, ResizeStrategy } from "@/features/board-editor/modules/resizing";
 import React from "react";
+import { StickerNodeWrapper } from "../wrapper";
 
 export class StickerNodeResizeStrategy extends ResizeStrategy {
+    public override updateNode(wrapper: StickerNodeWrapper, size: Rect): void {
+        wrapper.data = { ...wrapper.data, rect: size };
+    }
+
     public override ui() {
         const onResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
             e.stopPropagation();

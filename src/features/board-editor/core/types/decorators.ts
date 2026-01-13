@@ -9,6 +9,8 @@ export type Decoratable<T extends NodeBase = NodeBase> = {
 
     get data(): T;
 
+    set data(node: T);
+
     get wrapper(): NodeWrapper<T>;
 
     render(children?: React.ReactNode): React.ReactNode;

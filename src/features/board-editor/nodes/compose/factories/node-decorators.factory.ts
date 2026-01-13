@@ -1,5 +1,5 @@
 import { SelectedNodeDecorator } from "../../../modules/selection";
-import { Decoratable, NodeBase } from "../../../core";
+import { Decoratable, NodeBase, Rect } from "../../../core";
 import { ResizeHandler } from "../../../modules/resizing";
 import { ResizableNodeDecorator } from "../../../modules/resizing/lib/resizable-node.decorator";
 import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
@@ -17,9 +17,9 @@ export class NodeDecoratorsFactory {
         return new SelectedNodeDecorator(node);
     }
 
-    public static resizable(node: Decoratable, handler?: ResizeHandler) {
+    public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizeStrategiesMap[node.type];
-        return new ResizableNodeDecorator(node, strategyCreator(handler));
+        return new ResizableNodeDecorator(node, strategyCreator(handler), size);
     }
 
     public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
