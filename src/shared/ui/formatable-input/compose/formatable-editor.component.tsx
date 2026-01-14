@@ -1,5 +1,5 @@
 "use client";
-import { type KeyboardEventHandler, useCallback, useState } from "react";
+import { type CSSProperties, type KeyboardEventHandler, useCallback, useState } from "react";
 import { createEditor, type Descendant } from "slate";
 import { withHistory } from "slate-history";
 import { Editable, Slate, withReact } from "slate-react";
@@ -10,13 +10,36 @@ export type FormatableEditorProps = {
     value: Descendant[];
 
     keyBindings: KeyBindings;
+
+    onChange?: (value: Descendant[]) => void;
+
+    onBlur?: () => void;
+
+    style?: CSSProperties;
+
+    className?: string;
+
+    disabled?: boolean;
 };
 
-export const FormatableEditor = ({ value, keyBindings }: FormatableEditorProps) => {
+export const FormatableEditor = ({
+    value,
+    keyBindings,
+    onChange,
+    onBlur,
+    style,
+    className,
+    disabled
+}: FormatableEditorProps) => {
     const [editor] = useState(() => withReact(withHistory(createEditor())));
 
     const keyDownHandler: KeyboardEventHandler<HTMLDivElement> = useCallback(
         event => {
+            if (event.key === "Escape") {
+                onBlur?.();
+                return;
+            }
+
             if (!event.ctrlKey) {
                 return;
             }
@@ -27,12 +50,31 @@ export const FormatableEditor = ({ value, keyBindings }: FormatableEditorProps) 
                 handler(editor);
             }
         },
-        [editor, keyBindings]
+        [editor, keyBindings, onBlur]
+    );
+
+    const changeHandler = useCallback(
+        (value: Descendant[]) => {
+            const isAstChange = editor.operations.some(op => "set_selection" !== op.type);
+
+            if (isAstChange) {
+                onChange?.(value);
+            }
+        },
+        [onChange, editor.operations.some]
     );
 
     return (
-        <Slate editor={editor} initialValue={value}>
-            <Editable renderElement={renderElement} renderLeaf={renderLeaf} onKeyDown={keyDownHandler} />
+        <Slate editor={editor} initialValue={value} onChange={changeHandler}>
+            <Editable
+                style={style}
+                className={className}
+                renderElement={renderElement}
+                renderLeaf={renderLeaf}
+                onKeyDown={keyDownHandler}
+                onBlur={onBlur}
+                disabled={disabled}
+            />
         </Slate>
     );
 };
