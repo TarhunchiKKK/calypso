@@ -71,11 +71,11 @@
     "Create Node Wrapper": {
         "prefix": "n-wrapper",
         "body": [
-            "import { Point, Rect } from \"@/features/board-editor/lib/geometry\";",
-            "import { NodeWrapper } from \"../base\";",
+            "import { NodeWrapper, type Point } from \"@/features/board-editor/core\";",
+            "import type { $1Node } from \"./type\";",
             "",
             "export class $1NodeWrapper extends NodeWrapper<$1Node> {",
-            "    public override get rect {",
+            "    public override get rect() {",
             "        return {",
             "            // implementation",
             "        };",
