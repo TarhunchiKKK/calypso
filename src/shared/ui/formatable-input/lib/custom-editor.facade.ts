@@ -1,5 +1,5 @@
-import { Editor } from "slate";
-import type { CustomText } from "../../../../../@types/slatejs";
+import { Editor, Element, Transforms } from "slate";
+import type { CustomElement, CustomText } from "@/types/slate";
 
 export class CustomEditor {
     private static toggleMark(editor: Editor, mark: keyof Omit<CustomText, "text">) {
@@ -43,6 +43,16 @@ export class CustomEditor {
     }
 
     public static toggleCodeBlock(editor: Editor) {
-        console.log("code");
+        const [match] = Editor.nodes(editor, {
+            match: n => (n as CustomElement).type === "code"
+        });
+
+        const isActive = !!match;
+
+        Transforms.setNodes(
+            editor,
+            { type: isActive ? undefined : "code" },
+            { match: n => Element.isElement(n) && Editor.isBlock(editor, n) }
+        );
     }
 }
