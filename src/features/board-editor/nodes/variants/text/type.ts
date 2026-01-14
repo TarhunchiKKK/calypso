@@ -1,8 +1,8 @@
 import type { Descendant } from "slate";
-import type { NodeBase, Rect } from "@/features/board-editor/core";
+import type { RectNode } from "@/features/board-editor/core";
 
-export type TextNode = NodeBase & {
-    rect: Rect;
+export type TextNode = RectNode & {
+    type: "text";
 
     text: Descendant[];
 };

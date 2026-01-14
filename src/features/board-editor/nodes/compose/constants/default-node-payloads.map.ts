@@ -6,5 +6,13 @@ export const DefaultNodePayloadsMap = {
             height: 100
         },
         text: "Hello"
+    },
+    text: {
+        type: "text" as const,
+        rect: {
+            width: 100,
+            height: 100
+        },
+        text: []
     }
 };

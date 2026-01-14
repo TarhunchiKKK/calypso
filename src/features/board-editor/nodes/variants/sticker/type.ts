@@ -1,9 +1,7 @@
-import type { NodeBase, Rect } from "@/features/board-editor/core";
+import type { RectNode } from "@/features/board-editor/core";
 
-export type StickerNode = NodeBase & {
+export type StickerNode = RectNode & {
     type: "sticker";
-
-    rect: Rect;
 
     text: string;
 };
