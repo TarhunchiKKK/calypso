@@ -1,4 +1,4 @@
 export * from "./lib/geometry.lib";
-export * from "./types";
+export { RectNodeResizeStrategy, ResizeStrategy } from "./lib/resize.strategy";
 export { ResizeBorders } from "./resize-borders.component";
-export { ResizeStrategy } from "./lib/resize.strategy";
+export * from "./types";

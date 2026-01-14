@@ -1,16 +1,17 @@
 import type { CSSProperties, PropsWithChildren } from "react";
-import type { StickerNode } from "./type";
 import type { NodeHandlers } from "@/features/board-editor/core";
+import { FormatableTextarea } from "@/shared/ui/formatable-input";
+import type { TextNode } from "./text-node.type";
 
 type Props = PropsWithChildren<{
-    node: StickerNode;
+    node: TextNode;
 
     handlers: NodeHandlers;
 
     showContent: boolean;
 }>;
 
-export function StickerComponent({ node, handlers, showContent, children }: Props) {
+export function TextNodeComponent({ node, handlers, showContent, children }: Props) {
     const styles: CSSProperties = {
         width: node.rect.width,
         height: node.rect.height,
@@ -27,7 +28,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
         >
             {showContent && (
                 <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    {node.text}
+                    <FormatableTextarea value={node.text} disabled />
                 </div>
             )}
 

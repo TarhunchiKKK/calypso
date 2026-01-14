@@ -1,5 +1,5 @@
-import { useCanvasRect } from "./hooks/use-canvas-rect.hook";
-import { useLayoutDimensions } from "./hooks/use-layout-dimensions.hook";
+import { useCanvasRect } from "./use-canvas-rect.hook";
+import { useLayoutDimensions } from "./use-layout-dimensions.hook";
 
 export function useLayoutDimensionsModel() {
     const canvas = useCanvasRect();

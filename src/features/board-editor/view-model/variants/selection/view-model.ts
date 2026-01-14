@@ -1,16 +1,16 @@
-import type { OmitFields } from "@/shared/lib/typescript";
-import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
-import { useDragging } from "../../hooks/use-dragging.hook";
-import { useResizing } from "../../hooks/use-resizing.hook";
-import type { SelectionViewState } from "./view-state";
-import { switchToIdle } from "../idle/switcher";
-import { switchToEditing } from "../editing/switcher";
-import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
-import { SelectionNodesMapper } from "./nodes-mapping.lib";
+import { withNodeId } from "@/features/board-editor/core";
 import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { selectNodes } from "@/features/board-editor/modules/selection";
-import { withNodeId } from "@/features/board-editor/core";
+import type { OmitFields } from "@/shared/lib/typescript";
+import { useDragging } from "../../hooks/use-dragging.hook";
+import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
+import { useResizing } from "../../hooks/use-resizing.hook";
+import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
+import type { ViewModel, ViewModelParams } from "../../types";
+import { switchToEditing } from "../editing/switcher";
+import { switchToIdle } from "../idle/switcher";
+import { SelectionNodesMapper } from "./nodes-mapping.lib";
+import type { SelectionViewState } from "./view-state";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;

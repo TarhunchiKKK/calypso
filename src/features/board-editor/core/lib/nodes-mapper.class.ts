@@ -1,5 +1,5 @@
-import type { NodeBase, NodeWrapper, Renderable } from "..";
 import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
+import type { NodeBase, NodeWrapper, Renderable } from "..";
 
 export class NodesMapper {
     protected nodes: NodeWrapper[] = [];

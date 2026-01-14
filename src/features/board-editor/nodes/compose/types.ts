@@ -1,3 +1,3 @@
-import type { StickerNode } from "../variants/sticker/type";
+import type { StickerNode } from "../variants/sticker/sticker.type";
 
 export type AnyNode = StickerNode;
