@@ -4,19 +4,20 @@ import { createEditor, type Descendant } from "slate";
 import { Editable, type RenderElementProps, Slate, withReact } from "slate-react";
 import { CustomEditor } from "./lib/custom-editor.facade";
 import { CodeBlock, Paragraph } from "./ui";
+import { renderLeaf } from "./ui/leaf.component";
 
 const initialValue: Descendant[] = [
     {
         type: "paragraph",
-        children: [{ text: "A line of text in a paragraph." }]
+        children: [{ text: "A line of text in a paragraph.", lineThrough: true }]
     },
     {
         type: "paragraph",
-        children: [{ text: "A line of text in a paragraph." }]
+        children: [{ text: "A line of text in a paragraph.", italic: true }]
     },
     {
         type: "paragraph",
-        children: [{ text: "A line of text in a paragraph." }]
+        children: [{ text: "A line of text in a paragraph.", bold: true, underline: true }]
     }
 ];
 
@@ -66,7 +67,7 @@ export const FormatableInput = () => {
 
     return (
         <Slate editor={editor} initialValue={initialValue}>
-            <Editable renderElement={renderElement} onKeyDown={keyDownHandler} />
+            <Editable renderElement={renderElement} renderLeaf={renderLeaf} onKeyDown={keyDownHandler} />
         </Slate>
     );
 };

@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from "react";
 
-export type TextProps = PropsWithChildren<{
+type TextProps = PropsWithChildren<{
     attributes: HTMLAttributes<HTMLSpanElement>;
 }>;
 

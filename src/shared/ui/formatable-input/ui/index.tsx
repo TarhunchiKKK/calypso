@@ -1,3 +1,4 @@
-export { CodeBlock, type CodeBlockProps } from "./code-block.component";
-export { Paragraph, type ParagraphProps } from "./paragraph.component";
-export { Text, type TextProps } from "./text.component";
+export { CodeBlock } from "./code-block.component";
+export { Leaf } from "./leaf.component";
+export { Paragraph } from "./paragraph.component";
+export { Text } from "./text.component";

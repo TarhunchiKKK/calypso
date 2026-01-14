@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from "react";
 
-export type CodeBlockProps = PropsWithChildren<{
+type CodeBlockProps = PropsWithChildren<{
     attributes: HTMLAttributes<HTMLPreElement>;
 }>;
 

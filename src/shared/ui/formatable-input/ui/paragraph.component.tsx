@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from "react";
 
-export type ParagraphProps = PropsWithChildren<{
+type ParagraphProps = PropsWithChildren<{
     attributes: HTMLAttributes<HTMLParagraphElement>;
 }>;
 
