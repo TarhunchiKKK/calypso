@@ -1,6 +1,7 @@
 "use client";
 import { type KeyboardEventHandler, useCallback, useState } from "react";
 import { createEditor, type Descendant } from "slate";
+import { withHistory } from "slate-history";
 import { Editable, type RenderElementProps, Slate, withReact } from "slate-react";
 import { CustomEditor } from "./lib/custom-editor.facade";
 import { CodeBlock, Paragraph } from "./ui";
@@ -31,7 +32,7 @@ const renderElement = (props: RenderElementProps) => {
 };
 
 export const FormatableInput = () => {
-    const [editor] = useState(() => withReact(createEditor()));
+    const [editor] = useState(() => withReact(withHistory(createEditor())));
 
     const keyDownHandler: KeyboardEventHandler<HTMLDivElement> = useCallback(
         event => {

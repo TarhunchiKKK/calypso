@@ -1,4 +1,3 @@
-// TypeScript users only add this code
 import type { BaseEditor } from "slate";
 import type { ReactEditor } from "slate-react";
 
