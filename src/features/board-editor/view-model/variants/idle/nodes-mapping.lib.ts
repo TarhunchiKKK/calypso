@@ -1,5 +1,5 @@
-import type { MouseEventsMediator } from "@/shared/lib/react";
 import { type NodeBase, NodesMapper } from "@/features/board-editor/core";
+import type { MouseEventsMediator } from "@/shared/lib/react";
 
 export class IdleNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {

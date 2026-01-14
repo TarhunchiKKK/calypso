@@ -1,7 +1,7 @@
 import type { Descendant } from "slate";
 import { EditNodeStrategy } from "@/features/board-editor/modules/editing";
 import { FormatableTextarea } from "@/shared/ui/formatable-input";
-import type { TextNode } from "../type";
+import type { TextNode } from "../text-node.type";
 
 export class EditTextNodeStrategy extends EditNodeStrategy {
     private value: Descendant[] = [];

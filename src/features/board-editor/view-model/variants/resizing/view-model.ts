@@ -1,8 +1,8 @@
 import type { OmitFields } from "@/shared/lib/typescript";
-import type { ViewModel, ViewModelParams } from "../../types";
 import { useResizing } from "../../hooks/use-resizing.hook";
-import type { ResizingViewState } from "./view-state";
+import type { ViewModel, ViewModelParams } from "../../types";
 import { ResizingNodesMapper } from "./nodes-mapping.lib";
+import type { ResizingViewState } from "./view-state";
 
 export function useResizingViewModel(params: ViewModelParams) {
     const resizing = useResizing(params);

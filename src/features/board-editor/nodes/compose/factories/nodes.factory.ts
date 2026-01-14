@@ -1,6 +1,6 @@
 import type { Point } from "@/features/board-editor/core";
-import { StickerNodeWrapper } from "../../variants/sticker/wrapper";
-import { TextNodeWrapper } from "../../variants/text/wrapper";
+import { StickerNodeWrapper } from "../../variants/sticker/sticker.wrapper";
+import { TextNodeWrapper } from "../../variants/text/text-node.wrapper";
 import { DefaultNodePayloadsMap } from "../constants/default-node-payloads.map";
 
 export class NodesFactory {

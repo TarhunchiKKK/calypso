@@ -1,15 +1,15 @@
 import type React from "react";
 import { NodeWrapper, type Point } from "@/features/board-editor/core";
-import { StickerComponent } from "./component";
-import type { StickerNode } from "./type";
+import { TextNodeComponent } from "./text-node.component";
+import type { TextNode } from "./text-node.type";
 
-export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
+export class TextNodeWrapper extends NodeWrapper<TextNode> {
     public override get rect() {
         return this.node.rect;
     }
 
-    public override clone(data: Partial<StickerNode> = {}) {
-        return new StickerNodeWrapper({ ...this.node, ...data });
+    public override clone(data: Partial<TextNode> = {}) {
+        return new TextNodeWrapper({ ...this.node, ...data });
     }
 
     public override moveTo(point: Point) {
@@ -20,7 +20,7 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
 
     public override render(children?: React.ReactNode) {
         return (
-            <StickerComponent
+            <TextNodeComponent
                 key={this.node.id}
                 node={this.node}
                 handlers={this.handlers}

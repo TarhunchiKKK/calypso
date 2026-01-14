@@ -1,6 +1,6 @@
 import { EditNodeStrategy } from "@/features/board-editor/modules/editing";
 import { TextareaAutoSize } from "@/shared/ui";
-import type { StickerNode } from "../type";
+import type { StickerNode } from "../sticker.type";
 
 export class EditStickerNodeStrategy extends EditNodeStrategy {
     public override ui(node: StickerNode) {

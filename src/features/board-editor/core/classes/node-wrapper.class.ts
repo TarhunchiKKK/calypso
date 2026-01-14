@@ -1,8 +1,8 @@
 import type React from "react";
 import type { Point, Rect } from "../lib/geometry";
-import type { Decoratable } from "../types/decorators";
-import type { NodeBase } from "../types/node";
-import type { Renderable } from "../types/ui";
+import type { Decoratable } from "../types/decorators.types";
+import type { NodeBase } from "../types/node.types";
+import type { Renderable } from "../types/ui.types";
 
 export type NodeHandlers = {
     onClick?: (e: React.MouseEvent) => void;

@@ -1,6 +1,6 @@
 import { applyLayoutDimensions, type LayoutDimensionsModel } from "../../../modules/layout-dimensions";
 import { applyResizing, type ResizeDirection } from "../../../modules/resizing";
-import type { Offset, Point, Rect } from "./types";
+import type { Offset, Point, Rect } from "./geometry.types";
 
 /**
  * A utility class that provides a collection of static methods for geometric calculations.

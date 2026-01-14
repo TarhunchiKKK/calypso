@@ -1,9 +1,9 @@
+import { withNodeId } from "@/features/board-editor/core";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
-import type { EditingViewState } from "./view-state";
 import { EditingNodesMapper } from "./nodes-mapping.lib";
-import { withNodeId } from "@/features/board-editor/core";
+import type { EditingViewState } from "./view-state";
 
 export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParams) {
     return (viewState: EditingViewState): ViewModel => {

@@ -1,15 +1,15 @@
 import { useState } from "react";
-import type { ViewModel, ViewModelParams, ViewState } from "./types";
-import { useIdleViewModel } from "./variants/idle/view-model";
-import { useStickersViewModel } from "./variants/stickers/view-model";
 import type { OmitFields } from "@/shared/lib/typescript";
-import { useSelectionViewModel } from "./variants/selection/view-model";
-import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
-import { useResizingViewModel } from "./variants/resizing/view-model";
-import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
+import type { ViewModel, ViewModelParams, ViewState } from "./types";
+import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
+import { useIdleViewModel } from "./variants/idle/view-model";
+import { useResizingViewModel } from "./variants/resizing/view-model";
+import { useSelectionViewModel } from "./variants/selection/view-model";
+import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
+import { useStickersViewModel } from "./variants/stickers/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(switchToIdle());
