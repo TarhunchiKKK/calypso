@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="9">
   <diagram name="View States" id="d1GXW0bafS2tS3hh9rSb">
-    <mxGraphModel dx="2377" dy="1415" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1665" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -161,7 +161,7 @@
         <mxCell id="UwV940Ag4ywct-HR4hvk-24" value="NodeWrapper&amp;lt;T extends NodeBase&amp;gt;&lt;div&gt;&lt;b&gt;abstract class&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="635" y="644" width="360" height="306" as="geometry" />
         </mxCell>
-        <mxCell id="UwV940Ag4ywct-HR4hvk-25" value="&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;node&lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: T&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ handlers: &lt;i&gt;NodeHandlers&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;showContent:&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;boolean&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;+ &lt;b&gt;get&lt;/b&gt;&amp;nbsp;id: &lt;i&gt;string&lt;/i&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;type: &lt;i&gt;NodeTypes&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;data: &lt;i&gt;T&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;wrapper: &lt;i&gt;NodeWrapper&amp;lt;T&amp;gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ hideContent: &lt;i&gt;() =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ setHandler: &lt;i&gt;(key: string, handler: NodeHandlers[string]) =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;clone: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(data?: Partial&amp;lt;T&amp;gt;) =&amp;gt; NodeWrapper&amp;lt;T&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;rect: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;() =&amp;gt; Rect&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;setRect: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(rect: React) =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;moveTo: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(point: Point) =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ &lt;b&gt;abstract&lt;/b&gt;&amp;nbsp;render: &lt;i&gt;(children?: ReactNode) =&amp;gt; ReactNode&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="UwV940Ag4ywct-HR4hvk-24" vertex="1">
+        <mxCell id="UwV940Ag4ywct-HR4hvk-25" value="&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;node&lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: T&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ handlers: &lt;i&gt;NodeHandlers&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;showContent:&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;boolean&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;+ &lt;b&gt;get&lt;/b&gt;&amp;nbsp;id: &lt;i&gt;string&lt;/i&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;type: &lt;i&gt;NodeTypes&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;data: () =&amp;gt;&amp;nbsp;&lt;i&gt;T&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;i&gt;+ &lt;b&gt;set&lt;/b&gt;&amp;nbsp;data: (data: T) =&amp;gt; void&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;wrapper: &lt;i&gt;NodeWrapper&amp;lt;T&amp;gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ hideContent: &lt;i&gt;() =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ setHandler: &lt;i&gt;(key: string, handler: NodeHandlers[string]) =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;&amp;nbsp;&lt;b&gt;get&amp;nbsp;&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;rect:&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;() =&amp;gt; Rect&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;clone: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(data?: Partial&amp;lt;T&amp;gt;) =&amp;gt; NodeWrapper&amp;lt;T&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;abstract&lt;/b&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;moveTo: &lt;/span&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(point: Point) =&amp;gt; &lt;b&gt;this&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ &lt;b&gt;abstract&lt;/b&gt;&amp;nbsp;render: &lt;i&gt;(children?: ReactNode) =&amp;gt; ReactNode&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="UwV940Ag4ywct-HR4hvk-24" vertex="1">
           <mxGeometry y="50" width="360" height="256" as="geometry" />
         </mxCell>
         <mxCell id="UwV940Ag4ywct-HR4hvk-28" value="NodeBase&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
@@ -238,38 +238,32 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Geometry" id="U7ZIpPwHvml3rTXvcqEA">
-    <mxGraphModel dx="2037" dy="1213" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="mpr7gBhV7ZbASHBtpOUc-0" />
         <mxCell id="mpr7gBhV7ZbASHBtpOUc-1" parent="mpr7gBhV7ZbASHBtpOUc-0" />
-        <mxCell id="mpr7gBhV7ZbASHBtpOUc-5" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="mpr7gBhV7ZbASHBtpOUc-1" source="mpr7gBhV7ZbASHBtpOUc-4">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="310" y="389" as="sourcePoint" />
-            <mxPoint x="292" y="479" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-0" value="Point&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="mpr7gBhV7ZbASHBtpOUc-1">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-0" value="Point&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="mpr7gBhV7ZbASHBtpOUc-1" vertex="1">
           <mxGeometry x="172" y="189" width="240" height="90" as="geometry">
             <mxRectangle x="430" y="1020" width="110" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-1" value="+ x: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ y: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="0qGz44YmZXVf2gE_E5CB-0">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-1" value="+ x: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ y: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="0qGz44YmZXVf2gE_E5CB-0" vertex="1">
           <mxGeometry y="50" width="240" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-2" value="Rect&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="mpr7gBhV7ZbASHBtpOUc-1">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-2" value="Rect&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="mpr7gBhV7ZbASHBtpOUc-1" vertex="1">
           <mxGeometry x="172" y="349" width="240" height="120" as="geometry">
             <mxRectangle x="430" y="1020" width="110" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-3" value="+ x: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ y: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ width: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ height: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="0qGz44YmZXVf2gE_E5CB-2">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-3" value="+ x: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ y: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ width: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ height: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="0qGz44YmZXVf2gE_E5CB-2" vertex="1">
           <mxGeometry y="50" width="240" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-7" value="Offset&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="mpr7gBhV7ZbASHBtpOUc-1">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-7" value="Offset&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="mpr7gBhV7ZbASHBtpOUc-1" vertex="1">
           <mxGeometry x="172" y="549" width="240" height="90" as="geometry">
             <mxRectangle x="430" y="1020" width="110" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0qGz44YmZXVf2gE_E5CB-8" value="+ dx: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ dy: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="0qGz44YmZXVf2gE_E5CB-7">
+        <mxCell id="0qGz44YmZXVf2gE_E5CB-8" value="+ dx: &lt;i&gt;number&lt;/i&gt;&lt;div&gt;+ dy: &lt;i&gt;number&lt;/i&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="0qGz44YmZXVf2gE_E5CB-7" vertex="1">
           <mxGeometry y="50" width="240" height="40" as="geometry" />
         </mxCell>
       </root>
@@ -350,12 +344,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="FGLwEC1JQAuWuO7wY0xP" name="Nodes">
-    <mxGraphModel dx="2593" dy="1544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="918" dy="894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="ZypnLyzD1ZNFlEfcHWl_-1" value="NodeBase&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-          <mxGeometry x="682" y="670" width="290" height="90" as="geometry">
+          <mxGeometry x="730" y="479" width="290" height="90" as="geometry">
             <mxRectangle x="430" y="1020" width="110" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -363,7 +357,7 @@
           <mxGeometry y="50" width="290" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ZypnLyzD1ZNFlEfcHWl_-3" value="StickerNode&lt;br&gt;&lt;div&gt;&lt;b&gt;type&lt;/b&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-          <mxGeometry x="682" y="449" width="290" height="110" as="geometry">
+          <mxGeometry x="730" y="258" width="290" height="110" as="geometry">
             <mxRectangle x="430" y="1020" width="110" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -372,8 +366,8 @@
         </mxCell>
         <mxCell id="GSuxmgl07ji27t5dYn6X-1" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="ZypnLyzD1ZNFlEfcHWl_-1" target="ZypnLyzD1ZNFlEfcHWl_-4" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1062" y="610" as="sourcePoint" />
-            <mxPoint x="1222" y="610" as="targetPoint" />
+            <mxPoint x="1110" y="419" as="sourcePoint" />
+            <mxPoint x="1270" y="419" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
@@ -497,54 +491,54 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Xi4yS9gLL42Jn4Kx3Oj4" name="Elements">
-    <mxGraphModel dx="983" dy="586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2037" dy="1213" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="XETnB8e5EI_QgsBWdg41-1" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;dashed=1;dashPattern=8 8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="XETnB8e5EI_QgsBWdg41-1" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;dashed=1;dashPattern=8 8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="280" as="sourcePoint" />
-            <mxPoint x="440" y="280" as="targetPoint" />
+            <mxPoint x="147" y="379" as="sourcePoint" />
+            <mxPoint x="307" y="379" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-1" value="" style="endArrow=diamondThin;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endSize=15;endFill=0;" edge="1" parent="1">
+        <mxCell id="qhKPEXVWakTwdArndln5-1" value="" style="endArrow=diamondThin;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endSize=15;endFill=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="320" as="sourcePoint" />
-            <mxPoint x="440" y="320" as="targetPoint" />
+            <mxPoint x="147" y="419" as="sourcePoint" />
+            <mxPoint x="307" y="419" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-2" value="" style="endArrow=diamondThin;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endSize=15;endFill=1;" edge="1" parent="1">
+        <mxCell id="qhKPEXVWakTwdArndln5-2" value="" style="endArrow=diamondThin;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endSize=15;endFill=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="360" as="sourcePoint" />
-            <mxPoint x="440" y="360" as="targetPoint" />
+            <mxPoint x="147" y="459" as="sourcePoint" />
+            <mxPoint x="307" y="459" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-3" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="qhKPEXVWakTwdArndln5-3" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="240" as="sourcePoint" />
-            <mxPoint x="440" y="240" as="targetPoint" />
+            <mxPoint x="147" y="339" as="sourcePoint" />
+            <mxPoint x="307" y="339" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-4" value="" style="endArrow=open;html=1;rounded=0;endFill=0;endSize=10;dashed=1;dashPattern=8 8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="qhKPEXVWakTwdArndln5-4" value="" style="endArrow=open;html=1;rounded=0;endFill=0;endSize=10;dashed=1;dashPattern=8 8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="400" as="sourcePoint" />
-            <mxPoint x="440" y="400" as="targetPoint" />
+            <mxPoint x="147" y="499" as="sourcePoint" />
+            <mxPoint x="307" y="499" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-5" value="Generalization" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="470" y="220" width="100" height="30" as="geometry" />
+        <mxCell id="qhKPEXVWakTwdArndln5-5" value="Generalization" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="337" y="319" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-6" value="Realization" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="470" y="260" width="80" height="30" as="geometry" />
+        <mxCell id="qhKPEXVWakTwdArndln5-6" value="Realization" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="337" y="359" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-7" value="Agregation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="470" y="300" width="80" height="30" as="geometry" />
+        <mxCell id="qhKPEXVWakTwdArndln5-7" value="Agregation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="337" y="399" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-8" value="Composition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="465" y="340" width="90" height="30" as="geometry" />
+        <mxCell id="qhKPEXVWakTwdArndln5-8" value="Composition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="332" y="439" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qhKPEXVWakTwdArndln5-9" value="Dependency" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="470" y="380" width="90" height="30" as="geometry" />
+        <mxCell id="qhKPEXVWakTwdArndln5-9" value="Dependency" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="337" y="479" width="90" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
