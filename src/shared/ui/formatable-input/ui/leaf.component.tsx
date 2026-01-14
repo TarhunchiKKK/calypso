@@ -14,7 +14,3 @@ export function Leaf({ attributes, leaf, children }: RenderLeafProps) {
         </span>
     );
 }
-
-export const renderLeaf = (props: RenderLeafProps) => {
-    return <Leaf {...props} />;
-};

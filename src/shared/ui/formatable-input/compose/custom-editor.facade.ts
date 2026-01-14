@@ -1,8 +1,9 @@
 import { Editor, Element, Transforms } from "slate";
-import type { CustomElement, CustomText } from "@/types/slate";
+import type { CustomElement } from "@/types/slate";
+import type { TextMarks } from "../types/text-marks.types";
 
 export class CustomEditor {
-    private static toggleMark(editor: Editor, mark: keyof Omit<CustomText, "text">) {
+    private static toggleMark(editor: Editor, mark: TextMarks) {
         const marks = Editor.marks(editor);
 
         const isMarkActive = marks ? marks[mark] : false;
@@ -14,7 +15,7 @@ export class CustomEditor {
         }
     }
 
-    private static removeMark(editor: Editor, mark: keyof Omit<CustomText, "text">) {
+    private static removeMark(editor: Editor, mark: TextMarks) {
         const marks = Editor.marks(editor);
 
         const isMarkActive = marks ? marks[mark] : false;
