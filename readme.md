@@ -8,88 +8,21 @@
 
 ## Stack
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Scope</th>
-      <th>Solution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Language🧠</td>
-      <td>
-        <a href="https://www.typescriptlang.org/">TypeScript</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Runtime⚡</td>
-      <td>
-        <a href="https://nodejs.org/">Node.js</a>, <a href="https://bun.sh/">Bun Package Manager</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Framework🎭</td>
-      <td>
-        <a href="https://nextjs.org/">Next.js</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Styling🎨</td>
-      <td>
-        <a href="https://tailwindcss.com/?ref=yon.fun">TailwindCSS</a>, <a href="https://ui.shadcn.com/">Shadcn</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Docs📚</td>
-      <td>
-        <a href="https://storybook.js.org/">Storybook</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Backend🚀</td>
-      <td>
-        <a href="https://supabase.com/">Supabase</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Database🗃️</td>
-      <td>
-        <a href="https://www.postgresql.org/">Postgres</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Storage☁️</td>
-      <td>
-        <a href="https://www.min.io/">Minio S3</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Debug⚙</td>
-      <td>
-        <a href="https://sentry.io/welcome/?ref=shopstorm">Sentry</a>
-      </td>
-    </tr>
-      <tr>
-      <td>Code style✨</td>
-      <td>
-        <a href="https://biomejs.dev/">BiomeJS</a> 
-      </td>
-    </tr>
-      <tr>
-      <td>Architecture🏫</td>
-      <td>
-        <a href="https://ed.evocomm.space/">Evolution Design</a>
-      </td>
-    </tr>
-      <tr>
-      <td>CI🔄</td>
-      <td>
-        <a href="https://www.docker.com/">Docker</a>, <a href="https://docs.github.com/en/actions">Github Actions</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Scope             | Solution                                                                                |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Language🧠        | [TypeScript](https://www.typescriptlang.org/)                                           |
+| Runtime⚡         | [Bun](https://bun.sh/)                                                                  |
+| Framework🎭       | [Next.js](https://nextjs.org/)                                                          |
+| Styling🎨         | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)   |
+| Text Formatting📄 | [Slate](https://docs.slatejs.org/)                                                      |
+| Docs📚            | [Storybook](https://storybook.js.org/)                                                  |
+| Backend🚀         | [Supabase](https://supabase.com/)                                                       |
+| Database🗃️        | [Postgres](https://www.postgresql.org/)                                                 |
+| Storage☁️         | [Minio S3](https://www.min.io/)                                                         |
+| Debug⚙            | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                      |
+| Code style✨      | [BiomeJS](https://biomejs.dev/), [Knip](https://knip.dev/)                              |
+| Architecture🏫    | [Evolution Design](https://ed.evocomm.space/)                                           |
+| CI🔄              | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions) |
 
 ## Run Calypso Locally
 
@@ -101,11 +34,9 @@ git clone https://github.com/TarhunchiKKK/calypso.git
 cd calypso
 ```
 
-2. Choose package manager:
+2. Install [Bun](https://bun.sh/) globally:
 
-You can use different Node.js package managers for this project developing but Bun package manager is preferred.
-
-Install bun globally:
+You can use different Node.js package managers for this project developing but [Bun](https://bun.sh/) package manager is preferred.
 
 ```bash
 npm i -g bun
