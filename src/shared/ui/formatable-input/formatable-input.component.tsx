@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { type KeyboardEventHandler, useCallback, useState } from "react";
 import { createEditor, type Descendant } from "slate";
 import { Editable, type RenderElementProps, Slate, withReact } from "slate-react";
+import { CustomEditor } from "./lib/custom-editor.facade";
 import { CodeBlock, Paragraph } from "./ui";
 
 const initialValue: Descendant[] = [
@@ -21,21 +22,51 @@ const initialValue: Descendant[] = [
 
 const renderElement = (props: RenderElementProps) => {
     switch (props.element.type) {
-        case "code": {
+        case "code":
             return <CodeBlock {...props} />;
-        }
-        default: {
+        default:
             return <Paragraph {...props} />;
-        }
     }
 };
 
 export const FormatableInput = () => {
     const [editor] = useState(() => withReact(createEditor()));
 
+    const keyDownHandler: KeyboardEventHandler<HTMLDivElement> = useCallback(
+        event => {
+            if (!event.ctrlKey) {
+                return;
+            }
+
+            switch (event.key) {
+                case "`":
+                    event.preventDefault();
+                    CustomEditor.toggleCodeBlock(editor);
+                    break;
+                case "b":
+                    event.preventDefault();
+                    CustomEditor.toggleBoldMark(editor);
+                    break;
+                case "i":
+                    event.preventDefault();
+                    CustomEditor.toggleItalicMark(editor);
+                    break;
+                case "u":
+                    event.preventDefault();
+                    CustomEditor.toggleUnderlineMark(editor);
+                    break;
+                case "-":
+                    event.preventDefault();
+                    CustomEditor.toggleLineThroughMark(editor);
+                    break;
+            }
+        },
+        [editor]
+    );
+
     return (
         <Slate editor={editor} initialValue={initialValue}>
-            <Editable renderElement={renderElement} />
+            <Editable renderElement={renderElement} onKeyDown={keyDownHandler} />
         </Slate>
     );
 };

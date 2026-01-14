@@ -68,25 +68,6 @@ export const FormatableInput = () => {
 
     return (
         <Slate editor={editor} initialValue={initialValue}>
-            <div>
-                <button
-                    onMouseDown={event => {
-                        event.preventDefault();
-                        CustomEditor.toggleBoldMark(editor);
-                    }}
-                >
-                    Bold
-                </button>
-                <button
-                    onMouseDown={event => {
-                        event.preventDefault();
-                        CustomEditor.toggleCodeBlock(editor);
-                    }}
-                >
-                    Code Block
-                </button>
-            </div>
-
             <Editable
                 renderElement={renderElement}
                 renderLeaf={renderLeaf}
