@@ -28,6 +28,6 @@ const mockNodes: AnyNode[] = [
     // }
 ];
 
-export default function BoardEditorPage() {
+export default function TempPage() {
     return <BoardEditor nodes={mockNodes} />;
 }

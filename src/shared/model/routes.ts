@@ -1,5 +1,11 @@
 export const ROUTES = {
-    BOARDS: {
-        EDITOR: "/board-editor"
-    }
+    AUTH: {
+        SIGN_UP: "/auth/sign-up",
+        SIGN_IN: "/auth/sign-in"
+    },
+    DASHBOARD: "/dashboard",
+    BOARD: `/dashboard/:id`,
+
+    // NOTE: this page is for development purposes
+    TEMP: "/temp"
 };
