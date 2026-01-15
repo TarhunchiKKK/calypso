@@ -6,6 +6,9 @@ export const ROUTES = {
     DASHBOARD: "/dashboard",
     BOARD: `/dashboard/:id`,
 
-    // NOTE: this page is for development purposes
-    TEMP: "/temp"
+    // NOTE: this pages are used for development purposes
+    TEMP: {
+        editor: "/temp/editor",
+        formatable: "/temp/formatabe"
+    }
 };
