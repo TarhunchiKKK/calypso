@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { ROUTES } from "@/shared/model/routes";
+import { ROUTES } from "@/shared/config";
 
 export default function Home() {
     redirect(ROUTES.TEMP.formatable);
