@@ -7,7 +7,7 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "includes": ["src/**/*.{ts,tsx}", "stories/**/*.{ts,tsx}", "@types/**/*.ts", "scripts/**/*.cjs"]
+        "includes": ["src/**/*.{ts,tsx}", "stories/**/*.{ts,tsx}", "@types/**/*.ts"]
     },
     "linter": {
         "enabled": true,
