@@ -1,7 +1,7 @@
 import type React from "react";
 import { useRef, useState } from "react";
-import { applyLayoutDimensions } from "../lib/geometry.lib";
-import { Geometry, type Offset, type Rect, type Point } from "@/features/board-editor/core";
+import { Geometry, type Offset, type Point } from "@/features/board-editor/core";
+import { applyLayoutDimensions } from "./geometry.lib";
 
 const defaultLayoutOffset: Offset = {
     dx: 0,
@@ -12,7 +12,7 @@ const defaultLayoutZoom = 1.0;
 const zoomUp = 1.1;
 const zoomDown = 0.9;
 
-export function useLayoutDimensions(canvasRect?: Rect) {
+export function useLayoutDimensionsModel() {
     const [offset, setOffset] = useState(defaultLayoutOffset);
     const [zoom, setZoom] = useState(defaultLayoutZoom);
     const startPointRef = useRef<Point | undefined>(undefined);
@@ -58,9 +58,9 @@ export function useLayoutDimensions(canvasRect?: Rect) {
 
         const newZoom = zoom * delta;
 
-        const currentMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, canvasRect, offset, zoom);
+        const currentMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, offset, zoom);
 
-        const newMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, canvasRect, offset, newZoom);
+        const newMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, offset, newZoom);
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
@@ -73,7 +73,9 @@ export function useLayoutDimensions(canvasRect?: Rect) {
     };
 
     return {
-        offset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
-        zoom: { zoom, handleZoom }
+        layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
+        layoutZoom: { zoom, handleZoom }
     };
 }
+
+export type LayoutDimensionsModel = ReturnType<typeof useLayoutDimensionsModel>;

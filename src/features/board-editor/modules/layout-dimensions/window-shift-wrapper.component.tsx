@@ -1,5 +1,5 @@
-import type { Offset } from "@/features/board-editor/core";
 import type { PropsWithChildren } from "react";
+import type { Offset } from "@/features/board-editor/core";
 
 type Props = PropsWithChildren<{
     offset: Offset;

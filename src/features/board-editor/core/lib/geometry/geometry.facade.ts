@@ -9,7 +9,7 @@ import type { Offset, Point, Rect } from "./geometry.types";
  */
 export class Geometry {
     public static applyLayoutDimensions(point: Point, model: LayoutDimensionsModel) {
-        return applyLayoutDimensions(point, model.canvas.rect, model.layoutOffset.offset, model.layoutZoom.zoom);
+        return applyLayoutDimensions(point, model.layoutOffset.offset, model.layoutZoom.zoom);
     }
 
     /**

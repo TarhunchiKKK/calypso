@@ -1,11 +1,9 @@
-import type { HTMLAttributes, PropsWithChildren, ReactNode, Ref } from "react";
-import { LayoutDimensionsWrapper } from "../modules/layout-dimensions";
+import type { HTMLAttributes, PropsWithChildren, ReactNode } from "react";
 import type { Offset } from "../core";
+import { LayoutDimensionsWrapper } from "../modules/layout-dimensions";
 
 type Props = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren<{
-        ref: Ref<HTMLDivElement>;
-
         overlay: ReactNode;
 
         offset: Offset;
@@ -13,11 +11,10 @@ type Props = HTMLAttributes<HTMLDivElement> &
         zoom: number;
     }>;
 
-export function Canvas({ ref, overlay, offset, zoom, children, ...props }: Props) {
+export function Canvas({ overlay, offset, zoom, children, ...props }: Props) {
     return (
         <div
             data-testid="canvas"
-            ref={ref}
             onContextMenu={e => e.preventDefault()}
             className="absolute inset-0 select-none overflow-hidden"
             {...props}

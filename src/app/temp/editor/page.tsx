@@ -29,5 +29,9 @@ const mockNodes: AnyNode[] = [
 ];
 
 export default function TempPage() {
-    return <BoardEditor nodes={mockNodes} />;
+    return (
+        <div className="min-h-screen flex flex-col">
+            <BoardEditor nodes={mockNodes} />
+        </div>
+    );
 }
