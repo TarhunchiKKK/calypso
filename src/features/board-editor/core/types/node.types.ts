@@ -6,6 +6,8 @@ export type NodeBase = {
     id: string;
 
     type: NodeTypes;
+
+    blocked: boolean;
 };
 
 export type RectNode = NodeBase & {

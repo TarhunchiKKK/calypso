@@ -1,9 +1,12 @@
+"use client";
+
 import { BoardEditor } from "@/features/board-editor";
 import type { AnyNode } from "@/features/board-editor/nodes";
 
 const mockNodes: AnyNode[] = [
     {
         id: crypto.randomUUID(),
+        blocked: false,
         type: "sticker",
         rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1"
