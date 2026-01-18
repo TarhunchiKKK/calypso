@@ -12,12 +12,13 @@ import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
+import { PropsWithChildren } from "react";
 
-type Props = {
+type Props = PropsWithChildren<{
     nodes: NodeBase[];
-};
+}>;
 
-export function BoardEditor({ nodes }: Props) {
+export function BoardEditor({ nodes, children }: Props) {
     const nodesModel = useNodesModel(nodes);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
@@ -61,6 +62,8 @@ export function BoardEditor({ nodes }: Props) {
                     <StickerIcon />
                 </ActionButton>
             </ActionsBar>
+
+            {children}
         </Layout>
     );
 }
