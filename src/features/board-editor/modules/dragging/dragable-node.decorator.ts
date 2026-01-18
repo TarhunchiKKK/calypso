@@ -1,10 +1,10 @@
 import { type Decoratable, NodeDecorator, type Offset } from "../../core";
-import type { DraggingStrategy } from "./dragging.strategy";
+import type { NodeDraggingStrategy } from "./node-dragging.strategy";
 
 export class DragableNodeDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: DraggingStrategy,
+        protected readonly strategy: NodeDraggingStrategy,
         protected readonly offset?: Offset
     ) {
         super(entry);
