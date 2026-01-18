@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 const node = {
     id: "id",
     type: "sticker",
+    blocked: false,
     rect: {
         x: 100,
         y: 100,
