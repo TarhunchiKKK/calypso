@@ -1,7 +1,7 @@
 import { withNodeId } from "@/features/board-editor/core";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useDragging } from "../../hooks/use-dragging.hook";
-import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
+import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToEditing } from "../editing/switcher";
@@ -16,10 +16,10 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     const dragging = useDragging(params);
 
-    const mediators = useMouseEventsMediators();
+    const mediator = useMouseEventsMediator();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
-        const handlers = mediators.node.createHandlers({
+        const handlers = mediator.createHandlers({
             onMouseDown: withNodeId((nodeId, e) => {
                 dragging.onMouseDown(new Set([nodeId]), e);
             }),

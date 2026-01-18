@@ -1,16 +1,16 @@
 import { type Decoratable, NodeDecorator, type Rect } from "../../../core";
-import type { ResizeStrategy } from "./resize.strategy";
+import type { NodeResizingStrategy } from "./node-resizing.strategy";
 
 export class ResizableNodeDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: ResizeStrategy,
+        protected readonly strategy: NodeResizingStrategy,
         size?: Rect
     ) {
         super(entry);
 
         if (size) {
-            this.strategy.updateNode(this.entry.wrapper, size);
+            this.strategy.updateNodeSizes(this.entry.wrapper, size);
         }
     }
 

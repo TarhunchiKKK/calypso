@@ -57,10 +57,7 @@ export function BoardEditor({ nodes }: Props) {
                     <MousePointer2 />
                 </ActionButton>
 
-                <ActionButton
-                    isActive={viewModel.actions?.stickers?.isActive}
-                    onClick={viewModel.actions?.stickers?.onClick}
-                >
+                <ActionButton isActive={viewModel.actions?.stickers?.isActive} onClick={viewModel.actions?.stickers?.onClick}>
                     <StickerIcon />
                 </ActionButton>
             </ActionsBar>

@@ -1,17 +1,8 @@
 import { getNodeId, type NodeWrapper, type Rect, type RectNode } from "@/features/board-editor/core";
-import { ResizeBorders } from "../resize-borders.component";
-import type { ResizeDirection, ResizeHandler } from "../types";
+import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/features/board-editor/modules/resizing";
 
-export abstract class ResizeStrategy {
-    public constructor(protected readonly handler?: ResizeHandler) {}
-
-    public abstract updateNode(wrapper: NodeWrapper, size: Rect): void;
-
-    public abstract ui(): React.ReactNode;
-}
-
-export class RectNodeResizeStrategy extends ResizeStrategy {
-    public override updateNode(wrapper: NodeWrapper<RectNode>, size: Rect): void {
+export class RectNodeResizingStrategy extends NodeResizingStrategy {
+    public override updateNodeSizes(wrapper: NodeWrapper<RectNode>, size: Rect) {
         wrapper.data = { ...wrapper.data, rect: size };
     }
 

@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Point, Rect } from "../lib/geometry";
+import type { Rect } from "../lib/geometry";
 import type { Decoratable } from "../types/decorators.types";
 import type { NodeBase } from "../types/node.types";
 import type { Renderable } from "../types/ui.types";
@@ -39,8 +39,6 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
-    public abstract get rect(): Rect;
-
     public hideContent() {
         this.showContent = false;
         return true;
@@ -51,9 +49,9 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
-    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
+    public abstract get rect(): Rect;
 
-    public abstract moveTo(point: Point): NodeWrapper<T>;
+    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }
