@@ -1,9 +1,7 @@
 import { type Decoratable, type NodeBase, NodeDecorator } from "../../core";
 import type { NodeEditingStrategy } from "./node-editing.strategy";
 
-export class EditableNodeDecorator<
-    T extends NodeBase = NodeBase,
-> extends NodeDecorator<T> {
+export class EditableNodeDecorator<T extends NodeBase = NodeBase> extends NodeDecorator<T> {
     public constructor(
         protected readonly entry: Decoratable<T>,
         protected readonly strategy: NodeEditingStrategy

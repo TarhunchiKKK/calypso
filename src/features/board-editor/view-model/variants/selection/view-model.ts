@@ -3,7 +3,7 @@ import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { selectNodes } from "@/features/board-editor/modules/selection";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useDragging } from "../../hooks/use-dragging.hook";
-import { useMouseEventsMediators } from "../../hooks/use-mouse-events-mediators.hook";
+import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import { useResizing } from "../../hooks/use-resizing.hook";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
@@ -21,7 +21,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
-    const mediators = useMouseEventsMediators();
+    const nodeMediator = useMouseEventsMediator();
+    const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         // QUESTION: should this handler exists ?
@@ -32,7 +33,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         };
 
-        const handlers = mediators.node.createHandlers({
+        const handlers = nodeMediator.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
                 handleSkipNextClick();
@@ -62,7 +63,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .setResizeHandler(handleResize)
                 .get(),
-            overlay: mediators.overlay.createHandlers({
+            overlay: overlayMediator.createHandlers({
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => {
                     handleSkipNextClick();

@@ -24,19 +24,12 @@ export class NodeDecoratorsFactory {
         return new DragableNodeDecorator(node, strategyCreator(), offset);
     }
 
-    public static resizable(
-        node: Decoratable,
-        size?: Rect,
-        handler?: ResizeHandler
-    ) {
+    public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizingStrategiesMap[node.type];
         return new ResizableNodeDecorator(node, strategyCreator(handler), size);
     }
 
-    public static editable(
-        node: Decoratable,
-        handler: (node: NodeBase) => void
-    ) {
+    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
         return new EditableNodeDecorator(node, strategyCreator(handler));
     }

@@ -15,12 +15,6 @@ export class EditTextNodeStrategy extends NodeEditingStrategy {
             this.handler({ ...node, text: this.value } as TextNode);
         };
 
-        return (
-            <FormatableTextarea
-                value={node.text}
-                onChange={changeHandler}
-                onBlur={endEditingHandler}
-            />
-        );
+        return <FormatableTextarea value={node.text} onChange={changeHandler} onBlur={endEditingHandler} />;
     }
 }

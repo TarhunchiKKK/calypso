@@ -3,10 +3,7 @@ import type { NodeDraggingStrategy } from "@/features/board-editor/modules/dragg
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import { RectNodeDraggingStrategy } from "../../variants/shared";
 
-export const DraggingStrategiesMap: Record<
-    NodeTypes,
-    ConstructorFunction<typeof NodeDraggingStrategy>
-> = {
+export const DraggingStrategiesMap: Record<NodeTypes, ConstructorFunction<typeof NodeDraggingStrategy>> = {
     sticker: () => new RectNodeDraggingStrategy(),
-    text: () => new RectNodeDraggingStrategy(),
+    text: () => new RectNodeDraggingStrategy()
 };

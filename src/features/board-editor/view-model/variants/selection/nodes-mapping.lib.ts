@@ -1,10 +1,4 @@
-import {
-    type Decoratable,
-    type NodeBase,
-    type NodeHandlers,
-    NodesMapper,
-    type NodeWrapper
-} from "@/features/board-editor/core";
+import { type Decoratable, type NodeBase, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
 import type { ResizeDirection, ResizeHandler } from "@/features/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 
@@ -44,23 +38,16 @@ export class SelectionNodesMapper extends NodesMapper {
 
     private applyHandlers(wrappers: NodeWrapper[], handlers: NodeHandlers) {
         return wrappers.map(node =>
-            node
-                .setHandler("onClick", handlers.onClick)
-                .setHandler("onMouseDown", handlers.onMouseDown)
-                .setHandler("onMouseUp", handlers.onMouseUp)
+            node.setHandler("onClick", handlers.onClick).setHandler("onMouseDown", handlers.onMouseDown).setHandler("onMouseUp", handlers.onMouseUp)
         );
     }
 
     private applySelection(wrappers: NodeWrapper[], selection1: Set<string>, selection2: Set<string>): Decoratable[] {
-        return wrappers.map(wrapper =>
-            selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodeDecoratorsFactory.select(wrapper) : wrapper
-        );
+        return wrappers.map(wrapper => (selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodeDecoratorsFactory.select(wrapper) : wrapper));
     }
 
     private applyResizing(wrappers: NodeWrapper[], nodeId: string, handler: ResizeHandler) {
-        return wrappers.map(wrapper =>
-            wrapper.id === nodeId ? NodeDecoratorsFactory.resizable(wrapper, undefined, handler) : wrapper
-        );
+        return wrappers.map(wrapper => (wrapper.id === nodeId ? NodeDecoratorsFactory.resizable(wrapper, undefined, handler) : wrapper));
     }
 
     public override get() {

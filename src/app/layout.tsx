@@ -15,8 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: "Calypso | Online Whiteboard",
-    description:
-        "Online virtual whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
+    description: "Online virtual whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
     keywords: ["whiteboard", "board", "editor", "diagram", "drawing", "stickers", "arrows", "images", "videos"],
     openGraph: {
         type: "website",

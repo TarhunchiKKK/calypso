@@ -1,3 +1,5 @@
+"use client";
+
 import type { Descendant } from "slate";
 import { FormatableTextarea } from "@/shared/ui/formatable-input";
 

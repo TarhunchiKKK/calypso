@@ -13,14 +13,6 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     }
 
     public override render(children?: React.ReactNode) {
-        return (
-            <StickerComponent
-                key={this.node.id}
-                node={this.node}
-                handlers={this.handlers}
-                showContent={this.showContent}
-                children={children}
-            />
-        );
+        return <StickerComponent key={this.node.id} node={this.node} handlers={this.handlers} showContent={this.showContent} children={children} />;
     }
 }

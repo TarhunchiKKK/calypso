@@ -8,8 +8,6 @@ export class EditStickerNodeStrategy extends NodeEditingStrategy {
             this.handler({ ...node, text: text } as StickerNode);
         };
 
-        return (
-            <TextareaAutoSize value={node.text} onEditingEnd={onEditingEnd} />
-        );
+        return <TextareaAutoSize value={node.text} onEditingEnd={onEditingEnd} />;
     }
 }
