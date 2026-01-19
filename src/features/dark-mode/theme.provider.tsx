@@ -2,9 +2,7 @@
 
 import { type PropsWithChildren, useEffect } from "react";
 import { ENV } from "@/shared/config";
-import { setDocumentTheme, type Theme } from "./lib";
-
-const defaultTheme: Theme = "dark";
+import { defaultTheme, setDocumentTheme, type Theme } from "./lib";
 
 export function ThemeProvider({ children }: PropsWithChildren) {
     useEffect(() => {
