@@ -5,20 +5,12 @@ import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;
 
-    // QUESTION: should selection window appears here ?
-    private selectionWindowIds!: Set<string>;
-
     private resizeHandler!: ResizeHandler;
 
     private nodeHandlers!: NodeHandlers;
 
     public setSelectedIds(ids: Set<string>) {
         this.selectedIds = ids;
-        return this;
-    }
-
-    public setSelectionWindowIds(ids: Set<string>) {
-        this.selectionWindowIds = ids;
         return this;
     }
 
@@ -42,8 +34,8 @@ export class SelectionNodesMapper extends NodesMapper {
         );
     }
 
-    private applySelection(wrappers: NodeWrapper[], selection1: Set<string>, selection2: Set<string>): Decoratable[] {
-        return wrappers.map(wrapper => (selection1.has(wrapper.id) || selection2.has(wrapper.id) ? NodeDecoratorsFactory.select(wrapper) : wrapper));
+    private applySelection(wrappers: NodeWrapper[], selectedIds: Set<string>): Decoratable[] {
+        return wrappers.map(wrapper => (selectedIds.has(wrapper.id) ? NodeDecoratorsFactory.select(wrapper) : wrapper));
     }
 
     private applyResizing(wrappers: NodeWrapper[], nodeId: string, handler: ResizeHandler) {
@@ -63,6 +55,6 @@ export class SelectionNodesMapper extends NodesMapper {
             ) as NodeWrapper[];
         }
 
-        return this.applySelection(wrappers, this.selectedIds, this.selectionWindowIds);
+        return this.applySelection(wrappers, this.selectedIds);
     }
 }

@@ -3,7 +3,7 @@ import type { NodesSelectionMode } from "@/features/board-editor/modules/selecti
 import type { SelectionWindowViewState } from "./view-state";
 
 type Params = {
-    selectedIds?: Set<string>;
+    selectedIds: Set<string>;
 
     startPoint: Point;
 
@@ -14,7 +14,7 @@ export function switchToSelectionWindow({ selectedIds, startPoint, selectionMode
     return {
         type: "selection-window",
         startPoint: startPoint,
-        selectedIds: selectedIds ?? new Set(),
+        selectedIds: selectionMode === "replace" ? new Set() : selectedIds,
         selectionMode: selectionMode
     };
 }

@@ -21,7 +21,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const resizing = useResizing(params);
 
-    const nodeMediator = useMouseEventsMediator();
+    const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
@@ -29,14 +29,18 @@ export function useSelectionViewModel(params: ViewModelParams) {
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
                 setViewState({ ...viewState, skipNextClick: undefined });
-                return;
+                return "skip";
             }
+
+            return "no-skip";
         };
 
-        const handlers = nodeMediator.createHandlers({
+        const handlers = nodesMediator.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
-                handleSkipNextClick();
+                if (handleSkipNextClick() === "skip") {
+                    return;
+                }
 
                 const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
@@ -55,14 +59,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
         };
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes)
-                .setHandlers(handlers)
-                .setSelectedIds(viewState.selectedIds)
-
-                // QUESTION: should selection window figure here ?
-                .setSelectionWindowIds(selectionWindow.selectedNodesIds)
-                .setResizeHandler(handleResize)
-                .get(),
+            nodes: SelectionNodesMapper.from(nodesModel.nodes).setHandlers(handlers).setSelectedIds(viewState.selectedIds).setResizeHandler(handleResize).get(),
             overlay: overlayMediator.createHandlers({
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => {
