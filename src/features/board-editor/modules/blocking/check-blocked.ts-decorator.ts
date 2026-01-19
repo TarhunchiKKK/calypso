@@ -14,7 +14,6 @@ export function CheckBlocked() {
                 return node;
             }
 
-            console.log("not blocked");
             return originalMethod.apply(this, [node, ...args]);
         };
 

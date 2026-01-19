@@ -6,12 +6,9 @@ type MouseEventHandlers<E> = {
 };
 
 type MouseEventsMediatorOptions = {
-    clickDelay?: number;
-    mouseDownDelay?: number;
+    clickDelay: number;
+    mouseDownDelay: number;
 };
-
-const DEFAULT_CLICK_DELAY = 250;
-const DEFAULT_MOUSE_DOWN_DELAY = 250;
 
 /**
  * The MouseEventsMediator class is a utility designed to manage and distinguish between single-clicks, double-clicks, and long-press mouse events.
@@ -35,9 +32,9 @@ export class MouseEventsMediator<E = never> {
 
     private skipNextClick = false;
 
-    public constructor(options: MouseEventsMediatorOptions = {}) {
-        this.clickDelay = options.clickDelay ?? DEFAULT_CLICK_DELAY;
-        this.mouseDownDelay = options.mouseDownDelay ?? DEFAULT_MOUSE_DOWN_DELAY;
+    public constructor(options: MouseEventsMediatorOptions) {
+        this.clickDelay = options.clickDelay;
+        this.mouseDownDelay = options.mouseDownDelay;
     }
 
     // OPTIMIZE: result of handlers creating can be saved in this class

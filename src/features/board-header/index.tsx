@@ -11,7 +11,7 @@ type Props = {
 export const BoardHeader = {
     LeftPanel: ({ boardName }: Props["LeftPanel"]) => {
         return (
-            <div className="w-min h-[60px] px-2 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
+            <div className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
                 <Logo />
 
                 <div className="w-max">{boardName}</div>
@@ -20,7 +20,7 @@ export const BoardHeader = {
     },
     RightPanel: ({ children }: Props["RightPanel"]) => {
         return (
-            <div className="w-min h-[60px] px-2 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
+            <div className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
                 {children}
             </div>
         );

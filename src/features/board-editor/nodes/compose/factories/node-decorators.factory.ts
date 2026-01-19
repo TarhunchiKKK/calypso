@@ -1,3 +1,4 @@
+import { CheckBlocked } from "@/features/board-editor/modules/blocking";
 import { DragableNodeDecorator } from "@/features/board-editor/modules/dragging";
 import type { Decoratable, NodeBase, Offset, Rect } from "../../../core";
 import { EditableNodeDecorator } from "../../../modules/editing";
@@ -8,7 +9,6 @@ import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editiing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
-import { CheckBlocked } from "@/features/board-editor/modules/blocking";
 
 export class NodeDecoratorsFactory {
     public static wrap(node: NodeBase) {
