@@ -5,4 +5,5 @@ export * from "./lib/geometry";
 export { NodesMapper } from "./lib/nodes-mapper.class";
 export type { Decoratable } from "./types/decorators.types";
 export type { NodeBase, NodeTypes, RectNode } from "./types/node.types";
+export type { NodeStyles } from "./types/styling.types";
 export type { Renderable } from "./types/ui.types";
