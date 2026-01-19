@@ -7,21 +7,21 @@ import { ThemeSwitch } from "@/features/dark-mode";
 
 const mockNodes: AnyNode[] = [
     {
-        id: crypto.randomUUID(),
+        id: "1",
         blocked: false,
         type: "sticker",
         rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1"
     },
     {
-        id: crypto.randomUUID(),
+        id: "2",
         blocked: false,
         type: "sticker",
         rect: { x: 220, y: 220, width: 150, height: 150 },
         text: "Hello 2"
     },
     {
-        id: crypto.randomUUID(),
+        id: "3",
         type: "sticker",
         blocked: false,
         rect: { x: 460, y: 180, width: 100, height: 100 },
