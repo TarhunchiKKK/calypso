@@ -25,23 +25,9 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        // QUESTION: should this handler exists ?
-        const handleSkipNextClick = () => {
-            if (viewState.skipNextClick) {
-                setViewState({ ...viewState, skipNextClick: undefined });
-                return "skip";
-            }
-
-            return "no-skip";
-        };
-
         const handlers = nodesMediator.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
-                if (handleSkipNextClick() === "skip") {
-                    return;
-                }
-
                 const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
                 setViewState({
@@ -62,10 +48,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             nodes: SelectionNodesMapper.from(nodesModel.nodes).setHandlers(handlers).setSelectedIds(viewState.selectedIds).setResizeHandler(handleResize).get(),
             overlay: overlayMediator.createHandlers({
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
-                onClick: () => {
-                    handleSkipNextClick();
-                    setViewState(switchToIdle());
-                }
+                onClick: () => setViewState(switchToIdle())
             })
         };
     };
