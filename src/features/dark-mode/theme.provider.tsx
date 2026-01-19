@@ -1,3 +1,5 @@
+"use client";
+
 import { type PropsWithChildren, useEffect } from "react";
 import { ENV } from "@/shared/config";
 import { setDocumentTheme, type Theme } from "./lib";

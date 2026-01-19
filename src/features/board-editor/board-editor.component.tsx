@@ -1,6 +1,7 @@
 "use client";
 
 import { MousePointer2, StickerIcon } from "lucide-react";
+import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../../shared/lib/window";
 import type { NodeBase } from "./core";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
@@ -12,7 +13,6 @@ import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
-import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
     nodes: NodeBase[];
