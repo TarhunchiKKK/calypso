@@ -1,6 +1,7 @@
 "use client";
 
 import { MousePointer2, StickerIcon } from "lucide-react";
+import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../../shared/lib/window";
 import type { NodeBase } from "./core";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
@@ -13,11 +14,11 @@ import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
 
-type Props = {
+type Props = PropsWithChildren<{
     nodes: NodeBase[];
-};
+}>;
 
-export function BoardEditor({ nodes }: Props) {
+export function BoardEditor({ nodes, children }: Props) {
     const nodesModel = useNodesModel(nodes);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
@@ -61,6 +62,8 @@ export function BoardEditor({ nodes }: Props) {
                     <StickerIcon />
                 </ActionButton>
             </ActionsBar>
+
+            {children}
         </Layout>
     );
 }

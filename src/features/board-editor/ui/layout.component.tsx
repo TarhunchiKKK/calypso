@@ -31,7 +31,7 @@ export function Layout({ children, ...props }: Props) {
     const layoutRef = useLayoutFocus();
 
     return (
-        <div data-testid="layout" className="grow relative" {...props} tabIndex={0} ref={layoutRef}>
+        <div data-testid="layout" className="grow relative dark:bg-gray-900" {...props} tabIndex={0} ref={layoutRef}>
             {children}
         </div>
     );

@@ -1,4 +1,4 @@
-import { Button } from "@/shared/ui/kit/button";
+import { Button } from "@/shared/ui/kit";
 
 export function Header() {
     return (

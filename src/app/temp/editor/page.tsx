@@ -2,6 +2,8 @@
 
 import { BoardEditor } from "@/features/board-editor";
 import type { AnyNode } from "@/features/board-editor/nodes";
+import { BoardHeader } from "@/features/board-header";
+import { ThemeSwitch } from "@/features/dark-mode";
 
 const mockNodes: AnyNode[] = [
     {
@@ -34,7 +36,15 @@ const mockNodes: AnyNode[] = [
 export default function TempPage() {
     return (
         <div className="min-h-screen flex flex-col">
-            <BoardEditor nodes={mockNodes} />
+            <BoardEditor nodes={mockNodes}>
+                <div className="absolute w-full px-6 top-4 left-0 flex flex-row justify-between items-center">
+                    <BoardHeader.LeftPanel boardName="New board" />
+
+                    <BoardHeader.RightPanel>
+                        <ThemeSwitch />
+                    </BoardHeader.RightPanel>
+                </div>
+            </BoardEditor>
         </div>
     );
 }
