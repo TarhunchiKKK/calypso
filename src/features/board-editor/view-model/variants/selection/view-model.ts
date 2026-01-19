@@ -25,8 +25,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        console.log(viewState.selectedIds);
-
         const handlers = nodesMediator.createHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
