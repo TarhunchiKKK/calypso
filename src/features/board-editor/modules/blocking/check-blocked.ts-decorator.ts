@@ -10,7 +10,6 @@ export function CheckBlocked() {
 
         descriptor.value = function (node: Decoratable, ...args: unknown[]): Decoratable {
             if (node.data.blocked) {
-                console.log("blocked");
                 return node;
             }
 

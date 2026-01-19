@@ -1,15 +1,15 @@
 import type React from "react";
 import { useState } from "react";
+import { Geometry, type Rect } from "../../core";
+import { selectNodes } from "../../modules/selection";
+import { NodeDecoratorsFactory } from "../../nodes";
 import type { ViewModelParams } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import type { IdleViewState } from "../variants/idle/view-state";
-import { switchToSelectionWindow } from "../variants/selection-window/switcher";
-import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 import type { SelectionViewState } from "../variants/selection/view-state";
-import { selectNodes } from "../../modules/selection";
-import { NodeDecoratorsFactory } from "../../nodes";
-import { Geometry, type Rect } from "../../core";
+import { switchToSelectionWindow } from "../variants/selection-window/switcher";
+import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
@@ -34,7 +34,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
         setViewState(
             switchToSelectionWindow({
                 startPoint: currentPoint,
-                selectedIds: viewState.type === "selection" ? viewState.selectedIds : undefined,
+                selectedIds: viewState.type === "selection" ? viewState.selectedIds : new Set(),
                 selectionMode: selectionMode
             })
         );

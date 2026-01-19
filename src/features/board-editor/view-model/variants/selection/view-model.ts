@@ -25,8 +25,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        console.log(viewState);
-
         // QUESTION: should this handler exists ?
         const handleSkipNextClick = () => {
             if (viewState.skipNextClick) {
