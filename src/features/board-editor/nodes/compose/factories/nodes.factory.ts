@@ -1,32 +1,18 @@
 import type { Point } from "@/features/board-editor/core";
 import { StickerNodeWrapper } from "../../variants/sticker/sticker.wrapper";
 import { TextNodeWrapper } from "../../variants/text/text-node.wrapper";
-import { DefaultNodePayloadsMap } from "../constants/default-node-payloads.map";
+import { NodeCreatorsMap } from "../constants/default-node-payloads.map";
 
 export class NodesFactory {
     public static sticker(point: Point) {
-        const payload = DefaultNodePayloadsMap.sticker;
+        const creator = NodeCreatorsMap.sticker;
 
-        return new StickerNodeWrapper({
-            id: crypto.randomUUID(),
-            ...payload,
-            rect: {
-                ...point,
-                ...payload.rect
-            }
-        });
+        return new StickerNodeWrapper(creator(point));
     }
 
     public static text(point: Point) {
-        const payload = DefaultNodePayloadsMap.text;
+        const creator = NodeCreatorsMap.text;
 
-        return new TextNodeWrapper({
-            id: crypto.randomUUID(),
-            ...payload,
-            rect: {
-                ...point,
-                ...payload.rect
-            }
-        });
+        return new TextNodeWrapper(creator(point));
     }
 }
