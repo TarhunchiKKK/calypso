@@ -8,6 +8,7 @@ type Props = {
     RightPanel: PropsWithChildren;
 };
 
+// TODO: Implement `Wrapper` component
 export const BoardHeader = {
     LeftPanel: ({ boardName }: Props["LeftPanel"]) => {
         return (
