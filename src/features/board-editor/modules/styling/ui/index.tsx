@@ -4,6 +4,7 @@ import type { NodeStyles } from "../types";
 import { FontFamilyDropdown } from "./font-family-dropdown.component";
 import { FontSizeInput } from "./font-size-input.component";
 import { FontStyleDropdown } from "./font-style-dropdown.component";
+import { TextAlignDropdown } from "./text-align-dropdown.component";
 
 type Props = WithNull<NodeStyles> & {
     point: Point;
@@ -17,6 +18,8 @@ export function StylesBar({ point: _ }: Props) {
             <FontStyleDropdown fontWeight={"bold"} fontStyle={"italic"} textDecoration={"underline"} />
 
             <FontSizeInput value={2} />
+
+            <TextAlignDropdown textAlign="center" />
         </div>
     );
 }
