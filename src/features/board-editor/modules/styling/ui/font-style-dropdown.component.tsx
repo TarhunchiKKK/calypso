@@ -2,7 +2,7 @@ import { Bold, Italic, Underline } from "lucide-react";
 import type { WithNull } from "@/shared/lib/typescript";
 import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
-import { PopoverSideOffset } from "./lib";
+import { PopoverSideOffset } from "./constants";
 
 type Props = Pick<WithNull<Required<NodeStyles>>, "fontWeight" | "fontStyle" | "textDecoration">;
 

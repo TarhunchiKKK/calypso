@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { Logo } from "@/shared/ui";
+import { Logo, Wrapper } from "@/shared/ui";
 
 type Props = {
     LeftPanel: {
@@ -12,18 +12,14 @@ type Props = {
 export const BoardHeader = {
     LeftPanel: ({ boardName }: Props["LeftPanel"]) => {
         return (
-            <div className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
+            <Wrapper className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6">
                 <Logo />
 
                 <div className="w-max">{boardName}</div>
-            </div>
+            </Wrapper>
         );
     },
     RightPanel: ({ children }: Props["RightPanel"]) => {
-        return (
-            <div className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6 bg-white dark:bg-gray-900 rounded-md shadow-lg dark:shadow-amber-50 dark:shadow-sm">
-                {children}
-            </div>
-        );
+        return <Wrapper className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6">{children}</Wrapper>;
     }
 };

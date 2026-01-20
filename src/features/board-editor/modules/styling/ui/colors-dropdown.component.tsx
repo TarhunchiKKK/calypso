@@ -1,6 +1,6 @@
 import type React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
-import { Colors, PopoverSideOffset } from "./lib";
+import { Colors, PopoverSideOffset } from "./constants";
 
 type Props = {
     value: string;

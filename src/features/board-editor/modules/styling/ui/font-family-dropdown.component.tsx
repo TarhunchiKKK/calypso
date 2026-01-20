@@ -3,7 +3,7 @@
 import { CaseSensitive } from "lucide-react";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
-import { Fonts } from "./lib";
+import { Fonts } from "./constants";
 
 type Props = {
     value: NodeStyles["fontFamily"] | null;

@@ -4,14 +4,14 @@ import { HorizontalDropdown, NumericDropdown, Wrapper } from "@/shared/ui";
 import type { Point } from "../../../core";
 import type { NodeStyles } from "../types";
 import { ColorsDropdown } from "./colors-dropdown.component";
+import { BorderRadiuses, BorderStyles, FontSizes, PopoverSideOffset, TextAligns } from "./constants";
 import { FontFamilyDropdown } from "./font-family-dropdown.component";
-import { BorderRadiuses, BorderStyles, FontSizes, PopoverSideOffset, TextAligns } from "./lib";
 
 type Props = WithNull<NodeStyles> & {
     point: Point;
 };
 
-export function StylesBar({ point: _ }: Props) {
+export function StylesPanel({ point: _ }: Props) {
     return (
         <Wrapper className="flex flex-row justify-between items-center gap-4">
             <FontFamilyDropdown value="fantasy" />

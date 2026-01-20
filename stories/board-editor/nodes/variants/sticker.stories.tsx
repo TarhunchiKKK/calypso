@@ -26,7 +26,6 @@ const node: StickerNode = {
         backgroundColor: "orange",
         borderColor: "black",
         borderStyle: "dashed",
-        borderWidth: 2,
         color: "black",
         fontStyle: "normal"
     },

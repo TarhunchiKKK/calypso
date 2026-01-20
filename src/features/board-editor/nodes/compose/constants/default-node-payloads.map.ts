@@ -18,7 +18,6 @@ export const NodeCreatorsMap = {
                 backgroundColor: "orange",
                 borderColor: "none",
                 borderStyle: "dashed",
-                borderWidth: 2,
                 color: "black",
                 fontStyle: "normal"
             }

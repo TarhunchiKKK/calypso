@@ -16,7 +16,6 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            borderWidth: 2,
             color: "black",
             fontStyle: "normal"
         }
@@ -31,7 +30,6 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            borderWidth: 2,
             color: "black",
             fontStyle: "normal"
         }
@@ -46,7 +44,6 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            borderWidth: 2,
             color: "black",
             fontStyle: "normal"
         }
