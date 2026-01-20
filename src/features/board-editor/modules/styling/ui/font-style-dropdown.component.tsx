@@ -11,7 +11,7 @@ export function FontStyleDropdown({ fontWeight, fontStyle, textDecoration }: Pro
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Button size="icon" className="cursor-pointer font-bold italic underline">
+                <Button size="icon" className="cursor-pointer">
                     <Bold className="h-4 w-4" />
                 </Button>
             </PopoverTrigger>

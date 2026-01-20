@@ -1,6 +1,7 @@
 "use client";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { CaseSensitive } from "lucide-react";
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
 import type { DropdownItem } from "./types";
 
@@ -27,15 +28,17 @@ const availableFonts: DropdownItem<"fontFamily">[] = [
     }
 ];
 
-export function FontFamilyDropdown({ fontFamily }: Props) {
+export function FontFamilyDropdown({ fontFamily: _ }: Props) {
     const clickHandler = (fontFamily: NodeStyles["fontFamily"]) => {
         console.log(fontFamily);
     };
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer">
-                {fontFamily === null ? "ABC" : <span style={{ fontFamily: fontFamily }}>{fontFamily}</span>}
+            <DropdownMenuTrigger className="cursor-pointer" asChild>
+                <Button size="icon" className="cursor-pointer">
+                    <CaseSensitive className="h-4 w-4" />
+                </Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
