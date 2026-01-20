@@ -10,6 +10,7 @@ export const ROUTES = {
     // NOTE: this pages are used for development purposes
     TEMP: {
         editor: "/temp/editor",
-        formatable: "/temp/formatabe"
+        formatable: "/temp/formatabe",
+        styles: "/temp/styles"
     }
 };
