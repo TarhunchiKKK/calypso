@@ -3,32 +3,13 @@
 import { CaseSensitive } from "lucide-react";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
-import type { DropdownItem } from "./types";
+import { Fonts } from "./lib";
 
 type Props = {
-    fontFamily: NodeStyles["fontFamily"] | null;
+    value: NodeStyles["fontFamily"] | null;
 };
 
-const availableFonts: DropdownItem<"fontFamily">[] = [
-    {
-        label: "Sans Serif",
-        value: "sans-serif"
-    },
-    {
-        label: "Fantasy",
-        value: "fantasy"
-    },
-    {
-        label: "Math",
-        value: "math"
-    },
-    {
-        label: "Monospace",
-        value: "monospace"
-    }
-];
-
-export function FontFamilyDropdown({ fontFamily: _ }: Props) {
+export function FontFamilyDropdown({ value: _ }: Props) {
     const clickHandler = (fontFamily: NodeStyles["fontFamily"]) => {
         console.log(fontFamily);
     };
@@ -42,7 +23,7 @@ export function FontFamilyDropdown({ fontFamily: _ }: Props) {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                {availableFonts.map(font => (
+                {Fonts.map(font => (
                     <DropdownMenuItem key={font.label} className="cursor-pointer" onClick={clickHandler.bind(null, font.value)}>
                         <span style={{ fontFamily: font.value }}>{font.label}</span>
                     </DropdownMenuItem>

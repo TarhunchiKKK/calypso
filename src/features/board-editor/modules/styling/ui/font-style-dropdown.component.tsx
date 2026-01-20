@@ -2,10 +2,9 @@ import { Bold, Italic, Underline } from "lucide-react";
 import type { WithNull } from "@/shared/lib/typescript";
 import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
+import { PopoverSideOffset } from "./lib";
 
 type Props = Pick<WithNull<Required<NodeStyles>>, "fontWeight" | "fontStyle" | "textDecoration">;
-
-const popoverSideOffset = 14;
 
 export function FontStyleDropdown({ fontWeight, fontStyle, textDecoration }: Props) {
     return (
@@ -16,7 +15,7 @@ export function FontStyleDropdown({ fontWeight, fontStyle, textDecoration }: Pro
                 </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-min p-0" sideOffset={popoverSideOffset}>
+            <PopoverContent className="w-min p-0" sideOffset={PopoverSideOffset}>
                 <ToggleGroup type="multiple" variant="outline">
                     <ToggleGroupItem value="bold" className="cursor-pointer" data-state={fontWeight === "bold" ? "on" : "off"}>
                         <Bold className="h-4 w-4" />
