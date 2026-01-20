@@ -23,8 +23,9 @@ export function FontFamilyDropdown({ value: _ }: Props) {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                {Fonts.map(font => (
-                    <DropdownMenuItem key={font.label} className="cursor-pointer" onClick={clickHandler.bind(null, font.value)}>
+                {Fonts.map((font, index) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: List items will never be reordered
+                    <DropdownMenuItem key={index} className="cursor-pointer" onClick={clickHandler.bind(null, font.value)}>
                         <span style={{ fontFamily: font.value }}>{font.label}</span>
                     </DropdownMenuItem>
                 ))}

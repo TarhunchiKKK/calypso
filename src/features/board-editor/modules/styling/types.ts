@@ -13,5 +13,4 @@ export type NodeStyles = Pick<
     | "borderRadius"
     | "borderColor"
     | "borderStyle"
-    | "borderWidth"
 >;

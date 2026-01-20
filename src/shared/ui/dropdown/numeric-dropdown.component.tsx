@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
-import type { DropdownItem } from "../../features/board-editor/modules/styling/ui/lib";
+import type { DropdownItem } from "./types";
 
 type Props<T> = {
     value: number | null;

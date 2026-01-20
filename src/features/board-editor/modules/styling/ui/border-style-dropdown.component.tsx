@@ -4,10 +4,10 @@ import type { NodeStyles } from "../types";
 import { PopoverSideOffset, TextAligns } from "./lib";
 
 type Props = {
-    value: NodeStyles["textAlign"];
+    value: NodeStyles["borderStyle"];
 };
 
-export function TextAlignDropdown({ value }: Props) {
+export function BorderStyleDropdown({ value }: Props) {
     return (
         <Popover>
             <PopoverTrigger asChild>

@@ -1,12 +1,6 @@
 import { TextAlignCenter, TextAlignEnd, TextAlignJustify, TextAlignStart } from "lucide-react";
-import type React from "react";
+import type { DropdownItem } from "@/shared/ui/dropdown";
 import type { NodeStyles } from "../types";
-
-export type DropdownItem<T> = {
-    label: React.ReactNode;
-
-    value: T;
-};
 
 export const PopoverSideOffset = 14;
 
@@ -81,22 +75,22 @@ export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [
     }
 ];
 
-export const TextAligns = [
+export const TextAligns: DropdownItem<Required<NodeStyles>["textAlign"]>[] = [
     {
         value: "start",
-        Icon: TextAlignStart
+        label: <TextAlignStart />
     },
     {
         value: "center",
-        Icon: TextAlignCenter
+        label: <TextAlignCenter />
     },
     {
         value: "end",
-        Icon: TextAlignEnd
+        label: <TextAlignEnd />
     },
     {
         value: "justify",
-        Icon: TextAlignJustify
+        label: <TextAlignJustify />
     }
 ];
 
@@ -124,5 +118,24 @@ export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
     {
         label: "Full",
         value: "50%"
+    }
+];
+
+export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] = [
+    {
+        label: "Solid",
+        value: "solid"
+    },
+    {
+        label: "Dotted",
+        value: "dotted"
+    },
+    {
+        label: "Dashed",
+        value: "dashed"
+    },
+    {
+        label: "Double",
+        value: "double"
     }
 ];
