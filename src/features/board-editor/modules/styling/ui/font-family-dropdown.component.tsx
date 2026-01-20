@@ -1,14 +1,14 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import type { NodeStyles } from "../types";
 import type { DropdownItem } from "./types";
 
 type Props = {
-    fontFamily: CSSProperties["fontFamily"] | null;
+    fontFamily: NodeStyles["fontFamily"] | null;
 };
 
-const availableFonts: DropdownItem[] = [
+const availableFonts: DropdownItem<"fontFamily">[] = [
     {
         label: "Sans Serif",
         value: "sans-serif"
@@ -28,7 +28,7 @@ const availableFonts: DropdownItem[] = [
 ];
 
 export function FontFamilyDropdown({ fontFamily }: Props) {
-    const clickHandler = (fontFamily: CSSProperties["fontFamily"]) => {
+    const clickHandler = (fontFamily: NodeStyles["fontFamily"]) => {
         console.log(fontFamily);
     };
 

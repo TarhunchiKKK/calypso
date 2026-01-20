@@ -1,7 +1,7 @@
-import type { CSSProperties } from "react";
+import type { NodeStyles } from "../types";
 
-export type DropdownItem = {
+export type DropdownItem<Key extends keyof NodeStyles> = {
     label: string;
 
-    value: CSSProperties["fontFamily"];
+    value: NodeStyles[Key];
 };
