@@ -1,3 +1,4 @@
+import { SquareRoundCorner } from "lucide-react";
 import type { WithNull } from "@/shared/lib/typescript";
 import { Wrapper } from "@/shared/ui";
 import type { Point } from "../../../core";
@@ -33,6 +34,8 @@ export function StylesBar({ point: _ }: Props) {
                     </span>
                 )}
             />
+
+            <ColorsDropdown value="#111111" renderItem={color => <SquareRoundCorner style={{ color: color }} />} />
         </Wrapper>
     );
 }

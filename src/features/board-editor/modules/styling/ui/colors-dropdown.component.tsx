@@ -1,10 +1,9 @@
 import type React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
-import type { NodeStyles } from "../types";
 import { Colors, PopoverSideOffset } from "./lib";
 
 type Props = {
-    value: NodeStyles["color"] | NodeStyles["backgroundColor"];
+    value: string;
 
     renderItem: (color: string) => React.ReactNode;
 };
@@ -19,7 +18,7 @@ export function ColorsDropdown({ value, renderItem }: Props) {
             </PopoverTrigger>
 
             <PopoverContent className="w-[192px] p-0" sideOffset={PopoverSideOffset}>
-                <ToggleGroup type="single" variant="default" className="grid!">
+                <ToggleGroup type="single" variant="default" className="w-full grid!">
                     <div className="grid grid-cols-4">
                         {Colors.map(color => (
                             <ToggleGroupItem key={color} value={color} className="cursor-pointer" data-state={value === color ? "on" : "off"}>
