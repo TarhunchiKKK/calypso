@@ -1,10 +1,11 @@
 import { TextAlignCenter, TextAlignEnd, TextAlignJustify, TextAlignStart } from "lucide-react";
+import type React from "react";
 import type { NodeStyles } from "../types";
 
-export type DropdownItem<Key extends keyof NodeStyles> = {
-    label: string | number;
+export type DropdownItem<T> = {
+    label: React.ReactNode;
 
-    value: NodeStyles[Key];
+    value: T;
 };
 
 export const PopoverSideOffset = 14;
@@ -28,7 +29,7 @@ export const Colors = [
     "#32D74B"
 ];
 
-export const Fonts: DropdownItem<"fontFamily">[] = [
+export const Fonts: DropdownItem<NodeStyles["fontFamily"]>[] = [
     {
         label: "Sans Serif",
         value: "sans-serif"
@@ -47,7 +48,7 @@ export const Fonts: DropdownItem<"fontFamily">[] = [
     }
 ];
 
-export const FontSizes: DropdownItem<"fontSize">[] = [
+export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [
     {
         label: 4,
         value: 4
@@ -96,5 +97,32 @@ export const TextAligns = [
     {
         value: "justify",
         Icon: TextAlignJustify
+    }
+];
+
+export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
+    {
+        label: "none",
+        value: 0
+    },
+    {
+        label: "4px",
+        value: 4
+    },
+    {
+        label: "8px",
+        value: 8
+    },
+    {
+        label: "16px",
+        value: 16
+    },
+    {
+        label: "24px",
+        value: 24
+    },
+    {
+        label: "Full",
+        value: "50%"
     }
 ];
