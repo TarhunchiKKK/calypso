@@ -20,11 +20,11 @@ export function StylesPanel({ point: _ }: Props) {
 
             <HorizontalDropdown value="center" items={TextAligns} placeholder={<TextAlignStart className="h-4 w-4" />} popoverOffset={PopoverSideOffset} />
 
-            <ColorsDropdown value="#111111" renderItem={backgroundColor => <div className="h-6 w-6 rounded-full" style={{ backgroundColor }} />} />
+            <ColorsDropdown renderItem={backgroundColor => <div className="h-6 w-6 rounded-full" style={{ backgroundColor }} />} />
 
-            <ColorsDropdown value="#111111" renderItem={color => <Type style={{ color }} />} />
+            <ColorsDropdown renderItem={color => <Type style={{ color }} />} />
 
-            <ColorsDropdown value="#111111" renderItem={color => <Square style={{ color }} />} />
+            <ColorsDropdown renderItem={color => <Square style={{ color }} />} />
 
             <NumericDropdown value={14} placeholder={<SquareRoundCorner className="h-4 w-4" />} items={BorderRadiuses} />
 

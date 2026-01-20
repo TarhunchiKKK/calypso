@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Header } from "@/features/header";
+import { AppHeader } from "@/features/header";
 
 const meta = {
-    title: "Page/Header",
-    component: Header
-} satisfies Meta<typeof Header>;
+    title: "Page/App Header",
+    component: AppHeader
+} satisfies Meta<typeof AppHeader>;
 
 export default meta;
 

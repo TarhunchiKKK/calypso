@@ -2,7 +2,7 @@ import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGro
 import type { DropdownItem } from "./types";
 
 type Props<T> = {
-    value: T;
+    value: T | null;
 
     items: DropdownItem<T>[];
 

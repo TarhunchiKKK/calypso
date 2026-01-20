@@ -2,8 +2,8 @@
 
 import { BoardEditor } from "@/features/board-editor";
 import type { AnyNode } from "@/features/board-editor/nodes";
-import { BoardHeader } from "@/features/board-header";
 import { ThemeSwitch } from "@/features/dark-mode";
+import { BoardHeader } from "@/features/header";
 
 const mockNodes: AnyNode[] = [
     {

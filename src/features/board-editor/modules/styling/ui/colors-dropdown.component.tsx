@@ -3,12 +3,10 @@ import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGro
 import { Colors, PopoverSideOffset } from "./constants";
 
 type Props = {
-    value: string;
-
     renderItem: (color: string) => React.ReactNode;
 };
 
-export function ColorsDropdown({ value, renderItem }: Props) {
+export function ColorsDropdown({ renderItem }: Props) {
     return (
         <Popover>
             <PopoverTrigger asChild>
@@ -21,7 +19,7 @@ export function ColorsDropdown({ value, renderItem }: Props) {
                 <ToggleGroup type="single" variant="default" className="w-full grid!">
                     <div className="grid grid-cols-4">
                         {Colors.map(color => (
-                            <ToggleGroupItem key={color} value={color} className="cursor-pointer" data-state={value === color ? "on" : "off"}>
+                            <ToggleGroupItem key={color} value={color} className="cursor-pointer">
                                 {renderItem(color)}
                             </ToggleGroupItem>
                         ))}

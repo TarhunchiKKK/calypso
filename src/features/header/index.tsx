@@ -1,19 +1,2 @@
-import { Button } from "@/shared/ui/kit";
-
-export function Header() {
-    return (
-        <header className="bg-background border-b border-border/40 shadow-sm py-3 px-4">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <div className="text-xl font-semibold">Calypso</div>
-
-                <div className="flex items-center gap-4">
-                    <span className="text-sm text-muted-foreground">casipso@gmail.com</span>
-
-                    <Button variant="outline" size="sm" className="hover:bg-destructive/10">
-                        Logout
-                    </Button>
-                </div>
-            </div>
-        </header>
-    );
-}
+export { AppHeader } from "./app-header.component";
+export { BoardHeader } from "./board-header.component";
