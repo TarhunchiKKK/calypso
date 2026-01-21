@@ -20,6 +20,6 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
             throw new UnauthorizedException("Incorrect password");
         }
 
-        return account;
+        return this.authHelper.createAuthResponse(account);
     }
 }

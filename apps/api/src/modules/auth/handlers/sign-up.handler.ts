@@ -19,6 +19,8 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     public async execute({ dto }: SignUpCommand) {
         await this.authHelper.checkExisting(dto.username);
 
-        return await this.accountsRepository.save(dto);
+        const account = await this.accountsRepository.save(dto);
+
+        return this.authHelper.createAuthResponse(account);
     }
 }

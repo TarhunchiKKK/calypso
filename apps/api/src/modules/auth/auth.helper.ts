@@ -1,11 +1,16 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import type { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import { AccountEntity } from "./entities/account.entity";
+import type { JwtPayload } from "./types/jwt.types";
 
 @Injectable()
 export class AuthHelper {
-    public constructor(@InjectRepository(AccountEntity) private readonly accountsRepository: Repository<AccountEntity>) {}
+    public constructor(
+        @InjectRepository(AccountEntity) private readonly accountsRepository: Repository<AccountEntity>,
+        private readonly jwtService: JwtService
+    ) {}
 
     public async checkExisting(username: string) {
         const exists = await this.accountsRepository.exists({
@@ -31,5 +36,24 @@ export class AuthHelper {
         }
 
         return account;
+    }
+
+    public async sign(payload: JwtPayload) {
+        return this.jwtService.sign({
+            username: payload,
+            createdAt: payload.createdAt
+        });
+    }
+
+    public async verify(token: string) {
+        return this.jwtService.verify<JwtPayload>(token);
+    }
+
+    public createAuthResponse(account: AccountEntity) {
+        return {
+            username: account.username,
+            createdAt: account.createdAt,
+            token: this.sign(account)
+        };
     }
 }
