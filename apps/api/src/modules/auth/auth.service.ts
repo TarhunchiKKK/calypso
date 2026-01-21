@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import type { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { SignInRequest } from "./dto/sign-in.request";
 import type { SignUpRequest } from "./dto/sign-up.request";
+import { FindAccountQuery } from "./handlers/find-account.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";
 import { SignUpCommand } from "./handlers/sign-up.handler";
 
@@ -18,5 +19,9 @@ export class AuthService {
 
     public async signIn(request: SignInRequest) {
         return await this.commandBus.execute(new SignInCommand(request));
+    }
+
+    public async findOne(username: string) {
+        return await this.queryBus.execute(new FindAccountQuery(username));
     }
 }
