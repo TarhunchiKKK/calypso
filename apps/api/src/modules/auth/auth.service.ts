@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import type { CommandBus, QueryBus } from "@nestjs/cqrs";
-import type { SignInRequest } from "./dto/sign-in.request";
-import type { SignUpRequest } from "./dto/sign-up.request";
+import type { SignInRequest } from "./dto/sign-in.dto";
+import type { SignUpRequest } from "./dto/sign-up.dto";
 import { FindAccountQuery } from "./handlers/find-account.handler";
 import { RemoveAccountCommand } from "./handlers/remove-account.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";
@@ -26,7 +26,7 @@ export class AuthService {
         return await this.queryBus.execute(new FindAccountQuery(username));
     }
 
-    public async remove(username: string) {
+    public async removeOne(username: string) {
         return await this.commandBus.execute(new RemoveAccountCommand(username));
     }
 }

@@ -2,7 +2,7 @@ import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqr
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import type { AuthHelper } from "../auth.helper";
-import type { SignUpRequest } from "../dto/sign-up.request";
+import type { SignUpRequest } from "../dto/sign-up.dto";
 import { AccountEntity } from "../entities/account.entity";
 
 export class SignUpCommand implements ICommand {

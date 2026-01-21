@@ -1,7 +1,7 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import type { AuthHelper } from "../auth.helper";
-import type { SignInRequest } from "../dto/sign-in.request";
+import type { SignInRequest } from "../dto/sign-in.dto";
 
 export class SignInCommand implements ICommand {
     public constructor(public dto: SignInRequest) {}

@@ -3,7 +3,7 @@ import type { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import { AccountEntity } from "./entities/account.entity";
-import type { JwtPayload } from "./types/jwt.types";
+import type { JwtPayload } from "./lib/jwt.lib";
 
 @Injectable()
 export class AuthHelper {
