@@ -1,27 +1,22 @@
-# dependencies
-**/node_modules
+# Dependencies
+node_modules
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# env files (can opt-in for committing if needed)
+# Local env files
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# typescript
-next-env.d.ts
-tsconfig.tsbuildinfo
+# Turbo
+.turbo
 
+# IDE - VSCode
 .vscode/*
-*storybook.log
-storybook-static
-
 !.vscode/*.code-snippets
 !.vscode/extensions.json
 !.vscode/extensions-config.md
+
+# Debug
+logs
+*.log
