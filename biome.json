@@ -12,8 +12,7 @@
             "apps/web/stories/**/*.{ts,tsx}",
             "apps/web/@types/**/*.ts",
             "apps/api/src/**/*.{ts,tsx,json}",
-            "packages/api/**/*.{ts,json}",
-            "packages/ui/**/*.{ts,tsx,json}"
+            "packages/common/src/**/*.ts"
         ]
     },
     "linter": {

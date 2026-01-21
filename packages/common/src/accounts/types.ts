@@ -6,4 +6,4 @@ export type Account = {
     password: string;
 
     createdAt: Date;
-}
+};
