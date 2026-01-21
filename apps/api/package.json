@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": { 
-    "dev": "nest start --watch",
-    "build": "nest build",
-    "start": "nest start",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "dev": "bun run --bun nest start --watch",
+    "build": "bun run --bun nest build",
+    "start": "bun run --bun nest start",
+    "start:debug": "bun run --bun nest start --debug --watch",
+    "start:prod": "bun run --bun node dist/main",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
