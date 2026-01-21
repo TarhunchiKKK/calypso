@@ -1,25 +1,31 @@
 "use client";
 
 import type React from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
 import type { DropdownItem } from "./types";
 
 type Props<T> = {
-    value: number | null;
-
     placeholder: React.ReactNode;
 
     items: DropdownItem<T>[];
+
+    title: string;
 };
 
-export function NumericDropdown<T>({ placeholder, items }: Props<T>) {
+export function NumericDropdown<T>({ placeholder, items, title }: Props<T>) {
     const clickHandler = (value: T) => {
         console.log(value);
     };
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer">{placeholder}</DropdownMenuTrigger>
+            <DropdownMenuTrigger className="cursor-pointer">
+                <Tooltip>
+                    <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
+
+                    <TooltipContent>{title}</TooltipContent>
+                </Tooltip>
+            </DropdownMenuTrigger>
 
             <DropdownMenuContent>
                 {items.map((item, index) => (

@@ -14,22 +14,36 @@ export function StylesPanel(props: Props) {
         <Wrapper className="flex flex-row justify-between items-center gap-4 px-2 py-1">
             {props.fontFamily && <FontFamilyDropdown />}
 
-            {props.fontSize && <NumericDropdown value={null} placeholder={<ALargeSmall className="dark:text-white" />} items={FontSizes} />}
+            {props.fontSize && <NumericDropdown title="Font Size" placeholder={<ALargeSmall className="dark:text-white" />} items={FontSizes} />}
 
             {props.textAlign && (
-                <HorizontalDropdown items={TextAligns} placeholder={<TextAlignStart className="dark:text-white" />} popoverOffset={PopoverSideOffset} />
+                <HorizontalDropdown
+                    title="Text Align"
+                    items={TextAligns}
+                    placeholder={<TextAlignStart className="dark:text-white" />}
+                    popoverOffset={PopoverSideOffset}
+                />
             )}
 
-            {props.backgroundColor && <ColorsDropdown renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor }} />} />}
+            {props.backgroundColor && (
+                <ColorsDropdown title="Background" renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor }} />} />
+            )}
 
-            {props.color && <ColorsDropdown renderItem={color => <Type style={{ color }} />} />}
+            {props.color && <ColorsDropdown title="Text Color" renderItem={color => <Type style={{ color }} />} />}
 
-            {props.borderColor && <ColorsDropdown renderItem={color => <Square style={{ color }} />} />}
+            {props.borderColor && <ColorsDropdown title="Border Color" renderItem={color => <Square style={{ color }} />} />}
 
-            {props.borderRadius && <NumericDropdown value={null} placeholder={<SquareRoundCorner className="dark:text-white" />} items={BorderRadiuses} />}
+            {props.borderRadius && (
+                <NumericDropdown title="Border Radius" placeholder={<SquareRoundCorner className="dark:text-white" />} items={BorderRadiuses} />
+            )}
 
             {props.borderStyle && (
-                <HorizontalDropdown items={BorderStyles} placeholder={<SquareDashed className="dark:text-white" />} popoverOffset={PopoverSideOffset} />
+                <HorizontalDropdown
+                    title="Border Style"
+                    items={BorderStyles}
+                    placeholder={<SquareDashed className="dark:text-white" />}
+                    popoverOffset={PopoverSideOffset}
+                />
             )}
 
             <BlockToggles />

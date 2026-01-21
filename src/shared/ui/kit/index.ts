@@ -5,3 +5,4 @@ export * from "./popover";
 export * from "./switch";
 export * from "./toggle";
 export * from "./toggle-group";
+export * from "./tooltip";

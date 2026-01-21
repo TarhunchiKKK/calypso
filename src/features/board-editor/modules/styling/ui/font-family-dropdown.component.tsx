@@ -1,7 +1,7 @@
 "use client";
 
 import { CaseSensitive } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
 import { Fonts } from "./constants";
 
@@ -13,7 +13,13 @@ export function FontFamilyDropdown() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer">
-                <CaseSensitive className="h-4 w-4 dark:text-white" />
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <CaseSensitive className="h-4 w-4 dark:text-white" />
+                    </TooltipTrigger>
+
+                    <TooltipContent>Font Family</TooltipContent>
+                </Tooltip>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
