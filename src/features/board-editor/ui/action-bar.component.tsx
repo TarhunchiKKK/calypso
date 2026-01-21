@@ -1,14 +1,12 @@
 import type { PropsWithChildren } from "react";
+import { Wrapper } from "@/shared/ui";
 import { Button } from "@/shared/ui/kit/button";
 
 type ActionsBarProps = PropsWithChildren;
 
+// TODO: implement `Wrapper` component
 export function ActionsBar({ children }: ActionsBarProps) {
-    return (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 bg-white p-1 rounded-md shadow-lg dark:bg-gray-900 dark:shadow-amber-50 dark:shadow-sm">
-            {children}
-        </div>
-    );
+    return <Wrapper className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">{children}</Wrapper>;
 }
 
 type ActionButtonProps = PropsWithChildren<{
