@@ -5,19 +5,35 @@
   "description": "Virtual whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
   "license": "MIT",
   "author": {
-      "name": "Konstantin Barilo",
-      "email": "kostabarilo12@gmail.com",
-      "url": "https://github.com/TarhunchiKKK"
+    "name": "Konstantin Barilo",
+    "email": "kostabarilo12@gmail.com",
+    "url": "https://github.com/TarhunchiKKK"
   },
   "scripts": {
+    "install-deps": "turbo run install",
     "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=api",
+    "dev:web": "turbo run dev --filter=web",
     "build": "turbo run build",
+    "build:api": "turbo run build --filter=api",
+    "build:web": "turbo run build --filter=web",
+    "build:common": "turbo run build --filter=@repo/api",
+    "type-check": "turbo run type-check",
+    "type-check:api": "turbo run type-check --filter=api",
+    "type-check:web": "turbo run type-check --filter=web",
+    "type-check:common": "turbo run type-check --filter=@repo/api",
+    "type-check:ui": "turbo run type-check --filter=@repo/ui",
     "format:check": "bunx biome format",
     "format:fix": "bunx biome format --write",
     "lint:check": "bunx --bun biome lint",
-    "lint:fix": "bunx --bun biome lint --write"
+    "lint:fix": "bunx --bun biome lint --write",
+    "knip": "knip",
+    "load-env": "ts-node scripts/load-env.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
+    "knip": "^5.82.1",
+    "ts-node": "^10.9.2",
     "turbo": "^2.7.5"
   },
   "engines": {

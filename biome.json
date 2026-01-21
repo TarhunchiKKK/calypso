@@ -7,7 +7,14 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "includes": ["apps/web/src/**/*.{ts,tsx}", "apps/web/stories/**/*.{ts,tsx}", "apps/web/@types/**/*.ts", "apps/api/src/**/*.ts"]
+        "includes": [
+            "apps/web/src/**/*.{ts,tsx}",
+            "apps/web/stories/**/*.{ts,tsx}",
+            "apps/web/@types/**/*.ts",
+            "apps/api/src/**/*.{ts,tsx,json}",
+            "packages/api/**/*.{ts,json}",
+            "packages/ui/**/*.{ts,tsx,json}"
+        ]
     },
     "linter": {
         "enabled": true,
