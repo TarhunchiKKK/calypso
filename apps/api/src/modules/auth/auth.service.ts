@@ -3,6 +3,7 @@ import type { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { SignInRequest } from "./dto/sign-in.request";
 import type { SignUpRequest } from "./dto/sign-up.request";
 import { FindAccountQuery } from "./handlers/find-account.handler";
+import { RemoveAccountCommand } from "./handlers/remove-account.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";
 import { SignUpCommand } from "./handlers/sign-up.handler";
 
@@ -23,5 +24,9 @@ export class AuthService {
 
     public async findOne(username: string) {
         return await this.queryBus.execute(new FindAccountQuery(username));
+    }
+
+    public async remove(username: string) {
+        return await this.commandBus.execute(new RemoveAccountCommand(username));
     }
 }
