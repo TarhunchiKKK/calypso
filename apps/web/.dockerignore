@@ -1,13 +1,5 @@
-.github
 .next
 .storybook
-.vscode
 node_modules
-scripts
 stories
 .gitignore
-.prettierrc
-eslint.config.js
-knip.json
-license
-readme.md

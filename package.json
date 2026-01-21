@@ -12,21 +12,17 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "test": "turbo run test",
-    "test:e2e": "turbo run test:e2e",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format:check": "bunx biome format",
+    "format:fix": "bunx biome format --write",
+    "lint:check": "bunx --bun biome lint",
+    "lint:fix": "bunx --bun biome lint --write"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "prettier": "^3.2.5",
     "turbo": "^2.7.5"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.8.2",
   "workspaces": [
     "apps/*",
     "packages/*"

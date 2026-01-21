@@ -1,23 +1,11 @@
 # dependencies
 node_modules
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
 # production
-/build
+/dist
 
 # env files (can opt-in for committing if needed)
 .env
 
 # typescript
-next-env.d.ts
 tsconfig.tsbuildinfo
-
-# Storybook
-*storybook.log
-storybook-static
