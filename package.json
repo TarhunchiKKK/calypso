@@ -21,7 +21,7 @@
     "type-check": "turbo run type-check",
     "type-check:api": "turbo run type-check --filter=api",
     "type-check:web": "turbo run type-check --filter=web",
-    "type-check:common": "turbo run type-check --filter=@repo/api",
+    "type-check:common": "turbo run type-check --filter=@repo/common",
     "format:check": "bunx biome format",
     "format:fix": "bunx biome format --write",
     "lint:check": "bunx --bun biome lint",

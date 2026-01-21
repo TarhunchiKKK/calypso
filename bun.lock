@@ -85,6 +85,20 @@
         "typescript": "5.5.4",
       },
     },
+    "packages/common": {
+      "name": "@repo/common",
+      "version": "0.0.0",
+      "dependencies": {
+        "@nestjs/mapped-types": "*",
+        "zod": "^4.3.5",
+      },
+      "devDependencies": {
+        "@types/node": "^22.10.7",
+        "ts-loader": "^9.4.3",
+        "ts-node": "^10.9.2",
+        "typescript": "5.5.4",
+      },
+    },
   },
   "packages": {
     "@adobe/css-tools": ["@adobe/css-tools@4.4.4", "", {}, "sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg=="],
@@ -480,6 +494,8 @@
     "@radix-ui/rect": ["@radix-ui/rect@1.1.1", "", {}, "sha512-HPwpGIzkl28mWyZqG52jiqDJ12waP11Pa1lGoiyUkIEuMLBP0oeK/C89esbXrxsky5we7dfd8U58nm0SgAWpVw=="],
 
     "@repo/api": ["@repo/api@workspace:packages/api"],
+
+    "@repo/common": ["@repo/common@workspace:packages/common"],
 
     "@rollup/pluginutils": ["@rollup/pluginutils@5.3.0", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-walker": "^2.0.2", "picomatch": "^4.0.2" }, "peerDependencies": { "rollup": "^1.20.0||^2.0.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q=="],
 
