@@ -1,25 +1,19 @@
 "use client";
 
 import { CaseSensitive } from "lucide-react";
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import type { NodeStyles } from "../types";
 import { Fonts } from "./constants";
 
-type Props = {
-    value: NodeStyles["fontFamily"] | null;
-};
-
-export function FontFamilyDropdown({ value: _ }: Props) {
+export function FontFamilyDropdown() {
     const clickHandler = (fontFamily: NodeStyles["fontFamily"]) => {
         console.log(fontFamily);
     };
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer" asChild>
-                <Button size="icon" className="cursor-pointer">
-                    <CaseSensitive className="h-4 w-4" />
-                </Button>
+            <DropdownMenuTrigger className="cursor-pointer">
+                <CaseSensitive className="h-4 w-4 dark:text-white" />
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>

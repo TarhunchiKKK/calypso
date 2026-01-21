@@ -5,6 +5,6 @@ type Constructor<T = any> = abstract new (...args: any[]) => T;
 
 export type ConstructorFunction<T extends Constructor> = T extends abstract new (...args: infer P) => infer R ? (...args: P) => R : never;
 
-export type WithNull<T extends Record<string, unknown>> = {
-    [Key in keyof T]: T[Key] | null;
+export type BooleanFields<T extends Record<string, unknown>> = {
+    [Key in keyof T]: boolean;
 };

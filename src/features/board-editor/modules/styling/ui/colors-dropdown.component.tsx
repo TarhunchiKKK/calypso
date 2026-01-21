@@ -1,5 +1,5 @@
 import type React from "react";
-import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
+import { Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
 import { Colors, PopoverSideOffset } from "./constants";
 
 type Props = {
@@ -9,11 +9,7 @@ type Props = {
 export function ColorsDropdown({ renderItem }: Props) {
     return (
         <Popover>
-            <PopoverTrigger asChild>
-                <Button size="icon" className="cursor-pointer">
-                    {renderItem(Colors[0])}
-                </Button>
-            </PopoverTrigger>
+            <PopoverTrigger className="cursor-pointer">{renderItem(Colors[0])}</PopoverTrigger>
 
             <PopoverContent className="w-[192px] p-0" sideOffset={PopoverSideOffset}>
                 <ToggleGroup type="single" variant="default" className="w-full grid!">

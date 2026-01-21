@@ -1,34 +1,38 @@
 import { ALargeSmall, Square, SquareDashed, SquareRoundCorner, TextAlignStart, Type } from "lucide-react";
-import type { WithNull } from "@/shared/lib/typescript";
+import type { BooleanFields } from "@/shared/lib/typescript";
 import { HorizontalDropdown, NumericDropdown, Wrapper } from "@/shared/ui";
-import type { Point } from "../../../core";
 import type { NodeStyles } from "../types";
+import { BlockToggles } from "./block-toggles.component";
 import { ColorsDropdown } from "./colors-dropdown.component";
 import { BorderRadiuses, BorderStyles, FontSizes, PopoverSideOffset, TextAligns } from "./constants";
 import { FontFamilyDropdown } from "./font-family-dropdown.component";
 
-type Props = WithNull<NodeStyles> & {
-    point: Point;
-};
+type Props = Partial<BooleanFields<NodeStyles>>;
 
-export function StylesPanel({ point: _ }: Props) {
+export function StylesPanel(props: Props) {
     return (
-        <Wrapper className="flex flex-row justify-between items-center gap-4">
-            <FontFamilyDropdown value="fantasy" />
+        <Wrapper className="flex flex-row justify-between items-center gap-4 px-2 py-1">
+            {props.fontFamily && <FontFamilyDropdown />}
 
-            <NumericDropdown value={14} placeholder={<ALargeSmall className="h-4 w-4" />} items={FontSizes} />
+            {props.fontSize && <NumericDropdown value={null} placeholder={<ALargeSmall className="dark:text-white" />} items={FontSizes} />}
 
-            <HorizontalDropdown value="center" items={TextAligns} placeholder={<TextAlignStart className="h-4 w-4" />} popoverOffset={PopoverSideOffset} />
+            {props.textAlign && (
+                <HorizontalDropdown items={TextAligns} placeholder={<TextAlignStart className="dark:text-white" />} popoverOffset={PopoverSideOffset} />
+            )}
 
-            <ColorsDropdown renderItem={backgroundColor => <div className="h-6 w-6 rounded-full" style={{ backgroundColor }} />} />
+            {props.backgroundColor && <ColorsDropdown renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor }} />} />}
 
-            <ColorsDropdown renderItem={color => <Type style={{ color }} />} />
+            {props.color && <ColorsDropdown renderItem={color => <Type style={{ color }} />} />}
 
-            <ColorsDropdown renderItem={color => <Square style={{ color }} />} />
+            {props.borderColor && <ColorsDropdown renderItem={color => <Square style={{ color }} />} />}
 
-            <NumericDropdown value={14} placeholder={<SquareRoundCorner className="h-4 w-4" />} items={BorderRadiuses} />
+            {props.borderRadius && <NumericDropdown value={null} placeholder={<SquareRoundCorner className="dark:text-white" />} items={BorderRadiuses} />}
 
-            <HorizontalDropdown value="dotted" items={BorderStyles} placeholder={<SquareDashed className="h-4 w-4" />} popoverOffset={PopoverSideOffset} />
+            {props.borderStyle && (
+                <HorizontalDropdown items={BorderStyles} placeholder={<SquareDashed className="dark:text-white" />} popoverOffset={PopoverSideOffset} />
+            )}
+
+            <BlockToggles />
         </Wrapper>
     );
 }

@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 export type NodeStyles = Pick<
-    CSSProperties,
+    Required<CSSProperties>,
     | "fontFamily"
     | "fontSize"
     | "fontStyle"

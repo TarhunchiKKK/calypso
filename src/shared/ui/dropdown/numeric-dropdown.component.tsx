@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import type { DropdownItem } from "./types";
 
 type Props<T> = {
@@ -19,11 +19,7 @@ export function NumericDropdown<T>({ placeholder, items }: Props<T>) {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button size="icon" className="cursor-pointer">
-                    {placeholder}
-                </Button>
-            </DropdownMenuTrigger>
+            <DropdownMenuTrigger className="cursor-pointer">{placeholder}</DropdownMenuTrigger>
 
             <DropdownMenuContent>
                 {items.map((item, index) => (
