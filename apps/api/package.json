@@ -2,7 +2,7 @@
   "name": "api",
   "version": "0.0.0",
   "private": true,
-  "scripts": { 
+  "scripts": {
     "dev": "bun run --bun nest start --watch",
     "build": "bun run --bun nest build",
     "start": "bun run --bun nest start",
@@ -12,11 +12,16 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.1.11",
-    "@repo/api": "*",
+    "@nestjs/typeorm": "^11.0.0",
+    "@repo/common": "*",
+    "pg": "^8.17.2",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "typeorm": "^0.3.28"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.14",
