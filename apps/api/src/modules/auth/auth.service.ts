@@ -1,6 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import type { CommandBus, QueryBus } from "@nestjs/cqrs";
+import type { SignInRequest } from "./dto/sign-in.request";
 import type { SignUpRequest } from "./dto/sign-up.request";
+import { SignInCommand } from "./handlers/sign-in.handler";
 import { SignUpCommand } from "./handlers/sign-up.handler";
 
 @Injectable()
@@ -12,5 +14,9 @@ export class AuthService {
 
     public async signUp(request: SignUpRequest) {
         return await this.commandBus.execute(new SignUpCommand(request));
+    }
+
+    public async signIn(request: SignInRequest) {
+        return await this.commandBus.execute(new SignInCommand(request));
     }
 }

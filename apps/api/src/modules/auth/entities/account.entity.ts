@@ -1,14 +1,16 @@
 import type { Account } from "@repo/common";
-import { BaseEntity } from "src/shared/db";
-import { BeforeInsert, Column, Entity } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class AccountEntity extends BaseEntity implements Account {
-    @Column({ unique: true })
+export class AccountEntity implements Account {
+    @PrimaryColumn()
     public username: string;
 
     @Column()
     public password: string;
+
+    @CreateDateColumn()
+    public createdAt: Date;
 
     @BeforeInsert()
     protected async hashPassword() {
