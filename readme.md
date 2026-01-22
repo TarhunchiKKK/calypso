@@ -1,30 +1,48 @@
 <p align="center">
-  <a href="https://nestjs.com/" target="_blank"><img src="./docs/calypso.svg" width="270" alt="Nest Logo" /></a>
+    <img src="./docs/calypso.svg" width="270" alt="Nest Logo" />
 </p>
 
 <h1 align="center">Calypso Board Editor🚀</h1>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
-## Stack
+## Stack🌟
 
-| Scope             | Solution                                                                                |
-| ----------------- | --------------------------------------------------------------------------------------- |
-| Language🧠        | [TypeScript](https://www.typescriptlang.org/)                                           |
-| Runtime⚡         | [Bun](https://bun.sh/)                                                                  |
-| Framework🎭       | [Next.js](https://nextjs.org/)                                                          |
-| Styling🎨         | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)   |
-| Text Formatting📄 | [Slate](https://docs.slatejs.org/)                                                      |
-| Docs📚            | [Storybook](https://storybook.js.org/)                                                  |
-| Backend🚀         | [Supabase](https://supabase.com/)                                                       |
-| Database🗃️        | [Postgres](https://www.postgresql.org/)                                                 |
-| Storage☁️         | [Minio S3](https://www.min.io/)                                                         |
-| Debug⚙            | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                      |
-| Code style✨      | [BiomeJS](https://biomejs.dev/), [Knip](https://knip.dev/)                              |
-| Architecture🏫    | [Evolution Design](https://ed.evocomm.space/)                                           |
-| CI🔄              | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions) |
+### Common🌎
 
-## Run Calypso Locally
+| Scope               | Solution                                                                                |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| Language🧠          | [TypeScript](https://www.typescriptlang.org/)                                           |
+| Runtime⚡           | [Bun](https://bun.sh/)                                                                  |
+| Docs📚              | [Storybook](https://storybook.js.org/)                                                  |
+| Code style✨        | [BiomeJS](https://biomejs.dev/), [Knip](https://knip.dev/)                              |
+| CI🔄                | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions) |
+| Project Structure🏫 | [TurboRepo](https://turborepo.dev/)                                                     |
+
+### Web🎨
+
+| Scope             | Solution                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| Framework🎭       | [Next.js](https://nextjs.org/)                                                        |
+| Styling🎨         | [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/) |
+| Text Formatting📄 | [Slate](https://docs.slatejs.org/)                                                    |
+| Docs📚            | [Storybook](https://storybook.js.org/)                                                |
+| Debug⚙            | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                    |
+| Architecture🏫    | [Evolution Design](https://ed.evocomm.space/)                                         |
+
+### Api🚀
+
+| Scope          | Solution                                                                                                 |
+| -------------- | -------------------------------------------------------------------------------------------------------- |
+| Framework🎭    | [Nest.js](https://nestjs.com/)                                                                           |
+| Database🗃️     | [Postgres](https://www.postgresql.org/), [MongoDB](https://www.mongodb.com/home?pk_campaign=VentureBeat) |
+| ORM🔃          | [TypeORM](https://typeorm.io/), [Mongoose](https://mongoosejs.com/)                                      |
+| Storage☁️      | [Minio S3](https://www.min.io/)                                                                          |
+| Validation🛑   | [Zod](https://zod.dev/)                                                                                  |
+| Docs📚         | [Swagger](https://swagger.io/)                                                                           |
+| Architecture🏫 | [CQRS](https://medium.com/eleven-labs/cqrs-pattern-c1d6f8517314)                                         |
+
+## Run Calypso Locally💡
 
 1. Checkout code:
 
@@ -76,7 +94,7 @@ In browser open the https://localhost:3000 to access the app.
 - Formattable notes
 - Shapes (circles, rectangles, etc.)
 - Media (images and videos)
-- Drawing
+- Drawings
 
 ### Editor features
 
