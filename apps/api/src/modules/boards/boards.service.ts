@@ -4,6 +4,7 @@ import type { CreateBoardRequest } from "./dto/create-board.dto";
 import type { UpdateBoardRequest } from "./dto/update-board.dto";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
+import { RemoveBoardCommand } from "./handlers/remove-board.handler";
 import { UpdateBoardCommand } from "./handlers/update-board.handler";
 
 @Injectable()
@@ -21,7 +22,11 @@ export class BoardsService {
         return await this.queryBus.execute(new FindAllBoardsQuery(username));
     }
 
-    public async update(id: string, request: UpdateBoardRequest) {
-        return await this.commandBus.execute(new UpdateBoardCommand(id, request));
+    public async update(id: string, username: string, request: UpdateBoardRequest) {
+        return await this.commandBus.execute(new UpdateBoardCommand(id, username, request));
+    }
+
+    public async remove(id: string, username: string) {
+        return await this.commandBus.execute(new RemoveBoardCommand(id, username));
     }
 }

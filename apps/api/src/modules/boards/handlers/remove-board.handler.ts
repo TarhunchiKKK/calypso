@@ -2,29 +2,25 @@ import { ForbiddenException, NotFoundException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { UpdateBoardRequest } from "../dto/update-board.dto";
 import { BoardEntity } from "../entities/board.entity";
 
-export class UpdateBoardCommand implements ICommand {
+export class RemoveBoardCommand implements ICommand {
     public constructor(
         public id: string,
-        public username: string,
-        public dto: UpdateBoardRequest
+        public username: string
     ) {}
 }
 
-@CommandHandler(UpdateBoardCommand)
-export class UpdateBoardCommandHandler implements ICommandHandler<UpdateBoardCommand> {
+@CommandHandler(RemoveBoardCommand)
+export class RemoveBoardCommandHandler implements ICommandHandler<RemoveBoardCommand> {
     public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
 
-    public async execute({ id, username, dto }: UpdateBoardCommand) {
+    public async execute({ id, username }: RemoveBoardCommand) {
         const board = await this.findBoard(id);
 
         this.checkPermissions(board, username);
 
-        Object.assign(board, { title: dto.title });
-
-        return await this.boardsRepository.save(board);
+        return await this.boardsRepository.remove(board);
     }
 
     private async findBoard(id: string) {
