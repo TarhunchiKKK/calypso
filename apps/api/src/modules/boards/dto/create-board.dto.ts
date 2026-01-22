@@ -1,8 +1,10 @@
 import { ApiProperty, PickType } from "@nestjs/swagger";
-import { type CreateBoardDto, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@repo/common";
+import { USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@repo/common";
+import type z from "zod";
 import { BoardApiType } from "../swagger/board.api-type";
+import type { CreateBoardDtoSchema } from "../validation/validation.schemas";
 
-export class CreateBoardRequest extends PickType(BoardApiType, ["title"] as const) implements CreateBoardDto {
+export class CreateBoardDto extends PickType(BoardApiType, ["title"] as const) implements z.infer<typeof CreateBoardDtoSchema> {
     @ApiProperty({
         description: "Unique username",
         example: "King Kong",

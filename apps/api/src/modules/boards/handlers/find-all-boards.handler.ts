@@ -1,7 +1,7 @@
 import { type IQuery, type IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import { BoardEntity } from "../entities/board.entity";
+import { Board } from "../entities/board.entity";
 
 export class FindAllBoardsQuery implements IQuery {
     public constructor(public username: string) {}
@@ -9,7 +9,7 @@ export class FindAllBoardsQuery implements IQuery {
 
 @QueryHandler(FindAllBoardsQuery)
 export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQuery> {
-    public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async execute({ username }: FindAllBoardsQuery) {
         return await this.boardsRepository.findAndCount({

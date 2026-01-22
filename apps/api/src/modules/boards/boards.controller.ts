@@ -6,8 +6,8 @@ import { Validation } from "src/shared/validation";
 import { Authorization } from "../auth/decorators/authorization.decorator";
 import { Authorized } from "../auth/decorators/authorized.decorator";
 import type { BoardsService } from "./boards.service";
-import { CreateBoardRequest, CreateBoardResponse } from "./dto/create-board.dto";
-import type { UpdateBoardRequest } from "./dto/update-board.dto";
+import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
+import { UpdateBoardDto } from "./dto/update-board.dto";
 import { BoardCreator } from "./middleware/board-creator.guard";
 import { BoardApiType } from "./swagger/board.api-type";
 
@@ -19,11 +19,11 @@ export class BoardsController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    @ApiBody({ description: "Board creation data", type: CreateBoardRequest })
+    @ApiBody({ description: "Board creation data", type: CreateBoardDto })
     @ApiCreatedResponse({ description: "Successful board creation", type: CreateBoardResponse })
     @ApiConflict("Board with such name already exists")
     @Validation(CreateBoardDtoSchema)
-    public async create(@Body() request: CreateBoardRequest) {
+    public async create(@Body() request: CreateBoardDto) {
         return await this.boardsService.create(request);
     }
 
@@ -36,10 +36,11 @@ export class BoardsController {
 
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
+    @ApiBody({ description: "Board update data", type: UpdateBoardDto })
     @ApiNotFound("Board not found")
     @Validation(UpdateBoardDtoSchema)
     @BoardCreator()
-    public async update(@Param("id") id: string, @Body() request: UpdateBoardRequest) {
+    public async update(@Param("id") id: string, @Body() request: UpdateBoardDto) {
         return await this.boardsService.update(id, request);
     }
 

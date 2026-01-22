@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import type { Board } from "@repo/common";
 
-export class BoardApiType implements Board {
+export class BoardApiType {
     @ApiProperty({
         description: "Board identifier",
         type: String,

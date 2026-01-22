@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import type z from "zod";
 import { AccountApiType } from "../swagger/account.api-type";
 import { AuthApiType } from "../swagger/auth.api-type";
-import type { AuthDtoSchema } from "../validation/auth-dto.schema";
+import type { AuthDtoSchema } from "../validation/validation.schemas";
 
 export class SignInDto extends AuthApiType implements z.infer<typeof AuthDtoSchema> {}
 

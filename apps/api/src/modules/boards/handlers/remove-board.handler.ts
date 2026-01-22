@@ -2,7 +2,7 @@ import { NotFoundException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import { BoardEntity } from "../entities/board.entity";
+import { Board } from "../entities/board.entity";
 
 export class RemoveBoardCommand implements ICommand {
     public constructor(public id: string) {}
@@ -10,7 +10,7 @@ export class RemoveBoardCommand implements ICommand {
 
 @CommandHandler(RemoveBoardCommand)
 export class RemoveBoardCommandHandler implements ICommandHandler<RemoveBoardCommand> {
-    public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async execute({ id }: RemoveBoardCommand) {
         const board = await this.findBoard(id);
