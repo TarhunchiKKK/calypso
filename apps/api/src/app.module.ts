@@ -5,6 +5,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { jwtConfigFactory } from "./config/jwt-config.factory";
 import { typeOrmConfigFactory } from "./config/typeorm-config.factory";
 import { AuthModule } from "./modules/auth/auth.module";
+import { BoardsModule } from './modules/boards/boards.module';
 
 @Module({
     imports: [
@@ -20,7 +21,8 @@ import { AuthModule } from "./modules/auth/auth.module";
             inject: [ConfigService],
             useFactory: typeOrmConfigFactory
         }),
-        AuthModule
+        AuthModule,
+        BoardsModule
     ]
 })
 export class AppModule {}
