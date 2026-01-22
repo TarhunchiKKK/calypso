@@ -1,0 +1,502 @@
+{
+    // * Basic
+
+    "Creates Module": {
+        "scope": "typescript",
+        "prefix": "n-module",
+        "body": [
+            "import { Module } from \"@nestjs/common\";",
+            "",
+            "@Module({",
+            "    imports: [],",
+            "    controllers: [],",
+            "    providers: [],",
+            "    exports: [],",
+            "})",
+            "export class $1Module {}"
+        ]
+    },
+
+    "Create HTTP Controller": {
+        "scope": "typescript",
+        "prefix": "n-controller",
+        "body": [
+            "import { Controller } from \"@nestjs/common\";",
+            "",
+            "@Controller(\"\")",
+            "export class $1Controller {",
+            "    public constructor() {}",
+            "}"
+        ]
+    },
+    "Create CRUD HTTP Controller": {
+        "scope": "typescript",
+        "prefix": "n-controller-crud",
+        "body": [
+            "import { Controller, Delete, Get, Param, Patch, Post } from \"@nestjs/common\";",
+            "",
+            "@Controller(\"\")",
+            "export class $1Controller {",
+            "    public constructor() {}",
+            "",
+            "    @Post()",
+            "    public async create() {}",
+            "",
+            "    @Get()",
+            "    public async findAll() {}",
+            "",
+            "    @Get(\":id\")",
+            "    public async findOne(@Param(\"id\") id: string) {}",
+            "",
+            "    @Patch(\":id\")",
+            "    public async update(@Param(\"id\") id: string) {}",
+            "",
+            "    @Delete(\":id\")",
+            "    public async remove(@Param(\"id\") id: string) {}",
+            "}"
+        ]
+    },
+    "Create Service": {
+        "scope": "typescript",
+        "prefix": "n-service",
+        "body": [
+            "import { Injectable } from \"@nestjs/common\";",
+            "",
+            "@Injectable()",
+            "export class $1Service {",
+            "    public constructor() {}",
+            "}"
+        ]
+    },
+    "Create CRUD Service": {
+        "scope": "typescript",
+        "prefix": "n-service-crud",
+        "body": [
+            "import { Injectable } from \"@nestjs/common\";",
+            "",
+            "@Injectable()",
+            "export class $1Service {",
+            "    public constructor() {}",
+            "",
+            "    public async create() {}",
+            "",
+            "    public async findAll() {}",
+            "",
+            "    public async findOne(id: string) {}",
+            "",
+            "    public async update(id: string) {}",
+            "",
+            "    public async remove(id: string) {}",
+            "}"
+        ]
+    },
+    "Create Provider": {
+        "scope": "typescript",
+        "prefix": "n-provider",
+        "body": [
+            "import { Injectable } from \"@nestjs/common\";",
+            "",
+            "@Injectable()",
+            "export class $1 {",
+            "    public constructor() {}",
+            "}"
+        ]
+    },
+
+    // * Classes
+
+    "Create Exception": {
+        "scope": "typescript",
+        "prefix": "n-exception",
+        "body": [
+            "import { HttpException, HttpStatus } from \"@nestjs/common\";",
+            "",
+            "export class $1Exception extends HttpException {",
+            "    public constructor() {",
+            "        super(\"Forbidden\", HttpStatus.FORBIDDEN);",
+            "    }",
+            "}"
+        ]
+    },
+    "Create Dto": {
+        "scope": "typescript",
+        "prefix": "n-dto",
+        "body": ["export class $1Dto {", "    ", "}"]
+    },
+
+    // * Middleware
+
+    "Create Exception Filter": {
+        "scope": "typescript",
+        "prefix": "n-pipe",
+        "body": [
+            "import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from \"@nestjs/common\";",
+            "",
+            "@Catch($1)",
+            "export class $1Filter implements ExceptionFilter {",
+            "    public catch(exception: HttpException, host: ArgumentsHost) {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+    "Create Pipe": {
+        "scope": "typescript",
+        "prefix": "n-pipe",
+        "body": [
+            "import { PipeTransform, Injectable, ArgumentMetadata } from \"@nestjs/common\";",
+            "",
+            "@Injectable()",
+            "export class $1Pipe implements PipeTransform {",
+            "    public transform(value: any, metadata: ArgumentMetadata) {",
+            "        return value;",
+            "    }",
+            "}"
+        ]
+    },
+    "Create Guard": {
+        "scope": "typescript",
+        "prefix": "n-guard",
+        "body": [
+            "import { Injectable, CanActivate, ExecutionContext } from \"@nestjs/common\";",
+            "import { Observable } from \"rxjs\";",
+            "",
+            "@Injectable()",
+            "export class $1Guard implements CanActivate {",
+            "    public canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+    "Create Interceptor": {
+        "scope": "typescript",
+        "prefix": "n-interceptor",
+        "body": [
+            "import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from \"@nestjs/common\";",
+            "",
+            "@Injectable()",
+            "export class $1Interceptor implements NestInterceptor {",
+            "    public intercept(context: ExecutionContext, next: CallHandler) {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+
+    // * Common
+
+    "Inject `Refleector`": {
+        "scope": "typescript",
+        "prefix": "n-reflector-dep",
+        "body": "private readonly reflector: Reflector"
+    },
+
+    // * CQRS
+
+    "Add buses to constructor": {
+        "scope": "typescript",
+        "prefix": "n-cqrs-buses",
+        "body": "private readonly commandBus: CommandBus, private readonly queryBus: QueryBus"
+    },
+    "Create CQRS command": {
+        "scope": "typescript",
+        "prefix": "n-cqrs-cmd",
+        "body": [
+            "import { ICommand, CommandHandler, ICommandHandler } from \"@nestjs/cqrs\";",
+            "",
+            "export class $1Command implements ICommand {",
+            "    public constructor(public input: $1Input) {}",
+            "}",
+            "",
+            "@CommandHandler($1Command)",
+            "export class $1CommandHandler implements ICommandHandler<$1Command> {",
+            "    public constructor() {}",
+            "",
+            "    public async execute({ input }: $1Command) {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+    "Create query": {
+        "scope": "typescript",
+        "prefix": "n-cqrs-query",
+        "body": [
+            "import { IQuery, IQueryHandler, QueryHandler } from \"@nestjs/cqrs\";",
+            "",
+            "export class $1Query implements IQuery {",
+            "    public constructor(public input: $1Input) {}",
+            "}",
+            "",
+            "@QueryHandler($1Query)",
+            "export class $1QueryHandler implements IQueryHandler<$1Query> {",
+            "    public constructor() {}",
+            "",
+            "    public async execute({ input }: $1Query) {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+
+    //* TypeORM
+
+    "Create typeorm entity": {
+        "scope": "typescript",
+        "prefix": "n-typeorm-entity",
+        "body": [
+            "import { Entity, Column } from \"typeorm\"",
+            "import { EntityWithId } from \"@/shared/db/entities\";",
+            "import { I$1 } from \"@repo/api\";",
+            "",
+            "@Entity()",
+            "export class $1 extends EntityWithId implements I$1 {",
+            "    ",
+            "}"
+        ]
+    },
+    "Inject TypeORM Repository": {
+        "scope": "typescript",
+        "prefix": "n-typeorm-dep",
+        "body": "@InjectRepository() private readonly $1Repository: Repository<$1>"
+    },
+    "Add TypeORM feature module": {
+        "scope": "typescript",
+        "prefix": "n-typeorm-feature",
+        "body": "TypeOrmModule.forFeature([$1])"
+    },
+
+    // * Sequalize
+
+    "Create Sequlize Model": {
+        "scope": "typescript",
+        "prefix": "n-sequlize-model",
+        "body": [
+            "import { Model, Table } from \"sequelize-typescript\";",
+            "",
+            "@Table",
+            "export class $1 extends Model {",
+            "    ",
+            "}"
+        ]
+    },
+    "Inject Sequalize Model": {
+        "scope": "typescript",
+        "prefix": "n-sequalize-dep",
+        "body": "@InjectModel($1) private $1Model: typeof $1"
+    },
+    "Add Sequalize feature module": {
+        "scope": "typescript",
+        "prefix": "n-sequalize-feature",
+        "body": "SequelizeModule.forFeature([$1])"
+    },
+
+    // * Mongoose
+
+    "Create mongoose schema": {
+        "scope": "typescript",
+        "prefix": "n-mongoose-schema",
+        "body": [
+            "import { Prop, Schema, SchemaFactory } from \"@nestjs/mongoose\";",
+            "import { I$1 } from \"@repo/api\";",
+            "",
+            "@Schema()",
+            "export class $1  implements I$1 {",
+            "    ",
+            "}",
+            "",
+            "export const $1Schema = SchemaFactory.createForClass($1);"
+        ]
+    },
+    "Inject Mongoose Model": {
+        "scope": "typescript",
+        "prefix": "n-mongoose-dep",
+        "body": "@InjectModel($1.name) private $1Model: Model<$1>"
+    },
+    "Add Mongoose feature module": {
+        "scope": "typescript",
+        "prefix": "n-mongoose-feature",
+        "body": "MongooseModule.forFeature([{ name: $1.name, schema: $1Schema }])"
+    },
+
+    // * GraphQL
+
+    "Create GraphQl Resolver": {
+        "scope": "typescript",
+        "prefix": "n-gql-resolver",
+        "body": [
+            "import { Resolver } from \"@nestjs/graphql\";",
+            "",
+            "@Resolver($1)",
+            "export class $1Resolver {",
+            "    public constructor() {}",
+            "}"
+        ]
+    },
+    "Create input": {
+        "scope": "typescript",
+        "prefix": "n-gql-input",
+        "body": [
+            "import { InputType, Field } from \"@nestjs/graphql\";",
+            "import { I$1Input } from \"@repo/api\";",
+            "",
+            "@InputType()",
+            "export class $1Input implements I$1Input {",
+            "    ",
+            "}"
+        ]
+    },
+    "Create model": {
+        "scope": "typescript",
+        "prefix": "n-gql-model",
+        "body": [
+            "import { ObjectType, Field } from \"@nestjs/graphql\";",
+            "import { I$1Model } from \"@repo/api\";",
+            "",
+            "@ObjectType()",
+            "export class $1Model implements I$1Model {",
+            "    ",
+            "}"
+        ]
+    },
+
+    // Event Emitter
+
+    "Inject Event Emitter": {
+        "scope": "typescript",
+        "prefix": "n-ee-dep",
+        "body": "private readonly eventEmitter: EventEmitter2"
+    },
+    "Create event listener": {
+        "scope": "typescript",
+        "prefix": "n-ee-listener",
+        "body": [
+            "import { Injectable } from \"@nestjs/common\";",
+            "import { OnEvent } from \"@nestjs/event-emitter\";",
+            "",
+            "@Injectable()",
+            "export class $1Listener {",
+            "    @OnEvent(\"EVENT_NAME\")",
+            "    public handle(event: $1Event) {",
+            "        //",
+            "    }",
+            "}",
+            ""
+        ]
+    },
+
+    // * Crons
+    "Create cron job": {
+        "scope": "typescript",
+        "prefix": "n-cron",
+        "body": [
+            "import { Injectable } from \"@nestjs/common\";",
+            "import { Cron } from \"@nestjs/schedule\";",
+            "",
+            "@Injectable()",
+            "export class $1Cron {",
+            "    public constructor() {}",
+            "",
+            "    @Cron(\"45 * * * * *\")",
+            "    public async run() {",
+            "        ",
+            "    }",
+            "}"
+        ]
+    },
+
+    // * Queues
+
+    "Inject queue": {
+        "scope": "typescript",
+        "prefix": "n-queue-dep",
+        "body": "@InjectQueue('$1') private $1Queue: Queue"
+    },
+    "Create queue processor": {
+        "scope": "typescript",
+        "prefix": "n-queue-processor",
+        "body": [
+            "import { Processor, WorkerHost } from \"@nestjs/bullmq\";",
+            "import { Job } from \"bullmq\";",
+            "import { CommandBus } from \"@nestjs/cqrs\";",
+            "import { assertNever } from \"@repo/api\";",
+            "",
+            "@Processor(QUEUE_NAME)",
+            "export class $1Processor extends WorkerHost {",
+            "    public constructor(private readonly commandBus: CommandBus) {",
+            "        super();",
+            "    }",
+            "",
+            "    public async process(job: Job<any, any, $1QueueJobs>) {",
+            "        switch (job.name) {",
+            "            default:",
+            "                assertNever(job.name);",
+            "        }",
+            "    }",
+            "}"
+        ]
+    },
+
+    // * Tests
+
+    "Create Controller Test": {
+        "scope": "typescript",
+        "prefix": "n-test-controller",
+        "body": [
+            "import { Test } from \"@nestjs/testing\";",
+            "",
+            "describe(\"$1Controller\", () => {",
+            "    let controller: $1Controller;",
+            "    let service: $1Service;",
+            "",
+            "    beforeEach(async () => {",
+            "        const module = await Test.createTestingModule({",
+            "            controllers: [$1Controller],",
+            "            providers: [$1Service],",
+            "        }).compile();",
+            "",
+            "        service = module.get<$1Service>($1Service);",
+            "        controller = module.get<$1Controller>($1Controller);",
+            "    });",
+            "",
+            "    describe(\"METHOD_NAME_SHOULD_BE_HERE\", () => {",
+            "        it(\"CASE_TITLE_SHOULD_BE_HERE\", async () => {",
+            "            ",
+            "        });",
+            "    });",
+            "});"
+        ]
+    },
+    "Create Service Test": {
+        "scope": "typescript",
+        "prefix": "typescript",
+        "body": [
+            "import { Test } from \"@nestjs/testing\";",
+            "",
+            "describe(\"$1Service\", () => {",
+            "    let service: $1Service;",
+            "",
+            "    beforeEach(async () => {",
+            "        const module = await Test.createTestingModule({",
+            "            providers: [$1Service],",
+            "        }).compile();",
+            "",
+            "        service = module.get<$1Service>($1Service);",
+            "    });",
+            "",
+            "    it(\"should be defined\", () => {",
+            "        expect(service).toBeDefined();",
+            "    });",
+            "});"
+        ]
+    },
+
+    // * Authorization
+
+    "Add @Authorized()": {
+        "scope": "typescript",
+        "prefix": "n-auth",
+        "body": "@Authorized(\"id\") userId: string"
+    }
+}
