@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@repo/common";
 
-export class AccountResponse {
+export class AccountApiType {
     @ApiProperty({
         description: "Unique username",
         example: "King Kong",
