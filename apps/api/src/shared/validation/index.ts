@@ -1,1 +1,1 @@
-export { ZodValidationPipe } from "./zod-validation.pipe";
+export { Validation } from "./validation.decorator";
