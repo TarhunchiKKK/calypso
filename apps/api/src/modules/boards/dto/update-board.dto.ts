@@ -1,13 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { BOARD_TITLE_MAX_LENGTH, BOARD_TITLE_MIN_LENGTH, type UpdateBoardDto } from "@repo/common";
+import { PickType } from "@nestjs/swagger";
+import type { UpdateBoardDto } from "@repo/common";
+import { BoardApiType } from "../swagger/board.api-type";
 
-export class UpdateBoardRequest implements UpdateBoardDto {
-    @ApiProperty({
-        description: "Board title",
-        example: "New board",
-        type: String,
-        minLength: BOARD_TITLE_MIN_LENGTH,
-        maxLength: BOARD_TITLE_MAX_LENGTH
-    })
-    public title: string;
-}
+export class UpdateBoardRequest extends PickType(BoardApiType, ["title"] as const) implements UpdateBoardDto {}

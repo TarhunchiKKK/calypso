@@ -10,7 +10,6 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
-import { Authorization } from "src/modules/auth/decorators/authorization.decorator";
 import type { JwtPayload } from "src/modules/auth/lib/jwt.lib";
 import { REQUEST_JWT_KEY } from "src/modules/auth/lib/request.lib";
 import { ApiForbidden } from "src/shared/swagger";
@@ -72,5 +71,5 @@ class BoardCreatorGuard implements CanActivate {
 }
 
 export function BoardCreator() {
-    return applyDecorators(Authorization(), UseGuards(BoardCreatorGuard), ApiForbidden("This board not belongs to you"));
+    return applyDecorators(UseGuards(BoardCreatorGuard), ApiForbidden("This board not belongs to you"));
 }

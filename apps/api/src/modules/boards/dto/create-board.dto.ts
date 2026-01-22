@@ -1,16 +1,8 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { BOARD_TITLE_MAX_LENGTH, BOARD_TITLE_MIN_LENGTH, type CreateBoardDto, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@repo/common";
+import { ApiProperty, PickType } from "@nestjs/swagger";
+import { type CreateBoardDto, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@repo/common";
+import { BoardApiType } from "../swagger/board.api-type";
 
-export class CreateBoardRequest implements CreateBoardDto {
-    @ApiProperty({
-        description: "Board title",
-        example: "New board",
-        type: String,
-        minLength: BOARD_TITLE_MIN_LENGTH,
-        maxLength: BOARD_TITLE_MAX_LENGTH
-    })
-    public title: string;
-
+export class CreateBoardRequest extends PickType(BoardApiType, ["title"] as const) implements CreateBoardDto {
     @ApiProperty({
         description: "Unique username",
         example: "King Kong",
@@ -21,32 +13,4 @@ export class CreateBoardRequest implements CreateBoardDto {
     public username: string;
 }
 
-export class CreateBoardResponse {
-    @ApiProperty({
-        description: "Board identifier",
-        type: String,
-        format: "uuid"
-    })
-    public id: string;
-
-    @ApiProperty({
-        description: "Board title",
-        example: "New board",
-        type: String
-    })
-    public title: string;
-
-    @ApiProperty({
-        description: "Board creation date",
-        example: new Date(),
-        type: Date
-    })
-    public createdAt: Date;
-
-    @ApiProperty({
-        description: "Board update date",
-        example: new Date(),
-        type: Date
-    })
-    public updatedAt: Date;
-}
+export class CreateBoardResponse extends BoardApiType {}
