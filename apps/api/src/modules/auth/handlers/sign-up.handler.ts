@@ -3,18 +3,18 @@ import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqr
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import type { AuthHelper } from "../auth.helper";
-import type { SignUpRequest } from "../dto/sign-up.dto";
-import { AccountEntity } from "../entities/account.entity";
+import type { SignUpDto } from "../dto/sign-up.dto";
+import { Account } from "../entities/account.entity";
 
 export class SignUpCommand implements ICommand {
-    public constructor(public dto: SignUpRequest) {}
+    public constructor(public dto: SignUpDto) {}
 }
 
 @CommandHandler(SignUpCommand)
 export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     public constructor(
         private readonly authHelper: AuthHelper,
-        @InjectRepository(AccountEntity) private readonly accountsRepository: Repository<AccountEntity>
+        @InjectRepository(Account) private readonly accountsRepository: Repository<Account>
     ) {}
 
     public async execute({ dto }: SignUpCommand) {

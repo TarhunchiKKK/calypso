@@ -1,9 +1,8 @@
-import type { Account } from "@repo/common";
 import { BoardEntity } from "src/modules/boards/entities/board.entity";
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class AccountEntity implements Account {
+export class Account {
     @PrimaryColumn()
     public username: string;
 

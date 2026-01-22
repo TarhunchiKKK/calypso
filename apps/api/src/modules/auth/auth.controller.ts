@@ -6,8 +6,8 @@ import { Validation } from "src/shared/validation";
 import type { AuthService } from "./auth.service";
 import { Authorization } from "./decorators/authorization.decorator";
 import { Authorized } from "./decorators/authorized.decorator";
-import { SignInRequest, SignInResponse } from "./dto/sign-in.dto";
-import { SignUpRequest, SignUpResponse } from "./dto/sign-up.dto";
+import { SignInDto, SignInResponse } from "./dto/sign-in.dto";
+import { SignUpDto, SignUpResponse } from "./dto/sign-up.dto";
 import { AccountApiType } from "./swagger/account.api-type";
 
 @ApiTags("auth")
@@ -17,23 +17,23 @@ export class AuthController {
 
     @Post("sign-up")
     @HttpCode(HttpStatus.CREATED)
-    @ApiBody({ description: "User sign up data", type: SignUpRequest })
+    @ApiBody({ description: "User sign up data", type: SignUpDto })
     @ApiCreatedResponse({ description: "Successful sign up", type: SignUpResponse })
     @ApiConflict("User with such username already exists")
     @Validation(AuthDto)
-    public async signUp(@Body() request: SignUpRequest) {
-        return await this.authService.signUp(request);
+    public async signUp(@Body() dto: SignUpDto) {
+        return await this.authService.signUp(dto);
     }
 
     @Post("sign-in")
     @HttpCode(HttpStatus.OK)
-    @ApiBody({ description: "User sign in data", type: SignInRequest })
+    @ApiBody({ description: "User sign in data", type: SignInDto })
     @ApiOkResponse({ description: "Successful sign in", type: SignInResponse })
     @ApiNotFound("Account not found")
     @ApiUnauthorized("PAsswords not match")
     @Validation(AuthDto)
-    public async signIn(@Body() request: SignInRequest) {
-        return await this.authService.signIn(request);
+    public async signIn(@Body() dto: SignInDto) {
+        return await this.authService.signIn(dto);
     }
 
     @Get()

@@ -3,17 +3,17 @@ import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqr
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import type { AuthHelper } from "../auth.helper";
-import type { SignInRequest } from "../dto/sign-in.dto";
-import { AccountEntity } from "../entities/account.entity";
+import type { SignInDto } from "../dto/sign-in.dto";
+import { Account } from "../entities/account.entity";
 
 export class SignInCommand implements ICommand {
-    public constructor(public dto: SignInRequest) {}
+    public constructor(public dto: SignInDto) {}
 }
 
 @CommandHandler(SignInCommand)
 export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
     public constructor(
-        @InjectRepository(AccountEntity) private readonly accountsRepository: Repository<AccountEntity>,
+        @InjectRepository(Account) private readonly accountsRepository: Repository<Account>,
         private readonly authHelper: AuthHelper
     ) {}
 
