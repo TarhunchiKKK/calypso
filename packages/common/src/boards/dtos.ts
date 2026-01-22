@@ -14,3 +14,12 @@ export const CreateBoardDtoSchema = z.object({
 });
 
 export type CreateBoardDto = z.infer<typeof CreateBoardDtoSchema>;
+
+export const UpdateBoardDtoSchema = z.object({
+    title: z
+        .string()
+        .min(BOARD_TITLE_MIN_LENGTH, { error: `Board title should be more than ${BOARD_TITLE_MIN_LENGTH} characters` })
+        .max(BOARD_TITLE_MAX_LENGTH, { error: `Board title should be less than ${BOARD_TITLE_MAX_LENGTH} characters` })
+});
+
+export type UpdateBoardDto = z.infer<typeof UpdateBoardDtoSchema>;
