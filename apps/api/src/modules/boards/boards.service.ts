@@ -22,11 +22,11 @@ export class BoardsService {
         return await this.queryBus.execute(new FindAllBoardsQuery(username));
     }
 
-    public async update(id: string, username: string, request: UpdateBoardRequest) {
-        return await this.commandBus.execute(new UpdateBoardCommand(id, username, request));
+    public async update(id: string, request: UpdateBoardRequest) {
+        return await this.commandBus.execute(new UpdateBoardCommand(id, request));
     }
 
-    public async remove(id: string, username: string) {
-        return await this.commandBus.execute(new RemoveBoardCommand(id, username));
+    public async remove(id: string) {
+        return await this.commandBus.execute(new RemoveBoardCommand(id));
     }
 }
