@@ -1,7 +1,10 @@
-import { UnauthorizedException } from "@nestjs/common";
+import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { InjectRepository } from "@nestjs/typeorm";
+import type { Repository } from "typeorm";
 import type { AuthHelper } from "../auth.helper";
 import type { SignInRequest } from "../dto/sign-in.dto";
+import { AccountEntity } from "../entities/account.entity";
 
 export class SignInCommand implements ICommand {
     public constructor(public dto: SignInRequest) {}
@@ -9,10 +12,13 @@ export class SignInCommand implements ICommand {
 
 @CommandHandler(SignInCommand)
 export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
-    public constructor(private readonly authHelper: AuthHelper) {}
+    public constructor(
+        @InjectRepository(AccountEntity) private readonly accountsRepository: Repository<AccountEntity>,
+        private readonly authHelper: AuthHelper
+    ) {}
 
     public async execute({ dto }: SignInCommand) {
-        const account = await this.authHelper.findOne(dto.username);
+        const account = await this.findAccount(dto.username);
 
         const passwordsMatch = await Bun.password.verify(dto.password, account.password);
 
@@ -21,5 +27,19 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
         }
 
         return this.authHelper.createAuthResponse(account);
+    }
+
+    private async findAccount(username: string) {
+        const account = await this.accountsRepository.findOne({
+            where: {
+                username: username
+            }
+        });
+
+        if (!account) {
+            throw new NotFoundException(`Account with username ${username} not found`);
+        }
+
+        return account;
     }
 }
