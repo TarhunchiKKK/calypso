@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import type { CommandBus, QueryBus } from "@nestjs/cqrs";
-import type { CreateBoardRequest } from "./dto/create-board.dto";
-import type { UpdateBoardRequest } from "./dto/update-board.dto";
+import type { CreateBoardDto } from "./dto/create-board.dto";
+import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommand } from "./handlers/remove-board.handler";
@@ -14,7 +14,7 @@ export class BoardsService {
         private readonly queryBus: QueryBus
     ) {}
 
-    public async create(request: CreateBoardRequest) {
+    public async create(request: CreateBoardDto) {
         return await this.commandBus.execute(new CreateBoardCommand(request));
     }
 
@@ -22,7 +22,7 @@ export class BoardsService {
         return await this.queryBus.execute(new FindAllBoardsQuery(username));
     }
 
-    public async update(id: string, request: UpdateBoardRequest) {
+    public async update(id: string, request: UpdateBoardDto) {
         return await this.commandBus.execute(new UpdateBoardCommand(id, request));
     }
 

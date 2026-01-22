@@ -14,11 +14,11 @@ import type { JwtPayload } from "src/modules/auth/lib/jwt.lib";
 import { REQUEST_JWT_KEY } from "src/modules/auth/lib/request.lib";
 import { ApiForbidden } from "src/shared/swagger";
 import type { Repository } from "typeorm";
-import { BoardEntity } from "../entities/board.entity";
+import { Board } from "../entities/board.entity";
 
 @Injectable()
 class BoardCreatorGuard implements CanActivate {
-    public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async canActivate(context: ExecutionContext) {
         const request = context.switchToHttp().getRequest() as Request;
@@ -63,7 +63,7 @@ class BoardCreatorGuard implements CanActivate {
         return board;
     }
 
-    private checkPermissions(board: BoardEntity, username: string) {
+    private checkPermissions(board: Board, username: string) {
         if (board.creator.username !== username) {
             throw new ForbiddenException(`Board with id ${board.id} not belongs to you`);
         }

@@ -2,16 +2,16 @@ import { ConflictException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { CreateBoardRequest } from "../dto/create-board.dto";
-import { BoardEntity } from "../entities/board.entity";
+import type { CreateBoardDto } from "../dto/create-board.dto";
+import { Board } from "../entities/board.entity";
 
 export class CreateBoardCommand implements ICommand {
-    public constructor(public dto: CreateBoardRequest) {}
+    public constructor(public dto: CreateBoardDto) {}
 }
 
 @CommandHandler(CreateBoardCommand)
 export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCommand> {
-    public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async execute({ dto }: CreateBoardCommand) {
         await this.checkExisting(dto);
@@ -24,7 +24,7 @@ export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCom
         });
     }
 
-    private async checkExisting(dto: CreateBoardRequest) {
+    private async checkExisting(dto: CreateBoardDto) {
         const exists = await this.boardsRepository.exists({
             where: {
                 title: dto.title,

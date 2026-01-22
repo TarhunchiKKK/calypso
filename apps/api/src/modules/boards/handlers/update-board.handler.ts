@@ -2,19 +2,19 @@ import { NotFoundException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { UpdateBoardRequest } from "../dto/update-board.dto";
-import { BoardEntity } from "../entities/board.entity";
+import type { UpdateBoardDto } from "../dto/update-board.dto";
+import { Board } from "../entities/board.entity";
 
 export class UpdateBoardCommand implements ICommand {
     public constructor(
         public id: string,
-        public dto: UpdateBoardRequest
+        public dto: UpdateBoardDto
     ) {}
 }
 
 @CommandHandler(UpdateBoardCommand)
 export class UpdateBoardCommandHandler implements ICommandHandler<UpdateBoardCommand> {
-    public constructor(@InjectRepository(BoardEntity) private readonly boardsRepository: Repository<BoardEntity>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async execute({ id, dto }: UpdateBoardCommand) {
         const board = await this.findBoard(id);

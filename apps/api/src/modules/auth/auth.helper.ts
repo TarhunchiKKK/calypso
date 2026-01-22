@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import type { JwtService } from "@nestjs/jwt";
-import type { AccountEntity } from "./entities/account.entity";
+import type { Account } from "./entities/account.entity";
 import type { JwtPayload } from "./lib/jwt.lib";
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AuthHelper {
         return this.jwtService.verify<JwtPayload>(token);
     }
 
-    public createAuthResponse(account: AccountEntity) {
+    public createAuthResponse(account: Account) {
         return {
             username: account.username,
             createdAt: account.createdAt,

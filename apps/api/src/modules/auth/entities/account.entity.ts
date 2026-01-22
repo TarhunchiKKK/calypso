@@ -1,9 +1,8 @@
-import type { Account } from "@repo/common";
-import { BoardEntity } from "src/modules/boards/entities/board.entity";
+import { Board } from "src/modules/boards/entities/board.entity";
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class AccountEntity implements Account {
+export class Account {
     @PrimaryColumn()
     public username: string;
 
@@ -14,10 +13,10 @@ export class AccountEntity implements Account {
     public createdAt: Date;
 
     @OneToMany(
-        () => BoardEntity,
+        () => Board,
         board => board.creator
     )
-    public boards: BoardEntity[];
+    public boards: Board[];
 
     @BeforeInsert()
     protected async hashPassword() {

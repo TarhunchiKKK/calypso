@@ -1,7 +1,7 @@
 import z from "zod";
-import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_REGEX, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "./constants";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_REGEX, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "./validation.constants";
 
-export const AuthDto = z.object({
+export const AuthDtoSchema = z.object({
     username: z
         .string({ error: "Username should be string" })
         .min(USERNAME_MIN_LENGTH, { error: `Username should be more than ${USERNAME_MIN_LENGTH} character` })
@@ -12,7 +12,3 @@ export const AuthDto = z.object({
         .max(PASSWORD_MAX_LENGTH, { error: `Password should be less than ${PASSWORD_MAX_LENGTH} character` })
         .regex(PASSWORD_REGEX, { error: "Incorrect password" })
 });
-
-export type SignUpDto = z.infer<typeof AuthDto>;
-
-export type SignInDto = z.infer<typeof AuthDto>;
