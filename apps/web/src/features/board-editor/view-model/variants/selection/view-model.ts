@@ -25,7 +25,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        const handlers = nodesMediator.createHandlers({
+        nodesMediator.left.setHandlers({
             onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
             onClick: withNodeId((nodeId, e) => {
                 const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
@@ -40,16 +40,22 @@ export function useSelectionViewModel(params: ViewModelParams) {
             })
         });
 
+        overlayMediator.left.setHandlers({
+            onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
+            onClick: () => setViewState(switchToIdle())
+        });
+
         const handleResize = (nodeId: string, direction: ResizeDirection) => {
             resizing.onMouseDown(nodeId, direction);
         };
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes).setHandlers(handlers).setSelectedIds(viewState.selectedIds).setResizeHandler(handleResize).get(),
-            overlay: overlayMediator.createHandlers({
-                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
-                onClick: () => setViewState(switchToIdle())
-            })
+            nodes: SelectionNodesMapper.from(nodesModel.nodes)
+                .setHandlers(nodesMediator.handlers)
+                .setSelectedIds(viewState.selectedIds)
+                .setResizeHandler(handleResize)
+                .get(),
+            overlay: overlayMediator.handlers
         };
     };
 }

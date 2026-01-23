@@ -2,30 +2,33 @@ import type React from "react";
 import { Geometry } from "@/features/board-editor/core";
 import { NodesFactory } from "@/features/board-editor/nodes";
 import type { OmitFields } from "@/shared/lib/typescript";
+import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { StickersNodesMapper } from "./nodes-mapping.lib";
 
 export function useStickersViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 
-    return (): OmitFields<ViewModel, "actions"> => {
-        const handleCanvasClick = (e: React.MouseEvent) => {
-            const clickPoint = Geometry.applyLayoutDimensions(
-                {
-                    x: e.clientX,
-                    y: e.clientY
-                },
-                layoutDimensionsModel
-            );
+    const canvasMediator = useMouseEventsMediator();
 
-            nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
-        };
+    return (): OmitFields<ViewModel, "actions"> => {
+        canvasMediator.left.setHandlers({
+            onClick: (e: React.MouseEvent) => {
+                const clickPoint = Geometry.applyLayoutDimensions(
+                    {
+                        x: e.clientX,
+                        y: e.clientY
+                    },
+                    layoutDimensionsModel
+                );
+
+                nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
+            }
+        });
 
         return {
             nodes: new StickersNodesMapper(nodesModel.nodes).get(),
-            canvas: {
-                onClick: handleCanvasClick
-            }
+            canvas: canvasMediator.handlers
         };
     };
 }
