@@ -4,22 +4,18 @@ import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 
 export class FindAllBoardsQuery implements IQuery {
-    public constructor(public username: string) {}
+    public constructor(public userId: string) {}
 }
 
 @QueryHandler(FindAllBoardsQuery)
 export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQuery> {
     public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
-    public async execute({ username }: FindAllBoardsQuery) {
+    public async execute({ userId }: FindAllBoardsQuery) {
         return await this.boardsRepository.findAndCount({
-            select: ["id", "title", "createdAt", "updatedAt"],
             where: {
-                creator: {
-                    username: username
-                }
-            },
-            relations: ["creator"]
+                creatorId: userId
+            }
         });
     }
 }

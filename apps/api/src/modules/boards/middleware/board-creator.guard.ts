@@ -10,8 +10,7 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
-import type { JwtPayload } from "src/modules/auth/lib/jwt.lib";
-import { REQUEST_JWT_KEY } from "src/modules/auth/lib/request.lib";
+import { getAuthPayload } from "src/core/auth";
 import { ApiForbidden } from "src/shared/swagger";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
@@ -23,11 +22,11 @@ class BoardCreatorGuard implements CanActivate {
     public async canActivate(context: ExecutionContext) {
         const request = context.switchToHttp().getRequest() as Request;
 
-        const { boardId, username } = this.getParams(request);
+        const { boardId, userId } = this.getParams(request);
 
         const board = await this.findBoard(boardId);
 
-        this.checkPermissions(board, username);
+        this.checkPermissions(board, userId);
 
         return true;
     }
@@ -39,13 +38,9 @@ class BoardCreatorGuard implements CanActivate {
             throw new BadRequestException("Board id not found");
         }
 
-        const username = (request[REQUEST_JWT_KEY] as JwtPayload)?.username;
+        const { id: userId } = getAuthPayload(request);
 
-        if (!username) {
-            throw new BadRequestException("Username in jwt payload not found");
-        }
-
-        return { boardId, username };
+        return { boardId, userId };
     }
 
     private async findBoard(id: string) {
@@ -63,8 +58,8 @@ class BoardCreatorGuard implements CanActivate {
         return board;
     }
 
-    private checkPermissions(board: Board, username: string) {
-        if (board.creator.username !== username) {
+    private checkPermissions(board: Board, userId: string) {
+        if (board.creatorId !== userId) {
             throw new ForbiddenException(`Board with id ${board.id} not belongs to you`);
         }
     }

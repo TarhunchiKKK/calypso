@@ -18,8 +18,8 @@ export class BoardsService {
         return await this.commandBus.execute(new CreateBoardCommand(request));
     }
 
-    public async findAll(username: string) {
-        return await this.queryBus.execute(new FindAllBoardsQuery(username));
+    public async findAll(userId: string) {
+        return await this.queryBus.execute(new FindAllBoardsQuery(userId));
     }
 
     public async update(id: string, request: UpdateBoardDto) {
