@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { ApiConflict, ApiNotFound } from "src/shared/swagger";
 import { Validation } from "src/shared/validation";
-import { Authorization } from "../auth/decorators/authorization.decorator";
-import { Authorized } from "../auth/decorators/authorized.decorator";
+import { Authorization } from "../../core/auth/decorators/authorization.decorator";
+import { Authorized } from "../../core/auth/decorators/authorized.decorator";
 import type { BoardsService } from "./boards.service";
 import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
 import { UpdateBoardDto } from "./dto/update-board.dto";

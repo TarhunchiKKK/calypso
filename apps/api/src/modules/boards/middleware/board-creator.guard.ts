@@ -10,8 +10,8 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
-import type { JwtPayload } from "src/modules/auth/lib/jwt.lib";
-import { REQUEST_JWT_KEY } from "src/modules/auth/lib/request.lib";
+import type { JwtPayload } from "src/core/auth/lib/jwt.lib";
+import { REQUEST_JWT_KEY } from "src/core/auth/lib/request.lib";
 import { ApiForbidden } from "src/shared/swagger";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
