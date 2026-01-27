@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import type { CommandBus, QueryBus } from "@nestjs/cqrs";
+import { Inject, Injectable } from "@nestjs/common";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
@@ -10,8 +10,8 @@ import { UpdateBoardCommand } from "./handlers/update-board.handler";
 @Injectable()
 export class BoardsService {
     public constructor(
-        private readonly commandBus: CommandBus,
-        private readonly queryBus: QueryBus
+        @Inject(CommandBus) private readonly commandBus: CommandBus,
+        @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
     public async create(request: CreateBoardDto) {

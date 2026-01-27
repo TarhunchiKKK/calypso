@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
+    "@types/node": "^25.0.10",
     "knip": "^5.82.1",
     "ts-node": "^10.9.2",
     "turbo": "^2.7.5"

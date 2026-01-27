@@ -1,7 +1,7 @@
 // NOTE: This script is designed to copy environment variables to corresponding folders
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const rootDir = process.cwd();
 const sourceEnvFile = path.join(rootDir, ".env");

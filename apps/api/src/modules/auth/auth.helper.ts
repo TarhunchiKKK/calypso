@@ -1,11 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import type { JwtService } from "@nestjs/jwt";
+import { Inject, Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import type { Account } from "./entities/account.entity";
 import type { JwtPayload } from "./lib/jwt.lib";
 
 @Injectable()
 export class AuthHelper {
-    public constructor(private readonly jwtService: JwtService) {}
+    public constructor(@Inject(JwtService) private readonly jwtService: JwtService) {}
 
     public async sign(payload: JwtPayload) {
         return this.jwtService.sign({
