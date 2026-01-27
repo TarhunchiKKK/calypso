@@ -28,4 +28,11 @@ export class BoardApiType {
         type: Date
     })
     public updatedAt: Date;
+
+    @ApiProperty({
+        description: "Board creator id",
+        type: String,
+        format: "uuid"
+    })
+    public creatorId: string;
 }

@@ -2,8 +2,7 @@ import { applyDecorators, type CanActivate, type ExecutionContext, Injectable, U
 import { ApiBearerAuth } from "@nestjs/swagger";
 import type { Request } from "express";
 import { ApiUnauthorized } from "src/shared/swagger";
-import type { JwtPayload } from "../lib/jwt.lib";
-import { REQUEST_JWT_KEY } from "../lib/request.lib";
+import { AUTH_PAYLOAD_KEY, type AuthPayload } from "./auth.lib";
 
 export function Authorization() {
     return applyDecorators(UseGuards(AuthorizationGuard), ApiUnauthorized("You are unauthorized"), ApiBearerAuth());
@@ -16,11 +15,11 @@ class AuthorizationGuard implements CanActivate {
 
         const jwt = this.extractJwt(request);
 
-        const jwtPayload: JwtPayload = {
+        const AuthPayload: AuthPayload = {
             id: jwt
         };
 
-        Object.defineProperty(request, REQUEST_JWT_KEY, jwtPayload);
+        Object.defineProperty(request, AUTH_PAYLOAD_KEY, AuthPayload);
 
         return true;
     }

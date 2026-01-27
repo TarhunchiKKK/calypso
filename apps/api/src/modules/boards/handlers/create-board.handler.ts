@@ -19,7 +19,7 @@ export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCom
         return await this.boardsRepository.save({
             title: dto.title,
             creator: {
-                username: dto.username
+                username: dto.creatorId
             }
         });
     }
@@ -28,11 +28,8 @@ export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCom
         const exists = await this.boardsRepository.exists({
             where: {
                 title: dto.title,
-                creator: {
-                    username: dto.username
-                }
-            },
-            relations: ["creator"]
+                creatorId: dto.creatorId
+            }
         });
 
         if (exists) {

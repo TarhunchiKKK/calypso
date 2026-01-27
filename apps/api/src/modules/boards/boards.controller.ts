@@ -1,9 +1,8 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { Authorization, Authorized } from "src/core/auth";
 import { ApiConflict, ApiNotFound } from "src/shared/swagger";
 import { Validation } from "src/shared/validation";
-import { Authorization } from "../../core/auth/decorators/authorization.decorator";
-import { Authorized } from "../../core/auth/decorators/authorized.decorator";
 import type { BoardsService } from "./boards.service";
 import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
 import { UpdateBoardDto } from "./dto/update-board.dto";
@@ -29,9 +28,10 @@ export class BoardsController {
 
     @Get()
     @HttpCode(HttpStatus.OK)
+    @BoardCreator()
     @ApiOkResponse({ description: "Account founded", type: [BoardApiType] })
-    public async findAll(@Authorized("id") username: string) {
-        return await this.boardsService.findAll(username);
+    public async findAll(@Authorized("id") userId: string) {
+        return await this.boardsService.findAll(userId);
     }
 
     @Patch(":id")
@@ -46,8 +46,8 @@ export class BoardsController {
 
     @Delete(":id")
     @HttpCode(HttpStatus.NO_CONTENT)
-    @ApiNotFound("Board not found")
     @BoardCreator()
+    @ApiNotFound("Board not found")
     public async remove(@Param("id") id: string) {
         return await this.boardsService.remove(id);
     }

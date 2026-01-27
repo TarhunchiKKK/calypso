@@ -1,2 +1,3 @@
-export { Authorization } from "./decorators/authorization.decorator";
-export { Authorized } from "./decorators/authorized.decorator";
+export { getAuthPayload } from "./auth.lib";
+export { Authorization } from "./authorization.decorator";
+export { Authorized } from "./authorized.decorator";
