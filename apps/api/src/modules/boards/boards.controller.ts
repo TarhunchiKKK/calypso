@@ -1,26 +1,23 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
 import { Authorization, Authorized } from "src/core/auth";
-import { ApiConflict, ApiNotFound } from "src/shared/swagger";
 import { Validation } from "src/shared/validation";
 import type { BoardsService } from "./boards.service";
-import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
-import { UpdateBoardDto } from "./dto/update-board.dto";
+import type { CreateBoardDto } from "./dto/create-board.dto";
+import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { BoardCreator } from "./middleware/board-creator.guard";
-import { BoardApiType } from "./swagger/board.api-type";
+import { BoardsApiController } from "./swagger/boards-api-controller";
 import { CreateBoardDtoSchema, UpdateBoardDtoSchema } from "./validation/validation.schemas";
 
 @Controller("boards")
 @ApiTags("boards")
 @Authorization()
+@BoardsApiController()
 export class BoardsController {
     public constructor(private readonly boardsService: BoardsService) {}
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    @ApiBody({ description: "Board creation data", type: CreateBoardDto })
-    @ApiCreatedResponse({ description: "Successful board creation", type: CreateBoardResponse })
-    @ApiConflict("Board with such name already exists")
     @Validation(CreateBoardDtoSchema)
     public async create(@Body() request: CreateBoardDto) {
         return await this.boardsService.create(request);
@@ -29,15 +26,12 @@ export class BoardsController {
     @Get()
     @HttpCode(HttpStatus.OK)
     @BoardCreator()
-    @ApiOkResponse({ description: "Account founded", type: [BoardApiType] })
     public async findAll(@Authorized("id") userId: string) {
         return await this.boardsService.findAll(userId);
     }
 
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
-    @ApiBody({ description: "Board update data", type: UpdateBoardDto })
-    @ApiNotFound("Board not found")
     @Validation(UpdateBoardDtoSchema)
     @BoardCreator()
     public async update(@Param("id") id: string, @Body() request: UpdateBoardDto) {
@@ -47,7 +41,6 @@ export class BoardsController {
     @Delete(":id")
     @HttpCode(HttpStatus.NO_CONTENT)
     @BoardCreator()
-    @ApiNotFound("Board not found")
     public async remove(@Param("id") id: string) {
         return await this.boardsService.remove(id);
     }

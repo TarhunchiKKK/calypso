@@ -17,6 +17,6 @@ class ValidationFailedResponse {
     public issues: ZodIssueResponse[];
 }
 
-export function ApiVAlidationFailed() {
+export function ApiValidationFailed() {
     return applyDecorators(ApiBadRequestResponse({ description: "Validation failed", type: ValidationFailedResponse }));
 }
