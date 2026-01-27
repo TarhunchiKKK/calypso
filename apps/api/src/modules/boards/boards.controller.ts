@@ -30,7 +30,7 @@ export class BoardsController {
     @Get()
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ description: "Account founded", type: [BoardApiType] })
-    public async findAll(@Authorized("username") username: string) {
+    public async findAll(@Authorized("id") username: string) {
         return await this.boardsService.findAll(username);
     }
 
