@@ -1,14 +1,4 @@
-type MouseEventHandlers<E> = {
-    onClick?: (e: E) => void;
-    onDoubleClick?: (e: E) => void;
-    onMouseDown?: (e: E) => void;
-    onMouseUp?: (e: E) => void;
-};
-
-type MouseEventsMediatorOptions = {
-    clickDelay: number;
-    mouseDownDelay: number;
-};
+import type { MouseEventHandlers, MouseEventsMediatorOptions } from "./types";
 
 /**
  * The MouseEventsMediator class is a utility designed to manage and distinguish between single-clicks, double-clicks, and long-press mouse events.
@@ -23,7 +13,9 @@ type MouseEventsMediatorOptions = {
  * This class helps in creating more interactive and intuitive user interfaces
  * by providing granular control over mouse event handling.
  */
-export class MouseEventsMediator<E = never> {
+export class MouseEventsMediator {
+    private handlers: MouseEventHandlers = {};
+
     private clickDelay: number;
     private mouseDownDelay: number;
 
@@ -37,73 +29,58 @@ export class MouseEventsMediator<E = never> {
         this.mouseDownDelay = options.mouseDownDelay;
     }
 
-    // OPTIMIZE: result of handlers creating can be saved in this class
+    public setHandlers(handlers: MouseEventHandlers) {
+        this.reset();
 
-    /**
-     * Creates a set of mouse event handlers that are mediated by the class instance.
-     * @param handlers - An object containing the original event handlers to be called by the mediator.
-     * @returns An object with onMouseDown, onMouseUp, and onClick handlers that should be spread onto a component.
-     */
-    public createHandlers(handlers: MouseEventHandlers<E>) {
-        return {
-            onMouseDown: this.createMouseDown(handlers),
-            onMouseUp: this.createMouseUp(handlers),
-            onClick: this.createClick(handlers)
-        };
+        this.handlers = handlers;
     }
 
-    private createMouseDown(handlers: MouseEventHandlers<E>) {
-        return (e: E) => {
-            if (!handlers.onMouseDown) {
-                return;
-            }
+    public onMouseDown(e: React.MouseEvent) {
+        if (!this.handlers.onMouseDown) {
+            return;
+        }
 
-            this.skipNextClick = false;
+        this.skipNextClick = false;
 
-            this.mouseDownTimeout = setTimeout(() => {
-                handlers.onMouseDown?.(e);
-                this.mouseDownTimeout = null;
-                this.skipNextClick = true;
-            }, this.mouseDownDelay);
-        };
+        this.mouseDownTimeout = setTimeout(() => {
+            this.handlers.onMouseDown?.(e);
+            this.mouseDownTimeout = null;
+            this.skipNextClick = true;
+        }, this.mouseDownDelay);
     }
 
-    private createMouseUp(handlers: MouseEventHandlers<E>) {
-        return (e: E) => {
-            if (this.mouseDownTimeout) {
-                clearTimeout(this.mouseDownTimeout);
-                this.mouseDownTimeout = null;
-            }
+    public onMouseUp(e: React.MouseEvent) {
+        if (this.mouseDownTimeout) {
+            clearTimeout(this.mouseDownTimeout);
+            this.mouseDownTimeout = null;
+        }
 
-            handlers.onMouseUp?.(e);
-        };
+        this.handlers.onMouseUp?.(e);
     }
 
-    private createClick(handlers: MouseEventHandlers<E>) {
-        return (e: E) => {
-            const needSkip = this.skipNextClick;
+    public onClick(e: React.MouseEvent) {
+        const needSkip = this.skipNextClick;
 
-            if (!this.clickTimeout) {
-                this.clickTimeout = setTimeout(() => {
-                    if (needSkip) {
-                        this.skipNextClick = false;
-                    } else {
-                        handlers.onClick?.(e);
-                    }
-
-                    this.clickTimeout = null;
-                }, this.clickDelay);
-            } else {
+        if (!this.clickTimeout) {
+            this.clickTimeout = setTimeout(() => {
                 if (needSkip) {
                     this.skipNextClick = false;
                 } else {
-                    handlers.onDoubleClick?.(e);
+                    this.handlers.onClick?.(e);
                 }
 
-                clearTimeout(this.clickTimeout);
                 this.clickTimeout = null;
+            }, this.clickDelay);
+        } else {
+            if (needSkip) {
+                this.skipNextClick = false;
+            } else {
+                this.handlers.onDoubleClick?.(e);
             }
-        };
+
+            clearTimeout(this.clickTimeout);
+            this.clickTimeout = null;
+        }
     }
 
     /**

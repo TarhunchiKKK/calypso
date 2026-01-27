@@ -1,6 +1,5 @@
-import type React from "react";
 import { useEffect, useMemo } from "react";
-import { MouseEventsMediator } from "@/shared/lib/react";
+import { MouseEventsMediator, MouseEventsSeparator } from "@/shared/lib/react";
 
 const mouseEventsOptions = {
     mouseDownDelay: 700,
@@ -10,12 +9,13 @@ const mouseEventsOptions = {
 // DOCS
 export function useMouseEventsMediator() {
     const mediator = useMemo(() => {
-        return new MouseEventsMediator<React.MouseEvent>(mouseEventsOptions);
+        return new MouseEventsSeparator(new MouseEventsMediator(mouseEventsOptions), new MouseEventsMediator(mouseEventsOptions));
     }, []);
 
     useEffect(() => {
         return () => {
-            mediator.reset();
+            mediator.left.reset();
+            mediator.right.reset();
         };
     }, [mediator]);
 

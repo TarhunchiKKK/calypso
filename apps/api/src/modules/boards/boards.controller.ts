@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { CreateBoardDtoSchema, UpdateBoardDtoSchema } from "@repo/common";
 import { ApiConflict, ApiNotFound } from "src/shared/swagger";
 import { Validation } from "src/shared/validation";
 import { Authorization } from "../auth/decorators/authorization.decorator";
@@ -10,6 +9,7 @@ import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
 import { UpdateBoardDto } from "./dto/update-board.dto";
 import { BoardCreator } from "./middleware/board-creator.guard";
 import { BoardApiType } from "./swagger/board.api-type";
+import { CreateBoardDtoSchema, UpdateBoardDtoSchema } from "./validation/validation.schemas";
 
 @Controller("boards")
 @ApiTags("boards")

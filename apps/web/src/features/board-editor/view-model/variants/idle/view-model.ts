@@ -16,10 +16,11 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     const dragging = useDragging(params);
 
-    const mediator = useMouseEventsMediator();
+    const nodesMediator = useMouseEventsMediator();
+    const overlayMediator = useMouseEventsMediator();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
-        const handlers = mediator.createHandlers({
+        nodesMediator.left.setHandlers({
             onMouseDown: withNodeId((nodeId, e) => {
                 dragging.onMouseDown(new Set([nodeId]), e);
             }),
@@ -31,11 +32,13 @@ export function useIdleViewModel(params: ViewModelParams) {
             })
         });
 
+        overlayMediator.left.setHandlers({
+            onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
+        });
+
         return {
-            nodes: IdleNodesMapper.from(nodesModel.nodes).map(handlers).get(),
-            overlay: {
-                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
-            }
+            nodes: IdleNodesMapper.from(nodesModel.nodes).map(nodesMediator.handlers).get(),
+            overlay: overlayMediator.handlers
         };
     };
 }

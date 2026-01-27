@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import type { CommandBus, QueryBus } from "@nestjs/cqrs";
+import { Inject, Injectable } from "@nestjs/common";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { SignInDto } from "./dto/sign-in.dto";
 import type { SignUpDto } from "./dto/sign-up.dto";
 import { FindAccountQuery } from "./handlers/find-account.handler";
@@ -10,8 +10,8 @@ import { SignUpCommand } from "./handlers/sign-up.handler";
 @Injectable()
 export class AuthService {
     public constructor(
-        private readonly commandBus: CommandBus,
-        private readonly queryBus: QueryBus
+        @Inject(CommandBus) private readonly commandBus: CommandBus,
+        @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
     public async signUp(dto: SignUpDto) {

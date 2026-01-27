@@ -1,8 +1,8 @@
-import { NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { AuthHelper } from "../auth.helper";
+import { AuthHelper } from "../auth.helper";
 import type { SignInDto } from "../dto/sign-in.dto";
 import { Account } from "../entities/account.entity";
 
@@ -14,7 +14,7 @@ export class SignInCommand implements ICommand {
 export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
     public constructor(
         @InjectRepository(Account) private readonly accountsRepository: Repository<Account>,
-        private readonly authHelper: AuthHelper
+        @Inject(AuthHelper) private readonly authHelper: AuthHelper
     ) {}
 
     public async execute({ dto }: SignInCommand) {

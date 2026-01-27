@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { AuthDto } from "@repo/common";
 import { ApiConflict, ApiNotFound, ApiUnauthorized } from "src/shared/swagger";
 import { Validation } from "src/shared/validation";
 import type { AuthService } from "./auth.service";
@@ -9,6 +8,7 @@ import { Authorized } from "./decorators/authorized.decorator";
 import { SignInDto, SignInResponse } from "./dto/sign-in.dto";
 import { SignUpDto, SignUpResponse } from "./dto/sign-up.dto";
 import { AccountApiType } from "./swagger/account.api-type";
+import { AuthDtoSchema } from "./validation/validation.schemas";
 
 @ApiTags("auth")
 @Controller("auth")
@@ -20,7 +20,7 @@ export class AuthController {
     @ApiBody({ description: "User sign up data", type: SignUpDto })
     @ApiCreatedResponse({ description: "Successful sign up", type: SignUpResponse })
     @ApiConflict("User with such username already exists")
-    @Validation(AuthDto)
+    @Validation(AuthDtoSchema)
     public async signUp(@Body() dto: SignUpDto) {
         return await this.authService.signUp(dto);
     }
@@ -31,7 +31,7 @@ export class AuthController {
     @ApiOkResponse({ description: "Successful sign in", type: SignInResponse })
     @ApiNotFound("Account not found")
     @ApiUnauthorized("PAsswords not match")
-    @Validation(AuthDto)
+    @Validation(AuthDtoSchema)
     public async signIn(@Body() dto: SignInDto) {
         return await this.authService.signIn(dto);
     }

@@ -1,8 +1,8 @@
-import { ConflictException } from "@nestjs/common";
+import { ConflictException, Inject } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { AuthHelper } from "../auth.helper";
+import { AuthHelper } from "../auth.helper";
 import type { SignUpDto } from "../dto/sign-up.dto";
 import { Account } from "../entities/account.entity";
 
@@ -13,7 +13,7 @@ export class SignUpCommand implements ICommand {
 @CommandHandler(SignUpCommand)
 export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     public constructor(
-        private readonly authHelper: AuthHelper,
+        @Inject(AuthHelper) private readonly authHelper: AuthHelper,
         @InjectRepository(Account) private readonly accountsRepository: Repository<Account>
     ) {}
 
