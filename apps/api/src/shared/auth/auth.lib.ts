@@ -1,9 +1,6 @@
 import { BadRequestException } from "@nestjs/common";
+import type { AuthPayload } from "@repo/common";
 import type { Request } from "express";
-
-export type AuthPayload = {
-    id: string;
-};
 
 export const AUTH_PAYLOAD_KEY = "account";
 

@@ -4,5 +4,5 @@ import type { ZodSchema } from "zod";
 import { ZodValidationPipe } from "./zod-validation.pipe";
 
 export function Validation(schema: ZodSchema<unknown, unknown>) {
-    return applyDecorators(UsePipes(new ZodValidationPipe(schema)), ApiBadRequestResponse());
+    return applyDecorators(UsePipes(new ZodValidationPipe(schema)), ApiBadRequestResponse({ description: "Bad validation" }));
 }
