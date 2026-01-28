@@ -1,6 +1,23 @@
 version: "3.7"
 
 services:
+  web:
+    build:
+      context: ./apps/web
+    ports: 
+      - 3000:3000
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./apps/api
+    ports: 
+      - ${API_PORT}:3000
+    depends_on:
+      - postgres
+      - mong-db
+
   postgres:
     container_name: postgres-db
     image: postgres:15.2
@@ -13,8 +30,6 @@ services:
       - ${POSTGRES_PORT}:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - api
 
   mongo-db:
     container_name: mongo-db
@@ -23,11 +38,7 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
     ports:
       - ${MONGO_DB_PORT}:27017
-    networks:
-      - api
+
 
 volumes:
   postgres_data:
-
-networks:
-  api:
