@@ -1,0 +1,32 @@
+{
+    "name": "@repo/common",
+    "version": "0.0.0",
+    "license": "MIT",
+    "private": true,
+    "main": "./dist/entry.js",
+    "files": ["./dist/**"],
+    "types": "./dist/entry.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/entry.js",
+            "require": "./dist/entry.js"
+        },
+        "./*": {
+            "import": "./dist/*.js",
+            "require": "./dist/*.js"
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "dev": "pnpm build --watch",
+        "build": "tsc -b -v"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.7",
+        "ts-loader": "^9.4.3",
+        "ts-node": "^10.9.2",
+        "typescript": "5.5.4"
+    }
+}
