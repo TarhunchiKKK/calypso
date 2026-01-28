@@ -8,6 +8,7 @@ import {
     NotFoundException,
     UseGuards
 } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
 import { getAuthPayload } from "src/core/auth";
@@ -15,14 +16,23 @@ import { ApiForbidden } from "src/shared/swagger";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 
+export function BoardCreator(boardGetter: BoardGetter) {
+    return applyDecorators(GetBoardFromRequest(boardGetter), UseGuards(BoardCreatorGuard), ApiForbidden("This board not belongs to you"));
+}
+
+type BoardGetter = (request: Request) => { id: string };
+
+const GetBoardFromRequest = Reflector.createDecorator<BoardGetter>();
+
 @Injectable()
 class BoardCreatorGuard implements CanActivate {
-    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
+    public constructor(
+        @InjectRepository(Board) private readonly boardsRepository: Repository<Board>,
+        private readonly reflector: Reflector
+    ) {}
 
     public async canActivate(context: ExecutionContext) {
-        const request = context.switchToHttp().getRequest() as Request;
-
-        const { boardId, userId } = this.getParams(request);
+        const { boardId, userId } = this.getParams(context);
 
         const board = await this.findBoard(boardId);
 
@@ -31,8 +41,12 @@ class BoardCreatorGuard implements CanActivate {
         return true;
     }
 
-    private getParams(request: Request) {
-        const boardId = request?.params?.id;
+    private getParams(context: ExecutionContext) {
+        const getBoardFromRequest = this.reflector.get(GetBoardFromRequest, context.getHandler());
+
+        const request = context.switchToHttp().getRequest() as Request;
+
+        const { id: boardId } = getBoardFromRequest(request);
 
         if (!boardId) {
             throw new BadRequestException("Board id not found");
@@ -63,8 +77,4 @@ class BoardCreatorGuard implements CanActivate {
             throw new ForbiddenException(`Board with id ${board.id} not belongs to you`);
         }
     }
-}
-
-export function BoardCreator() {
-    return applyDecorators(UseGuards(BoardCreatorGuard), ApiForbidden("This board not belongs to you"));
 }
