@@ -30,3 +30,11 @@ export const NodeStylesZodSchema = z.object<UnknownFields<Pick<CSSProperties, No
 });
 
 export type NodeStyles = z.infer<typeof NodeStylesZodSchema>;
+
+export const CreateNodeStylesDtoZodSchema = NodeStylesZodSchema.partial();
+
+export type CreateNodeStylesDto = z.infer<typeof CreateNodeStylesDtoZodSchema>;
+
+export const ReplaceNodeStylesDtoZodSchema = NodeStylesZodSchema.partial();
+
+export type ReplaceNodeStylesDto = z.infer<typeof ReplaceNodeStylesDtoZodSchema>;

@@ -1,5 +1,6 @@
-import { type NodeTypes, RectNodeZodSchema } from "nodes/core";
-import { NodeStylesZodSchema } from "nodes/node-styles";
+import type { NodeTypes } from "nodes/core/node-base";
+import { CreateNodeStylesDtoZodSchema, NodeStylesZodSchema, ReplaceNodeStylesDtoZodSchema } from "nodes/core/node-styles";
+import { RectNodeZodSchema } from "nodes/core/rect-node";
 import z from "zod";
 
 export const TextNodeZodSchema = z.intersection(
@@ -14,3 +15,21 @@ export const TextNodeZodSchema = z.intersection(
 );
 
 export type TextNode = z.infer<typeof TextNodeZodSchema>;
+
+export const CreateTextNodeDtoZodSchema = z.intersection(
+    TextNodeZodSchema,
+    z.object({
+        styles: CreateNodeStylesDtoZodSchema.pick({ color: true, fontStyle: true, fontSize: true, textAlign: true })
+    })
+);
+
+export type CreateTextNodeDto = z.infer<typeof CreateTextNodeDtoZodSchema>;
+
+export const ReplaceTextNodeDtoSchema = z.intersection(
+    TextNodeZodSchema,
+    z.object({
+        styles: ReplaceNodeStylesDtoZodSchema.pick({ color: true, fontStyle: true, fontSize: true, textAlign: true })
+    })
+);
+
+export type ReplaceTextNodeDto = z.infer<typeof ReplaceTextNodeDtoSchema>;

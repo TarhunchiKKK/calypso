@@ -9,6 +9,9 @@ export class NodeBase implements TypeNodeBase {
     @Prop({ type: String, required: true })
     public id: string;
 
+    @Prop({ type: String, required: true })
+    public boardId: string;
+
     @Prop({ type: String, required: true, enum: nodeTypes })
     public type: NodeTypes;
 
