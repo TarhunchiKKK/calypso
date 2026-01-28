@@ -21,14 +21,16 @@ export const ReplaceNodeBaseDtoZodSchema = NodeBaseZodSchema;
 
 export type ReplaceNodeBaseDto = z.infer<typeof ReplaceNodeBaseDtoZodSchema>;
 
-export type RemoveOneNodeDto = {
-    id: string;
+export const RemoveOneNodeDtoZodSchema = z.object({
+    id: z.uuid({ error: "Node id should have correct uuid format" }),
+    boardId: z.uuid({ error: "Board id should have correct uuid format" })
+});
 
-    boardId: string;
-};
+export type RemoveOneNodeDto = z.infer<typeof RemoveOneNodeDtoZodSchema>;
 
-export type RemoveManyNodesDto = {
-    ids: string[];
+export const RemoveManyNodesDtoZodSchema = z.object({
+    ids: z.array(z.uuid(), { error: "Node id should have correct uuid format" }),
+    boardId: z.uuid({ error: "Board id should have correct uuid format" })
+});
 
-    boardId: string;
-};
+export type RemoveManyNodesDto = z.infer<typeof RemoveManyNodesDtoZodSchema>;
