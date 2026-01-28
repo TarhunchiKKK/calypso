@@ -25,7 +25,6 @@ export class BoardsController {
 
     @Get()
     @HttpCode(HttpStatus.OK)
-    @BoardCreator()
     public async findAll(@Authorized("id") userId: string) {
         return await this.boardsService.findAll(userId);
     }
@@ -33,14 +32,14 @@ export class BoardsController {
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
     @Validation(UpdateBoardDtoSchema)
-    @BoardCreator()
+    @BoardCreator(request => ({ id: request?.params?.id }))
     public async update(@Param("id") id: string, @Body() request: UpdateBoardDto) {
         return await this.boardsService.update(id, request);
     }
 
     @Delete(":id")
     @HttpCode(HttpStatus.NO_CONTENT)
-    @BoardCreator()
+    @BoardCreator(request => ({ id: request?.params?.id }))
     public async remove(@Param("id") id: string) {
         return await this.boardsService.remove(id);
     }

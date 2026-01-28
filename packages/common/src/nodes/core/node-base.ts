@@ -20,3 +20,15 @@ export type CreateNodeBaseDto = z.infer<typeof CreateNodeBaseDtoZodSchema>;
 export const ReplaceNodeBaseDtoZodSchema = NodeBaseZodSchema;
 
 export type ReplaceNodeBaseDto = z.infer<typeof ReplaceNodeBaseDtoZodSchema>;
+
+export type RemoveOneNodeDto = {
+    id: string;
+
+    boardId: string;
+};
+
+export type RemoveManyNodesDto = {
+    ids: string[];
+
+    boardId: string;
+};
