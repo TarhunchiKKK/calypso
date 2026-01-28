@@ -32,5 +32,8 @@
         "ts-loader": "^9.4.3",
         "ts-node": "^10.9.2",
         "typescript": "5.5.4"
+    },
+    "dependencies": {
+        "zod": "^4.3.6"
     }
 }

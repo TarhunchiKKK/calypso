@@ -1,9 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { NodeStyles as TypeNodeStyles, UnknownFields } from "@repo/common";
 
-// HACK: Without this you will encounter TypeScript errors in nodes classes
-type TextDecorationValues = "start" | "end" | "left" | "right" | "center" | "justify" | "match-parent";
-
 @Schema()
 export class NodeStyles implements Partial<UnknownFields<TypeNodeStyles>> {
     @Prop({ type: String, required: false })
@@ -25,7 +22,7 @@ export class NodeStyles implements Partial<UnknownFields<TypeNodeStyles>> {
     public backgroundColor: string;
 
     @Prop({ type: String, required: false })
-    public textAlign: TextDecorationValues;
+    public textAlign: string;
 
     @Prop({ type: String, required: false })
     public color: string;
