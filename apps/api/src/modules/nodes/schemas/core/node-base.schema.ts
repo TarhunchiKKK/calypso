@@ -1,8 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { NodeTypes, NodeBase as TypeNodeBase } from "@repo/common";
+import { NodeTypesEnum } from "../../constants/node-types.constants";
 import { NodeStyles } from "./node-styles.schema";
-
-const nodeTypes: NodeTypes[] = ["sticker", "text"];
 
 @Schema({ discriminatorKey: "type" })
 export class NodeBase implements TypeNodeBase {
@@ -12,7 +11,7 @@ export class NodeBase implements TypeNodeBase {
     @Prop({ type: String, required: true })
     public boardId: string;
 
-    @Prop({ type: String, required: true, enum: nodeTypes })
+    @Prop({ type: String, required: true, enum: NodeTypesEnum })
     public type: NodeTypes;
 
     @Prop({ type: Boolean, default: false })

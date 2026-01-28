@@ -6,6 +6,7 @@ import z from "zod";
 export const TextNodeZodSchema = z.intersection(
     RectNodeZodSchema,
     z.object({
+        ...RectNodeZodSchema,
         type: z.literal<NodeTypes>("text"),
         styles: NodeStylesZodSchema.pick({ color: true, fontStyle: true, fontSize: true, textAlign: true }),
 
