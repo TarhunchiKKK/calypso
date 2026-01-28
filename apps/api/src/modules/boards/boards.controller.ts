@@ -1,13 +1,14 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
 import { ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { CreateBoardDtoZodSchema, UpdateBoardDtoZodSchema } from "@repo/common";
 import { Authorization, Authorized } from "src/shared/auth";
 import { Validation } from "src/shared/validation";
+import z from "zod";
 import type { BoardsService } from "./boards.service";
 import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";
 import { UpdateBoardDto } from "./dto/update-board.dto";
 import { BoardCreator } from "./middleware/board-creator.guard";
 import { BoardApiType } from "./swagger/board.api-type";
-import { CreateBoardDtoSchema, UpdateBoardDtoSchema } from "./validation/validation.schemas";
 
 @Controller("boards")
 @Authorization()
@@ -17,7 +18,7 @@ export class BoardsController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    @Validation(CreateBoardDtoSchema)
+    @Validation(z.object(CreateBoardDtoZodSchema))
     @ApiBody({ description: "Board creation data", type: CreateBoardDto })
     @ApiCreatedResponse({ description: "Successful board creation", type: CreateBoardResponse })
     @ApiConflictResponse({ description: "Board with such name already exists" })
@@ -34,7 +35,7 @@ export class BoardsController {
 
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
-    @Validation(UpdateBoardDtoSchema)
+    @Validation(z.object(UpdateBoardDtoZodSchema))
     @BoardCreator(request => ({ id: request?.params?.id }))
     @ApiBody({ description: "Board update data", type: UpdateBoardDto })
     @ApiNotFoundResponse({ description: "Board not found" })

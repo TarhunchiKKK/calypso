@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
+import type { Board as TypeBoard } from "@repo/common";
 
-export class BoardApiType {
+export class BoardApiType implements TypeBoard {
     @ApiProperty({
         description: "Board identifier",
         type: String,
@@ -16,6 +17,13 @@ export class BoardApiType {
     public title: string;
 
     @ApiProperty({
+        description: "Board creator id",
+        type: String,
+        format: "uuid"
+    })
+    public creatorId: string;
+
+    @ApiProperty({
         description: "Board creation date",
         example: new Date(),
         type: Date
@@ -28,11 +36,4 @@ export class BoardApiType {
         type: Date
     })
     public updatedAt: Date;
-
-    @ApiProperty({
-        description: "Board creator id",
-        type: String,
-        format: "uuid"
-    })
-    public creatorId: string;
 }
