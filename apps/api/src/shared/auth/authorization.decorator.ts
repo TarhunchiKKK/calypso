@@ -1,7 +1,8 @@
 import { applyDecorators, type CanActivate, type ExecutionContext, Injectable, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import type { AuthPayload } from "@repo/common";
 import type { Request } from "express";
-import { AUTH_PAYLOAD_KEY, type AuthPayload } from "./auth.lib";
+import { AUTH_PAYLOAD_KEY } from "./auth.lib";
 
 export function Authorization() {
     return applyDecorators(UseGuards(AuthorizationGuard), ApiUnauthorizedResponse({ description: "You are unauthorized" }), ApiBearerAuth());
