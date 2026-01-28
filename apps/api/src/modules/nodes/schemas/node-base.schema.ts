@@ -1,12 +1,18 @@
-import { Prop } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import type { NodeTypes, NodeBase as TypeNodeBase } from "@repo/common";
 
-export class NodeBase {
+const nodeTypes: NodeTypes[] = ["sticker", "text"];
+
+@Schema({ discriminatorKey: "type" })
+export class NodeBase implements TypeNodeBase {
     @Prop({ type: String, required: true })
     public id: string;
 
-    @Prop({ type: String, required: true })
-    public type: string;
+    @Prop({ type: String, required: true, enum: nodeTypes })
+    public type: NodeTypes;
 
     @Prop({ type: Boolean, default: false })
     public blocked: boolean;
 }
+
+export const NodeBaseSchema = SchemaFactory.createForClass(NodeBase);
