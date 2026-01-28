@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { NodeTypes, NodeBase as TypeNodeBase } from "@repo/common";
+import { NodeStyles } from "./node-styles.schema";
 
 const nodeTypes: NodeTypes[] = ["sticker", "text"];
 
@@ -13,6 +14,9 @@ export class NodeBase implements TypeNodeBase {
 
     @Prop({ type: Boolean, default: false })
     public blocked: boolean;
+
+    @Prop({ type: NodeStyles, required: true })
+    public styles: NodeStyles;
 }
 
 export const NodeBaseSchema = SchemaFactory.createForClass(NodeBase);

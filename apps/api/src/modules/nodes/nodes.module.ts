@@ -2,14 +2,38 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { NodesController } from "./nodes.controller";
 import { NodesService } from "./nodes.service";
-import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
+import { Rect, RectSchema } from "./schemas/core/geometry.schemas";
+import { NodeBase, NodeBaseSchema } from "./schemas/core/node-base.schema";
+import { NodeStyles, NodeStylesSchema } from "./schemas/core/node-styles.schema";
+import { STICKER_NODE_DISCRIMINATOR_VALUE, StickerNode, StickerNodeSchema } from "./schemas/variants/sticker-node.schema";
+import { TEXT_NODE_DISCRIMINATOR_VALUE, TextNode, TextNodeSchema } from "./schemas/variants/text-node.schema";
 
 @Module({
     imports: [
         MongooseModule.forFeature([
             {
                 name: NodeBase.name,
-                schema: NodeBaseSchema
+                schema: NodeBaseSchema,
+                discriminators: [
+                    {
+                        name: StickerNode.name,
+                        schema: StickerNodeSchema,
+                        value: STICKER_NODE_DISCRIMINATOR_VALUE
+                    },
+                    {
+                        name: TextNode.name,
+                        schema: TextNodeSchema,
+                        value: TEXT_NODE_DISCRIMINATOR_VALUE
+                    }
+                ]
+            },
+            {
+                name: NodeStyles.name,
+                schema: NodeStylesSchema
+            },
+            {
+                name: Rect.name,
+                schema: RectSchema
             }
         ])
     ],
