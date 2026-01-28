@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
 import { ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { Authorization, Authorized } from "src/core/auth";
+import { Authorization, Authorized } from "src/shared/auth";
 import { Validation } from "src/shared/validation";
 import type { BoardsService } from "./boards.service";
 import { CreateBoardDto, CreateBoardResponse } from "./dto/create-board.dto";

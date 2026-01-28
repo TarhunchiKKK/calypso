@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
 import { ApiBody, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiParam, ApiTags } from "@nestjs/swagger";
 import { CreateAnyNodeZodSchema, RemoveManyNodesDtoZodSchema, RemoveOneNodeDtoZodSchema, ReplaceAnyNodeZodSchema } from "@repo/common";
-import { Authorization } from "src/core/auth";
+import { Authorization } from "src/shared/auth";
 import { Validation } from "src/shared/validation";
 import z from "zod";
 import { BoardCreator } from "../boards/middleware/board-creator.guard";

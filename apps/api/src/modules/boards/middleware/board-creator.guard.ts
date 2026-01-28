@@ -12,7 +12,7 @@ import { Reflector } from "@nestjs/core";
 import { ApiForbiddenResponse } from "@nestjs/swagger";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
-import { getAuthPayload } from "src/core/auth";
+import { getAuthPayload } from "src/shared/auth";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 
