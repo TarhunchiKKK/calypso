@@ -1,9 +1,12 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
+import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { typeOrmConfigFactory } from "./config/typeorm-config.factory";
+import { mongooseConfigFactory } from "./config/mongoose.config-factory";
+import { typeOrmConfigFactory } from "./config/typeorm.config-factory";
 import { BoardsModule } from "./modules/boards/boards.module";
+import { NodesModule } from "./modules/nodes/nodes.module";
 
 @Module({
     imports: [
@@ -14,7 +17,13 @@ import { BoardsModule } from "./modules/boards/boards.module";
             inject: [ConfigService],
             useFactory: typeOrmConfigFactory
         }),
-        BoardsModule
+        MongooseModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: mongooseConfigFactory
+        }),
+        BoardsModule,
+        NodesModule
     ]
 })
 export class AppModule {}
