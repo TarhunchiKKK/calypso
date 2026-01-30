@@ -1,13 +1,10 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
-import { CreateOneNodeCommandHandler } from "./handlers/create-one-board.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.handler";
 import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
-import { RemoveOneNodeCommandHandler } from "./handlers/remove-one-node.handler";
 import { ReplaceManyNodesCommandHandler } from "./handlers/replace-many-nodes.handler";
-import { ReplaceOneNodeCommandHandler } from "./handlers/replace-one-node.handler";
 import { NodesController } from "./nodes.controller";
 import { NodesService } from "./nodes.service";
 import { Rect, RectSchema } from "./schemas/core/geometry.schemas";
@@ -48,12 +45,9 @@ import { TEXT_NODE_DISCRIMINATOR_VALUE, TextNode, TextNodeSchema } from "./schem
     controllers: [NodesController],
     providers: [
         NodesService,
-        CreateOneNodeCommandHandler,
         CreateManyNodesCommandHandler,
         FindAllNodesQuery,
-        ReplaceOneNodeCommandHandler,
         ReplaceManyNodesCommandHandler,
-        RemoveOneNodeCommandHandler,
         RemoveManyNodesCommandHandler,
         RemoveNodesByBoardCommandHandler
     ]

@@ -8,7 +8,7 @@
   "debug.console.fontSize": 13,
   "window.commandCenter": false,
   "workbench.preferredDarkColorTheme": "Default Dark+",
-  "workbench.iconTheme": "flow-deep",
+  "workbench.iconTheme": "material-icon-theme",
   "window.autoDetectColorScheme": true,
   "workbench.layoutControl.enabled": false,
   "editor.cursorStyle": "block",
