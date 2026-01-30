@@ -29,6 +29,7 @@ export class NodesController {
 
     @Get(":boardId")
     @HttpCode(HttpStatus.OK)
+    @BoardCreator(request => ({ id: request?.params?.boardId }))
     @ApiParam({ name: "boardId", description: "Board id to search nodes", format: "uuid" })
     @ApiOkResponse({ description: "Nodes founded", type: [NodeApiType] })
     public async findAll(@Param("boardId") boardId: string) {
