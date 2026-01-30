@@ -9,7 +9,7 @@ import {
     UseGuards
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { ApiForbiddenResponse } from "@nestjs/swagger";
+import { ApiForbiddenResponse, ApiNotFoundResponse } from "@nestjs/swagger";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Request } from "express";
 import { getAuthPayload } from "src/shared/auth";
@@ -20,7 +20,9 @@ export function BoardCreator(boardGetter: BoardGetter) {
     return applyDecorators(
         GetBoardFromRequest(boardGetter),
         UseGuards(BoardCreatorGuard),
-        ApiForbiddenResponse({ description: "This board not belongs to you" })
+        ApiForbiddenResponse({ description: "This board not belongs to you" }),
+        ApiNotFoundResponse({ description: "Board not found" }),
+        ApiNotFoundResponse({ description: "Board id not found in request" })
     );
 }
 
