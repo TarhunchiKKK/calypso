@@ -1,11 +1,16 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
+import { rabbitMqConfigFactory } from "src/config/rabbit-mq.config";
+import { NODES_RMQ_INJECTION_TOKEN } from "./constants/rmq.constants";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.handler";
 import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
 import { ReplaceManyNodesCommandHandler } from "./handlers/replace-many-nodes.handler";
 import { NodesController } from "./nodes.controller";
+import { NodesRmqController } from "./nodes.rmq-controller";
 import { NodesService } from "./nodes.service";
 import { Rect, RectSchema } from "./schemas/core/geometry.schemas";
 import { NodeBase, NodeBaseSchema } from "./schemas/core/node-base.schema";
@@ -40,9 +45,17 @@ import { TEXT_NODE_DISCRIMINATOR_VALUE, TextNode, TextNodeSchema } from "./schem
                 name: Rect.name,
                 schema: RectSchema
             }
+        ]),
+        ClientsModule.registerAsync([
+            {
+                name: NODES_RMQ_INJECTION_TOKEN,
+                imports: [ConfigModule],
+                inject: [ConfigService],
+                useFactory: rabbitMqConfigFactory
+            }
         ])
     ],
-    controllers: [NodesController],
+    controllers: [NodesController, NodesRmqController],
     providers: [
         NodesService,
         CreateManyNodesCommandHandler,

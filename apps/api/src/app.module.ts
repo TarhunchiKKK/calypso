@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { mongooseConfigFactory } from "./config/mongoose.config-factory";
-import { typeOrmConfigFactory } from "./config/typeorm.config-factory";
+import { mongooseConfigFactory } from "./config/mongoose.config";
+import { typeOrmConfigFactory } from "./config/typeorm.config";
 import { BoardsModule } from "./modules/boards/boards.module";
 import { NodesModule } from "./modules/nodes/nodes.module";
 
@@ -22,6 +22,7 @@ import { NodesModule } from "./modules/nodes/nodes.module";
             inject: [ConfigService],
             useFactory: mongooseConfigFactory
         }),
+
         BoardsModule,
         NodesModule
     ]

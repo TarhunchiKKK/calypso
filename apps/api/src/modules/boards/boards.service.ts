@@ -1,5 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import type { ClientProxy } from "@nestjs/microservices";
+import { BOARD_REMOVED_MESSAGE_PATTERN, BOARDS_RMQ_INJECTION_TOKEN } from "./constants/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
@@ -11,7 +13,8 @@ import { UpdateBoardCommand } from "./handlers/update-board.handler";
 export class BoardsService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
-        @Inject(QueryBus) private readonly queryBus: QueryBus
+        @Inject(QueryBus) private readonly queryBus: QueryBus,
+        @Inject(BOARDS_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
 
     public async create(request: CreateBoardDto) {
@@ -27,6 +30,8 @@ export class BoardsService {
     }
 
     public async remove(id: string) {
-        return await this.commandBus.execute(new RemoveBoardCommand(id));
+        await this.commandBus.execute(new RemoveBoardCommand(id));
+
+        this.rmqClient.emit(BOARD_REMOVED_MESSAGE_PATTERN, id);
     }
 }

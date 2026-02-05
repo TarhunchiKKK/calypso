@@ -39,6 +39,12 @@ services:
     ports:
       - ${MONGO_DB_PORT}:27017
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+        - ${RABBIT_MQ_PORT}:5672
+        - 15672:15672
 
 volumes:
   postgres_data:
