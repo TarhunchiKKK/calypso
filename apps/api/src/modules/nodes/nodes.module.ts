@@ -10,6 +10,7 @@ import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.hand
 import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
 import { ReplaceManyNodesCommandHandler } from "./handlers/replace-many-nodes.handler";
 import { NodesController } from "./nodes.controller";
+import { NodesRmqController } from "./nodes.rmq-controller";
 import { NodesService } from "./nodes.service";
 import { Rect, RectSchema } from "./schemas/core/geometry.schemas";
 import { NodeBase, NodeBaseSchema } from "./schemas/core/node-base.schema";
@@ -54,7 +55,7 @@ import { TEXT_NODE_DISCRIMINATOR_VALUE, TextNode, TextNodeSchema } from "./schem
             }
         ])
     ],
-    controllers: [NodesController],
+    controllers: [NodesController, NodesRmqController],
     providers: [
         NodesService,
         CreateManyNodesCommandHandler,

@@ -8,6 +8,7 @@ import type { CreateNodeDto } from "./dto/create-node.dto";
 import type { ReplaceNodeDto } from "./dto/replace-node.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
+import { RemoveNodesByBoardCommand } from "./handlers/remove-nodes-by-board.handler";
 import { ReplaceManyNodesCommand } from "./handlers/replace-many-nodes.handler";
 
 @Injectable()
@@ -46,5 +47,9 @@ export class NodesService {
 
     private async emitNodesUpdatedEvent(boardId: string) {
         this.rmqClient.emit(NODE_UPDATED_MESSAGE_PATTERN, boardId);
+    }
+
+    public async removeNodesByBoard(boardId: string) {
+        await this.commandBus.execute(new RemoveNodesByBoardCommand(boardId));
     }
 }
