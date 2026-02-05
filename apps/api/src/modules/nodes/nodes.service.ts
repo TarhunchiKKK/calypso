@@ -1,6 +1,9 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import type { ClientProxy } from "@nestjs/microservices";
+import type { RemoveManyNodesDto } from "@repo/common";
 import { FindAllBoardsQuery } from "../boards/handlers/find-all-boards.handler";
+import { NODE_UPDATED_MESSAGE_PATTERN, NODES_RMQ_INJECTION_TOKEN } from "./constants/rmq.constants";
 import type { CreateNodeDto } from "./dto/create-node.dto";
 import type { ReplaceNodeDto } from "./dto/replace-node.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
@@ -11,11 +14,16 @@ import { ReplaceManyNodesCommand } from "./handlers/replace-many-nodes.handler";
 export class NodesService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
-        @Inject(QueryBus) private readonly queryBus: QueryBus
+        @Inject(QueryBus) private readonly queryBus: QueryBus,
+        @Inject(NODES_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
 
     public async createMany(dtos: CreateNodeDto[]) {
-        return await this.commandBus.execute(new CreateManyNodesCommand(dtos));
+        await this.commandBus.execute(new CreateManyNodesCommand(dtos));
+
+        if (dtos.length) {
+            this.emitNodesUpdatedEvent(dtos[0].boardId);
+        }
     }
 
     public async findAll(boardId: string) {
@@ -23,10 +31,20 @@ export class NodesService {
     }
 
     public async replaceMany(dtos: ReplaceNodeDto[]) {
-        return await this.commandBus.execute(new ReplaceManyNodesCommand(dtos));
+        await this.commandBus.execute(new ReplaceManyNodesCommand(dtos));
+
+        if (dtos.length) {
+            this.emitNodesUpdatedEvent(dtos[0].boardId);
+        }
     }
 
-    public async removeMany(ids: string[]) {
-        return await this.commandBus.execute(new RemoveManyNodesCommand(ids));
+    public async removeMany(dto: RemoveManyNodesDto) {
+        await this.commandBus.execute(new RemoveManyNodesCommand(dto.ids));
+
+        this.emitNodesUpdatedEvent(dto.boardId);
+    }
+
+    private async emitNodesUpdatedEvent(boardId: string) {
+        this.rmqClient.emit(NODE_UPDATED_MESSAGE_PATTERN, boardId);
     }
 }

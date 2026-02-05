@@ -53,6 +53,6 @@ export class NodesController {
     @ApiBody({ type: RemoveManyNodesDto, description: "Nodes info for deletion" })
     @ApiNoContentResponse({ description: "Nodes successfully deleted" })
     public async removeMany(@Body() dto: RemoveManyNodesDto) {
-        return await this.nodesService.removeMany(dto.ids);
+        return await this.nodesService.removeMany(dto);
     }
 }
