@@ -7,11 +7,18 @@ import { AppModule } from "./app.module";
 import { rabbitMqConfigFactory } from "./config/rabbit-mq.config-factory";
 
 function setupSwagger(app: INestApplication) {
-    const config = new DocumentBuilder().setTitle("Calypso").setDescription("Calypso API documentation").setVersion("1.0").addTag("calypso").build();
+    const configService = app.get(ConfigService);
 
-    SwaggerModule.setup("swagger", app, () => SwaggerModule.createDocument(app, config), {
-        jsonDocumentUrl: "swagger/json",
-        yamlDocumentUrl: "swagger/yaml"
+    const config = new DocumentBuilder()
+        .setTitle(configService.getOrThrow("SWAGGER_TITLE"))
+        .setDescription(configService.getOrThrow("SWAGGER_DESCRIPTION"))
+        .setVersion(configService.getOrThrow("SWAGGER_VERSION"))
+        .addTag(configService.getOrThrow("SWAGGER_TAG"))
+        .build();
+
+    SwaggerModule.setup(configService.getOrThrow("SWAGGER_PATH"), app, () => SwaggerModule.createDocument(app, config), {
+        jsonDocumentUrl: configService.getOrThrow("SWAGGER_JSON_PATH"),
+        yamlDocumentUrl: configService.getOrThrow("SWAGGER_YAML_PATH")
     });
 }
 
