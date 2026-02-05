@@ -1,8 +1,10 @@
 import { type INestApplication, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
+import type { MicroserviceOptions } from "@nestjs/microservices";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
+import { rabbitMqConfigFactory } from "./config/rabbit-mq.config-factory";
 
 function setupSwagger(app: INestApplication) {
     const config = new DocumentBuilder().setTitle("Calypso").setDescription("Calypso API documentation").setVersion("1.0").addTag("calypso").build();
@@ -21,6 +23,10 @@ async function bootstrap() {
     setupSwagger(app);
 
     app.enableCors();
+
+    app.connectMicroservice<MicroserviceOptions>(rabbitMqConfigFactory(configService));
+
+    await app.startAllMicroservices();
 
     await app.listen(+configService.getOrThrow("API_PORT"));
 

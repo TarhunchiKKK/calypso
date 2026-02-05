@@ -43,7 +43,7 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-        - ${RABBITMQ_PORT}:5672
+        - ${RABBIT_MQ_PORT}:5672
         - 15672:15672
 
 volumes:
