@@ -1,4 +1,4 @@
-name: Lint
+name: Type check
 
 on:
     push:
@@ -20,6 +20,6 @@ jobs:
             
             - name: Build common
               run: bun build:common
-
-            - name: Lint
-              run: bun lint:check
+            
+            - name: Type check 
+              run: bun type-check

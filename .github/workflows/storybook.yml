@@ -1,9 +1,7 @@
-name: Lint
+name: Storybook
 
 on:
-    push:
-        branches-ignore:
-            - "main"
+    workflow_dispatch: 
 
 jobs:
     lint:
@@ -21,5 +19,5 @@ jobs:
             - name: Build common
               run: bun build:common
 
-            - name: Lint
-              run: bun lint:check
+            - name: Storybook
+              run: bun storybook
