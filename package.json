@@ -27,7 +27,8 @@
     "lint:check": "bunx --bun biome lint",
     "lint:fix": "bunx --bun biome lint --write",
     "knip": "knip",
-    "load-env": "ts-node scripts/load-env.ts"
+    "load-env": "ts-node scripts/load-env.ts",
+    "storybook:build": "turbo run storybook:build --filter=web"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
