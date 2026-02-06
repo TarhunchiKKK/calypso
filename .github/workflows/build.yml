@@ -1,4 +1,4 @@
-name: Build api
+name: Build
 
 on:
     pull_request:

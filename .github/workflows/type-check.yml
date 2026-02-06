@@ -1,4 +1,4 @@
-name: Format
+name: Type check
 
 on:
     push:
