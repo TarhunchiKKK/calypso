@@ -14,9 +14,11 @@
     "dev": "turbo run dev",
     "dev:api": "turbo run dev --filter=api",
     "dev:web": "turbo run dev --filter=web",
+    "dev:storybook": "turbo run storybook:dev --filter=web",
     "build": "turbo run build",
     "build:api": "turbo run build --filter=api",
     "build:web": "turbo run build --filter=web",
+    "build:storybook": "turbo run storybook:build --filter=web",
     "build:common": "turbo run build --filter=@repo/common",
     "type-check": "turbo run type-check",
     "type-check:api": "turbo run type-check --filter=api",
@@ -27,8 +29,7 @@
     "lint:check": "bunx --bun biome lint",
     "lint:fix": "bunx --bun biome lint --write",
     "knip": "knip",
-    "load-env": "ts-node scripts/load-env.ts",
-    "storybook:build": "turbo run storybook:build --filter=web"
+    "load-env": "ts-node scripts/load-env.script.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",

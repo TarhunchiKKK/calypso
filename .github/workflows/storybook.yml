@@ -23,4 +23,4 @@ jobs:
               run: bun build:common
 
             - name: Storybook
-              run: bun storybook
+              run: bun build:storybook

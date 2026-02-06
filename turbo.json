@@ -12,6 +12,7 @@
     },
     "install": {},
     "type-check": {},
+    "storybook:dev":{},
     "storybook:build": {}
   }
 }
