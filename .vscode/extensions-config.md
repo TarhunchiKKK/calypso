@@ -93,5 +93,11 @@ _This configurations should be applied to global `settings.json` file._
 ### [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
 ```json
-"cSpell.words": ["Decoratable", "Renderable"]
+"cSpell.words": [
+    "Decoratable",
+    "dtos",
+    "Formatable",
+    "Renderable",
+    "shadcn"
+  ]
 ```

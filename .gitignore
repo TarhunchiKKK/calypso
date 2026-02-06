@@ -12,10 +12,7 @@ node_modules
 .turbo
 
 # IDE - VSCode
-.vscode/*
-!.vscode/*.code-snippets
-!.vscode/extensions.json
-!.vscode/extensions-config.md
+.vscode/settings.json
 
 # Debug
 logs

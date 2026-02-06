@@ -18,6 +18,9 @@ jobs:
             - name: Install dependencies
               run: bun install-deps
             
+            - name: Load env
+              run: bun load-env
+            
             - name: Build common
               run: bun build:common
 
@@ -36,6 +39,9 @@ jobs:
 
             - name: Install dependencies
               run: bun install-deps
+            
+            - name: Load env
+              run: bun load-env
             
             - name: Build common
               run: bun build:common
