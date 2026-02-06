@@ -1,5 +1,5 @@
 {
-    // * View Model Snippets
+    // * View Model
 
     "Create View Model": {
         "prefix": "v-model",
@@ -56,7 +56,7 @@
         ]
     },
 
-    // * Node Snippets
+    // * Nodes
 
     "Create Node Type": {
         "prefix": "n-type",
@@ -98,7 +98,7 @@
         ]
     },
 
-    // * React Snippets
+    // * React
 
     "Create React Hook": {
         "prefix": "r-hook",
@@ -109,7 +109,7 @@
         "body": ["type Props = {", "    $2", "};", "", "export function $1({}: Props) {", "    return <></>;", "}"]
     },
 
-    // * Storybook Snippets
+    // * Storybook
 
     "Create Storybook Story": {
         "prefix": "s-story",
