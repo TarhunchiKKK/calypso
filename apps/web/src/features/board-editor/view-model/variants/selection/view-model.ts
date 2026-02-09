@@ -4,18 +4,18 @@ import { selectNodes } from "@/features/board-editor/modules/selection";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import { useResizing } from "../../hooks/use-resizing.hook";
-import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
-import { useSwitchToDragging } from "../../hooks/use-switch-to-dragging.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
+import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
+import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./nodes-mapping.lib";
 import type { SelectionViewState } from "./view-state";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
 
-    const selectionWindow = useSelectionWindow(params);
+    const selectionWindow = useSwitchToSelectionWindow(params);
 
     const dragging = useSwitchToDragging(params);
 
