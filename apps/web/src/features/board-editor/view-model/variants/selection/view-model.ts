@@ -3,11 +3,11 @@ import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
 import { selectNodes } from "@/features/board-editor/modules/selection";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import { useResizing } from "../../hooks/use-resizing.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
+import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./nodes-mapping.lib";
 import type { SelectionViewState } from "./view-state";
@@ -19,7 +19,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const dragging = useSwitchToDragging(params);
 
-    const resizing = useResizing(params);
+    const resizing = useSwitchToResizing(params);
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
