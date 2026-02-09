@@ -1,11 +1,9 @@
-import type { ViewModelParams } from "../types";
-import { switchToResizing } from "../variants/resizing/switcher";
-import type { ResizingViewState } from "../variants/resizing/view-state";
-import { switchToSelection } from "../variants/selection/switcher";
 import { useState } from "react";
-import type { ResizeDirection } from "../../modules/resizing";
-import { NodeDecoratorsFactory } from "../../nodes";
-import { Geometry, type Rect } from "../../core";
+import { Geometry, type Rect } from "@/features/board-editor/core";
+import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
+import type { ViewModelParams } from "../../types";
+import { switchToSelection } from "../selection/switcher";
+import type { ResizingViewState } from "./view-state";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();
@@ -18,10 +16,6 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
         }
 
         return node;
-    };
-
-    const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
-        setViewState(switchToResizing({ nodeId, direction }));
     };
 
     const onMouseMove = (viewState: ResizingViewState, e: MouseEvent) => {
@@ -46,7 +40,6 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
     return {
         newSize,
-        onMouseDown,
         onMouseMove,
         onMouseUp
     };

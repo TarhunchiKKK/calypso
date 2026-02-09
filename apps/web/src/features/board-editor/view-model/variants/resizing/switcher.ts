@@ -1,4 +1,5 @@
-import type { ResizeDirection } from "@/features/board-editor/modules/resizing";
+import type { ResizeDirection } from "../../../modules/resizing";
+import type { ViewModelParams } from "../../types";
 import type { ResizingViewState } from "./view-state";
 
 type Params = {
@@ -12,5 +13,15 @@ export function switchToResizing({ nodeId, direction }: Params): ResizingViewSta
         type: "resizing",
         nodeId: nodeId,
         direction: direction
+    };
+}
+
+export function useSwitchToResizing({ setViewState }: ViewModelParams) {
+    const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
+        setViewState(switchToResizing({ nodeId, direction }));
+    };
+
+    return {
+        onMouseDown
     };
 }

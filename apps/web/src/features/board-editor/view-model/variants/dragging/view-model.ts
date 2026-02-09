@@ -1,7 +1,7 @@
 import type { OmitFields } from "@/shared/lib/typescript";
-import { useDragging } from "../../hooks/use-dragging.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { DraggingNodesMapper } from "./nodes-mapping.lib";
+import { useDragging } from "./use-dragging.hook";
 import type { DraggingViewState } from "./view-state";
 
 export function useDraggingViewModel(params: ViewModelParams) {
