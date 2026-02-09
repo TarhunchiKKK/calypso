@@ -1,8 +1,8 @@
 import { withNodeId } from "@/features/board-editor/core";
 import type { OmitFields } from "@/shared/lib/typescript";
-import { useDragging } from "../../hooks/use-dragging.hook";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import { useSelectionWindow } from "../../hooks/use-selection-window.hook";
+import { useSwitchToDragging } from "../../hooks/use-switch-to-dragging.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToEditing } from "../editing/switcher";
 import { switchToSelection } from "../selection/switcher";
@@ -14,7 +14,7 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
-    const dragging = useDragging(params);
+    const dragging = useSwitchToDragging(params);
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
