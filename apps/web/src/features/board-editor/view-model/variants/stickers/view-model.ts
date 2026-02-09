@@ -1,5 +1,4 @@
 import type React from "react";
-import { Geometry } from "@/features/board-editor/core";
 import { NodesFactory } from "@/features/board-editor/nodes";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
@@ -14,13 +13,7 @@ export function useStickersViewModel(params: ViewModelParams) {
     return (): OmitFields<ViewModel, "actions"> => {
         canvasMediator.left.setHandlers({
             onClick: (e: React.MouseEvent) => {
-                const clickPoint = Geometry.applyLayoutDimensions(
-                    {
-                        x: e.clientX,
-                        y: e.clientY
-                    },
-                    layoutDimensionsModel
-                );
+                const clickPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
 
                 nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
             }

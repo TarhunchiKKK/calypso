@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Geometry, type Rect } from "@/features/board-editor/core";
+import type { Rect } from "@/features/board-editor/core";
+import { applyResizing } from "@/features/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 import type { ViewModelParams } from "../../types";
 import { switchToSelection } from "../selection/switcher";
@@ -21,9 +22,9 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
     const onMouseMove = (viewState: ResizingViewState, e: MouseEvent) => {
         const node = getResizingNode(viewState.nodeId);
 
-        const currentPoint = Geometry.applyLayoutDimensions({ x: e.clientX, y: e.clientY }, layoutDimensionsModel);
+        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
 
-        setNewSize(Geometry.applyResizing(NodeDecoratorsFactory.wrap(node).rect, currentPoint, viewState.direction));
+        setNewSize(applyResizing(NodeDecoratorsFactory.wrap(node).rect, currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
