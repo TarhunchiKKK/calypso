@@ -12,7 +12,7 @@ import { useSelectionWindowViewModel } from "./variants/selection-window/view-mo
 import { useStickersViewModel } from "./variants/stickers/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const [viewState, setViewState] = useState<ViewState>(switchToIdle());
+    const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
 
     const newParams = {
         ...params,
