@@ -1,6 +1,13 @@
 import type { Point, Rect } from "../../../core";
 import type { ResizeDirection } from "../types";
 
+/**
+ * Calculates the new dimensions and position of a rectangle after a resize operation.
+ * @param rect - The original rectangle.
+ * @param point - The current mouse position, which determines the new size.
+ * @param direction - The direction from which the resize is being performed.
+ * @returns A new `Rect` object with the updated dimensions and position.
+ */
 export function applyResizing(rect: Rect, point: Point, direction: ResizeDirection): Rect {
     const right = rect.x + rect.width;
     const bottom = rect.y + rect.height;

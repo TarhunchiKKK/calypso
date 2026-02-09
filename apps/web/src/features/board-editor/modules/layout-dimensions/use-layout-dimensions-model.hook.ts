@@ -72,9 +72,17 @@ export function useLayoutDimensionsModel() {
         setZoom(newZoom);
     };
 
+    const applyForPoint = (point: Point) => {
+        return {
+            x: point.x / zoom + offset.dx,
+            y: point.y / zoom + offset.dy
+        };
+    };
+
     return {
         layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
-        layoutZoom: { zoom, handleZoom }
+        layoutZoom: { zoom, handleZoom },
+        applyForPoint
     };
 }
 

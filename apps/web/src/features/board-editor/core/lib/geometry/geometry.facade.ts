@@ -1,5 +1,3 @@
-import { applyLayoutDimensions, type LayoutDimensionsModel } from "../../../modules/layout-dimensions";
-import { applyResizing, type ResizeDirection } from "../../../modules/resizing";
 import type { Offset, Point, Rect } from "./geometry.types";
 
 /**
@@ -8,10 +6,6 @@ import type { Offset, Point, Rect } from "./geometry.types";
  * This class centralizes the geometry logic, making it easier to maintain and reuse.
  */
 export class Geometry {
-    public static applyLayoutDimensions(point: Point, model: LayoutDimensionsModel) {
-        return applyLayoutDimensions(point, model.layoutOffset.offset, model.layoutZoom.zoom);
-    }
-
     /**
      * Calculates the Euclidean distance between two points.
      * @param a - The first point.
@@ -31,6 +25,7 @@ export class Geometry {
     public static rectFromPoints(a: Point, b: Point): Rect {
         const x = Math.min(a.x, b.x);
         const y = Math.min(a.y, b.y);
+
         const width = Math.abs(b.x - a.x);
         const height = Math.abs(b.y - a.y);
 
@@ -75,17 +70,5 @@ export class Geometry {
             x: point.x + offset.dx,
             y: point.y + offset.dy
         };
-    }
-
-    // DELETE: this method can be deleted after moving `applyResizing` function to resizing decorators/proxies
-    /**
-     * Calculates the new dimensions and position of a rectangle after a resize operation.
-     * @param rect - The original rectangle.
-     * @param point - The current mouse position, which determines the new size.
-     * @param direction - The direction from which the resize is being performed.
-     * @returns A new `Rect` object with the updated dimensions and position.
-     */
-    public static applyResizing(rect: Rect, point: Point, direction: ResizeDirection): Rect {
-        return applyResizing(rect, point, direction);
     }
 }
