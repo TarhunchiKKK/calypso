@@ -6,6 +6,7 @@ import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
+import { switchToStyling } from "../styling/switcher";
 import { IdleNodesMapper } from "./nodes-mapping.lib";
 import type { IdleViewState } from "./view-state";
 
@@ -29,6 +30,15 @@ export function useIdleViewModel(params: ViewModelParams) {
             }),
             onDoubleClick: withNodeId(nodeId => {
                 setViewState(switchToEditing({ selectedNodeId: nodeId }));
+            })
+        });
+
+        nodesMediator.right.setHandlers({
+            onClick: withNodeId((id, e) => {
+                switchToStyling({
+                    selectedIds: new Set([id]),
+                    barPosition: { x: e.clientX, y: e.clientY }
+                });
             })
         });
 

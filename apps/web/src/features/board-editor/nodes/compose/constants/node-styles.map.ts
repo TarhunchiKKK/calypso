@@ -1,5 +1,4 @@
-import type { NodeTypes } from "@repo/common";
-import type { NodeStyles } from "@/features/board-editor/modules/styling";
+import type { NodeStyles, NodeTypes } from "@repo/common";
 
 export const NodeStylesMap: Record<NodeTypes, Set<keyof NodeStyles>> = {
     sticker: new Set(["backgroundColor", "borderColor", "borderStyle", "color", "fontStyle"]),

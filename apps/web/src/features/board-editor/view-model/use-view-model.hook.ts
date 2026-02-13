@@ -10,6 +10,7 @@ import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
 import { useStickersViewModel } from "./variants/stickers/view-model";
+import { useStylingViewModel } from "./variants/styling/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
@@ -26,6 +27,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const draggingViewModel = useDraggingViewModel(newParams);
     const resizingVewModel = useResizingViewModel(newParams);
     const editingViewModel = useEditingViewModel(newParams);
+    const stylingViewModel = useStylingViewModel(newParams);
 
     let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
@@ -49,6 +51,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "editing":
             viewModel = editingViewModel(viewState);
+            break;
+        case "styling":
+            viewModel = stylingViewModel(viewState);
             break;
         default:
             throw new Error("Unknown view state");

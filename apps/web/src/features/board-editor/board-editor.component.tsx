@@ -5,7 +5,6 @@ import { MousePointer2, StickerIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
-import { SelectionWindow } from "./modules/selection";
 import { useNodesModel } from "./nodes";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";
 import { Canvas } from "./ui/canvas.component";
@@ -50,7 +49,7 @@ export function BoardEditor({ nodes, children }: Props) {
             >
                 {viewModel.nodes.map(node => node.render())}
 
-                {viewModel.selectionWindow && <SelectionWindow {...viewModel.selectionWindow} />}
+                {viewModel.additionalElement}
             </Canvas>
 
             <ActionsBar>

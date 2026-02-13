@@ -5,6 +5,7 @@ import type { ResizingViewState } from "../variants/resizing/view-state";
 import type { SelectionViewState } from "../variants/selection/view-state";
 import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
 import type { StickersViewState } from "../variants/stickers/view-state";
+import type { StylingViewState } from "../variants/styling/view-state";
 
 /**
  * Represents the state of the view model, acting as a state machine for the board editor's UI.
@@ -25,4 +26,5 @@ export type ViewState =
     | SelectionWindowViewState
     | DraggingViewState
     | ResizingViewState
-    | EditingViewState;
+    | EditingViewState
+    | StylingViewState;

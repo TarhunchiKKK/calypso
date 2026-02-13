@@ -1,5 +1,5 @@
-import type { Rect } from "@repo/common";
 import type React from "react";
+import type { ReactNode } from "react";
 import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
@@ -29,8 +29,6 @@ export type ViewModelParams = {
 export type ViewModel = {
     nodes: Renderable[];
 
-    selectionWindow?: Rect;
-
     layout?: {
         onKeyDown?: React.KeyboardEventHandler;
     };
@@ -52,6 +50,8 @@ export type ViewModel = {
         onMouseUp?: (e: MouseEvent) => void;
         onWheel?: (e: WheelEvent) => void;
     };
+
+    additionalElement?: ReactNode;
 
     actions?: {
         idle?: {

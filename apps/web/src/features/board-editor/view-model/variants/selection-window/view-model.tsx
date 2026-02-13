@@ -1,3 +1,4 @@
+import { SelectionWindow } from "@/features/board-editor/modules/selection";
 import type { OmitFields } from "@/shared/lib/typescript";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { SelectionWindowNodesMapper } from "./nodes-mapping.lib";
@@ -23,7 +24,7 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
                     selectionWindow.onWindowMouseUp(viewState);
                 }
             },
-            selectionWindow: selectionWindow.rect
+            additionalElement: selectionWindow.rect ? <SelectionWindow {...selectionWindow.rect} /> : null
         };
     };
 }

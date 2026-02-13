@@ -9,6 +9,7 @@ import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
 import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
+import { switchToStyling } from "../styling/switcher";
 import { SelectionNodesMapper } from "./nodes-mapping.lib";
 import type { SelectionViewState } from "./view-state";
 
@@ -23,6 +24,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
+    const canvasMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         nodesMediator.left.setHandlers({
@@ -45,6 +47,17 @@ export function useSelectionViewModel(params: ViewModelParams) {
             onClick: () => setViewState(switchToIdle())
         });
 
+        canvasMediator.right.setHandlers({
+            onClick: e => {
+                if (viewState.selectedIds.size) {
+                    switchToStyling({
+                        selectedIds: viewState.selectedIds,
+                        barPosition: { x: e.clientX, y: e.clientY }
+                    });
+                }
+            }
+        });
+
         const handleResize = (nodeId: string, direction: ResizeDirection) => {
             resizing.onMouseDown(nodeId, direction);
         };
@@ -55,6 +68,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
                 .get(),
+            canvas: canvasMediator.handlers,
             overlay: overlayMediator.handlers
         };
     };
