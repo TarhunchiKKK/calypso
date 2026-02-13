@@ -11,19 +11,25 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: EditingViewState): ViewModel => {
-        nodesMediator.left.setHandlers({
-            onClick: withNodeId(nodeId => {
-                setViewState(switchToSelection({ selectedIds: new Set([nodeId]), skipNextClick: true }));
-            })
+        nodesMediator.setHandlers({
+            left: {
+                onClick: withNodeId(nodeId => {
+                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]), skipNextClick: true }));
+                })
+            }
         });
 
-        overlayMediator.left.setHandlers({
-            onClick: () => setViewState(switchToIdle())
+        overlayMediator.setHandlers({
+            left: {
+                onClick: () => setViewState(switchToIdle())
+            }
         });
 
         return {
             nodes: EditingNodesMapper.from(nodesModel.nodes).map(viewState, nodesModel.service.updateOne, nodesMediator.onClick).get(),
-            overlay: overlayMediator.handlers
+            overlay: {
+                onClick: e => overlayMediator.onClick(e)
+            }
         };
     };
 }

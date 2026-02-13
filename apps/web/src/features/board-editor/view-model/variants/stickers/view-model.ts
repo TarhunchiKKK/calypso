@@ -11,17 +11,21 @@ export function useStickersViewModel(params: ViewModelParams) {
     const canvasMediator = useMouseEventsMediator();
 
     return (): OmitFields<ViewModel, "actions"> => {
-        canvasMediator.left.setHandlers({
-            onClick: (e: React.MouseEvent) => {
-                const clickPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        canvasMediator.setHandlers({
+            left: {
+                onClick: (e: React.MouseEvent) => {
+                    const clickPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
 
-                nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
+                    nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
+                }
             }
         });
 
         return {
             nodes: new StickersNodesMapper(nodesModel.nodes).get(),
-            canvas: canvasMediator.handlers
+            canvas: {
+                onClick: e => canvasMediator.onClick(e)
+            }
         };
     };
 }

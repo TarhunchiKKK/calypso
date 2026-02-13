@@ -1,6 +1,6 @@
+import type { NodeStyles } from "@repo/common";
 import { TextAlignCenter, TextAlignEnd, TextAlignJustify, TextAlignStart } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui/dropdown";
-import type { NodeStyles } from "../types";
 
 export const PopoverSideOffset = 14;
 
@@ -117,7 +117,7 @@ export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
     },
     {
         label: "Full",
-        value: "50%"
+        value: "50%" as any
     }
 ];
 

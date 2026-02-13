@@ -13,18 +13,22 @@ export function useStylingViewModel(params: ViewModelParams) {
     const canvasMediator = useMouseEventsMediator();
 
     return (viewState: StylingViewState): OmitFields<ViewModel, "actions"> => {
-        canvasMediator.left.setHandlers({
-            onClick: () => switchToSelection({ selectedIds: viewState.selectedIds })
+        canvasMediator.setHandlers({
+            left: {
+                onClick: () => switchToSelection({ selectedIds: viewState.selectedIds })
+            }
         });
 
         const sharedStyles = NodeStylesFactory.getSharedStyles(nodesModel.nodes.filter(node => viewState.selectedIds.has(node.id)));
 
         return {
             nodes: StylingNodesMapper.from(nodesModel.nodes).get(),
-            canvas: canvasMediator.handlers,
+            canvas: {
+                onClick: e => canvasMediator.onClick(e)
+            },
             additionalElement: (
                 <div style={{ left: viewState.barPosition.x, top: viewState.barPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                    <StylesBar {...sharedStyles} />
+                    <StylesBar {...sharedStyles} onUpdate={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
                 </div>
             )
         };

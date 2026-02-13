@@ -10,13 +10,11 @@ type Props<T> = {
     items: DropdownItem<T>[];
 
     title: string;
+
+    onSelect: (value: T) => void;
 };
 
-export function NumericDropdown<T>({ placeholder, items, title }: Props<T>) {
-    const clickHandler = (value: T) => {
-        console.log(value);
-    };
-
+export function NumericDropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer">
@@ -30,7 +28,7 @@ export function NumericDropdown<T>({ placeholder, items, title }: Props<T>) {
             <DropdownMenuContent>
                 {items.map((item, index) => (
                     // biome-ignore lint/suspicious/noArrayIndexKey: Index key will not change
-                    <DropdownMenuItem key={index} className="cursor-pointer" onClick={clickHandler.bind(null, item.value)}>
+                    <DropdownMenuItem key={index} className="cursor-pointer" onClick={onSelect.bind(null, item.value)}>
                         {item.label}
                     </DropdownMenuItem>
                 ))}

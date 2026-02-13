@@ -21,34 +21,46 @@ export function useIdleViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
-        nodesMediator.left.setHandlers({
-            onMouseDown: withNodeId((nodeId, e) => {
-                dragging.onMouseDown(new Set([nodeId]), e);
-            }),
-            onClick: withNodeId(nodeId => {
-                setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
-            }),
-            onDoubleClick: withNodeId(nodeId => {
-                setViewState(switchToEditing({ selectedNodeId: nodeId }));
-            })
+        nodesMediator.setHandlers({
+            left: {
+                onMouseDown: withNodeId((nodeId, e) => {
+                    dragging.onMouseDown(new Set([nodeId]), e);
+                }),
+                onClick: withNodeId(nodeId => {
+                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+                }),
+                onDoubleClick: withNodeId(nodeId => {
+                    setViewState(switchToEditing({ selectedNodeId: nodeId }));
+                })
+            },
+            right: {
+                onClick: withNodeId((id, e) => {
+                    setViewState(
+                        switchToStyling({
+                            selectedIds: new Set([id]),
+                            barPosition: { x: e.clientX, y: e.clientY }
+                        })
+                    );
+                })
+            }
         });
 
-        nodesMediator.right.setHandlers({
-            onClick: withNodeId((id, e) => {
-                switchToStyling({
-                    selectedIds: new Set([id]),
-                    barPosition: { x: e.clientX, y: e.clientY }
-                });
-            })
-        });
-
-        overlayMediator.left.setHandlers({
-            onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
+        overlayMediator.setHandlers({
+            left: {
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
+            }
         });
 
         return {
-            nodes: IdleNodesMapper.from(nodesModel.nodes).map(nodesMediator.handlers).get(),
-            overlay: overlayMediator.handlers
+            nodes: IdleNodesMapper.from(nodesModel.nodes)
+                .map({
+                    onMouseDown: e => nodesMediator.onMouseDown(e),
+                    onClick: e => nodesMediator.onClick(e)
+                })
+                .get(),
+            overlay: {
+                onMouseDown: e => overlayMediator.onMouseDown(e)
+            }
         };
     };
 }

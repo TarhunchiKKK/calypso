@@ -1,10 +1,11 @@
 import type React from "react";
 import type { MouseEventsMediator } from "./mouse-events.mediator";
+import type { MouseEventHandlers } from "./types";
 
 export class MouseEventsSeparator {
     public constructor(
-        public readonly left: MouseEventsMediator,
-        public readonly right: MouseEventsMediator
+        private readonly left: MouseEventsMediator,
+        private readonly right: MouseEventsMediator
     ) {}
 
     public onMouseDown(e: React.MouseEvent) {
@@ -24,6 +25,8 @@ export class MouseEventsSeparator {
     }
 
     public onClick(e: React.MouseEvent) {
+        console.log(e.button);
+
         if (e.button === 2) {
             this.right.onClick(e);
         } else {
@@ -31,11 +34,13 @@ export class MouseEventsSeparator {
         }
     }
 
-    public get handlers() {
-        return {
-            onMouseDown: this.onMouseDown,
-            onMouseUp: this.onMouseUp,
-            onClick: this.onClick
-        };
+    public setHandlers(handlers: { left?: MouseEventHandlers; right?: MouseEventHandlers }) {
+        this.left.setHandlers(handlers.right ?? {});
+        this.right.setHandlers(handlers.left ?? {});
+    }
+
+    public reset() {
+        this.left.reset();
+        this.right.reset();
     }
 }

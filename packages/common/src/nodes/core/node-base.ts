@@ -1,3 +1,4 @@
+import { NodeStylesZodSchema } from "entry";
 import z from "zod";
 
 export const NodeTypesZodSchema = z.union([z.literal("sticker"), z.literal("text")], { error: "Unknown node type" });
@@ -8,7 +9,8 @@ export const NodeBaseZodSchema = z.object({
     id: z.uuid({ error: "Node id  should be valid uuid" }),
     type: NodeTypesZodSchema,
     boardId: z.uuid({ error: "Board id should have correct uuid format" }),
-    blocked: z.boolean({ error: "Node blocking status should be valid boolean" })
+    blocked: z.boolean({ error: "Node blocking status should be valid boolean" }),
+    styles: NodeStylesZodSchema.partial()
 });
 
 export type NodeTypes = z.infer<typeof NodeTypesZodSchema>;

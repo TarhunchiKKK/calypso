@@ -27,33 +27,41 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const canvasMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
-        nodesMediator.left.setHandlers({
-            onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
-            onClick: withNodeId((nodeId, e) => {
-                const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
+        nodesMediator.setHandlers({
+            left: {
+                onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
+                onClick: withNodeId((nodeId, e) => {
+                    const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
-                setViewState({
-                    ...viewState,
-                    selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
-                });
-            }),
-            onDoubleClick: withNodeId(nodeId => {
-                setViewState(switchToEditing({ selectedNodeId: nodeId }));
-            })
-        });
-
-        overlayMediator.left.setHandlers({
-            onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
-            onClick: () => setViewState(switchToIdle())
-        });
-
-        canvasMediator.right.setHandlers({
-            onClick: e => {
-                if (viewState.selectedIds.size) {
-                    switchToStyling({
-                        selectedIds: viewState.selectedIds,
-                        barPosition: { x: e.clientX, y: e.clientY }
+                    setViewState({
+                        ...viewState,
+                        selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
                     });
+                }),
+                onDoubleClick: withNodeId(nodeId => {
+                    setViewState(switchToEditing({ selectedNodeId: nodeId }));
+                })
+            }
+        });
+
+        overlayMediator.setHandlers({
+            left: {
+                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
+                onClick: () => setViewState(switchToIdle())
+            }
+        });
+
+        canvasMediator.setHandlers({
+            right: {
+                onClick: e => {
+                    if (viewState.selectedIds.size) {
+                        setViewState(
+                            switchToStyling({
+                                selectedIds: viewState.selectedIds,
+                                barPosition: { x: e.clientX, y: e.clientY }
+                            })
+                        );
+                    }
                 }
             }
         });
@@ -64,12 +72,17 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         return {
             nodes: SelectionNodesMapper.from(nodesModel.nodes)
-                .setHandlers(nodesMediator.handlers)
+                .setHandlers({ onMouseDown: e => nodesMediator.onMouseDown(e), onClick: e => nodesMediator.onClick(e) })
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
                 .get(),
-            canvas: canvasMediator.handlers,
-            overlay: overlayMediator.handlers
+            canvas: {
+                onClick: e => canvasMediator.onClick(e)
+            },
+            overlay: {
+                onMouseDown: e => overlayMediator.onMouseDown(e),
+                onClick: e => overlayMediator.onClick(e)
+            }
         };
     };
 }

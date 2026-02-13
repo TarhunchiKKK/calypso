@@ -10,6 +10,10 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
         setNodes(nodes => nodes.map(node => (node.id === newNode.id ? newNode : node)));
     };
 
+    const updateManyWithFn = (ids: Set<string>, fn: (node: NodeBase) => NodeBase) => {
+        setNodes(nodes => nodes.map(node => (ids.has(node.id) ? fn(node) : node)));
+    };
+
     const removeOne = (id: string) => {
         setNodes(nodes => nodes.filter(node => node.id !== id));
     };
@@ -22,5 +26,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
         setNodes([]);
     };
 
-    return { createOne, updateOne, replaceAll: setNodes, removeOne, removeMany, removeAll };
+    return { createOne, updateOne, replaceAll: setNodes, removeOne, updateManyWithFn, removeMany, removeAll };
 }
+
+export type NodesService = ReturnType<typeof useNodesService>;

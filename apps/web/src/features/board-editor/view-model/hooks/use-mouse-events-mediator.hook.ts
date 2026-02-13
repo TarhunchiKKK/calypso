@@ -14,8 +14,7 @@ export function useMouseEventsMediator() {
 
     useEffect(() => {
         return () => {
-            mediator.left.reset();
-            mediator.right.reset();
+            mediator.reset();
         };
     }, [mediator]);
 
