@@ -75,9 +75,9 @@ export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [
     }
 ];
 
-export const TextAligns: DropdownItem<Required<NodeStyles>["textAlign"]>[] = [
+export const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
     {
-        value: "start",
+        value: "left",
         label: <TextAlignStart />
     },
     {
@@ -85,7 +85,7 @@ export const TextAligns: DropdownItem<Required<NodeStyles>["textAlign"]>[] = [
         label: <TextAlignCenter />
     },
     {
-        value: "end",
+        value: "right",
         label: <TextAlignEnd />
     },
     {
@@ -117,11 +117,15 @@ export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
     },
     {
         label: "Full",
-        value: "50%" as any
+        value: 9999
     }
 ];
 
 export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] = [
+    {
+        label: "None",
+        value: "none"
+    },
     {
         label: "Solid",
         value: "solid"
@@ -133,9 +137,5 @@ export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] =
     {
         label: "Dashed",
         value: "dashed"
-    },
-    {
-        label: "Double",
-        value: "double"
     }
 ];
