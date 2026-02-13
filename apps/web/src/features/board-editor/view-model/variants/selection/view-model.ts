@@ -54,6 +54,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
         canvasMediator.setHandlers({
             right: {
                 onClick: e => {
+                    console.log("canvas click");
                     if (viewState.selectedIds.size) {
                         setViewState(
                             switchToStyling({
@@ -72,17 +73,12 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         return {
             nodes: SelectionNodesMapper.from(nodesModel.nodes)
-                .setHandlers({ onMouseDown: e => nodesMediator.onMouseDown(e), onClick: e => nodesMediator.onClick(e) })
+                .setHandlers(nodesMediator.handlers)
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
                 .get(),
-            canvas: {
-                onClick: e => canvasMediator.onClick(e)
-            },
-            overlay: {
-                onMouseDown: e => overlayMediator.onMouseDown(e),
-                onClick: e => overlayMediator.onClick(e)
-            }
+            canvas: canvasMediator.handlers,
+            overlay: overlayMediator.handlers
         };
     };
 }

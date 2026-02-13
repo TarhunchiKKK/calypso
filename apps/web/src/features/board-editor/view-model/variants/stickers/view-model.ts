@@ -23,9 +23,7 @@ export function useStickersViewModel(params: ViewModelParams) {
 
         return {
             nodes: new StickersNodesMapper(nodesModel.nodes).get(),
-            canvas: {
-                onClick: e => canvasMediator.onClick(e)
-            }
+            canvas: canvasMediator.handlers
         };
     };
 }

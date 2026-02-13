@@ -1,7 +1,7 @@
 "use client";
 
+import type { AnyNode, StickerNode } from "@repo/common";
 import { BoardEditor } from "@/features/board-editor";
-import type { AnyNode } from "@/features/board-editor/nodes";
 import { ThemeSwitch } from "@/features/dark-mode";
 import { BoardHeader } from "@/features/header";
 
@@ -19,7 +19,7 @@ const mockNodes: AnyNode[] = [
             color: "black",
             fontStyle: "normal"
         }
-    },
+    } as StickerNode,
     {
         id: "2",
         blocked: false,
@@ -33,7 +33,7 @@ const mockNodes: AnyNode[] = [
             color: "black",
             fontStyle: "normal"
         }
-    },
+    } as StickerNode,
     {
         id: "3",
         type: "sticker",
@@ -46,8 +46,8 @@ const mockNodes: AnyNode[] = [
             borderStyle: "dashed",
             color: "black",
             fontStyle: "normal"
-        }
-    }
+        } 
+    } as StickerNode
 ];
 
 export default function TempPage() {

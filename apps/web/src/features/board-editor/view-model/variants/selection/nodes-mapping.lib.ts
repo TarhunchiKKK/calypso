@@ -30,9 +30,7 @@ export class SelectionNodesMapper extends NodesMapper {
     }
 
     private applyHandlers(wrappers: NodeWrapper[], handlers: NodeHandlers) {
-        return wrappers.map(node =>
-            node.setHandler("onClick", handlers.onClick).setHandler("onMouseDown", handlers.onMouseDown).setHandler("onMouseUp", handlers.onMouseUp)
-        );
+        return wrappers.map(node => node.setHandlers(handlers));
     }
 
     private applySelection(wrappers: NodeWrapper[], selectedIds: Set<string>): Decoratable[] {

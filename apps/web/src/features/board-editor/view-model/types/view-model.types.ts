@@ -34,7 +34,7 @@ export type ViewModel = {
     };
 
     canvas?: {
-        onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+        onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
         onKeyDown?: React.KeyboardEventHandler;
     };
 
@@ -42,7 +42,6 @@ export type ViewModel = {
         onKeyDown?: React.KeyboardEventHandler;
         onMouseDown?: React.MouseEventHandler;
         onMouseUp?: React.MouseEventHandler;
-        onClick?: React.MouseEventHandler;
     };
 
     window?: {

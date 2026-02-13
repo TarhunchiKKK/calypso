@@ -24,23 +24,25 @@ export class MouseEventsSeparator {
         }
     }
 
-    public onClick(e: React.MouseEvent) {
-        console.log(e.button);
-
-        if (e.button === 2) {
-            this.right.onClick(e);
-        } else {
-            this.left.onClick(e);
-        }
-    }
-
     public setHandlers(handlers: { left?: MouseEventHandlers; right?: MouseEventHandlers }) {
-        this.left.setHandlers(handlers.right ?? {});
-        this.right.setHandlers(handlers.left ?? {});
+        if (handlers.left) {
+            this.left.setHandlers(handlers.left);
+        }
+
+        if (handlers.right) {
+            this.right.setHandlers(handlers.right);
+        }
     }
 
     public reset() {
         this.left.reset();
         this.right.reset();
+    }
+
+    public get handlers() {
+        return {
+            onMouseDown: (e: React.MouseEvent) => this.onMouseDown(e),
+            onMouseUp: (e: React.MouseEvent) => this.onMouseUp(e)
+        };
     }
 }

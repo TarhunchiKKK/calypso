@@ -8,4 +8,5 @@ export type MouseEventHandlers = {
 export type MouseEventsMediatorOptions = {
     clickDelay: number;
     mouseDownDelay: number;
+    doubleClickDelay: number;
 };

@@ -4,8 +4,6 @@ import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 
 export type NodeHandlers = {
-    onClick?: (e: React.MouseEvent) => void;
-
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: (e: React.MouseEvent) => void;
@@ -43,8 +41,8 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return true;
     }
 
-    public setHandler<Key extends keyof NodeHandlers>(key: Key, handler: NodeHandlers[Key] | undefined) {
-        this.handlers[key] = handler;
+    public setHandlers(handlers: NodeHandlers) {
+        this.handlers = handlers;
         return this;
     }
 

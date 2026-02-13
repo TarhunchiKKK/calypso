@@ -7,10 +7,7 @@ export class IdleNodesMapper extends NodesMapper {
     }
 
     public map(handlers: NodeHandlers) {
-        this.nodes = this.nodes.map(node =>
-            node.setHandler("onMouseDown", handlers.onMouseDown).setHandler("onMouseUp", handlers.onMouseUp).setHandler("onClick", handlers.onClick)
-        );
-
+        this.nodes = this.nodes.map(node => node.setHandlers(handlers));
         return this;
     }
 }

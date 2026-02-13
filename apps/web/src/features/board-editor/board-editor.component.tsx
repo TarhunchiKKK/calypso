@@ -41,10 +41,9 @@ export function BoardEditor({ nodes, children }: Props) {
                         onKeyDown={viewModel.overlay?.onKeyDown}
                         onMouseDown={viewModel.overlay?.onMouseDown}
                         onMouseUp={viewModel.overlay?.onMouseUp}
-                        onClick={viewModel.overlay?.onClick}
                     />
                 }
-                onClick={viewModel.canvas?.onClick}
+                onMouseDown={viewModel.canvas?.onMouseDown}
                 onKeyDown={viewModel.canvas?.onKeyDown}
             >
                 {viewModel.nodes.map(node => node.render())}

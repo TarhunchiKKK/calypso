@@ -52,15 +52,8 @@ export function useIdleViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: IdleNodesMapper.from(nodesModel.nodes)
-                .map({
-                    onMouseDown: e => nodesMediator.onMouseDown(e),
-                    onClick: e => nodesMediator.onClick(e)
-                })
-                .get(),
-            overlay: {
-                onMouseDown: e => overlayMediator.onMouseDown(e)
-            }
+            nodes: IdleNodesMapper.from(nodesModel.nodes).map(nodesMediator.handlers).get(),
+            overlay: overlayMediator.handlers
         };
     };
 }

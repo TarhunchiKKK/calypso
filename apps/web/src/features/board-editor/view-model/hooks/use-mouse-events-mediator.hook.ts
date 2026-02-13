@@ -3,13 +3,17 @@ import { MouseEventsMediator, MouseEventsSeparator } from "@/shared/lib/react";
 
 const mouseEventsOptions = {
     mouseDownDelay: 700,
-    clickDelay: 500
+    clickDelay: 500,
+    doubleClickDelay: 800,
 };
 
 // DOCS
 export function useMouseEventsMediator() {
     const mediator = useMemo(() => {
-        return new MouseEventsSeparator(new MouseEventsMediator(mouseEventsOptions), new MouseEventsMediator(mouseEventsOptions));
+        return new MouseEventsSeparator(
+            new MouseEventsMediator(mouseEventsOptions),
+            new MouseEventsMediator(mouseEventsOptions),
+        );
     }, []);
 
     useEffect(() => {

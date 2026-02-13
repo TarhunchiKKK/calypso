@@ -26,10 +26,8 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         });
 
         return {
-            nodes: EditingNodesMapper.from(nodesModel.nodes).map(viewState, nodesModel.service.updateOne, nodesMediator.onClick).get(),
-            overlay: {
-                onClick: e => overlayMediator.onClick(e)
-            }
+            nodes: EditingNodesMapper.from(nodesModel.nodes).map(viewState, nodesModel.service.updateOne, nodesMediator.handlers).get(),
+            overlay: overlayMediator.handlers
         };
     };
 }

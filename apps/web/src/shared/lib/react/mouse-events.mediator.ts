@@ -13,80 +13,115 @@ import type { MouseEventHandlers, MouseEventsMediatorOptions } from "./types";
  * This class helps in creating more interactive and intuitive user interfaces
  * by providing granular control over mouse event handling.
  */
+
 export class MouseEventsMediator {
     private handlers: MouseEventHandlers = {};
+    private options: Required<MouseEventsMediatorOptions>;
 
-    private clickDelay: number;
-    private mouseDownDelay: number;
+    private mouseDownTime: number = 0;
+    private mouseDownTarget: EventTarget | null = null;
+    private mouseDownProcessed: boolean = false;
+    private clickCount: number = 0;
+    private lastClickTime: number = 0;
+    private lastClickTarget: EventTarget | null = null;
 
-    private clickTimeout: ReturnType<typeof setTimeout> | null = null;
     private mouseDownTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    private skipNextClick = false;
+    private clickTimeout: ReturnType<typeof setTimeout> | null = null;
 
     public constructor(options: MouseEventsMediatorOptions) {
-        this.clickDelay = options.clickDelay;
-        this.mouseDownDelay = options.mouseDownDelay;
+        this.options = options;
     }
 
     public setHandlers(handlers: MouseEventHandlers) {
         this.reset();
-
         this.handlers = handlers;
     }
 
     public onMouseDown(e: React.MouseEvent) {
-        if (!this.handlers.onMouseDown) {
-            return;
+        const now = Date.now();
+
+        this.mouseDownTime = now;
+        this.mouseDownTarget = e.target;
+        this.mouseDownProcessed = false;
+
+        if (this.lastClickTarget === e.target && now - this.lastClickTime < this.options.doubleClickDelay) {
+            this.clickCount++;
+        } else {
+            this.clickCount = 1;
         }
 
-        this.skipNextClick = false;
+        if (this.handlers.onMouseDown) {
+            if (this.mouseDownTimeout) {
+                clearTimeout(this.mouseDownTimeout);
+            }
 
-        this.mouseDownTimeout = setTimeout(() => {
-            this.handlers.onMouseDown?.(e);
-            this.mouseDownTimeout = null;
-            this.skipNextClick = true;
-        }, this.mouseDownDelay);
+            this.mouseDownTimeout = setTimeout(() => {
+                if (!this.mouseDownProcessed) {
+                    this.handlers.onMouseDown?.(e);
+                    this.mouseDownProcessed = true;
+                }
+                this.mouseDownTimeout = null;
+            }, this.options.mouseDownDelay);
+        }
     }
 
     public onMouseUp(e: React.MouseEvent) {
-        if (this.mouseDownTimeout) {
+        const now = Date.now();
+        const timeFromMouseDown = now - this.mouseDownTime;
+
+        if (this.mouseDownTimeout && timeFromMouseDown < this.options.mouseDownDelay) {
             clearTimeout(this.mouseDownTimeout);
             this.mouseDownTimeout = null;
+            this.mouseDownProcessed = false;
         }
 
         this.handlers.onMouseUp?.(e);
+
+        const isClick = timeFromMouseDown < this.options.clickDelay && this.mouseDownTarget === e.target && !this.mouseDownProcessed;
+
+        if (isClick) {
+            this.handlePotentialClick(e);
+        }
+
+        this.mouseDownTarget = null;
+        this.mouseDownProcessed = false;
     }
 
-    public onClick(e: React.MouseEvent) {
-        const needSkip = this.skipNextClick;
+    private handlePotentialClick(e: React.MouseEvent) {
+        const now = Date.now();
 
-        if (!this.clickTimeout) {
-            this.clickTimeout = setTimeout(() => {
-                if (needSkip) {
-                    this.skipNextClick = false;
-                } else {
-                    this.handlers.onClick?.(e);
-                }
-
+        if (this.clickCount === 2 && this.lastClickTarget === e.target && now - this.lastClickTime < this.options.doubleClickDelay) {
+            if (this.clickTimeout) {
+                clearTimeout(this.clickTimeout);
                 this.clickTimeout = null;
-            }, this.clickDelay);
-        } else {
-            if (needSkip) {
-                this.skipNextClick = false;
-            } else {
-                this.handlers.onDoubleClick?.(e);
             }
 
-            clearTimeout(this.clickTimeout);
-            this.clickTimeout = null;
+            this.handlers.onDoubleClick?.(e);
+            this.clickCount = 0;
+            this.lastClickTime = 0;
+            this.lastClickTarget = null;
+            return;
         }
+
+        if (this.clickTimeout) {
+            clearTimeout(this.clickTimeout);
+        }
+
+        this.lastClickTime = now;
+        this.lastClickTarget = e.target;
+
+        this.clickTimeout = setTimeout(() => {
+            if (this.clickCount === 1) {
+                this.handlers.onClick?.(e);
+            }
+
+            this.clickTimeout = null;
+            this.clickCount = 0;
+            this.lastClickTime = 0;
+            this.lastClickTarget = null;
+        }, this.options.doubleClickDelay);
     }
 
-    /**
-     * Resets the internal state of the mediator, clearing any pending timeouts.
-     * This is useful for cleaning up when the component unmounts or when the interaction is cancelled.
-     */
     public reset() {
         if (this.clickTimeout) {
             clearTimeout(this.clickTimeout);
@@ -97,5 +132,12 @@ export class MouseEventsMediator {
             clearTimeout(this.mouseDownTimeout);
             this.mouseDownTimeout = null;
         }
+
+        this.mouseDownTime = 0;
+        this.mouseDownTarget = null;
+        this.mouseDownProcessed = false;
+        this.clickCount = 0;
+        this.lastClickTime = 0;
+        this.lastClickTarget = null;
     }
 }
