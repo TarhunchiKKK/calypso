@@ -10,18 +10,10 @@ export const NodeBaseZodSchema = z.object({
     type: NodeTypesZodSchema,
     boardId: z.uuid({ error: "Board id should have correct uuid format" }),
     blocked: z.boolean({ error: "Node blocking status should be valid boolean" }),
-    styles: NodeStylesZodSchema.partial()
+    styles: NodeStylesZodSchema
 });
 
 export type NodeTypes = z.infer<typeof NodeTypesZodSchema>;
-
-export const CreateNodeBaseDtoZodSchema = NodeBaseZodSchema;
-
-export type CreateNodeBaseDto = z.infer<typeof CreateNodeBaseDtoZodSchema>;
-
-export const ReplaceNodeBaseDtoZodSchema = NodeBaseZodSchema;
-
-export type ReplaceNodeBaseDto = z.infer<typeof ReplaceNodeBaseDtoZodSchema>;
 
 export const RemoveManyNodesDtoZodSchema = z.object({
     ids: z.array(z.uuid(), { error: "Node id should have correct uuid format" }),

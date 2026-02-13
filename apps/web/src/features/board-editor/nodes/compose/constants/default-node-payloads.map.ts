@@ -20,7 +20,11 @@ export const NodeCreatorsMap = {
                 color: "black",
                 fontStyle: "normal",
                 fontSize: 14,
-                textAlign: "center"
+                textAlign: "center",
+                borderRadius: 8,
+                fontFamily: "sans-serif",
+                fontWeight: 400,
+                textDecoration: "none"
             }
         };
     },
@@ -37,10 +41,17 @@ export const NodeCreatorsMap = {
                 height: 100
             },
             styles: {
+                backgroundColor: "orange",
+                borderColor: "none",
+                borderStyle: "dashed",
                 color: "black",
-                fontSize: 14,
                 fontStyle: "normal",
-                textAlign: "left"
+                fontSize: 14,
+                textAlign: "center",
+                borderRadius: 8,
+                fontFamily: "sans-serif",
+                fontWeight: 400,
+                textDecoration: "none"
             }
         };
     }

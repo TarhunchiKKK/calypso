@@ -1,5 +1,5 @@
-import { PickType } from "@nestjs/swagger";
-import type { ReplaceNodeBaseDto as TypeReplaceNodeDto } from "@repo/common";
+import { OmitType } from "@nestjs/swagger";
+import type { NodeBase } from "@repo/common";
 import { NodeApiType } from "../swagger/node.api-type";
 
-export class ReplaceNodeDto extends PickType(NodeApiType, ["id", "boardId", "type", "blocked"] as const) implements TypeReplaceNodeDto {}
+export class ReplaceNodeDto extends OmitType(NodeApiType, [] as const) implements NodeBase {}

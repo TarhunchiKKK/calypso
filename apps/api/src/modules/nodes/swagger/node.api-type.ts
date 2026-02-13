@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import type { NodeTypes, NodeBase as TypeNodeBase } from "@repo/common";
+import type { NodeBase, NodeTypes } from "@repo/common";
 import { NodeTypesEnum } from "../constants/node-types.constants";
+import { NodeStylesApiType } from "./node-styles.api-type";
 
-export class NodeApiType implements TypeNodeBase {
+export class NodeApiType implements NodeBase {
     @ApiProperty({
         description: "Node id generated on the client",
         type: String,
@@ -29,4 +30,10 @@ export class NodeApiType implements TypeNodeBase {
         enum: NodeTypesEnum
     })
     public type: NodeTypes;
+
+    @ApiProperty({
+        description: "Node styles",
+        type: NodeStylesApiType
+    })
+    public styles: NodeStylesApiType;
 }

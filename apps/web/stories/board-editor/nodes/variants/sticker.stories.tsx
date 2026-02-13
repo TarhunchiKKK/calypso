@@ -30,7 +30,11 @@ const node: StickerNode = {
         color: "black",
         fontStyle: "normal",
         fontSize: 14,
-        textAlign: "center"
+        textAlign: "center",
+        borderRadius: 0,
+        fontFamily: "sans-serif",
+        fontWeight: 800,
+        textDecoration: "none"
     },
     text: "Hello"
 } as const;

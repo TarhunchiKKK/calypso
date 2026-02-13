@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
 import { ApiBody, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiParam, ApiTags } from "@nestjs/swagger";
-import { CreateAnyNodeZodSchema, RemoveManyNodesDtoZodSchema, ReplaceAnyNodeZodSchema } from "@repo/common";
+import { AnyNodeZodSchema, RemoveManyNodesDtoZodSchema } from "@repo/common";
 import { Authorization } from "src/shared/auth";
 import { Validation } from "src/shared/validation";
 import z from "zod";
@@ -19,7 +19,7 @@ export class NodesController {
 
     @Post("bulk")
     @HttpCode(HttpStatus.CREATED)
-    @Validation(z.array(CreateAnyNodeZodSchema))
+    @Validation(z.array(AnyNodeZodSchema))
     @BoardCreator(request => ({ id: request?.body?.[0]?.boardId }))
     @ApiBody({ type: [CreateNodeDto], description: "Nodes data to create" })
     @ApiCreatedResponse({ description: "Nodes successfully created", type: [NodeApiType] })
@@ -38,7 +38,7 @@ export class NodesController {
 
     @Put("bulk")
     @HttpCode(HttpStatus.OK)
-    @Validation(z.array(ReplaceAnyNodeZodSchema))
+    @Validation(z.array(AnyNodeZodSchema))
     @BoardCreator(request => ({ id: request?.body?.[0]?.boardId }))
     @ApiBody({ type: [ReplaceNodeDto], description: "Nodes data to replace" })
     @ApiOkResponse({ description: "Nodes successfully updated" })
