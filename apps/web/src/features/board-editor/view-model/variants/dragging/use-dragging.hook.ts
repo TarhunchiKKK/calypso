@@ -1,5 +1,6 @@
+import type { Offset } from "@repo/common";
 import { useState } from "react";
-import { Geometry, type Offset } from "@/features/board-editor/core";
+import { Geometry } from "@/features/board-editor/core";
 import type { ViewModelParams } from "../../types";
 import { switchToSelection } from "../selection/switcher";
 import { DraggingNodesMapper } from "./nodes-mapping.lib";

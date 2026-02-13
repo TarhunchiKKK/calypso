@@ -1,4 +1,4 @@
-import type { Offset, Point, Rect } from "./geometry.types";
+import type { Offset, Point, Rect } from "@repo/common";
 
 /**
  * A utility class that provides a collection of static methods for geometric calculations.

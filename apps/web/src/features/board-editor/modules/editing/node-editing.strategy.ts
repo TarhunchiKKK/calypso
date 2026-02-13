@@ -1,5 +1,5 @@
+import type { NodeBase } from "@repo/common";
 import type React from "react";
-import type { NodeBase } from "../../core";
 
 export abstract class NodeEditingStrategy {
     public constructor(protected readonly handler: (node: NodeBase) => void) {}

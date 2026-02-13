@@ -1,4 +1,4 @@
-import type { Point } from "@/features/board-editor/core";
+import type { Point } from "@repo/common";
 
 export type DraggingViewState = {
     type: "dragging";

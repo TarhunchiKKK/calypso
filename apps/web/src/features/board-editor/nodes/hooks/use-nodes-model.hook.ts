@@ -1,5 +1,5 @@
+import type { NodeBase } from "@repo/common";
 import { useState } from "react";
-import type { NodeBase } from "../../core";
 import { useNodesService } from "./use-nodes-service.hook";
 
 export function useNodesModel(inputNodes: NodeBase[]) {

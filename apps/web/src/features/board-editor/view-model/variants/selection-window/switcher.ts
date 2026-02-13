@@ -1,6 +1,6 @@
+import type { Point } from "@repo/common";
 import type React from "react";
 import type { NodesSelectionMode } from "@/features/board-editor/modules/selection";
-import type { Point } from "../../../core";
 import type { ViewModelParams } from "../../types";
 import type { IdleViewState } from "../idle/view-state";
 import type { SelectionViewState } from "../selection/view-state";

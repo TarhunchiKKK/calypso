@@ -1,4 +1,5 @@
-import { Geometry, type Offset } from "@/features/board-editor/core";
+import type { Offset } from "@repo/common";
+import { Geometry } from "@/features/board-editor/core";
 import { NodeDraggingStrategy } from "@/features/board-editor/modules/dragging";
 import type { StickerNodeWrapper } from "../sticker/sticker.wrapper";
 

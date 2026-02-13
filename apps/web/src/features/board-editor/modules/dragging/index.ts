@@ -1,2 +1,2 @@
-export { DragableNodeDecorator } from "./dragable-node.decorator";
+export { DraggableNodeDecorator } from "./draggable-node.decorator";
 export { NodeDraggingStrategy } from "./node-dragging.strategy";

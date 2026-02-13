@@ -1,7 +1,7 @@
+import type { TextNode } from "@repo/common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/features/board-editor/core";
 import { FormatableTextarea } from "@/shared/ui/formatable-input";
-import type { TextNode } from "./text-node.type";
 
 type Props = PropsWithChildren<{
     node: TextNode;
@@ -28,7 +28,7 @@ export function TextNodeComponent({ node, handlers, showContent, children }: Pro
         >
             {showContent && (
                 <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    <FormatableTextarea value={node.text} disabled />
+                    <FormatableTextarea value={node.text as any} disabled />
                 </div>
             )}
 

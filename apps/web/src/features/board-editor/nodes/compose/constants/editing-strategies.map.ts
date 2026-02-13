@@ -1,4 +1,4 @@
-import type { NodeTypes } from "@/features/board-editor/core";
+import type { NodeTypes } from "@repo/common";
 import type { NodeEditingStrategy } from "@/features/board-editor/modules/editing";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import { EditStickerNodeStrategy } from "../../variants/sticker/lib/editing.strategy";

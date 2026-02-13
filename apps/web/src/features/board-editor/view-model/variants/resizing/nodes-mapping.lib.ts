@@ -1,5 +1,5 @@
-import type { Rect } from "@/features/board-editor/core";
-import { type NodeBase, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
+import type { NodeBase, Rect } from "@repo/common";
+import { NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 import type { ResizingViewState } from "./view-state";
 

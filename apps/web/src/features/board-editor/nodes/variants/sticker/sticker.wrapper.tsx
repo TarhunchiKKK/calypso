@@ -1,7 +1,7 @@
+import type { StickerNode } from "@repo/common";
 import type React from "react";
 import { NodeWrapper } from "@/features/board-editor/core";
 import { StickerComponent } from "./sticker.component";
-import type { StickerNode } from "./sticker.type";
 
 export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
     public override get rect() {

@@ -1,11 +1,10 @@
-import type { Point } from "@/features/board-editor/core";
-import type { StickerNode } from "../../variants/sticker/sticker.type";
-import type { TextNode } from "../../variants/text/text-node.type";
+import type { Point, StickerNode, TextNode } from "@repo/common";
 
 export const NodeCreatorsMap = {
-    sticker: (point: Point, id?: string) => {
+    sticker: (point: Point, id?: string): StickerNode => {
         return {
             id: id ?? crypto.randomUUID(),
+            boardId: "1",
             type: "sticker",
             blocked: false,
             text: "Hello",
@@ -19,16 +18,19 @@ export const NodeCreatorsMap = {
                 borderColor: "none",
                 borderStyle: "dashed",
                 color: "black",
-                fontStyle: "normal"
+                fontStyle: "normal",
+                fontSize: 14,
+                textAlign: "center"
             }
-        } satisfies StickerNode;
+        };
     },
-    text: (point: Point, id?: string) => {
+    text: (point: Point, id?: string): TextNode => {
         return {
             id: id ?? crypto.randomUUID(),
+            boardId: "1",
             type: "text",
             blocked: false,
-            text: [],
+            text: [] as unknown as string,
             rect: {
                 ...point,
                 width: 100,
@@ -40,6 +42,6 @@ export const NodeCreatorsMap = {
                 fontStyle: "normal",
                 textAlign: "left"
             }
-        } satisfies TextNode;
+        };
     }
 };

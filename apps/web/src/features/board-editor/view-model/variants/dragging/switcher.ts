@@ -1,5 +1,5 @@
+import type { Point } from "@repo/common";
 import type React from "react";
-import type { Point } from "@/features/board-editor/core";
 import type { ViewModelParams } from "../../types";
 import type { DraggingViewState } from "./view-state";
 

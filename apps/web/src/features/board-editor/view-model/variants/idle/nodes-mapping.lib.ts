@@ -1,4 +1,5 @@
-import { type NodeBase, type NodeHandlers, NodesMapper } from "@/features/board-editor/core";
+import type { NodeBase } from "@repo/common";
+import { type NodeHandlers, NodesMapper } from "@/features/board-editor/core";
 
 export class IdleNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {

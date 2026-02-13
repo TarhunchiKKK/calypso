@@ -1,4 +1,4 @@
-import type { NodeTypes } from "@/features/board-editor/core";
+import type { NodeTypes } from "@repo/common";
 import type { NodeDraggingStrategy } from "@/features/board-editor/modules/dragging";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import { RectNodeDraggingStrategy } from "../../variants/shared";

@@ -1,4 +1,4 @@
-import type { Offset } from "@/features/board-editor/core";
+import type { Offset } from "@repo/common";
 
 export function createLayoutDimensionsStyles(offset: Offset, zoom: number) {
     return {

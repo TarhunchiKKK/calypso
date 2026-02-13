@@ -1,4 +1,5 @@
-import { getNodeId, type NodeWrapper, type Rect, type RectNode } from "@/features/board-editor/core";
+import type { Rect, RectNode } from "@repo/common";
+import { getNodeId, type NodeWrapper } from "@/features/board-editor/core";
 import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/features/board-editor/modules/resizing";
 
 export class RectNodeResizingStrategy extends NodeResizingStrategy {

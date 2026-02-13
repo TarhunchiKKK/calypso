@@ -1,4 +1,5 @@
-import type { Decoratable, NodeTypes } from "@/features/board-editor/core";
+import type { NodeTypes } from "@repo/common";
+import type { Decoratable } from "@/features/board-editor/core";
 import type { NodeStyles } from "@/features/board-editor/modules/styling";
 import { sharedItems } from "@/shared/lib/javascript";
 import type { BooleanFields } from "@/shared/lib/typescript";

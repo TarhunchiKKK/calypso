@@ -1,6 +1,6 @@
+import type { StickerNode } from "@repo/common";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { StickerComponent } from "@/features/board-editor/nodes/variants/sticker/sticker.component";
-import type { StickerNode } from "@/features/board-editor/nodes/variants/sticker/sticker.type";
 import { centered } from "../../../common/center";
 
 const meta = {
@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const node: StickerNode = {
     id: "id",
+    boardId: "1",
     type: "sticker",
     blocked: false,
     rect: {
@@ -27,7 +28,9 @@ const node: StickerNode = {
         borderColor: "black",
         borderStyle: "dashed",
         color: "black",
-        fontStyle: "normal"
+        fontStyle: "normal",
+        fontSize: 14,
+        textAlign: "center"
     },
     text: "Hello"
 } as const;

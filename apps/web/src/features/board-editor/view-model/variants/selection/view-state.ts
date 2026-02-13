@@ -1,4 +1,4 @@
-import type { Rect } from "@/features/board-editor/core";
+import type { Rect } from "@repo/common";
 
 export type SelectionViewState = {
     type: "selection";

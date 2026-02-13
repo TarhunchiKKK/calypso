@@ -1,5 +1,5 @@
+import type { Rect } from "@repo/common";
 import { useState } from "react";
-import type { Rect } from "@/features/board-editor/core";
 import { applyResizing } from "@/features/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 import type { ViewModelParams } from "../../types";

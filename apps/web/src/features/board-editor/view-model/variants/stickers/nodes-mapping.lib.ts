@@ -1,4 +1,5 @@
-import { type NodeBase, NodesMapper } from "@/features/board-editor/core";
+import type { NodeBase } from "@repo/common";
+import { NodesMapper } from "@/features/board-editor/core";
 
 export class StickersNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {

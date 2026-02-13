@@ -1,5 +1,6 @@
+import type { Rect } from "@repo/common";
 import { useState } from "react";
-import { Geometry, type Rect } from "@/features/board-editor/core";
+import { Geometry } from "@/features/board-editor/core";
 import { selectNodes } from "@/features/board-editor/modules/selection";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 import type { ViewModelParams } from "../../types";

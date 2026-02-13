@@ -1,7 +1,7 @@
+import type { TextNode } from "@repo/common";
 import type React from "react";
 import { NodeWrapper } from "@/features/board-editor/core";
 import { TextNodeComponent } from "./text-node.component";
-import type { TextNode } from "./text-node.type";
 
 export class TextNodeWrapper extends NodeWrapper<TextNode> {
     public override get rect() {

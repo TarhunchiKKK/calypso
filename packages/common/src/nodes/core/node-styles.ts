@@ -1,21 +1,6 @@
-import type { CSSProperties } from "react";
-import type { UnknownFields } from "shared/typescript";
 import z from "zod";
 
-type NodeStylesKeys =
-    | "fontFamily"
-    | "fontSize"
-    | "fontStyle"
-    | "fontWeight"
-    | "textDecoration"
-    | "backgroundColor"
-    | "textAlign"
-    | "color"
-    | "borderRadius"
-    | "borderColor"
-    | "borderStyle";
-
-export const NodeStylesZodSchema = z.object<UnknownFields<Pick<CSSProperties, NodeStylesKeys>>>({
+export const NodeStylesZodSchema = z.object({
     backgroundColor: z.string({ error: "Background color should be a string" }),
     borderColor: z.string({ error: "Border color should be a string" }),
     borderRadius: z.number({ error: "Border radius should be a number" }).positive({ error: "Border radius should be positive" }),

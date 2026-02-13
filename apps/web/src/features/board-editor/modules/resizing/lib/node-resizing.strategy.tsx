@@ -1,4 +1,5 @@
-import type { NodeWrapper, Rect } from "@/features/board-editor/core";
+import type { Rect } from "@repo/common";
+import type { NodeWrapper } from "@/features/board-editor/core";
 import type { ResizeHandler } from "../types";
 
 export abstract class NodeResizingStrategy {

@@ -1,4 +1,4 @@
-import type { Point } from "@/features/board-editor/core";
+import type { Point } from "@repo/common";
 import { StickerNodeWrapper } from "../../variants/sticker/sticker.wrapper";
 import { TextNodeWrapper } from "../../variants/text/text-node.wrapper";
 import { NodeCreatorsMap } from "../constants/default-node-payloads.map";

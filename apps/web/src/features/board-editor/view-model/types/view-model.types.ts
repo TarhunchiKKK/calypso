@@ -1,5 +1,6 @@
+import type { Rect } from "@repo/common";
 import type React from "react";
-import type { Rect, Renderable } from "../../core";
+import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";

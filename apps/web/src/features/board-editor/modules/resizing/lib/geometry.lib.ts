@@ -1,4 +1,4 @@
-import type { Point, Rect } from "../../../core";
+import type { Point, Rect } from "@repo/common";
 import type { ResizeDirection } from "../types";
 
 /**

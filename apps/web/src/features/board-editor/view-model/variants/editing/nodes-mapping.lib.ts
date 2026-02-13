@@ -1,5 +1,6 @@
+import type { NodeBase } from "@repo/common";
 import type React from "react";
-import { type NodeBase, NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
+import { NodesMapper, type NodeWrapper } from "@/features/board-editor/core";
 import { NodeDecoratorsFactory } from "@/features/board-editor/nodes";
 import type { EditingViewState } from "./view-state";
 

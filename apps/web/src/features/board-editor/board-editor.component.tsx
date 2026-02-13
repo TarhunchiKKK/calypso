@@ -1,9 +1,9 @@
 "use client";
 
+import type { NodeBase } from "@repo/common";
 import { MousePointer2, StickerIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../../shared/lib/window";
-import type { NodeBase } from "./core";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { SelectionWindow } from "./modules/selection";
 import { useNodesModel } from "./nodes";

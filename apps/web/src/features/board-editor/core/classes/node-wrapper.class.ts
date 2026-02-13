@@ -1,7 +1,6 @@
+import type { NodeBase, Rect } from "@repo/common";
 import type React from "react";
-import type { Rect } from "../lib/geometry";
 import type { Decoratable } from "../types/decorators.types";
-import type { NodeBase } from "../types/node.types";
 import type { Renderable } from "../types/ui.types";
 
 export type NodeHandlers = {

@@ -1,7 +1,7 @@
+import type { Offset, Point } from "@repo/common";
 import type React from "react";
 import { useRef, useState } from "react";
-import { Geometry, type Offset, type Point } from "@/features/board-editor/core";
-import { applyLayoutDimensions } from "./geometry.lib";
+import { Geometry } from "@/features/board-editor/core";
 
 const defaultLayoutOffset: Offset = {
     dx: 0,
@@ -58,9 +58,9 @@ export function useLayoutDimensionsModel() {
 
         const newZoom = zoom * delta;
 
-        const currentMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, offset, zoom);
+        const currentMousePoint = applyForPoint({ x: e.clientX, y: e.clientY });
 
-        const newMousePoint = applyLayoutDimensions({ x: e.clientX, y: e.clientY }, offset, newZoom);
+        const newMousePoint = applyForPoint({ x: e.clientX, y: e.clientY });
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
