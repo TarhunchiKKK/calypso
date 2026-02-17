@@ -2,7 +2,6 @@
 
 import { ALargeSmall, Square, SquareDashed, SquareRoundCorner, TextAlignStart, Type } from "lucide-react";
 import { HorizontalDropdown, NumericDropdown, Wrapper } from "@/shared/ui";
-import { LockToggles } from "./block-toggles.component";
 import { ColorsDropdown } from "./colors-dropdown.component";
 import { BorderRadiuses, BorderStyles, FontSizes, PopoverSideOffset, TextAligns } from "./constants";
 import { FontFamilyDropdown } from "./font-family-dropdown.component";
@@ -63,7 +62,6 @@ export function StylesBar({ onUpdate }: Props) {
                 popoverOffset={PopoverSideOffset}
             />
 
-            <LockToggles onClick={blocked => onUpdate(node => ({ ...node, blocked }))} />
         </Wrapper>
     );
 }
