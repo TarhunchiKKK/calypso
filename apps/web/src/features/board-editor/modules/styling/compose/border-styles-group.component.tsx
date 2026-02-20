@@ -1,6 +1,6 @@
 import { Square, SquareDashed, SquareRoundCorner } from "lucide-react";
 import { HorizontalDropdown, NumericDropdown } from "@/shared/ui";
-import { BorderRadiuses, BorderStyles, PopoverSideOffset } from "../constants";
+import { BorderRadiuses, BorderStyles, Colors, ColorsDropdownItemSizes, PopoverSideOffset } from "../constants";
 import type { UpdateFn } from "../types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "./styles-group-wrapper.component";
@@ -21,8 +21,8 @@ export function BorderStylesGroup({ onUpdate }: Props) {
 
             <ColorsDropdown
                 title="Border Color"
-                placeholder={<Square style={{ color: "red" }} />}
-                renderItem={color => <Square style={{ color, width: 20, height: 20 }} />}
+                placeholder={<Square style={{ color: Colors[0] }} />}
+                renderItem={color => <Square style={{ color, ...ColorsDropdownItemSizes }} />}
                 onSelect={borderColor => onUpdate(node => ({ ...node, styles: { ...node.styles, borderColor } }))}
             />
 

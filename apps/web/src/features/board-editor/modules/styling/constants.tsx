@@ -4,6 +4,11 @@ import type { DropdownItem } from "@/shared/ui/dropdown";
 
 export const PopoverSideOffset = 14;
 
+export const ColorsDropdownItemSizes = {
+    width: 20,
+    height: 20
+};
+
 export const Colors = [
     "#FF3B30",
     "#FF8904",
