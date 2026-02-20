@@ -1,12 +1,11 @@
 "use client";
 
-import { TextAlignStart } from "lucide-react";
-import { HorizontalDropdown, Wrapper } from "@/shared/ui";
+import { Wrapper } from "@/shared/ui";
 import { Separator } from "@/shared/ui/kit";
 import { BorderStylesGroup } from "./compose/border-styles-group.component";
 import { ColorsGroup } from "./compose/colors-group.component";
 import { FontStylesGroup } from "./compose/font-styles-group.component";
-import { PopoverSideOffset, TextAligns } from "./constants";
+import { TextFormattingGroup } from "./compose/text-formatting-group.component";
 import type { UpdateFn } from "./types";
 
 type Props = {
@@ -28,12 +27,7 @@ export function StylesBar({ onUpdate }: Props) {
 
             <Separator orientation="vertical" className="h-5!" />
 
-            <HorizontalDropdown
-                title="Text Align"
-                items={TextAligns}
-                placeholder={<TextAlignStart className="dark:text-white" />}
-                popoverOffset={PopoverSideOffset}
-            />
+            <TextFormattingGroup onUpdate={onUpdate} />
         </Wrapper>
     );
 }
