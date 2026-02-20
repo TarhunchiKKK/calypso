@@ -9,25 +9,27 @@ type Props = {
 
     title: string;
 
+    placeholder: React.ReactNode;
+
     onSelect: (color: string) => void;
 };
 
-export function ColorsDropdown({ renderItem, title, onSelect }: Props) {
+export function ColorsDropdown({ renderItem, title, onSelect, placeholder }: Props) {
     return (
         <Popover>
             <PopoverTrigger className="cursor-pointer">
                 <Tooltip>
-                    <TooltipTrigger asChild>{renderItem(Colors[0])}</TooltipTrigger>
+                    <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
 
                     <TooltipContent>{title}</TooltipContent>
                 </Tooltip>
             </PopoverTrigger>
 
-            <PopoverContent className="w-[192px] p-0" sideOffset={PopoverSideOffset}>
+            <PopoverContent className="w-[176px] p-0" sideOffset={PopoverSideOffset}>
                 <ToggleGroup type="single" variant="default" className="w-full grid!">
                     <div className="grid grid-cols-4">
                         {Colors.map(color => (
-                            <ToggleGroupItem key={color} value={color} className="cursor-pointer" onClick={onSelect.bind(null, color)}>
+                            <ToggleGroupItem key={color} value={color} className="cursor-pointer p-1!" onClick={onSelect.bind(null, color)}>
                                 {renderItem(color)}
                             </ToggleGroupItem>
                         ))}

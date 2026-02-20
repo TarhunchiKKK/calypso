@@ -12,13 +12,15 @@ export function ColorsGroup({ onUpdate }: Props) {
         <StylesGroupWrapper>
             <ColorsDropdown
                 title="Background"
+                placeholder={<div className="w-5 h-5 rounded-full" style={{ backgroundColor: "red" }} />}
                 onSelect={backgroundColor => onUpdate(node => ({ ...node, styles: { ...node.styles, backgroundColor } }))}
-                renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor }} />}
+                renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor, width: 20, height: 20 }} />}
             />
 
             <ColorsDropdown
                 title="Text Color"
-                renderItem={color => <Type style={{ color }} />}
+                placeholder={<Type style={{ color: "red" }} />}
+                renderItem={color => <Type style={{ color, width: 20, height: 20 }} />}
                 onSelect={color => onUpdate(node => ({ ...node, styles: { ...node.styles, color } }))}
             />
         </StylesGroupWrapper>

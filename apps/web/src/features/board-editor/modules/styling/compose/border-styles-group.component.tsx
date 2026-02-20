@@ -21,7 +21,8 @@ export function BorderStylesGroup({ onUpdate }: Props) {
 
             <ColorsDropdown
                 title="Border Color"
-                renderItem={color => <Square style={{ color }} />}
+                placeholder={<Square style={{ color: "red" }} />}
+                renderItem={color => <Square style={{ color, width: 20, height: 20 }} />}
                 onSelect={borderColor => onUpdate(node => ({ ...node, styles: { ...node.styles, borderColor } }))}
             />
 
