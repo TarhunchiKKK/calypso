@@ -6,7 +6,7 @@ import { Editable, Slate, withReact } from "slate-react";
 import type { KeyBindings } from "../types/key-bindings.types";
 import { renderElement, renderLeaf } from "../ui";
 
-export type FormatableEditorProps = {
+export type FormattableEditorProps = {
     value: Descendant[];
 
     keyBindings: KeyBindings;
@@ -22,7 +22,7 @@ export type FormatableEditorProps = {
     disabled?: boolean;
 };
 
-export const FormatableEditor = ({ value, keyBindings, onChange, onBlur, style, className, disabled }: FormatableEditorProps) => {
+export const FormattableEditor = ({ value, keyBindings, onChange, onBlur, style, className, disabled }: FormattableEditorProps) => {
     const [editor] = useState(() => withReact(withHistory(createEditor())));
 
     const keyDownHandler: KeyboardEventHandler<HTMLDivElement> = useCallback(

@@ -1,11 +1,11 @@
 import type { OmitFields } from "@/shared/lib/typescript";
-import { FormatableEditor, type FormatableEditorProps } from "./compose/formatable-editor.component";
-import { FormatableDocumentKeyBindings, FormatableTextareaKeyBindings } from "./compose/key-bindings.constants";
+import { FormattableEditor, type FormattableEditorProps } from "./compose/formattable-editor.component";
+import { DocumentKeyBindings, TextareaKeyBindings } from "./compose/key-bindings.constants";
 
-export function FormatableTextarea(props: OmitFields<FormatableEditorProps, "keyBindings">) {
-    return <FormatableEditor {...props} keyBindings={FormatableTextareaKeyBindings} />;
+export function Textarea(props: OmitFields<FormattableEditorProps, "keyBindings">) {
+    return <FormattableEditor {...props} keyBindings={TextareaKeyBindings} />;
 }
 
-export function FormatableDocument(props: OmitFields<FormatableEditorProps, "keyBindings">) {
-    return <FormatableEditor {...props} keyBindings={FormatableDocumentKeyBindings} />;
+export function Document(props: OmitFields<FormattableEditorProps, "keyBindings">) {
+    return <FormattableEditor {...props} keyBindings={DocumentKeyBindings} />;
 }

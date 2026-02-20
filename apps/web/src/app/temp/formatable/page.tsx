@@ -1,7 +1,7 @@
 "use client";
 
 import type { Descendant } from "slate";
-import { FormatableTextarea } from "@/shared/ui/formattable-input";
+import { Textarea } from "@/shared/ui/formattable-input";
 
 const value: Descendant[] = [
     {
@@ -21,7 +21,7 @@ const value: Descendant[] = [
 export default function TempPage() {
     return (
         <div className="absolute top-1/3 left-1/3 w-[400px] border-2 border-red-600">
-            <FormatableTextarea value={value} />
+            <Textarea value={value} />
         </div>
     );
 }
