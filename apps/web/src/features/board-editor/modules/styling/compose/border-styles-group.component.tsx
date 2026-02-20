@@ -1,7 +1,7 @@
 import type { NodeStyles } from "@repo/common";
-import { Square, SquareDashed, SquareRoundCorner } from "lucide-react";
+import { Square } from "lucide-react";
 import { Dropdown } from "@/shared/ui";
-import { BorderRadiuses, BorderStyles } from "../constants/border-styling.constants";
+import { BorderColorPlaceholder, BorderRadiuses, BorderRadiusPlaceholder, BorderStylePlaceholder, BorderStyles } from "../constants/border-styling.constants";
 import { Colors } from "../constants/colors.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../types";
@@ -45,22 +45,17 @@ export function BorderStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown title="Border Style" items={BorderStyles} placeholder={<SquareDashed className="dark:text-white" />} onSelect={handleBorderStyleSelect} />
+            <Dropdown title="Border Style" items={BorderStyles} placeholder={BorderStylePlaceholder} onSelect={handleBorderStyleSelect} />
 
             <ColorsDropdown
                 title="Border Color"
-                placeholder={<Square style={{ color: Colors[0] }} />}
+                placeholder={BorderColorPlaceholder}
                 colors={Colors}
                 renderItem={color => <Square style={{ color, ...ColorsDropdownItemSizes }} />}
                 onSelect={handleBorderColorSelect}
             />
 
-            <Dropdown
-                title="Border Radius"
-                placeholder={<SquareRoundCorner className="dark:text-white" />}
-                items={BorderRadiuses}
-                onSelect={handleBorderRadiusSelect}
-            />
+            <Dropdown title="Border Radius" placeholder={BorderRadiusPlaceholder} items={BorderRadiuses} onSelect={handleBorderRadiusSelect} />
         </StylesGroupWrapper>
     );
 }

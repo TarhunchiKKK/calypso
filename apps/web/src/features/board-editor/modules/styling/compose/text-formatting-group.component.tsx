@@ -1,7 +1,6 @@
 import type { NodeStyles } from "@repo/common";
-import { TextAlignStart } from "lucide-react";
 import { Dropdown } from "@/shared/ui";
-import { TextAligns } from "../constants/text-formatting.constants";
+import { TextAlignPlaceholder, TextAligns } from "../constants/text-formatting.constants";
 import type { UpdateFn } from "../types";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
 
@@ -22,7 +21,7 @@ export function TextFormattingGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown title="Text Align" items={TextAligns} placeholder={<TextAlignStart className="dark:text-white" />} onSelect={handleTextAlignSelected} />
+            <Dropdown title="Text Align" items={TextAligns} placeholder={TextAlignPlaceholder} onSelect={handleTextAlignSelected} />
         </StylesGroupWrapper>
     );
 }

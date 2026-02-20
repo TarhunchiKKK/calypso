@@ -2,21 +2,43 @@ import type { NodeStyles } from "@repo/common";
 import { TextAlignCenter, TextAlignEnd, TextAlignJustify, TextAlignStart } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui";
 
+export const TextAlignPlaceholder = <TextAlignStart className="dark:text-white" />;
+
 export const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
     {
-        value: "left",
-        label: <TextAlignStart />
+        label: (
+            <>
+                <TextAlignStart className="dark:text-white" />
+                Left
+            </>
+        ),
+        value: "left"
     },
     {
-        value: "center",
-        label: <TextAlignCenter />
+        label: (
+            <>
+                <TextAlignCenter />
+                Center
+            </>
+        ),
+        value: "center"
     },
     {
-        value: "right",
-        label: <TextAlignEnd />
+        label: (
+            <>
+                <TextAlignEnd />
+                Right
+            </>
+        ),
+        value: "right"
     },
     {
-        value: "justify",
-        label: <TextAlignJustify />
+        label: (
+            <>
+                <TextAlignJustify />
+                Justify
+            </>
+        ),
+        value: "justify"
     }
 ];

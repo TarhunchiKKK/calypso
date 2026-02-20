@@ -1,54 +1,31 @@
 import type { NodeStyles } from "@repo/common";
+import { ALargeSmall, CaseSensitive } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui";
+
+export const FontFamilyPlaceholder = <CaseSensitive className="w-4 h-4 dark:text-white" />;
+
+export const FontSizePlaceholder = <ALargeSmall className="dark:text-white" />;
 
 export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = [
     {
-        label: "Sans Serif",
+        label: <span style={{ fontFamily: "sans-serif" }}>Sans Serif</span>,
         value: "sans-serif"
     },
     {
-        label: "Fantasy",
+        label: <span style={{ fontFamily: "fantasy" }}>Fantasy</span>,
         value: "fantasy"
     },
     {
-        label: "Math",
+        label: <span style={{ fontFamily: "math" }}>Math</span>,
         value: "math"
     },
     {
-        label: "Monospace",
+        label: <span style={{ fontFamily: "monospace" }}>Monospace</span>,
         value: "monospace"
     }
 ];
 
-export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [
-    {
-        label: 4,
-        value: 4
-    },
-    {
-        label: 8,
-        value: 8
-    },
-
-    {
-        label: 12,
-        value: 12
-    },
-
-    {
-        label: 18,
-        value: 18
-    },
-    {
-        label: 24,
-        value: 24
-    },
-    {
-        label: 32,
-        value: 32
-    },
-    {
-        label: 48,
-        value: 48
-    }
-];
+export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [14, 16, 18, 20, 22, 24].map(value => ({
+    label: <span style={{ fontSize: value, fontStyle: "italic" }}>{value}px</span>,
+    value: value
+}));

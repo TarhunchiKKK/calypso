@@ -1,10 +1,56 @@
 import type { NodeStyles } from "@repo/common";
-import { Square, SquareDashed, SquareDot } from "lucide-react";
+import { Square, SquareDashed, SquareDot, SquareRoundCorner } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui";
+import { Colors } from "./colors.constants";
+
+export const BorderStylePlaceholder = <SquareDashed className="dark:text-white" />;
+
+export const BorderColorPlaceholder = <Square style={{ color: Colors[0] }} />;
+
+export const BorderRadiusPlaceholder = <SquareRoundCorner className="dark:text-white" />;
+
+export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] = [
+    {
+        label: (
+            <>
+                <Square className="text-transparent" />
+                None
+            </>
+        ),
+        value: "none"
+    },
+    {
+        label: (
+            <>
+                <Square />
+                Solid
+            </>
+        ),
+        value: "solid"
+    },
+    {
+        label: (
+            <>
+                <SquareDot />
+                Dotted
+            </>
+        ),
+        value: "dotted"
+    },
+    {
+        label: (
+            <>
+                <SquareDashed />
+                Dashed
+            </>
+        ),
+        value: "dashed"
+    }
+];
 
 export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
     {
-        label: "none",
+        label: "None",
         value: 0
     },
     {
@@ -26,44 +72,5 @@ export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [
     {
         label: "Full",
         value: 9999
-    }
-];
-
-export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] = [
-    {
-        label: (
-            <>
-                <span></span>
-                None
-            </>
-        ),
-        value: "none"
-    },
-    {
-        label: (
-            <>
-                <Square />
-                None
-            </>
-        ),
-        value: "solid"
-    },
-    {
-        label: (
-            <>
-                <SquareDot />
-                None
-            </>
-        ),
-        value: "dotted"
-    },
-    {
-        label: (
-            <>
-                <SquareDashed />
-                None
-            </>
-        ),
-        value: "dashed"
     }
 ];
