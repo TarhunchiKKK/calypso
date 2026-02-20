@@ -6,7 +6,6 @@ import { Separator } from "@/shared/ui/kit";
 import { BorderStylesGroup } from "./compose/border-styles-group.component";
 import { ColorsGroup } from "./compose/colors-group.component";
 import { FontStylesGroup } from "./compose/font-styles-group.component";
-import { TextFormattingGroup } from "./compose/text-formatting-group.component";
 import { PopoverSideOffset, TextAligns } from "./constants";
 import type { UpdateFn } from "./types";
 
@@ -18,10 +17,6 @@ export function StylesBar({ onUpdate }: Props) {
     return (
         <Wrapper className="flex flex-row justify-between items-center gap-2 px-2 py-1">
             <FontStylesGroup onUpdate={onUpdate} />
-
-            <Separator orientation="vertical" className="h-5!" />
-
-            <TextFormattingGroup onUpdate={onUpdate} />
 
             <Separator orientation="vertical" className="h-5!" />
 

@@ -17,13 +17,7 @@ export const NodeStylesZodSchema = z.object({
 
     fontSize: z.number({ error: "Font size should be a number" }).positive({ error: "Font size should be positive" }),
 
-    fontStyle: z.enum(["normal", "italic", "oblique"], { error: "Invalid font style" }),
-
-    fontWeight: z.number({ error: "Font weight should be a number" }).positive({ error: "Font weight should be positive" }),
-
-    textAlign: z.enum(["left", "center", "right", "justify"], { error: "Invalid text alignment" }),
-
-    textDecoration: z.enum(["none", "underline", "overline", "line-through"], { error: "Invalid text decoration" })
+    textAlign: z.enum(["left", "center", "right", "justify"], { error: "Invalid text alignment" })
 });
 
 export type NodeStyles = z.infer<typeof NodeStylesZodSchema>;

@@ -28,13 +28,10 @@ const node: StickerNode = {
         borderColor: "black",
         borderStyle: "dashed",
         color: "black",
-        fontStyle: "normal",
         fontSize: 14,
         textAlign: "center",
         borderRadius: 0,
-        fontFamily: "sans-serif",
-        fontWeight: 800,
-        textDecoration: "none"
+        fontFamily: "sans-serif"
     },
     text: "Hello"
 } as const;

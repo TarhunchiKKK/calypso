@@ -9,6 +9,7 @@ const mockNodes: AnyNode[] = [
     {
         id: "1",
         blocked: false,
+        boardId: "1",
         type: "sticker",
         rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1",
@@ -16,12 +17,12 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            color: "black",
-            fontStyle: "normal"
+            color: "black"
         }
     } as StickerNode,
     {
         id: "2",
+        boardId: "1",
         blocked: false,
         type: "sticker",
         rect: { x: 220, y: 220, width: 150, height: 150 },
@@ -30,8 +31,7 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            color: "black",
-            fontStyle: "normal"
+            color: "black"
         }
     } as StickerNode,
     {
@@ -44,9 +44,8 @@ const mockNodes: AnyNode[] = [
             backgroundColor: "orange",
             borderColor: "black",
             borderStyle: "dashed",
-            color: "black",
-            fontStyle: "normal"
-        } 
+            color: "black"
+        }
     } as StickerNode
 ];
 

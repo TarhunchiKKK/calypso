@@ -10,31 +10,22 @@ export class NodeStyles implements Partial<UnknownFields<TypeNodeStyles>> {
     public fontSize: number;
 
     @Prop({ type: String, required: false })
-    public fontStyle: string;
-
-    @Prop({ type: Number, required: false })
-    public fontWeight: number;
-
-    @Prop({ type: String, required: false })
-    public textDecoration: string;
-
-    @Prop({ type: String, required: false })
     public backgroundColor: string;
 
     @Prop({ type: String, required: false })
-    public textAlign: string;
+    public color: string;
 
     @Prop({ type: String, required: false })
-    public color: string;
+    public borderStyle: "none" | "solid" | "dotted" | "dashed";
+
+    @Prop({ type: String, required: false })
+    public borderColor: string;
 
     @Prop({ type: Number, required: false })
     public borderRadius: number;
 
     @Prop({ type: String, required: false })
-    public borderColor: string;
-
-    @Prop({ type: String, required: false })
-    public borderStyle: string;
+    public textAlign: "left" | "center" | "right" | "justify";
 }
 
 export const NodeStylesSchema = SchemaFactory.createForClass(NodeStyles);
