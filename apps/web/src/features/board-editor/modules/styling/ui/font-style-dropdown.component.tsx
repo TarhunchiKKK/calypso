@@ -1,6 +1,6 @@
 import { Bold, Italic, Underline } from "lucide-react";
 import { Button, Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem } from "@/shared/ui/kit";
-import { PopoverSideOffset } from "./constants";
+import { PopoverSideOffset } from "../constants";
 
 // TODO: implement this component
 // QUESTION: how to define what was the previous state of all toggles

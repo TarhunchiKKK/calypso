@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
-import { Colors, PopoverSideOffset } from "./constants";
+import { Colors, PopoverSideOffset } from "../constants";
 
 type Props = {
     renderItem: (color: string) => React.ReactNode;

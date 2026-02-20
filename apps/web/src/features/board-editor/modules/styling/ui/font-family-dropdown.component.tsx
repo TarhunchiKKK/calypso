@@ -3,7 +3,7 @@
 import type { NodeStyles } from "@repo/common";
 import { CaseSensitive } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
-import { Fonts } from "./constants";
+import { Fonts } from "../constants";
 
 type Props = {
     onSelect: (fontFamily: NodeStyles["fontFamily"]) => void;

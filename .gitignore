@@ -13,6 +13,7 @@ node_modules
 
 # IDE - VSCode
 .vscode/settings.json
+.idx
 
 # Debug
 logs
