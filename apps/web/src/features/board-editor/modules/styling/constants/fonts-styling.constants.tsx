@@ -2,7 +2,7 @@ import type { NodeStyles } from "@repo/common";
 import { ALargeSmall, CaseSensitive } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui";
 
-export const FontFamilyPlaceholder = <CaseSensitive className="w-4 h-4 dark:text-white" />;
+export const FontFamilyPlaceholder = <CaseSensitive className="dark:text-white" />;
 
 export const FontSizePlaceholder = <ALargeSmall className="dark:text-white" />;
 

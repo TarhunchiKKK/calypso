@@ -35,6 +35,7 @@ export type ViewModel = {
 
     canvas?: {
         onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
+        onMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
         onKeyDown?: React.KeyboardEventHandler;
     };
 
@@ -50,7 +51,10 @@ export type ViewModel = {
         onWheel?: (e: WheelEvent) => void;
     };
 
-    additionalElement?: ReactNode;
+    additionalElements?: {
+        canvas?: ReactNode;
+        layout?: ReactNode;
+    };
 
     actions?: {
         idle?: {

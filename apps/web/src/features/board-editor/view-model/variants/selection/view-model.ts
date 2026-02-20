@@ -54,7 +54,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
         canvasMediator.setHandlers({
             right: {
                 onClick: e => {
-                    console.log("canvas click");
                     if (viewState.selectedIds.size) {
                         setViewState(
                             switchToStyling({
