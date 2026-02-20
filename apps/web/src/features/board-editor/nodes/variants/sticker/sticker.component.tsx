@@ -11,18 +11,19 @@ type Props = PropsWithChildren<{
 }>;
 
 export function StickerComponent({ node, handlers, showContent, children }: Props) {
-    const styles: CSSProperties = {
+    const wrapperStyles: CSSProperties = {
         width: node.rect.width,
         height: node.rect.height,
         left: node.rect.x,
-        top: node.rect.y
+        top: node.rect.y,
+        backgroundColor: node.styles.backgroundColor
     };
 
     return (
         <div
             data-id={node.id}
-            className="absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
-            style={styles}
+            className="absolute px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
+            style={wrapperStyles}
             {...handlers}
         >
             {showContent && <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">{node.text}</div>}
