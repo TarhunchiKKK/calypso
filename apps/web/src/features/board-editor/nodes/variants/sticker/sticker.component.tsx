@@ -16,8 +16,17 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
         height: node.rect.height,
         left: node.rect.x,
         top: node.rect.y,
-        backgroundColor: node.styles.backgroundColor
+        backgroundColor: node.styles.backgroundColor,
+        borderStyle: node.styles.borderStyle,
+        borderColor: node.styles.borderColor,
     };
+
+    const textStyles: CSSProperties = {
+        fontFamily: node.styles.fontFamily,
+        fontSize: node.styles.fontSize,
+        color: node.styles.color,
+        textAlign: node.styles.textAlign
+    }
 
     return (
         <div
@@ -26,7 +35,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
             style={wrapperStyles}
             {...handlers}
         >
-            {showContent && <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">{node.text}</div>}
+            {showContent && <div style={textStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">{node.text}</div>}
 
             {children}
         </div>

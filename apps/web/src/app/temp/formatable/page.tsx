@@ -1,7 +1,7 @@
 "use client";
 
 import type { Descendant } from "slate";
-import { FormatableTextarea } from "@/shared/ui/formatable-input";
+import { FormatableTextarea } from "@/shared/ui/formattable-input";
 
 const value: Descendant[] = [
     {
