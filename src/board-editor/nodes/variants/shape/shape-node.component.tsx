@@ -24,10 +24,8 @@ export function ShapeNodeComponent({ node, handlers, children }: Props) {
 
     const ShapeToRender = ShapeVariantIconsMap[node.variant];
 
-    console.log(node.styles.borderColor);
-
     return (
-        <div data-id={node.id} className="absolute px-2 py-4 shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
+        <div data-id={node.id} className="absolute cursor-pointer" style={wrapperStyles} {...handlers}>
             <ShapeToRender className="w-full h-full" {...iconStyles} />
 
             {children}

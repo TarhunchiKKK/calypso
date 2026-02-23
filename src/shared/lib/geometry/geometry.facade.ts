@@ -6,6 +6,10 @@ import type { Offset, Point, Rect } from "@/shared/lib/geometry";
  * This class centralizes the geometry logic, making it easier to maintain and reuse.
  */
 export class Geometry {
+    public static pointFromEvent(e: Pick<React.MouseEvent, "clientX" | "clientY">): Point {
+        return { x: e.clientX, y: e.clientY };
+    }
+
     /**
      * Calculates the Euclidean distance between two points.
      * @param a - The first point.

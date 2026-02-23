@@ -1,3 +1,4 @@
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
@@ -33,7 +34,7 @@ export function withActions(viewState: ViewState, setViewState: ViewModelParams[
         },
         shapes: {
             isActive: isShapes,
-            onClick: e => (!isShapes ? setViewState(switchToShapeSelection({ x: e.clientX, y: e.clientY })) : undefined)
+            onClick: e => (!isShapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
         }
     };
 

@@ -9,7 +9,7 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
     const [offset, setOffset] = useState<Offset>();
 
     const onWindowMouseMove = (viewState: DraggingViewState, e: MouseEvent) => {
-        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         setOffset(Geometry.calculateOffset(viewState.startPoint, currentPoint));
     };

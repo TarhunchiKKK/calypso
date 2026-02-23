@@ -56,9 +56,9 @@ export function useLayoutDimensionsModel() {
 
         const newZoom = zoom * delta;
 
-        const currentMousePoint = applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentMousePoint = applyForPoint(Geometry.pointFromEvent(e));
 
-        const newMousePoint = applyForPoint({ x: e.clientX, y: e.clientY });
+        const newMousePoint = applyForPoint(Geometry.pointFromEvent(e));
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 

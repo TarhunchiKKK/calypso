@@ -19,7 +19,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     }
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {
-        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         setSelectionWindowRect(Geometry.rectFromPoints(viewState.startPoint, currentPoint));
     };
