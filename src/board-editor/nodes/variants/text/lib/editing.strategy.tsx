@@ -1,6 +1,6 @@
 import type { Descendant } from "slate";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { FormatableTextarea } from "@/shared/ui/formatable-input";
+import { FormatableTextarea } from "@/features/formatable-input";
 import type { TextNode } from "../text-node.type";
 
 export class EditTextNodeStrategy extends NodeEditingStrategy {
