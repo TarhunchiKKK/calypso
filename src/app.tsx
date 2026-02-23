@@ -1,7 +1,7 @@
-import { BoardEditor } from "@/features/board-editor";
-import { ThemeProvider, ThemeSwitch } from "@/features/dark-mode";
+import { BoardEditor } from "@/board-editor";
+import type { NodeBase } from "@/board-editor/core";
+import { ThemeSwitch } from "@/features/dark-mode";
 import { BoardHeader } from "@/features/header";
-import type { NodeBase } from "./features/board-editor/core";
 
 const mockNodes = [
     {
@@ -62,18 +62,16 @@ const mockNodes = [
 
 export function App() {
     return (
-        <ThemeProvider>
-            <div className="min-h-screen flex flex-col">
-                <BoardEditor nodes={mockNodes}>
-                    <div className="absolute w-full px-6 top-4 left-0 flex flex-row justify-between items-center">
-                        <BoardHeader.LeftPanel boardName="New board" />
+        <div className="min-h-screen flex flex-col">
+            <BoardEditor nodes={mockNodes}>
+                <div className="absolute w-full px-6 top-4 left-0 flex flex-row justify-between items-center">
+                    <BoardHeader.LeftPanel boardName="New board" />
 
-                        <BoardHeader.RightPanel>
-                            <ThemeSwitch />
-                        </BoardHeader.RightPanel>
-                    </div>
-                </BoardEditor>
-            </div>
-        </ThemeProvider>
+                    <BoardHeader.RightPanel>
+                        <ThemeSwitch />
+                    </BoardHeader.RightPanel>
+                </div>
+            </BoardEditor>
+        </div>
     );
 }

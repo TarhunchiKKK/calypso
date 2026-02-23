@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./app";
-import "./globals.css";
+import "./index.css";
+import { ThemeProvider } from "./features/dark-mode";
 
 const root = document.getElementById("root");
 
@@ -11,6 +12,8 @@ if (!root) {
 
 createRoot(root).render(
     <StrictMode>
-        <App />
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
     </StrictMode>
 );
