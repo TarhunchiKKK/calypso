@@ -1,7 +1,5 @@
 import type { Offset, Point, Rect } from "@/shared/lib/geometry";
 
-// REFACTOR: move to `shared` slice
-
 /**
  * A utility class that provides a collection of static methods for geometric calculations.
  * It is used throughout the board editor to handle operations related to points, rectangles, and transformations.

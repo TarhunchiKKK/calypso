@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Geometry } from "@/board-editor/core";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { Rect } from "@/shared/lib/geometry";
+import { Geometry, type Rect } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
