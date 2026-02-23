@@ -44,7 +44,7 @@ export function BoardEditor({ nodes, children }: Props) {
             >
                 {viewModel.nodes.map(node => node.render())}
 
-                {viewModel.additionalElement}
+                {viewModel.additionalElements?.canvas}
             </Canvas>
 
             <ActionsBar>
@@ -58,6 +58,8 @@ export function BoardEditor({ nodes, children }: Props) {
             </ActionsBar>
 
             {children}
+
+            {viewModel.additionalElements?.layout}
         </Layout>
     );
 }

@@ -5,3 +5,9 @@ export abstract class NodeEditingStrategy {
 
     public abstract ui(node: NodeBase): React.ReactNode;
 }
+
+export class EmptyNodeEditingStrategy extends NodeEditingStrategy {
+    public override ui() {
+        return null;
+    }
+}

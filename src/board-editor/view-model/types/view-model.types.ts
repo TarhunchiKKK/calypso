@@ -1,5 +1,4 @@
 import type React from "react";
-import type { ReactNode } from "react";
 import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
@@ -50,7 +49,10 @@ export type ViewModel = {
         onWheel?: (e: WheelEvent) => void;
     };
 
-    additionalElement?: ReactNode;
+    additionalElements?: {
+        canvas?: React.ReactNode;
+        layout?: React.ReactNode;
+    };
 
     actions?: {
         idle?: {

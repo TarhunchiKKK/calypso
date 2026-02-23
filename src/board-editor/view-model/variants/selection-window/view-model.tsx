@@ -24,7 +24,9 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
                     selectionWindow.onWindowMouseUp(viewState);
                 }
             },
-            additionalElement: selectionWindow.rect ? <SelectionWindow {...selectionWindow.rect} /> : null
+            additionalElements: {
+                canvas: selectionWindow.rect ? <SelectionWindow {...selectionWindow.rect} /> : null
+            }
         };
     };
 }

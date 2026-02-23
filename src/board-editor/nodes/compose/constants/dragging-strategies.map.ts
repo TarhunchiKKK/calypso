@@ -5,5 +5,6 @@ import { RectNodeDraggingStrategy } from "../../variants/shared";
 
 export const DraggingStrategiesMap: Record<NodeTypes, ConstructorFunction<typeof NodeDraggingStrategy>> = {
     sticker: () => new RectNodeDraggingStrategy(),
-    text: () => new RectNodeDraggingStrategy()
+    text: () => new RectNodeDraggingStrategy(),
+    shape: () => new RectNodeDraggingStrategy()
 };

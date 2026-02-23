@@ -27,7 +27,7 @@ export function ColorsDropdown({ title, colors, placeholder, renderItem, onSelec
                 </Tooltip>
             </PopoverTrigger>
 
-            <PopoverContent className="w-[176px] p-0" sideOffset={PopoverSideOffset}>
+            <PopoverContent className="w-44 p-0" sideOffset={PopoverSideOffset}>
                 <ToggleGroup type="single" variant="default" className="w-full grid!">
                     <div className="grid grid-cols-4">
                         {colors.map(color => (
