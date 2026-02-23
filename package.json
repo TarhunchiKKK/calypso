@@ -3,6 +3,13 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "description": "Virtual whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
+    "license": "MIT",
+    "author": {
+        "name": "Konstantin Barilo",
+        "email": "kostabarilo12@gmail.com",
+        "url": "https://github.com/TarhunchiKKK"
+    },
     "scripts": {
         "dev": "bun run --bun vite",
         "build": "tsc -b && bun run --bun vite build",
@@ -14,7 +21,8 @@
         "lint:fix": "bunx --bun biome lint --write",
         "knip": "knip",
         "storybook:dev": "storybook dev -p 6006",
-        "storybook:build": "storybook build"
+        "storybook:build": "storybook build",
+        "refresh-env": "bun run scripts/refresh-env-example.ts"
     },
     "dependencies": {
         "@radix-ui/react-dropdown-menu": "^2.1.16",
