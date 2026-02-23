@@ -1,6 +1,7 @@
 import { withNodeId } from "@/board-editor/core";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { selectNodes } from "@/board-editor/modules/selection";
+import { Geometry } from "@/shared/lib/geometry";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
@@ -59,7 +60,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                         setViewState(
                             switchToStyling({
                                 selectedIds: viewState.selectedIds,
-                                barPosition: { x: e.clientX, y: e.clientY }
+                                barPosition: Geometry.pointFromEvent(e)
                             })
                         );
                     }

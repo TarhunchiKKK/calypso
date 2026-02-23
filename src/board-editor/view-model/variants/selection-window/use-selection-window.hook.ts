@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Geometry } from "@/board-editor/core";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { Rect } from "@/shared/lib/geometry";
+import { Geometry, type Rect } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
@@ -20,7 +19,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     }
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {
-        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         setSelectionWindowRect(Geometry.rectFromPoints(viewState.startPoint, currentPoint));
     };

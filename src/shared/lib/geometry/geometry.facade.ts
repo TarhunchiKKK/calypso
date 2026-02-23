@@ -1,4 +1,4 @@
-import type { Rect, Point, Offset } from "@/shared/lib/geometry";
+import type { Offset, Point, Rect } from "@/shared/lib/geometry";
 
 /**
  * A utility class that provides a collection of static methods for geometric calculations.
@@ -6,6 +6,11 @@ import type { Rect, Point, Offset } from "@/shared/lib/geometry";
  * This class centralizes the geometry logic, making it easier to maintain and reuse.
  */
 export class Geometry {
+    // DOCS
+    public static pointFromEvent(e: Pick<React.MouseEvent, "clientX" | "clientY">): Point {
+        return { x: e.clientX, y: e.clientY };
+    }
+
     /**
      * Calculates the Euclidean distance between two points.
      * @param a - The first point.

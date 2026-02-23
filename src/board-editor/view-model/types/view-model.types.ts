@@ -1,5 +1,4 @@
 import type React from "react";
-import type { ReactNode } from "react";
 import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
@@ -35,6 +34,7 @@ export type ViewModel = {
 
     canvas?: {
         onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
+        onMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
         onKeyDown?: React.KeyboardEventHandler;
     };
 
@@ -50,7 +50,10 @@ export type ViewModel = {
         onWheel?: (e: WheelEvent) => void;
     };
 
-    additionalElement?: ReactNode;
+    additionalElements?: {
+        canvas?: React.ReactNode;
+        layout?: React.ReactNode;
+    };
 
     actions?: {
         idle?: {
@@ -59,6 +62,11 @@ export type ViewModel = {
         };
 
         stickers?: {
+            isActive: boolean;
+            onClick?: React.MouseEventHandler;
+        };
+
+        shapes?: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
         };

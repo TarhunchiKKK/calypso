@@ -21,11 +21,13 @@ export function useStylingViewModel(params: ViewModelParams) {
         return {
             nodes: StylingNodesMapper.from(nodesModel.nodes).applySelection(viewState.selectedIds).get(),
             canvas: canvasMediator.handlers,
-            additionalElement: (
-                <div style={{ left: viewState.barPosition.x, top: viewState.barPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                    <StylesBar onUpdate={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
-                </div>
-            )
+            additionalElements: {
+                layout: (
+                    <div style={{ left: viewState.barPosition.x, top: viewState.barPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
+                        <StylesBar onUpdate={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
+                    </div>
+                )
+            }
         };
     };
 }

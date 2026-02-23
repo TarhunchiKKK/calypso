@@ -1,6 +1,6 @@
 "use client";
 
-import { MousePointer2, StickerIcon } from "lucide-react";
+import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../shared/lib/window";
 import type { NodeBase } from "./core";
@@ -40,11 +40,12 @@ export function BoardEditor({ nodes, children }: Props) {
                     <Overlay onKeyDown={viewModel.overlay?.onKeyDown} onMouseDown={viewModel.overlay?.onMouseDown} onMouseUp={viewModel.overlay?.onMouseUp} />
                 }
                 onMouseDown={viewModel.canvas?.onMouseDown}
+                onMouseUp={viewModel.canvas?.onMouseUp}
                 onKeyDown={viewModel.canvas?.onKeyDown}
             >
                 {viewModel.nodes.map(node => node.render())}
 
-                {viewModel.additionalElement}
+                {viewModel.additionalElements?.canvas}
             </Canvas>
 
             <ActionsBar>
@@ -55,9 +56,15 @@ export function BoardEditor({ nodes, children }: Props) {
                 <ActionButton isActive={viewModel.actions?.stickers?.isActive} onClick={viewModel.actions?.stickers?.onClick}>
                     <StickerIcon />
                 </ActionButton>
+
+                <ActionButton isActive={viewModel.actions?.shapes?.isActive} onClick={viewModel.actions?.shapes?.onClick}>
+                    <TriangleIcon />
+                </ActionButton>
             </ActionsBar>
 
             {children}
+
+            {viewModel.additionalElements?.layout}
         </Layout>
     );
 }

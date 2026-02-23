@@ -9,7 +9,9 @@ import { useIdleViewModel } from "./variants/idle/view-model";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
-import { useStickersViewModel } from "./variants/stickers/view-model";
+import { useShapeSelectionViewModel } from "./variants/shape-selection/view-model";
+import { useShapesCreationViewModel } from "./variants/shapes-creation/view-model";
+import { useStickersCreationViewModel } from "./variants/stickers-creation/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
@@ -20,8 +22,11 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         setViewState
     };
 
+    // REFACTOR: do this with view model creators record
     const idleViewModel = useIdleViewModel(newParams);
-    const stickersViewModel = useStickersViewModel(newParams);
+    const stickersCreationViewModel = useStickersCreationViewModel(newParams);
+    const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
+    const shapesCreationViewModel = useShapesCreationViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
@@ -34,8 +39,14 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "idle":
             viewModel = idleViewModel(viewState);
             break;
-        case "stickers":
-            viewModel = stickersViewModel();
+        case "stickers-creation":
+            viewModel = stickersCreationViewModel();
+            break;
+        case "shape-selection":
+            viewModel = shapeSelectionViewModel(viewState);
+            break;
+        case "shapes-creation":
+            viewModel = shapesCreationViewModel(viewState);
             break;
         case "selection":
             viewModel = selectionViewModel(viewState);
@@ -59,7 +70,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error("Unknown view state");
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

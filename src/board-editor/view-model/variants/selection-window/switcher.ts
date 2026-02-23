@@ -1,6 +1,6 @@
 import type React from "react";
 import type { NodesSelectionMode } from "@/board-editor/modules/selection";
-import type { Point } from "@/shared/lib/geometry";
+import { Geometry, type Point } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { IdleViewState } from "../idle/view-state";
 import type { SelectionViewState } from "../selection/view-state";
@@ -29,7 +29,7 @@ export function useSwitchToSelectionWindow({ layoutDimensionsModel, setViewState
             return;
         }
 
-        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
 

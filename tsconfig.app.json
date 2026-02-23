@@ -27,8 +27,7 @@
         "experimentalDecorators": true,
 
         "paths": {
-            "@/*": ["./src/*"],
-            "@/types/*": ["./@types/*"]
+            "@/*": ["./src/*"]
         }
     },
     "include": ["src"]

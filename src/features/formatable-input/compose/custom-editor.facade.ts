@@ -1,5 +1,5 @@
 import { Editor, Element, Transforms } from "slate";
-import type { CustomElement } from "@/types/slate";
+import type { CustomElement } from "@/@types/slate";
 import type { TextMarks } from "../types/text-marks.types";
 
 export class CustomEditor {

@@ -4,7 +4,6 @@ import { Button } from "@/shared/ui/kit/button";
 
 type ActionsBarProps = PropsWithChildren;
 
-// TODO: implement `Wrapper` component
 export function ActionsBar({ children }: ActionsBarProps) {
     return <Wrapper className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">{children}</Wrapper>;
 }

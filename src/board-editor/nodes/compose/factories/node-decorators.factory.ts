@@ -14,6 +14,7 @@ import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
 export class NodeDecoratorsFactory {
     public static wrap(node: NodeBase) {
         const wrapperCreator = WrapperConstructorsMap[node.type];
+
         return wrapperCreator(node);
     }
 
@@ -25,18 +26,25 @@ export class NodeDecoratorsFactory {
     @CheckBlocked()
     public static draggable(node: Decoratable, offset?: Offset) {
         const strategyCreator = DraggingStrategiesMap[node.type];
+
         return new DraggableNodeDecorator(node, strategyCreator(), offset);
     }
 
     @CheckBlocked()
     public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizingStrategiesMap[node.type];
+
         return new ResizableNodeDecorator(node, strategyCreator(handler), size);
     }
 
     @CheckBlocked()
     public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
+
+        if (!strategyCreator) {
+            return node;
+        }
+
         return new EditableNodeDecorator(node, strategyCreator(handler));
     }
 }

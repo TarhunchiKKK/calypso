@@ -1,7 +1,7 @@
 import type React from "react";
+import { Geometry, type Point } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { DraggingViewState } from "./view-state";
-import type { Point } from "@/shared/lib/geometry";
 
 type Params = {
     startPoint: Point;
@@ -23,7 +23,7 @@ export function useSwitchToDragging({ layoutDimensionsModel, setViewState }: Vie
             return;
         }
 
-        const currentPoint = layoutDimensionsModel.applyForPoint({ x: e.clientX, y: e.clientY });
+        const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         setViewState(
             switchToDragging({

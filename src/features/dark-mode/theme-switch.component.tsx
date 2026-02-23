@@ -1,19 +1,18 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { ENV } from "@/shared/config";
 import { Button } from "@/shared/ui/kit";
 import { defaultTheme, setDocumentTheme, type Theme } from "./lib";
 
 export function ThemeSwitch() {
     const toggleTheme = () => {
-        const currentTheme = (localStorage.getItem(ENV.THEME_LS_KEY) as Theme) ?? defaultTheme;
+        const currentTheme = (localStorage.getItem(import.meta.env.VITE_THEME_LS_KEY) as Theme) ?? defaultTheme;
 
         const newTheme = currentTheme === "light" ? "dark" : "light";
 
         setDocumentTheme(newTheme);
 
-        localStorage.setItem(ENV.THEME_LS_KEY, newTheme);
+        localStorage.setItem(import.meta.env.VITE_THEME_LS_KEY, newTheme);
     };
 
     return (
