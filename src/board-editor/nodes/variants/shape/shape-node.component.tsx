@@ -22,11 +22,11 @@ export function ShapeNodeComponent({ node, handlers, children }: Props) {
         borderRadius: node.styles.borderRadius
     };
 
-    const shape = ShapeVariantIconsMap[node.variant];
+    const ShapeToRender = ShapeVariantIconsMap[node.variant];
 
     return (
         <div data-id={node.id} className="absolute px-2 py-4 shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
-            {shape}
+            <ShapeToRender className="w-full h-full" />
 
             {children}
         </div>
