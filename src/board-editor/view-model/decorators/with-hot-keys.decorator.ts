@@ -1,7 +1,7 @@
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
-import { switchToStickers } from "../variants/stickers/switcher";
+import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
 
 /**
  * A decorator function that enhances a ViewModel with keyboard shortcuts (hotkeys).
@@ -28,8 +28,8 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             setViewState(switchToIdle());
         }
 
-        if (e.key === "s" && viewState.type !== "stickers") {
-            setViewState(switchToStickers());
+        if (e.key === "s" && viewState.type !== "stickers-creation") {
+            setViewState(switchToStickersCreation());
         }
     };
 

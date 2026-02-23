@@ -3,11 +3,9 @@ import { NodesFactory } from "@/board-editor/nodes";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { StickersNodesMapper } from "./nodes-mapping.lib";
+import { StickersCreationNodesMapper } from "./nodes-mapping.lib";
 
-// REFACTOR: rename into `StickersCreatingViewModel`
-
-export function useStickersViewModel(params: ViewModelParams) {
+export function useStickersCreationViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 
     const canvasMediator = useMouseEventsMediator();
@@ -24,7 +22,7 @@ export function useStickersViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: new StickersNodesMapper(nodesModel.nodes).get(),
+            nodes: new StickersCreationNodesMapper(nodesModel.nodes).get(),
             canvas: canvasMediator.handlers
         };
     };

@@ -1,7 +1,7 @@
 import { type NodeBase, NodesMapper } from "@/board-editor/core";
 
-export class StickersNodesMapper extends NodesMapper {
+export class ShapesCreationNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {
-        return new StickersNodesMapper(nodes);
+        return new ShapesCreationNodesMapper(nodes);
     }
 }
