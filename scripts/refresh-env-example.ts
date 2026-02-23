@@ -12,6 +12,7 @@ if (!fs.existsSync(sourceEnvFile)) {
 
 // load environment variables to example environment variables file
 const envContent: string = fs.readFileSync(sourceEnvFile, "utf-8");
+
 const envKeys = envContent.split("\n").map(line => {
     if (line.includes("=")) {
         return `${line.split("=")[0]}=`;
