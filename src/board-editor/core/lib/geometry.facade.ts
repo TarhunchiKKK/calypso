@@ -1,4 +1,6 @@
-import type { Rect, Point, Offset } from "@/shared/lib/geometry";
+import type { Offset, Point, Rect } from "@/shared/lib/geometry";
+
+// REFACTOR: move to `shared` slice
 
 /**
  * A utility class that provides a collection of static methods for geometric calculations.
