@@ -60,13 +60,7 @@
 
     "Create Node Type": {
         "prefix": "n-type",
-        "body": [
-            "import { NodeBase } from \"../../types\";",
-            "",
-            "export type $1Node = NodeBase & {",
-            "    type: \"$2\";",
-            "};"
-        ]
+        "body": ["import { NodeBase } from \"../../types\";", "", "export type $1Node = NodeBase & {", "    type: \"$2\";", "};"]
     },
     "Create Node Wrapper": {
         "prefix": "n-wrapper",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "ignore": ["./src/shared/ui/kit/*"],
-    "ignoreDependencies": ["@biomejs/biome"],
     "rules": {
         "files": "error",
         "classMembers": "error",
@@ -11,4 +10,3 @@
         "unlisted": "off"
     }
 }
-
