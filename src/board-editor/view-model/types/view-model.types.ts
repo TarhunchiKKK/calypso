@@ -34,6 +34,7 @@ export type ViewModel = {
 
     canvas?: {
         onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
+        onMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
         onKeyDown?: React.KeyboardEventHandler;
     };
 
@@ -61,6 +62,11 @@ export type ViewModel = {
         };
 
         stickers?: {
+            isActive: boolean;
+            onClick?: React.MouseEventHandler;
+        };
+
+        shapes?: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
         };

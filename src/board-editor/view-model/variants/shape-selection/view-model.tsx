@@ -1,9 +1,12 @@
+import { Geometry } from "@/shared/lib/geometry";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
+import { switchToShapesCreation } from "../shapes-creation/switcher";
 import { ShapeSelectionNodesMapper } from "./nodes-mapping.lib";
-import { ShapeSelector } from "./shape-selector.component";
+import { ShapeSelector } from "./ui/shape-selector.component";
+import { ShapeSelectorOffset } from "./ui/ui.constants";
 import type { ShapeSelectionViewState } from "./view-state";
 
 export function useShapeSelectionViewModel(params: ViewModelParams) {
@@ -21,13 +24,15 @@ export function useShapeSelectionViewModel(params: ViewModelParams) {
             }
         });
 
+        const shapeSelectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
+
         return {
             nodes: ShapeSelectionNodesMapper.from(nodesModel.nodes).get(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (
-                    <div style={{ left: viewState.clickPoint.x, top: viewState.clickPoint.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                        <ShapeSelector onSelect={() => {}} />
+                    <div style={{ left: shapeSelectorPosition.x, top: shapeSelectorPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
+                        <ShapeSelector onSelect={variant => setViewState(switchToShapesCreation(variant))} />
                     </div>
                 )
             }
