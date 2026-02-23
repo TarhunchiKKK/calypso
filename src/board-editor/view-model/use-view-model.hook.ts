@@ -9,6 +9,7 @@ import { useIdleViewModel } from "./variants/idle/view-model";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
+import { useShapesViewModel } from "./variants/shapes/view-model";
 import { useStickersViewModel } from "./variants/stickers/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
 
@@ -22,6 +23,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
 
     const idleViewModel = useIdleViewModel(newParams);
     const stickersViewModel = useStickersViewModel(newParams);
+    const shapesViewModel = useShapesViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
@@ -36,6 +38,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "stickers":
             viewModel = stickersViewModel();
+            break;
+        case "shapes":
+            viewModel = shapesViewModel(viewState);
             break;
         case "selection":
             viewModel = selectionViewModel(viewState);

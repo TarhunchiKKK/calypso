@@ -4,6 +4,7 @@ import type { IdleViewState } from "../variants/idle/view-state";
 import type { ResizingViewState } from "../variants/resizing/view-state";
 import type { SelectionViewState } from "../variants/selection/view-state";
 import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
+import type { ShapesViewState } from "../variants/shapes/view-state";
 import type { StickersViewState } from "../variants/stickers/view-state";
 import type { StylingViewState } from "../variants/styling/view-state";
 
@@ -22,6 +23,7 @@ import type { StylingViewState } from "../variants/styling/view-state";
 export type ViewState =
     | IdleViewState
     | StickersViewState
+    | ShapesViewState
     | SelectionViewState
     | SelectionWindowViewState
     | DraggingViewState
