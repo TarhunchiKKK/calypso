@@ -18,7 +18,7 @@ export function useShapesCreationViewModel(params: ViewModelParams) {
                 onClick: (e: React.MouseEvent) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    nodesModel.service.createOne(NodesFactory.shape(clickPoint, viewState.variant).data);
+                    nodesModel.service.createOne(NodesFactory.shape(clickPoint, viewState.variant));
                 }
             }
         });

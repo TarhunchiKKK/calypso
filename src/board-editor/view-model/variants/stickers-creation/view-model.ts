@@ -17,7 +17,7 @@ export function useStickersCreationViewModel(params: ViewModelParams) {
                 onClick: (e: React.MouseEvent) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    nodesModel.service.createOne(NodesFactory.sticker(clickPoint).data);
+                    nodesModel.service.createOne(NodesFactory.sticker(clickPoint));
                 }
             }
         });
