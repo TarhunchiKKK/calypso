@@ -6,6 +6,8 @@ import type { ViewModel, ViewModelParams } from "../../types";
 import { ShapesNodesMapper } from "./nodes-mapping.lib";
 import type { ShapesViewState } from "./view-state";
 
+// REFACTOR: rename into `ShapesCreatingViewModel`
+
 export function useShapesViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 

@@ -3,6 +3,8 @@ import type { ShapeNode, ShapeVariants } from "../../variants/shape/shape-node.t
 import type { StickerNode } from "../../variants/sticker/sticker.type";
 import type { TextNode } from "../../variants/text/text-node.type";
 
+// REFACTOR: move this into `NodesFactory` class
+// DELETE
 export const NodeCreatorsMap = {
     sticker: (point: Point, id?: string): StickerNode => {
         return {

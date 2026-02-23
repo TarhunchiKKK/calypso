@@ -21,6 +21,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         setViewState
     };
 
+    // REFACTOR: do this with view model creators record
     const idleViewModel = useIdleViewModel(newParams);
     const stickersViewModel = useStickersViewModel(newParams);
     const shapesViewModel = useShapesViewModel(newParams);

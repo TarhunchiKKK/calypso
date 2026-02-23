@@ -5,6 +5,8 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModel, ViewModelParams } from "../../types";
 import { StickersNodesMapper } from "./nodes-mapping.lib";
 
+// REFACTOR: rename into `StickersCreatingViewModel`
+
 export function useStickersViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 
