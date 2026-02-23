@@ -1,6 +1,6 @@
 import type { Rect } from "@/shared/lib/geometry";
 
-export type NodeTypes = "sticker" | "text";
+export type NodeTypes = "sticker" | "text" | "shape";
 
 export type NodeStyles = {
     fontFamily: string;
