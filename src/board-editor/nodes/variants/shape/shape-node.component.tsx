@@ -14,19 +14,21 @@ export function ShapeNodeComponent({ node, handlers, children }: Props) {
         width: node.rect.width,
         height: node.rect.height,
         left: node.rect.x,
-        top: node.rect.y,
+        top: node.rect.y
+    };
 
-        backgroundColor: node.styles.backgroundColor,
-        borderStyle: node.styles.borderStyle,
-        borderColor: node.styles.borderColor,
-        borderRadius: node.styles.borderRadius
+    const iconStyles = {
+        fill: node.styles.backgroundColor,
+        color: node.styles.borderColor
     };
 
     const ShapeToRender = ShapeVariantIconsMap[node.variant];
 
+    console.log(node.styles.borderColor);
+
     return (
         <div data-id={node.id} className="absolute px-2 py-4 shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
-            <ShapeToRender className="w-full h-full" />
+            <ShapeToRender className="w-full h-full" {...iconStyles} />
 
             {children}
         </div>

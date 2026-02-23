@@ -68,9 +68,9 @@ export const NodeCreatorsMap = {
             },
             styles: {
                 backgroundColor: "orange",
-                borderColor: "none",
+                borderColor: "green",
                 borderStyle: "dashed",
-                color: "black",
+                color: "green",
                 fontSize: 14,
                 textAlign: "center",
                 borderRadius: 8,
