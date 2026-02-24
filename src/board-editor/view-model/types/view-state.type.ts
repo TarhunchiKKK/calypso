@@ -1,6 +1,7 @@
 import type { DraggingViewState } from "../variants/dragging/view-state";
 import type { EditingViewState } from "../variants/editing/view-state";
 import type { IdleViewState } from "../variants/idle/view-state";
+import type { NodesContextMenuViewState } from "../variants/nodes-context-menu/view-state";
 import type { ResizingViewState } from "../variants/resizing/view-state";
 import type { SelectionViewState } from "../variants/selection/view-state";
 import type { SelectionWindowViewState } from "../variants/selection-window/view-state";
@@ -31,4 +32,5 @@ export type ViewState =
     | DraggingViewState
     | ResizingViewState
     | EditingViewState
-    | StylingViewState;
+    | StylingViewState
+    | NodesContextMenuViewState;
