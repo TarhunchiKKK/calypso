@@ -1,3 +1,5 @@
+import { HotKeyUtils } from "@/shared/lib/hot-keys";
+import { HotKeysMap } from "../lib/hot-keys-map.constants";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
@@ -15,20 +17,16 @@ import { switchToStickersCreation } from "../variants/stickers-creation/switcher
  * @returns A new `ViewModel` instance that includes the `onKeyDown` handler for hotkeys.
  */
 export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: ViewModel): ViewModel {
-    const handleSwitchActionHotKeys = (e: React.KeyboardEvent) => {
-        if (e.key === "Escape" && viewState.type !== "idle") {
-            setViewState(switchToIdle());
-        }
-
+    const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "editing") {
             return;
         }
 
-        if (e.key === "i" && viewState.type !== "idle") {
+        if (viewState.type !== "idle" && HotKeyUtils.is(HotKeysMap.switch.toIdle, e)) {
             setViewState(switchToIdle());
         }
 
-        if (e.key === "s" && viewState.type !== "stickers-creation") {
+        if (viewState.type !== "stickers-creation" && HotKeyUtils.is(HotKeysMap.switch.toStickersCreation, e)) {
             setViewState(switchToStickersCreation());
         }
     };
@@ -38,7 +36,7 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             return;
         }
 
-        if (e.key === "Delete" || e.key === "Backspace") {
+        if (HotKeyUtils.is(HotKeysMap.selection.remove, e)) {
             nodesModel.service.removeMany(viewState.selectedIds);
             setViewState(switchToIdle());
         }
@@ -49,14 +47,14 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             return;
         }
 
-        if (e.key === "a" && e.ctrlKey) {
+        if (HotKeyUtils.is(HotKeysMap.selection.all, e)) {
             e.preventDefault();
             setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));
         }
     };
 
     const handleHotKeys = (e: React.KeyboardEvent) => {
-        handleSwitchActionHotKeys(e);
+        handleSwitchViewModelHotKeys(e);
         handleSelectionHotKeys(e);
         handleGlobalHotKeys(e);
     };
