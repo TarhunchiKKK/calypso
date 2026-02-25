@@ -48,6 +48,8 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         hotKey: HotKeysMap.selection.remove[0],
                         onClick: () => {
                             nodesModel.service.removeMany(viewState.selectedIds);
+
+                            setViewState(switchToIdle());
                         }
                     }
                 ]
