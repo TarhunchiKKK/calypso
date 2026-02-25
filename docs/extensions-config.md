@@ -1,4 +1,4 @@
-## Overiew
+## Overview
 
 Here are configurations of VS Code extensions that can be applied for more effective interaction with the code.
 
@@ -77,6 +77,10 @@ _This configurations should be applied to global `settings.json` file._
     "QUESTION": {
         "icon": "question",
         "iconColour": "yellow"
+    },
+    "IMPLEMENTATION": {
+        "icon": "code",
+        "iconColour": "cyan"
     }
 }
 ```
@@ -99,5 +103,5 @@ _This configurations should be applied to global `settings.json` file._
     "Formatable",
     "Renderable",
     "shadcn"
-  ]
+]
 ```
