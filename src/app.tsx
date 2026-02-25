@@ -5,6 +5,8 @@ export function App() {
     return (
         <ThemeProvider>
             <BoardEditorPage />
+
+            {/* <CurrentUi /> */}
         </ThemeProvider>
     );
 }

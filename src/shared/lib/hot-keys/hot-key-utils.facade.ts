@@ -14,4 +14,20 @@ export class HotKeyUtils {
 
         return false;
     }
+
+    public static stringify(hotKey: HotKey) {
+        const words: string[] = [];
+
+        if (hotKey.ctrlKey) {
+            words.push("Ctrl");
+        }
+
+        if (hotKey.shiftKey) {
+            words.push("Shift");
+        }
+
+        words.push(hotKey.key.toUpperCase());
+
+        return words.join("+");
+    }
 }

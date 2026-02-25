@@ -1,4 +1,5 @@
 export * from "./button";
+export * from "./context-menu";
 export * from "./dropdown-menu";
 export * from "./input";
 export * from "./popover";
