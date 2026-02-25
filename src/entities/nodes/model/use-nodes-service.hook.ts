@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { NodeBase } from "../types/node.types";
+import type { NodeBase } from "@/entities/nodes";
 
+// REFACTOR: move this hook to `entities` layer
 export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
     const createOne = (node: NodeBase) => {
         setNodes(nodes => [...nodes, node]);

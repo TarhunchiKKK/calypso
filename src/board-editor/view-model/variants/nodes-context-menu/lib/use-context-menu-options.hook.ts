@@ -1,4 +1,4 @@
-import { HotKeysMap } from "../../../lib/hot-keys-map.constants";
+import { HotKeysMap } from "../../../../lib/hot-keys-map.constants";
 import type { ViewModelParams } from "../../../types";
 import { switchToIdle } from "../../idle/switcher";
 import type { NodesContextMenuViewState } from "../view-state";

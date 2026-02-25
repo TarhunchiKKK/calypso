@@ -1,5 +1,5 @@
 import { Type } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
 import { Colors } from "../constants/colors.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../types";

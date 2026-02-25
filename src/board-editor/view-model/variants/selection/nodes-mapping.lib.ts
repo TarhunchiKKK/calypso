@@ -1,6 +1,7 @@
-import { type Decoratable, type NodeBase, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/board-editor/core";
+import { type Decoratable, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/board-editor/core";
 import type { ResizeDirection, ResizeHandler } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import type { NodeBase } from "@/entities/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;

@@ -2,8 +2,8 @@
 
 import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
+import type { NodeBase } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
-import type { NodeBase } from "./core";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";

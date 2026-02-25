@@ -1,5 +1,6 @@
-import { type NodeBase, NodesMapper } from "@/board-editor/core";
+import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import type { NodeBase } from "@/entities/nodes";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
     private selectedIds!: Set<string>;

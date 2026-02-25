@@ -1,3 +1,3 @@
-import type { NodeBase } from "@/board-editor/core";
+import type { NodeBase } from "@/entities/nodes";
 
 export type UpdateFn = (node: NodeBase) => NodeBase;

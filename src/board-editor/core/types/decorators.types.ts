@@ -1,5 +1,5 @@
+import type { NodeBase, NodeTypes } from "@/entities/nodes";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
-import type { NodeBase, NodeTypes } from "./node.types";
 
 export type Decoratable<T extends NodeBase = NodeBase> = {
     get id(): string;

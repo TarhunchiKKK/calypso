@@ -1,5 +1,5 @@
 import { ALargeSmall, CaseSensitive } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { FontFamilies, FontSizes } from "../constants/fonts-styling.constants";
 import type { UpdateFn } from "../types";

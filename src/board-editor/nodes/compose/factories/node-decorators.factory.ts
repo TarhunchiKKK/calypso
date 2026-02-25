@@ -1,6 +1,7 @@
-import type { Decoratable, NodeBase } from "@/board-editor/core";
+import type { Decoratable } from "@/board-editor/core";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/nodes-locking";
+import type { NodeBase } from "@/entities/nodes";
 import type { Offset, Rect } from "@/shared/lib/geometry";
 import { EditableNodeDecorator } from "../../../modules/editing";
 import type { ResizeHandler } from "../../../modules/resizing";

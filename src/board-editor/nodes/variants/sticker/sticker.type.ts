@@ -1,4 +1,4 @@
-import type { RectNode } from "@/board-editor/core";
+import type { RectNode } from "@/entities/nodes";
 
 export type StickerNode = RectNode & {
     type: "sticker";

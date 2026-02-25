@@ -1,5 +1,5 @@
 import { Square, SquareDashed, SquareRoundCorner } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { BorderRadiuses, BorderStyles } from "../constants/border-styling.constants";
 import { Colors } from "../constants/colors.constants";

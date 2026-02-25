@@ -1,5 +1,5 @@
 import { TextAlignStart } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { TextAligns } from "../constants/text-formatting.constants";
 import type { UpdateFn } from "../types";

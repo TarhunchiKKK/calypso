@@ -1,5 +1,5 @@
 import { Square, SquareDashed, SquareDot } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";
 
 export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = [

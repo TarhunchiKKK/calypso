@@ -1,5 +1,6 @@
-import { type NodeBase, type NodeHandlers, NodesMapper, type NodeWrapper } from "@/board-editor/core";
+import { type NodeHandlers, NodesMapper, type NodeWrapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import type { NodeBase } from "@/entities/nodes";
 import type { EditingViewState } from "./view-state";
 
 export class EditingNodesMapper extends NodesMapper {

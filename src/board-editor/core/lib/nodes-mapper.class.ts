@@ -1,6 +1,6 @@
+import type { NodeBase } from "@/entities/nodes";
 import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
-import type { NodeBase } from "../types/node.types";
 import type { Renderable } from "../types/ui.types";
 
 export class NodesMapper {

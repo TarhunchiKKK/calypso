@@ -1,5 +1,5 @@
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
-import { HotKeysMap } from "../lib/hot-keys-map.constants";
+import { HotKeysMap } from "../../lib/hot-keys-map.constants";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
