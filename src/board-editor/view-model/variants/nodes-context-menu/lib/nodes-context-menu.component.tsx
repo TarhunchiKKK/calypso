@@ -1,4 +1,4 @@
-import { type HotKey, HotKeyUtils } from "@/shared/lib/hot-keys";
+import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,24 +9,13 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger
 } from "@/shared/ui/kit";
+import type { ContextMenuOptionsGroup } from "./types";
 
-type Option = {
-    label: string;
-
-    hotKey?: HotKey;
-
-    onClick: () => void;
+type NodesContextMenuProps = {
+    groups: ContextMenuOptionsGroup[];
 };
 
-type Props = {
-    groups: {
-        label?: string;
-
-        options: Option[];
-    }[];
-};
-
-export function NodesContextMenu({ groups }: Props) {
+export function NodesContextMenu({ groups }: NodesContextMenuProps) {
     return (
         <DropdownMenu open={true}>
             <DropdownMenuTrigger className="hidden">Open</DropdownMenuTrigger>
@@ -47,7 +36,7 @@ export function NodesContextMenu({ groups }: Props) {
                             ))}
                         </DropdownMenuGroup>
 
-                        {groupIndex !== groups.length && <DropdownMenuSeparator />}
+                        {groupIndex < groups.length - 1 && <DropdownMenuSeparator />}
                     </div>
                 ))}
             </DropdownMenuContent>

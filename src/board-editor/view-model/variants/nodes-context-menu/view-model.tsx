@@ -4,11 +4,15 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToSelection } from "../selection/switcher";
 import { switchToStyling } from "../styling/switcher";
-import { NodesContextMenuNodesMapper } from "./nodes-mapping.lib";
+import { NodesContextMenu } from "./lib/nodes-context-menu.component";
+import { NodesContextMenuNodesMapper } from "./lib/nodes-mapping.lib";
+import { useContextMenuOptions } from "./lib/use-context-menu-options.hook";
 import type { NodesContextMenuViewState } from "./view-state";
 
 export function useNodesContextMenuViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel, setViewState } = params;
+
+    const contextMenuOptions = useContextMenuOptions(params);
 
     const overlayMediator = useMouseEventsMediator();
 
@@ -28,7 +32,14 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
 
         return {
             nodes: NodesContextMenuNodesMapper.from(nodesModel.nodes).get(),
-            overlay: overlayMediator.handlers
+            overlay: overlayMediator.handlers,
+            additionalElements: {
+                layout: (
+                    <div style={{ position: "absolute", left: viewState.position.x, top: viewState.position.y }}>
+                        <NodesContextMenu groups={contextMenuOptions.create(viewState)} />
+                    </div>
+                )
+            }
         };
     };
 }

@@ -1,10 +1,11 @@
-import { HotKeysMap } from "../../lib/hot-keys-map.constants";
-import type { ViewModelParams } from "../../types";
-import { switchToIdle } from "../idle/switcher";
-import type { NodesContextMenuViewState } from "./view-state";
+import { HotKeysMap } from "../../../lib/hot-keys-map.constants";
+import type { ViewModelParams } from "../../../types";
+import { switchToIdle } from "../../idle/switcher";
+import type { NodesContextMenuViewState } from "../view-state";
+import type { ContextMenuOptionsGroup } from "./types";
 
 export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelParams) {
-    const create = (viewState: NodesContextMenuViewState) => {
+    const create = (viewState: NodesContextMenuViewState): ContextMenuOptionsGroup[] => {
         return [
             {
                 label: "Exchange",
@@ -44,7 +45,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                 options: [
                     {
                         label: "Delete",
-                        hotKey: HotKeysMap.selection.remove,
+                        hotKey: HotKeysMap.selection.remove[0],
                         onClick: () => {
                             nodesModel.service.removeMany(viewState.selectedIds);
                         }

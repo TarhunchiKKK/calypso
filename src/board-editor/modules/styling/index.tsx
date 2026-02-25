@@ -14,7 +14,7 @@ type Props = {
 
 export function StylesBar({ onUpdate }: Props) {
     return (
-        <Wrapper className="flex flex-row justify-between items-center gap-4 px-2 py-1">
+        <Wrapper className="flex flex-row justify-between items-center gap-4 px-4 py-3">
             <FontStylesGroup onUpdate={onUpdate} />
 
             <Separator orientation="vertical" className="h-5!" />
