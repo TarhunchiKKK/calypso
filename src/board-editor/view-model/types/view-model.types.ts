@@ -5,6 +5,8 @@ import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
 
 export type ViewModelParams = {
+    boardId: string;
+
     nodesModel: NodesModel;
 
     layoutDimensionsModel: LayoutDimensionsModel;

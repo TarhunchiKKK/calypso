@@ -15,14 +15,17 @@ import { useViewModel } from "./view-model/use-view-model.hook";
 
 type Props = PropsWithChildren<{
     nodes: NodeBase[];
+
+    boardId: string;
 }>;
 
-export function BoardEditor({ nodes, children }: Props) {
+export function BoardEditor({ nodes, boardId, children }: Props) {
     const nodesModel = useNodesModel(nodes);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
 
     const viewModel = useViewModel({
+        boardId,
         nodesModel,
         layoutDimensionsModel
     });

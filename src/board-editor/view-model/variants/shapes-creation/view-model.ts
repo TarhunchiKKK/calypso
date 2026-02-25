@@ -8,7 +8,7 @@ import { ShapesCreationNodesMapper } from "./nodes-mapping.lib";
 import type { ShapesCreationViewState } from "./view-state";
 
 export function useShapesCreationViewModel(params: ViewModelParams) {
-    const { nodesModel, layoutDimensionsModel } = params;
+    const { nodesModel, layoutDimensionsModel, boardId } = params;
 
     const canvasMediator = useMouseEventsMediator();
 
@@ -18,7 +18,13 @@ export function useShapesCreationViewModel(params: ViewModelParams) {
                 onClick: (e: React.MouseEvent) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    nodesModel.service.createOne(NodesFactory.shape(clickPoint, viewState.variant));
+                    nodesModel.service.createOne(
+                        NodesFactory.shape({
+                            point: clickPoint,
+                            variant: viewState.variant,
+                            boardId: boardId
+                        })
+                    );
                 }
             }
         });

@@ -7,7 +7,6 @@ const mouseEventsOptions = {
     doubleClickDelay: 800
 };
 
-// DOCS
 export function useMouseEventsMediator() {
     const mediator = useMemo(() => {
         return new MouseEventsSeparator(new MouseEventsMediator(mouseEventsOptions), new MouseEventsMediator(mouseEventsOptions));
