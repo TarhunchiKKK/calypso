@@ -1,7 +1,6 @@
 import type { Decoratable } from "../../core";
 
-// REFACTOR: rename to `CheckLocked`
-export function CheckBlocked() {
+export function CheckLocked() {
     return (_: unknown, __: string, descriptor: PropertyDescriptor) => {
         const originalMethod = descriptor.value;
 
@@ -10,7 +9,7 @@ export function CheckBlocked() {
         }
 
         descriptor.value = function (node: Decoratable, ...args: unknown[]): Decoratable {
-            if (node.data.blocked) {
+            if (node.data.locked) {
                 return node;
             }
 

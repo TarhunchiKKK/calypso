@@ -28,8 +28,7 @@ export type NodeBase = {
 
     boardId: string;
 
-    // REFACTOR: rename this field to `locked`
-    blocked: boolean;
+    locked: boolean;
 
     styles: NodeStyles;
 };

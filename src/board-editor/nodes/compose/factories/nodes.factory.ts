@@ -12,7 +12,7 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             boardId: data.boardId,
             type: "sticker",
-            blocked: false,
+            locked: false,
             text: "Hello",
             rect: {
                 ...data.point,
@@ -37,7 +37,7 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             boardId: data.boardId,
             type: "text",
-            blocked: false,
+            locked: false,
             text: [],
             rect: {
                 ...data.point,
@@ -62,7 +62,7 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             boardId: data.boardId,
             type: "shape",
-            blocked: false,
+            locked: false,
             variant: data.variant,
             rect: {
                 ...data.point,
