@@ -56,7 +56,7 @@ export function useIdleViewModel(params: ViewModelParams) {
                     setViewState(
                         switchToStyling({
                             selectedIds: new Set([id]),
-                            barPosition: Geometry.pointFromEvent(e)
+                            position: Geometry.pointFromEvent(e)
                         })
                     );
                 })

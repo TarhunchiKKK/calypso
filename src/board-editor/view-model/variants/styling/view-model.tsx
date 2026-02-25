@@ -23,7 +23,7 @@ export function useStylingViewModel(params: ViewModelParams) {
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (
-                    <div style={{ left: viewState.barPosition.x, top: viewState.barPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
+                    <div style={{ left: viewState.position.x, top: viewState.position.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
                         <StylesBar onUpdate={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
                     </div>
                 )
