@@ -8,11 +8,10 @@ type Props = {
     RightPanel: PropsWithChildren;
 };
 
-// REFACTOR: use default TailwindCSS classes
 export const BoardHeader = {
     LeftPanel: ({ boardName }: Props["LeftPanel"]) => {
         return (
-            <Wrapper className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6">
+            <Wrapper className="w-min h-13 px-4 flex flex-row justify-between items-center gap-6">
                 <Logo />
 
                 <div className="w-max">{boardName}</div>
@@ -20,6 +19,10 @@ export const BoardHeader = {
         );
     },
     RightPanel: ({ children }: Props["RightPanel"]) => {
-        return <Wrapper className="w-min h-[52px] px-4 flex flex-row justify-between items-center gap-6">{children}</Wrapper>;
-    }
+        return (
+            <Wrapper className="w-min h-13 px-4 flex flex-row justify-between items-center gap-6">
+                {children}
+            </Wrapper>
+        );
+    },
 };
