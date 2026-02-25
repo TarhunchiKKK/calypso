@@ -1,5 +1,5 @@
-import { HotKeysMap } from "../../../../lib/hot-keys-map.constants";
-import type { ViewModelParams } from "../../../types";
+import { HotKeysMap } from "@/board-editor/lib/hot-keys-map.constants";
+import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { switchToIdle } from "../../idle/switcher";
 import type { NodesContextMenuViewState } from "../view-state";
 import type { ContextMenuOptionsGroup } from "./types";
@@ -13,7 +13,9 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                     {
                         label: "Copy",
                         hotKey: HotKeysMap.exchangeBuffer.copy,
-                        onClick: () => {}
+                        onClick: () => {
+                            // IMPLEMENTATION
+                        }
                     },
                     {
                         label: "Cut",
