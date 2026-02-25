@@ -2,7 +2,7 @@
 
 import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
-import type { NodeBase } from "@/entities/nodes";
+import type { NodeBase, NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
@@ -17,6 +17,8 @@ type Props = PropsWithChildren<{
     nodes: NodeBase[];
 
     boardId: string;
+
+    api: NodesApi;
 }>;
 
 export function BoardEditor({ nodes, boardId, children }: Props) {
