@@ -6,6 +6,7 @@ import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
 import { useIdleViewModel } from "./variants/idle/view-model";
+import { useNodesContextMenuViewModel } from "./variants/nodes-context-menu/view-model";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
@@ -33,6 +34,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const resizingVewModel = useResizingViewModel(newParams);
     const editingViewModel = useEditingViewModel(newParams);
     const stylingViewModel = useStylingViewModel(newParams);
+    const nodesContextMenuViewModel = useNodesContextMenuViewModel(newParams);
 
     let viewModel: OmitFields<ViewModel, "actions">;
     switch (viewState.type) {
@@ -65,6 +67,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "styling":
             viewModel = stylingViewModel(viewState);
+            break;
+        case "nodes-context-menu":
+            viewModel = nodesContextMenuViewModel(viewState);
             break;
         default:
             throw new Error("Unknown view state");

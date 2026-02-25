@@ -32,12 +32,7 @@ export function FontStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown
-                title="Font Family"
-                placeholder={<CaseSensitive className="w-4 h-4 dark:text-white" />}
-                items={FontFamilies}
-                onSelect={handleFontFamilySelect}
-            />
+            <Dropdown title="Font Family" placeholder={<CaseSensitive className="dark:text-white" />} items={FontFamilies} onSelect={handleFontFamilySelect} />
 
             <Dropdown title="Font Size" placeholder={<ALargeSmall className="dark:text-white" />} items={FontSizes} onSelect={handleFontSizeSelect} />
         </StylesGroupWrapper>

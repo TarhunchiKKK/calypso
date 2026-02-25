@@ -96,7 +96,7 @@ In browser open the https://localhost:3000 to access the app.
 - Media (images and videos)
 - Drawings
 
-### Editor features
+### Editor Features
 
 - Nodes selecting
 - Selection window
@@ -109,8 +109,23 @@ In browser open the https://localhost:3000 to access the app.
 - Window shifting
 - Window zooming
 
+### Hot Keys
+
+| Keys                   | Description                      |
+| ---------------------- | -------------------------------- |
+| `Ctrl` + `C`           | Copy selected nodes              |
+| `Ctrl` + `V`           | Paste selected nodes             |
+| `Ctrl` + `X`           | Cut selected nodes               |
+| `Ctrl` + `A`           | Select all nodes                 |
+| `Ctrl` + `L`           | Lock selected nodes              |
+| `Ctrl` + `Shift` + `L` | Unlock selected nodes            |
+| `Delete`               | Delete selected nodes            |
+| `Backspace`            | Delete selected nodes            |
+| `Escape`               | Switch to idle mode              |
+| `I`                    | Switch to idle mode              |
+| `S`                    | Switch to stickers creating mode |
+
 ### Other features
 
 - Dark mode
 - Offline mode
-- OAuth 2.0 Providers ([Google](https://www.google.com/), [Microsoft](https://www.microsoft.com/), etc...)
