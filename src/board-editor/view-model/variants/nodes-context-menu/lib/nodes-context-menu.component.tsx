@@ -17,10 +17,10 @@ type NodesContextMenuProps = {
 
 export function NodesContextMenu({ groups }: NodesContextMenuProps) {
     return (
-        <DropdownMenu open={true}>
-            <DropdownMenuTrigger className="hidden">Open</DropdownMenuTrigger>
+        <DropdownMenu open={true} modal={false}>
+            <DropdownMenuTrigger className="bg-transparent p-0 h-0"></DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-40" align="start">
+            <DropdownMenuContent className="w-48" align="start">
                 {groups.map((group, groupIndex) => (
                     // biome-ignore lint/suspicious/noArrayIndexKey: `group.label` cannot be used as key because it's nullable
                     <div key={groupIndex}>

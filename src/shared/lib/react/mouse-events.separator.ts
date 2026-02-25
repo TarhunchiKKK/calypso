@@ -8,7 +8,7 @@ export class MouseEventsSeparator {
         private readonly right: MouseEventsMediator
     ) {}
 
-    public onMouseDown(e: React.MouseEvent) {
+    private onMouseDown(e: React.MouseEvent) {
         if (e.button === 2) {
             this.right.onMouseDown(e);
         } else {
@@ -16,7 +16,7 @@ export class MouseEventsSeparator {
         }
     }
 
-    public onMouseUp(e: React.MouseEvent) {
+    private onMouseUp(e: React.MouseEvent) {
         if (e.button === 2) {
             this.right.onMouseUp(e);
         } else {

@@ -8,9 +8,9 @@ import type { ViewModel, ViewModelParams } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
+import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
 import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
-import { switchToStyling } from "../styling/switcher";
 import { SelectionNodesMapper } from "./nodes-mapping.lib";
 import type { SelectionViewState } from "./view-state";
 
@@ -25,7 +25,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
-    const canvasMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
         nodesMediator.setHandlers({
@@ -42,6 +41,16 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 onDoubleClick: withNodeId(nodeId => {
                     setViewState(switchToEditing({ selectedNodeId: nodeId }));
                 })
+            },
+            right: {
+                onClick: withNodeId((id, e) => {
+                    setViewState(
+                        switchToNodesContextMenu({
+                            selectedIds: new Set([id]),
+                            position: Geometry.pointFromEvent(e)
+                        })
+                    );
+                })
             }
         });
 
@@ -49,22 +58,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
             left: {
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => setViewState(switchToIdle())
-            }
-        });
-
-        canvasMediator.setHandlers({
-            right: {
-                onClick: e => {
-                    console.log("canvas click");
-                    if (viewState.selectedIds.size) {
-                        setViewState(
-                            switchToStyling({
-                                selectedIds: viewState.selectedIds,
-                                barPosition: Geometry.pointFromEvent(e)
-                            })
-                        );
-                    }
-                }
             }
         });
 
@@ -78,7 +71,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
                 .get(),
-            canvas: canvasMediator.handlers,
             overlay: overlayMediator.handlers
         };
     };

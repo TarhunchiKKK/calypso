@@ -5,7 +5,7 @@ export class HotKeyUtils {
         const hotKeys = Array.isArray(hotKey) ? hotKey : [hotKey];
 
         for (const hotKey of hotKeys) {
-            const result = HotKeyUtils.is(hotKey, e);
+            const result = hotKey.key === e.key && hotKey.shiftKey === e.shiftKey && hotKey.ctrlKey === e.ctrlKey;
 
             if (result) {
                 return true;

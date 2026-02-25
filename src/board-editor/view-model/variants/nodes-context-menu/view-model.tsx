@@ -31,7 +31,7 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: NodesContextMenuNodesMapper.from(nodesModel.nodes).get(),
+            nodes: NodesContextMenuNodesMapper.from(nodesModel.nodes).applySelection(viewState.selectedIds).get(),
             overlay: overlayMediator.handlers,
             additionalElements: {
                 layout: (

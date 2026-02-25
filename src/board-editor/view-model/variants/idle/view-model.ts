@@ -5,6 +5,7 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModel, ViewModelParams } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
+import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { switchToStyling } from "../styling/switcher";
@@ -37,9 +38,9 @@ export function useIdleViewModel(params: ViewModelParams) {
             right: {
                 onClick: withNodeId((id, e) => {
                     setViewState(
-                        switchToStyling({
+                        switchToNodesContextMenu({
                             selectedIds: new Set([id]),
-                            barPosition: Geometry.pointFromEvent(e)
+                            position: Geometry.pointFromEvent(e)
                         })
                     );
                 })
@@ -49,6 +50,16 @@ export function useIdleViewModel(params: ViewModelParams) {
         overlayMediator.setHandlers({
             left: {
                 onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
+            },
+            right: {
+                onClick: withNodeId((id, e) => {
+                    setViewState(
+                        switchToStyling({
+                            selectedIds: new Set([id]),
+                            barPosition: Geometry.pointFromEvent(e)
+                        })
+                    );
+                })
             }
         });
 
