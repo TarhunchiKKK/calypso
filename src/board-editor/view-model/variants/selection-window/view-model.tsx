@@ -25,7 +25,7 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
                 }
             },
             additionalElements: {
-                canvas: selectionWindow.rect ? <SelectionWindow {...selectionWindow.rect} /> : null
+                canvas: selectionWindow.rect ? <SelectionWindow rect={selectionWindow.rect} /> : null
             }
         };
     };

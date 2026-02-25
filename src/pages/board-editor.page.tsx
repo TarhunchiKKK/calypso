@@ -1,18 +1,19 @@
 import { BoardEditor } from "@/board-editor";
 import { MockNodes } from "@/dev";
 import { useDefaultBoard } from "@/entities/boards";
-import { NodesPostgresApi } from "@/entities/nodes";
+import { NodesMongoApi } from "@/entities/nodes";
 import { BoardHeader } from "@/features/board-header";
 import { ThemeSwitch } from "@/features/dark-mode";
 
 // TODO:
 // * nodes fetching
+// * real api
 export function BoardEditorPage() {
     const { board } = useDefaultBoard();
 
     return (
         <div className="min-h-screen flex flex-col">
-            <BoardEditor nodes={MockNodes} boardId="1" api={NodesPostgresApi}>
+            <BoardEditor nodes={MockNodes} boardId="1" api={NodesMongoApi}>
                 <div className="absolute w-full px-6 top-4 left-0 flex flex-row justify-between items-center">
                     <BoardHeader.LeftPanel boardName={board.id} />
 

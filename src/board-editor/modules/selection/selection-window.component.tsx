@@ -1,17 +1,18 @@
 import type { Rect } from "@/shared/lib/geometry";
 
-// REFACTOR: `{ rect: Rect }`
-type Props = Rect;
+type Props = {
+    rect: Rect;
+};
 
-export function SelectionWindow({ height, width, x, y }: Props) {
+export function SelectionWindow({ rect }: Props) {
     return (
         <div
             className="absolute inset-0 bg-blue-500/30 border-2 border-blue-500"
             style={{
-                transform: `translate(${x}px, ${y}px)`,
-                width: width,
-                height: height
+                transform: `translate(${rect.x}px, ${rect.y}px)`,
+                width: rect.width,
+                height: rect.height
             }}
-        ></div>
+        />
     );
 }
