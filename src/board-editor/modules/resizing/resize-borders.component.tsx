@@ -11,7 +11,6 @@ type Props = {
     onResizeStart: (direction: ResizeDirection, e: React.MouseEvent) => void;
 };
 
-// DOCS
 export function ResizeBorders({ main, cross, diagonal, onResizeStart }: Props) {
     return (
         <>
