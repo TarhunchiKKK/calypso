@@ -1,6 +1,11 @@
 import type { NodeStyles } from "../types/node-styles.types";
 
-export const AvailableFontFamilies: NodeStyles["fontFamily"][] = ["sans-serif", "fantasy", "math", "monospace"] as const;
+export const AvailableFontFamilies: NodeStyles["fontFamily"][] = [
+    "sans-serif",
+    "fantasy",
+    "math",
+    "monospace"
+] as const;
 
 export const AvailableFontSizes: NodeStyles["fontSize"][] = [4, 8, 12, 18, 24, 32, 48] as const;
 

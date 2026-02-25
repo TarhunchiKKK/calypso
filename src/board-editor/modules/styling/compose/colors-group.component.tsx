@@ -38,7 +38,9 @@ export function ColorsGroup({ onUpdate }: Props) {
                 title="Background"
                 placeholder={BackgroundColorPlaceholder}
                 colors={AvailableColors}
-                renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor, ...ColorsDropdownItemSizes }} />}
+                renderItem={backgroundColor => (
+                    <div className="w-5 h-5 rounded-full" style={{ backgroundColor, ...ColorsDropdownItemSizes }} />
+                )}
                 onSelect={handleBackgroundColorSelect}
             />
 

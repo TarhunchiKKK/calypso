@@ -16,7 +16,11 @@ import { switchToStickersCreation } from "../variants/stickers-creation/switcher
  * @param viewModel - The base `ViewModel` to be decorated with hotkey functionality.
  * @returns A new `ViewModel` instance that includes the `onKeyDown` handler for hotkeys.
  */
-export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: ViewModel): ViewModel {
+export function withHotKeys(
+    viewState: ViewState,
+    { nodesModel, setViewState }: ViewModelParams,
+    viewModel: ViewModel
+): ViewModel {
     const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "editing") {
             return;

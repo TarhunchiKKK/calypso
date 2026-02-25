@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Geometry, type Offset } from "@/shared/lib/geometry";
-import type { ViewModelParams } from "../../types";
-import { switchToSelection } from "../selection/switcher";
-import { DraggingNodesMapper } from "./nodes-mapping.lib";
-import type { DraggingViewState } from "./view-state";
+import type { ViewModelParams } from "../../../types";
+import { switchToSelection } from "../../selection/switcher";
+import type { DraggingViewState } from "../view-state";
+import { DraggingNodesMapper } from "./nodes-mapper";
 
 export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [offset, setOffset] = useState<Offset>();
@@ -15,7 +15,12 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
     };
 
     const onWindowMouseUp = (viewState: DraggingViewState) => {
-        nodesModel.service.replaceAll(DraggingNodesMapper.from(nodesModel.nodes).map(viewState, offset).unwrap());
+        const wrappers = DraggingNodesMapper.from(nodesModel.nodes)
+            .setSelectedIds(viewState.selectedIds)
+            .setOffset(offset)
+            .map();
+
+        nodesModel.service.replaceAll(wrappers.map(wrapper => wrapper.data));
 
         setViewState(
             switchToSelection({

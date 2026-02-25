@@ -1,5 +1,10 @@
 import type { NodeStyles } from "../types/node-styles.types";
-import { AvailableBorderRadiuses, AvailableColors, AvailableFontFamilies, AvailableFontSizes } from "./available-node-styles.constants";
+import {
+    AvailableBorderRadiuses,
+    AvailableColors,
+    AvailableFontFamilies,
+    AvailableFontSizes
+} from "./available-node-styles.constants";
 
 export const DefaultNodeStyles: NodeStyles = {
     fontFamily: AvailableFontFamilies[0],

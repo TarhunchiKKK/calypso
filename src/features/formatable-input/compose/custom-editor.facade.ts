@@ -50,6 +50,10 @@ export class CustomEditor {
 
         const isActive = !!match;
 
-        Transforms.setNodes(editor, { type: isActive ? undefined : "code" }, { match: n => Element.isElement(n) && Editor.isBlock(editor, n) });
+        Transforms.setNodes(
+            editor,
+            { type: isActive ? undefined : "code" },
+            { match: n => Element.isElement(n) && Editor.isBlock(editor, n) }
+        );
     }
 }

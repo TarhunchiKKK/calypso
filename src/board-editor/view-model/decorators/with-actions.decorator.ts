@@ -18,7 +18,11 @@ const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creati
  * @returns A new `ViewModel` instance that includes the `actions` property. The `actions` object
  *   maps action names to their state (active or not) and the `onClick` handler to trigger them.
  */
-export function withActions(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: Omit<ViewModel, "actions">): ViewModel {
+export function withActions(
+    viewState: ViewState,
+    setViewState: ViewModelParams["setViewState"],
+    viewModel: Omit<ViewModel, "actions">
+): ViewModel {
     const isIdle = idleViewStates.includes(viewState.type);
     const isStickers = viewState.type === "stickers-creation";
     const isShapes = shapesViewStates.includes(viewState.type);

@@ -42,7 +42,11 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                 offset={layoutDimensionsModel.layoutOffset.offset}
                 zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={
-                    <Overlay onKeyDown={viewModel.overlay?.onKeyDown} onMouseDown={viewModel.overlay?.onMouseDown} onMouseUp={viewModel.overlay?.onMouseUp} />
+                    <Overlay
+                        onKeyDown={viewModel.overlay?.onKeyDown}
+                        onMouseDown={viewModel.overlay?.onMouseDown}
+                        onMouseUp={viewModel.overlay?.onMouseUp}
+                    />
                 }
                 onMouseDown={viewModel.canvas?.onMouseDown}
                 onMouseUp={viewModel.canvas?.onMouseUp}
@@ -58,11 +62,17 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                     <MousePointer2 />
                 </ActionButton>
 
-                <ActionButton isActive={viewModel.actions?.stickers?.isActive} onClick={viewModel.actions?.stickers?.onClick}>
+                <ActionButton
+                    isActive={viewModel.actions?.stickers?.isActive}
+                    onClick={viewModel.actions?.stickers?.onClick}
+                >
                     <StickerIcon />
                 </ActionButton>
 
-                <ActionButton isActive={viewModel.actions?.shapes?.isActive} onClick={viewModel.actions?.shapes?.onClick}>
+                <ActionButton
+                    isActive={viewModel.actions?.shapes?.isActive}
+                    onClick={viewModel.actions?.shapes?.onClick}
+                >
                     <TriangleIcon />
                 </ActionButton>
             </ActionsBar>

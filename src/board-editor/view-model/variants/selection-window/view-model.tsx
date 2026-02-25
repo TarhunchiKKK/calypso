@@ -1,8 +1,8 @@
 import { SelectionWindow } from "@/board-editor/modules/selection";
 import type { OmitFields } from "@/shared/lib/typescript";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { SelectionWindowNodesMapper } from "./nodes-mapping.lib";
-import { useSelectionWindow } from "./use-selection-window.hook";
+import { SelectionWindowNodesMapper } from "./lib/nodes-mapper";
+import { useSelectionWindow } from "./lib/use-selection-window.hook";
 import type { SelectionWindowViewState } from "./view-state";
 
 export function useSelectionWindowViewModel(params: ViewModelParams) {
@@ -15,7 +15,7 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
             nodes: SelectionWindowNodesMapper.from(nodesModel.nodes)
                 .setSelectedIds(viewState.selectedIds)
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
-                .get(),
+                .map(),
             window: {
                 onMouseMove: e => {
                     selectionWindow.onWindowMouseMove(viewState, e);

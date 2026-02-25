@@ -3,7 +3,11 @@ import type { NodeStyles } from "@/entities/nodes";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { Dropdown } from "@/shared/ui";
 import { BorderRadiuses, BorderStyles } from "../constants/border-styling.constants";
-import { BoarderRadiusPlaceholder, BorderColorPlaceholder, BorderStylePlaceholder } from "../constants/placeholders.constants";
+import {
+    BoarderRadiusPlaceholder,
+    BorderColorPlaceholder,
+    BorderStylePlaceholder
+} from "../constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
@@ -46,7 +50,12 @@ export function BorderStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown title="Border Style" items={BorderStyles} placeholder={BorderStylePlaceholder} onSelect={handleBorderStyleSelect} />
+            <Dropdown
+                title="Border Style"
+                items={BorderStyles}
+                placeholder={BorderStylePlaceholder}
+                onSelect={handleBorderStyleSelect}
+            />
 
             <ColorsDropdown
                 title="Border Color"
@@ -56,7 +65,12 @@ export function BorderStylesGroup({ onUpdate }: Props) {
                 onSelect={handleBorderColorSelect}
             />
 
-            <Dropdown title="Border Radius" placeholder={BoarderRadiusPlaceholder} items={BorderRadiuses} onSelect={handleBorderRadiusSelect} />
+            <Dropdown
+                title="Border Radius"
+                placeholder={BoarderRadiusPlaceholder}
+                items={BorderRadiuses}
+                onSelect={handleBorderRadiusSelect}
+            />
         </StylesGroupWrapper>
     );
 }

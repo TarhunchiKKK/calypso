@@ -12,6 +12,14 @@ export class TextNodeWrapper extends NodeWrapper<TextNode> {
     }
 
     public override render(children?: React.ReactNode) {
-        return <TextNodeComponent key={this.node.id} node={this.node} handlers={this.handlers} showContent={this.showContent} children={children} />;
+        return (
+            <TextNodeComponent
+                key={this.node.id}
+                node={this.node}
+                handlers={this.handlers}
+                showContent={this.showContent}
+                children={children}
+            />
+        );
     }
 }

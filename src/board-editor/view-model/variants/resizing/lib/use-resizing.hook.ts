@@ -2,9 +2,9 @@ import { useState } from "react";
 import { applyResizing } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import { Geometry, type Rect } from "@/shared/lib/geometry";
-import type { ViewModelParams } from "../../types";
-import { switchToSelection } from "../selection/switcher";
-import type { ResizingViewState } from "./view-state";
+import type { ViewModelParams } from "../../../types";
+import { switchToSelection } from "../../selection/switcher";
+import type { ResizingViewState } from "../view-state";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();
@@ -31,7 +31,9 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
         const node = getResizingNode(viewState.nodeId);
 
         if (newSize) {
-            nodesModel.service.updateOne(NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data);
+            nodesModel.service.updateOne(
+                NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data
+            );
         }
 
         setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));

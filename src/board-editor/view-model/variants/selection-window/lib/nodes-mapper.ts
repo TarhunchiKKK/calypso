@@ -12,8 +12,8 @@ export class SelectionWindowNodesMapper extends NodesMapper {
         return this;
     }
 
-    public setSelectionWindowIds(ids: Set<string>) {
-        this.selectionWIndowIds = ids;
+    public setSelectionWindowIds(selectedIds: Set<string>) {
+        this.selectionWIndowIds = selectedIds;
         return this;
     }
 
@@ -21,7 +21,7 @@ export class SelectionWindowNodesMapper extends NodesMapper {
         return new SelectionWindowNodesMapper(nodes);
     }
 
-    public override get() {
+    public override map() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id) || this.selectionWIndowIds.has(node.id)) {
                 return NodeDecoratorsFactory.select(node);

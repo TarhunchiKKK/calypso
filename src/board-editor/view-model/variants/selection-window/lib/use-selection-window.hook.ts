@@ -2,10 +2,10 @@ import { useState } from "react";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import { Geometry, type Rect } from "@/shared/lib/geometry";
-import type { ViewModelParams } from "../../types";
-import { switchToIdle } from "../idle/switcher";
-import { switchToSelection } from "../selection/switcher";
-import type { SelectionWindowViewState } from "./view-state";
+import type { ViewModelParams } from "../../../types";
+import { switchToIdle } from "../../idle/switcher";
+import { switchToSelection } from "../../selection/switcher";
+import type { SelectionWindowViewState } from "../view-state";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();

@@ -28,10 +28,18 @@ export function NodesContextMenu({ groups }: NodesContextMenuProps) {
                             {group.label && <DropdownMenuLabel>{group.label}</DropdownMenuLabel>}
 
                             {group.options.map(option => (
-                                <DropdownMenuItem key={option.label} className="cursor-pointer" onClick={option.onClick}>
+                                <DropdownMenuItem
+                                    key={option.label}
+                                    className="cursor-pointer"
+                                    onClick={option.onClick}
+                                >
                                     {option.label}
 
-                                    {option.hotKey && <DropdownMenuShortcut>{HotKeyUtils.stringify(option.hotKey)}</DropdownMenuShortcut>}
+                                    {option.hotKey && (
+                                        <DropdownMenuShortcut>
+                                            {HotKeyUtils.stringify(option.hotKey)}
+                                        </DropdownMenuShortcut>
+                                    )}
                                 </DropdownMenuItem>
                             ))}
                         </DropdownMenuGroup>

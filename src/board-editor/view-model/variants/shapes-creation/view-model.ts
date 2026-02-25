@@ -4,7 +4,7 @@ import { Geometry } from "@/shared/lib/geometry";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { ShapesCreationNodesMapper } from "./nodes-mapping.lib";
+import { ShapesCreationNodesMapper } from "./lib/nodes-mapper";
 import type { ShapesCreationViewState } from "./view-state";
 
 export function useShapesCreationViewModel(params: ViewModelParams) {
@@ -30,7 +30,7 @@ export function useShapesCreationViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: ShapesCreationNodesMapper.from(nodesModel.nodes).get(),
+            nodes: ShapesCreationNodesMapper.from(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers
         };
     };

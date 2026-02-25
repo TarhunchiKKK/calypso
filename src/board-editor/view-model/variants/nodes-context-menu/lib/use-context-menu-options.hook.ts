@@ -31,14 +31,20 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Lock",
                         hotKey: HotKeysMap.locking.lock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({ ...node, locked: true }));
+                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
+                                ...node,
+                                locked: true
+                            }));
                         }
                     },
                     {
                         label: "Unlock",
                         hotKey: HotKeysMap.locking.unlock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({ ...node, locked: false }));
+                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
+                                ...node,
+                                locked: false
+                            }));
                         }
                     }
                 ]

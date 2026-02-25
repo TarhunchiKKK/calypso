@@ -11,7 +11,7 @@ import { switchToIdle } from "../idle/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
 import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
-import { SelectionNodesMapper } from "./nodes-mapping.lib";
+import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
 
 export function useSelectionViewModel(params: ViewModelParams) {
@@ -70,7 +70,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .setHandlers(nodesMediator.handlers)
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
-                .get(),
+                .map(),
             overlay: overlayMediator.handlers
         };
     };
