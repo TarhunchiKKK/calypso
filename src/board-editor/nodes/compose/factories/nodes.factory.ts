@@ -1,10 +1,8 @@
+import { DefaultNodeStyles } from "@/entities/nodes";
 import type { Point } from "@/shared/lib/geometry";
 import type { ShapeNode } from "../../variants/shape/shape-node.type";
 import type { StickerNode } from "../../variants/sticker/sticker.type";
 import type { TextNode } from "../../variants/text/text-node.type";
-
-// REFACTOR:
-// * get styles from constants in styling module
 
 export class NodesFactory {
     public static sticker(data: Pick<StickerNode, "boardId"> & { point: Point }): StickerNode {
@@ -19,16 +17,7 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "none",
-                borderStyle: "dashed",
-                color: "black",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 
@@ -44,16 +33,7 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "none",
-                borderStyle: "dashed",
-                color: "black",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 
@@ -69,16 +49,7 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "green",
-                borderStyle: "dashed",
-                color: "green",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 }

@@ -1,8 +1,9 @@
 import { Type } from "lucide-react";
 import type { NodeStyles } from "@/entities/nodes";
-import { Colors } from "../constants/colors.constants";
+import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
+import { BackgroundColorPlaceholder, TextColorPlaceholder } from "../constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
-import type { UpdateFn } from "../types";
+import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
 
@@ -35,16 +36,16 @@ export function ColorsGroup({ onUpdate }: Props) {
         <StylesGroupWrapper>
             <ColorsDropdown
                 title="Background"
-                placeholder={<div className="w-5 h-5 rounded-full" style={{ backgroundColor: Colors[0] }} />}
-                colors={Colors}
+                placeholder={BackgroundColorPlaceholder}
+                colors={AvailableColors}
                 renderItem={backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor, ...ColorsDropdownItemSizes }} />}
                 onSelect={handleBackgroundColorSelect}
             />
 
             <ColorsDropdown
                 title="Text Color"
-                placeholder={<Type style={{ color: Colors[0] }} />}
-                colors={Colors}
+                placeholder={TextColorPlaceholder}
+                colors={AvailableColors}
                 renderItem={color => <Type style={{ color, ...ColorsDropdownItemSizes }} />}
                 onSelect={handleTextColorSelect}
             />

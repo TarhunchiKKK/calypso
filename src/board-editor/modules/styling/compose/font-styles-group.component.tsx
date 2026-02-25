@@ -1,8 +1,8 @@
-import { ALargeSmall, CaseSensitive } from "lucide-react";
 import type { NodeStyles } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { FontFamilies, FontSizes } from "../constants/fonts-styling.constants";
-import type { UpdateFn } from "../types";
+import { FontFamilyPlaceholder, FontSizePlaceholder } from "../constants/placeholders.constants";
+import type { UpdateFn } from "../lib/types";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
 
 type Props = {
@@ -32,9 +32,9 @@ export function FontStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown title="Font Family" placeholder={<CaseSensitive className="dark:text-white" />} items={FontFamilies} onSelect={handleFontFamilySelect} />
+            <Dropdown title="Font Family" placeholder={FontFamilyPlaceholder} items={FontFamilies} onSelect={handleFontFamilySelect} />
 
-            <Dropdown title="Font Size" placeholder={<ALargeSmall className="dark:text-white" />} items={FontSizes} onSelect={handleFontSizeSelect} />
+            <Dropdown title="Font Size" placeholder={FontSizePlaceholder} items={FontSizes} onSelect={handleFontSizeSelect} />
         </StylesGroupWrapper>
     );
 }
