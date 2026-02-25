@@ -1,6 +1,8 @@
 import type { Point, Rect } from "@/shared/lib/geometry";
 import type { ResizeDirection } from "../types";
 
+// DELETE: this method can be moved to `Geometry` class
+
 /**
  * Calculates the new dimensions and position of a rectangle after a resize operation.
  * @param rect - The original rectangle.

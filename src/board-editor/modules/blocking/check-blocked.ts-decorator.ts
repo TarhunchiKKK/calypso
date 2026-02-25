@@ -1,5 +1,6 @@
 import type { Decoratable } from "../../core";
 
+// REFACTOR: rename to `CheckLocked`
 export function CheckBlocked() {
     return (_: unknown, __: string, descriptor: PropertyDescriptor) => {
         const originalMethod = descriptor.value;

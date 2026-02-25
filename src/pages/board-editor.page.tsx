@@ -3,6 +3,10 @@ import { MockNodes } from "@/dev";
 import { BoardHeader } from "@/features/board-header";
 import { ThemeSwitch } from "@/features/dark-mode";
 
+// TODO:
+// * nodes fetching
+// * node id generating
+// * nodes api providing as props
 export function BoardEditorPage() {
     return (
         <div className="min-h-screen flex flex-col">

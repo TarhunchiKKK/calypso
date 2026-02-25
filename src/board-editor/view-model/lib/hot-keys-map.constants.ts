@@ -4,6 +4,7 @@ type Map = {
     [Key: string]: HotKey | HotKey[] | Map;
 };
 
+// TODO: add missing hot keys
 export const HotKeysMap = {
     switch: {
         toIdle: [

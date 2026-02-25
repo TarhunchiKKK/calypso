@@ -8,6 +8,7 @@ type Props = {
     RightPanel: PropsWithChildren;
 };
 
+// REFACTOR: use default TailwindCSS classes
 export const BoardHeader = {
     LeftPanel: ({ boardName }: Props["LeftPanel"]) => {
         return (

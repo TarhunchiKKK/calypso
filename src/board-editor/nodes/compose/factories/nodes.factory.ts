@@ -3,6 +3,10 @@ import type { ShapeNode, ShapeVariants } from "../../variants/shape/shape-node.t
 import type { StickerNode } from "../../variants/sticker/sticker.type";
 import type { TextNode } from "../../variants/text/text-node.type";
 
+// REFACTOR:
+// * get styles from constants in styling module
+// * write props as `Pick<StickerNode, "field1" | "field2">` for all methods
+
 export class NodesFactory {
     public static sticker(point: Point): StickerNode {
         return {

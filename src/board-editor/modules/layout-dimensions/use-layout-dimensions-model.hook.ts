@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Geometry, type Offset, type Point } from "@/shared/lib/geometry";
 
+// REFACTOR: move constants to separate file
 const defaultLayoutOffset: Offset = {
     dx: 0,
     dy: 0

@@ -1,5 +1,6 @@
 import type { Rect } from "@/shared/lib/geometry";
 
+// REFACTOR: move this types to `entities` layer
 export type NodeTypes = "sticker" | "text" | "shape";
 
 export type NodeStyles = {
@@ -27,6 +28,7 @@ export type NodeBase = {
 
     boardId: string;
 
+    // REFACTOR: rename this field to `locked`
     blocked: boolean;
 
     styles: NodeStyles;

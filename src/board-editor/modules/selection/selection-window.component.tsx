@@ -1,5 +1,6 @@
 import type { Rect } from "@/shared/lib/geometry";
 
+// REFACTOR: `{ rect: Rect }`
 type Props = Rect;
 
 export function SelectionWindow({ height, width, x, y }: Props) {
