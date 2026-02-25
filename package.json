@@ -22,7 +22,7 @@
         "knip": "knip",
         "storybook:dev": "storybook dev -p 6006",
         "storybook:build": "storybook build",
-        "refresh-env": "bun run scripts/refresh-env-example.ts"
+        "refresh-env": "bun run scripts/refresh-env.ts"
     },
     "dependencies": {
         "@radix-ui/react-dropdown-menu": "^2.1.16",

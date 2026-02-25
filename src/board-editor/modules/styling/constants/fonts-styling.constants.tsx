@@ -3,14 +3,12 @@ import { AvailableFontFamilies, AvailableFontSizes } from "@/entities/nodes/cons
 import type { DropdownItem } from "@/shared/ui";
 import { formatFontFamilyName } from "../lib/utils";
 
-// FIX: add styled labels
 export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = AvailableFontFamilies.map(fontFamily => ({
-    label: formatFontFamilyName(fontFamily),
+    label: <span style={{ fontFamily }}>{formatFontFamilyName(fontFamily)}</span>,
     value: fontFamily
 }));
 
-// FIX: add styled labels
 export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = AvailableFontSizes.map(fontSize => ({
-    label: `${fontSize}px`,
+    label: <span style={{ fontSize }}>{`${fontSize}px`}</span>,
     value: fontSize
 }));
