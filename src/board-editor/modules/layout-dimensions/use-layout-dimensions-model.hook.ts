@@ -1,19 +1,10 @@
 import { useRef, useState } from "react";
-import { Geometry, type Offset, type Point } from "@/shared/lib/geometry";
-
-// REFACTOR: move constants to separate file
-const defaultLayoutOffset: Offset = {
-    dx: 0,
-    dy: 0
-};
-
-const defaultLayoutZoom = 1.0;
-const zoomUp = 1.1;
-const zoomDown = 0.9;
+import { Geometry, type Point } from "@/shared/lib/geometry";
+import { DefaultLayoutOffset, DefaultLayoutZoom, ZoomDown, ZoomUp } from "./layot-dimensions.constants";
 
 export function useLayoutDimensionsModel() {
-    const [offset, setOffset] = useState(defaultLayoutOffset);
-    const [zoom, setZoom] = useState(defaultLayoutZoom);
+    const [offset, setOffset] = useState(DefaultLayoutOffset);
+    const [zoom, setZoom] = useState(DefaultLayoutZoom);
     const startPointRef = useRef<Point | undefined>(undefined);
 
     const isShifting = (e: React.MouseEvent) => {
@@ -53,7 +44,7 @@ export function useLayoutDimensionsModel() {
     };
 
     const handleZoom = (e: WheelEvent) => {
-        const delta = e.deltaY > 0 ? zoomDown : zoomUp;
+        const delta = e.deltaY > 0 ? ZoomDown : ZoomUp;
 
         const newZoom = zoom * delta;
 
