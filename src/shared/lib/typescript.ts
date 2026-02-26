@@ -8,11 +8,3 @@ export type ConstructorFunction<T extends Constructor> = T extends abstract new 
 ) => infer R
     ? (...args: P) => R
     : never;
-
-export type BooleanFields<T extends Record<string, unknown>> = {
-    [Key in keyof T]: boolean;
-};
-
-export type UnknownFields<Type extends Record<string, unknown>> = {
-    [Key in keyof Type]: unknown;
-};

@@ -1,6 +1,6 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "ignore": ["./src/shared/ui/kit/*", "./src/@types/@"],
+    "ignore": ["./src/shared/ui/kit/*", "./src/@types/*", "./src/dev/*"],
     "rules": {
         "files": "error",
         "classMembers": "error",
