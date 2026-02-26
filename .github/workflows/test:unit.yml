@@ -1,12 +1,14 @@
-name: Release
+name: Unit Tests
 
 on:
+    pull_request:
+        types: [opened, reopened]
     push:
         branches:
             - "main"
 
-jobs:
-    lint:
+jobs:              
+    build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -18,8 +20,5 @@ jobs:
             - name: Install dependencies
               run: bun install
 
-            - name: Lint
-              run: bun lint:check
-            
-            - name: Build
-              run: bun run build
+            - name: Unit Tests
+              run: bun run test:unit
