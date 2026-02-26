@@ -1,1 +1,1 @@
-export { CheckLocked } from "./check-blocked.ts-decorator";
+export { CheckLocked } from "./check-locked.ts-decorator";

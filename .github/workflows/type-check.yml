@@ -2,8 +2,6 @@ name: Type check
 
 on:
     push:
-        branches-ignore:
-            - "main"
 
 jobs:
     lint:
