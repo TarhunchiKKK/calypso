@@ -2,8 +2,8 @@
 
 import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
+import type { NodeBase, NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
-import type { NodeBase } from "./core";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
 import { ActionButton, ActionsBar } from "./ui/action-bar.component";
@@ -15,14 +15,19 @@ import { useViewModel } from "./view-model/use-view-model.hook";
 
 type Props = PropsWithChildren<{
     nodes: NodeBase[];
+
+    boardId: string;
+
+    api: NodesApi;
 }>;
 
-export function BoardEditor({ nodes, children }: Props) {
+export function BoardEditor({ nodes, boardId, children }: Props) {
     const nodesModel = useNodesModel(nodes);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
 
     const viewModel = useViewModel({
+        boardId,
         nodesModel,
         layoutDimensionsModel
     });
@@ -37,7 +42,11 @@ export function BoardEditor({ nodes, children }: Props) {
                 offset={layoutDimensionsModel.layoutOffset.offset}
                 zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={
-                    <Overlay onKeyDown={viewModel.overlay?.onKeyDown} onMouseDown={viewModel.overlay?.onMouseDown} onMouseUp={viewModel.overlay?.onMouseUp} />
+                    <Overlay
+                        onKeyDown={viewModel.overlay?.onKeyDown}
+                        onMouseDown={viewModel.overlay?.onMouseDown}
+                        onMouseUp={viewModel.overlay?.onMouseUp}
+                    />
                 }
                 onMouseDown={viewModel.canvas?.onMouseDown}
                 onMouseUp={viewModel.canvas?.onMouseUp}
@@ -53,11 +62,17 @@ export function BoardEditor({ nodes, children }: Props) {
                     <MousePointer2 />
                 </ActionButton>
 
-                <ActionButton isActive={viewModel.actions?.stickers?.isActive} onClick={viewModel.actions?.stickers?.onClick}>
+                <ActionButton
+                    isActive={viewModel.actions?.stickers?.isActive}
+                    onClick={viewModel.actions?.stickers?.onClick}
+                >
                     <StickerIcon />
                 </ActionButton>
 
-                <ActionButton isActive={viewModel.actions?.shapes?.isActive} onClick={viewModel.actions?.shapes?.onClick}>
+                <ActionButton
+                    isActive={viewModel.actions?.shapes?.isActive}
+                    onClick={viewModel.actions?.shapes?.onClick}
+                >
                     <TriangleIcon />
                 </ActionButton>
             </ActionsBar>

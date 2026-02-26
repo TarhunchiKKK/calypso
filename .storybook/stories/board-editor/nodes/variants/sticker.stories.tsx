@@ -1,6 +1,6 @@
-import type { StickerNode } from "@repo/common";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { StickerComponent } from "@/features/board-editor/nodes/variants/sticker/sticker.component";
+import { StickerComponent } from "../../../../../src/board-editor/nodes/variants/sticker/sticker.component";
+import type { StickerNode } from "../../../../../src/board-editor/nodes/variants/sticker/sticker.type";
 import { centered } from "../../../common/center";
 
 const meta = {

@@ -1,4 +1,4 @@
-import type { NodeBase } from "../../core";
+import type { NodeBase } from "@/entities/nodes";
 
 export abstract class NodeEditingStrategy {
     public constructor(protected readonly handler: (node: NodeBase) => void) {}

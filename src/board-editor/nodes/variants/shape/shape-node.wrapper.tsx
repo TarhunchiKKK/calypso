@@ -9,7 +9,7 @@ export class ShapeNodeNodeWrapper extends NodeWrapper<ShapeNode> {
     }
 
     public override clone() {
-        // implementation...
+        // IMPLEMENTATION
         return this;
     }
 

@@ -1,7 +1,7 @@
 import type { OmitFields } from "@/shared/lib/typescript";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { ResizingNodesMapper } from "./nodes-mapping.lib";
-import { useResizing } from "./use-resizing.hook";
+import { ResizingNodesMapper } from "./lib/nodes-mapper";
+import { useResizing } from "./lib/use-resizing.hook";
 import type { ResizingViewState } from "./view-state";
 
 export function useResizingViewModel(params: ViewModelParams) {
@@ -11,7 +11,10 @@ export function useResizingViewModel(params: ViewModelParams) {
         const { nodesModel } = params;
 
         return {
-            nodes: ResizingNodesMapper.from(nodesModel.nodes).map(viewState, resizing.newSize).get(),
+            nodes: ResizingNodesMapper.from(nodesModel.nodes)
+                .setNodeId(viewState.nodeId)
+                .setNewSize(resizing.newSize)
+                .map(),
             window: {
                 onMouseMove: e => resizing.onMouseMove(viewState, e),
                 onMouseUp: e => {

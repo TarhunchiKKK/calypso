@@ -5,7 +5,7 @@ import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToSelection } from "../selection/switcher";
 import { switchToStyling } from "../styling/switcher";
 import { NodesContextMenu } from "./lib/nodes-context-menu.component";
-import { NodesContextMenuNodesMapper } from "./lib/nodes-mapping.lib";
+import { NodesContextMenuNodesMapper } from "./lib/nodes-mapper";
 import { useContextMenuOptions } from "./lib/use-context-menu-options.hook";
 import type { NodesContextMenuViewState } from "./view-state";
 
@@ -25,13 +25,13 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
                 onClick: (e: React.MouseEvent) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    setViewState(switchToStyling({ selectedIds: viewState.selectedIds, barPosition: clickPoint }));
+                    setViewState(switchToStyling({ selectedIds: viewState.selectedIds, position: clickPoint }));
                 }
             }
         });
 
         return {
-            nodes: NodesContextMenuNodesMapper.from(nodesModel.nodes).applySelection(viewState.selectedIds).get(),
+            nodes: NodesContextMenuNodesMapper.from(nodesModel.nodes).setSelectedIds(viewState.selectedIds).map(),
             overlay: overlayMediator.handlers,
             additionalElements: {
                 layout: (

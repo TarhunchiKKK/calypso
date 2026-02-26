@@ -1,4 +1,5 @@
-import type { NodeTypes, NodeWrapper } from "@/board-editor/core";
+import type { NodeWrapper } from "@/board-editor/core";
+import type { NodeTypes } from "@/entities/nodes";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import type { ShapeNode } from "../../variants/shape/shape-node.type";
 import { ShapeNodeNodeWrapper } from "../../variants/shape/shape-node.wrapper";

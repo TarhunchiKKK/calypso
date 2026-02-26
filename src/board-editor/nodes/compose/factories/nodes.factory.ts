@@ -1,81 +1,55 @@
+import { DefaultNodeStyles } from "@/entities/nodes";
 import type { Point } from "@/shared/lib/geometry";
-import type { ShapeNode, ShapeVariants } from "../../variants/shape/shape-node.type";
+import type { ShapeNode } from "../../variants/shape/shape-node.type";
 import type { StickerNode } from "../../variants/sticker/sticker.type";
 import type { TextNode } from "../../variants/text/text-node.type";
 
 export class NodesFactory {
-    public static sticker(point: Point): StickerNode {
+    public static sticker(data: Pick<StickerNode, "boardId"> & { point: Point }): StickerNode {
         return {
             id: crypto.randomUUID(),
-            boardId: "1",
+            boardId: data.boardId,
             type: "sticker",
-            blocked: false,
+            locked: false,
             text: "Hello",
             rect: {
-                ...point,
+                ...data.point,
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "none",
-                borderStyle: "dashed",
-                color: "black",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 
-    public static text(point: Point): TextNode {
+    public static text(data: Pick<TextNode, "boardId"> & { point: Point }): TextNode {
         return {
             id: crypto.randomUUID(),
-            boardId: "1",
+            boardId: data.boardId,
             type: "text",
-            blocked: false,
+            locked: false,
             text: [],
             rect: {
-                ...point,
+                ...data.point,
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "none",
-                borderStyle: "dashed",
-                color: "black",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 
-    public static shape(point: Point, variant: ShapeVariants): ShapeNode {
+    public static shape(data: Pick<ShapeNode, "boardId" | "variant"> & { point: Point }): ShapeNode {
         return {
             id: crypto.randomUUID(),
-            boardId: "1",
+            boardId: data.boardId,
             type: "shape",
-            blocked: false,
-            variant: variant,
+            locked: false,
+            variant: data.variant,
             rect: {
-                ...point,
+                ...data.point,
                 width: 100,
                 height: 100
             },
-            styles: {
-                backgroundColor: "orange",
-                borderColor: "green",
-                borderStyle: "dashed",
-                color: "green",
-                fontSize: 14,
-                textAlign: "center",
-                borderRadius: 8,
-                fontFamily: "sans-serif"
-            }
+            styles: DefaultNodeStyles
         };
     }
 }

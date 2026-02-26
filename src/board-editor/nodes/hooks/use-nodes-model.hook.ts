@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type NodeBase, useNodesService } from "@/board-editor/core";
+import { type NodeBase, useNodesService } from "@/entities/nodes";
 
 export function useNodesModel(inputNodes: NodeBase[]) {
     const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);

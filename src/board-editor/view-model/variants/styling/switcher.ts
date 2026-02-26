@@ -4,7 +4,7 @@ import type { StylingViewState } from "./view-state";
 type Params = {
     selectedIds: Set<string>;
 
-    barPosition: Point;
+    position: Point;
 };
 
 export function switchToStyling(params: Params): StylingViewState {

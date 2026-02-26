@@ -4,10 +4,10 @@ import { Geometry } from "@/shared/lib/geometry";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { StickersCreationNodesMapper } from "./nodes-mapping.lib";
+import { StickersCreationNodesMapper } from "./lib/nodes-mapper";
 
 export function useStickersCreationViewModel(params: ViewModelParams) {
-    const { nodesModel, layoutDimensionsModel } = params;
+    const { nodesModel, layoutDimensionsModel, boardId } = params;
 
     const canvasMediator = useMouseEventsMediator();
 
@@ -17,13 +17,18 @@ export function useStickersCreationViewModel(params: ViewModelParams) {
                 onClick: (e: React.MouseEvent) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    nodesModel.service.createOne(NodesFactory.sticker(clickPoint));
+                    nodesModel.service.createOne(
+                        NodesFactory.sticker({
+                            point: clickPoint,
+                            boardId: boardId
+                        })
+                    );
                 }
             }
         });
 
         return {
-            nodes: new StickersCreationNodesMapper(nodesModel.nodes).get(),
+            nodes: new StickersCreationNodesMapper(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers
         };
     };

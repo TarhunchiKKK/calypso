@@ -1,16 +1,5 @@
 import type { ViewModel, ViewModelParams } from "../types";
 
-/**
- * `withWindowShift` is a decorator function that enhances a `ViewModel` with window shifting capabilities.
- * It integrates the `windowShiftModel`'s event handlers (`handleMouseDown`, `handleMouseMove`, `handleMouseUp`)
- * into the `ViewModel`'s `overlay` and `window` event listeners.
- *
- * This allows the user to pan or shift the view by right-clicking and dragging on the overlay.
- *
- * @param {ViewModelParams} viewModelParams - An object containing the view model parameters, including `windowShiftModel`.
- * @param {ViewModel} viewModel - The base view model to be decorated.
- * @returns {ViewModel} A new `ViewModel` instance with the integrated window shifting functionality.
- */
 export function withLayoutDimensions({ layoutDimensionsModel }: ViewModelParams, viewModel: ViewModel): ViewModel {
     return {
         ...viewModel,

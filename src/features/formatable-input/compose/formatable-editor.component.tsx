@@ -22,7 +22,15 @@ export type FormatableEditorProps = {
     disabled?: boolean;
 };
 
-export const FormatableEditor = ({ value, keyBindings, onChange, onBlur, style, className, disabled }: FormatableEditorProps) => {
+export const FormatableEditor = ({
+    value,
+    keyBindings,
+    onChange,
+    onBlur,
+    style,
+    className,
+    disabled
+}: FormatableEditorProps) => {
     const [editor] = useState(() => withReact(withHistory(createEditor())));
 
     const keyDownHandler: KeyboardEventHandler<HTMLDivElement> = useCallback(

@@ -1,10 +1,15 @@
-import { Square, SquareDashed, SquareRoundCorner } from "lucide-react";
-import type { NodeStyles } from "@/board-editor/core";
+import { Square } from "lucide-react";
+import type { NodeStyles } from "@/entities/nodes";
+import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { Dropdown } from "@/shared/ui";
 import { BorderRadiuses, BorderStyles } from "../constants/border-styling.constants";
-import { Colors } from "../constants/colors.constants";
+import {
+    BoarderRadiusPlaceholder,
+    BorderColorPlaceholder,
+    BorderStylePlaceholder
+} from "../constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
-import type { UpdateFn } from "../types";
+import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
 
@@ -45,19 +50,24 @@ export function BorderStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown title="Border Style" items={BorderStyles} placeholder={<SquareDashed className="dark:text-white" />} onSelect={handleBorderStyleSelect} />
+            <Dropdown
+                title="Border Style"
+                items={BorderStyles}
+                placeholder={BorderStylePlaceholder}
+                onSelect={handleBorderStyleSelect}
+            />
 
             <ColorsDropdown
                 title="Border Color"
-                placeholder={<Square style={{ color: Colors[0] }} />}
-                colors={Colors}
+                placeholder={BorderColorPlaceholder}
+                colors={AvailableColors}
                 renderItem={color => <Square style={{ color, ...ColorsDropdownItemSizes }} />}
                 onSelect={handleBorderColorSelect}
             />
 
             <Dropdown
                 title="Border Radius"
-                placeholder={<SquareRoundCorner className="dark:text-white" />}
+                placeholder={BoarderRadiusPlaceholder}
                 items={BorderRadiuses}
                 onSelect={handleBorderRadiusSelect}
             />

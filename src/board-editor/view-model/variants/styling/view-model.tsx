@@ -3,7 +3,7 @@ import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToSelection } from "../selection/switcher";
-import { StylingNodesMapper } from "./nodes-mapping.lib";
+import { StylingNodesMapper } from "./lib/nodes-mapper";
 import type { StylingViewState } from "./view-state";
 
 export function useStylingViewModel(params: ViewModelParams) {
@@ -19,11 +19,14 @@ export function useStylingViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: StylingNodesMapper.from(nodesModel.nodes).applySelection(viewState.selectedIds).get(),
+            nodes: StylingNodesMapper.from(nodesModel.nodes).seteSelectedIds(viewState.selectedIds).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (
-                    <div style={{ left: viewState.barPosition.x, top: viewState.barPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
+                    <div
+                        style={{ left: viewState.position.x, top: viewState.position.y }}
+                        className="absolute -translate-x-1/2 -translate-y-1/2"
+                    >
                         <StylesBar onUpdate={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
                     </div>
                 )

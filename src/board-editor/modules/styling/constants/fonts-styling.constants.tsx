@@ -1,54 +1,14 @@
-import type { NodeStyles } from "@/board-editor/core";
+import type { NodeStyles } from "@/entities/nodes";
+import { AvailableFontFamilies, AvailableFontSizes } from "@/entities/nodes/constants/available-node-styles.constants";
 import type { DropdownItem } from "@/shared/ui";
+import { formatFontFamilyName } from "../lib/utils";
 
-export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = [
-    {
-        label: "Sans Serif",
-        value: "sans-serif"
-    },
-    {
-        label: "Fantasy",
-        value: "fantasy"
-    },
-    {
-        label: "Math",
-        value: "math"
-    },
-    {
-        label: "Monospace",
-        value: "monospace"
-    }
-];
+export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = AvailableFontFamilies.map(fontFamily => ({
+    label: <span style={{ fontFamily }}>{formatFontFamilyName(fontFamily)}</span>,
+    value: fontFamily
+}));
 
-export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = [
-    {
-        label: 4,
-        value: 4
-    },
-    {
-        label: 8,
-        value: 8
-    },
-
-    {
-        label: 12,
-        value: 12
-    },
-
-    {
-        label: 18,
-        value: 18
-    },
-    {
-        label: 24,
-        value: 24
-    },
-    {
-        label: 32,
-        value: 32
-    },
-    {
-        label: 48,
-        value: 48
-    }
-];
+export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = AvailableFontSizes.map(fontSize => ({
+    label: <span style={{ fontSize }}>{`${fontSize}px`}</span>,
+    value: fontSize
+}));

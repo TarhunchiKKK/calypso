@@ -3,7 +3,7 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModel, ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
-import { EditingNodesMapper } from "./nodes-mapping.lib";
+import { EditingNodesMapper } from "./lib/nodes-mapper";
 import type { EditingViewState } from "./view-state";
 
 export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParams) {
@@ -26,7 +26,11 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         });
 
         return {
-            nodes: EditingNodesMapper.from(nodesModel.nodes).map(viewState, nodesModel.service.updateOne, nodesMediator.handlers).get(),
+            nodes: EditingNodesMapper.from(nodesModel.nodes)
+                .setSelectedNodeId(viewState.selectedNodeId)
+                .setEndEditingHandler(nodesModel.service.updateOne)
+                .setNodeshandlers(nodesMediator.handlers)
+                .map(),
             overlay: overlayMediator.handlers
         };
     };

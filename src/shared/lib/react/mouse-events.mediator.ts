@@ -13,7 +13,6 @@ import type { MouseEventHandlers, MouseEventsMediatorOptions } from "./types";
  * This class helps in creating more interactive and intuitive user interfaces
  * by providing granular control over mouse event handling.
  */
-
 export class MouseEventsMediator {
     private handlers: MouseEventHandlers = {};
     private options: Required<MouseEventsMediatorOptions>;
@@ -77,7 +76,10 @@ export class MouseEventsMediator {
 
         this.handlers.onMouseUp?.(e);
 
-        const isClick = timeFromMouseDown < this.options.clickDelay && this.mouseDownTarget === e.target && !this.mouseDownProcessed;
+        const isClick =
+            timeFromMouseDown < this.options.clickDelay &&
+            this.mouseDownTarget === e.target &&
+            !this.mouseDownProcessed;
 
         if (isClick) {
             this.handlePotentialClick(e);
@@ -90,7 +92,11 @@ export class MouseEventsMediator {
     private handlePotentialClick(e: React.MouseEvent) {
         const now = Date.now();
 
-        if (this.clickCount === 2 && this.lastClickTarget === e.target && now - this.lastClickTime < this.options.doubleClickDelay) {
+        if (
+            this.clickCount === 2 &&
+            this.lastClickTarget === e.target &&
+            now - this.lastClickTime < this.options.doubleClickDelay
+        ) {
             if (this.clickTimeout) {
                 clearTimeout(this.clickTimeout);
                 this.clickTimeout = null;

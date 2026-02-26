@@ -6,7 +6,7 @@ import { BorderStylesGroup } from "./compose/border-styles-group.component";
 import { ColorsGroup } from "./compose/colors-group.component";
 import { FontStylesGroup } from "./compose/font-styles-group.component";
 import { TextFormattingGroup } from "./compose/text-formatting-group.component";
-import type { UpdateFn } from "./types";
+import type { UpdateFn } from "./lib/types";
 
 type Props = {
     onUpdate: (fn: UpdateFn) => void;

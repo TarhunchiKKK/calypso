@@ -22,7 +22,7 @@ export function useWindowEvents(events: WindowEvents) {
         eventsRef.current = events;
     }, [events]);
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: Else this will notwork like expected
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Else this will not work like expected
     useEffect(() => {
         const onMouseMove = (e: MouseEvent) => {
             eventsRef.current?.onMouseMove?.(e);

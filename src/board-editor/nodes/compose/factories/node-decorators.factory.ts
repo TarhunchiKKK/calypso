@@ -1,6 +1,7 @@
-import type { Decoratable, NodeBase } from "@/board-editor/core";
-import { CheckBlocked } from "@/board-editor/modules/blocking";
+import type { Decoratable } from "@/board-editor/core";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
+import { CheckLocked } from "@/board-editor/modules/locking";
+import type { NodeBase } from "@/entities/nodes";
 import type { Offset, Rect } from "@/shared/lib/geometry";
 import { EditableNodeDecorator } from "../../../modules/editing";
 import type { ResizeHandler } from "../../../modules/resizing";
@@ -18,26 +19,26 @@ export class NodeDecoratorsFactory {
         return wrapperCreator(node);
     }
 
-    @CheckBlocked()
+    @CheckLocked()
     public static select(node: Decoratable): Decoratable {
         return new SelectableNodeDecorator(node);
     }
 
-    @CheckBlocked()
+    @CheckLocked()
     public static draggable(node: Decoratable, offset?: Offset) {
         const strategyCreator = DraggingStrategiesMap[node.type];
 
         return new DraggableNodeDecorator(node, strategyCreator(), offset);
     }
 
-    @CheckBlocked()
+    @CheckLocked()
     public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizingStrategiesMap[node.type];
 
         return new ResizableNodeDecorator(node, strategyCreator(handler), size);
     }
 
-    @CheckBlocked()
+    @CheckLocked()
     public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
 

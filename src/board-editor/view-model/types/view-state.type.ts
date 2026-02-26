@@ -10,18 +10,6 @@ import type { ShapesCreationViewState } from "../variants/shapes-creation/view-s
 import type { StickersCreationViewState } from "../variants/stickers-creation/view-state";
 import type { StylingViewState } from "../variants/styling/view-state";
 
-/**
- * Represents the state of the view model, acting as a state machine for the board editor's UI.
- * The application behaves differently based on the current `ViewState`.
- * It can be one of the following:
- * - `Idle`: The default state, where no specific interaction is in progress.
- * - `Stickers`: The user is interacting with the sticker panel.
- * - `Selection`: One or more nodes are selected.
- * - `SelectionWindow`: The user is drawing a selection window.
- * - `Dragging`: The user is dragging one or more nodes.
- * - `Resizing`: The user is resizing a node.
- * - `Editing`: The user is editing the content of a node.
- */
 export type ViewState =
     | IdleViewState
     | StickersCreationViewState

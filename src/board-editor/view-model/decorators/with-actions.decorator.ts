@@ -7,18 +7,11 @@ import { switchToStickersCreation } from "../variants/stickers-creation/switcher
 const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-window", "dragging"];
 const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creation"];
 
-/**
- * A decorator function that enriches the ViewModel with a set of UI actions.
- * These actions are used to transition between different view states, such as switching to the "idle" or "stickers" mode.
- * The function determines the availability and behavior of these actions based on the current `viewState`.
- *
- * @param viewState - The current `ViewState` of the application.
- * @param setViewState - The function to call to update the application's `ViewState`.
- * @param viewModel - The base `ViewModel` (without the `actions` property) to be decorated.
- * @returns A new `ViewModel` instance that includes the `actions` property. The `actions` object
- *   maps action names to their state (active or not) and the `onClick` handler to trigger them.
- */
-export function withActions(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: Omit<ViewModel, "actions">): ViewModel {
+export function withActions(
+    viewState: ViewState,
+    setViewState: ViewModelParams["setViewState"],
+    viewModel: Omit<ViewModel, "actions">
+): ViewModel {
     const isIdle = idleViewStates.includes(viewState.type);
     const isStickers = viewState.type === "stickers-creation";
     const isShapes = shapesViewStates.includes(viewState.type);

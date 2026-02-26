@@ -9,7 +9,7 @@ import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { switchToStyling } from "../styling/switcher";
-import { IdleNodesMapper } from "./nodes-mapping.lib";
+import { IdleNodesMapper } from "./lib/nodes-mapper";
 import type { IdleViewState } from "./view-state";
 
 export function useIdleViewModel(params: ViewModelParams) {
@@ -56,7 +56,7 @@ export function useIdleViewModel(params: ViewModelParams) {
                     setViewState(
                         switchToStyling({
                             selectedIds: new Set([id]),
-                            barPosition: Geometry.pointFromEvent(e)
+                            position: Geometry.pointFromEvent(e)
                         })
                     );
                 })
@@ -64,7 +64,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: IdleNodesMapper.from(nodesModel.nodes).map(nodesMediator.handlers).get(),
+            nodes: IdleNodesMapper.from(nodesModel.nodes).setNodesHandlers(nodesMediator.handlers).map(),
             overlay: overlayMediator.handlers
         };
     };

@@ -1,5 +1,5 @@
-import type { NodeTypes } from "@/board-editor/core";
 import type { NodeResizingStrategy } from "@/board-editor/modules/resizing";
+import type { NodeTypes } from "@/entities/nodes";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import { RectNodeResizingStrategy } from "../../variants/shared";
 

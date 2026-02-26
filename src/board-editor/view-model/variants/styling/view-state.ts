@@ -5,5 +5,5 @@ export type StylingViewState = {
 
     selectedIds: Set<string>;
 
-    barPosition: Point;
+    position: Point;
 };
