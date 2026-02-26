@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
+import type { ViewStatesMap } from "./types/view-state.type";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
@@ -23,7 +24,6 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         setViewState
     };
 
-    // REFACTOR: do this with view model creators record
     const idleViewModel = useIdleViewModel(newParams);
     const stickersCreationViewModel = useStickersCreationViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);

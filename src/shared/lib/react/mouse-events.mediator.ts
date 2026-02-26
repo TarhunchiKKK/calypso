@@ -13,7 +13,6 @@ import type { MouseEventHandlers, MouseEventsMediatorOptions } from "./types";
  * This class helps in creating more interactive and intuitive user interfaces
  * by providing granular control over mouse event handling.
  */
-
 export class MouseEventsMediator {
     private handlers: MouseEventHandlers = {};
     private options: Required<MouseEventsMediatorOptions>;
