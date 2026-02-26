@@ -1,11 +1,14 @@
 import type { HotKey } from "./types";
 
 export class HotKeyUtils {
-    public static is(hotKey: HotKey | HotKey[], e: React.KeyboardEvent) {
+    public static is(hotKey: HotKey | HotKey[], another: HotKey) {
         const hotKeys = Array.isArray(hotKey) ? hotKey : [hotKey];
 
         for (const hotKey of hotKeys) {
-            const result = hotKey.key === e.key && hotKey.shiftKey === e.shiftKey && hotKey.ctrlKey === e.ctrlKey;
+            const result =
+                hotKey.key === another.key &&
+                hotKey.shiftKey === another.shiftKey &&
+                hotKey.ctrlKey === another.ctrlKey;
 
             if (result) {
                 return true;
