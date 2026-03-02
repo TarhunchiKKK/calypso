@@ -1,6 +1,6 @@
-import type { StoryObj } from "@storybook/nextjs-vite";
+import type { DecoratorFunction } from "storybook/internal/types";
 
-export const centered: StoryObj["decorators"] = Story => {
+export const centered: DecoratorFunction = Story => {
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center">
             <Story />
