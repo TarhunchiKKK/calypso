@@ -25,7 +25,8 @@
         "experimentalDecorators": true,
 
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "#/*": ["./.storybook/*"]
         }
     },
     "include": ["vite.config.ts", "tests", ".storybook/stories"]

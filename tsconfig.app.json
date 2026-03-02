@@ -27,7 +27,8 @@
         "experimentalDecorators": true,
 
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "#/*": ["./.storybook/*"]
         }
     },
     "include": ["src", ".storybook/stories"]
