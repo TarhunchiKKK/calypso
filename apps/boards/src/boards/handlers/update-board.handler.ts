@@ -1,7 +1,7 @@
+import { Inject } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import type { UpdateBoardDto } from "../dto/update-board.dto";
 import { BoardsHelper } from "../lib/boards.helper";
-import { Inject } from "@nestjs/common";
 
 export class UpdateBoardCommand implements ICommand {
     public constructor(

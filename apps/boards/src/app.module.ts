@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import { BoardsModule } from "./boards/boards.module";
-import { MongooseModule } from "@nestjs/mongoose";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
+import { MongooseModule } from "@nestjs/mongoose";
 import { mongooseConfigFactory } from "@repo/api";
+import { BoardsModule } from "./boards/boards.module";
 import { NodesModule } from "./nodes/nodes.module";
 
 @Module({

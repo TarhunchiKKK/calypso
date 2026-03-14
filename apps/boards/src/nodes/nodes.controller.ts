@@ -1,15 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+// biome-ignore lint/style/useImportType: Class import is needed for validation
+import { NodesArray } from "./dto/nodes-array.dto";
 import { NodesService } from "./nodes.service";
-import { CreateNodeDto } from "./dto/create-node.dto";
-import { UpdateNodeDto } from "./dto/update-node.dto";
 
 @Controller("nodes")
 export class NodesController {
-    public constructor(private readonly nodesService: NodesService) {}
+    public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
 
     @Post()
-    public async createMany(@Body() createNodeDto: CreateNodeDto) {
-        return this.nodesService.createMany(createNodeDto);
+    @UsePipes(ValidationPipe)
+    public async createMany(@Body() nodes: NodesArray) {
+        return this.nodesService.createMany(nodes.data);
     }
 
     @Get(":id")
@@ -18,8 +19,9 @@ export class NodesController {
     }
 
     @Patch()
-    public async updateMany(@Body() updateNodeDto: UpdateNodeDto) {
-        return this.nodesService.updateMany(updateNodeDto);
+    @UsePipes(ValidationPipe)
+    public async updateMany(@Body() nodes: NodesArray) {
+        return this.nodesService.updateMany(nodes.data);
     }
 
     @Delete(":id")

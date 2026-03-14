@@ -1,10 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import type { CreateNodeDto } from "./dto/create-node.dto";
-import type { UpdateNodeDto } from "./dto/update-node.dto";
+import type { NodesArray } from "./dto/nodes-array.dto";
 
 @Injectable()
 export class NodesService {
-    public async createMany(createNodeDto: CreateNodeDto) {
+    public async createMany(dtos: NodesArray["data"]) {
         return null;
     }
 
@@ -12,7 +11,7 @@ export class NodesService {
         return null;
     }
 
-    public async updateMany(updateNodeDto: UpdateNodeDto) {
+    public async updateMany(dtos: NodesArray["data"]) {
         return null;
     }
 
