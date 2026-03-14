@@ -5,7 +5,7 @@ export type Board = {
 
     createdAt: Date;
 
-    updatedAt: string;
+    updatedAt?: Date;
 };
 
 export type CreateBoardDto = Pick<Board, "title">;
