@@ -8,6 +8,7 @@ import { NodesModule } from "./nodes/nodes.module";
 
 @Module({
     imports: [
+        ConfigModule.forRoot(),
         CqrsModule.forRoot(),
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
