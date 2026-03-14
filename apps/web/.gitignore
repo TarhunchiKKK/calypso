@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE - VSCode
+.vscode
+.idx
+
+# Debug
+logs
+*.log
+
+# Build files
+tsconfig.tsbuildinfo
+dist
+
+# Storybook
+*storybook.log
+storybook-static
