@@ -5,8 +5,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "pnpm build --watch",
-        "build": "tsc -b -v",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\""
+        "build": "tsc -b -v"
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
@@ -25,7 +24,9 @@
         }
     },
     "dependencies": {
-        "@nestjs/mapped-types": "*"
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/mapped-types": "*",
+        "@nestjs/mongoose": "^11.0.4"
     },
     "devDependencies": {
         "@repo/eslint-config": "*",

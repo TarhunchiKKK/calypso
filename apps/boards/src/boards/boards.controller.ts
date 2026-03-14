@@ -13,14 +13,9 @@ export class BoardsController {
         return this.boardsService.create(createBoardDto);
     }
 
-    @Get()
-    public async findAll() {
-        return this.boardsService.findAll();
-    }
-
     @Get(":id")
-    public async findOne(@Param("id") id: string) {
-        return this.boardsService.findOne(id);
+    public async findAll(@Param("id") id: string) {
+        return this.boardsService.findAll(id);
     }
 
     @Patch(":id")

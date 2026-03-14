@@ -5,10 +5,10 @@ import type { HydratedDocument } from "mongoose";
 @Schema()
 export class Board implements Boards.Board {
     @Prop({ type: String, required: true })
-    public id: string;
+    public title: string;
 
     @Prop({ type: String, required: true })
-    public title: string;
+    public creatorId: string;
 
     @Prop({ type: Date, default: () => new Date() })
     public createdAt: Date;
