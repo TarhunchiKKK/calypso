@@ -1,21 +1,31 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import type { NodesArray } from "./dto/nodes-array.dto";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
+import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
+import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
+import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
 
 @Injectable()
 export class NodesService {
+    public constructor(
+        @Inject(CommandBus) private readonly commandBus: CommandBus,
+        @Inject(QueryBus) private readonly queryBus: QueryBus
+    ) {}
+
     public async createMany(dtos: NodesArray["data"]) {
-        return null;
+        return await this.commandBus.execute(new CreateManyNodesCommand(dtos));
     }
 
     public async findAll(boardId: string) {
-        return null;
+        return await this.queryBus.execute(new FindAllNodesQuery(boardId));
     }
 
     public async updateMany(dtos: NodesArray["data"]) {
-        return null;
+        return await this.commandBus.execute(new UpdateManyNodesCommand(dtos));
     }
 
-    public async removeMany(id: string) {
-        return null;
+    public async removeMany(ids: string[]) {
+        return await this.commandBus.execute(new RemoveManyNodesCommand(ids));
     }
 }

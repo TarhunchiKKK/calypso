@@ -1,0 +1,24 @@
+import { CommandHandler, ICommand, ICommandHandler } from "@nestjs/cqrs";
+import { InjectModel } from "@nestjs/mongoose";
+import { NodeBase } from "../schemas/node-base.schema";
+import { Model } from "mongoose";
+
+export class UpdateManyNodesCommand implements ICommand {
+    public constructor(public dtos: NodeBase[]) {}
+}
+
+@CommandHandler(UpdateManyNodesCommand)
+export class UpdateManyNodesCommandHandler implements ICommandHandler<UpdateManyNodesCommand> {
+    public constructor(@InjectModel(NodeBase.name) private readonly nodeModel: Model<NodeBase>) {}
+
+    public async execute({ dtos }: UpdateManyNodesCommand) {
+        const writes = dtos.map(dto => ({
+            updateOne: {
+                filter: { id: dto.id },
+                update: dto
+            }
+        }));
+
+        await this.nodeModel.bulkWrite(writes);
+    }
+}

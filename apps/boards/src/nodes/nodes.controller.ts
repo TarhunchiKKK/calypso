@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
-// biome-ignore lint/style/useImportType: Class import is needed for validation
+// biome-ignore lint/style/useImportType: Class import is needed for validation.
 import { NodesArray } from "./dto/nodes-array.dto";
+// biome-ignore lint/style/useImportType: Class import is needed for validation.
+import { RemoveManyNodesDto } from "./dto/remove-many-nodes.dto";
 import { NodesService } from "./nodes.service";
 
 @Controller("nodes")
@@ -24,8 +26,8 @@ export class NodesController {
         return this.nodesService.updateMany(nodes.data);
     }
 
-    @Delete(":id")
-    public async removeMany(@Param("id") id: string) {
-        return this.nodesService.removeMany(id);
+    @Delete()
+    public async removeMany(@Body() dto: RemoveManyNodesDto) {
+        return this.nodesService.removeMany(dto.ids);
     }
 }
