@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Boards } from "@repo/common";
-import { NodeStyles, NodeStylesSchema } from "./node-styles.schema";
+import type { Boards } from "@repo/common";
+import { Types } from "mongoose";
 
-@Schema()
+@Schema({ discriminatorKey: "type" })
 export class NodeBase implements Boards.NodeBase {
     @Prop({ type: String, required: true })
     public id: string;
@@ -10,14 +10,14 @@ export class NodeBase implements Boards.NodeBase {
     @Prop({ type: String, required: true })
     public type: Boards.NodeTypes;
 
-    @Prop({ type: String, required: true })
+    @Prop({ type: Types.ObjectId, required: true })
     public boardId: string;
 
     @Prop({ type: Boolean, required: true })
     public locked: boolean;
 
-    @Prop({ schema: NodeStylesSchema, required: true })
-    public styles: NodeStyles;
+    @Prop({ type: Object, required: true })
+    public styles: Boards.NodeStyles;
 }
 
 export const NodeBaseSchema = SchemaFactory.createForClass(NodeBase);
