@@ -1,9 +1,7 @@
-import { NotFoundException } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
-import { InjectModel } from "@nestjs/mongoose";
-import type { Model } from "mongoose";
 import type { UpdateBoardDto } from "../dto/update-board.dto";
-import { Board } from "../schemas/board.schema";
+import { BoardsHelper } from "../lib/boards.helper";
+import { Inject } from "@nestjs/common";
 
 export class UpdateBoardCommand implements ICommand {
     public constructor(
@@ -14,14 +12,10 @@ export class UpdateBoardCommand implements ICommand {
 
 @CommandHandler(UpdateBoardCommand)
 export class UpdateBoardCommandHandler implements ICommandHandler<UpdateBoardCommand> {
-    public constructor(@InjectModel(Board.name) private readonly boardModel: Model<Board>) {}
+    public constructor(@Inject(BoardsHelper) private readonly boardsHelper: BoardsHelper) {}
 
     public async execute({ id, dto }: UpdateBoardCommand) {
-        const board = await this.boardModel.findById(id);
-
-        if (!board) {
-            throw new NotFoundException("Board not found");
-        }
+        const board = await this.boardsHelper.findOneById(id);
 
         Object.assign(board, {
             ...dto,

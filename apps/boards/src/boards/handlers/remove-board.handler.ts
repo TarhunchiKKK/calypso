@@ -1,8 +1,6 @@
-import { CommandHandler, ICommand, ICommandHandler } from "@nestjs/cqrs";
-import { InjectModel } from "@nestjs/mongoose";
-import { Board } from "../schemas/board.schema";
-import { Model } from "mongoose";
-import { NotFoundException } from "@nestjs/common";
+import { Inject } from "@nestjs/common";
+import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { BoardsHelper } from "../lib/boards.helper";
 
 export class RemoveBoardCommand implements ICommand {
     public constructor(public id: string) {}
@@ -10,14 +8,10 @@ export class RemoveBoardCommand implements ICommand {
 
 @CommandHandler(RemoveBoardCommand)
 export class RemoveBoardCommandHandler implements ICommandHandler<RemoveBoardCommand> {
-    public constructor(@InjectModel(Board.name) private readonly boardModel: Model<Board>) {}
+    public constructor(@Inject(BoardsHelper) private readonly boardsHelper: BoardsHelper) {}
 
     public async execute({ id }: RemoveBoardCommand) {
-        const board = await this.boardModel.findById(id);
-
-        if (!board) {
-            throw new NotFoundException("Board not found");
-        }
+        const board = await this.boardsHelper.findOneById(id);
 
         await board.deleteOne();
     }

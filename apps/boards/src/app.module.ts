@@ -3,7 +3,8 @@ import { BoardsModule } from "./boards/boards.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
-import {mongooseConfigFactoryCreator } from "@repo/api"
+import { mongooseConfigFactory } from "@repo/api";
+import { NodesModule } from "./nodes/nodes.module";
 
 @Module({
     imports: [
@@ -11,9 +12,10 @@ import {mongooseConfigFactoryCreator } from "@repo/api"
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: mongooseConfigFactoryCreator("BOARDS")
+            useFactory: mongooseConfigFactory("BOARDS")
         }),
-        BoardsModule
+        BoardsModule,
+        NodesModule
     ]
 })
 export class AppModule {}

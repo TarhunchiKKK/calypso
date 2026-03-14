@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { Boards } from "@repo/common";
-import type { HydratedDocument } from "mongoose";
 
 @Schema()
 export class Board implements Boards.Board {
@@ -16,7 +15,5 @@ export class Board implements Boards.Board {
     @Prop({ type: Date, required: false })
     public updatedAt?: Date;
 }
-
-export type BoardDocument = HydratedDocument<Board>;
 
 export const BoardSchema = SchemaFactory.createForClass(Board);

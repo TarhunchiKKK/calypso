@@ -1,1 +1,1 @@
-export {mongooseConfigFactoryCreator } from "./mongoose.config"
+export { mongooseConfigFactory } from "./mongoose.config";
