@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type { NodesArray } from "./dto/nodes-array.dto";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import type { NodesArray } from "./dto/nodes-array.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
-import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
+import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
 
 @Injectable()
 export class NodesService {

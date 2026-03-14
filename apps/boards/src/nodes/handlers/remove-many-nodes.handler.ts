@@ -1,7 +1,7 @@
-import { CommandHandler, ICommand, ICommandHandler } from "@nestjs/cqrs";
+import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
+import type { Model } from "mongoose";
 import { NodeBase } from "../schemas/node-base.schema";
-import { Model } from "mongoose";
 
 export class RemoveManyNodesCommand implements ICommand {
     public constructor(public ids: string[]) {}
