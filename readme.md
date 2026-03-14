@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./public/logo.svg" width="270" alt="Nest Logo" />
+    <img src="./logo.svg" width="270" alt="Logo" />
 </p>
 
 <h1 align="center">Calypso Board Editor🚀</h1>
