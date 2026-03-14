@@ -4,7 +4,7 @@ import { NodesContextMenu } from "@/board-editor/view-model/variants/nodes-conte
 
 const meta = {
     title: "Board Editor/View Model/Variants/Nodes Context Menu/Nodes Context Menu",
-    component: NodesContextMenu,
+    component: NodesContextMenu
 } satisfies Meta<typeof NodesContextMenu>;
 
 export default meta;
@@ -19,36 +19,36 @@ export const Default: Story = {
                 options: [
                     {
                         label: "Copy",
-                        onClick: () => {},
+                        onClick: () => {}
                     },
                     {
                         label: "Cut",
-                        onClick: () => {},
-                    },
-                ],
+                        onClick: () => {}
+                    }
+                ]
             },
             {
                 label: "Locking",
                 options: [
                     {
                         label: "Lock",
-                        onClick: () => {},
+                        onClick: () => {}
                     },
                     {
                         label: "Unlock",
-                        onClick: () => {},
-                    },
-                ],
+                        onClick: () => {}
+                    }
+                ]
             },
             {
                 options: [
                     {
                         label: "Delete",
-                        onClick: () => {},
-                    },
-                ],
-            },
-        ],
+                        onClick: () => {}
+                    }
+                ]
+            }
+        ]
     },
-    decorators: centered,
+    decorators: centered
 };

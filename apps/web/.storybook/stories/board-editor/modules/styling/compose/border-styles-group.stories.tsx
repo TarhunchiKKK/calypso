@@ -4,7 +4,7 @@ import { BorderStylesGroup } from "@/board-editor/modules/styling/compose/border
 
 const meta = {
     title: "Board Editor/Modules/Styling/Compose/Boarder Styles Group",
-    component: BorderStylesGroup,
+    component: BorderStylesGroup
 } satisfies Meta<typeof BorderStylesGroup>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onUpdate: () => {},
+        onUpdate: () => {}
     },
-    decorators: centered,
+    decorators: centered
 };

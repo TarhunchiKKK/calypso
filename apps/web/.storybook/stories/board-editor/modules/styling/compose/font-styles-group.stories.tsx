@@ -4,7 +4,7 @@ import { FontStylesGroup } from "@/board-editor/modules/styling/compose/font-sty
 
 const meta = {
     title: "Board Editor/Modules/Styling/Compose/Font Styles Group",
-    component: FontStylesGroup,
+    component: FontStylesGroup
 } satisfies Meta<typeof FontStylesGroup>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onUpdate: () => {},
+        onUpdate: () => {}
     },
-    decorators: centered,
+    decorators: centered
 };

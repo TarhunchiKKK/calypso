@@ -4,7 +4,7 @@ import { TextFormattingGroup } from "@/board-editor/modules/styling/compose/text
 
 const meta = {
     title: "Board Editor/Modules/Styling/Compose/Text Formatting Group",
-    component: TextFormattingGroup,
+    component: TextFormattingGroup
 } satisfies Meta<typeof TextFormattingGroup>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onUpdate: () => {},
+        onUpdate: () => {}
     },
-    decorators: centered,
+    decorators: centered
 };

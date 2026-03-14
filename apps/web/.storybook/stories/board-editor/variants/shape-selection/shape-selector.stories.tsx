@@ -4,7 +4,7 @@ import { ShapeSelector } from "@/board-editor/view-model/variants/shape-selectio
 
 const meta = {
     title: "Board Editor/View Model/Variants/Shape Selection/Shape Selector",
-    component: ShapeSelector,
+    component: ShapeSelector
 } satisfies Meta<typeof ShapeSelector>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onSelect: () => {},
+        onSelect: () => {}
     },
-    decorators: centered,
+    decorators: centered
 };

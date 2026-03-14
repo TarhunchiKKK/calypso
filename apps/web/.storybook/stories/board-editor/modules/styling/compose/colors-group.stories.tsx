@@ -4,7 +4,7 @@ import { ColorsGroup } from "@/board-editor/modules/styling/compose/colors-group
 
 const meta = {
     title: "Board Editor/Modules/Styling/Compose/Colors Group",
-    component: ColorsGroup,
+    component: ColorsGroup
 } satisfies Meta<typeof ColorsGroup>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onUpdate: () => {},
+        onUpdate: () => {}
     },
-    decorators: centered,
+    decorators: centered
 };
