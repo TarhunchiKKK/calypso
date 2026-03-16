@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
-import { BoardsService } from "./boards.service";
+import { BoardsService } from "../boards.service";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
-import { CreateBoardDto } from "./dto/create-board.dto";
+import { CreateBoardDto } from "../dto/create-board.dto";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
-import { UpdateBoardDto } from "./dto/update-board.dto";
+import { UpdateBoardDto } from "../dto/update-board.dto";
 
 @Controller("boards")
-export class BoardsController {
+export class BoardsHttpController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     @Post()

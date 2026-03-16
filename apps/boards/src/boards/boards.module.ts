@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { BoardsController } from "./boards.controller";
 import { BoardsService } from "./boards.service";
+import { BoardsHttpController } from "./controllers/boards.http.controller";
+import { BoardsRmqController } from "./controllers/boards.rmq.controller";
 import { CreateBoardCommandHandler } from "./handlers/create-board.handler";
 import { FindAllBoardsQueryHandler } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommandHandler } from "./handlers/remove-board.handler";
@@ -18,7 +19,7 @@ import { Board, BoardSchema } from "./schemas/board.schema";
             }
         ])
     ],
-    controllers: [BoardsController],
+    controllers: [BoardsHttpController, BoardsRmqController],
     providers: [
         BoardsService,
         BoardsHelper,

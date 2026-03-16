@@ -1,10 +1,30 @@
+import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
+import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
-    await app.listen(3000);
+    const configService = app.get(ConfigService);
+
+    app.connectMicroservice<MicroserviceOptions>({
+        transport: Transport.RMQ,
+        options: {
+            urls: [configService.getOrThrow<string>("RMQ_URL")],
+            queue: configService.getOrThrow<string>("RMQ_QUEUE"),
+            queueOptions: {
+                durable: true
+            },
+            noAck: false,
+            prefetchCount: 1,
+            persistent: true
+        }
+    });
+
+    await app.startAllMicroservices();
+
+    await app.init();
 }
 
 void bootstrap();
