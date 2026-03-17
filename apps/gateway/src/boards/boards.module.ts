@@ -1,13 +1,35 @@
 import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
-import { BoardsHttpController } from "./boards/boards.http.controller";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ClientsModule, Transport } from "@nestjs/microservices";
+import { CommonRmqOptions } from "@repo/api";
+import { BoardsController } from "./boards/boards.controller";
 import { BoardsHttpService } from "./boards/boards.http.service";
-import { NodesHttpController } from "./nodes/nodes.http.controller";
+import { BOARDS_RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
+import { NodesController } from "./nodes/nodes.controller";
 import { NodesHttpService } from "./nodes/nodes.http.service";
+import { NodesRmqService } from "./nodes/nodes.rmq.service";
 
 @Module({
-    imports: [HttpModule],
-    controllers: [BoardsHttpController, NodesHttpController],
-    providers: [BoardsHttpService, NodesHttpService]
+    imports: [
+        HttpModule,
+        ClientsModule.registerAsync([
+            {
+                name: BOARDS_RMQ_CLIENT_INJECTION_TOKEN,
+                imports: [ConfigModule],
+                inject: [ConfigService],
+                useFactory: (configService: ConfigService) => ({
+                    transport: Transport.RMQ,
+                    options: {
+                        ...CommonRmqOptions,
+                        urls: configService.getOrThrow<string>("RMQ_URLS").split(","),
+                        queue: configService.getOrThrow<string>("BOARDS_RMQ_QUEUE")
+                    }
+                })
+            }
+        ])
+    ],
+    controllers: [BoardsController, NodesController],
+    providers: [BoardsHttpService, NodesHttpService, NodesRmqService]
 })
 export class BoardsModule {}

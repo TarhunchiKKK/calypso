@@ -3,8 +3,8 @@ import type { Boards } from "@repo/common";
 import { BoardsHttpService } from "./boards.http.service";
 
 @Controller("boards")
-export class BoardsHttpController {
-    constructor(@Inject(BoardsHttpService) private readonly boardsService: BoardsHttpService) {}
+export class BoardsController {
+    public constructor(@Inject(BoardsHttpService) private readonly boardsService: BoardsHttpService) {}
 
     @Post()
     public create(@Body() createBoardDto: Boards.CreateBoardDto) {
