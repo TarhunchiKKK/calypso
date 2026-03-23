@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { RmqRoutingKeys } from "@repo/api";
+import { BrokerRoutingKeys } from "@repo/api";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "src/lib/rmq.constants";
 import type { NodesArray } from "./dto/nodes-array.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
@@ -22,7 +22,7 @@ export class NodesService {
         await this.commandBus.execute(new CreateManyNodesCommand(dtos));
 
         if (dtos.length !== 0) {
-            this.rmqClient.emit(RmqRoutingKeys.boards.events.nodesChanged, dtos[0]?.boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, dtos[0]?.boardId);
         }
     }
 
@@ -34,14 +34,14 @@ export class NodesService {
         await this.commandBus.execute(new UpdateManyNodesCommand(dtos));
 
         if (dtos.length !== 0) {
-            this.rmqClient.emit(RmqRoutingKeys.boards.events.nodesChanged, dtos[0]?.boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, dtos[0]?.boardId);
         }
     }
 
     public async removeMany(ids: string[], boardId: string) {
         await this.commandBus.execute(new RemoveManyNodesCommand(ids));
 
-        this.rmqClient.emit(RmqRoutingKeys.boards.events.nodesChanged, boardId);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, boardId);
     }
 
     public async removeNodesByBoard(boardId: string) {

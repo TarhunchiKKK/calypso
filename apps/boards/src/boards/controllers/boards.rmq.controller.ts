@@ -1,6 +1,6 @@
 import { Controller, Inject, Logger } from "@nestjs/common";
 import { Ctx, EventPattern, Payload, type RmqContext } from "@nestjs/microservices";
-import { RmqRoutingKeys, RmqService } from "@repo/api";
+import { BrokerAcknowledgementService, BrokerRoutingKeys } from "@repo/api";
 import { BoardsService } from "../boards.service";
 
 @Controller()
@@ -9,19 +9,20 @@ export class BoardsRmqController {
 
     public constructor(
         @Inject(BoardsService) private readonly boardsService: BoardsService,
-        @Inject(RmqService) private readonly rmqService: RmqService
+        @Inject(BrokerAcknowledgementService)
+        private readonly brokerService: BrokerAcknowledgementService
     ) {}
 
-    @EventPattern(RmqRoutingKeys.boards.events.nodesChanged)
+    @EventPattern(BrokerRoutingKeys.boards.events.nodesChanged)
     public async nodesChanged(@Payload() boardId: string, @Ctx() context: RmqContext) {
         try {
             await this.boardsService.changeBoardUpdateDate(boardId);
 
-            this.rmqService.ack(context);
+            this.brokerService.ack(context);
         } catch (error) {
             this.logger.error(error);
 
-            this.rmqService.nack(context);
+            this.brokerService.nack(context);
         }
     }
 }

@@ -4,7 +4,12 @@ import { CqrsModule } from "@nestjs/cqrs";
 import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { mongooseConfigFactory, RmqModule, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
+import {
+    BrokerAcknowledgementModule,
+    mongooseConfigFactory,
+    rmqClientConfigFactory,
+    typeormConfigFactory
+} from "@repo/api";
 import { BoardsModule } from "./boards/boards.module";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
 import { NodesModule } from "./nodes/nodes.module";
@@ -34,7 +39,7 @@ import { NodesModule } from "./nodes/nodes.module";
                 }
             ]
         }),
-        RmqModule,
+        BrokerAcknowledgementModule,
         BoardsModule,
         NodesModule
     ]

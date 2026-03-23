@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Logger, UsePipes, ValidationPipe } from "@nestjs/common";
 import { Ctx, MessagePattern, Payload, type RmqContext } from "@nestjs/microservices";
-import { RmqRoutingKeys, RmqService } from "@repo/api";
+import { BrokerAcknowledgementService, BrokerRoutingKeys } from "@repo/api";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
 import { NodesArray } from "../dto/nodes-array.dto";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
@@ -13,37 +13,38 @@ export class NodesRmqController {
 
     public constructor(
         @Inject(NodesService) private readonly nodesService: NodesService,
-        @Inject(RmqService) private readonly rmqService: RmqService
+        @Inject(BrokerAcknowledgementService)
+        private readonly brokerService: BrokerAcknowledgementService
     ) {}
 
-    @MessagePattern(RmqRoutingKeys.boards.nodes.createMany)
+    @MessagePattern(BrokerRoutingKeys.boards.nodes.createMany)
     @UsePipes(ValidationPipe)
     public async createMany(@Body() nodes: NodesArray) {
         return this.nodesService.createMany(nodes.data);
     }
 
-    @MessagePattern(RmqRoutingKeys.boards.nodes.updateMany)
+    @MessagePattern(BrokerRoutingKeys.boards.nodes.updateMany)
     @UsePipes(ValidationPipe)
     public async updateMany(@Body() nodes: NodesArray) {
         return this.nodesService.updateMany(nodes.data);
     }
 
-    @MessagePattern(RmqRoutingKeys.boards.nodes.removeMany)
+    @MessagePattern(BrokerRoutingKeys.boards.nodes.removeMany)
     @UsePipes(ValidationPipe)
     public async removeMany(@Body() dto: RemoveManyNodesDto) {
         return this.nodesService.removeMany(dto.ids, dto.boardId);
     }
 
-    @MessagePattern(RmqRoutingKeys.boards.events.boardRemoved)
+    @MessagePattern(BrokerRoutingKeys.boards.events.boardRemoved)
     public async handleBoardRemoved(@Payload() boardId: string, @Ctx() context: RmqContext) {
         try {
             await this.nodesService.removeNodesByBoard(boardId);
 
-            this.rmqService.ack(context);
+            this.brokerService.ack(context);
         } catch (error) {
             this.logger.error(error);
 
-            this.rmqService.nack(context);
+            this.brokerService.nack(context);
         }
     }
 }

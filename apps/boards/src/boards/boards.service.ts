@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { RmqRoutingKeys } from "@repo/api";
+import { BrokerRoutingKeys } from "@repo/api";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
@@ -34,7 +34,7 @@ export class BoardsService {
     public async remove(id: string) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
-        this.rmqClient.emit(RmqRoutingKeys.boards.events.boardRemoved, id);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.events.boardRemoved, id);
 
         return result;
     }
