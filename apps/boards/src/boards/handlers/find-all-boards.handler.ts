@@ -1,7 +1,7 @@
 import { type IQuery, type IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { InjectModel } from "@nestjs/mongoose";
-import type { Model } from "mongoose";
-import { Board } from "../schemas/board.schema";
+import { InjectRepository } from "@nestjs/typeorm";
+import type { Repository } from "typeorm";
+import { Board } from "../entities/board.entity";
 
 export class FindAllBoardsQuery implements IQuery {
     public constructor(public creatorId: string) {}
@@ -9,15 +9,13 @@ export class FindAllBoardsQuery implements IQuery {
 
 @QueryHandler(FindAllBoardsQuery)
 export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQuery> {
-    public constructor(@InjectModel(Board.name) private readonly boardModel: Model<Board>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async execute({ creatorId }: FindAllBoardsQuery) {
-        const filter = {
-            creatorId: {
-                $eq: creatorId
+        return await this.boardsRepository.find({
+            where: {
+                creatorId: creatorId
             }
-        };
-
-        return await this.boardModel.find(filter).exec();
+        });
     }
 }

@@ -6,7 +6,7 @@ import { RmqRoutingKeys, RmqService } from "@repo/api";
 export class BoardsRmqController {
     public constructor(@Inject(RmqService) private readonly rmqService: RmqService) {}
 
-    @EventPattern(RmqRoutingKeys.boards.nodesChanged)
+    @EventPattern(RmqRoutingKeys.boards.events.nodesChanged)
     public nodesChanged(@Payload() boardId: string, @Ctx() context: RmqContext) {
         try {
         } catch (error) {}

@@ -28,7 +28,8 @@
         "@nestjs/config": "^4.0.3",
         "@nestjs/mapped-types": "*",
         "@nestjs/microservices": "^11.1.16",
-        "@nestjs/mongoose": "^11.0.4"
+        "@nestjs/mongoose": "^11.0.4",
+        "@nestjs/typeorm": "^11.0.0"
     },
     "devDependencies": {
         "@repo/eslint-config": "*",
