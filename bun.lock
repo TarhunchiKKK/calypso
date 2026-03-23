@@ -158,6 +158,7 @@
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
+        "rxjs": "^7.8.2",
       },
       "devDependencies": {
         "@repo/eslint-config": "*",

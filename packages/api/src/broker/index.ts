@@ -1,3 +1,3 @@
 export { BrokerRoutingKeys, CommonBrokerOptions } from "./broker.constants";
-export { BrokerAcknowledgementModule } from "./broker.module";
-export { BrokerAcknowledgementService } from "./broker.service";
+export { BrokerAcknowledgement } from "./broker-acknowledgement.interceptor";
+export { BrokerAcknowledgementService } from "./broker-acknowledgement.service";

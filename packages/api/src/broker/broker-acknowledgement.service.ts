@@ -1,7 +1,6 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Logger } from "@nestjs/common";
 import type { RmqContext } from "@nestjs/microservices";
 
-@Injectable()
 export class BrokerAcknowledgementService {
     private readonly logger = new Logger(BrokerAcknowledgementService.name);
 
