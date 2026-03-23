@@ -1,4 +1,4 @@
-export const RmqRoutingKeys = {
+export const BrokerRoutingKeys = {
     boards: {
         nodes: {
             createMany: "boards.nodes.create-many",
@@ -12,7 +12,7 @@ export const RmqRoutingKeys = {
     }
 };
 
-export const CommonRmqOptions = {
+export const CommonBrokerOptions = {
     queueOptions: {
         durable: true
     },

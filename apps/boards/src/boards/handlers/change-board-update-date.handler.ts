@@ -2,34 +2,27 @@ import { Inject } from "@nestjs/common";
 import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
-import type { UpdateBoardDto } from "../dto/update-board.dto";
 import { Board } from "../entities/board.entity";
 import { BoardsHelper } from "../lib/boards.helper";
 
-export class UpdateBoardCommand implements ICommand {
-    public constructor(
-        public id: string,
-        public dto: UpdateBoardDto
-    ) {}
+export class ChangeBoardUpdateDateCommand implements ICommand {
+    public constructor(public boardId: string) {}
 }
 
-@CommandHandler(UpdateBoardCommand)
-export class UpdateBoardCommandHandler implements ICommandHandler<UpdateBoardCommand> {
+@CommandHandler(ChangeBoardUpdateDateCommand)
+export class ChangeBoardUpdateDateCommandHandler implements ICommandHandler<ChangeBoardUpdateDateCommand> {
     public constructor(
         @Inject(BoardsHelper) private readonly boardsHelper: BoardsHelper,
         @InjectRepository(Board) private readonly boardsRepository: Repository<Board>
     ) {}
 
-    public async execute({ id, dto }: UpdateBoardCommand) {
-        const board = await this.boardsHelper.findOneById(id);
+    public async execute({ boardId }: ChangeBoardUpdateDateCommand) {
+        const board = await this.boardsHelper.findOneById(boardId);
 
-        Object.assign(board, {
-            ...dto,
-            updatedAt: new Date()
-        });
+        Object.assign(board, { updatedAt: new Date() });
 
         await this.boardsRepository.save(board);
 
-        return id;
+        return boardId;
     }
 }

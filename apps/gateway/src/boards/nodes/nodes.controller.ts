@@ -1,18 +1,19 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
+import type { Boards } from "@repo/common";
 import { NodesHttpService } from "./nodes.http.service";
-import { Boards } from "@repo/common";
-import { NodesRmqService } from "./nodes.rmq.service";
+import { NodesBrokerAcknowledgementService } from "./nodes.rmq.service";
 
 @Controller("board-nodes")
 export class NodesController {
     public constructor(
         @Inject(NodesHttpService) private readonly nodesHttpService: NodesHttpService,
-        @Inject(NodesRmqService) private readonly nodesRmqService: NodesRmqService
+        @Inject(NodesBrokerAcknowledgementService)
+        private readonly nodesBrokerAcknowledgementService: NodesBrokerAcknowledgementService
     ) {}
 
     @Post()
     public createMany(@Body() nodes: Boards.NodeBase[]) {
-        return this.nodesRmqService.createMany(nodes)
+        return this.nodesBrokerAcknowledgementService.createMany(nodes);
     }
 
     @Get(":boardId")
@@ -22,11 +23,11 @@ export class NodesController {
 
     @Patch()
     public updateMany(@Body() nodes: Boards.NodeBase[]) {
-        return this.nodesRmqService.updateMany(nodes);
+        return this.nodesBrokerAcknowledgementService.updateMany(nodes);
     }
 
     @Delete()
     public removeMany(@Body() ids: string[]) {
-        return this.nodesRmqService.removeMany(ids);
+        return this.nodesBrokerAcknowledgementService.removeMany(ids);
     }
 }

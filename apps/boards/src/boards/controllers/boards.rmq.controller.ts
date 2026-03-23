@@ -1,14 +1,15 @@
 import { Controller, Inject } from "@nestjs/common";
-import { Ctx, EventPattern, Payload, type RmqContext } from "@nestjs/microservices";
-import { RmqRoutingKeys, RmqService } from "@repo/api";
+import { EventPattern, Payload } from "@nestjs/microservices";
+import { BrokerAcknowledgement, BrokerRoutingKeys } from "@repo/api";
+import { BoardsService } from "../boards.service";
 
 @Controller()
 export class BoardsRmqController {
-    public constructor(@Inject(RmqService) private readonly rmqService: RmqService) {}
+    public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
-    @EventPattern(RmqRoutingKeys.boards.nodesChanged)
-    public nodesChanged(@Payload() boardId: string, @Ctx() context: RmqContext) {
-        try {
-        } catch (error) {}
+    @EventPattern(BrokerRoutingKeys.boards.events.nodesChanged)
+    @BrokerAcknowledgement({ requeue: true, loggerContext: BoardsRmqController.name })
+    public async nodesChanged(@Payload() boardId: string) {
+        await this.boardsService.changeBoardUpdateDate(boardId);
     }
 }

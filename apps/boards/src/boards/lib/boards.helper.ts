@@ -1,14 +1,14 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import type { Model } from "mongoose";
-import { Board } from "../schemas/board.schema";
+import { InjectRepository } from "@nestjs/typeorm";
+import type { Repository } from "typeorm";
+import { Board } from "../entities/board.entity";
 
 @Injectable()
 export class BoardsHelper {
-    public constructor(@InjectModel(Board.name) private readonly boardModel: Model<Board>) {}
+    public constructor(@InjectRepository(Board) private readonly boardsRepository: Repository<Board>) {}
 
     public async findOneById(id: string) {
-        const board = await this.boardModel.findById(id);
+        const board = await this.boardsRepository.findOne({ where: { id: id } });
 
         if (!board) {
             throw new NotFoundException("Board not found");

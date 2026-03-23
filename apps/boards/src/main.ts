@@ -1,7 +1,7 @@
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
-import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { CommonRmqOptions } from "@repo/api";
+import type { MicroserviceOptions } from "@nestjs/microservices";
+import { rmqMicroserviceConfigFactory } from "@repo/api";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -9,14 +9,7 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
 
-    app.connectMicroservice<MicroserviceOptions>({
-        transport: Transport.RMQ,
-        options: {
-            ...CommonRmqOptions,
-            urls: configService.getOrThrow<string>("RMQ_URLS").split(","),
-            queue: configService.getOrThrow<string>("RMQ_QUEUE")
-        }
-    });
+    app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService));
 
     await app.startAllMicroservices();
 
