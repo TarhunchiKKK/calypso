@@ -5,6 +5,7 @@ import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQueryHandler } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.handler";
+import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommandHandler } from "./handlers/update-many-nodes.handler";
 import { NodesService } from "./nodes.service";
 import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
@@ -35,7 +36,8 @@ import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
         CreateManyNodesCommandHandler,
         FindAllNodesQueryHandler,
         UpdateManyNodesCommandHandler,
-        RemoveManyNodesCommandHandler
+        RemoveManyNodesCommandHandler,
+        RemoveNodesByBoardCommandHandler
     ]
 })
 export class NodesModule {}

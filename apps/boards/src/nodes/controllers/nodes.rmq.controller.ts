@@ -1,6 +1,6 @@
-import { Body, Controller, Inject, UsePipes, ValidationPipe } from "@nestjs/common";
-import { MessagePattern } from "@nestjs/microservices";
-import { RmqRoutingKeys } from "@repo/api";
+import { Body, Controller, Inject, Logger, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Ctx, MessagePattern, Payload, type RmqContext } from "@nestjs/microservices";
+import { RmqRoutingKeys, RmqService } from "@repo/api";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
 import { NodesArray } from "../dto/nodes-array.dto";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
@@ -9,7 +9,12 @@ import { NodesService } from "../nodes.service";
 
 @Controller()
 export class NodesRmqController {
-    public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
+    private readonly logger = new Logger(NodesRmqController.name, { timestamp: true });
+
+    public constructor(
+        @Inject(NodesService) private readonly nodesService: NodesService,
+        @Inject(RmqService) private readonly rmqService: RmqService
+    ) {}
 
     @MessagePattern(RmqRoutingKeys.boards.nodes.createMany)
     @UsePipes(ValidationPipe)
@@ -27,5 +32,18 @@ export class NodesRmqController {
     @UsePipes(ValidationPipe)
     public async removeMany(@Body() dto: RemoveManyNodesDto) {
         return this.nodesService.removeMany(dto.ids);
+    }
+
+    @MessagePattern(RmqRoutingKeys.boards.events.boardRemoved)
+    public async handleBoardRemoved(@Payload() boardId: string, @Ctx() context: RmqContext) {
+        try {
+            await this.nodesService.removeNodesByBoard(boardId);
+
+            this.rmqService.ack(context);
+        } catch (error) {
+            this.logger.error(error);
+
+            this.rmqService.nack(context);
+        }
     }
 }

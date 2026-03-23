@@ -4,6 +4,7 @@ import type { NodesArray } from "./dto/nodes-array.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
+import { RemoveNodesByBoardCommand } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
 
 @Injectable()
@@ -27,5 +28,9 @@ export class NodesService {
 
     public async removeMany(ids: string[]) {
         return await this.commandBus.execute(new RemoveManyNodesCommand(ids));
+    }
+
+    public async removeNodesByBoard(boardId: string) {
+        return await this.commandBus.execute(new RemoveNodesByBoardCommand(boardId));
     }
 }

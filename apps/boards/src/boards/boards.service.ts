@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
+import { ChangeBoardUpdateDateCommand } from "./handlers/change-board-update-date.handler";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommand } from "./handlers/remove-board.handler";
@@ -28,5 +29,9 @@ export class BoardsService {
 
     public async remove(id: string) {
         return await this.commandBus.execute(new RemoveBoardCommand(id));
+    }
+
+    public async changeBoardUpdateDate(boardId: string) {
+        return await this.commandBus.execute(new ChangeBoardUpdateDateCommand(boardId));
     }
 }

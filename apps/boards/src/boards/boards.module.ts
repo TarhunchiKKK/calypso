@@ -4,6 +4,7 @@ import { BoardsService } from "./boards.service";
 import { BoardsHttpController } from "./controllers/boards.http.controller";
 import { BoardsRmqController } from "./controllers/boards.rmq.controller";
 import { Board } from "./entities/board.entity";
+import { ChangeBoardUpdateDateCommandHandler } from "./handlers/change-board-update-date.handler";
 import { CreateBoardCommandHandler } from "./handlers/create-board.handler";
 import { FindAllBoardsQueryHandler } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommandHandler } from "./handlers/remove-board.handler";
@@ -19,7 +20,8 @@ import { BoardsHelper } from "./lib/boards.helper";
         CreateBoardCommandHandler,
         FindAllBoardsQueryHandler,
         UpdateBoardCommandHandler,
-        RemoveBoardCommandHandler
+        RemoveBoardCommandHandler,
+        ChangeBoardUpdateDateCommandHandler
     ]
 })
 export class BoardsModule {}
