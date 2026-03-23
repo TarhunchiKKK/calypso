@@ -1,5 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import type { ClientProxy } from "@nestjs/microservices";
+import { RmqRoutingKeys } from "@repo/api";
+import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { ChangeBoardUpdateDateCommand } from "./handlers/change-board-update-date.handler";
@@ -12,7 +15,8 @@ import { UpdateBoardCommand } from "./handlers/update-board.handler";
 export class BoardsService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
-        @Inject(QueryBus) private readonly queryBus: QueryBus
+        @Inject(QueryBus) private readonly queryBus: QueryBus,
+        @Inject(RMQ_CLIENT_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
 
     public async create(dto: CreateBoardDto) {
@@ -28,7 +32,11 @@ export class BoardsService {
     }
 
     public async remove(id: string) {
-        return await this.commandBus.execute(new RemoveBoardCommand(id));
+        const result = await this.commandBus.execute(new RemoveBoardCommand(id));
+
+        this.rmqClient.emit(RmqRoutingKeys.boards.events.boardRemoved, id);
+
+        return result;
     }
 
     public async changeBoardUpdateDate(boardId: string) {

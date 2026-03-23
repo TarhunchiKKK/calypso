@@ -31,7 +31,7 @@ export class NodesRmqController {
     @MessagePattern(RmqRoutingKeys.boards.nodes.removeMany)
     @UsePipes(ValidationPipe)
     public async removeMany(@Body() dto: RemoveManyNodesDto) {
-        return this.nodesService.removeMany(dto.ids);
+        return this.nodesService.removeMany(dto.ids, dto.boardId);
     }
 
     @MessagePattern(RmqRoutingKeys.boards.events.boardRemoved)

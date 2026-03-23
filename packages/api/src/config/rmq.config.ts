@@ -1,0 +1,31 @@
+import type { ConfigService } from "@nestjs/config";
+import { type ClientProvider, type MicroserviceOptions, Transport } from "@nestjs/microservices";
+import { CommonRmqOptions } from "../rmq/rmq.constants";
+
+export function rmqClientConfigFactory(configService: ConfigService): ClientProvider {
+    const urls = configService.getOrThrow<string>("RMQ_URLS").split(",");
+    const queue = configService.getOrThrow<string>("RMQ_QUEUE");
+
+    return {
+        transport: Transport.RMQ,
+        options: {
+            ...CommonRmqOptions,
+            urls,
+            queue
+        }
+    };
+}
+
+export function rmqMicroserviceConfigFactory(configService: ConfigService): MicroserviceOptions {
+    const urls = configService.getOrThrow<string>("RMQ_URLS").split(",");
+    const queue = configService.getOrThrow<string>("RMQ_QUEUE");
+
+    return {
+        transport: Transport.RMQ,
+        options: {
+            ...CommonRmqOptions,
+            urls,
+            queue
+        }
+    };
+}
