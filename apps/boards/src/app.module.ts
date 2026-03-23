@@ -13,7 +13,7 @@ import { NodesModule } from "./nodes/nodes.module";
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: mongooseConfigFactory("BOARDS")
+            useFactory: mongooseConfigFactory
         }),
         RmqModule,
         BoardsModule,
