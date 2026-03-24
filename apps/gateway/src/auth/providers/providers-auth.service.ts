@@ -1,4 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from "@nestjs/common";
+import { CommandBus } from "@nestjs/cqrs";
+import type { Auth } from "@repo/common";
+import type { OAuthCallbackDto } from "./dto/oauth-callback.dto";
+import { OAuthCallbackCommand } from "./handlers/oauth-callback.handler";
+import { SignInWithOAuthCommand } from "./handlers/sign-in-with-oauth.handler";
 
 @Injectable()
-export class ProvidersAuthService {}
+export class ProvidersAuthService {
+    public constructor(@Inject(CommandBus) private readonly commandBus: CommandBus) {}
+
+    public async signIn(provider: Auth.OAuthProviders) {
+        return await this.commandBus.execute(new SignInWithOAuthCommand(provider));
+    }
+
+    public async callback(dto: OAuthCallbackDto) {
+        return await this.commandBus.execute(new OAuthCallbackCommand(dto));
+    }
+}

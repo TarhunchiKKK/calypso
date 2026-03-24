@@ -1,9 +1,13 @@
-import { Module } from '@nestjs/common';
-import { ProvidersAuthService } from './providers-auth.service';
-import { ProvidersAuthController } from './providers-auth.controller';
+import { Module } from "@nestjs/common";
+import { SupabaseModule } from "../lib/supabase/supabase.module";
+import { OAuthCallbackCommandHandler } from "./handlers/oauth-callback.handler";
+import { SignInWithOAuthCommandHandler } from "./handlers/sign-in-with-oauth.handler";
+import { ProvidersAuthController } from "./providers-auth.controller";
+import { ProvidersAuthService } from "./providers-auth.service";
 
 @Module({
-  controllers: [ProvidersAuthController],
-  providers: [ProvidersAuthService],
+    imports: [SupabaseModule],
+    controllers: [ProvidersAuthController],
+    providers: [ProvidersAuthService, SignInWithOAuthCommandHandler, OAuthCallbackCommandHandler]
 })
 export class ProvidersAuthModule {}

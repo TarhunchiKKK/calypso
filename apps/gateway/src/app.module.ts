@@ -5,7 +5,6 @@ import { CqrsModule } from "@nestjs/cqrs";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { SupabaseModule } from "./auth/lib/supabase/supabase.module";
-import { MfaAuthModule } from "./auth/mfa/mfa-auth.module";
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
 import { ProvidersAuthModule } from "./auth/providers/providers-auth.module";
 import { BoardsModule } from "./boards/boards.module";
@@ -18,7 +17,6 @@ import { BoardsModule } from "./boards/boards.module";
         BoardsModule,
         SupabaseModule,
         BasicAuthModule,
-        MfaAuthModule,
         ProvidersAuthModule,
         PasswordRecoveryModule,
         CookieModule
