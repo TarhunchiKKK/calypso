@@ -17,3 +17,9 @@ export type SupabaseSession = {
 
     expires_at?: number;
 };
+
+export type TokenPayload = {
+    userId: string;
+
+    email: string;
+};

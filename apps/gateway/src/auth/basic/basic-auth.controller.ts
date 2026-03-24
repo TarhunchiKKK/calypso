@@ -3,8 +3,8 @@ import { Validation } from "@repo/api";
 import type { Request, Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { BasicAuthService } from "./basic-auth.service";
-import type { SignInDto } from "./dtos/sign-in.dto";
-import type { SignUpDto } from "./dtos/sign-up.dto";
+import type { SignInDto } from "./dto/sign-in.dto";
+import type { SignUpDto } from "./dto/sign-up.dto";
 
 @Controller("basic-auth")
 export class BasicAuthController {

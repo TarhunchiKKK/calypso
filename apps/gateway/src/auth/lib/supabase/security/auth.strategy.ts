@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
+import type { TokenPayload } from "../supabase.types";
 
 @Injectable()
 export class AuthStrategy extends PassportStrategy(Strategy) {
@@ -23,10 +24,10 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    public async validate(payload: Record<string, unknown>) {
+    public validate(payload: Record<string, unknown>): TokenPayload {
         return {
-            userId: payload.sub,
-            email: payload.email
+            userId: payload.sub as string,
+            email: payload.email as string
         };
     }
 }
