@@ -1,10 +1,13 @@
-import { type IQuery, type IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
+import type { Id } from "@repo/common";
 import type { Model } from "mongoose";
 import { NodeBase } from "../schemas/node-base.schema";
 
-export class FindAllNodesQuery implements IQuery {
-    public constructor(public boardId: string) {}
+export class FindAllNodesQuery extends Query<NodeBase[]> {
+    public constructor(public boardId: Id) {
+        super();
+    }
 }
 
 @QueryHandler(FindAllNodesQuery)

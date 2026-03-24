@@ -1,12 +1,15 @@
 import { Inject } from "@nestjs/common";
-import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
+import type { Id } from "@repo/common";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 import { BoardsHelper } from "../lib/boards.helper";
 
-export class ChangeBoardUpdateDateCommand implements ICommand {
-    public constructor(public boardId: string) {}
+export class ChangeBoardUpdateDateCommand extends Command<Id> {
+    public constructor(public boardId: Id) {
+        super();
+    }
 }
 
 @CommandHandler(ChangeBoardUpdateDateCommand)

@@ -1,6 +1,7 @@
 import { Body, Controller, Inject, UsePipes, ValidationPipe } from "@nestjs/common";
 import { MessagePattern, Payload } from "@nestjs/microservices";
 import { BrokerAcknowledgement, BrokerRoutingKeys } from "@repo/api";
+import type { Id } from "@repo/common";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
 import { NodesArray } from "../dto/nodes-array.dto";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
@@ -34,7 +35,7 @@ export class NodesRmqController {
 
     @MessagePattern(BrokerRoutingKeys.boards.events.boardRemoved)
     @BrokerAcknowledgement({ requeue: true, loggerContext: NodesRmqController.name })
-    public async handleBoardRemoved(@Payload() boardId: string) {
+    public async handleBoardRemoved(@Payload() boardId: Id) {
         await this.nodesService.removeNodesByBoard(boardId);
     }
 }

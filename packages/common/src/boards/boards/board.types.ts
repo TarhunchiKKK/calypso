@@ -1,7 +1,11 @@
+import type { Id } from "../../shared/db.types";
+
 export type Board = {
+    id: Id;
+
     title: string;
 
-    creatorId: string;
+    creatorId: Id;
 
     createdAt: Date;
 

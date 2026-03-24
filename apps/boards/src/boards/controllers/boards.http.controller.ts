@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import type { Id } from "@repo/common";
 import { BoardsService } from "../boards.service";
 // biome-ignore lint/style/useImportType: Class import is needed for validation.
 import { CreateBoardDto } from "../dto/create-board.dto";
@@ -16,18 +17,18 @@ export class BoardsHttpController {
     }
 
     @Get(":id")
-    public async findAll(@Param("id") id: string) {
+    public async findAll(@Param("id") id: Id) {
         return this.boardsService.findAll(id);
     }
 
     @Patch(":id")
     @UsePipes(ValidationPipe)
-    public async update(@Param("id") id: string, @Body() updateBoardDto: UpdateBoardDto) {
+    public async update(@Param("id") id: Id, @Body() updateBoardDto: UpdateBoardDto) {
         return this.boardsService.update(id, updateBoardDto);
     }
 
     @Delete(":id")
-    public async remove(@Param("id") id: string) {
+    public async remove(@Param("id") id: Id) {
         return this.boardsService.remove(id);
     }
 }

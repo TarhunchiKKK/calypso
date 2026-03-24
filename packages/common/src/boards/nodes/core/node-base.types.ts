@@ -1,13 +1,14 @@
+import type { Id } from "../../../shared/db.types";
 import type { NodeStyles } from "./node-styles.types";
 
 export type NodeTypes = "sticker" | "text" | "shape";
 
 export type NodeBase = {
-    id: string;
+    id: Id;
 
     type: NodeTypes;
 
-    boardId: string;
+    boardId: Id;
 
     locked: boolean;
 

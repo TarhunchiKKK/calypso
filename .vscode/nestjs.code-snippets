@@ -10,16 +10,18 @@
     "Add buses to constructor": {
         "scope": "typescript",
         "prefix": "n-cqrs-buses",
-        "body": "private readonly commandBus: CommandBus, private readonly queryBus: QueryBus"
+        "body": "@Inject(CommandBus) private readonly commandBus: CommandBus, @Inject(QueryBus) private readonly queryBus: QueryBus"
     },
     "Create CQRS command": {
         "scope": "typescript",
         "prefix": "n-cqrs-cmd",
         "body": [
-            "import { ICommand, CommandHandler, ICommandHandler } from \"@nestjs/cqrs\";",
+            "import { Command, CommandHandler, ICommandHandler } from \"@nestjs/cqrs\";",
             "",
-            "export class $1Command implements ICommand {",
-            "    public constructor(public dto: $Dto) {}",
+            "export class $1Command extends Command<void> {",
+            "    public constructor(public dto: $1Dto) {",
+            "        super()",
+            "    }",
             "}",
             "",
             "@CommandHandler($1Command)",
@@ -36,10 +38,12 @@
         "scope": "typescript",
         "prefix": "n-cqrs-query",
         "body": [
-            "import { IQuery, IQueryHandler, QueryHandler } from \"@nestjs/cqrs\";",
+            "import { Query, IQueryHandler, QueryHandler } from \"@nestjs/cqrs\";",
             "",
-            "export class $1Query implements IQuery {",
-            "    public constructor(public dto: $Dto) {}",
+            "export class $1Query extends Query<void> {",
+            "    public constructor(public dto: $1Dto) {",
+            "        super()",
+            "    }",
             "}",
             "",
             "@QueryHandler($1Query)",
