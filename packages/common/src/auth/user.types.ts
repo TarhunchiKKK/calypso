@@ -1,7 +1,9 @@
-export type User = {
-    id: string;
+import type { Id } from "../shared/db.types";
 
-    email: string;
+export type User = {
+    id: Id;
+
+    email?: string;
 
     metadata: {
         fullName?: string;

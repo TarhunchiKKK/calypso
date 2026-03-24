@@ -14,7 +14,7 @@ export class GetProfileCommandHandler implements ICommandHandler<GetProfileComma
     public constructor(@Inject(SupabaseService) private readonly supabaseService: SupabaseService) {}
 
     public async execute({ accessToken }: GetProfileCommand) {
-        const { data, error } = this.supabaseService.client.auth.getUser(accessToken);
+        const { data, error } = await this.supabaseService.client.auth.getUser(accessToken);
 
         if (error) {
             throw new UnauthorizedException("Invalid token");
