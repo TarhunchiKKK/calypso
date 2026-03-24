@@ -1,14 +1,19 @@
-import { Injectable } from "@nestjs/common";
-import type { CommandBus } from "@nestjs/cqrs";
+import { Inject, Injectable } from "@nestjs/common";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { SignInDto } from "./dtos/sign-in.dto";
 import type { SignUpDto } from "./dtos/sign-up.dto";
+import { GetProfileQuery } from "./handlers/get-profile.handler";
+import { RefreshSessionQuery } from "./handlers/refresh-session.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";
 import { SignOutCommand } from "./handlers/sign-out.handler";
 import { SignUpCommand } from "./handlers/sign-up.handler";
 
 @Injectable()
 export class BasicAuthService {
-    public constructor(private readonly commandBus: CommandBus) {}
+    public constructor(
+        @Inject(CommandBus) private readonly commandBus: CommandBus,
+        @Inject(QueryBus) private readonly queryBus: QueryBus
+    ) {}
 
     public async signUp(dto: SignUpDto) {
         return await this.commandBus.execute(new SignUpCommand(dto));
@@ -20,5 +25,13 @@ export class BasicAuthService {
 
     public async signOut(accessToken: string) {
         return await this.commandBus.execute(new SignOutCommand(accessToken));
+    }
+
+    public async getProfile(accessToken: string) {
+        return await this.queryBus.execute(new GetProfileQuery(accessToken));
+    }
+
+    public async refreshSession(refreshToken: string) {
+        return await this.queryBus.execute(new RefreshSessionQuery(refreshToken));
     }
 }

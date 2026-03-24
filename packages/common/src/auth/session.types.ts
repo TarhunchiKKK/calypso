@@ -3,5 +3,5 @@ export type Session = {
 
     refreshToken: string;
 
-    expiresAt: number;
+    expiresAt?: number;
 };

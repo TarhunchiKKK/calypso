@@ -10,12 +10,10 @@ export type SupabaseUser = {
     };
 };
 
-export type Session = {
+export type SupabaseSession = {
     access_token: string;
 
     refresh_token: string;
 
-    expires_at: number;
-
-    user: SupabaseUser;
+    expires_at?: number;
 };

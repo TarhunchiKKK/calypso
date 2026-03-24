@@ -1,7 +1,9 @@
 import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { CqrsModule } from "@nestjs/cqrs";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
+import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { SupabaseModule } from "./auth/lib/supabase/supabase.module";
 import { MfaAuthModule } from "./auth/mfa/mfa-auth.module";
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
@@ -11,14 +13,15 @@ import { BoardsModule } from "./boards/boards.module";
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
-
+        CqrsModule.forRoot(),
         HttpModule,
         BoardsModule,
         SupabaseModule,
         BasicAuthModule,
         MfaAuthModule,
         ProvidersAuthModule,
-        PasswordRecoveryModule
+        PasswordRecoveryModule,
+        CookieModule
     ]
 })
 export class AppModule {}

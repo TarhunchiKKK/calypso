@@ -1,19 +1,19 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
-import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
+import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import type { Auth } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 
-export class GetProfileCommand extends Command<Auth.User> {
+export class GetProfileQuery extends Query<Auth.User> {
     public constructor(public accessToken: string) {
         super();
     }
 }
 
-@CommandHandler(GetProfileCommand)
-export class GetProfileCommandHandler implements ICommandHandler<GetProfileCommand> {
+@QueryHandler(GetProfileQuery)
+export class GetProfileQueryHandler implements IQueryHandler<GetProfileQuery> {
     public constructor(@Inject(SupabaseService) private readonly supabaseService: SupabaseService) {}
 
-    public async execute({ accessToken }: GetProfileCommand) {
+    public async execute({ accessToken }: GetProfileQuery) {
         const { data, error } = await this.supabaseService.client.auth.getUser(accessToken);
 
         if (error) {

@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import type { Auth } from "@repo/common";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { SupabaseUser } from "./supabase.types";
+import type { SupabaseSession, SupabaseUser } from "./supabase.types";
 
 @Injectable()
 export class SupabaseService {
@@ -26,6 +26,13 @@ export class SupabaseService {
         return this.supabaseClient;
     }
 
+    public mapAuthResponse(data: { user: SupabaseUser | null; session: SupabaseSession | null }): Auth.AuthResponse {
+        return {
+            user: data.user ? this.mapUser(data.user) : null,
+            session: data.session ? this.mapSession(data.session) : null
+        };
+    }
+
     public mapUser(user: SupabaseUser): Auth.User {
         return {
             id: user.id,
@@ -34,6 +41,14 @@ export class SupabaseService {
                 fullName: user.user_metadata.full_name,
                 avatar: user.user_metadata.avatar_url
             }
+        };
+    }
+
+    public mapSession(session: SupabaseSession): Auth.Session {
+        return {
+            accessToken: session.access_token,
+            refreshToken: session.refresh_token,
+            expiresAt: session.expires_at
         };
     }
 }

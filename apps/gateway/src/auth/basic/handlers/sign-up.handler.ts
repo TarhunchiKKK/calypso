@@ -27,9 +27,6 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
             throw new BadRequestException(error.message);
         }
 
-        return {
-            user: data.user,
-            session: data.session
-        };
+        return this.supabaseService.mapAuthResponse(data);
     }
 }

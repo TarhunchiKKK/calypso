@@ -10,7 +10,7 @@
     "Add buses to constructor": {
         "scope": "typescript",
         "prefix": "n-cqrs-buses",
-        "body": "private readonly commandBus: CommandBus, private readonly queryBus: QueryBus"
+        "body": "@Inject(CommandBus) private readonly commandBus: CommandBus, @Inject(QueryBus) private readonly queryBus: QueryBus"
     },
     "Create CQRS command": {
         "scope": "typescript",

@@ -16,7 +16,7 @@ export type SignInDto = {
 };
 
 export type AuthResponse = {
-    user: User;
+    user: User | null;
 
-    session: Session;
+    session: Session | null;
 };
