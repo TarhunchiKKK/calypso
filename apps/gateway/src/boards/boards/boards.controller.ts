@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Boards } from "@repo/common";
+import type { Boards, Id } from "@repo/common";
 import { BoardsHttpService } from "./boards.http.service";
 
 @Controller("boards")
@@ -17,12 +17,12 @@ export class BoardsController {
     }
 
     @Patch(":id")
-    public update(@Param("id") id: string, @Body() updateBoardDto: Boards.UpdateBoardDto) {
+    public update(@Param("id") id: Id, @Body() updateBoardDto: Boards.UpdateBoardDto) {
         return this.boardsService.update(id, updateBoardDto);
     }
 
     @Delete(":id")
-    public remove(@Param("id") id: string) {
-        return this.boardsService.remove(+id);
+    public remove(@Param("id") id: Id) {
+        return this.boardsService.remove(id);
     }
 }

@@ -1,6 +1,7 @@
 import { HttpService } from "@nestjs/axios";
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import type { Id } from "@repo/common";
 
 @Injectable()
 export class NodesHttpService {
@@ -13,7 +14,7 @@ export class NodesHttpService {
         this.boardsMicroserviceUrl = `${this.configService.getOrThrow("BOARDS_MICROSERVICE_URL")}/nodes`;
     }
 
-    public findAll(boardId: string) {
+    public findAll(boardId: Id) {
         return this.httpService.get(`${this.boardsMicroserviceUrl}/${boardId}`);
     }
 }

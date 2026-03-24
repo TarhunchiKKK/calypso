@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import type { ClientProxy } from "@nestjs/microservices";
 import { BrokerRoutingKeys } from "@repo/api";
-import type { Boards } from "@repo/common";
+import type { Boards, Id } from "@repo/common";
 import { BOARDS_RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 
 @Injectable()
@@ -16,7 +16,7 @@ export class NodesBrokerAcknowledgementService {
         this.client.emit(BrokerRoutingKeys.boards.nodes.updateMany, { data: nodes });
     }
 
-    public removeMany(ids: string[]) {
+    public removeMany(ids: Id[]) {
         this.client.emit(BrokerRoutingKeys.boards.nodes.removeMany, { ids });
     }
 }

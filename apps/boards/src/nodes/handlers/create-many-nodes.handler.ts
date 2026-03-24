@@ -1,10 +1,12 @@
-import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
 import { NodeBase } from "../schemas/node-base.schema";
 
-export class CreateManyNodesCommand implements ICommand {
-    public constructor(public dtos: NodeBase[]) {}
+export class CreateManyNodesCommand extends Command<void> {
+    public constructor(public dtos: NodeBase[]) {
+        super();
+    }
 }
 
 @CommandHandler(CreateManyNodesCommand)

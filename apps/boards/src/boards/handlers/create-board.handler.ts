@@ -1,11 +1,14 @@
-import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
+import type { Boards } from "@repo/common";
 import type { Repository } from "typeorm";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import { Board } from "../entities/board.entity";
 
-export class CreateBoardCommand implements ICommand {
-    public constructor(public dto: CreateBoardDto) {}
+export class CreateBoardCommand extends Command<Boards.Board> {
+    public constructor(public dto: CreateBoardDto) {
+        super();
+    }
 }
 
 @CommandHandler(CreateBoardCommand)

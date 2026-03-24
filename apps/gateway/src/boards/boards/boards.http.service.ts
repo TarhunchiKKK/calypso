@@ -1,7 +1,7 @@
 import { HttpService } from "@nestjs/axios";
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import type { Boards } from "@repo/common";
+import type { Boards, Id } from "@repo/common";
 
 @Injectable()
 export class BoardsHttpService {
@@ -22,11 +22,11 @@ export class BoardsHttpService {
         return this.httpService.get(this.boardsMicroserviceUrl);
     }
 
-    public update(id: string, updateBoardDto: Boards.UpdateBoardDto) {
+    public update(id: Id, updateBoardDto: Boards.UpdateBoardDto) {
         return this.httpService.patch(`${this.boardsMicroserviceUrl}/${id}`, updateBoardDto);
     }
 
-    public remove(id: number) {
+    public remove(id: Id) {
         return this.httpService.delete(`${this.boardsMicroserviceUrl}/${id}`);
     }
 }

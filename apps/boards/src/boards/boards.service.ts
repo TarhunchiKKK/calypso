@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { BrokerRoutingKeys } from "@repo/api";
+import type { Id } from "@repo/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
@@ -23,15 +24,15 @@ export class BoardsService {
         return await this.commandBus.execute(new CreateBoardCommand(dto));
     }
 
-    public async findAll(creatorId: string) {
+    public async findAll(creatorId: Id) {
         return await this.queryBus.execute(new FindAllBoardsQuery(creatorId));
     }
 
-    public async update(id: string, dto: UpdateBoardDto) {
+    public async update(id: Id, dto: UpdateBoardDto) {
         return await this.commandBus.execute(new UpdateBoardCommand(id, dto));
     }
 
-    public async remove(id: string) {
+    public async remove(id: Id) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
         this.rmqClient.emit(BrokerRoutingKeys.boards.events.boardRemoved, id);
@@ -39,7 +40,7 @@ export class BoardsService {
         return result;
     }
 
-    public async changeBoardUpdateDate(boardId: string) {
+    public async changeBoardUpdateDate(boardId: Id) {
         return await this.commandBus.execute(new ChangeBoardUpdateDateCommand(boardId));
     }
 }

@@ -1,9 +1,11 @@
 import { BadRequestException, Inject } from "@nestjs/common";
-import { CommandHandler, type ICommand, type ICommandHandler } from "@nestjs/cqrs";
+import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 
-export class SignOutCommand implements ICommand {
-    public constructor(public accessToken: string) {}
+export class SignOutCommand extends Command<void> {
+    public constructor(public accessToken: string) {
+        super();
+    }
 }
 
 @CommandHandler(SignOutCommand)

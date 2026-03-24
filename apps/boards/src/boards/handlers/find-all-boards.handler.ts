@@ -1,10 +1,13 @@
-import { type IQuery, type IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
+import type { Boards, Id } from "@repo/common";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 
-export class FindAllBoardsQuery implements IQuery {
-    public constructor(public creatorId: string) {}
+export class FindAllBoardsQuery extends Query<Boards.Board[]> {
+    public constructor(public creatorId: Id) {
+        super();
+    }
 }
 
 @QueryHandler(FindAllBoardsQuery)

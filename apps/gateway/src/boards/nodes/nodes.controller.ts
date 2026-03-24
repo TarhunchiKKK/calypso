@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Boards } from "@repo/common";
+import type { Boards, Id } from "@repo/common";
 import { NodesHttpService } from "./nodes.http.service";
 import { NodesBrokerAcknowledgementService } from "./nodes.rmq.service";
 
@@ -17,7 +17,7 @@ export class NodesController {
     }
 
     @Get(":boardId")
-    public findAll(@Param("boardId") boardId: string) {
+    public findAll(@Param("boardId") boardId: Id) {
         return this.nodesHttpService.findAll(boardId);
     }
 
@@ -27,7 +27,7 @@ export class NodesController {
     }
 
     @Delete()
-    public removeMany(@Body() ids: string[]) {
+    public removeMany(@Body() ids: Id[]) {
         return this.nodesBrokerAcknowledgementService.removeMany(ids);
     }
 }

@@ -12,7 +12,7 @@ export class NodeStylesDto implements Boards.NodeStyles {
     public fontSize: number;
 
     @IsNotEmpty({ message: "Background color should be provided" })
-    @IsString({ message: "Background colorshould be string" })
+    @IsString({ message: "Background color should be string" })
     public backgroundColor: string;
 
     @IsNotEmpty({ message: "Text color should be provided" })

@@ -1,6 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import type { Auth } from "@repo/common";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseUser } from "./supabase.types";
 
 @Injectable()
 export class SupabaseService {
@@ -22,5 +24,16 @@ export class SupabaseService {
 
     public get client() {
         return this.supabaseClient;
+    }
+
+    public mapUser(user: SupabaseUser): Auth.User {
+        return {
+            id: user.id,
+            email: user.email,
+            metadata: {
+                fullName: user.user_metadata.full_name,
+                avatar: user.user_metadata.avatar_url
+            }
+        };
     }
 }
