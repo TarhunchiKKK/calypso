@@ -7,20 +7,20 @@
 /* eslint-disable */
 import { Empty } from "./google/protobuf/empty";
 
-export const protobufPackage = "common";
+const protobufPackage = "common";
 
-export interface ErrorResponse {
+export interface ErrorGrpcResponse {
   message: string[];
   error: string;
   statusCode: number;
 }
 
-export interface EmptyResponse {
+export interface EmptyGrpcResponse {
   data?: Empty | undefined;
-  error?: ErrorResponse | undefined;
+  error?: ErrorGrpcResponse | undefined;
 }
 
-export interface Rect {
+export interface RectGrpc {
   x: number;
   y: number;
   width: number;

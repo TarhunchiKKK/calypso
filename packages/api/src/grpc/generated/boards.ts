@@ -8,12 +8,12 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
-import { EmptyResponse, ErrorResponse, Rect } from "./common";
+import { EmptyGrpcResponse, ErrorGrpcResponse, RectGrpc } from "./common";
 import { Struct } from "./google/protobuf/struct";
 
-export const protobufPackage = "boards";
+const protobufPackage = "boards";
 
-export interface Board {
+export interface BoardGrpc {
   id: string;
   title: string;
   creatorId: string;
@@ -21,94 +21,94 @@ export interface Board {
   updatedAt?: string | undefined;
 }
 
-export interface CreateBoardRequest {
+export interface CreateBoardGrpcRequest {
   title: string;
   creatorId: string;
 }
 
-export interface FindAllBoardsRequest {
+export interface FindAllBoardsGrpcRequest {
   userId: string;
 }
 
 export interface BoardsList {
-  boards: Board[];
+  boards: BoardGrpc[];
 }
 
-export interface FindAllBoardsResponse {
+export interface FindAllBoardsGrpcResponse {
   data?: BoardsList | undefined;
-  error?: ErrorResponse | undefined;
+  error?: ErrorGrpcResponse | undefined;
 }
 
-export interface UpdateBoardRequest {
+export interface UpdateBoardGrpcRequest {
   id: string;
   userId: string;
   title?: string | undefined;
 }
 
-export interface RemoveBoardRequest {
+export interface RemoveBoardGrpcRequest {
   id: string;
   userId: string;
 }
 
-export interface NodeBase {
+export interface BoardNodeBaseGrpc {
   id: string;
   type: string;
   locked: boolean;
   styles: { [key: string]: any } | undefined;
 }
 
-export interface StickerNode {
-  base: NodeBase | undefined;
-  rect: Rect | undefined;
+export interface StickerBoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  rect: RectGrpc | undefined;
   text: string;
 }
 
-export interface TextNode {
-  base: NodeBase | undefined;
-  rect: Rect | undefined;
+export interface TextBoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  rect: RectGrpc | undefined;
   text: { [key: string]: any }[];
 }
 
-export interface ShapeBoardNode {
-  base: NodeBase | undefined;
-  rect: Rect | undefined;
+export interface ShapeBoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  rect: RectGrpc | undefined;
   variant: string;
 }
 
-export interface Node {
-  base: NodeBase | undefined;
-  sticker?: StickerNode | undefined;
-  text?: TextNode | undefined;
-  shape?: ShapeBoardNode | undefined;
+export interface BoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  sticker?: StickerBoardNodeGrpc | undefined;
+  text?: TextBoardNodeGrpc | undefined;
+  shape?: ShapeBoardNodeGrpc | undefined;
 }
 
-export interface CreateManyNodesRequest {
-  nodes: Node[];
+export interface CreateManyBoardNodesGrpcRequest {
+  nodes: BoardNodeGrpc[];
   boardId: string;
   userId: string;
 }
 
-export interface FindAllNodesRequest {
+export interface FindAllBoardNodesGrpcRequest {
   boardId: string;
   userId: string;
 }
 
-export interface NodesList {
-  nodes: Node[];
+export interface BoardNodesListGrpc {
+  nodes: BoardNodeGrpc[];
 }
 
-export interface FindAllNodesResponse {
-  data?: NodesList | undefined;
-  error?: ErrorResponse | undefined;
+export interface FindAllBoardNodesGrpcResponse {
+  data?: BoardNodesListGrpc | undefined;
+  error?: ErrorGrpcResponse | undefined;
 }
 
-export interface UpdateManyNodesRequest {
-  nodes: Node[];
+export interface UpdateManyBoardNodesGrpcRequest {
+  nodes: BoardNodeGrpc[];
   boardId: string;
   userId: string;
 }
 
-export interface RemoveManyNodesRequest {
+export interface RemoveManyBoardNodesGrpcRequest {
   nodeIds: string[];
   boardId: string;
   userId: string;
@@ -119,25 +119,31 @@ export const BOARDS_PACKAGE_NAME = "boards";
 wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struct.unwrap } as any;
 
 export interface BoardsServiceClient {
-  create(request: CreateBoardRequest): Observable<EmptyResponse>;
+  create(request: CreateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  findAll(request: FindAllBoardsRequest): Observable<FindAllBoardsResponse>;
+  findAll(request: FindAllBoardsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
 
-  update(request: UpdateBoardRequest): Observable<EmptyResponse>;
+  update(request: UpdateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  remove(request: RemoveBoardRequest): Observable<EmptyResponse>;
+  remove(request: RemoveBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardsServiceController {
-  create(request: CreateBoardRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  create(
+    request: CreateBoardGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
   findAll(
-    request: FindAllBoardsRequest,
-  ): Promise<FindAllBoardsResponse> | Observable<FindAllBoardsResponse> | FindAllBoardsResponse;
+    request: FindAllBoardsGrpcRequest,
+  ): Promise<FindAllBoardsGrpcResponse> | Observable<FindAllBoardsGrpcResponse> | FindAllBoardsGrpcResponse;
 
-  update(request: UpdateBoardRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  update(
+    request: UpdateBoardGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  remove(request: RemoveBoardRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  remove(
+    request: RemoveBoardGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 
 export function BoardsServiceControllerMethods() {
@@ -158,25 +164,31 @@ export function BoardsServiceControllerMethods() {
 export const BOARDS_SERVICE_NAME = "BoardsService";
 
 export interface BoardNodesServiceClient {
-  createMany(request: CreateManyNodesRequest): Observable<EmptyResponse>;
+  createMany(request: CreateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  findAll(request: FindAllNodesRequest): Observable<FindAllNodesResponse>;
+  findAll(request: FindAllBoardNodesGrpcRequest): Observable<FindAllBoardNodesGrpcResponse>;
 
-  updateMany(request: UpdateManyNodesRequest): Observable<EmptyResponse>;
+  updateMany(request: UpdateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  removeMany(request: RemoveManyNodesRequest): Observable<EmptyResponse>;
+  removeMany(request: RemoveManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardNodesServiceController {
-  createMany(request: CreateManyNodesRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  createMany(
+    request: CreateManyBoardNodesGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
   findAll(
-    request: FindAllNodesRequest,
-  ): Promise<FindAllNodesResponse> | Observable<FindAllNodesResponse> | FindAllNodesResponse;
+    request: FindAllBoardNodesGrpcRequest,
+  ): Promise<FindAllBoardNodesGrpcResponse> | Observable<FindAllBoardNodesGrpcResponse> | FindAllBoardNodesGrpcResponse;
 
-  updateMany(request: UpdateManyNodesRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  updateMany(
+    request: UpdateManyBoardNodesGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  removeMany(request: RemoveManyNodesRequest): Promise<EmptyResponse> | Observable<EmptyResponse> | EmptyResponse;
+  removeMany(
+    request: RemoveManyBoardNodesGrpcRequest,
+  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 
 export function BoardNodesServiceControllerMethods() {

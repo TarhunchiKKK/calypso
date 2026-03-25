@@ -1,4 +1,4 @@
-export * as Boards from "./boards";
-export * as Common from "./common";
-export * as Empty from "./google/protobuf/empty";
-export * as Struct from "./google/protobuf/struct";
+export * from "./boards";
+export * from "./common";
+export * from "./google/protobuf/empty";
+export * from "./google/protobuf/struct";

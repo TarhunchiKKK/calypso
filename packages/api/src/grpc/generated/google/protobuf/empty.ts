@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 
-export const protobufPackage = "google.protobuf";
+const protobufPackage = "google.protobuf";
 
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
@@ -20,4 +20,4 @@ export const protobufPackage = "google.protobuf";
 export interface Empty {
 }
 
-export const GOOGLE_PROTOBUF_PACKAGE_NAME = "google.protobuf";
+const GOOGLE_PROTOBUF_PACKAGE_NAME = "google.protobuf";

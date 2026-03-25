@@ -7,16 +7,16 @@ import "google/protobuf/struct.proto";
 package boards;
 
 service BoardsService {
-    rpc Create(CreateBoardRequest) returns (common.EmptyResponse) {}
+    rpc Create(CreateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc FindAll(FindAllBoardsRequest) returns (FindAllBoardsResponse) {}
+    rpc FindAll(FindAllBoardsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
-    rpc Update(UpdateBoardRequest) returns (common.EmptyResponse) {}
+    rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc Remove(RemoveBoardRequest) returns (common.EmptyResponse) {}
+    rpc Remove(RemoveBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
-message Board {
+message BoardGrpc {
     string id = 1;
 
     string title = 2;
@@ -28,29 +28,29 @@ message Board {
     optional string updatedAt = 5;
 }
 
-message CreateBoardRequest {
+message CreateBoardGrpcRequest {
     string title = 1;
 
     string creatorId = 2;
 }
 
-message FindAllBoardsRequest {
+message FindAllBoardsGrpcRequest {
     string userId = 1;
 }
 
 message BoardsList {
-    repeated Board boards = 1;
+    repeated BoardGrpc boards = 1;
 }
 
-message FindAllBoardsResponse {
+message FindAllBoardsGrpcResponse {
     oneof response {
         BoardsList data = 1;
 
-        common.ErrorResponse error = 2;
+        common.ErrorGrpcResponse error = 2;
     }
 }
 
-message UpdateBoardRequest {
+message UpdateBoardGrpcRequest {
     string id = 1;
 
     string userId = 2;
@@ -58,23 +58,23 @@ message UpdateBoardRequest {
     optional string title = 3;
 }
 
-message RemoveBoardRequest {
+message RemoveBoardGrpcRequest {
     string id = 1;
 
     string userId = 2;
 }
 
 service BoardNodesService {
-    rpc CreateMany(CreateManyNodesRequest) returns (common.EmptyResponse) {}
+    rpc CreateMany(CreateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc FindAll(FindAllNodesRequest) returns (FindAllNodesResponse) {}
+    rpc FindAll(FindAllBoardNodesGrpcRequest) returns (FindAllBoardNodesGrpcResponse) {}
 
-    rpc UpdateMany(UpdateManyNodesRequest) returns (common.EmptyResponse) {}
+    rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc RemoveMany(RemoveManyNodesRequest) returns (common.EmptyResponse) {}
+    rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
-message NodeBase {
+message BoardNodeBaseGrpc {
     string id = 1;
 
     string type = 2;
@@ -84,77 +84,77 @@ message NodeBase {
     google.protobuf.Struct styles  = 4;
 }
 
-message StickerNode {
-    NodeBase base = 1;
+message StickerBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
 
-    common.Rect rect = 2;
+    common.RectGrpc rect = 2;
 
     string text = 3;
 }
 
-message TextNode {
-    NodeBase base = 1;
+message TextBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
 
-    common.Rect rect = 2;
+    common.RectGrpc rect = 2;
 
     repeated google.protobuf.Struct text = 3;
 }
 
-message ShapeBoardNode {
-    NodeBase base = 1;
+message ShapeBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
     
-    common.Rect rect = 2;
+    common.RectGrpc rect = 2;
 
     string variant = 3;
 }
 
-message Node {
-    NodeBase base = 1;
+message BoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
 
     oneof specific {
-        StickerNode sticker = 2;
+        StickerBoardNodeGrpc sticker = 2;
 
-        TextNode text = 3;
+        TextBoardNodeGrpc text = 3;
 
-        ShapeBoardNode shape = 4;
+        ShapeBoardNodeGrpc shape = 4;
     }
 }
 
-message CreateManyNodesRequest {
-    repeated Node nodes = 1;
+message CreateManyBoardNodesGrpcRequest {
+    repeated BoardNodeGrpc nodes = 1;
 
     string boardId = 2;
 
     string userId = 3;
 }
 
-message FindAllNodesRequest {
+message FindAllBoardNodesGrpcRequest {
     string boardId = 1;
 
     string userId = 2;
 }
 
-message NodesList {
-    repeated Node nodes = 1;
+message BoardNodesListGrpc {
+    repeated BoardNodeGrpc nodes = 1;
 }
 
-message FindAllNodesResponse {
+message FindAllBoardNodesGrpcResponse {
     oneof response {
-        NodesList data = 1;
+        BoardNodesListGrpc data = 1;
 
-        common.ErrorResponse error = 2;
+        common.ErrorGrpcResponse error = 2;
     }
 }
 
-message UpdateManyNodesRequest {
-    repeated Node nodes = 1;
+message UpdateManyBoardNodesGrpcRequest {
+    repeated BoardNodeGrpc nodes = 1;
 
     string boardId = 2;
 
     string userId = 3;
 }
 
-message RemoveManyNodesRequest {
+message RemoveManyBoardNodesGrpcRequest {
     repeated string nodeIds = 1;
 
     string boardId = 2;

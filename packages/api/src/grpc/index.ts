@@ -1,1 +1,1 @@
-export * as GrpcGen from "./generated";
+export * from "./generated";

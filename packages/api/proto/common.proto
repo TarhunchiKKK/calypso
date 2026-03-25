@@ -4,7 +4,7 @@ import "google/protobuf/empty.proto";
 
 package common;
 
-message ErrorResponse {
+message ErrorGrpcResponse {
     repeated string message = 1;
 
     string error = 2;
@@ -13,15 +13,15 @@ message ErrorResponse {
 }
 
 
-message EmptyResponse {
+message EmptyGrpcResponse {
     oneof response {
         google.protobuf.Empty data = 1;
 
-        common.ErrorResponse error = 2;
+        common.ErrorGrpcResponse error = 2;
     }
 }
 
-message Rect {
+message RectGrpc {
     float x = 1;
 
     float y = 2;
