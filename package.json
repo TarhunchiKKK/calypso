@@ -20,6 +20,7 @@
         "build:boards": "turbo run build --filter=boards",
         "build:web": "turbo run build --filter=web",
         "build:common": "turbo run build --filter=@repo/common",
+        "build:api": "turbo run build --filter=@repo/api",
         "type-check": "turbo run type-check",
         "type-check:gateway": "turbo run type-check --filter=gateway",
         "type-check:boards": "turbo run type-check --filter=boards",
@@ -45,10 +46,7 @@
         "node": ">=18"
     },
     "packageManager": "bun@1.3.4",
-    "workspaces": [
-        "apps/*",
-        "packages/*"
-    ],
+    "workspaces": ["apps/*", "packages/*"],
     "dependencies": {
         "@biomejs/biome": "^2.4.7",
         "knip": "^5.86.0"
