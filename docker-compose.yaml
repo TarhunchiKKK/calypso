@@ -1,12 +1,25 @@
 version: "3.7"
 
 services:
-  boards-db:
-    container_name: boards-db
+  boards-nosql-db:
+    container_name: boards-nosql-db
     image: mongo:latest
     environment:
         - MONGO_INITDB_DATABASE=${BOARDS_DB_NAME}
     ports:
         - ${BOARDS_DB_PORT}:27017
+  
+  boards-service:
+    container_name: boards-service
+    build:
+         context: ./apps/boards
+         args:
+          - APP_PORT=${BOARDS_SERVICE_PORT}
+    ports:
+        - ${BOARDS_SERVICE_PORT}:${BOARDS_SERVICE_PORT}
+    env_file:
+      - ./apps/boards/.env
+    depends_on:
+      - boards-nosql-db
 
  
