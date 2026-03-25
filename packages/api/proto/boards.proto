@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+import "common.proto";
+import "google/protobuf/struct.proto";
+
+
+package boards;
+
+service BoardsService {
+    rpc Create(CreateBoardRequest) returns (common.EmptyResponse) {}
+
+    rpc FindAll(FindAllBoardsRequest) returns (FindAllBoardsResponse) {}
+
+    rpc Update(UpdateBoardRequest) returns (common.EmptyResponse) {}
+
+    rpc Remove(RemoveBoardRequest) returns (common.EmptyResponse) {}
+}
+
+message Board {
+    string id = 1;
+
+    string title = 2;
+
+    string creatorId = 3;
+
+    string createdAt = 4;
+
+    optional string updatedAt = 5;
+}
+
+message CreateBoardRequest {
+    string title = 1;
+
+    string creatorId = 2;
+}
+
+message FindAllBoardsRequest {
+    string userId = 1;
+}
+
+message BoardsList {
+    repeated Board boards = 1;
+}
+
+message FindAllBoardsResponse {
+    oneof response {
+        BoardsList data = 1;
+
+        common.ErrorResponse error = 2;
+    }
+}
+
+message UpdateBoardRequest {
+    string id = 1;
+
+    string userId = 2;
+
+    optional string title = 3;
+}
+
+message RemoveBoardRequest {
+    string id = 1;
+
+    string userId = 2;
+}
+
+service BoardNodesService {
+    rpc CreateMany(CreateManyNodesRequest) returns (common.EmptyResponse) {}
+
+    rpc FindAll(FindAllNodesRequest) returns (FindAllNodesResponse) {}
+
+    rpc UpdateMany(UpdateManyNodesRequest) returns (common.EmptyResponse) {}
+
+    rpc RemoveMany(RemoveManyNodesRequest) returns (common.EmptyResponse) {}
+}
+
+message NodeBase {
+    string id = 1;
+
+    string type = 2;
+
+    bool locked = 3;
+
+    google.protobuf.Struct styles  = 4;
+}
+
+message StickerNode {
+    NodeBase base = 1;
+
+    common.Rect rect = 2;
+
+    string text = 3;
+}
+
+message TextNode {
+    NodeBase base = 1;
+
+    common.Rect rect = 2;
+
+    repeated google.protobuf.Struct text = 3;
+}
+
+message ShapeBoardNode {
+    NodeBase base = 1;
+    
+    common.Rect rect = 2;
+
+    string variant = 3;
+}
+
+message Node {
+    NodeBase base = 1;
+
+    oneof specific {
+        StickerNode sticker = 2;
+
+        TextNode text = 3;
+
+        ShapeBoardNode shape = 4;
+    }
+}
+
+message CreateManyNodesRequest {
+    repeated Node nodes = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}
+
+message FindAllNodesRequest {
+    string boardId = 1;
+
+    string userId = 2;
+}
+
+message NodesList {
+    repeated Node nodes = 1;
+}
+
+message FindAllNodesResponse {
+    oneof response {
+        NodesList data = 1;
+
+        common.ErrorResponse error = 2;
+    }
+}
+
+message UpdateManyNodesRequest {
+    repeated Node nodes = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}
+
+message RemoveManyNodesRequest {
+    repeated string nodeIds = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}
