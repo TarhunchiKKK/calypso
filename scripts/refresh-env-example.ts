@@ -23,3 +23,5 @@ const envKeys = envContent.split("\n").map(line => {
 
 const exampleEnvContent = envKeys.join("\n");
 fs.writeFileSync(destinationFile, exampleEnvContent);
+
+console.info(`✅ Example environment file successfully refreshed!`);
