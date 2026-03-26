@@ -4,6 +4,7 @@ import "google/protobuf/empty.proto";
 
 package common;
 
+// FIX: rename to `GrpcError`
 message ErrorGrpcResponse {
     repeated string message = 1;
 
