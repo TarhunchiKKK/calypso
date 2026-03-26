@@ -35,12 +35,12 @@ import { NodesModule } from "./nodes/nodes.module";
                 }
             ]
         }),
-        BoardsModule,
-        NodesModule,
         AccessRightsModule.forRoot({
             connectionName: "default",
             rules: AccessRightsRecord
-        })
+        }),
+        BoardsModule,
+        NodesModule
     ]
 })
 export class AppModule {}

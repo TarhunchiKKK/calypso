@@ -6,3 +6,17 @@ export const AccessRightsRecord: Record<ProjectRoles, ProjectOperations[]> = {
     editor: ["view", "edit"],
     viewer: ["view"]
 };
+
+export const Roles = {
+    creator: "creator",
+    admin: "admin",
+    editor: "editor",
+    viewer: "viewer"
+} satisfies Record<string, ProjectRoles>;
+
+export const Operations = {
+    view: "view",
+    edit: "edit",
+    remove: "remove",
+    manageAccess: "manage-access"
+} satisfies Record<string, ProjectOperations>;

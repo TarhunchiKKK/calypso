@@ -3,8 +3,8 @@ import { AccessRightsGuard } from "./access-rights.guard";
 import { ExtractAccess, type ExtractAccessFunction } from "./extract-access.decorator";
 import { Operation } from "./operation.decorator";
 
-type Options<Args = unknown> = {
-    extract: ExtractAccessFunction<Args>;
+type Options = {
+    extract: ExtractAccessFunction;
 
     operation: string;
 };
