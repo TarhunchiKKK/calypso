@@ -1,1 +1,0 @@
-export const BOARDS_RMQ_CLIENT_INJECTION_TOKEN = Symbol();

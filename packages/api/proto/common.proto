@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto"; 
+
+package common;
+
+// FIX: rename to `GrpcError`
+message ErrorGrpcResponse {
+    repeated string message = 1;
+
+    string error = 2;
+
+    int32 statusCode = 3;
+}
+
+
+message EmptyGrpcResponse {
+    oneof response {
+        google.protobuf.Empty data = 1;
+
+        common.ErrorGrpcResponse error = 2;
+    }
+}
+
+message RectGrpc {
+    float x = 1;
+
+    float y = 2;
+
+    float width = 3;
+
+    float height = 4;
+}

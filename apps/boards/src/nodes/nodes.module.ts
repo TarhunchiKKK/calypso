@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { NodesHttpController } from "./controllers/nodes.http.controller";
+import { NodesGrpcController } from "./controllers/nodes.grpc.controller";
 import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQueryHandler } from "./handlers/find-all-nodes.handler";
@@ -30,7 +30,7 @@ import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
             }
         ])
     ],
-    controllers: [NodesHttpController, NodesRmqController],
+    controllers: [NodesGrpcController, NodesRmqController],
     providers: [
         NodesService,
         CreateManyNodesCommandHandler,

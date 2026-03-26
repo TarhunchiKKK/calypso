@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+import "common.proto";
+import "google/protobuf/struct.proto";
+
+
+package boards;
+
+service BoardsService {
+    rpc Create(CreateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+
+    rpc FindAll(FindAllBoardsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+
+    rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+
+    rpc Remove(RemoveBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+}
+
+message BoardGrpc {
+    string id = 1;
+
+    string title = 2;
+
+    string creatorId = 3;
+
+    string createdAt = 4;
+
+    optional string updatedAt = 5;
+}
+
+message CreateBoardGrpcRequest {
+    string title = 1;
+
+    string creatorId = 2;
+}
+
+message FindAllBoardsGrpcRequest {
+    string userId = 1;
+}
+
+message BoardsList {
+    repeated BoardGrpc boards = 1;
+}
+
+message FindAllBoardsGrpcResponse {
+    oneof response {
+        BoardsList data = 1;
+
+        common.ErrorGrpcResponse error = 2;
+    }
+}
+
+message UpdateBoardGrpcRequest {
+    string id = 1;
+
+    string userId = 2;
+
+    optional string title = 3;
+}
+
+message RemoveBoardGrpcRequest {
+    string id = 1;
+
+    string userId = 2;
+}
+
+service BoardNodesService {
+    rpc CreateMany(CreateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+
+    rpc FindAll(FindAllBoardNodesGrpcRequest) returns (FindAllBoardNodesGrpcResponse) {}
+
+    rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+
+    rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+}
+
+message BoardNodeBaseGrpc {
+    string id = 1;
+
+    string type = 2;
+
+    bool locked = 3;
+
+    google.protobuf.Struct styles  = 4;
+}
+
+message StickerBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
+
+    common.RectGrpc rect = 2;
+
+    string text = 3;
+}
+
+message TextBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
+
+    common.RectGrpc rect = 2;
+
+    repeated google.protobuf.Struct text = 3;
+}
+
+message ShapeBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
+    
+    common.RectGrpc rect = 2;
+
+    string variant = 3;
+}
+
+message BoardNodeGrpc {
+    oneof specific {
+        StickerBoardNodeGrpc sticker = 2;
+
+        TextBoardNodeGrpc text = 3;
+
+        ShapeBoardNodeGrpc shape = 4;
+    }
+}
+
+message CreateManyBoardNodesGrpcRequest {
+    repeated BoardNodeGrpc nodes = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}
+
+message FindAllBoardNodesGrpcRequest {
+    string boardId = 1;
+
+    string userId = 2;
+}
+
+message BoardNodesListGrpc {
+    repeated BoardNodeGrpc nodes = 1;
+}
+
+message FindAllBoardNodesGrpcResponse {
+    oneof response {
+        BoardNodesListGrpc data = 1;
+
+        common.ErrorGrpcResponse error = 2;
+    }
+}
+
+message UpdateManyBoardNodesGrpcRequest {
+    repeated BoardNodeGrpc nodes = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}
+
+message RemoveManyBoardNodesGrpcRequest {
+    repeated string nodeIds = 1;
+
+    string boardId = 2;
+
+    string userId = 3;
+}

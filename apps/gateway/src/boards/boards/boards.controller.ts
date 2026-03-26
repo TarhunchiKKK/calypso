@@ -1,10 +1,14 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { Boards, Id } from "@repo/common";
-import { BoardsHttpService } from "./boards.http.service";
+import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
+import { Authorized } from "src/auth/lib/supabase/security/authorized.decorator";
+import type { TokenPayload } from "src/auth/lib/supabase/supabase.types";
+import { BoardsService } from "./boards.service";
 
 @Controller("boards")
+@Authorization()
 export class BoardsController {
-    public constructor(@Inject(BoardsHttpService) private readonly boardsService: BoardsHttpService) {}
+    public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     @Post()
     public create(@Body() createBoardDto: Boards.CreateBoardDto) {
@@ -12,17 +16,21 @@ export class BoardsController {
     }
 
     @Get()
-    public findAll() {
-        return this.boardsService.findAll();
+    public findAll(@Authorized() payload: TokenPayload) {
+        return this.boardsService.findAll(payload.userId);
     }
 
     @Patch(":id")
-    public update(@Param("id") id: Id, @Body() updateBoardDto: Boards.UpdateBoardDto) {
-        return this.boardsService.update(id, updateBoardDto);
+    public update(
+        @Param("id") id: Id,
+        @Authorized() payload: TokenPayload,
+        @Body() updateBoardDto: Boards.UpdateBoardDto
+    ) {
+        return this.boardsService.update(id, payload.userId, updateBoardDto);
     }
 
     @Delete(":id")
-    public remove(@Param("id") id: Id) {
-        return this.boardsService.remove(id);
+    public remove(@Param("id") id: Id, @Authorized() payload: TokenPayload) {
+        return this.boardsService.remove(id, payload.userId);
     }
 }
