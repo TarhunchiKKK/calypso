@@ -90,4 +90,16 @@ export class AccessRightsService {
 
         return await this.accessRightsRepository.remove(accessRight);
     }
+
+    public async removeAllByResource(resourceId: Id) {
+        const accessRights = await this.accessRightsRepository.find({
+            where: {
+                resourceId: resourceId
+            }
+        });
+
+        if (accessRights.length) {
+            await this.accessRightsRepository.remove(accessRights);
+        }
+    }
 }
