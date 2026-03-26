@@ -6,9 +6,9 @@ import {
     type CreateManyBoardNodesGrpcRequest,
     type FindAllBoardNodesGrpcRequest,
     GrpcController,
-    RemoveManyBoardNodesGrpcRequest,
+    type RemoveManyBoardNodesGrpcRequest,
     type UnwrapGrpcResponse,
-    UpdateManyBoardNodesGrpcRequest
+    type UpdateManyBoardNodesGrpcRequest
 } from "@repo/api";
 import type { AnyNode } from "@repo/common/dist/boards";
 import { NodesService } from "../nodes.service";

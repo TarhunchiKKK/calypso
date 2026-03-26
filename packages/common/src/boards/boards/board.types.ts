@@ -1,10 +1,7 @@
-import type { Id } from "../../shared/db.types";
+import type { Project } from "../../projects";
+import type { Id } from "../../shared";
 
-export type Board = {
-    id: Id;
-
-    title: string;
-
+export type Board = Project & {
     creatorId: Id;
 
     createdAt: Date;
