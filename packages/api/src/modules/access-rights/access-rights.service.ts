@@ -25,7 +25,7 @@ export class AccessRightsService {
             return false;
         }
 
-        const availableOperations = this.options.rolesHierarchy[dto.operation];
+        const availableOperations = this.options.rules[dto.operation];
 
         if (!availableOperations) {
             return false;

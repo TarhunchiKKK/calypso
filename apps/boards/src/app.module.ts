@@ -4,8 +4,9 @@ import { CqrsModule } from "@nestjs/cqrs";
 import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
+import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
 import { BoardsModule } from "./boards/boards.module";
+import { AccessRightsRecord } from "./lib/auth.constants";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
 import { NodesModule } from "./nodes/nodes.module";
 
@@ -35,7 +36,11 @@ import { NodesModule } from "./nodes/nodes.module";
             ]
         }),
         BoardsModule,
-        NodesModule
+        NodesModule,
+        AccessRightsModule.forRoot({
+            connectionName: "default",
+            rules: AccessRightsRecord
+        })
     ]
 })
 export class AppModule {}

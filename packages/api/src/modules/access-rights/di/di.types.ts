@@ -1,5 +1,5 @@
 export type AccessRightsModuleOptions = {
     connectionName: string;
 
-    rolesHierarchy: Record<string, string[]>;
+    rules: Record<string, string[]>;
 };

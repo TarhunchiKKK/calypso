@@ -8,4 +8,6 @@ export type Project = {
 
 export type ProjectTypes = "board" | "note";
 
-export type ProjectRoles = "creator" | "editor" | "viewer";
+export type ProjectRoles = "creator" | "admin" | "editor" | "viewer";
+
+export type ProjectOperations = "edit" | "remove" | "view" | "manage-access";
