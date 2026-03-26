@@ -109,8 +109,6 @@ message ShapeBoardNodeGrpc {
 }
 
 message BoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
-
     oneof specific {
         StickerBoardNodeGrpc sticker = 2;
 

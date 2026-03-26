@@ -76,7 +76,6 @@ export interface ShapeBoardNodeGrpc {
 }
 
 export interface BoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
   sticker?: StickerBoardNodeGrpc | undefined;
   text?: TextBoardNodeGrpc | undefined;
   shape?: ShapeBoardNodeGrpc | undefined;

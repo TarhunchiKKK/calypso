@@ -27,6 +27,7 @@ const map = {
 
             RMQ_URLS: "RMQ_URLS",
 
+            BOARDS_SERVICE_GRPC_URL: "BOARDS_SERVICE_GRPC_URL",
             BOARDS_SERVICE_URL: "BOARDS_SERVICE_APP_URL",
             BOARDS_SERVICE_RMQ_QUEUE: "BOARDS_SERVICE_RMQ_QUEUE",
 
@@ -39,6 +40,8 @@ const map = {
         variables: {
             APP_PORT: "BOARDS_SERVICE_APP_PORT",
             APP_URL: "BOARDS_SERVICE_APP_URL",
+
+            GRPC_URL: "BOARDS_SERVICE_GRPC_URL",
 
             SQL_DB_NAME: "BOARDS_SERVICE_SQL_DB_NAME",
             SQL_DB_HOST: "BOARDS_SERVICE_SQL_DB_HOST",

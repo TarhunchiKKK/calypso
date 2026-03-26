@@ -2,34 +2,34 @@ import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ClientsModule, Transport } from "@nestjs/microservices";
-import { CommonBrokerOptions } from "@repo/api";
+import { BOARDS_PACKAGE_NAME } from "@repo/api";
 import { BoardsController } from "./boards/boards.controller";
-import { BoardsHttpService } from "./boards/boards.http.service";
-import { BOARDS_RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
+import { BoardsService } from "./boards/boards.service";
+import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "./lib/grpc.constants";
 import { NodesController } from "./nodes/nodes.controller";
-import { NodesHttpService } from "./nodes/nodes.http.service";
-import { NodesBrokerAcknowledgementService } from "./nodes/nodes.rmq.service";
+import { NodesService } from "./nodes/nodes.service";
 
 @Module({
     imports: [
         HttpModule,
         ClientsModule.registerAsync([
+           
             {
-                name: BOARDS_RMQ_CLIENT_INJECTION_TOKEN,
+                name: BOARDS_GRPC_CLIENT_INJECTION_TOKEN,
                 imports: [ConfigModule],
                 inject: [ConfigService],
                 useFactory: (configService: ConfigService) => ({
-                    transport: Transport.RMQ,
+                    transport: Transport.GRPC,
                     options: {
-                        ...CommonBrokerOptions,
-                        urls: configService.getOrThrow<string>("RMQ_URLS").split(","),
-                        queue: configService.getOrThrow<string>("BOARDS_RMQ_QUEUE")
+                        package: BOARDS_PACKAGE_NAME,
+                        protoPath: "node_modules/@repo/api/proto/boards.proto",
+                        url: configService.getOrThrow<string>("BOARDS_SERVICE_GRPC_URL")
                     }
                 })
             }
         ])
     ],
     controllers: [BoardsController, NodesController],
-    providers: [BoardsHttpService, NodesHttpService, NodesBrokerAcknowledgementService]
+    providers: [BoardsService, NodesService]
 })
 export class BoardsModule {}
