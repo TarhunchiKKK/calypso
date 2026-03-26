@@ -1,5 +1,4 @@
 import type { Id } from "@repo/common";
-import type { ProjectRoles } from "@repo/common/dist/projects";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -8,11 +7,11 @@ export class AccessRight {
     public id: Id;
 
     @Column({ type: String })
-    public projectId: Id;
+    public resourceId: Id;
 
     @Column({ type: String })
     public userId: Id;
 
     @Column({ type: String })
-    public role: ProjectRoles;
+    public role: string;
 }

@@ -1,7 +1,7 @@
 import type { Id } from "@repo/common";
 
-export class RemoveAccessRightDto {
-    public projectId: Id;
+export type RemoveAccessRightDto = {
+    resourceId: Id;
 
-    public userId: Id;
-}
+    userId: Id;
+};
