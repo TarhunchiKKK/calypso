@@ -19,7 +19,8 @@ async function bootstrap() {
         }
     });
 
-    app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService));
+    // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
+    app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);
 
     await app.startAllMicroservices();
 

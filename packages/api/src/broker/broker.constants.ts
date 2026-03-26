@@ -12,6 +12,7 @@ export const BrokerRoutingKeys = {
     }
 };
 
+// FIX: move to `rmq.config.ts`
 export const CommonBrokerOptions = {
     queueOptions: {
         durable: true

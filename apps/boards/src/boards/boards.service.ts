@@ -24,8 +24,8 @@ export class BoardsService {
         return await this.commandBus.execute(new CreateBoardCommand(dto));
     }
 
-    public async findAll(creatorId: Id) {
-        const boards = await this.queryBus.execute(new FindAllBoardsQuery(creatorId));
+    public async findAll(userId: Id) {
+        const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId));
 
         return boards.map(BoardsGrpcMapper.toGrpc);
     }
@@ -38,6 +38,8 @@ export class BoardsService {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
         this.rmqClient.emit(BrokerRoutingKeys.boards.events.boardRemoved, id);
+
+        // TODO: remove `AccessRights` entities of this board
 
         return result;
     }

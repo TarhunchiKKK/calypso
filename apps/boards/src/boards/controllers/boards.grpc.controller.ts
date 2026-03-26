@@ -18,6 +18,7 @@ import { BoardsService } from "../boards.service";
 export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceController> {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
+    // TODO: add board returning
     public async create(dto: CreateBoardGrpcRequest) {
         return this.boardsService.create(dto);
     }
