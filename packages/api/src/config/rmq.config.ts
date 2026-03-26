@@ -1,6 +1,14 @@
 import type { ConfigService } from "@nestjs/config";
 import { type ClientProvider, type MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { CommonBrokerOptions } from "../broker/broker.constants";
+
+const CommonBrokerOptions = {
+    queueOptions: {
+        durable: true
+    },
+    noAck: false,
+    prefetchCount: 1,
+    persistent: true
+};
 
 export function rmqClientConfigFactory(configService: ConfigService): ClientProvider {
     const urls = configService.getOrThrow<string>("RMQ_URLS").split(",");

@@ -9,7 +9,7 @@ import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
 import { RemoveNodesByBoardCommand } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
-import { NodeBase } from "./schemas/node-base.schema";
+import type { NodeBase } from "./schemas/node-base.schema";
 
 @Injectable()
 export class NodesService {
@@ -23,7 +23,7 @@ export class NodesService {
         await this.commandBus.execute(new CreateManyNodesCommand(boardId, nodes));
 
         if (nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
         }
     }
 
@@ -35,14 +35,14 @@ export class NodesService {
         await this.commandBus.execute(new UpdateManyNodesCommand(boardId, nodes));
 
         if (nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
         }
     }
 
     public async removeMany(ids: Id[], boardId: Id) {
         await this.commandBus.execute(new RemoveManyNodesCommand(ids));
 
-        this.rmqClient.emit(BrokerRoutingKeys.boards.events.nodesChanged, boardId);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
     }
 
     public async removeNodesByBoard(boardId: Id) {

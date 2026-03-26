@@ -8,6 +8,7 @@ import { ChangeBoardUpdateDateCommandHandler } from "./handlers/change-board-upd
 import { CreateBoardCommandHandler } from "./handlers/create-board.handler";
 import { FindAllBoardsQueryHandler } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommandHandler } from "./handlers/remove-board.handler";
+import { RemoveBoardAccessRightsCommandHandler } from "./handlers/remove-board-access-rights.handler";
 import { UpdateBoardCommandHandler } from "./handlers/update-board.handler";
 import { BoardsHelper } from "./lib/boards.helper";
 
@@ -21,7 +22,8 @@ import { BoardsHelper } from "./lib/boards.helper";
         FindAllBoardsQueryHandler,
         UpdateBoardCommandHandler,
         RemoveBoardCommandHandler,
-        ChangeBoardUpdateDateCommandHandler
+        ChangeBoardUpdateDateCommandHandler,
+        RemoveBoardAccessRightsCommandHandler
     ]
 })
 export class BoardsModule {}

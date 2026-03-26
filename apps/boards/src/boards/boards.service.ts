@@ -10,6 +10,7 @@ import { ChangeBoardUpdateDateCommand } from "./handlers/change-board-update-dat
 import { CreateBoardCommand } from "./handlers/create-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommand } from "./handlers/remove-board.handler";
+import { RemoveBoardAccessRightsCommand } from "./handlers/remove-board-access-rights.handler";
 import { UpdateBoardCommand } from "./handlers/update-board.handler";
 
 @Injectable()
@@ -24,8 +25,8 @@ export class BoardsService {
         return await this.commandBus.execute(new CreateBoardCommand(dto));
     }
 
-    public async findAll(creatorId: Id) {
-        const boards = await this.queryBus.execute(new FindAllBoardsQuery(creatorId));
+    public async findAll(userId: Id) {
+        const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId));
 
         return boards.map(BoardsGrpcMapper.toGrpc);
     }
@@ -37,12 +38,16 @@ export class BoardsService {
     public async remove(id: Id) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
-        this.rmqClient.emit(BrokerRoutingKeys.boards.events.boardRemoved, id);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.boardRemoved, id);
 
         return result;
     }
 
     public async changeBoardUpdateDate(boardId: Id) {
         return await this.commandBus.execute(new ChangeBoardUpdateDateCommand(boardId));
+    }
+
+    public async removeBoardAccessRights(boardId: Id) {
+        return await this.commandBus.execute(new RemoveBoardAccessRightsCommand(boardId));
     }
 }

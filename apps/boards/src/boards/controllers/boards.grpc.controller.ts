@@ -2,6 +2,7 @@ import { Inject } from "@nestjs/common";
 import {
     type BoardsServiceController,
     BoardsServiceControllerMethods,
+    CheckAccess,
     type CreateBoardGrpcRequest,
     type FindAllBoardsGrpcRequest,
     GrpcController,
@@ -9,6 +10,7 @@ import {
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/api";
+import { Operations } from "src/lib/auth.constants";
 import { BoardsService } from "../boards.service";
 
 @GrpcController()
@@ -16,6 +18,7 @@ import { BoardsService } from "../boards.service";
 export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceController> {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
+    // TODO: add board returning
     public async create(dto: CreateBoardGrpcRequest) {
         return this.boardsService.create(dto);
     }
@@ -26,12 +29,20 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
         return { boards };
     }
 
+    @CheckAccess({
+        operation: Operations.edit,
+        extract: (dto: UpdateBoardGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
+    })
     public async update(dto: UpdateBoardGrpcRequest) {
         const { userId, id, ...data } = dto;
 
         return this.boardsService.update(id, data);
     }
 
+    @CheckAccess({
+        operation: Operations.remove,
+        extract: (dto: RemoveBoardGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
+    })
     public async remove(dto: RemoveBoardGrpcRequest) {
         return this.boardsService.remove(dto.userId);
     }
