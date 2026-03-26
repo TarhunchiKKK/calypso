@@ -2,7 +2,7 @@ import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ClientsModule, Transport } from "@nestjs/microservices";
-import { BOARDS_PACKAGE_NAME } from "@repo/api";
+import { BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@repo/api";
 import { BoardsController } from "./boards/boards.controller";
 import { BoardsService } from "./boards/boards.service";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "./lib/grpc.constants";
@@ -13,7 +13,6 @@ import { NodesService } from "./nodes/nodes.service";
     imports: [
         HttpModule,
         ClientsModule.registerAsync([
-           
             {
                 name: BOARDS_GRPC_CLIENT_INJECTION_TOKEN,
                 imports: [ConfigModule],
@@ -23,7 +22,8 @@ import { NodesService } from "./nodes/nodes.service";
                     options: {
                         package: BOARDS_PACKAGE_NAME,
                         protoPath: "node_modules/@repo/api/proto/boards.proto",
-                        url: configService.getOrThrow<string>("BOARDS_SERVICE_GRPC_URL")
+                        url: configService.getOrThrow<string>("BOARDS_SERVICE_GRPC_URL"),
+                        loader: GrpcLoaderOptions
                     }
                 })
             }

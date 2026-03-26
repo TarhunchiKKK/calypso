@@ -1,7 +1,7 @@
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { GrpcGen, rmqMicroserviceConfigFactory } from "@repo/api";
+import { BOARDS_PACKAGE_NAME, GrpcLoaderOptions, rmqMicroserviceConfigFactory } from "@repo/api";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -12,7 +12,10 @@ async function bootstrap() {
     app.connectMicroservice<MicroserviceOptions>({
         transport: Transport.GRPC,
         options: {
-            package: GrpcGen.Boards.BOARDS_PACKAGE_NAME
+            package: BOARDS_PACKAGE_NAME,
+            protoPath: "node_modules/@repo/api/proto/boards.proto",
+            url: configService.getOrThrow<string>("GRPC_URL"),
+            loader: GrpcLoaderOptions
         }
     });
 

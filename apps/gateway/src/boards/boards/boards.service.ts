@@ -1,7 +1,8 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARDS_SERVICE_NAME, type BoardsServiceClient } from "@repo/api";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient } from "@repo/api";
 import type { Boards, Id } from "@repo/common";
+import { map } from "rxjs";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 
 @Injectable()
@@ -19,7 +20,14 @@ export class BoardsService implements OnModuleInit {
     }
 
     public findAll(userId: string) {
-        return this.boardsClient.findAll({ userId });
+        return this.boardsClient.findAll({ userId }).pipe(
+            map(res => {
+                if (res.data?.boards) {
+                    return res.data.boards.map(BoardsGrpcMapper.fromGrpc);
+                }
+                return [];
+            })
+        );
     }
 
     public update(id: Id, userId: string, dto: Boards.UpdateBoardDto) {

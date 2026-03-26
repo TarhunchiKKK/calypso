@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { BoardsService } from "./boards.service";
-import { BoardsHttpController } from "./controllers/boards.http.controller";
+import { BoardsGrpcController } from "./controllers/boards.grpc.controller";
 import { BoardsRmqController } from "./controllers/boards.rmq.controller";
 import { Board } from "./entities/board.entity";
 import { ChangeBoardUpdateDateCommandHandler } from "./handlers/change-board-update-date.handler";
@@ -13,7 +13,7 @@ import { BoardsHelper } from "./lib/boards.helper";
 
 @Module({
     imports: [TypeOrmModule.forFeature([Board])],
-    controllers: [BoardsHttpController, BoardsRmqController],
+    controllers: [BoardsGrpcController, BoardsRmqController],
     providers: [
         BoardsService,
         BoardsHelper,

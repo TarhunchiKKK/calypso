@@ -11,9 +11,7 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": [
-        "./dist/**"
-    ],
+    "files": ["./dist/**"],
     "publishConfig": {
         "access": "public"
     },
@@ -34,6 +32,7 @@
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
+        "@repo/common": "*",
         "protobufjs": "^8.0.0",
         "rxjs": "^7.8.2"
     },
