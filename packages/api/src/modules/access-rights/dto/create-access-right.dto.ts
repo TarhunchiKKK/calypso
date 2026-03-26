@@ -1,9 +1,9 @@
 import type { Id } from "@repo/common";
 
-export type CreateAccessRightDto = {
+export type CreateAccessRightDto<Role> = {
     resourceId: Id;
 
     userId: Id;
 
-    role: string;
+    role: Role;
 };

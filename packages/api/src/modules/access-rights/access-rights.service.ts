@@ -18,7 +18,7 @@ export class AccessRightsService {
         @InjectRepository(AccessRight) private readonly accessRightsRepository: Repository<AccessRight>
     ) {}
 
-    public async check(dto: CheckAccessRightDto) {
+    public async check<Operation extends string = string>(dto: CheckAccessRightDto<Operation>) {
         const accessRight = await this.findOne(dto);
 
         if (!accessRight) {
@@ -34,7 +34,7 @@ export class AccessRightsService {
         return availableOperations.includes(accessRight.role);
     }
 
-    public async create(dto: CreateAccessRightDto) {
+    public async create<Role extends string = string>(dto: CreateAccessRightDto<Role>) {
         const accessRight = await this.findOne(dto);
 
         if (accessRight) {
@@ -69,7 +69,7 @@ export class AccessRightsService {
         });
     }
 
-    public async update(dto: UpdateAccessRightDto) {
+    public async update<Role extends string = string>(dto: UpdateAccessRightDto<Role>) {
         const accessRight = await this.findOne(dto);
 
         if (!accessRight) {

@@ -1,7 +1,7 @@
-export type CheckAccessRightDto = {
+export type CheckAccessRightDto<Operation> = {
     resourceId: string;
 
     userId: string;
 
-    operation: string;
+    operation: Operation;
 };
