@@ -1,16 +1,17 @@
-import { Controller, Inject } from "@nestjs/common";
+import { Inject } from "@nestjs/common";
 import {
     type BoardsServiceController,
     BoardsServiceControllerMethods,
     type CreateBoardGrpcRequest,
     type FindAllBoardsGrpcRequest,
+    GrpcController,
     type RemoveBoardGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/api";
 import { BoardsService } from "../boards.service";
 
-@Controller()
+@GrpcController()
 @BoardsServiceControllerMethods()
 export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceController> {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
