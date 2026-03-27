@@ -13,23 +13,23 @@ import { ShapeNode, ShapeNodeSchema } from "./schemas/shape-node.schema";
 import { StickerNode, StickerNodeSchema } from "./schemas/sticker-node.schema";
 import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
 
+export const NodesMongooseModule = MongooseModule.forFeatureAsync([
+    {
+        name: NodeBase.name,
+        useFactory: () => {
+            const schema = NodeBaseSchema;
+
+            schema.discriminator(StickerNode.name, StickerNodeSchema);
+            schema.discriminator(TextNode.name, TextNodeSchema);
+            schema.discriminator(ShapeNode.name, ShapeNodeSchema);
+
+            return schema;
+        }
+    }
+]);
+
 @Module({
-    imports: [
-        MongooseModule.forFeatureAsync([
-            {
-                name: NodeBase.name,
-                useFactory: () => {
-                    const schema = NodeBaseSchema;
-
-                    schema.discriminator(StickerNode.name, StickerNodeSchema);
-                    schema.discriminator(TextNode.name, TextNodeSchema);
-                    schema.discriminator(ShapeNode.name, ShapeNodeSchema);
-
-                    return schema;
-                }
-            }
-        ])
-    ],
+    imports: [NodesMongooseModule],
     controllers: [NodesGrpcController, NodesRmqController],
     providers: [
         NodesService,

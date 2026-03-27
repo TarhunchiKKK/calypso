@@ -1,11 +1,7 @@
-import type { Boards, Id } from "@repo/common";
-import { IsNotEmpty, IsString, IsUUID } from "class-validator";
+import type { Id } from "@repo/common";
 
-export class CreateBoardDto implements Boards.CreateBoardDto {
-    @IsString({ message: "Board title should be string" })
-    @IsNotEmpty({ message: "Board title should be provided" })
-    public title: string;
+export type CreateBoardDto = {
+    title: string;
 
-    @IsUUID("4", { message: "Board creator id should be valid 'uuid'" })
-    public creatorId: Id;
-}
+    userId: Id;
+};

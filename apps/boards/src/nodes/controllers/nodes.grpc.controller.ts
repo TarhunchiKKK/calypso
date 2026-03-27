@@ -25,7 +25,10 @@ export class NodesGrpcController implements UnwrapGrpcResponse<BoardNodesService
         extract: (dto: CreateManyBoardNodesGrpcRequest) => ({ resourceId: dto.boardId, userId: dto.userId })
     })
     public async createMany(dto: CreateManyBoardNodesGrpcRequest) {
-        return this.nodesService.createMany(dto.boardId, dto.nodes.map(BoardNodesGrpcMapper.fromGrpc));
+        return this.nodesService.createMany({
+            boardId: dto.boardId,
+            nodes: dto.nodes.map(BoardNodesGrpcMapper.fromGrpc)
+        });
     }
 
     @CheckAccess({
@@ -43,7 +46,10 @@ export class NodesGrpcController implements UnwrapGrpcResponse<BoardNodesService
         extract: (dto: UpdateManyBoardNodesGrpcRequest) => ({ resourceId: dto.boardId, userId: dto.userId })
     })
     public async updateMany(dto: UpdateManyBoardNodesGrpcRequest) {
-        return this.nodesService.updateMany(dto.boardId, dto.nodes.map(BoardNodesGrpcMapper.fromGrpc));
+        return this.nodesService.updateMany({
+            boardId: dto.boardId,
+            nodes: dto.nodes.map(BoardNodesGrpcMapper.fromGrpc)
+        });
     }
 
     @CheckAccess({
@@ -51,6 +57,6 @@ export class NodesGrpcController implements UnwrapGrpcResponse<BoardNodesService
         extract: (dto: RemoveManyBoardNodesGrpcRequest) => ({ resourceId: dto.boardId, userId: dto.userId })
     })
     public async removeMany(dto: RemoveManyBoardNodesGrpcRequest) {
-        return this.nodesService.removeMany(dto.nodeIds, dto.boardId);
+        return this.nodesService.removeMany(dto);
     }
 }

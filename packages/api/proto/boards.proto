@@ -1,13 +1,15 @@
 syntax = "proto3";
 
 import "common.proto";
+import "geometry.proto";
 import "google/protobuf/struct.proto";
-
 
 package boards;
 
 service BoardsService {
-    rpc Create(CreateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+    rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
+
+    rpc Duplicate(DuplicateBoardGrpcRequest) returns (BoardGrpcResponse) {} 
 
     rpc FindAll(FindAllBoardsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
@@ -28,10 +30,24 @@ message BoardGrpc {
     optional string updatedAt = 5;
 }
 
+message BoardGrpcResponse {
+    oneof response {
+        BoardGrpc data = 1;
+
+        common.GrpcError error = 2;
+    }
+}
+
 message CreateBoardGrpcRequest {
     string title = 1;
 
-    string creatorId = 2;
+    string userId = 2;
+}
+
+message DuplicateBoardGrpcRequest {
+    string boardId = 1;
+
+    string userId = 2;
 }
 
 message FindAllBoardsGrpcRequest {
@@ -46,7 +62,7 @@ message FindAllBoardsGrpcResponse {
     oneof response {
         BoardsList data = 1;
 
-        common.ErrorGrpcResponse error = 2;
+        common.GrpcError error = 2;
     }
 }
 
@@ -87,7 +103,7 @@ message BoardNodeBaseGrpc {
 message StickerBoardNodeGrpc {
     BoardNodeBaseGrpc base = 1;
 
-    common.RectGrpc rect = 2;
+    geometry.RectGrpc rect = 2;
 
     string text = 3;
 }
@@ -95,7 +111,7 @@ message StickerBoardNodeGrpc {
 message TextBoardNodeGrpc {
     BoardNodeBaseGrpc base = 1;
 
-    common.RectGrpc rect = 2;
+    geometry.RectGrpc rect = 2;
 
     repeated google.protobuf.Struct text = 3;
 }
@@ -103,7 +119,7 @@ message TextBoardNodeGrpc {
 message ShapeBoardNodeGrpc {
     BoardNodeBaseGrpc base = 1;
     
-    common.RectGrpc rect = 2;
+    geometry.RectGrpc rect = 2;
 
     string variant = 3;
 }
@@ -140,7 +156,7 @@ message FindAllBoardNodesGrpcResponse {
     oneof response {
         BoardNodesListGrpc data = 1;
 
-        common.ErrorGrpcResponse error = 2;
+        common.GrpcError error = 2;
     }
 }
 
@@ -153,7 +169,7 @@ message UpdateManyBoardNodesGrpcRequest {
 }
 
 message RemoveManyBoardNodesGrpcRequest {
-    repeated string nodeIds = 1;
+    repeated string ids = 1;
 
     string boardId = 2;
 

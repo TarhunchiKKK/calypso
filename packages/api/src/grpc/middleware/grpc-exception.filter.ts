@@ -1,14 +1,14 @@
-import { Catch, HttpException, HttpStatus } from "@nestjs/common";
+import { Catch, type HttpException, HttpStatus } from "@nestjs/common";
 import { BaseRpcExceptionFilter } from "@nestjs/microservices";
-import { ErrorGrpcResponse } from "../generated";
-import { from, Observable } from "rxjs";
-import { GrpcResponse } from "../types";
+import { from, type Observable } from "rxjs";
+import type { GrpcError } from "../generated";
+import type { GrpcResponse } from "../types";
 
 @Catch()
 export class GrpcExceptionFilter extends BaseRpcExceptionFilter {
     public catch(exception: HttpException): Observable<GrpcResponse> {
         if ("getResponse" in exception) {
-            const { message, error, statusCode } = exception.getResponse() as ErrorGrpcResponse;
+            const { message, error, statusCode } = exception.getResponse() as GrpcError;
 
             return from([
                 {
