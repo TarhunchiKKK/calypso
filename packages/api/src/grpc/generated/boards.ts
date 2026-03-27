@@ -9,7 +9,7 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
-import { RectGrpc } from "./geometry";
+import { RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 
 const protobufPackage = "boards";
@@ -74,6 +74,13 @@ export interface StickerBoardNodeGrpc {
   text: string;
 }
 
+export interface ArrowBoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  start: RelativePointGrpc | undefined;
+  end: RelativePointGrpc | undefined;
+  text?: string | undefined;
+}
+
 export interface TextBoardNodeGrpc {
   base: BoardNodeBaseGrpc | undefined;
   rect: RectGrpc | undefined;
@@ -88,6 +95,7 @@ export interface ShapeBoardNodeGrpc {
 
 export interface BoardNodeGrpc {
   sticker?: StickerBoardNodeGrpc | undefined;
+  arrow?: ArrowBoardNodeGrpc | undefined;
   text?: TextBoardNodeGrpc | undefined;
   shape?: ShapeBoardNodeGrpc | undefined;
 }

@@ -11,3 +11,11 @@ message RectGrpc {
 
     float height = 4;
 }
+
+message RelativePointGrpc {
+    float x = 1;
+
+    float y = 2;
+
+    optional string relativeTo = 3;
+}

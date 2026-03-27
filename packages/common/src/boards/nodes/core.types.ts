@@ -1,7 +1,7 @@
 import { Rect } from "../../shared/geometry.types";
 import { Id } from "../../shared/db.types";
 
-export type NodeTypes = "sticker" | "text" | "shape";
+export type NodeTypes = "sticker" | "text" | "shape"| "arrow";
 
 export type NodeBase = {
     id: Id;

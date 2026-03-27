@@ -1,4 +1,5 @@
-import { RectNode } from "./core.types";
+import { RelativePoint } from "shared";
+import { NodeBase, RectNode } from "./core.types";
 
 export type StickerNode = RectNode & {
     type: "sticker";
@@ -19,3 +20,13 @@ export type ShapeNode = RectNode & {
 
     variant: ShapeVariants;
 };
+
+export type ArrowNode = NodeBase & {
+    type: "arrow"
+
+    start: RelativePoint;
+
+    end: RelativePoint;
+
+    text?: string
+}

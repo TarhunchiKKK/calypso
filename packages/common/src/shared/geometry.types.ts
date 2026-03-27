@@ -1,8 +1,14 @@
+import { Id } from "entry";
+
 export type Point = {
     x: number;
 
     y: number;
 };
+
+export type RelativePoint = Point & {
+    relativeTo?: Id
+}
 
 export type Rect = {
     x: number;

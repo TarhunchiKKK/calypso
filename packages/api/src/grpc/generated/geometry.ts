@@ -15,4 +15,10 @@ export interface RectGrpc {
   height: number;
 }
 
+export interface RelativePointGrpc {
+  x: number;
+  y: number;
+  relativeTo?: string | undefined;
+}
+
 export const GEOMETRY_PACKAGE_NAME = "geometry";
