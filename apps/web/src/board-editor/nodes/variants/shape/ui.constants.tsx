@@ -1,5 +1,5 @@
+import type { Boards } from "@repo/common";
 import { Circle, Diamond, Hexagon, Square, Star, Triangle } from "lucide-react";
-import type { ShapeVariants } from "./shape-node.type";
 
 export const ShapeVariantIconsMap = {
     rectangle: Square,
@@ -8,4 +8,4 @@ export const ShapeVariantIconsMap = {
     diamond: Diamond,
     star: Star,
     hexagon: Hexagon
-} satisfies Record<ShapeVariants, unknown>;
+} satisfies Record<Boards.ShapeVariants, unknown>;

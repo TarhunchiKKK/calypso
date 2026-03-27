@@ -1,4 +1,4 @@
-import type { Offset, Point, Rect } from "@/shared/lib/geometry";
+import type { Point, Rect, Offset } from "@repo/common";
 
 export class Geometry {
     public static pointFromEvent(e: Pick<React.MouseEvent, "clientX" | "clientY">): Point {

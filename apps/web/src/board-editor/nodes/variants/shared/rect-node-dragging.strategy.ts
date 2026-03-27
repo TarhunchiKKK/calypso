@@ -1,9 +1,10 @@
+import type { NodeWrapper } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
-import { Geometry, type Offset } from "@/shared/lib/geometry";
-import type { StickerNodeWrapper } from "../sticker/sticker.wrapper";
+import { Geometry, } from "@/shared/lib/geometry";
+import type { Boards, Offset } from "@repo/common";
 
 export class RectNodeDraggingStrategy extends NodeDraggingStrategy {
-    public override updateNodePosition(wrapper: StickerNodeWrapper, offset: Offset) {
+    public override updateNodePosition(wrapper: NodeWrapper<Boards.RectNode>, offset: Offset) {
         const newPoint = Geometry.applyOffset(wrapper.rect, offset);
 
         wrapper.data = {

@@ -1,13 +1,14 @@
 import type React from "react";
 import type { NodesSelectionMode } from "@/board-editor/modules/selection";
-import { Geometry, type Point } from "@/shared/lib/geometry";
+import { Geometry, } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { IdleViewState } from "../idle/view-state";
 import type { SelectionViewState } from "../selection/view-state";
 import type { SelectionWindowViewState } from "./view-state";
+import type { Id, Point } from "@repo/common";
 
 type Params = {
-    selectedIds: Set<string>;
+    selectedIds: Set<Id>;
 
     startPoint: Point;
 

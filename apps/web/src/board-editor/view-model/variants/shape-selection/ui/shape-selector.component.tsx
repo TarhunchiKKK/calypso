@@ -1,11 +1,11 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
 import { ShapeVariantIconsMap } from "@/board-editor/nodes/variants/shape/ui.constants";
 import { Wrapper } from "@/shared/ui";
 import { Button } from "@/shared/ui/kit";
 import { AvailableShapeVariants, IconsSizes } from "./ui.constants";
+import type { Boards } from "@repo/common";
 
 type Props = {
-    onSelect: (variant: ShapeVariants) => void;
+    onSelect: (variant: Boards.ShapeVariants) => void;
 };
 
 export function ShapeSelector({ onSelect }: Props) {

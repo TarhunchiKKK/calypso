@@ -19,7 +19,7 @@ export function useStylingViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: StylingNodesMapper.from(nodesModel.nodes).seteSelectedIds(viewState.selectedIds).map(),
+            nodes: StylingNodesMapper.from(nodesModel.nodes).setSelectedIds(viewState.selectedIds).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (

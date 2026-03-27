@@ -1,9 +1,9 @@
-import type { Point } from "@/shared/lib/geometry";
+import type { Id, Point } from "@repo/common";
 
 export type DraggingViewState = {
     type: "dragging";
 
-    selectedIds: Set<string>;
+    selectedIds: Set<Id>;
 
     startPoint: Point;
 };

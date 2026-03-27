@@ -1,20 +1,22 @@
 import type { Descendant } from "slate";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { FormatableTextarea } from "@/features/formatable-input";
-import type { TextNode } from "../text-node.type";
+import type { Boards } from "@repo/common";
 
 export class EditTextNodeStrategy extends NodeEditingStrategy {
     private value: Descendant[] = [];
 
-    public override ui(node: TextNode) {
+    public override ui(node: Boards.TextNode) {
         const changeHandler = (value: Descendant[]) => {
             this.value = value;
         };
 
+        // FIX: type casting
         const endEditingHandler = () => {
-            this.handler({ ...node, text: this.value } as TextNode);
+            this.handler({ ...node, text: this.value } as any);
         };
 
-        return <FormatableTextarea value={node.text} onChange={changeHandler} onBlur={endEditingHandler} />;
+        // FIX: type casting
+        return <FormatableTextarea value={node.text as any} onChange={changeHandler} onBlur={endEditingHandler} />;
     }
 }

@@ -1,4 +1,4 @@
-import type { Rect } from "@/shared/lib/geometry";
+import type { Rect } from "@repo/common";
 import { type Decoratable, NodeDecorator } from "../../../core";
 import type { NodeResizingStrategy } from "./node-resizing.strategy";
 

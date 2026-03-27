@@ -1,4 +1,4 @@
-import type { Offset } from "@/shared/lib/geometry";
+import type { Offset } from "@repo/common";
 import type { NodeWrapper } from "../../core";
 
 export abstract class NodeDraggingStrategy {

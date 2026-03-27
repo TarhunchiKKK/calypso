@@ -1,4 +1,4 @@
-import type { Point, Rect } from "@/shared/lib/geometry";
+import type { Point, Rect } from "@repo/common";
 import type { ResizeDirection } from "../types";
 
 /**

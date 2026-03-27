@@ -1,5 +1,7 @@
+import type { Id } from "@repo/common";
+
 export type EditingViewState = {
     type: "editing";
 
-    selectedNodeId: string;
+    selectedNodeId: Id;
 };

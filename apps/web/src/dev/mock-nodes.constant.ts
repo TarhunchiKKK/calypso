@@ -1,4 +1,4 @@
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards } from "@repo/common";
 
 export const MockNodes = [
     {
@@ -18,7 +18,7 @@ export const MockNodes = [
             borderRadius: 4,
             textAlign: "left"
         }
-    } as NodeBase,
+    } as Boards.NodeBase,
     {
         id: "2",
         boardId: "1",
@@ -36,7 +36,7 @@ export const MockNodes = [
             borderRadius: 4,
             textAlign: "left"
         }
-    } as NodeBase,
+    } as Boards.NodeBase,
     {
         id: "3",
         type: "sticker",
@@ -54,5 +54,5 @@ export const MockNodes = [
             borderRadius: 4,
             textAlign: "left"
         }
-    } as NodeBase
+    } as Boards.NodeBase
 ];

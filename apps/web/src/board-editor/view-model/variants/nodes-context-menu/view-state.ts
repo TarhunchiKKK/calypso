@@ -1,9 +1,9 @@
-import type { Point } from "@/shared/lib/geometry";
+import type { Id, Point } from "@repo/common";
 
 export type NodesContextMenuViewState = {
     type: "nodes-context-menu";
 
-    selectedIds: Set<string>;
+    selectedIds: Set<Id>;
 
     position: Point;
 };

@@ -1,5 +1,5 @@
 import type { NodeWrapper } from "@/board-editor/core";
-import type { Rect } from "@/shared/lib/geometry";
+import type { Rect } from "@repo/common";
 import type { ResizeHandler } from "../types";
 
 export abstract class NodeResizingStrategy {

@@ -3,9 +3,10 @@ import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
+import type { Id } from "@repo/common";
 
 export type ViewModelParams = {
-    boardId: string;
+    boardId: Id;
 
     nodesModel: NodesModel;
 

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { Geometry, type Point } from "@/shared/lib/geometry";
+import { Geometry, } from "@/shared/lib/geometry";
 import { DefaultLayoutOffset, DefaultLayoutZoom, ZoomDown, ZoomUp } from "./layot-dimensions.constants";
+import type { Point } from "@repo/common";
 
 export function useLayoutDimensionsModel() {
     const [offset, setOffset] = useState(DefaultLayoutOffset);

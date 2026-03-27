@@ -1,18 +1,18 @@
 import { Type } from "lucide-react";
-import type { NodeStyles } from "@/entities/nodes";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { BackgroundColorPlaceholder, TextColorPlaceholder } from "../constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
+import type { Boards } from "@repo/common";
 
 type Props = {
     onUpdate: (fn: UpdateFn) => void;
 };
 
 export function ColorsGroup({ onUpdate }: Props) {
-    const handleBackgroundColorSelect = (backgroundColor: NodeStyles["backgroundColor"]) => {
+    const handleBackgroundColorSelect = (backgroundColor: Boards.NodeStyles["backgroundColor"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
@@ -22,7 +22,7 @@ export function ColorsGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleTextColorSelect = (color: NodeStyles["color"]) => {
+    const handleTextColorSelect = (color: Boards.NodeStyles["color"]) => {
         onUpdate(node => ({
             ...node,
             styles: {

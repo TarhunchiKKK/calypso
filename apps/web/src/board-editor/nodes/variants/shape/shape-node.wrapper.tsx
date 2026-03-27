@@ -1,15 +1,15 @@
 import type React from "react";
 import { NodeWrapper } from "@/board-editor/core";
 import { ShapeNodeComponent } from "./shape-node.component";
-import type { ShapeNode } from "./shape-node.type";
+import type { Boards } from "@repo/common";
 
-export class ShapeNodeNodeWrapper extends NodeWrapper<ShapeNode> {
+export class ShapeNodeNodeWrapper extends NodeWrapper<Boards.ShapeNode> {
     public override get rect() {
         return this.node.rect;
     }
 
     public override clone() {
-        // IMPLEMENTATION
+        // TODO: implement
         return this;
     }
 

@@ -1,5 +1,5 @@
-import type { NodeBase } from "@/entities/nodes";
-import type { Rect } from "@/shared/lib/geometry";
+
+import type { Boards, Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 
@@ -9,7 +9,7 @@ export type NodeHandlers = {
     onMouseUp?: (e: React.MouseEvent) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
+export abstract class NodeWrapper<T extends Boards.NodeBase = Boards.NodeBase> implements Renderable, Decoratable<T> {
     protected showContent = true;
 
     protected handlers: NodeHandlers = {};

@@ -1,12 +1,13 @@
 import type React from "react";
-import { Geometry, type Point } from "@/shared/lib/geometry";
+import { Geometry, } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { DraggingViewState } from "./view-state";
+import type { Id, Point } from "@repo/common";
 
 type Params = {
     startPoint: Point;
 
-    selectedIds?: Set<string>;
+    selectedIds?: Set<Id>;
 };
 
 export function switchToDragging({ startPoint, selectedIds }: Params): DraggingViewState {
@@ -18,7 +19,7 @@ export function switchToDragging({ startPoint, selectedIds }: Params): DraggingV
 }
 
 export function useSwitchToDragging({ layoutDimensionsModel, setViewState }: ViewModelParams) {
-    const onMouseDown = (selectedIds: Set<string>, e: React.MouseEvent) => {
+    const onMouseDown = (selectedIds: Set<Id>, e: React.MouseEvent) => {
         if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
             return;
         }

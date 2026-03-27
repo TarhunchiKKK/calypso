@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { StickerIcon } from "lucide-react";
-import { ActionButton } from "../../../../src/board-editor/ui/action-bar.component";
-import { centered } from "../../common/center";
+import { ActionButton } from "@/board-editor/ui/action-bar.component";
+import { centered } from "#/common/decorators";
 
 const meta = {
     title: "Board Editor/ui/Action Button",

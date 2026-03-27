@@ -13,6 +13,7 @@ import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
+import type { Id } from "@repo/common";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;
@@ -61,7 +62,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         });
 
-        const handleResize = (nodeId: string, direction: ResizeDirection) => {
+        const handleResize = (nodeId: Id, direction: ResizeDirection) => {
             resizing.onMouseDown(nodeId, direction);
         };
 

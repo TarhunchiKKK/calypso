@@ -1,7 +1,8 @@
+import type { Id } from "@repo/common";
 import type { SelectionViewState } from "./view-state";
 
 type Params = {
-    selectedIds?: Set<string>;
+    selectedIds?: Set<Id>;
 
     skipNextClick?: boolean;
 };

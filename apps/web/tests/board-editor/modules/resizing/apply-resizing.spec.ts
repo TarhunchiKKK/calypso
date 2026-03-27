@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { applyResizing } from "@/board-editor/modules/resizing";
-import type { Rect } from "@/shared/lib/geometry";
+import type { Rect } from "@repo/common";
 
 describe("`applyResizing` function", () => {
     test("applies resizing for rectangle", () => {

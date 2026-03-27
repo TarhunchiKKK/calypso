@@ -1,10 +1,9 @@
 import { getNodeId, type NodeWrapper } from "@/board-editor/core";
 import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/board-editor/modules/resizing";
-import type { RectNode } from "@/entities/nodes";
-import type { Rect } from "@/shared/lib/geometry";
+import type { Boards, Rect } from "@repo/common";
 
 export class RectNodeResizingStrategy extends NodeResizingStrategy {
-    public override updateNodeSizes(wrapper: NodeWrapper<RectNode>, size: Rect) {
+    public override updateNodeSizes(wrapper: NodeWrapper<Boards.RectNode>, size: Rect) {
         wrapper.data = { ...wrapper.data, rect: size };
     }
 

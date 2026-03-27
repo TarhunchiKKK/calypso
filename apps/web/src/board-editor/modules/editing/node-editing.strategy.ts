@@ -1,7 +1,7 @@
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards } from "@repo/common";
 
 export abstract class NodeEditingStrategy {
-    public constructor(protected readonly handler: (node: NodeBase) => void) {}
+    public constructor(protected readonly handler: (node: Boards.NodeBase) => void) {}
 
-    public abstract ui(node: NodeBase): React.ReactNode;
+    public abstract ui(node: Boards.NodeBase): React.ReactNode;
 }

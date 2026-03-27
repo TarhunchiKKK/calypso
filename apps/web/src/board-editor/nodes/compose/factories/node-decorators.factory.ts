@@ -1,8 +1,6 @@
 import type { Decoratable } from "@/board-editor/core";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
-import type { NodeBase } from "@/entities/nodes";
-import type { Offset, Rect } from "@/shared/lib/geometry";
 import { EditableNodeDecorator } from "../../../modules/editing";
 import type { ResizeHandler } from "../../../modules/resizing";
 import { ResizableNodeDecorator } from "../../../modules/resizing/lib/resizable-node.decorator";
@@ -11,9 +9,10 @@ import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
+import type { Boards, Offset, Rect } from "@repo/common";
 
 export class NodeDecoratorsFactory {
-    public static wrap(node: NodeBase) {
+    public static wrap(node: Boards.NodeBase) {
         const wrapperCreator = WrapperConstructorsMap[node.type];
 
         return wrapperCreator(node);
@@ -39,7 +38,7 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
+    public static editable(node: Decoratable, handler: (node:Boards.NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
 
         if (!strategyCreator) {

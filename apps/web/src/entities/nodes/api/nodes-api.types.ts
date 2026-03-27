@@ -1,11 +1,11 @@
-import type { NodeBase } from "../types/node.types";
+import type { Boards, Id } from "@repo/common";
 
 export type NodesApi = {
-    createMany: (nodes: NodeBase[]) => void | Promise<void>;
+    createMany: (nodes: Boards.NodeBase[]) => void | Promise<void>;
 
-    findAll: () => NodeBase[] | Promise<NodeBase>;
+    findAll: () => Boards.NodeBase[] | Promise<Boards.NodeBase>;
 
-    updateMany: (nodes: NodeBase) => void | Promise<void>;
+    updateMany: (nodes: Boards.NodeBase[]) => void | Promise<void>;
 
-    removeMany: (ids: string[]) => void | Promise<void>;
+    removeMany: (ids: Id[]) => void | Promise<void>;
 };

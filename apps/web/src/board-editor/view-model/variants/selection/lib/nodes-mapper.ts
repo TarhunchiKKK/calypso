@@ -1,16 +1,16 @@
 import { type Decoratable, type NodeHandlers, NodesMapper } from "@/board-editor/core";
 import type { ResizeDirection, ResizeHandler } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards, Id } from "@repo/common";
 
 export class SelectionNodesMapper extends NodesMapper {
-    private selectedIds!: Set<string>;
+    private selectedIds!: Set<Id>;
 
     private resizeHandler!: ResizeHandler;
 
     private nodeHandlers!: NodeHandlers;
 
-    public setSelectedIds(ids: Set<string>) {
+    public setSelectedIds(ids: Set<Id>) {
         this.selectedIds = ids;
         return this;
     }
@@ -20,12 +20,12 @@ export class SelectionNodesMapper extends NodesMapper {
         return this;
     }
 
-    public setResizeHandler(handler: (nodeId: string, direction: ResizeDirection) => void) {
+    public setResizeHandler(handler: (nodeId: Id, direction: ResizeDirection) => void) {
         this.resizeHandler = handler;
         return this;
     }
 
-    public static from(nodes: NodeBase[]) {
+    public static from(nodes: Boards.NodeBase[]) {
         return new SelectionNodesMapper(nodes);
     }
 

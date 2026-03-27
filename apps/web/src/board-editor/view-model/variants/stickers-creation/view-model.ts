@@ -7,8 +7,8 @@ import type { ViewModel, ViewModelParams } from "../../types";
 import { StickersCreationNodesMapper } from "./lib/nodes-mapper";
 
 export function useStickersCreationViewModel(params: ViewModelParams) {
-    const { nodesModel, layoutDimensionsModel, boardId } = params;
-
+    const { nodesModel, layoutDimensionsModel } = params;
+ 
     const canvasMediator = useMouseEventsMediator();
 
     return (): OmitFields<ViewModel, "actions"> => {
@@ -20,7 +20,6 @@ export function useStickersCreationViewModel(params: ViewModelParams) {
                     nodesModel.service.createOne(
                         NodesFactory.sticker({
                             point: clickPoint,
-                            boardId: boardId
                         })
                     );
                 }

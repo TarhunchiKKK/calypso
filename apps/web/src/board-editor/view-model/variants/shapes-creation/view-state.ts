@@ -1,7 +1,7 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
+import type { Boards } from "@repo/common";
 
 export type ShapesCreationViewState = {
     type: "shapes-creation";
 
-    variant: ShapeVariants;
+    variant: Boards.ShapeVariants;
 };

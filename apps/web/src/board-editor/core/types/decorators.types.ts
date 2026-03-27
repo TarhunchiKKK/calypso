@@ -1,10 +1,10 @@
-import type { NodeBase, NodeTypes } from "@/entities/nodes";
+import type { Boards, Id } from "@repo/common";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
 
-export type Decoratable<T extends NodeBase = NodeBase> = {
-    get id(): string;
+export type Decoratable<T extends Boards.NodeBase = Boards.NodeBase> = {
+    get id(): Id;
 
-    get type(): NodeTypes;
+    get type(): Boards.NodeTypes;
 
     get data(): T;
 

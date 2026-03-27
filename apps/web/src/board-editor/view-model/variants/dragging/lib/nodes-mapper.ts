@@ -1,18 +1,17 @@
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@/entities/nodes";
-import type { Offset } from "@/shared/lib/geometry";
+import type { Boards, Id, Offset } from "@repo/common";
 
 export class DraggingNodesMapper extends NodesMapper {
-    private selectedIds!: Set<string>;
+    private selectedIds!: Set<Id>;
 
     private offset?: Offset = undefined;
 
-    public static from(nodes: NodeBase[]) {
+    public static from(nodes: Boards.NodeBase[]) {
         return new DraggingNodesMapper(nodes);
     }
 
-    public setSelectedIds(selectedIds: Set<string>) {
+    public setSelectedIds(selectedIds: Set<Id>) {
         this.selectedIds = selectedIds;
         return this;
     }

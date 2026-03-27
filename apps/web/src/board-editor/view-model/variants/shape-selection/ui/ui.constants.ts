@@ -1,7 +1,7 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
-import type { Offset } from "@/shared/lib/geometry";
+import type { Boards, Offset } from "@repo/common";
 
-export const AvailableShapeVariants: ShapeVariants[] = [
+
+export const AvailableShapeVariants: Boards.ShapeVariants[] = [
     "rectangle",
     "circle",
     "triangle",

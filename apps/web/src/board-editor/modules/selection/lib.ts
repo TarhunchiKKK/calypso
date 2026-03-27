@@ -1,6 +1,7 @@
+import type { Id } from "@repo/common";
 import type { NodesSelectionMode } from "./types";
 
-export function selectNodes(nodeIds: string[], mode: NodesSelectionMode, currentSelection: Set<string>): Set<string> {
+export function selectNodes(nodeIds: Id[], mode: NodesSelectionMode, currentSelection: Set<Id>): Set<Id> {
     switch (mode) {
         case "replace": {
             return new Set(nodeIds);

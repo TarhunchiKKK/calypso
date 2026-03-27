@@ -29,7 +29,7 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
             nodes: EditingNodesMapper.from(nodesModel.nodes)
                 .setSelectedNodeId(viewState.selectedNodeId)
                 .setEndEditingHandler(nodesModel.service.updateOne)
-                .setNodeshandlers(nodesMediator.handlers)
+                .setNodesHandlers(nodesMediator.handlers)
                 .map(),
             overlay: overlayMediator.handlers
         };

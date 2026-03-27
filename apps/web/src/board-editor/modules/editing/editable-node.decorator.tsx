@@ -1,8 +1,8 @@
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards } from "@repo/common";
 import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeEditingStrategy } from "./node-editing.strategy";
 
-export class EditableNodeDecorator<T extends NodeBase = NodeBase> extends NodeDecorator<T> {
+export class EditableNodeDecorator<T extends Boards.NodeBase = Boards.NodeBase> extends NodeDecorator<T> {
     public constructor(
         protected readonly entry: Decoratable<T>,
         protected readonly strategy: NodeEditingStrategy

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { type NodeBase, useNodesService } from "@/entities/nodes";
+import { useNodesService } from "@/entities/nodes";
+import type { Boards } from "@repo/common";
 
-export function useNodesModel(inputNodes: NodeBase[]) {
-    const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
+export function useNodesModel(inputNodes: Boards.NodeBase[]) {
+    const [nodes, setNodes] = useState<Boards.NodeBase[]>(inputNodes);
 
     const nodesService = useNodesService(setNodes);
 

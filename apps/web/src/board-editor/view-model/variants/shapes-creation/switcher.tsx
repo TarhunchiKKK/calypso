@@ -1,7 +1,7 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
+import type { Boards } from "@repo/common";
 import type { ShapesCreationViewState } from "./view-state";
 
-export function switchToShapesCreation(variant: ShapeVariants): ShapesCreationViewState {
+export function switchToShapesCreation(variant: Boards.ShapeVariants): ShapesCreationViewState {
     return {
         type: "shapes-creation",
         variant: variant
