@@ -169,7 +169,7 @@ message UpdateManyBoardNodesGrpcRequest {
 }
 
 message RemoveManyBoardNodesGrpcRequest {
-    repeated string nodeIds = 1;
+    repeated string ids = 1;
 
     string boardId = 2;
 

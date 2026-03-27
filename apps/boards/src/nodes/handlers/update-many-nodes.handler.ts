@@ -1,11 +1,11 @@
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
+import type { UpdateManyNodesDto } from "../dto/update-many-nodes.dto";
 import { NodeBase } from "../schemas/node-base.schema";
-import { Id, OmitFields } from "@repo/common";
 
 export class UpdateManyNodesCommand extends Command<void> {
-    public constructor(public boardId: Id,  public nodes: OmitFields<NodeBase, "boardId">[]) {
+    public constructor(public dto: UpdateManyNodesDto) {
         super();
     }
 }
@@ -14,11 +14,14 @@ export class UpdateManyNodesCommand extends Command<void> {
 export class UpdateManyNodesCommandHandler implements ICommandHandler<UpdateManyNodesCommand> {
     public constructor(@InjectModel(NodeBase.name) private readonly nodeModel: Model<NodeBase>) {}
 
-    public async execute({ nodes }: UpdateManyNodesCommand) {
-        const writes = nodes.map(node => ({
+    public async execute({ dto }: UpdateManyNodesCommand) {
+        const writes = dto.nodes.map(node => ({
             updateOne: {
                 filter: { id: node.id },
-                update: node
+                update: {
+                    ...node,
+                    boardId: dto.boardId
+                }
             }
         }));
 

@@ -119,7 +119,7 @@ export interface UpdateManyBoardNodesGrpcRequest {
 }
 
 export interface RemoveManyBoardNodesGrpcRequest {
-  nodeIds: string[];
+  ids: string[];
   boardId: string;
   userId: string;
 }

@@ -2,14 +2,16 @@ import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { BrokerRoutingKeys } from "@repo/api";
-import type { Id, OmitFields } from "@repo/common";
+import type { Id } from "@repo/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "src/lib/rmq.constants";
+import type { CreateManyNodesDto } from "./dto/create-many-nodes.dto";
+import type { RemoveManyNodesDto } from "./dto/remove-many-nodes.dto";
+import type { UpdateManyNodesDto } from "./dto/update-many-nodes.dto";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
 import { RemoveNodesByBoardCommand } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommand } from "./handlers/update-many-nodes.handler";
-import type { NodeBase } from "./schemas/node-base.schema";
 
 @Injectable()
 export class NodesService {
@@ -19,11 +21,11 @@ export class NodesService {
         @Inject(RMQ_CLIENT_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
 
-    public async createMany(boardId: Id, nodes: OmitFields<NodeBase, "boardId">[]) {
-        await this.commandBus.execute(new CreateManyNodesCommand(boardId, nodes));
+    public async createMany(dto: CreateManyNodesDto) {
+        await this.commandBus.execute(new CreateManyNodesCommand(dto));
 
-        if (nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
+        if (dto.nodes.length !== 0) {
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
         }
     }
 
@@ -31,18 +33,18 @@ export class NodesService {
         return await this.queryBus.execute(new FindAllNodesQuery(boardId));
     }
 
-    public async updateMany(boardId: Id, nodes: OmitFields<NodeBase, "boardId">[]) {
-        await this.commandBus.execute(new UpdateManyNodesCommand(boardId, nodes));
+    public async updateMany(dto: UpdateManyNodesDto) {
+        await this.commandBus.execute(new UpdateManyNodesCommand(dto));
 
-        if (nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
+        if (dto.nodes.length !== 0) {
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
         }
     }
 
-    public async removeMany(ids: Id[], boardId: Id) {
-        await this.commandBus.execute(new RemoveManyNodesCommand(ids));
+    public async removeMany(dto: RemoveManyNodesDto) {
+        await this.commandBus.execute(new RemoveManyNodesCommand(dto));
 
-        this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, boardId);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
     }
 
     public async removeNodesByBoard(boardId: Id) {

@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { NodesMongooseModule } from "src/nodes/nodes.module";
 import { BoardsService } from "./boards.service";
 import { BoardsGrpcController } from "./controllers/boards.grpc.controller";
 import { BoardsRmqController } from "./controllers/boards.rmq.controller";
@@ -14,7 +15,7 @@ import { UpdateBoardCommandHandler } from "./handlers/update-board.handler";
 import { BoardsHelper } from "./lib/boards.helper";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Board])],
+    imports: [TypeOrmModule.forFeature([Board]), NodesMongooseModule],
     controllers: [BoardsGrpcController, BoardsRmqController],
     providers: [
         BoardsService,
