@@ -4,6 +4,7 @@ import {
     BoardsServiceControllerMethods,
     CheckAccess,
     type CreateBoardGrpcRequest,
+    type DuplicateBoardGrpcRequest,
     type FindAllBoardsGrpcRequest,
     GrpcController,
     type RemoveBoardGrpcRequest,
@@ -18,19 +19,24 @@ import { BoardsService } from "../boards.service";
 export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceController> {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
-    // TODO: add board returning
     public async create(dto: CreateBoardGrpcRequest) {
-        return this.boardsService.create(dto);
-    }
-
-    public async findAll(dto: FindAllBoardsGrpcRequest) {
-        const boards = await this.boardsService.findAll(dto.userId);
-
-        return { boards };
+        return await this.boardsService.create(dto);
     }
 
     @CheckAccess({
-        operation: Operations.edit,
+        operation: Operations.duplicate,
+        extract: (dto: DuplicateBoardGrpcRequest) => ({ resourceId: dto.boardId, userId: dto.userId })
+    })
+    public async duplicate(dto: DuplicateBoardGrpcRequest) {
+        return await this.boardsService.duplicate(dto);
+    }
+
+    public async findAll(dto: FindAllBoardsGrpcRequest) {
+        return await this.boardsService.findAll(dto.userId);
+    }
+
+    @CheckAccess({
+        operation: Operations.editMetadata,
         extract: (dto: UpdateBoardGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
     })
     public async update(dto: UpdateBoardGrpcRequest) {

@@ -45,7 +45,7 @@ message CreateBoardGrpcRequest {
 }
 
 message DuplicateBoardGrpcRequest {
-    string title = 1;
+    string boardId = 1;
 
     string userId = 2;
 }

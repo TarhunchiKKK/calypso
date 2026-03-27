@@ -33,7 +33,7 @@ export interface CreateBoardGrpcRequest {
 }
 
 export interface DuplicateBoardGrpcRequest {
-  title: string;
+  boardId: string;
   userId: string;
 }
 

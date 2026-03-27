@@ -6,6 +6,7 @@ import { BoardsRmqController } from "./controllers/boards.rmq.controller";
 import { Board } from "./entities/board.entity";
 import { ChangeBoardUpdateDateCommandHandler } from "./handlers/change-board-update-date.handler";
 import { CreateBoardCommandHandler } from "./handlers/create-board.handler";
+import { DuplicateBoardCommandHandler } from "./handlers/duplicate-board.handler";
 import { FindAllBoardsQueryHandler } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommandHandler } from "./handlers/remove-board.handler";
 import { RemoveBoardAccessRightsCommandHandler } from "./handlers/remove-board-access-rights.handler";
@@ -19,6 +20,7 @@ import { BoardsHelper } from "./lib/boards.helper";
         BoardsService,
         BoardsHelper,
         CreateBoardCommandHandler,
+        DuplicateBoardCommandHandler,
         FindAllBoardsQueryHandler,
         UpdateBoardCommandHandler,
         RemoveBoardCommandHandler,

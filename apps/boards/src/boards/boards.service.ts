@@ -5,9 +5,11 @@ import { BoardsGrpcMapper, BrokerRoutingKeys } from "@repo/api";
 import type { Id } from "@repo/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
+import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
 import { ChangeBoardUpdateDateCommand } from "./handlers/change-board-update-date.handler";
 import { CreateBoardCommand } from "./handlers/create-board.handler";
+import { DuplicateBoardCommand } from "./handlers/duplicate-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
 import { RemoveBoardCommand } from "./handlers/remove-board.handler";
 import { RemoveBoardAccessRightsCommand } from "./handlers/remove-board-access-rights.handler";
@@ -27,10 +29,18 @@ export class BoardsService {
         return BoardsGrpcMapper.toGrpc(board);
     }
 
+    public async duplicate(dto: DuplicateBoardDto) {
+        const board = await this.commandBus.execute(new DuplicateBoardCommand(dto));
+
+        return BoardsGrpcMapper.toGrpc(board);
+    }
+
     public async findAll(userId: Id) {
         const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId));
 
-        return boards.map(BoardsGrpcMapper.toGrpc);
+        const mappedBoards = boards.map(BoardsGrpcMapper.toGrpc);
+
+        return { boards: mappedBoards };
     }
 
     public async update(id: Id, dto: UpdateBoardDto) {
