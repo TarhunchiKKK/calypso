@@ -9,7 +9,7 @@ import { Empty } from "./google/protobuf/empty";
 
 const protobufPackage = "common";
 
-export interface ErrorGrpcResponse {
+export interface GrpcError {
   message: string[];
   error: string;
   statusCode: number;
@@ -17,14 +17,7 @@ export interface ErrorGrpcResponse {
 
 export interface EmptyGrpcResponse {
   data?: Empty | undefined;
-  error?: ErrorGrpcResponse | undefined;
-}
-
-export interface RectGrpc {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
+  error?: GrpcError | undefined;
 }
 
 export const COMMON_PACKAGE_NAME = "common";

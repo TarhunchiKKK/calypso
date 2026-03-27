@@ -1,10 +1,10 @@
 import type { Observable } from "rxjs";
-import type { ErrorGrpcResponse } from "../generated";
+import type { GrpcError } from "../generated";
 
 export type GrpcResponse<T = unknown> = {
     data?: T;
 
-    error?: ErrorGrpcResponse;
+    error?: GrpcError;
 };
 
 export type UnwrapGrpcResponse<T extends Record<string, any>> = {

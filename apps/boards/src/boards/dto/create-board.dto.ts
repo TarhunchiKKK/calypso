@@ -7,5 +7,5 @@ export class CreateBoardDto implements Boards.CreateBoardDto {
     public title: string;
 
     @IsUUID("4", { message: "Board creator id should be valid 'uuid'" })
-    public creatorId: Id;
+    public userId: Id;
 }

@@ -22,7 +22,9 @@ export class BoardsService {
     ) {}
 
     public async create(dto: CreateBoardDto) {
-        return await this.commandBus.execute(new CreateBoardCommand(dto));
+        const board = await this.commandBus.execute(new CreateBoardCommand(dto));
+
+        return BoardsGrpcMapper.toGrpc(board);
     }
 
     public async findAll(userId: Id) {

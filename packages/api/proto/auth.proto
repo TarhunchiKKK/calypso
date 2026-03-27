@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto"; 
+
+package auth;
+
+message UserInfoGrpc {
+    string id = 1;
+
+    optional string email = 2;
+
+    optional string avatar = 3; 
+}

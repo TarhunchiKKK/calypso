@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { Boards, NoNullableFields } from "@repo/common";
 import type { BoardGrpc } from "../generated";
 
 export class BoardsGrpcMapper {
@@ -12,7 +12,7 @@ export class BoardsGrpcMapper {
 
     public static fromGrpc(board: BoardGrpc): Boards.Board {
         return {
-            ...board,
+            ...(board as NoNullableFields<BoardGrpc>),
             createdAt: new Date(board.createdAt),
             updatedAt: board.updatedAt ? new Date(board.updatedAt) : undefined
         };

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto"; 
+
+package geometry;
+
+message RectGrpc {
+    float x = 1;
+
+    float y = 2;
+
+    float width = 3;
+
+    float height = 4;
+}

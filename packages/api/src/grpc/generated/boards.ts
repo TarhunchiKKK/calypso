@@ -8,7 +8,8 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
-import { EmptyGrpcResponse, ErrorGrpcResponse, RectGrpc } from "./common";
+import { EmptyGrpcResponse, GrpcError } from "./common";
+import { RectGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 
 const protobufPackage = "boards";
@@ -21,9 +22,19 @@ export interface BoardGrpc {
   updatedAt?: string | undefined;
 }
 
+export interface BoardGrpcResponse {
+  data?: BoardGrpc | undefined;
+  error?: GrpcError | undefined;
+}
+
 export interface CreateBoardGrpcRequest {
   title: string;
-  creatorId: string;
+  userId: string;
+}
+
+export interface DuplicateBoardGrpcRequest {
+  title: string;
+  userId: string;
 }
 
 export interface FindAllBoardsGrpcRequest {
@@ -36,7 +47,7 @@ export interface BoardsList {
 
 export interface FindAllBoardsGrpcResponse {
   data?: BoardsList | undefined;
-  error?: ErrorGrpcResponse | undefined;
+  error?: GrpcError | undefined;
 }
 
 export interface UpdateBoardGrpcRequest {
@@ -98,7 +109,7 @@ export interface BoardNodesListGrpc {
 
 export interface FindAllBoardNodesGrpcResponse {
   data?: BoardNodesListGrpc | undefined;
-  error?: ErrorGrpcResponse | undefined;
+  error?: GrpcError | undefined;
 }
 
 export interface UpdateManyBoardNodesGrpcRequest {
@@ -118,7 +129,9 @@ export const BOARDS_PACKAGE_NAME = "boards";
 wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struct.unwrap } as any;
 
 export interface BoardsServiceClient {
-  create(request: CreateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
+  create(request: CreateBoardGrpcRequest): Observable<BoardGrpcResponse>;
+
+  duplicate(request: DuplicateBoardGrpcRequest): Observable<BoardGrpcResponse>;
 
   findAll(request: FindAllBoardsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
 
@@ -130,7 +143,11 @@ export interface BoardsServiceClient {
 export interface BoardsServiceController {
   create(
     request: CreateBoardGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+  ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
+
+  duplicate(
+    request: DuplicateBoardGrpcRequest,
+  ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
 
   findAll(
     request: FindAllBoardsGrpcRequest,
@@ -147,7 +164,7 @@ export interface BoardsServiceController {
 
 export function BoardsServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["create", "findAll", "update", "remove"];
+    const grpcMethods: string[] = ["create", "duplicate", "findAll", "update", "remove"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("BoardsService", method)(constructor.prototype[method], method, descriptor);

@@ -4,8 +4,7 @@ import "google/protobuf/empty.proto";
 
 package common;
 
-// FIX: rename to `GrpcError`
-message ErrorGrpcResponse {
+message GrpcError {
     repeated string message = 1;
 
     string error = 2;
@@ -18,16 +17,6 @@ message EmptyGrpcResponse {
     oneof response {
         google.protobuf.Empty data = 1;
 
-        common.ErrorGrpcResponse error = 2;
+        common.GrpcError error = 2;
     }
-}
-
-message RectGrpc {
-    float x = 1;
-
-    float y = 2;
-
-    float width = 3;
-
-    float height = 4;
 }
