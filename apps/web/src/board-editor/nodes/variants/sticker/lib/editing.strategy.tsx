@@ -11,4 +11,3 @@ export class EditStickerNodeStrategy extends NodeEditingStrategy {
         return <TextareaAutoSize value={node.text} onEditingEnd={onEditingEnd} />;
     }
 }
- 

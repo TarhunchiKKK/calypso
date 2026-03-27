@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { applyResizing } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import { Geometry, } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToSelection } from "../../selection/switcher";
 import type { ResizingViewState } from "../view-state";

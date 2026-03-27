@@ -1,6 +1,6 @@
 import type { NodeWrapper } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
-import { Geometry, } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { Boards, Offset } from "@repo/common";
 
 export class RectNodeDraggingStrategy extends NodeDraggingStrategy {

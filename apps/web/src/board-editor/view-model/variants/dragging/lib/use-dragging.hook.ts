@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Geometry, } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToSelection } from "../../selection/switcher";
 import type { DraggingViewState } from "../view-state";

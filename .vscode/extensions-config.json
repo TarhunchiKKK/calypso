@@ -81,11 +81,5 @@
         "source.removeUnusedImports": "explicit"
     },
 
-    "cSpell.words": [
-        "Decoratable",
-        "dtos",
-        "Formatable",
-        "Renderable",
-        "shadcn"
-    ]
+    "cSpell.words": ["Decoratable", "dtos", "Formatable", "Renderable", "shadcn"]
 }

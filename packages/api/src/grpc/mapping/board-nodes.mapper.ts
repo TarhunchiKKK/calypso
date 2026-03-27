@@ -27,7 +27,7 @@ export class BoardNodesGrpcMapper {
                         end: node.end,
                         text: node.text
                     }
-                }
+                };
             }
             case "text":
                 return {

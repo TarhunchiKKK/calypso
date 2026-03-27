@@ -1,6 +1,5 @@
 import type { Boards, Offset } from "@repo/common";
 
-
 export const AvailableShapeVariants: Boards.ShapeVariants[] = [
     "rectangle",
     "circle",

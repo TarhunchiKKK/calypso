@@ -2,7 +2,6 @@ import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import type { Boards, Id, Rect } from "@repo/common";
 
-
 export class ResizingNodesMapper extends NodesMapper {
     private nodeId!: Id;
 

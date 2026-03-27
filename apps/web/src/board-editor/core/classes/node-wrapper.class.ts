@@ -1,4 +1,3 @@
-
 import type { Boards, Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";

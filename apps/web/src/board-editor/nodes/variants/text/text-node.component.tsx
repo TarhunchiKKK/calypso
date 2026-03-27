@@ -29,7 +29,6 @@ export function TextNodeComponent({ node, handlers, showContent, children }: Pro
         >
             {showContent && (
                 <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    
                     <FormatableTextarea value={node.text as any} disabled />
                 </div>
             )}

@@ -1,5 +1,5 @@
 import type React from "react";
-import { Geometry, } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { DraggingViewState } from "./view-state";
 import type { Id, Point } from "@repo/common";

@@ -1,6 +1,6 @@
 import type React from "react";
 import type { NodesSelectionMode } from "@/board-editor/modules/selection";
-import { Geometry, } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 import type { IdleViewState } from "../idle/view-state";
 import type { SelectionViewState } from "../selection/view-state";

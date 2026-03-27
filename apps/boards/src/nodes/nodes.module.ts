@@ -12,17 +12,17 @@ import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
 import { ShapeNode, ShapeNodeSchema } from "./schemas/shape-node.schema";
 import { StickerNode, StickerNodeSchema } from "./schemas/sticker-node.schema";
 import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
+import { ArrowNode, ArrowNodeSchema } from "./schemas/arrow-node.schema";
 
 export const NodesMongooseModule = MongooseModule.forFeatureAsync([
     {
         name: NodeBase.name,
         useFactory: () => {
             const schema = NodeBaseSchema;
-
             schema.discriminator(StickerNode.name, StickerNodeSchema);
+            schema.discriminator(ArrowNode.name, ArrowNodeSchema);
             schema.discriminator(TextNode.name, TextNodeSchema);
             schema.discriminator(ShapeNode.name, ShapeNodeSchema);
-
             return schema;
         }
     }

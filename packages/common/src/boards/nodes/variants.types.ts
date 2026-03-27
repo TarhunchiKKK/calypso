@@ -22,11 +22,11 @@ export type ShapeNode = RectNode & {
 };
 
 export type ArrowNode = NodeBase & {
-    type: "arrow"
+    type: "arrow";
 
     start: RelativePoint;
 
     end: RelativePoint;
 
-    text?: string
-}
+    text?: string;
+};

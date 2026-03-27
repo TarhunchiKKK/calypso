@@ -38,7 +38,7 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static editable(node: Decoratable, handler: (node:Boards.NodeBase) => void) {
+    public static editable(node: Decoratable, handler: (node: Boards.NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
 
         if (!strategyCreator) {
