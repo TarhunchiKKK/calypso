@@ -5,6 +5,13 @@ export class Geometry {
         return { x: e.clientX, y: e.clientY };
     }
 
+    public static middlePoint(a: Point, b: Point): Point {
+        return {
+            x: (a.x + b.x) / 2,
+            y: (a.y + b.y) / 2
+        };
+    }
+
     public static pointsDifference(a: Point, b: Point): Point {
         return {
             x: b.x - a.x,

@@ -24,8 +24,7 @@ export class NodesFactory {
             locked: false,
             styles: DefaultNodeStyles,
             ...data
-        }
-
+        };
     }
 
     public static text(data: { point: Point }): Boards.TextNode {
