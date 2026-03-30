@@ -60,14 +60,10 @@ export const MockNodes = [
         type: "arrow",
         locked: false,
         styles: {
-            fontFamily: "sans-serif",
-            fontSize: 14,
-            backgroundColor: "orange",
-            color: "black",
-            borderColor: "black",
-            borderStyle: "dashed",
-            borderRadius: 4,
-            textAlign: "left"
+            angleType: "corner",
+            lineColor: "blue",
+            lineType: "solid",
+            lineWidth: 4
         },
         start: { x: 300, y: 300 },
         end: { x: 500, y: 500 }

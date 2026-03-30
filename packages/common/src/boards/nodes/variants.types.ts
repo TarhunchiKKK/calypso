@@ -1,10 +1,34 @@
-import { RelativePoint } from "shared";
-import { NodeBase, RectNode } from "./core.types";
+import type { RelativePoint } from "shared";
+import type { NodeBase, NodeStyles, RectNode } from "./core.types";
 
 export type StickerNode = RectNode & {
     type: "sticker";
 
     text: string;
+
+    styles: Pick<
+        NodeStyles,
+        | "backgroundColor"
+        | "borderStyle"
+        | "borderColor"
+        | "borderRadius"
+        | "fontFamily"
+        | "fontSize"
+        | "textColor"
+        | "textAlign"
+    >;
+};
+
+export type ArrowNode = NodeBase & {
+    type: "arrow";
+
+    start: RelativePoint;
+
+    end: RelativePoint;
+
+    text?: string;
+
+    styles: Pick<NodeStyles, "angleType" | "lineColor" | "lineType" | "lineWidth">;
 };
 
 export type TextNode = RectNode & {
@@ -19,14 +43,6 @@ export type ShapeNode = RectNode & {
     type: "shape";
 
     variant: ShapeVariants;
-};
 
-export type ArrowNode = NodeBase & {
-    type: "arrow";
-
-    start: RelativePoint;
-
-    end: RelativePoint;
-
-    text?: string;
+    styles: Pick<NodeStyles, "backgroundColor" | "borderColor">;
 };

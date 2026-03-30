@@ -1,7 +1,7 @@
+import type { Boards } from "@repo/common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { ShapeVariantIconsMap } from "./ui.constants";
-import type { Boards } from "@repo/common";
 
 type Props = PropsWithChildren<{
     node: Boards.ShapeNode;

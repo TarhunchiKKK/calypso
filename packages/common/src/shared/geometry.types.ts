@@ -1,4 +1,4 @@
-import { Id } from "entry";
+import type { Id } from "entry";
 
 export type Point = {
     x: number;

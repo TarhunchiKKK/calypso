@@ -1,5 +1,5 @@
-import { Rect } from "../../shared/geometry.types";
-import { Id } from "../../shared/db.types";
+import type { Id } from "../../shared/db.types";
+import type { Rect } from "../../shared/geometry.types";
 
 export type NodeTypes = "sticker" | "text" | "shape" | "arrow";
 
@@ -10,7 +10,7 @@ export type NodeBase = {
 
     locked: boolean;
 
-    styles: NodeStyles;
+    styles: Record<string, unknown>;
 };
 
 export type NodeStyles = {
@@ -20,7 +20,7 @@ export type NodeStyles = {
 
     backgroundColor: string;
 
-    color: string;
+    textColor: string;
 
     borderStyle: "none" | "solid" | "dotted" | "dashed";
 
@@ -29,6 +29,14 @@ export type NodeStyles = {
     borderRadius: number;
 
     textAlign: "left" | "center" | "right" | "justify";
+
+    lineWidth: number;
+
+    lineColor: string;
+
+    lineType: "solid" | "dashed" | "dotted";
+
+    angleType: "corner" | "triangle" | "triangle-filled" | "kite" | "kite-filled";
 };
 
 export type RectNode = NodeBase & {

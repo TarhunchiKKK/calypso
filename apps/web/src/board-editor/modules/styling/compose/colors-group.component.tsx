@@ -1,3 +1,4 @@
+import type { Boards } from "@repo/common";
 import { Type } from "lucide-react";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { BackgroundColorPlaceholder, TextColorPlaceholder } from "../constants/placeholders.constants";
@@ -5,7 +6,6 @@ import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
-import type { Boards } from "@repo/common";
 
 type Props = {
     onUpdate: (fn: UpdateFn) => void;
@@ -22,7 +22,7 @@ export function ColorsGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleTextColorSelect = (color: Boards.NodeStyles["color"]) => {
+    const handleTextColorSelect = (color: Boards.NodeStyles["textColor"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
