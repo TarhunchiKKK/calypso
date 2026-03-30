@@ -1,12 +1,13 @@
+import type { Boards } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
-import type { ArrowNode } from "@repo/common/boards/index";
+import type { ArrowPosition } from "./arrow.types";
 
 const ANGLE = 5 / 6;
 const BASE_POINT_MULTIPLIER = 7;
 const SIDE_LINE_MULTIPLIER = 15;
 
-export function calculateArrowHeadDimensions(node: ArrowNode) {
-    const diff = Geometry.pointsDifference(node.start, node.end);
+export function calculateArrowHeadDimensions(angleType: Boards.NodeStyles["angleType"], position: ArrowPosition) {
+    const diff = Geometry.pointsDifference(position.start, position.end);
     const angle = Math.atan2(diff.y, diff.x);
     const leftAngle = angle - ANGLE * Math.PI;
     const rightAngle = angle + ANGLE * Math.PI;
@@ -17,25 +18,25 @@ export function calculateArrowHeadDimensions(node: ArrowNode) {
             y: 0
         },
         tip: {
-            x: node.end.x,
-            y: node.end.y
+            x: position.end.x,
+            y: position.end.y
         },
         left: {
-            x: node.end.x + SIDE_LINE_MULTIPLIER * Math.cos(leftAngle),
-            y: node.end.y + SIDE_LINE_MULTIPLIER * Math.sin(leftAngle)
+            x: position.end.x + SIDE_LINE_MULTIPLIER * Math.cos(leftAngle),
+            y: position.end.y + SIDE_LINE_MULTIPLIER * Math.sin(leftAngle)
         },
         right: {
-            x: node.end.x + SIDE_LINE_MULTIPLIER * Math.cos(rightAngle),
-            y: node.end.y + SIDE_LINE_MULTIPLIER * Math.sin(rightAngle)
+            x: position.end.x + SIDE_LINE_MULTIPLIER * Math.cos(rightAngle),
+            y: position.end.y + SIDE_LINE_MULTIPLIER * Math.sin(rightAngle)
         }
     };
 
-    switch (node.styles.angleType) {
+    switch (angleType) {
         case "kite":
         case "kite-filled":
             dimensions.base = {
-                x: node.end.x - BASE_POINT_MULTIPLIER * Math.cos(angle),
-                y: node.end.y - BASE_POINT_MULTIPLIER * Math.sin(angle)
+                x: position.end.x - BASE_POINT_MULTIPLIER * Math.cos(angle),
+                y: position.end.y - BASE_POINT_MULTIPLIER * Math.sin(angle)
             };
             break;
         case "triangle":
@@ -43,10 +44,10 @@ export function calculateArrowHeadDimensions(node: ArrowNode) {
             dimensions.base = Geometry.middlePoint(dimensions.left, dimensions.right);
             break;
         case "corner":
-            dimensions.base = { ...node.end };
+            dimensions.base = { ...position.end };
             break;
         default:
-            throw new Error(`Unknown angle type: ${node.styles.angleType}`);
+            throw new Error(`Unknown angle type: ${angleType}`);
     }
 
     return dimensions;

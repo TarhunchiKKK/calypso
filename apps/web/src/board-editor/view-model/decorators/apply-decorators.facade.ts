@@ -1,3 +1,6 @@
+import type { Boards } from "@repo/common";
+import type { Decoratable } from "@/board-editor/core";
+import { withRelativePositions } from "@/board-editor/nodes/variants/arrow/decorators/with-relative-positions.decorator";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { withActions } from "./with-actions.decorator";
 import { withHotKeys } from "./with-hot-keys.decorator";
@@ -10,5 +13,10 @@ export function applyDecorators(viewModel: ViewModel, viewState: ViewState, para
 
     const viewModelWithLayoutDimensions = withLayoutDimensions(params, viewModelWithActions);
 
-    return viewModelWithLayoutDimensions;
+    const viewModelWithRelativePositions: ViewModel = {
+        ...viewModelWithLayoutDimensions,
+        nodes: withRelativePositions(viewModelWithLayoutDimensions.nodes as Decoratable<Boards.NodeBase>[])
+    };
+
+    return viewModelWithRelativePositions;
 }

@@ -1,4 +1,4 @@
-import type { Point, Rect, Offset } from "@repo/common";
+import type { Offset, Point, Rect } from "@repo/common";
 
 export class Geometry {
     public static pointFromEvent(e: Pick<React.MouseEvent, "clientX" | "clientY">): Point {
@@ -9,6 +9,13 @@ export class Geometry {
         return {
             x: (a.x + b.x) / 2,
             y: (a.y + b.y) / 2
+        };
+    }
+
+    public static addPoints(a: Point, b: Point): Point {
+        return {
+            x: a.x + b.x,
+            y: a.y + b.y
         };
     }
 

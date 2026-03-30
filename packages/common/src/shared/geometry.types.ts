@@ -1,4 +1,4 @@
-import type { Id } from "entry";
+import type { Id } from "../shared/db.types";
 
 export type Point = {
     x: number;

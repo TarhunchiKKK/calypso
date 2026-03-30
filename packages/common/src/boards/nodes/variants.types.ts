@@ -1,4 +1,4 @@
-import type { RelativePoint } from "shared";
+import type { RelativePoint } from "../../shared/geometry.types";
 import type { NodeBase, NodeStyles, RectNode } from "./core.types";
 
 export type StickerNode = RectNode & {
