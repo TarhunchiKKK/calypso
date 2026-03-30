@@ -1,6 +1,6 @@
 import type { Boards } from "@repo/common";
-import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 import type { NodeHandlers } from "@/board-editor/core";
+import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
 type ArrowHeadVariants = Boards.NodeStyles["angleType"];
 

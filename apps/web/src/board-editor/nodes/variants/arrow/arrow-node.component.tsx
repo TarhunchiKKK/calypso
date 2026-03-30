@@ -1,8 +1,9 @@
 import type { Boards } from "@repo/common";
 import type { PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
-import { calculateArrowHeadDimensions } from "./lib/calculate-arrow-dimensions.helper";
 import { ArrowHeadsMap } from "./lib/arrow-heads.map";
+import { ArrowLinesMap } from "./lib/arrow-lines.map";
+import { calculateArrowHeadDimensions } from "./lib/calculate-arrow-dimensions.helper";
 
 type Props = PropsWithChildren<{
     node: Boards.ArrowNode;
@@ -11,23 +12,16 @@ type Props = PropsWithChildren<{
 }>;
 
 export function ArrowNodeComponent({ node, handlers }: Props) {
-    const { base, tip, left, right } = calculateArrowHeadDimensions(node);
+    const dimensions = calculateArrowHeadDimensions(node);
 
     const renderArrowHead = ArrowHeadsMap[node.styles.angleType];
+    const renderLine = ArrowLinesMap[node.styles.lineType];
 
     return (
         <svg className="absolute left-0 top-0 pointer-events-none overflow-visible">
-            <line
-                x1={node.start.x}
-                y1={node.start.y}
-                x2={base.x}
-                y2={base.y}
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
-                {...handlers}
-            />
+            {renderLine(node, handlers, dimensions)}
 
-            {renderArrowHead(node, handlers, { base, tip, left, right })}
+            {renderArrowHead(node, handlers, dimensions)}
         </svg>
     );
 }

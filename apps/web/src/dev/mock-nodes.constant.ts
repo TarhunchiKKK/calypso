@@ -75,7 +75,7 @@ export const MockNodes = [
         styles: {
             angleType: "triangle",
             lineColor: "black",
-            lineType: "solid",
+            lineType: "dashed",
             lineWidth: 2
         },
         start: { x: 300, y: 400 },
@@ -101,7 +101,7 @@ export const MockNodes = [
         styles: {
             angleType: "kite",
             lineColor: "black",
-            lineType: "solid",
+            lineType: "dotted",
             lineWidth: 2
         },
         start: { x: 300, y: 600 },
