@@ -1,5 +1,5 @@
-import { DefaultNodeStyles } from "@/entities/nodes";
 import type { Boards, Point } from "@repo/common";
+import { DefaultNodeStyles } from "@/entities/nodes";
 
 export class NodesFactory {
     public static sticker(data: { point: Point }): Boards.StickerNode {

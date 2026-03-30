@@ -1,3 +1,4 @@
+import type { Boards, Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
@@ -9,7 +10,6 @@ import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { WrapperConstructorsMap } from "../constants/wrapper-constructors.map";
-import type { Boards, Offset, Rect } from "@repo/common";
 
 export class NodeDecoratorsFactory {
     public static wrap(node: Boards.NodeBase) {
