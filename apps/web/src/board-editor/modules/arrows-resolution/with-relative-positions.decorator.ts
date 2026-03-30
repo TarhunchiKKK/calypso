@@ -1,7 +1,7 @@
 import type { Boards } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
-import type { ArrowNodeWrapper } from "../arrow-node.wrapper";
+import type { ArrowNodeWrapper } from "../../nodes/variants/arrow/arrow-node.wrapper";
 
 export function withRelativePositions(nodes: Decoratable<Boards.NodeBase>[]) {
     const notArrows = Object.fromEntries(

@@ -1,6 +1,6 @@
 import type { Boards } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import { withRelativePositions } from "@/board-editor/nodes/variants/arrow/decorators/with-relative-positions.decorator";
+import { withRelativePositions } from "@/board-editor/modules/arrows-resolution";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import { withActions } from "./with-actions.decorator";
 import { withHotKeys } from "./with-hot-keys.decorator";
