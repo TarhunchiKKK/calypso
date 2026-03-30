@@ -54,5 +54,22 @@ export const MockNodes = [
             borderRadius: 4,
             textAlign: "left"
         }
-    } as Boards.NodeBase
+    } as Boards.NodeBase,
+    {
+        id: "4",
+        type: "arrow",
+        locked: false,
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            color: "black",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left"
+        },
+        start: { x: 300, y: 300 },
+        end: { x: 500, y: 500 }
+    } as Boards.ArrowNode
 ];

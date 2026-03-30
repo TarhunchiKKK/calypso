@@ -5,6 +5,7 @@ import type { Boards } from "@repo/common";
 
 export const DraggingStrategiesMap: Record<Boards.NodeTypes, ConstructorFunction<typeof NodeDraggingStrategy>> = {
     sticker: () => new RectNodeDraggingStrategy(),
+    arrow: () => new RectNodeDraggingStrategy(),
     text: () => new RectNodeDraggingStrategy(),
     shape: () => new RectNodeDraggingStrategy()
 };

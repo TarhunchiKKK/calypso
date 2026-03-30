@@ -5,6 +5,13 @@ export class Geometry {
         return { x: e.clientX, y: e.clientY };
     }
 
+    public static pointsDifference(a: Point, b: Point): Point {
+        return {
+            x: b.x - a.x,
+            y: b.y - a.y
+        };
+    }
+
     public static pointsDistance(a: Point, b: Point): number {
         return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2);
     }

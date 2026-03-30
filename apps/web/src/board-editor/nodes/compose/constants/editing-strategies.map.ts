@@ -6,6 +6,7 @@ import type { Boards } from "@repo/common";
 
 export const EditingStrategiesMap: Record<Boards.NodeTypes, ConstructorFunction<typeof NodeEditingStrategy> | null> = {
     sticker: handler => new EditStickerNodeStrategy(handler),
+    arrow: null,
     text: handler => new EditTextNodeStrategy(handler),
     shape: null
 };

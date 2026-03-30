@@ -7,6 +7,7 @@ export class StickerNodeWrapper extends NodeWrapper<Boards.StickerNode> {
         return this.node.rect;
     }
 
+    // QUESTION: is this method necessary?
     public override clone(data: Partial<Boards.StickerNode> = {}) {
         return new StickerNodeWrapper({ ...this.node, ...data });
     }

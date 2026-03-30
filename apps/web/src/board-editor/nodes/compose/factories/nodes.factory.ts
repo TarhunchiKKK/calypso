@@ -17,6 +17,17 @@ export class NodesFactory {
         };
     }
 
+    public static arrow(data: Pick<Boards.ArrowNode, "start" | "end">): Boards.ArrowNode {
+        return {
+            id: crypto.randomUUID(),
+            type: "arrow",
+            locked: false,
+            styles: DefaultNodeStyles,
+            ...data
+        }
+
+    }
+
     public static text(data: { point: Point }): Boards.TextNode {
         return {
             id: crypto.randomUUID(),
