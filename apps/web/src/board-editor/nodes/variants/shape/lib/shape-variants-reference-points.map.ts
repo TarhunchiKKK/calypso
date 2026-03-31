@@ -8,9 +8,9 @@ export const ShapeVariantsReferencePointsMap: Record<Boards.ShapeVariants, (node
         { x: 0, y: node.rect.height }
     ],
     circle: node => [
-        { x: node.rect.width / 2, y: node.rect.height / 2 },
-        { x: node.rect.width, y: node.rect.height / 2 },
         { x: node.rect.width / 2, y: 0 },
+        { x: node.rect.width, y: node.rect.height / 2 },
+        { x: node.rect.width / 2, y: node.rect.height },
         { x: 0, y: node.rect.height / 2 }
     ],
     triangle: node => [
