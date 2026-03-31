@@ -26,7 +26,7 @@ export function ShapeNodeComponent({ node, handlers, children }: Props) {
 
     return (
         <div data-id={node.id} className="absolute cursor-pointer" style={wrapperStyles} {...handlers}>
-            <ShapeToRender className="w-full h-full" {...iconStyles} />
+            <ShapeToRender className="w-full h-full p-0!" {...iconStyles} />
 
             {children}
         </div>

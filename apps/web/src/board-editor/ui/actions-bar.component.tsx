@@ -1,4 +1,4 @@
-import { MousePointer2, MoveUpRightIcon, StickyNoteIcon, TriangleIcon } from "lucide-react";
+import { DiamondIcon, MousePointer2, MoveUpRightIcon, StickyNoteIcon } from "lucide-react";
 import { Wrapper } from "@/shared/ui";
 import type { ViewModel } from "../view-model/types";
 import { ActionButton } from "./action-button.component";
@@ -23,7 +23,7 @@ export function ActionsBar({ actions }: Props) {
             </ActionButton>
 
             <ActionButton isActive={actions.shapes?.isActive} onClick={actions.shapes?.onClick}>
-                <TriangleIcon />
+                <DiamondIcon />
             </ActionButton>
         </Wrapper>
     );

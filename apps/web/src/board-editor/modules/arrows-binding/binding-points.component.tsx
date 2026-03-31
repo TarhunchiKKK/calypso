@@ -7,7 +7,7 @@ type Props = {
 };
 
 const commonClasses =
-    "absolute w-2 h-2 rounded-full border-2 border-blue-700 hover:w-3 hover:h-3 hover:blur-xs hover:bg-blue-700";
+    "absolute w-[10px] h-[10px] rounded-full bg-blue-500 hover:w-[14px] hover:h-[14px] hover:blur-[2px]";
 
 const positioningClassesMap: Record<BindingPointPositions, string> = {
     n: "top-0 left-1/2 -translate-x-1/2 -translate-y-1/2",
@@ -20,7 +20,7 @@ const positioningClassesMap: Record<BindingPointPositions, string> = {
     "sw-mid": "-bottom-1 left-1/4 -translate-x-1/2",
     se: "bottom-0 right-0 translate-x-1/2 translate-y-1/2",
     "se-mid": "bottom-0 left-3/4 -translate-x-1/2 translate-y-1/2",
-    w: "top-1/2 -left-1 -translate-y-1/2",
+    w: "top-1/2 left-0 -translate-x-1/2 -translate-y-1/2",
     "wn-mid": "top-1/4 left-0 -translate-x-1/2 -translate-y-1/2",
     "ws-mid": "top-3/4 left-0 -translate-x-1/2 -translate-y-1/2",
     e: "top-1/2 right-0 translate-x-1/2 -translate-y-1/2",

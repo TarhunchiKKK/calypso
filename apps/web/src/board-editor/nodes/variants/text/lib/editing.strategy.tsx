@@ -1,9 +1,9 @@
+import type { Boards } from "@repo/common";
 import type { Descendant } from "slate";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { FormatableTextarea } from "@/features/formatable-input";
-import type { Boards } from "@repo/common";
 
-export class EditTextNodeStrategy extends NodeEditingStrategy {
+export class TextNodeEditingStrategy extends NodeEditingStrategy {
     private value: Descendant[] = [];
 
     public override ui(node: Boards.TextNode) {
