@@ -1,9 +1,9 @@
+import type { Id } from "@repo/common";
 import type React from "react";
 import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
-import type { Id } from "@repo/common";
 
 export type ViewModelParams = {
     boardId: Id;
@@ -49,6 +49,11 @@ export type ViewModel = {
         idle?: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
+        };
+
+        arrows?: {
+            isActive: boolean;
+            onClick: React.MouseEventHandler;
         };
 
         stickers?: {

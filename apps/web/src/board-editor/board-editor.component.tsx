@@ -1,6 +1,7 @@
 "use client";
 
-import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
+import type { Boards, Id } from "@repo/common";
+import { MousePointer2, MoveUpRightIcon, StickyNoteIcon, TriangleIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 import type { NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
@@ -12,7 +13,6 @@ import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
-import type { Boards, Id } from "@repo/common";
 
 type Props = PropsWithChildren<{
     nodes: Boards.NodeBase[];
@@ -67,7 +67,14 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                     isActive={viewModel.actions?.stickers?.isActive}
                     onClick={viewModel.actions?.stickers?.onClick}
                 >
-                    <StickerIcon />
+                    <StickyNoteIcon />
+                </ActionButton>
+
+                <ActionButton
+                    isActive={viewModel.actions?.arrows?.isActive}
+                    onClick={viewModel.actions?.arrows?.onClick}
+                >
+                    <MoveUpRightIcon />
                 </ActionButton>
 
                 <ActionButton

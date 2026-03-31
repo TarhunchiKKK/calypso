@@ -1,4 +1,3 @@
-import { DebugException } from "@repo/common";
 import { useState } from "react";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
@@ -82,10 +81,10 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = nodesContextMenuViewModel(viewState);
             break;
         default:
-            throw new DebugException(`useViewModel: Unknown view state - ${viewState}`);
+            throw new Error(`useViewModel: Unknown view state - ${viewState}`);
     }
 
-    // console.log(viewState.type);
+    console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }
