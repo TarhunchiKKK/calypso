@@ -1,20 +1,13 @@
 import type { PropsWithChildren } from "react";
-import { Wrapper } from "@/shared/ui";
 import { Button } from "@/shared/ui/kit/button";
 
-type ActionsBarProps = PropsWithChildren;
-
-export function ActionsBar({ children }: ActionsBarProps) {
-    return <Wrapper className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">{children}</Wrapper>;
-}
-
-type ActionButtonProps = PropsWithChildren<{
+type Props = PropsWithChildren<{
     isActive?: boolean;
 
     onClick?: React.MouseEventHandler;
 }>;
 
-export function ActionButton({ isActive, onClick, children }: ActionButtonProps) {
+export function ActionButton({ isActive, onClick, children }: Props) {
     return (
         <Button
             variant="ghost"

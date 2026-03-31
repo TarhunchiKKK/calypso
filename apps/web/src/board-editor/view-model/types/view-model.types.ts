@@ -45,7 +45,7 @@ export type ViewModel = {
         layout?: React.ReactNode;
     };
 
-    actions?: {
+    actions: {
         idle?: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
