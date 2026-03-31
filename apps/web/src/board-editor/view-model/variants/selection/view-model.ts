@@ -6,6 +6,7 @@ import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
+import { switchToArrowBinding } from "../arrow-binding/switcher";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
@@ -63,7 +64,17 @@ export function useSelectionViewModel(params: ViewModelParams) {
         });
 
         const handleResize = (nodeId: Id, direction: ResizeDirection) => {
-            resizing.onMouseDown(nodeId, direction);
+            const node = nodesModel.nodes.find(node => node.id === nodeId);
+
+            if (!node) {
+                throw new Error(`useSelectionViewModel -> handleResize: Node with id ${nodeId} not found`);
+            }
+
+            if (node.type === "arrow") {
+                setViewState(switchToArrowBinding({ nodeId, direction }));
+            } else {
+                resizing.onMouseDown(nodeId, direction);
+            }
         };
 
         return {

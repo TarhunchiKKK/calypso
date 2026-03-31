@@ -17,6 +17,7 @@ export function switchToResizing({ nodeId, direction }: Params): ResizingViewSta
     };
 }
 
+// DELETE
 export function useSwitchToResizing({ setViewState }: ViewModelParams) {
     const onMouseDown = (nodeId: Id, direction: ResizeDirection) => {
         setViewState(switchToResizing({ nodeId, direction }));

@@ -1,0 +1,17 @@
+export type BindingPointPositions =
+    | "n"
+    | "nw"
+    | "nw-mid"
+    | "ne"
+    | "ne-mid"
+    | "s"
+    | "sw"
+    | "sw-mid"
+    | "se"
+    | "se-mid"
+    | "w"
+    | "wn-mid"
+    | "ws-mid"
+    | "e"
+    | "en-mid"
+    | "es-mid";

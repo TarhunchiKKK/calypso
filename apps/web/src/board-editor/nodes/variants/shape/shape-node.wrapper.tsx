@@ -1,7 +1,7 @@
+import type { Boards } from "@repo/common";
 import type React from "react";
 import { NodeWrapper } from "@/board-editor/core";
 import { ShapeNodeComponent } from "./shape-node.component";
-import type { Boards } from "@repo/common";
 
 export class ShapeNodeNodeWrapper extends NodeWrapper<Boards.ShapeNode> {
     public override get rect() {
