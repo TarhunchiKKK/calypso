@@ -1,60 +1,60 @@
 import type { Boards } from "@repo/common";
 
 export const MockNodes = [
-    // {
-    //     id: "sticker-1",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 100, y: 100, width: 100, height: 100 },
-    //     text: "Hello 1",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         color: "black",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies Boards.StickerNode,
-    // {
-    //     id: "sticker-2",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 220, y: 220, width: 150, height: 150 },
-    //     text: "Hello 2",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         color: "black",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies Boards.StickerNode,
-    // {
-    //     id: "sticker-3",
-    //     type: "sticker",
-    //     locked: false,
-    //     rect: { x: 460, y: 180, width: 100, height: 100 },
-    //     text: "Hello 3",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         color: "black",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies Boards.StickerNode,
+    {
+        id: "sticker-1",
+        locked: false,
+        type: "sticker",
+        rect: { x: 100, y: 100, width: 100, height: 100 },
+        text: "Hello 1",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            color: "black",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
+    } satisfies Boards.StickerNode,
+    {
+        id: "sticker-2",
+        locked: false,
+        type: "sticker",
+        rect: { x: 220, y: 220, width: 150, height: 150 },
+        text: "Hello 2",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            color: "black",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
+    } satisfies Boards.StickerNode,
+    {
+        id: "sticker-3",
+        type: "sticker",
+        locked: false,
+        rect: { x: 460, y: 180, width: 100, height: 100 },
+        text: "Hello 3",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            color: "black",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
+    } satisfies Boards.StickerNode,
     // {
     //     id: "arrow-1",
     //     type: "arrow",

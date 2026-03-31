@@ -1,19 +1,23 @@
 import type { Boards } from "@repo/common";
 import { BindingPoints, NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
 
-const positions = {
-    n: true,
-    s: true,
-    w: true,
-    e: true,
-    nw: true,
-    ne: true,
-    sw: true,
-    se: true
+const getReferencePoints = (node: Boards.TextNode) => {
+    return [
+        { x: 0, y: 0 },
+        { x: node.rect.width / 2, y: 0 },
+        { x: node.rect.width, y: 0 },
+        { x: node.rect.width, y: node.rect.height / 2 },
+        { x: node.rect.width, y: node.rect.height },
+        { x: node.rect.width / 2, y: node.rect.height },
+        { x: 0, y: node.rect.height },
+        { x: 0, y: node.rect.height / 2 }
+    ];
 };
 
 export class TextNodeBindingStrategy extends NodeBindingStrategy<Boards.TextNode> {
     public override ui() {
-        return <BindingPoints positions={positions} />;
+        const referencePoints = getReferencePoints(this.node);
+
+        return <BindingPoints referencePoints={referencePoints} />;
     }
 }

@@ -1,7 +1,7 @@
 import type { Boards } from "@repo/common";
 import type { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
-import { RectNodeDraggingStrategy } from "../../variants/shared";
+import { RectNodeDraggingStrategy } from "../../variants/shared/strategies";
 
 export const DraggingStrategiesMap: Record<Boards.NodeTypes, ConstructorFunction<typeof NodeDraggingStrategy> | null> =
     {
