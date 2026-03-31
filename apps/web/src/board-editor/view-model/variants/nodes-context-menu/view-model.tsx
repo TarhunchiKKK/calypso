@@ -1,7 +1,7 @@
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToSelection } from "../selection/switcher";
 import { switchToStyling } from "../styling/switcher";
 import { NodesContextMenu } from "./lib/nodes-context-menu.component";
@@ -16,7 +16,7 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
 
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: NodesContextMenuViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: NodesContextMenuViewState): DecoratableViewModel => {
         overlayMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToSelection({ selectedIds: viewState.selectedIds }))

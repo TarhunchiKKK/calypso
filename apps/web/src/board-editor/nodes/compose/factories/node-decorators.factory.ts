@@ -27,12 +27,20 @@ export class NodeDecoratorsFactory {
     public static draggable(node: Decoratable, offset?: Offset) {
         const strategyCreator = DraggingStrategiesMap[node.type];
 
+        if (!strategyCreator) {
+            return node;
+        }
+
         return new DraggableNodeDecorator(node, strategyCreator(), offset);
     }
 
     @CheckLocked()
     public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizingStrategiesMap[node.type];
+
+        if (!strategyCreator) {
+            return node;
+        }
 
         return new ResizableNodeDecorator(node, strategyCreator(handler), size);
     }

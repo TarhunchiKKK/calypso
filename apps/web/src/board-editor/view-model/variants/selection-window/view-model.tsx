@@ -1,6 +1,6 @@
 import { SelectionWindow } from "@/board-editor/modules/selection";
-import type { OmitFields } from "@/shared/lib/typescript";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { SelectionWindowNodesMapper } from "./lib/nodes-mapper";
 import { useSelectionWindow } from "./lib/use-selection-window.hook";
 import type { SelectionWindowViewState } from "./view-state";
@@ -10,7 +10,7 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
 
     const selectionWindow = useSelectionWindow(params);
 
-    return (viewState: SelectionWindowViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: SelectionWindowViewState): DecoratableViewModel => {
         return {
             nodes: SelectionWindowNodesMapper.from(nodesModel.nodes)
                 .setSelectedIds(viewState.selectedIds)

@@ -3,9 +3,9 @@ import { withNodeId } from "@/board-editor/core";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
@@ -27,7 +27,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: SelectionViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: SelectionViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),

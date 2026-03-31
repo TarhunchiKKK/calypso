@@ -1,8 +1,8 @@
+import type { Boards } from "@repo/common";
 import type { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import type { ConstructorFunction } from "@/shared/lib/typescript";
 import { EditStickerNodeStrategy } from "../../variants/sticker/lib/editing.strategy";
 import { EditTextNodeStrategy } from "../../variants/text/lib/editing.strategy";
-import type { Boards } from "@repo/common";
 
 export const EditingStrategiesMap: Record<Boards.NodeTypes, ConstructorFunction<typeof NodeEditingStrategy> | null> = {
     sticker: handler => new EditStickerNodeStrategy(handler),

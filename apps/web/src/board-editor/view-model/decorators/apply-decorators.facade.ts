@@ -1,22 +1,24 @@
-import type { Boards } from "@repo/common";
-import type { Decoratable } from "@/board-editor/core";
 import { withRelativePositions } from "@/board-editor/modules/arrows-resolution";
-import type { ViewModel, ViewModelParams, ViewState } from "../types";
+import type { ViewModelParams, ViewState } from "../types";
+import type { DecoratableViewModel, ViewModel } from "../types/view-model.types";
 import { withActions } from "./with-actions.decorator";
 import { withHotKeys } from "./with-hot-keys.decorator";
 import { withLayoutDimensions } from "./with-layout-dimensions.decorator";
 
-export function applyDecorators(viewModel: ViewModel, viewState: ViewState, params: ViewModelParams) {
+export function applyDecorators(
+    viewModel: DecoratableViewModel,
+    viewState: ViewState,
+    params: ViewModelParams
+): ViewModel {
     const viewModelWithHotKeys = withHotKeys(viewState, params, viewModel);
 
-    const viewModelWithActions = withActions(viewState, params.setViewState, viewModelWithHotKeys);
+    const viewModelWithLayoutDimensions = withLayoutDimensions(params, viewModelWithHotKeys);
 
-    const viewModelWithLayoutDimensions = withLayoutDimensions(params, viewModelWithActions);
-
-    const viewModelWithRelativePositions: ViewModel = {
+    const viewModelWithRelativePositions = {
         ...viewModelWithLayoutDimensions,
-        nodes: withRelativePositions(viewModelWithLayoutDimensions.nodes as Decoratable<Boards.NodeBase>[])
+        nodes: withRelativePositions(viewModelWithLayoutDimensions.nodes)
     };
+    const viewModelWithActions = withActions(viewState, params.setViewState, viewModelWithRelativePositions);
 
-    return viewModelWithRelativePositions;
+    return viewModelWithActions;
 }

@@ -1,3 +1,4 @@
+import type { ArrowBindingViewState } from "../variants/arrow-binding/view-state";
 import type { ArrowCreatingEndViewState } from "../variants/arrow-creating-end/view-state";
 import type { ArrowCreatingStartViewState } from "../variants/arrow-creating-start/view-state";
 import type { DraggingViewState } from "../variants/dragging/view-state";
@@ -17,6 +18,7 @@ export type ViewState =
     | StickersCreationViewState
     | ArrowCreatingStartViewState
     | ArrowCreatingEndViewState
+    | ArrowBindingViewState
     | ShapeSelectionViewState
     | ShapesCreationViewState
     | SelectionViewState

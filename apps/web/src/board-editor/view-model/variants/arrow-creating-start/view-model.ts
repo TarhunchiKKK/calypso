@@ -1,7 +1,7 @@
-import type { OmitFields } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToArrowCreatingEnd } from "../arrow-creating-end/switcher";
 import { ArrowCreatingStartNodesMapper } from "./lib/nodes.mapper";
 
@@ -10,7 +10,7 @@ export function useArrowCreatingStartViewModel(params: ViewModelParams) {
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (): OmitFields<ViewModel, "actions"> => {
+    return (): DecoratableViewModel => {
         canvasMediator.setHandlers({
             left: {
                 onClick: e => {

@@ -1,7 +1,7 @@
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToShapesCreation } from "../shapes-creation/switcher";
 import { ShapeSelectionNodesMapper } from "./lib/nodes-mapper";
@@ -14,7 +14,7 @@ export function useShapeSelectionViewModel(params: ViewModelParams) {
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (viewState: ShapeSelectionViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: ShapeSelectionViewState): DecoratableViewModel => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToIdle())

@@ -1,5 +1,6 @@
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
+import type { DecoratableViewModel } from "../types/view-model.types";
 import { switchToArrowCreatingStart } from "../variants/arrow-creating-start/switcher";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
@@ -12,8 +13,8 @@ const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creati
 export function withActions(
     viewState: ViewState,
     setViewState: ViewModelParams["setViewState"],
-    viewModel: Omit<ViewModel, "actions">
-): ViewModel {
+    viewModel: DecoratableViewModel
+) {
     const isIdle = idleViewStates.includes(viewState.type);
     const isStickers = viewState.type === "stickers-creation";
     const isArrows = arrowsViewStates.includes(viewState.type);

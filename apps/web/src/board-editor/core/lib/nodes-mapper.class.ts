@@ -1,7 +1,7 @@
 import type { Boards } from "@repo/common";
 import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
-import type { Renderable } from "../types/ui.types";
+import type { Decoratable } from "../types/decorators.types";
 
 export abstract class NodesMapper {
     protected nodes: NodeWrapper[] = [];
@@ -10,7 +10,7 @@ export abstract class NodesMapper {
         this.nodes = inputNodes.map(NodeDecoratorsFactory.wrap);
     }
 
-    public map(): Renderable[] {
+    public map(): Decoratable[] {
         return this.nodes;
     }
 }

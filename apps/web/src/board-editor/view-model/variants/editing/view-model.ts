@@ -1,6 +1,7 @@
 import { withNodeId } from "@/board-editor/core";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { EditingNodesMapper } from "./lib/nodes-mapper";
@@ -10,7 +11,7 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: EditingViewState): ViewModel => {
+    return (viewState: EditingViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
             left: {
                 onClick: withNodeId(nodeId => {

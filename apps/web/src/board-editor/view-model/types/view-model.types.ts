@@ -1,6 +1,6 @@
-import type { Id } from "@repo/common";
+import type { Id, OmitFields } from "@repo/common";
 import type React from "react";
-import type { Renderable } from "../../core";
+import type { Decoratable, Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
@@ -67,3 +67,5 @@ export type ViewModel = {
         };
     };
 };
+
+export type DecoratableViewModel = OmitFields<ViewModel, "nodes" | "actions"> & { nodes: Decoratable[] };
