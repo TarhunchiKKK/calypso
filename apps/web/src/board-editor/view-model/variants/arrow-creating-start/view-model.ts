@@ -1,11 +1,10 @@
-import { NodesFactory } from "@/board-editor/nodes";
+import type { OmitFields } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModel, ViewModelParams } from "../../types";
-import { StickersCreationNodesMapper } from "./lib/nodes-mapper";
+import { ArrowCreatingStartNodesMapper } from "./lib/nodes.mapper";
 
-export function useStickersCreationViewModel(params: ViewModelParams) {
+export function useArrowCreatingStartViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 
     const canvasMediator = useMouseEventsMediator();
@@ -15,18 +14,12 @@ export function useStickersCreationViewModel(params: ViewModelParams) {
             left: {
                 onClick: e => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
-
-                    nodesModel.service.createOne(
-                        NodesFactory.sticker({
-                            point: clickPoint
-                        })
-                    );
                 }
             }
         });
 
         return {
-            nodes: new StickersCreationNodesMapper(nodesModel.nodes).map(),
+            nodes: new ArrowCreatingStartNodesMapper(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers
         };
     };

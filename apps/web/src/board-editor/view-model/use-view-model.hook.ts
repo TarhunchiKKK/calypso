@@ -1,7 +1,10 @@
+import { DebugException } from "@repo/common";
 import { useState } from "react";
 import type { OmitFields } from "@/shared/lib/typescript";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
+import { useArrowCreatingEndViewModel } from "./variants/arrow-creating-end/view-model";
+import { useArrowCreatingStartViewModel } from "./variants/arrow-creating-start/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
@@ -25,6 +28,8 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
 
     const idleViewModel = useIdleViewModel(newParams);
     const stickersCreationViewModel = useStickersCreationViewModel(newParams);
+    const arrowCreatingStartViewModel = useArrowCreatingStartViewModel(newParams);
+    const arrowCreatingEndViewModel = useArrowCreatingEndViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
     const shapesCreationViewModel = useShapesCreationViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
@@ -42,6 +47,12 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "stickers-creation":
             viewModel = stickersCreationViewModel();
+            break;
+        case "arrow-creating-start":
+            viewModel = arrowCreatingStartViewModel();
+            break;
+        case "arrow-creating-end":
+            viewModel = arrowCreatingEndViewModel(viewState);
             break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);
@@ -71,7 +82,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = nodesContextMenuViewModel(viewState);
             break;
         default:
-            throw new Error("Unknown view state");
+            throw new DebugException(`useViewModel: Unknown view state - ${viewState}`);
     }
 
     // console.log(viewState.type);

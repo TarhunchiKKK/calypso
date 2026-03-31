@@ -1,3 +1,4 @@
+import type { Id } from "@repo/common";
 import { withNodeId } from "@/board-editor/core";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { selectNodes } from "@/board-editor/modules/selection";
@@ -13,7 +14,6 @@ import { useSwitchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
-import type { Id } from "@repo/common";
 
 export function useSelectionViewModel(params: ViewModelParams) {
     const { nodesModel, setViewState } = params;

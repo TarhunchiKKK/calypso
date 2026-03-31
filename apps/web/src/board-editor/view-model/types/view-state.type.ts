@@ -1,3 +1,5 @@
+import type { ArrowCreatingEndViewState } from "../variants/arrow-creating-end/view-state";
+import type { ArrowCreatingStartViewState } from "../variants/arrow-creating-start/view-state";
 import type { DraggingViewState } from "../variants/dragging/view-state";
 import type { EditingViewState } from "../variants/editing/view-state";
 import type { IdleViewState } from "../variants/idle/view-state";
@@ -13,6 +15,8 @@ import type { StylingViewState } from "../variants/styling/view-state";
 export type ViewState =
     | IdleViewState
     | StickersCreationViewState
+    | ArrowCreatingStartViewState
+    | ArrowCreatingEndViewState
     | ShapeSelectionViewState
     | ShapesCreationViewState
     | SelectionViewState

@@ -22,7 +22,7 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
                 onClick: () => setViewState(switchToSelection({ selectedIds: viewState.selectedIds }))
             },
             right: {
-                onClick: (e: React.MouseEvent) => {
+                onClick: e => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
                     setViewState(switchToStyling({ selectedIds: viewState.selectedIds, position: clickPoint }));

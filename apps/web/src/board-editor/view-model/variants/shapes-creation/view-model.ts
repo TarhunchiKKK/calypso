@@ -1,4 +1,3 @@
-import type React from "react";
 import { NodesFactory } from "@/board-editor/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import type { OmitFields } from "@/shared/lib/typescript";
@@ -15,7 +14,7 @@ export function useShapesCreationViewModel(params: ViewModelParams) {
     return (viewState: ShapesCreationViewState): OmitFields<ViewModel, "actions"> => {
         canvasMediator.setHandlers({
             left: {
-                onClick: (e: React.MouseEvent) => {
+                onClick: e => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
                     nodesModel.service.createOne(
