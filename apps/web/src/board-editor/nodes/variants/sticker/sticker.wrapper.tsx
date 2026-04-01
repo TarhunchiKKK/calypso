@@ -1,6 +1,6 @@
+import type { Boards } from "@repo/common";
 import { NodeWrapper } from "@/board-editor/core";
 import { StickerComponent } from "./sticker.component";
-import type { Boards } from "@repo/common";
 
 export class StickerNodeWrapper extends NodeWrapper<Boards.StickerNode> {
     public override get rect() {
