@@ -2,13 +2,14 @@ import type { Boards } from "@repo/common";
 import { NodeWrapper } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
 import { ArrowNodeComponent } from "./arrow-node.component";
-import type { ArrowPosition } from "./lib/arrow.types";
+import type { ArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution/types";
 
 export class ArrowNodeWrapper extends NodeWrapper<Boards.ArrowNode> {
-    public absolutePosition!: ArrowPosition;
-
-    public setAbsolutePosition(position: ArrowPosition) {
-        this.absolutePosition = position;
+    public constructor(
+        protected node: Boards.ArrowNode,
+        public absolutePosition: ArrowAbsolutePosition
+    ) {
+        super(node);
     }
 
     public override get rect() {

@@ -1,2 +1,3 @@
 export { ArrowsRelativePositionsMiddleware } from "./arrows-relative-positions.middleware";
-export { withRelativePositions } from "./with-relative-positions.decorator";
+export { resolveArrowAbsolutePosition } from "./resolve-arrow-absolute-position.helper";
+export type { ArrowAbsolutePosition } from "./types";

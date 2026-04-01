@@ -1,7 +1,7 @@
 import type { Boards } from "@repo/common";
-import { NodeDecoratorsFactory } from "@/board-editor/nodes/compose/factories/node-decorators.factory";
 import type { NodesServiceMiddleware } from "@/entities/nodes/model/use-nodes-service.hook";
 import { Geometry } from "@/shared/lib/geometry";
+import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     // FIX: type casting
@@ -30,14 +30,14 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
                     throw Error(`ArrowsRelativePositionsMiddleware: node with id ${removingNodeId} not found`);
                 }
 
-                const removingNodeWrapper = NodeDecoratorsFactory.wrap(removingNode);
+                const removingNodeRect = NodeRectsFactory.rect(removingNode);
 
                 if (arrow.start.relativeTo === removingNodeId) {
-                    arrow.start = Geometry.addPoints(arrow.start, removingNodeWrapper.rect);
+                    arrow.start = Geometry.addPoints(arrow.start, removingNodeRect);
                 }
 
                 if (arrow.end.relativeTo === removingNodeId) {
-                    arrow.end = Geometry.addPoints(arrow.end, removingNodeWrapper.rect);
+                    arrow.end = Geometry.addPoints(arrow.end, removingNodeRect);
                 }
             }
             break;

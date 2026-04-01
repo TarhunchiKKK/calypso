@@ -6,6 +6,8 @@ import type { ViewModelParams } from "../../../types";
 import { switchToSelection } from "../../selection/switcher";
 import type { ResizingViewState } from "../view-state";
 import type { Id, Rect } from "@repo/common";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();
@@ -25,7 +27,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-        setNewSize(applyResizing(NodeDecoratorsFactory.wrap(node).rect, currentPoint, viewState.direction));
+        setNewSize(applyResizing(NodeRectsFactory.rect(node), currentPoint, viewState.direction));
     };
 
     const onMouseUp = (viewState: ResizingViewState) => {
@@ -33,7 +35,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         if (newSize) {
             nodesModel.service.updateOne(
-                NodeDecoratorsFactory.resizable(NodeDecoratorsFactory.wrap(node), newSize).data
+                NodeDecoratorsFactory.resizable(NodeWrappersFactory.wrap(nodesModel.nodes, node), newSize).data
             );
         }
 

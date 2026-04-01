@@ -1,11 +1,11 @@
 import type { Point } from "@repo/common";
 import { useState } from "react";
-import { NodeDecoratorsFactory, NodesFactory } from "@/board-editor/nodes";
-import type { ArrowNodeWrapper } from "@/board-editor/nodes/variants/arrow/arrow-node.wrapper";
+import { NodesFactory } from "@/board-editor/nodes";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { Geometry } from "@/shared/lib/geometry";
 import { switchToArrowCreatingStart } from "../../arrow-creating-start/switcher";
 import type { ArrowCreatingEndViewState } from "../view-state";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 
 export function useArrowDrawing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [currentPoint, setCurrentPoint] = useState<Point | null>(null);
@@ -37,9 +37,7 @@ export function useArrowDrawing({ nodesModel, layoutDimensionsModel, setViewStat
 
         const arrow = NodesFactory.arrow({ start: viewState.startPoint, end: currentPoint });
 
-        const wrapper = NodeDecoratorsFactory.wrap(arrow) as ArrowNodeWrapper;
-
-        wrapper.setAbsolutePosition({ start: viewState.startPoint, end: currentPoint });
+        const wrapper = NodeWrappersFactory.wrap(nodesModel.nodes, arrow);
 
         return wrapper.render();
     };

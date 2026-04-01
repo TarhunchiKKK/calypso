@@ -1,4 +1,3 @@
-import { withRelativePositions } from "@/board-editor/modules/arrows-resolution";
 import type { ViewModelParams, ViewState } from "../types";
 import type { DecoratableViewModel, ViewModel } from "../types/view-model.types";
 import { withActions } from "./with-actions.decorator";
@@ -14,11 +13,7 @@ export function applyDecorators(
 
     const viewModelWithLayoutDimensions = withLayoutDimensions(params, viewModelWithHotKeys);
 
-    const viewModelWithRelativePositions = {
-        ...viewModelWithLayoutDimensions,
-        nodes: withRelativePositions(viewModelWithLayoutDimensions.nodes)
-    };
-    const viewModelWithActions = withActions(viewState, params.setViewState, viewModelWithRelativePositions);
+    const viewModelWithActions = withActions(viewState, params.setViewState, viewModelWithLayoutDimensions);
 
     return viewModelWithActions;
 }

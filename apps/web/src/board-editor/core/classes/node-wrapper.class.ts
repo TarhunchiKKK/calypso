@@ -2,6 +2,7 @@ import type { Boards, Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 
+// FIX: set same types from enent names
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
@@ -45,8 +46,10 @@ export abstract class NodeWrapper<T extends Boards.NodeBase = Boards.NodeBase> i
         return this;
     }
 
+    // DELETE
     public abstract get rect(): Rect;
 
+    // DELETE
     public abstract clone(data?: Partial<T>): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
