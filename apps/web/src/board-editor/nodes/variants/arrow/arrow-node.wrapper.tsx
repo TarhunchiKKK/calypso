@@ -5,7 +5,7 @@ import { ArrowNodeComponent } from "./arrow-node.component";
 import type { ArrowPosition } from "./lib/arrow.types";
 
 export class ArrowNodeWrapper extends NodeWrapper<Boards.ArrowNode> {
-    private absolutePosition!: ArrowPosition;
+    public absolutePosition!: ArrowPosition;
 
     public setAbsolutePosition(position: ArrowPosition) {
         this.absolutePosition = position;

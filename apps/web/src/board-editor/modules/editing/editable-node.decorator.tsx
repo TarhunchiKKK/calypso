@@ -16,7 +16,7 @@ export class EditableNodeDecorator<T extends Boards.NodeBase = Boards.NodeBase> 
     public override render(children?: React.ReactNode) {
         return this.entry.render(
             <>
-                {this.strategy.ui(this.entry.data)}
+                {this.strategy.ui(this.entry)}
 
                 {children}
             </>
