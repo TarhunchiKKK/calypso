@@ -15,6 +15,6 @@ export class NodesContextMenuNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.select(node) : node));
+        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selectable(node) : node));
     }
 }

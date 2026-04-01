@@ -43,6 +43,8 @@ export class SelectionNodesMapper extends NodesMapper {
             withResizing = withHandlers;
         }
 
-        return withResizing.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.select(node) : node));
+        return withResizing.map(node =>
+            this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selectable(node) : node
+        );
     }
 }

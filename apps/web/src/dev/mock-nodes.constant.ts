@@ -55,21 +55,21 @@ export const MockNodes = [
             textColor: "black"
         }
     } satisfies Boards.StickerNode,
-    // {
-    //     id: "arrow-1",
-    //     type: "arrow",
-    //     locked: false,
-    //     styles: {
-    //         angleType: "corner",
-    //         lineColor: "red",
-    //         lineType: "solid",
-    //         lineWidth: 2
-    //     },
-    //     start: { x: 10, y: 10, relativeTo: "sticker-1" },
-    //     end: { x: 10, y: 10, relativeTo: "sticker-2" }
-    //     // start: { x: -10, y: -10 },
-    //     // end: { x: 130, y: 130 }
-    // } satisfies Boards.ArrowNode,
+    {
+        id: "arrow-1",
+        type: "arrow",
+        locked: false,
+        styles: {
+            angleType: "corner",
+            lineColor: "red",
+            lineType: "solid",
+            lineWidth: 2
+        },
+        start: { x: 10, y: 10, relativeTo: "sticker-1" },
+        end: { x: 10, y: 10, relativeTo: "sticker-2" }
+        // start: { x: -10, y: -10 },
+        // end: { x: 130, y: 130 }
+    } satisfies Boards.ArrowNode,
     // {
     //     id: "arrow-2",
     //     type: "arrow",

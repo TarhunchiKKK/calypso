@@ -24,7 +24,7 @@ export class ResizingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.nodeId === node.id) {
-                const selectedNode = NodeDecoratorsFactory.select(node);
+                const selectedNode = NodeDecoratorsFactory.selectable(node);
 
                 if (!this.newSize) {
                     return selectedNode;

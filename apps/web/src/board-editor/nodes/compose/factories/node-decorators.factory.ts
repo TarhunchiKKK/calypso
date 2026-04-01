@@ -11,11 +11,18 @@ import { BindingStrategiesMap } from "../constants/binding-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
+import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 
 export class NodeDecoratorsFactory {
     @CheckLocked()
-    public static select(node: Decoratable): Decoratable {
-        return new SelectableNodeDecorator(node);
+    public static selectable(node: Decoratable): Decoratable {
+        const strategyCreator = SelectionStrategiesMap[node.type];
+
+        if (!strategyCreator) {
+            return node;
+        }
+
+        return new SelectableNodeDecorator(node, strategyCreator());
     }
 
     @CheckLocked()

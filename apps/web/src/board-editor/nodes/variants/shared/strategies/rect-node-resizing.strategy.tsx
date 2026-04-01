@@ -1,10 +1,10 @@
-import { getNodeId, type NodeWrapper } from "@/board-editor/core";
-import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/board-editor/modules/resizing";
 import type { Boards, Rect } from "@repo/common";
+import { type Decoratable, getNodeId } from "@/board-editor/core";
+import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/board-editor/modules/resizing";
 
 export class RectNodeResizingStrategy extends NodeResizingStrategy {
-    public override updateNodeSizes(wrapper: NodeWrapper<Boards.RectNode>, size: Rect) {
-        wrapper.data = { ...wrapper.data, rect: size };
+    public override updateNodeSizes(node: Decoratable<Boards.RectNode>, size: Rect) {
+        node.data = { ...node.data, rect: size };
     }
 
     public override ui() {

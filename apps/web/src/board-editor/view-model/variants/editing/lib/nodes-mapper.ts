@@ -32,7 +32,7 @@ export class EditingNodesMapper extends NodesMapper {
         return this.nodes.map(node => {
             if (this.selectedNodeId === node.id) {
                 return NodeDecoratorsFactory.editable(
-                    NodeDecoratorsFactory.select(node.clone()),
+                    NodeDecoratorsFactory.selectable(node.clone()),
                     this.endEditingHandler
                 );
             }

@@ -24,7 +24,7 @@ export class DraggingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id)) {
-                return NodeDecoratorsFactory.draggable(NodeDecoratorsFactory.select(node), this.offset);
+                return NodeDecoratorsFactory.draggable(NodeDecoratorsFactory.selectable(node), this.offset);
             }
 
             return node;

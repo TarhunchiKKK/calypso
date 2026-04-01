@@ -11,7 +11,7 @@ export class DraggableNodeDecorator extends NodeDecorator {
         super(entry);
 
         if (offset) {
-            this.strategy.updateNodePosition(entry.wrapper, offset);
+            this.strategy.updateNodePosition(entry, offset);
         }
     }
 
