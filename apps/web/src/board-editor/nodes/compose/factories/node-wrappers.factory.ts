@@ -1,11 +1,11 @@
 import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/common/boards/index";
+import type { NodeWrapper } from "@/board-editor/core";
+import { resolveArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution";
 import { ArrowNodeWrapper } from "../../variants/arrow/arrow-node.wrapper";
 import { ShapeNodeWrapper } from "../../variants/shape/shape-node.wrapper";
 import { StickerNodeWrapper } from "../../variants/sticker/sticker.wrapper";
 import { TextNodeWrapper } from "../../variants/text/text-node.wrapper";
-import type { NodeWrapper } from "@/board-editor/core";
-import type { ArrowNode } from "@repo/common/boards/index";
-import { resolveArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution";
 
 type WrappersMap = {
     sticker: StickerNodeWrapper;
@@ -20,8 +20,10 @@ export class NodeWrappersFactory {
             case "sticker":
                 return new StickerNodeWrapper(node as Boards.StickerNode);
             case "arrow":
-                const absolutePosition = resolveArrowAbsolutePosition(allNodes, node as ArrowNode);
-                return new ArrowNodeWrapper(node as Boards.ArrowNode, absolutePosition);
+                return new ArrowNodeWrapper(
+                    node as Boards.ArrowNode,
+                    resolveArrowAbsolutePosition(allNodes, node as ArrowNode)
+                );
             case "text":
                 return new TextNodeWrapper(node as Boards.TextNode);
             case "shape":

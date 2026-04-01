@@ -7,5 +7,5 @@ export abstract class NodeResizingStrategy {
 
     public abstract updateNodeSizes(node: Decoratable, size: Rect): void;
 
-    public abstract ui(): React.ReactNode;
+    public abstract ui(node: Decoratable): React.ReactNode;
 }

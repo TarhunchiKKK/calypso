@@ -13,6 +13,7 @@ import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 
+// QUESTION: maybe rename fields of this class?
 export class NodeDecoratorsFactory {
     @CheckLocked()
     public static selectable(node: Decoratable): Decoratable {

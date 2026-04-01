@@ -18,7 +18,7 @@ export class ResizableNodeDecorator extends NodeDecorator {
     public override render(children?: React.ReactNode) {
         return this.entry.render(
             <>
-                {this.strategy.ui()}
+                {this.strategy.ui(this.entry)}
 
                 {children}
             </>,

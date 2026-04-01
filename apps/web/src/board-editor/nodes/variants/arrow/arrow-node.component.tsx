@@ -14,8 +14,16 @@ type Props = PropsWithChildren<{
     handlers: NodeHandlers;
 }>;
 
-export function ArrowNodeComponent({ node, absolutePosition, handlers }: Props) {
-    const dimensions = calculateArrowHeadDimensions(node.styles.angleType, absolutePosition);
+export function ArrowNodeComponent({
+    node,
+    absolutePosition,
+    handlers,
+    children,
+}: Props) {
+    const dimensions = calculateArrowHeadDimensions(
+        node.styles.angleType,
+        absolutePosition,
+    );
 
     const renderArrowHead = ArrowHeadsMap[node.styles.angleType];
     const renderLine = ArrowLinesMap[node.styles.lineType];
@@ -23,10 +31,14 @@ export function ArrowNodeComponent({ node, absolutePosition, handlers }: Props) 
     const withAbsolutePosition = { ...node, ...absolutePosition };
 
     return (
-        <svg className="absolute left-0 top-0 pointer-events-none overflow-visible">
-            {renderLine(withAbsolutePosition, handlers, dimensions)}
+        <>
+            <svg className="absolute left-0 top-0 pointer-events-none overflow-visible">
+                {renderLine(withAbsolutePosition, handlers, dimensions)}
 
-            {renderArrowHead(withAbsolutePosition, handlers, dimensions)}
-        </svg>
+                {renderArrowHead(withAbsolutePosition, handlers, dimensions)}
+            </svg>
+
+            {children}
+        </>
     );
 }
