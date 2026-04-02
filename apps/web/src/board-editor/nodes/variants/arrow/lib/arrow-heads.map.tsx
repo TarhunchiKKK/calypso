@@ -1,14 +1,10 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode, NodeStyles } from "@repo/boards-common";
 import type { NodeHandlers } from "@/board-editor/core";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
-type ArrowHeadVariants = Boards.NodeStyles["angleType"];
+type ArrowHeadVariants = NodeStyles["angleType"];
 
-type CreateFunction = (
-    node: Boards.ArrowNode,
-    handlers: NodeHandlers,
-    dimensions: ArrowHeadDimensions
-) => React.ReactNode;
+type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions) => React.ReactNode;
 
 export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
     corner: (node, handlers, dimensions) => {

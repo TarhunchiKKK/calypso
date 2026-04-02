@@ -1,9 +1,9 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode, NodeBase } from "@repo/boards-common";
 import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ArrowAbsolutePosition } from "./types";
 
-export function resolveArrowAbsolutePosition(nodes: Boards.NodeBase[], arrow: Boards.ArrowNode): ArrowAbsolutePosition {
+export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode): ArrowAbsolutePosition {
     const result = {
         start: arrow.start,
         end: arrow.end

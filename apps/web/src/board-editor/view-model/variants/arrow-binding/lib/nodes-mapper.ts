@@ -1,7 +1,8 @@
-import type { Boards, Id } from "@repo/common";
+import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
+import type { NodeBase } from "@repo/boards-common";
 
 export class ArrowBindingNodesMapper extends NodesMapper {
     private arrowId!: Id;
@@ -10,7 +11,7 @@ export class ArrowBindingNodesMapper extends NodesMapper {
 
     private bindingNodeHandlers: BindingNodeHandlers = {};
 
-    public static from(nodes: Boards.NodeBase[]) {
+    public static from(nodes: NodeBase[]) {
         return new ArrowBindingNodesMapper(nodes);
     }
 

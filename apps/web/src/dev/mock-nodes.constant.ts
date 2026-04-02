@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
 
 export const MockNodes = [
     // {
@@ -18,7 +18,7 @@ export const MockNodes = [
     //         textAlign: "left",
     //         textColor: "black"
     //     }
-    // } satisfies Boards.StickerNode,
+    // } satisfies StickerNode,
     // {
     //     id: "sticker-2",
     //     locked: false,
@@ -36,7 +36,7 @@ export const MockNodes = [
     //         textAlign: "left",
     //         textColor: "black"
     //     }
-    // } satisfies Boards.StickerNode,
+    // } satisfies StickerNode,
     // {
     //     id: "sticker-3",
     //     type: "sticker",
@@ -54,7 +54,7 @@ export const MockNodes = [
     //         textAlign: "left",
     //         textColor: "black"
     //     }
-    // } satisfies Boards.StickerNode,
+    // } satisfies StickerNode,
     {
         id: "arrow-1",
         type: "arrow",
@@ -69,7 +69,7 @@ export const MockNodes = [
         // end: { x: 10, y: 10, relativeTo: "sticker-2" }
         start: { x: 10, y: 10 },
         end: { x: 130, y: 30 }
-    } satisfies Boards.ArrowNode
+    } satisfies ArrowNode
     // {
     //     id: "arrow-2",
     //     type: "arrow",
@@ -82,7 +82,7 @@ export const MockNodes = [
     //     },
     //     start: { x: 300, y: 400 },
     //     end: { x: 500, y: 400 }
-    // } as Boards.ArrowNode,
+    // } as ArrowNode,
     // {
     //     id: "arrow-3",
     //     type: "arrow",
@@ -95,7 +95,7 @@ export const MockNodes = [
     //     },
     //     start: { x: 300, y: 500 },
     //     end: { x: 500, y: 500 }
-    // } as Boards.ArrowNode,
+    // } as ArrowNode,
     // {
     //     id: "arrow-4",
     //     type: "arrow",
@@ -108,7 +108,7 @@ export const MockNodes = [
     //     },
     //     start: { x: 300, y: 600 },
     //     end: { x: 500, y: 600 }
-    // } as Boards.ArrowNode,
+    // } as ArrowNode,
     // {
     //     id: "arrow-5",
     //     type: "arrow",
@@ -121,7 +121,7 @@ export const MockNodes = [
     //     },
     //     start: { x: 300, y: 700 },
     //     end: { x: 500, y: 700 }
-    // } as Boards.ArrowNode,
+    // } as ArrowNode,
     // {
     //     id: "shape-1",
     //     type: "shape",
@@ -137,7 +137,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "rectangle"
-    // } satisfies Boards.ShapeNode,
+    // } satisfies ShapeNode,
     // {
     //     id: "shape-2",
     //     type: "shape",
@@ -153,7 +153,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "circle"
-    // } satisfies Boards.ShapeNode,
+    // } satisfies ShapeNode,
     // {
     //     id: "shape-3",
     //     type: "shape",
@@ -169,7 +169,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "triangle"
-    // } satisfies Boards.ShapeNode,
+    // } satisfies ShapeNode,
     // {
     //     id: "shape-4",
     //     type: "shape",
@@ -185,7 +185,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "diamond"
-    // } satisfies Boards.ShapeNode,
+    // } satisfies ShapeNode,
     // {
     //     id: "shape-5",
     //     type: "shape",
@@ -201,7 +201,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "star"
-    // } satisfies Boards.ShapeNode,
+    // } satisfies ShapeNode,
     // {
     //     id: "shape-6",
     //     type: "shape",
@@ -217,5 +217,5 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "hexagon"
-    // } satisfies Boards.ShapeNode
+    // } satisfies ShapeNode
 ];

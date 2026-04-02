@@ -1,4 +1,5 @@
-import type { Boards, Offset } from "@repo/common";
+import type { ShapeVariants } from "@repo/boards-common";
+import type { Offset } from "@repo/common";
 import { Circle, Diamond, Hexagon, Square, Star, Triangle } from "lucide-react";
 
 export const ShapeVariantsIconsMap = {
@@ -8,7 +9,7 @@ export const ShapeVariantsIconsMap = {
     diamond: Diamond,
     star: Star,
     hexagon: Hexagon
-} satisfies Record<Boards.ShapeVariants, unknown>;
+} satisfies Record<ShapeVariants, unknown>;
 
 export const IconsSizes = { width: 32, height: 32 };
 

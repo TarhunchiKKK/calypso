@@ -1,10 +1,10 @@
 import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
-import type { Boards } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
 
 export class IdleNodesMapper extends NodesMapper {
     private nodesHandlers!: NodeHandlers;
 
-    public static from(nodes: Boards.NodeBase[]) {
+    public static from(nodes: NodeBase[]) {
         return new IdleNodesMapper(nodes);
     }
 

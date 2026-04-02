@@ -1,13 +1,13 @@
-import type { Boards } from "@repo/common";
+import type { TextNode } from "@repo/boards-common";
 import { NodeWrapper } from "@/board-editor/core";
 import { TextNodeComponent } from "./text-node.component";
 
-export class TextNodeWrapper extends NodeWrapper<Boards.TextNode> {
+export class TextNodeWrapper extends NodeWrapper<TextNode> {
     public override get rect() {
         return this.node.rect;
     }
 
-    public override clone(data: Partial<Boards.TextNode> = {}) {
+    public override clone(data: Partial<TextNode> = {}) {
         return new TextNodeWrapper({ ...this.node, ...data });
     }
 

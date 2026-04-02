@@ -1,6 +1,7 @@
-import type { Boards, Point } from "@repo/common";
+import type { ShapeNode, ShapeVariants } from "@repo/boards-common";
+import type { Point } from "@repo/common";
 
-export const ShapeVariantsReferencePointsMap: Record<Boards.ShapeVariants, (node: Boards.ShapeNode) => Point[]> = {
+export const ShapeVariantsReferencePointsMap: Record<ShapeVariants, (node: ShapeNode) => Point[]> = {
     rectangle: node => [
         { x: 0, y: 0 },
         { x: node.rect.width, y: 0 },

@@ -1,5 +1,6 @@
 import type { ViewModelParams } from "@/board-editor/view-model/types";
-import type { Boards, Id } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 
 export function findArrow(nodesModel: ViewModelParams["nodesModel"], arrowId: Id) {
     const arrow = nodesModel.nodes.find(node => node.id === arrowId);
@@ -12,5 +13,5 @@ export function findArrow(nodesModel: ViewModelParams["nodesModel"], arrowId: Id
         throw new Error(`Binding node is not an arrow, id=${arrowId}`);
     }
 
-    return arrow as Boards.ArrowNode;
+    return arrow as ArrowNode;
 }

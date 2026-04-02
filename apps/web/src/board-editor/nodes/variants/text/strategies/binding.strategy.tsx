@@ -1,7 +1,7 @@
-import type { Boards } from "@repo/common";
+import type { TextNode } from "@repo/boards-common";
 import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
 
-export class TextNodeBindingStrategy extends NodeBindingStrategy<Boards.TextNode> {
+export class TextNodeBindingStrategy extends NodeBindingStrategy<TextNode> {
     public override getReferencePoints() {
         return [
             { x: 0, y: 0 },

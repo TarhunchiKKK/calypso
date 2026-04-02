@@ -1,15 +1,16 @@
-import type { Boards, Rect } from "@repo/common";
+import type { Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
+import type { NodeBase } from "@repo/boards-common";
 
-// FIX: set same types from enent names
+// FIX: set same types for event names
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: (e: React.MouseEvent) => void;
 };
 
-export abstract class NodeWrapper<T extends Boards.NodeBase = Boards.NodeBase> implements Renderable, Decoratable<T> {
+export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     protected showContent = true;
 
     protected handlers: NodeHandlers = {};

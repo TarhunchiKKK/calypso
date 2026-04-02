@@ -1,9 +1,9 @@
-import type { Boards } from "@repo/common";
+import type { StickerNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 
 type Props = PropsWithChildren<{
-    node: Boards.StickerNode;
+    node: StickerNode;
 
     handlers: NodeHandlers;
 

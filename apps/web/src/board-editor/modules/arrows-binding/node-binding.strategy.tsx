@@ -1,8 +1,9 @@
-import type { Boards, Point } from "@repo/common";
-import type { BindingNodeHandlers } from "./types";
+import type { NodeBase } from "@repo/boards-common";
+import type { Point } from "@repo/common";
 import { BindingPoints } from "./binding-points.component";
+import type { BindingNodeHandlers } from "./types";
 
-export abstract class NodeBindingStrategy<T extends Boards.NodeBase = Boards.NodeBase> {
+export abstract class NodeBindingStrategy<T extends NodeBase = NodeBase> {
     public constructor(
         protected readonly node: T,
         protected readonly handlers: BindingNodeHandlers

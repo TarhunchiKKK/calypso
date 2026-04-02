@@ -1,17 +1,18 @@
+import type { ArrowNode, NodeBase, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { Rect } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
-import type { Boards, Rect } from "@repo/common";
 
 export class NodeRectsFactory {
-    public static rect(node: Boards.NodeBase): Rect {
+    public static rect(node: NodeBase): Rect {
         switch (node.type) {
             case "sticker":
-                return { ...(node as Boards.StickerNode).rect };
+                return { ...(node as StickerNode).rect };
             case "arrow":
-                return Geometry.rectFromPoints((node as Boards.ArrowNode).start, (node as Boards.ArrowNode).end);
+                return Geometry.rectFromPoints((node as ArrowNode).start, (node as ArrowNode).end);
             case "text":
-                return { ...(node as Boards.TextNode).rect };
+                return { ...(node as TextNode).rect };
             case "shape":
-                return { ...(node as Boards.ShapeNode).rect };
+                return { ...(node as ShapeNode).rect };
             default:
                 throw new Error(`Unknown node type: ${node}`);
         }

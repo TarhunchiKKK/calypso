@@ -1,3 +1,4 @@
+import type { NodeStyles } from "@repo/boards-common";
 import { Square } from "lucide-react";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { Dropdown } from "@/shared/ui";
@@ -11,14 +12,13 @@ import { ColorsDropdownItemSizes } from "../constants/ui.constants";
 import type { UpdateFn } from "../lib/types";
 import { ColorsDropdown } from "../ui/colors-dropdown.component";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
-import type { Boards } from "@repo/common";
 
 type Props = {
     onUpdate: (fn: UpdateFn) => void;
 };
 
 export function BorderStylesGroup({ onUpdate }: Props) {
-    const handleBorderStyleSelect = (borderStyle: Boards.NodeStyles["borderStyle"]) => {
+    const handleBorderStyleSelect = (borderStyle: NodeStyles["borderStyle"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
@@ -28,7 +28,7 @@ export function BorderStylesGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleBorderColorSelect = (borderColor: Boards.NodeStyles["borderColor"]) => {
+    const handleBorderColorSelect = (borderColor: NodeStyles["borderColor"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
@@ -38,7 +38,7 @@ export function BorderStylesGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleBorderRadiusSelect = (borderRadius: Boards.NodeStyles["borderRadius"]) => {
+    const handleBorderRadiusSelect = (borderRadius: NodeStyles["borderRadius"]) => {
         onUpdate(node => ({
             ...node,
             styles: {

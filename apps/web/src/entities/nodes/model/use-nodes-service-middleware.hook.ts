@@ -1,14 +1,12 @@
-import type { Boards, Id } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 import { useCallback, useRef } from "react";
 
 export type NodesServiceMiddlewarePayload =
-    | { operation: "create" | "update"; nodes: Boards.NodeBase[] }
+    | { operation: "create" | "update"; nodes: NodeBase[] }
     | { operation: "remove"; nodes: Id[] };
 
-export type NodesServiceMiddleware = (
-    prev: Boards.NodeBase[],
-    payload: NodesServiceMiddlewarePayload
-) => Boards.NodeBase[];
+export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
 
 export function useNodesServiceMiddleware() {
     const middlewaresRef = useRef<Set<NodesServiceMiddleware>>(new Set());
@@ -21,7 +19,7 @@ export function useNodesServiceMiddleware() {
         middlewaresRef.current.delete(middleware);
     }, []);
 
-    const apply = useCallback((nodes: Boards.NodeBase[], payload: NodesServiceMiddlewarePayload) => {
+    const apply = useCallback((nodes: NodeBase[], payload: NodesServiceMiddlewarePayload) => {
         const middlewares = Array.from(middlewaresRef.current);
 
         return middlewares.reduce((copy, middleware) => middleware(copy, payload), [...nodes]);

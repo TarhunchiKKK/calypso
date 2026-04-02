@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { Geometry } from "@/shared/lib/geometry";
@@ -6,7 +6,7 @@ import { Textarea } from "@/shared/ui/kit";
 import type { ArrowNodeWrapper } from "../arrow-node.wrapper";
 
 export class ArrowEditingStrategy extends NodeEditingStrategy {
-    public override ui(node: Decoratable<Boards.ArrowNode>) {
+    public override ui(node: Decoratable<ArrowNode>) {
         const wrapper = node.wrapper as ArrowNodeWrapper;
 
         const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

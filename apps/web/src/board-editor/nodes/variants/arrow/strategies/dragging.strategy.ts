@@ -1,11 +1,12 @@
-import type { Boards, Offset } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
+import type { Offset } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 import { Geometry } from "@/shared/lib/geometry";
 
 export class ArrowDraggingStrategy extends NodeDraggingStrategy {
-    public override updateNodePosition(node: Decoratable<Boards.ArrowNode>, offset: Offset) {
+    public override updateNodePosition(node: Decoratable<ArrowNode>, offset: Offset) {
         if (node.data.start.relativeTo || node.data.end.relativeTo) {
             return;
         }

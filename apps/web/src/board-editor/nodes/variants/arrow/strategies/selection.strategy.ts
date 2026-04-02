@@ -1,15 +1,15 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeSelectionStrategy } from "@/board-editor/modules/selection";
 
 export class ArrowSelectionStrategy extends NodeSelectionStrategy {
-    public override ui(node: Decoratable<Boards.ArrowNode>) {
+    public override ui(node: Decoratable<ArrowNode>) {
         this.updateNodeStyles(node);
 
         return null;
     }
 
-    private updateNodeStyles(node: Decoratable<Boards.ArrowNode>) {
+    private updateNodeStyles(node: Decoratable<ArrowNode>) {
         node.data = {
             ...node.data,
             styles: {

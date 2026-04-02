@@ -1,14 +1,10 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode, NodeStyles } from "@repo/boards-common";
 import type { NodeHandlers } from "@/board-editor/core";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
-type ArrowLineVariants = Boards.NodeStyles["lineType"];
+type ArrowLineVariants = NodeStyles["lineType"];
 
-type CreateFunction = (
-    node: Boards.ArrowNode,
-    handlers: NodeHandlers,
-    dimensions: ArrowHeadDimensions
-) => React.ReactNode;
+type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions) => React.ReactNode;
 
 export const ArrowLinesMap: Record<ArrowLineVariants, CreateFunction> = {
     solid: (node, handlers, dimensions) => {
