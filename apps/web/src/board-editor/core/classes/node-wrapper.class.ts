@@ -1,4 +1,3 @@
-import type { Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 import type { NodeBase } from "@repo/boards-common";
@@ -46,9 +45,6 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         this.handlers = handlers;
         return this;
     }
-
-    // DELETE
-    public abstract get rect(): Rect;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

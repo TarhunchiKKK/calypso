@@ -1,1 +1,0 @@
-export {ResizeBorders} from "./resize-borders.component"

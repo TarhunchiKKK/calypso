@@ -1,4 +1,12 @@
-import type { ArrowNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type {
+    ArrowNode,
+    NodeBase,
+    NodeTypes,
+    NodeTypesMap,
+    ShapeNode,
+    StickerNode,
+    TextNode
+} from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
 

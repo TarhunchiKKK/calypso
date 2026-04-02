@@ -1,5 +1,5 @@
 import type { NodeSelectionStrategy } from "@/board-editor/modules/selection";
-import { RectNodeSelectionStrategy } from "../../variants/shared/strategies";
+import { RectNodeSelectionStrategy } from "../../shared/strategies";
 import type { StrategiesMap } from "./types";
 import { ArrowSelectionStrategy } from "../../variants/arrow/strategies/selection.strategy";
 

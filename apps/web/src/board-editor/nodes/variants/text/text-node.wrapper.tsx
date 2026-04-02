@@ -3,10 +3,6 @@ import { NodeWrapper } from "@/board-editor/core";
 import { TextNodeComponent } from "./text-node.component";
 
 export class TextNodeWrapper extends NodeWrapper<TextNode> {
-    public override get rect() {
-        return this.node.rect;
-    }
-
     public override render(children?: React.ReactNode) {
         return (
             <TextNodeComponent
