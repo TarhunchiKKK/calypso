@@ -1,7 +1,8 @@
-import type { Boards, Id } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 
 export type CreateManyNodesDto = {
     boardId: Id;
 
-    nodes: Boards.NodeBase[];
+    nodes: NodeBase[];
 };

@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { NodeStyles } from "@repo/boards-common";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ArrowPosition } from "./arrow.types";
 
@@ -6,7 +6,7 @@ const ANGLE = 5 / 6;
 const BASE_POINT_MULTIPLIER = 7;
 const SIDE_LINE_MULTIPLIER = 15;
 
-export function calculateArrowHeadDimensions(angleType: Boards.NodeStyles["angleType"], position: ArrowPosition) {
+export function calculateArrowHeadDimensions(angleType: NodeStyles["angleType"], position: ArrowPosition) {
     const diff = Geometry.pointsDifference(position.start, position.end);
     const angle = Math.atan2(diff.y, diff.x);
     const leftAngle = angle - ANGLE * Math.PI;

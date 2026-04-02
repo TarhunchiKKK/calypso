@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { NodeStyles } from "@repo/boards-common";
 import {
     AvailableBorderRadiuses,
     AvailableColors,
@@ -6,7 +6,7 @@ import {
     AvailableFontSizes
 } from "./available-node-styles.constants";
 
-export const DefaultNodeStyles: Boards.NodeStyles = {
+export const DefaultNodeStyles: NodeStyles = {
     fontFamily: AvailableFontFamilies[0],
     fontSize: AvailableFontSizes[2],
     backgroundColor: AvailableColors[0],

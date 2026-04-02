@@ -1,3 +1,3 @@
-import type { Boards } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
 
-export type UpdateFn = (node: Boards.NodeBase) => Boards.NodeBase;
+export type UpdateFn = (node: NodeBase) => NodeBase;

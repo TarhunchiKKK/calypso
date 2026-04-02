@@ -1,14 +1,12 @@
-import type { Boards, Id } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 import type { Dispatch, SetStateAction } from "react";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
-export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBase[]>>) {
+export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
     const middleware = useNodesServiceMiddleware();
 
-    const setWithMiddleware = (
-        payload: NodesServiceMiddlewarePayload,
-        updateFn: (prev: Boards.NodeBase[]) => Boards.NodeBase[]
-    ) => {
+    const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
         setNodes(nodes => {
             const result = middleware.apply(nodes, payload);
 
@@ -16,7 +14,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBas
         });
     };
 
-    const createOne = (node: Boards.NodeBase) => {
+    const createOne = (node: NodeBase) => {
         setWithMiddleware(
             {
                 operation: "create",
@@ -26,7 +24,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBas
         );
     };
 
-    const updateOne = (newNode: Boards.NodeBase) => {
+    const updateOne = (newNode: NodeBase) => {
         setWithMiddleware(
             {
                 operation: "update",
@@ -36,7 +34,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBas
         );
     };
 
-    const updateManyWithFn = (ids: Set<Id>, fn: (node: Boards.NodeBase) => Boards.NodeBase) => {
+    const updateManyWithFn = (ids: Set<Id>, fn: (node: NodeBase) => NodeBase) => {
         setNodes(nodes => nodes.map(node => (ids.has(node.id) ? fn(node) : node)));
     };
 

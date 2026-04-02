@@ -1,10 +1,10 @@
-import type { Boards } from "@repo/common";
+import type { ShapeNode, ShapeVariants } from "@repo/boards-common";
 import type { NodeHandlers } from "@/board-editor/core";
 import { ShapeVariantsReferencePointsMap } from "./shape-variants-reference-points.map";
 
-type CreateFunction = (node: Boards.ShapeNode, handlers: NodeHandlers) => React.ReactNode;
+type CreateFunction = (node: ShapeNode, handlers: NodeHandlers) => React.ReactNode;
 
-export const ShapeVariantsMap: Record<Boards.ShapeVariants, CreateFunction> = {
+export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
     rectangle: (node, handlers) => {
         return (
             <rect

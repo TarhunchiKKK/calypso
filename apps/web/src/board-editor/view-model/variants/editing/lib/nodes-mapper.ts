@@ -1,15 +1,16 @@
 import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { Boards, Id } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 
 export class EditingNodesMapper extends NodesMapper {
     private selectedNodeId!: Id;
 
-    private endEditingHandler!: (node: Boards.NodeBase) => void;
+    private endEditingHandler!: (node: NodeBase) => void;
 
     private nodesHandlers!: NodeHandlers;
 
-    public static from(nodes: Boards.NodeBase[]) {
+    public static from(nodes: NodeBase[]) {
         return new EditingNodesMapper(nodes);
     }
 
@@ -18,7 +19,7 @@ export class EditingNodesMapper extends NodesMapper {
         return this;
     }
 
-    public setEndEditingHandler(endEditingHandler: (node: Boards.NodeBase) => void) {
+    public setEndEditingHandler(endEditingHandler: (node: NodeBase) => void) {
         this.endEditingHandler = endEditingHandler;
         return this;
     }

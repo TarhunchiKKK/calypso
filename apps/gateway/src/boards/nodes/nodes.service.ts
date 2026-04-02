@@ -1,7 +1,8 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
 import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient } from "@repo/api";
-import type { Boards, Id } from "@repo/common";
+import type { CreateManyNodesRequest, RemoveManyNodesRequest, UpdateManyNodesRequest } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 import { map } from "rxjs";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 
@@ -15,7 +16,7 @@ export class NodesService implements OnModuleInit {
         this.nodesClient = this.grpcClient.getService<BoardNodesServiceClient>(BOARD_NODES_SERVICE_NAME);
     }
 
-    public createMany(userId: Id, dto: Boards.CreateManyNodesRequest) {
+    public createMany(userId: Id, dto: CreateManyNodesRequest) {
         const mappedNodes = dto.nodes.map(BoardNodesGrpcMapper.toGrpc);
 
         return this.nodesClient.createMany({
@@ -37,7 +38,7 @@ export class NodesService implements OnModuleInit {
         );
     }
 
-    public updateMany(userId: Id, dto: Boards.UpdateManyNodesRequest) {
+    public updateMany(userId: Id, dto: UpdateManyNodesRequest) {
         const mappedNodes = dto.nodes.map(BoardNodesGrpcMapper.toGrpc);
 
         return this.nodesClient.updateMany({
@@ -47,11 +48,11 @@ export class NodesService implements OnModuleInit {
         });
     }
 
-    public removeMany(userId: Id, dto: Boards.RemoveManyNodesRequest) {
+    public removeMany(userId: Id, dto: RemoveManyNodesRequest) {
         return this.nodesClient.removeMany({
             userId,
             boardId: dto.boardId,
-            nodeIds: dto.ids
+            ids: dto.ids
         });
     }
 }

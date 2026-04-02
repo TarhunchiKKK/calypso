@@ -1,8 +1,9 @@
-import type { Boards, Point } from "@repo/common";
+import type { ArrowNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
 
 export class NodesFactory {
-    public static sticker(data: { point: Point }): Boards.StickerNode {
+    public static sticker(data: { point: Point }): StickerNode {
         return {
             id: crypto.randomUUID(),
             type: "sticker",
@@ -17,7 +18,7 @@ export class NodesFactory {
         };
     }
 
-    public static arrow(data: Pick<Boards.ArrowNode, "start" | "end">): Boards.ArrowNode {
+    public static arrow(data: Pick<ArrowNode, "start" | "end">): ArrowNode {
         return {
             id: crypto.randomUUID(),
             type: "arrow",
@@ -27,7 +28,7 @@ export class NodesFactory {
         };
     }
 
-    public static text(data: { point: Point }): Boards.TextNode {
+    public static text(data: { point: Point }): TextNode {
         return {
             id: crypto.randomUUID(),
             type: "text",
@@ -43,7 +44,7 @@ export class NodesFactory {
         };
     }
 
-    public static shape(data: Pick<Boards.ShapeNode, "variant"> & { point: Point }): Boards.ShapeNode {
+    public static shape(data: Pick<ShapeNode, "variant"> & { point: Point }): ShapeNode {
         return {
             id: crypto.randomUUID(),
             type: "shape",

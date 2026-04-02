@@ -1,4 +1,5 @@
-import type { Boards, Offset, Rect } from "@repo/common";
+import type { NodeBase } from "@repo/boards-common";
+import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { BindableNodeDecorator, type BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
@@ -49,7 +50,7 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static editable(node: Decoratable, handler: (node: Boards.NodeBase) => void) {
+    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
 
         if (!strategyCreator) {

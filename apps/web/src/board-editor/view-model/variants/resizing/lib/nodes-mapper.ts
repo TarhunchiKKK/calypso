@@ -1,13 +1,14 @@
-import type { Boards, Id, Rect } from "@repo/common";
+import type { Id, Rect } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import type { NodeBase } from "@repo/boards-common";
 
 export class ResizingNodesMapper extends NodesMapper {
     private nodeId!: Id;
 
     private newSize?: Rect = undefined;
 
-    public static from(nodes: Boards.NodeBase[]) {
+    public static from(nodes: NodeBase[]) {
         return new ResizingNodesMapper(nodes);
     }
 

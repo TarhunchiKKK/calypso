@@ -1,4 +1,4 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
 import type { PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import type { ArrowPosition } from "./lib/arrow.types";
@@ -7,7 +7,7 @@ import { ArrowLinesMap } from "./lib/arrow-lines.map";
 import { calculateArrowHeadDimensions } from "./lib/calculate-arrow-dimensions.helper";
 
 type Props = PropsWithChildren<{
-    node: Boards.ArrowNode;
+    node: ArrowNode;
 
     absolutePosition: ArrowPosition;
 

@@ -1,7 +1,4 @@
-import type { Boards } from "@repo/common";
-import type { Constructor, ConstructorFunction } from "@/shared/lib/typescript";
+import type { NodeTypes } from "@repo/boards-common";
+import type { Constructor, ConstructorFunction } from "@repo/common";
 
-export type StrategiesMap<Strategy extends Constructor> = Record<
-    Boards.NodeTypes,
-    ConstructorFunction<Strategy> | null
->;
+export type StrategiesMap<Strategy extends Constructor> = Record<NodeTypes, ConstructorFunction<Strategy> | null>;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
@@ -18,6 +17,7 @@ import { useShapeSelectionViewModel } from "./variants/shape-selection/view-mode
 import { useShapesCreationViewModel } from "./variants/shapes-creation/view-model";
 import { useStickersCreationViewModel } from "./variants/stickers-creation/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
+import type { OmitFields } from "@repo/common";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());

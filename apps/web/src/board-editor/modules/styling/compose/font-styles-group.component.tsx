@@ -1,16 +1,16 @@
+import type { NodeStyles } from "@repo/boards-common";
 import { Dropdown } from "@/shared/ui";
 import { FontFamilies, FontSizes } from "../constants/fonts-styling.constants";
 import { FontFamilyPlaceholder, FontSizePlaceholder } from "../constants/placeholders.constants";
 import type { UpdateFn } from "../lib/types";
 import { StylesGroupWrapper } from "../ui/styles-group-wrapper.component";
-import type { Boards } from "@repo/common";
 
 type Props = {
     onUpdate: (fn: UpdateFn) => void;
 };
 
 export function FontStylesGroup({ onUpdate }: Props) {
-    const handleFontFamilySelect = (fontFamily: Boards.NodeStyles["fontFamily"]) => {
+    const handleFontFamilySelect = (fontFamily: NodeStyles["fontFamily"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
@@ -20,7 +20,7 @@ export function FontStylesGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleFontSizeSelect = (fontSize: Boards.NodeStyles["fontSize"]) => {
+    const handleFontSizeSelect = (fontSize: NodeStyles["fontSize"]) => {
         onUpdate(node => ({
             ...node,
             styles: {

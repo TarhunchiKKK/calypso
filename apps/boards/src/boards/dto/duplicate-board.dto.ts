@@ -1,5 +1,7 @@
+import type { Id } from "@repo/common";
+
 export type DuplicateBoardDto = {
-    boardId: string;
+    boardId: Id;
 
     userId: string;
 };

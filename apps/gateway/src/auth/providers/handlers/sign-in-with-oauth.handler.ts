@@ -1,11 +1,11 @@
 import { BadRequestException, Inject } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { Auth } from "@repo/common";
+import type { OAuthProviders } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 
 export class SignInWithOAuthCommand extends Command<string> {
-    public constructor(public provider: Auth.OAuthProviders) {
+    public constructor(public provider: OAuthProviders) {
         super();
     }
 }

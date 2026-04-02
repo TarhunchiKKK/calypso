@@ -1,10 +1,10 @@
+import type { TextNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { FormatableTextarea } from "@/features/formatable-input";
-import type { Boards } from "@repo/common";
 
 type Props = PropsWithChildren<{
-    node: Boards.TextNode;
+    node: TextNode;
 
     handlers: NodeHandlers;
 

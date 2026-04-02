@@ -1,8 +1,9 @@
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "../factories/node-decorators.factory";
-import type { Boards, Rect } from "@repo/common";
+import type { Rect } from "@repo/common";
 import type { ResizeHandler } from "@/board-editor/modules/resizing";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
+import type { NodeBase } from "@repo/boards-common";
 
 // TODO: implement this class in other files
 export class DecoratableNodeBuilder {
@@ -22,7 +23,7 @@ export class DecoratableNodeBuilder {
         return this;
     }
 
-    public editing(handler: (node: Boards.NodeBase) => void) {
+    public editing(handler: (node: NodeBase) => void) {
         this.node = NodeDecoratorsFactory.editable(this.node, handler);
         return this;
     }

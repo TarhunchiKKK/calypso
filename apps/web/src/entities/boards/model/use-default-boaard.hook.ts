@@ -1,14 +1,14 @@
-import type { Boards } from "@repo/common";
+import type { Board } from "@repo/boards-common";
 import { useState } from "react";
 
 function getBoard() {
     const storedBoard = localStorage.getItem(import.meta.env.VITE_BOARD_LS_KEY);
 
     if (storedBoard) {
-        return JSON.parse(storedBoard) as Boards.Board;
+        return JSON.parse(storedBoard) as Board;
     }
 
-    const board: Boards.Board = {
+    const board: Board = {
         id: crypto.randomUUID(),
         title: "New board",
         createdAt: new Date(),
@@ -21,7 +21,7 @@ function getBoard() {
 }
 
 export function useDefaultBoard() {
-    const [board] = useState<Boards.Board>(() => getBoard());
+    const [board] = useState<Board>(() => getBoard());
 
     return { board };
 }

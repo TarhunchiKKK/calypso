@@ -1,11 +1,11 @@
-import type { Boards } from "@repo/common";
+import type { ArrowNode } from "@repo/boards-common";
 import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 import type { NodesServiceMiddleware } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     // FIX: type casting
-    const arrows: Boards.ArrowNode[] = nodes.filter(node => node.type === "arrow") as any;
+    const arrows: ArrowNode[] = nodes.filter(node => node.type === "arrow") as any;
 
     switch (payload.operation) {
         case "create": {

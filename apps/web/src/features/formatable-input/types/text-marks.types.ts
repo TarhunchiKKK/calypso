@@ -1,4 +1,4 @@
 import type { CustomText } from "@/@types/slate";
-import type { OmitFields } from "@/shared/lib/typescript";
+import type { OmitFields } from "@repo/common";
 
 export type TextMarks = keyof OmitFields<CustomText, "text">;

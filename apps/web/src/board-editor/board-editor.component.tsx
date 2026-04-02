@@ -1,6 +1,6 @@
 "use client";
 
-import type { Boards, Id } from "@repo/common";
+import type { Id } from "@repo/common";
 import type { PropsWithChildren } from "react";
 import type { NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
@@ -12,9 +12,10 @@ import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
 import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
+import type { NodeBase } from "@repo/boards-common";
 
 type Props = PropsWithChildren<{
-    nodes: Boards.NodeBase[];
+    nodes: NodeBase[];
 
     boardId: Id;
 

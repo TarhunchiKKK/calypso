@@ -1,8 +1,8 @@
+import type { NodeStyles } from "@repo/boards-common";
 import { TextAlignCenter, TextAlignEnd, TextAlignJustify, TextAlignStart } from "lucide-react";
 import type { DropdownItem } from "@/shared/ui";
-import type { Boards } from "@repo/common";
 
-export const TextAligns: DropdownItem<Boards.NodeStyles["textAlign"]>[] = [
+export const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
     {
         value: "left",
         label: <TextAlignStart />

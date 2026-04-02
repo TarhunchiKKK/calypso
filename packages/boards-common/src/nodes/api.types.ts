@@ -1,4 +1,4 @@
-import type { Id } from "../../shared/db.types";
+import type { Id } from "@repo/common";
 import type { AnyNode } from "./compose.types";
 
 export type CreateManyNodesRequest = {

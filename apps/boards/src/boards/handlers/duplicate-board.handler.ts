@@ -2,14 +2,14 @@ import { NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Boards, Id } from "@repo/common";
+import type { Id } from "@repo/common";
 import type { Model } from "mongoose";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import type { Repository } from "typeorm";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";
 import { Board } from "../entities/board.entity";
 
-export class DuplicateBoardCommand extends Command<Boards.Board> {
+export class DuplicateBoardCommand extends Command<Board> {
     public constructor(public dto: DuplicateBoardDto) {
         super();
     }

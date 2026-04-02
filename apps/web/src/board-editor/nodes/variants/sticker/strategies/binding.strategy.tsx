@@ -1,7 +1,7 @@
-import type { Boards } from "@repo/common";
+import type { StickerNode } from "@repo/boards-common";
 import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
 
-export class StickerBindingStrategy extends NodeBindingStrategy<Boards.StickerNode> {
+export class StickerBindingStrategy extends NodeBindingStrategy<StickerNode> {
     public override getReferencePoints() {
         return [
             { x: 0, y: 0 },

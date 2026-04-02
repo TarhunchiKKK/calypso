@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { Boards, Rect } from "@repo/common";
+import type { TextNode as TextNodeType } from "@repo/boards-common";
+import type { Rect } from "@repo/common";
 import { NodeBase } from "./node-base.schema";
 
 @Schema()
-export class TextNode extends NodeBase implements Boards.TextNode {
+export class TextNode extends NodeBase implements TextNodeType {
     @Prop({ type: String, required: true })
     public declare type: "text";
 

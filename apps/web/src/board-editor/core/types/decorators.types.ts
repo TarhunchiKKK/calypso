@@ -1,10 +1,11 @@
-import type { Boards, Id } from "@repo/common";
+import type { NodeBase, NodeTypes } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
 
-export type Decoratable<T extends Boards.NodeBase = Boards.NodeBase> = {
+export type Decoratable<T extends NodeBase = NodeBase> = {
     get id(): Id;
 
-    get type(): Boards.NodeTypes;
+    get type(): NodeTypes;
 
     get data(): T;
 
