@@ -1,8 +1,8 @@
 import type { Boards } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 
-export class ArrowCreatingStartNodesMapper extends NodesMapper {
+export class ArrowCreationNodesMapper extends NodesMapper {
     public static from(nodes: Boards.NodeBase[]) {
-        return new ArrowCreatingStartNodesMapper(nodes);
+        return new ArrowCreationNodesMapper(nodes);
     }
 }

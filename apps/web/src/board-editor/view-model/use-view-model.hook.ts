@@ -5,8 +5,7 @@ import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
-import { useArrowCreatingEndViewModel } from "./variants/arrow-creating-end/view-model";
-import { useArrowCreatingStartViewModel } from "./variants/arrow-creating-start/view-model";
+import { useArrowCreationViewModel } from "./variants/arrow-creating/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
@@ -34,8 +33,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
 
     const idleViewModel = useIdleViewModel(newParams);
     const stickersCreationViewModel = useStickersCreationViewModel(newParams);
-    const arrowCreatingStartViewModel = useArrowCreatingStartViewModel(newParams);
-    const arrowCreatingEndViewModel = useArrowCreatingEndViewModel(newParams);
+    const arrowCreationViewModel = useArrowCreationViewModel(newParams);
     const arrowBindingViewModel = useArrowBindingViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
     const shapesCreationViewModel = useShapesCreationViewModel(newParams);
@@ -55,11 +53,8 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "stickers-creation":
             viewModel = stickersCreationViewModel();
             break;
-        case "arrow-creating-start":
-            viewModel = arrowCreatingStartViewModel();
-            break;
-        case "arrow-creating-end":
-            viewModel = arrowCreatingEndViewModel(viewState);
+        case "arrow-creation":
+            viewModel = arrowCreationViewModel();
             break;
         case "arrow-binding":
             viewModel = arrowBindingViewModel(viewState);

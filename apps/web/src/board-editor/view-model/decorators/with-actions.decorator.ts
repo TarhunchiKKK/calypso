@@ -1,13 +1,13 @@
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import type { DecoratableViewModel } from "../types/view-model.types";
-import { switchToArrowCreatingStart } from "../variants/arrow-creating-start/switcher";
+import { switchToArrowCreation } from "../variants/arrow-creating/switcher";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
 import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
 
 const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-window", "dragging"];
-const arrowsViewStates: ViewState["type"][] = ["arrow-creating-start", "arrow-creating-end"];
+const arrowsViewStates: ViewState["type"][] = ["arrow-creation", "arrow-binding"];
 const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creation"];
 
 export function withActions(
@@ -31,7 +31,7 @@ export function withActions(
         },
         arrows: {
             isActive: isArrows,
-            onClick: () => setViewState(switchToArrowCreatingStart())
+            onClick: () => setViewState(switchToArrowCreation())
         },
         shapes: {
             isActive: isShapes,
