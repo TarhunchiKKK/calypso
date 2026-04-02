@@ -13,7 +13,7 @@ export class DecoratableNodeBuilder {
         return new DecoratableNodeBuilder(node);
     }
 
-    public select() {
+    public selection() {
         this.node = NodeDecoratorsFactory.selectable(this.node);
         return this;
     }
@@ -28,7 +28,7 @@ export class DecoratableNodeBuilder {
         return this;
     }
 
-    public resizable(size?: Rect, handler?: ResizeHandler) {
+    public resizing(size?: Rect, handler?: ResizeHandler) {
         this.node = NodeDecoratorsFactory.resizable(this.node, size, handler);
         return this;
     }

@@ -32,7 +32,7 @@ export class EditingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedNodeId === node.id) {
-                return DecoratableNodeBuilder.from(node).select().editing(this.endEditingHandler).build();
+                return DecoratableNodeBuilder.from(node).selection().editing(this.endEditingHandler).build();
             }
 
             return node.setHandlers(this.nodesHandlers);
