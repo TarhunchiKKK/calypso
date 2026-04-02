@@ -13,10 +13,9 @@ import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 
-// QUESTION: maybe rename fields of this class?
 export class NodeDecoratorsFactory {
     @CheckLocked()
-    public static selectable(node: Decoratable): Decoratable {
+    public static selection(node: Decoratable): Decoratable {
         const strategyCreator = SelectionStrategiesMap[node.type];
 
         if (!strategyCreator) {
@@ -27,7 +26,7 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static draggable(node: Decoratable, offset?: Offset) {
+    public static dragging(node: Decoratable, offset?: Offset) {
         const strategyCreator = DraggingStrategiesMap[node.type];
 
         if (!strategyCreator) {
@@ -37,9 +36,8 @@ export class NodeDecoratorsFactory {
         return new NodeDraggingDecorator(node, strategyCreator(), offset);
     }
 
-    // QUESTION: maybe rename fields of this class?
     @CheckLocked()
-    public static resizable(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
+    public static resizing(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
         const strategyCreator = ResizingStrategiesMap[node.type];
 
         if (!strategyCreator) {
@@ -50,7 +48,7 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static editable(node: Decoratable, handler: (node: NodeBase) => void) {
+    public static editing(node: Decoratable, handler: (node: NodeBase) => void) {
         const strategyCreator = EditingStrategiesMap[node.type];
 
         if (!strategyCreator) {

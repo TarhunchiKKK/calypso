@@ -38,14 +38,12 @@ export class SelectionNodesMapper extends NodesMapper {
             const nodeId = this.selectedIds.values().next().value as string;
 
             withResizing = withHandlers.map(node =>
-                node.id === nodeId ? NodeDecoratorsFactory.resizable(node, undefined, this.resizeHandler) : node
+                node.id === nodeId ? NodeDecoratorsFactory.resizing(node, undefined, this.resizeHandler) : node
             );
         } else {
             withResizing = withHandlers;
         }
 
-        return withResizing.map(node =>
-            this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selectable(node) : node
-        );
+        return withResizing.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
     }
 }

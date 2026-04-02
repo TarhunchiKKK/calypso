@@ -1,5 +1,5 @@
 import { NodesMapper } from "@/board-editor/core";
-import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
 import type { NodeBase } from "@repo/boards-common";
 import type { Id, Offset } from "@repo/common";
 
@@ -25,7 +25,7 @@ export class DraggingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id)) {
-                return NodeDecoratorsFactory.draggable(NodeDecoratorsFactory.selectable(node), this.offset);
+                return DecoratableNodeBuilder.from(node).selection().dragging(this.offset).build();
             }
 
             return node;
