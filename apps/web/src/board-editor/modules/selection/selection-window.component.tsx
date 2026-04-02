@@ -7,11 +7,11 @@ type Props = {
 export function SelectionWindow({ rect }: Props) {
     return (
         <div
-            className="absolute inset-0 bg-blue-500/30 border-2 border-blue-500"
+            className="absolute inset-0 bg-selection/30 border-2 border-selection"
             style={{
                 transform: `translate(${rect.x}px, ${rect.y}px)`,
                 width: rect.width,
-                height: rect.height
+                height: rect.height,
             }}
         />
     );

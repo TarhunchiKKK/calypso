@@ -1,6 +1,6 @@
 import type { ArrowNode } from "@repo/boards-common";
 import type { Decoratable } from "@/board-editor/core";
-import { NodeSelectionStrategy } from "@/board-editor/modules/selection";
+import { NodeSelectionStrategy, SELECTION_COLOR } from "@/board-editor/modules/selection";
 
 export class ArrowSelectionStrategy extends NodeSelectionStrategy {
     public override ui(node: Decoratable<ArrowNode>) {
@@ -14,8 +14,7 @@ export class ArrowSelectionStrategy extends NodeSelectionStrategy {
             ...node.data,
             styles: {
                 ...node.data.styles,
-                // REFACTOR: move this.color to constant
-                lineColor: "oklch(62.3% 0.214 259.815)"
+                lineColor: SELECTION_COLOR
             }
         };
     }

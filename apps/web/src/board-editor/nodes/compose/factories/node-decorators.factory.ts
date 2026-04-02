@@ -1,11 +1,11 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import { NodeBindingDecorator, type BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
+import { type BindingNodeHandlers, NodeBindingDecorator } from "@/board-editor/modules/arrows-binding";
 import { NodeDraggingDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
 import { NodeEditingDecorator } from "../../../modules/editing";
-import { type ResizeHandler, NodeResizingDecorator } from "../../../modules/resizing";
+import { NodeResizingDecorator, type ResizeHandler } from "../../../modules/resizing";
 import { NodeSelectionDecorator } from "../../../modules/selection";
 import { BindingStrategiesMap } from "../constants/binding-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
@@ -66,6 +66,6 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeBindingDecorator(node, strategyCreator(node.data, handlers));
+        return new NodeBindingDecorator(node, strategyCreator(handlers));
     }
 }
