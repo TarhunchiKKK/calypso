@@ -1,9 +1,9 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import type { Auth } from "@repo/common";
+import type { User } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 
-export class GetProfileQuery extends Query<Auth.User> {
+export class GetProfileQuery extends Query<User> {
     public constructor(public accessToken: string) {
         super();
     }

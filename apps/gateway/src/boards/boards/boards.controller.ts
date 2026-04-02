@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Boards, Id } from "@repo/common";
+import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
+import type { Id } from "@repo/common";
 import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/supabase/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/supabase/supabase.types";
@@ -11,8 +12,8 @@ export class BoardsController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     @Post()
-    public create(@Body() createBoardDto: Boards.CreateBoardDto) {
-        return this.boardsService.create(createBoardDto);
+    public create(@Authorized() payload: TokenPayload, @Body() createBoardDto: CreateBoardDto) {
+        return this.boardsService.create(payload.userId, createBoardDto);
     }
 
     @Get()
@@ -21,11 +22,7 @@ export class BoardsController {
     }
 
     @Patch(":id")
-    public update(
-        @Param("id") id: Id,
-        @Authorized() payload: TokenPayload,
-        @Body() updateBoardDto: Boards.UpdateBoardDto
-    ) {
+    public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() updateBoardDto: UpdateBoardDto) {
         return this.boardsService.update(id, payload.userId, updateBoardDto);
     }
 

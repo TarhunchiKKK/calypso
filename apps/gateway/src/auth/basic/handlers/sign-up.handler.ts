@@ -1,10 +1,10 @@
 import { BadRequestException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { Auth } from "@repo/common";
+import type { AuthResponse } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 import type { SignUpDto } from "../dto/sign-up.dto";
 
-export class SignUpCommand extends Command<Auth.AuthResponse> {
+export class SignUpCommand extends Command<AuthResponse> {
     public constructor(public dto: SignUpDto) {
         super();
     }

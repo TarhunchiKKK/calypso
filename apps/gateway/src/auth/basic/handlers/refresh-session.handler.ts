@@ -1,9 +1,9 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import type { Auth } from "@repo/common";
+import type { AuthResponse } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 
-export class RefreshSessionQuery extends Query<Auth.AuthResponse> {
+export class RefreshSessionQuery extends Query<AuthResponse> {
     public constructor(public refreshToken: string) {
         super();
     }

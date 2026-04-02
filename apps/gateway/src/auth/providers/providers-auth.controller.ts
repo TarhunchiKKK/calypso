@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Param, Post, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
-import type { Auth } from "@repo/common";
+import type { OAuthProviders } from "@repo/common";
 import type { Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { Authorization } from "../lib/supabase/security/authorization.decorator";
@@ -16,7 +16,7 @@ export class ProvidersAuthController {
     ) {}
 
     @Post("sign-in/:provider")
-    public async signIn(@Param("provider") provider: Auth.OAuthProviders) {
+    public async signIn(@Param("provider") provider: OAuthProviders) {
         return await this.providersAuthService.signIn(provider);
     }
 

@@ -1,5 +1,6 @@
-import type { RelativePoint } from "../../shared/geometry.types";
-import type { NodeBase, NodeStyles, RectNode } from "./core.types";
+import type { RelativePoint } from "@repo/common";
+import type { NodeBase, RectNode } from "./core.types";
+import type { NodeStyles } from "./styles.types";
 
 export type StickerNode = RectNode & {
     type: "sticker";
