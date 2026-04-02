@@ -11,7 +11,7 @@ import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
-import { useSwitchToResizing } from "../resizing/switcher";
+import { switchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
@@ -22,8 +22,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const selectionWindow = useSwitchToSelectionWindow(params);
 
     const dragging = useSwitchToDragging(params);
-
-    const resizing = useSwitchToResizing(params);
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
@@ -73,7 +71,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             if (node.type === "arrow") {
                 setViewState(switchToArrowBinding({ nodeId, direction }));
             } else {
-                resizing.onMouseDown(nodeId, direction);
+                setViewState(switchToResizing({ nodeId, direction }));
             }
         };
 
