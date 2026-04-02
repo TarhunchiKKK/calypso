@@ -1,8 +1,8 @@
 import type { Rect } from "@repo/common";
-import { type Decoratable, NodeDecorator } from "../../../core";
+import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeResizingStrategy } from "./node-resizing.strategy";
 
-export class ResizableNodeDecorator extends NodeDecorator {
+export class NodeResizingDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
         protected readonly strategy: NodeResizingStrategy,

@@ -1,6 +1,6 @@
 import type { NodeResizingStrategy } from "@/board-editor/modules/resizing";
 import { ArrowResizingStrategy } from "../../variants/arrow/strategies/resizing.strategy";
-import { RectNodeResizingStrategy } from "../../variants/shared/strategies";
+import { RectNodeResizingStrategy } from "../../shared/strategies";
 import type { StrategiesMap } from "./types";
 
 export const ResizingStrategiesMap: StrategiesMap<typeof NodeResizingStrategy> = {

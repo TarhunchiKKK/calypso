@@ -1,5 +1,6 @@
 export { NodeSelectionStrategy } from "./node-selecting.strategy";
-export * from "./select-nodes.helper";
-export { SelectableNodeDecorator } from "./selected-node.decorator";
+export { NodeSelectionDecorator } from "./node-selection.decorator";
+export { selectNodes } from "./select-nodes.helper";
 export { SelectionWindow } from "./selection-window.component";
-export * from "./types";
+export type { NodesSelectionMode } from "./types";
+export { SELECTION_COLOR } from "./ui.constants";

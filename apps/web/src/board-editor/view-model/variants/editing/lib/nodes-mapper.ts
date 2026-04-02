@@ -1,7 +1,7 @@
-import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
-import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
+import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
+import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
 
 export class EditingNodesMapper extends NodesMapper {
     private selectedNodeId!: Id;
@@ -32,10 +32,7 @@ export class EditingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedNodeId === node.id) {
-                return NodeDecoratorsFactory.editable(
-                    NodeDecoratorsFactory.selectable(node.clone()),
-                    this.endEditingHandler
-                );
+                return DecoratableNodeBuilder.from(node).selection().editing(this.endEditingHandler).build();
             }
 
             return node.setHandlers(this.nodesHandlers);

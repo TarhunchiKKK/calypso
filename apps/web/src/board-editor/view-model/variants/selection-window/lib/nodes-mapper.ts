@@ -25,7 +25,7 @@ export class SelectionWindowNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id) || this.selectionWIndowIds.has(node.id)) {
-                return NodeDecoratorsFactory.selectable(node);
+                return NodeDecoratorsFactory.selection(node);
             }
 
             return node;

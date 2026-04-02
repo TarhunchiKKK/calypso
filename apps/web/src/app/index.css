@@ -5,6 +5,7 @@
     .scrollbar-none::-webkit-scrollbar {
         display: none;
     }
+
     .scrollbar-none {
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -51,6 +52,11 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
+
+    /* Custom */
+    --color-selection: var(--selection);
+    --color-resizing: var(--resizing);
+    --color-binding: var(--binding);
 }
 
 :root {
@@ -86,6 +92,11 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+
+    /* Custom */
+    --selection: oklch(62.3% 0.214 259.815);
+    --resizing: oklch(62.3% 0.214 259.815);
+    --binding: oklch(62.3% 0.214 259.815);
 }
 
 .dark {
@@ -120,12 +131,18 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+
+    /* Custom */
+    --selection: oklch(62.3% 0.214 259.815);
+    --resizing: oklch(62.3% 0.214 259.815);
+    --binding: oklch(62.3% 0.214 259.815);
 }
 
 @layer base {
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
     }

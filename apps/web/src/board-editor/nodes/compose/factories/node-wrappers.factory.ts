@@ -14,6 +14,10 @@ type WrappersMap = {
 };
 
 export class NodeWrappersFactory {
+    public static is<T extends NodeTypes>(wrapper: NodeWrapper, type: T): wrapper is WrappersMap[T] {
+        return wrapper.type === type;
+    }
+
     public static wrap(allNodes: NodeBase[], node: NodeBase) {
         switch (node.type) {
             case "sticker":
@@ -30,9 +34,5 @@ export class NodeWrappersFactory {
             default:
                 throw new Error(`Unknown node type: ${node}`);
         }
-    }
-
-    public static is<T extends NodeTypes>(wrapper: NodeWrapper, type: T): wrapper is WrappersMap[T] {
-        return wrapper.type === type;
     }
 }

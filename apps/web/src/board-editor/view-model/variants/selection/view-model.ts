@@ -2,6 +2,7 @@ import type { Id } from "@repo/common";
 import { withNodeId } from "@/board-editor/core";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { selectNodes } from "@/board-editor/modules/selection";
+import { NodesFactory } from "@/board-editor/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
@@ -11,7 +12,7 @@ import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
-import { useSwitchToResizing } from "../resizing/switcher";
+import { switchToResizing } from "../resizing/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
@@ -22,8 +23,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const selectionWindow = useSwitchToSelectionWindow(params);
 
     const dragging = useSwitchToDragging(params);
-
-    const resizing = useSwitchToResizing(params);
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
@@ -70,10 +69,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 throw new Error(`Node with id=${nodeId} not found`);
             }
 
-            if (node.type === "arrow") {
+            if (NodesFactory.is(node, "arrow")) {
                 setViewState(switchToArrowBinding({ nodeId, direction }));
             } else {
-                resizing.onMouseDown(nodeId, direction);
+                setViewState(switchToResizing({ nodeId, direction }));
             }
         };
 

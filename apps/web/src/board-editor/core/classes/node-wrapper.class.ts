@@ -1,13 +1,11 @@
-import type { Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 import type { NodeBase } from "@repo/boards-common";
 
-// FIX: set same types for event names
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
-    onMouseUp?: (e: React.MouseEvent) => void;
+    onMouseUp?: React.MouseEventHandler;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
@@ -46,12 +44,6 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         this.handlers = handlers;
         return this;
     }
-
-    // DELETE
-    public abstract get rect(): Rect;
-
-    // DELETE
-    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

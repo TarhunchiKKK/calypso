@@ -3,7 +3,7 @@ import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
 import { ShapeVariantsReferencePointsMap } from "../lib/shape-variants-reference-points.map";
 
 export class ShapeBindingStrategy extends NodeBindingStrategy<ShapeNode> {
-    public override getReferencePoints() {
-        return ShapeVariantsReferencePointsMap[this.node.variant](this.node);
+    public override getReferencePoints(node: ShapeNode) {
+        return ShapeVariantsReferencePointsMap[node.variant](node);
     }
 }

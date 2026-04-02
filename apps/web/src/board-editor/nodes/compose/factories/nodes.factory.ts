@@ -1,8 +1,24 @@
-import type { ArrowNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type {
+    ArrowNode,
+    NodeBase,
+    NodeTypes,
+    NodeTypesMap,
+    ShapeNode,
+    StickerNode,
+    TextNode
+} from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
 
 export class NodesFactory {
+    public static is<T extends NodeTypes>(node: NodeBase, type: T): node is NodeTypesMap[T] {
+        return node.type === type;
+    }
+
+    public static are<T extends NodeTypes>(nodes: NodeBase[], type: T): nodes is NodeTypesMap[T][] {
+        return nodes.every(node => node.type === type);
+    }
+
     public static sticker(data: { point: Point }): StickerNode {
         return {
             id: crypto.randomUUID(),

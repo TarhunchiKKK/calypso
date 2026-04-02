@@ -16,6 +16,6 @@ export class StylingNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selectable(node) : node));
+        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
     }
 }

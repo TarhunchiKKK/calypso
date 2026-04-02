@@ -6,7 +6,7 @@ import { switchToIdle } from "../../idle/switcher";
 import { switchToSelection } from "../../selection/switcher";
 import type { SelectionWindowViewState } from "../view-state";
 import type { Rect } from "@repo/common";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
@@ -14,8 +14,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
         selectedNodesIds = nodesModel.nodes
-            .map(node => NodeWrappersFactory.wrap(nodesModel.nodes, node))
-            .filter(node => Geometry.rectsIntersecting(selectionWindowRect, node.rect))
+            .filter(node => Geometry.rectsIntersecting(selectionWindowRect, NodeRectsFactory.rect(node)))
             .map(node => node.id);
     }
 

@@ -1,5 +1,5 @@
 import type { Point, Rect } from "@repo/common";
-import type { ResizeDirection } from "../types";
+import type { ResizeDirection } from "./types";
 
 /**
  * Calculates the new dimensions and position of a rectangle after a resize operation.

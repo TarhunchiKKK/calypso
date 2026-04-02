@@ -35,7 +35,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
 
         if (newSize) {
             nodesModel.service.updateOne(
-                NodeDecoratorsFactory.resizable(NodeWrappersFactory.wrap(nodesModel.nodes, node), newSize).data
+                NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(nodesModel.nodes, node), newSize).data
             );
         }
 

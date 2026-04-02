@@ -33,7 +33,7 @@ export class ArrowBindingNodesMapper extends NodesMapper {
     public override map() {
         return this.nodes.map(node => {
             if (node.id === this.arrowId) {
-                return DecoratableNodeBuilder.from(node).select().resizable().build();
+                return DecoratableNodeBuilder.from(node).selection().resizing().build();
             }
 
             if (node.id === this.bindingNodeId) {

@@ -2,7 +2,7 @@ import type { Offset } from "@repo/common";
 import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeDraggingStrategy } from "./node-dragging.strategy";
 
-export class DraggableNodeDecorator extends NodeDecorator {
+export class NodeDraggingDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
         protected readonly strategy: NodeDraggingStrategy,

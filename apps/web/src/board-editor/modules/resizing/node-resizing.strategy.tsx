@@ -1,6 +1,6 @@
 import type { Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import type { ResizeHandler } from "../types";
+import type { ResizeHandler } from "./types";
 
 export abstract class NodeResizingStrategy {
     public constructor(protected readonly handler?: ResizeHandler) {}
