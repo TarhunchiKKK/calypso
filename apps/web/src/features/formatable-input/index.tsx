@@ -1,4 +1,4 @@
-import type { OmitFields } from "@/shared/lib/typescript";
+import type { OmitFields } from "@repo/common";
 import { FormatableEditor, type FormatableEditorProps } from "./compose/formatable-editor.component";
 import { FormatableDocumentKeyBindings, FormatableTextareaKeyBindings } from "./compose/key-bindings.constants";
 
