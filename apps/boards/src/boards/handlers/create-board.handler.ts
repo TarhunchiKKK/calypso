@@ -2,13 +2,12 @@ import { Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AccessRightsService } from "@repo/api";
-import type { Boards } from "@repo/common";
 import type { ProjectRoles } from "@repo/common/dist/projects";
 import type { Repository } from "typeorm";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import { Board } from "../entities/board.entity";
 
-export class CreateBoardCommand extends Command<Boards.Board> {
+export class CreateBoardCommand extends Command<Board> {
     public constructor(public dto: CreateBoardDto) {
         super();
     }

@@ -2,11 +2,11 @@ import { Inject } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AccessRightsService } from "@repo/api";
-import type { Boards, Id } from "@repo/common";
+import type { Id } from "@repo/common";
 import { In, type Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 
-export class FindAllBoardsQuery extends Query<Boards.Board[]> {
+export class FindAllBoardsQuery extends Query<Board[]> {
     public constructor(public userId: Id) {
         super();
     }

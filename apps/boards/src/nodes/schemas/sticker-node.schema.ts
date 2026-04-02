@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { Boards, Rect } from "@repo/common";
+import type { StickerNode as StickerNodeType } from "@repo/boards-common";
+import type { Rect } from "@repo/common";
 import { NodeBase } from "./node-base.schema";
 
 @Schema()
-export class StickerNode extends NodeBase implements Boards.StickerNode {
+export class StickerNode extends NodeBase implements StickerNodeType {
     @Prop({ type: String, required: true })
     public declare type: "sticker";
 

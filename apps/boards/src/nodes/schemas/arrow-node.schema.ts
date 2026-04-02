@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import type { ArrowNode as ArrowNodeType } from "@repo/boards-common";
+import type { RelativePoint } from "@repo/common";
 import { NodeBase } from "./node-base.schema";
-import { Boards, RelativePoint } from "@repo/common";
 
 @Schema()
-export class ArrowNode extends NodeBase implements Boards.ArrowNode {
+export class ArrowNode extends NodeBase implements ArrowNodeType {
     @Prop({ type: String, required: true })
     public declare type: "arrow";
 
