@@ -2,6 +2,7 @@ import type { Id } from "@repo/common";
 import { withNodeId } from "@/board-editor/core";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import { selectNodes } from "@/board-editor/modules/selection";
+import { NodesFactory } from "@/board-editor/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
@@ -68,7 +69,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 throw new Error(`Node with id=${nodeId} not found`);
             }
 
-            if (node.type === "arrow") {
+            if (NodesFactory.is(node, "arrow")) {
                 setViewState(switchToArrowBinding({ nodeId, direction }));
             } else {
                 setViewState(switchToResizing({ nodeId, direction }));
