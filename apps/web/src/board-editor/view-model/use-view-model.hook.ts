@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { OmitFields } from "@/shared/lib/typescript";
+import { ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
@@ -26,6 +27,10 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         ...params,
         setViewState
     };
+
+    useEffect(() => {
+        params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
+    }, [params.nodesModel.service.middleware.add]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const stickersCreationViewModel = useStickersCreationViewModel(newParams);

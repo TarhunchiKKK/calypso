@@ -1,24 +1,16 @@
 import type { Boards, Id } from "@repo/common";
-import { type Dispatch, type SetStateAction, useRef } from "react";
-
-export type NodesServiceMiddlewarePayload =
-    | { operation: "create" | "update"; nodes: Boards.NodeBase[] }
-    | { operation: "remove"; nodes: Id[] };
-
-export type NodesServiceMiddleware = (
-    prev: Boards.NodeBase[],
-    payload: NodesServiceMiddlewarePayload
-) => Boards.NodeBase[];
+import type { Dispatch, SetStateAction } from "react";
+import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
 export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBase[]>>) {
-    const middlewaresRef = useRef<NodesServiceMiddleware[]>([]);
+    const middleware = useNodesServiceMiddleware();
 
     const setWithMiddleware = (
         payload: NodesServiceMiddlewarePayload,
         updateFn: (prev: Boards.NodeBase[]) => Boards.NodeBase[]
     ) => {
         setNodes(nodes => {
-            const result = middlewaresRef.current.reduce((copy, middleware) => middleware(copy, payload), [...nodes]);
+            const result = middleware.apply(nodes, payload);
 
             return updateFn(result);
         });
@@ -56,7 +48,6 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBas
             },
             nodes => nodes.filter(node => node.id !== id)
         );
-        setNodes(nodes => nodes.filter(node => node.id !== id));
     };
 
     const removeMany = (ids: Set<Id>) => {
@@ -73,7 +64,16 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<Boards.NodeBas
         setNodes([]);
     };
 
-    return { createOne, updateOne, replaceAll: setNodes, removeOne, updateManyWithFn, removeMany, removeAll };
+    return {
+        createOne,
+        updateOne,
+        replaceAll: setNodes,
+        removeOne,
+        updateManyWithFn,
+        removeMany,
+        removeAll,
+        middleware
+    };
 }
 
 export type NodesService = ReturnType<typeof useNodesService>;

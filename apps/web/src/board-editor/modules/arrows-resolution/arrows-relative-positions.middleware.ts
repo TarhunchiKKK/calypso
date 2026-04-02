@@ -1,7 +1,7 @@
 import type { Boards } from "@repo/common";
-import type { NodesServiceMiddleware } from "@/entities/nodes/model/use-nodes-service.hook";
-import { Geometry } from "@/shared/lib/geometry";
 import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
+import type { NodesServiceMiddleware } from "@/entities/nodes";
+import { Geometry } from "@/shared/lib/geometry";
 
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     // FIX: type casting
