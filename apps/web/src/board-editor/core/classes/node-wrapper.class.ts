@@ -2,11 +2,10 @@ import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 import type { NodeBase } from "@repo/boards-common";
 
-// FIX: set same types for event names
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
-    onMouseUp?: (e: React.MouseEvent) => void;
+    onMouseUp?: React.MouseEventHandler;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
