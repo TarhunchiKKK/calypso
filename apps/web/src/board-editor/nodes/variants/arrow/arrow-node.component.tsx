@@ -14,16 +14,8 @@ type Props = PropsWithChildren<{
     handlers: NodeHandlers;
 }>;
 
-export function ArrowNodeComponent({
-    node,
-    absolutePosition,
-    handlers,
-    children,
-}: Props) {
-    const dimensions = calculateArrowHeadDimensions(
-        node.styles.angleType,
-        absolutePosition,
-    );
+export function ArrowNodeComponent({ node, absolutePosition, handlers, children }: Props) {
+    const dimensions = calculateArrowHeadDimensions(node.styles.angleType, absolutePosition);
 
     const renderArrowHead = ArrowHeadsMap[node.styles.angleType];
     const renderLine = ArrowLinesMap[node.styles.lineType];

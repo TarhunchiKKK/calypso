@@ -7,7 +7,7 @@ import { ArrowNodeComponent } from "./arrow-node.component";
 export class ArrowNodeWrapper extends NodeWrapper<Boards.ArrowNode> {
     public constructor(
         protected node: Boards.ArrowNode,
-        public absolutePosition: ArrowAbsolutePosition,
+        public absolutePosition: ArrowAbsolutePosition
     ) {
         super(node);
     }

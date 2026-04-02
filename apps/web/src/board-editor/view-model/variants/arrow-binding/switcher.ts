@@ -21,7 +21,7 @@ export function switchToArrowBinding({ nodeId, direction }: Params): ArrowBindin
 
     return {
         type: "arrow-binding",
-        nodeId: nodeId,
+        arrowId: nodeId,
         side: isStartSide ? "start" : "end"
     };
 }

@@ -1,13 +1,13 @@
+import type { Id, Rect } from "@repo/common";
 import { useState } from "react";
 import { applyResizing } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToSelection } from "../../selection/switcher";
 import type { ResizingViewState } from "../view-state";
-import type { Id, Rect } from "@repo/common";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [newSize, setNewSize] = useState<Rect>();

@@ -67,7 +67,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
             const node = nodesModel.nodes.find(node => node.id === nodeId);
 
             if (!node) {
-                throw new Error(`useSelectionViewModel -> handleResize: Node with id ${nodeId} not found`);
+                throw new Error(`Node with id=${nodeId} not found`);
             }
 
             if (node.type === "arrow") {

@@ -1,6 +1,6 @@
 import type { Boards, Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import { BindableNodeDecorator } from "@/board-editor/modules/arrows-binding";
+import { BindableNodeDecorator, type BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
 import { EditableNodeDecorator } from "../../../modules/editing";
@@ -60,20 +60,13 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static bindable(node: Decoratable) {
+    public static bindable(node: Decoratable, handlers: BindingNodeHandlers) {
         const strategyCreator = BindingStrategiesMap[node.type];
 
         if (!strategyCreator) {
             return node;
         }
 
-        return new BindableNodeDecorator(
-            node,
-            strategyCreator(
-                node.data,
-                () => {},
-                () => {}
-            )
-        );
+        return new BindableNodeDecorator(node, strategyCreator(node.data, handlers));
     }
 }

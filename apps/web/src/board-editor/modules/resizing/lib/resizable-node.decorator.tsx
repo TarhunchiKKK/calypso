@@ -6,7 +6,7 @@ export class ResizableNodeDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
         protected readonly strategy: NodeResizingStrategy,
-        size?: Rect,
+        size?: Rect
     ) {
         super(entry);
 
@@ -21,7 +21,7 @@ export class ResizableNodeDecorator extends NodeDecorator {
                 {this.strategy.ui(this.entry)}
 
                 {children}
-            </>,
+            </>
         );
     }
 }

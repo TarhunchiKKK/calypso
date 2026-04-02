@@ -7,23 +7,8 @@ import type { StrategiesMap } from "./types";
 
 // FIX: simplify strategy params (remove node)
 export const BindingStrategiesMap: StrategiesMap<typeof NodeBindingStrategy> = {
-    sticker: node =>
-        new StickerBindingStrategy(
-            node as Boards.StickerNode,
-            () => {},
-            () => {}
-        ),
+    sticker: (node, handlers) => new StickerBindingStrategy(node as Boards.StickerNode, handlers),
     arrow: null,
-    text: node =>
-        new TextNodeBindingStrategy(
-            node as Boards.TextNode,
-            () => {},
-            () => {}
-        ),
-    shape: node =>
-        new ShapeBindingStrategy(
-            node as Boards.ShapeNode,
-            () => {},
-            () => {}
-        )
+    text: (node, handlers) => new TextNodeBindingStrategy(node as Boards.TextNode, handlers),
+    shape: (node, handlers) => new ShapeBindingStrategy(node as Boards.ShapeNode, handlers)
 };
