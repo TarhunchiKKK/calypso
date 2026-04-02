@@ -1,14 +1,13 @@
 {
     "name": "@repo/common",
     "version": "0.0.0",
+    "license": "MIT",
+    "private": true,
     "main": "./dist/entry.js",
-    "devDependencies": {
-        "@repo/eslint-config": "*",
-        "@repo/typescript-config": "*",
-        "@types/node": "^22.10.7",
-        "ts-loader": "^9.4.3",
-        "ts-node": "^10.9.2",
-        "typescript": "5.5.4"
+    "files": ["./dist/**"],
+    "types": "./dist/entry.d.ts",
+    "publishConfig": {
+        "access": "public"
     },
     "exports": {
         ".": {
@@ -20,15 +19,16 @@
             "require": "./dist/*.js"
         }
     },
-    "files": ["./dist/**"],
-    "license": "MIT",
-    "private": true,
-    "publishConfig": {
-        "access": "public"
-    },
     "scripts": {
         "dev": "pnpm build --watch",
         "build": "tsc -b -v"
     },
-    "types": "./dist/entry.d.ts"
+    "devDependencies": {
+        "@repo/eslint-config": "*",
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "ts-loader": "^9.4.3",
+        "ts-node": "^10.9.2",
+        "typescript": "5.5.4"
+    }
 }
