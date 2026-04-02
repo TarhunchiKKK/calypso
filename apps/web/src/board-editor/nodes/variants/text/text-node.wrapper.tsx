@@ -7,10 +7,6 @@ export class TextNodeWrapper extends NodeWrapper<TextNode> {
         return this.node.rect;
     }
 
-    public override clone(data: Partial<TextNode> = {}) {
-        return new TextNodeWrapper({ ...this.node, ...data });
-    }
-
     public override render(children?: React.ReactNode) {
         return (
             <TextNodeComponent

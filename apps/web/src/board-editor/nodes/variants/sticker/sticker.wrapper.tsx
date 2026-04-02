@@ -7,11 +7,6 @@ export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
         return this.node.rect;
     }
 
-    // QUESTION: is this method necessary?
-    public override clone(data: Partial<StickerNode> = {}) {
-        return new StickerNodeWrapper({ ...this.node, ...data });
-    }
-
     public override render(children?: React.ReactNode) {
         return (
             <StickerComponent

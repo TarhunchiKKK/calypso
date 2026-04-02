@@ -16,10 +16,6 @@ export class ArrowNodeWrapper extends NodeWrapper<ArrowNode> {
         return Geometry.rectFromPoints(this.node.start, this.node.end);
     }
 
-    public override clone() {
-        return this;
-    }
-
     public override render(children?: React.ReactNode) {
         return (
             <ArrowNodeComponent

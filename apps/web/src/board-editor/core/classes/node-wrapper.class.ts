@@ -50,8 +50,5 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
     // DELETE
     public abstract get rect(): Rect;
 
-    // DELETE
-    public abstract clone(data?: Partial<T>): NodeWrapper<T>;
-
     public abstract render(children?: React.ReactNode): React.ReactNode;
 }

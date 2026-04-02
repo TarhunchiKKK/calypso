@@ -8,11 +8,6 @@ export class ShapeNodeWrapper extends NodeWrapper<ShapeNode> {
         return this.node.rect;
     }
 
-    public override clone() {
-        // TODO: implement
-        return this;
-    }
-
     public override render(children?: React.ReactNode) {
         return <ShapeNodeComponent key={this.node.id} node={this.node} handlers={this.handlers} children={children} />;
     }
