@@ -1,18 +1,13 @@
-import type { Rect } from "@repo/common";
+import type React from "react";
 import { type Decoratable, NodeDecorator } from "../../core";
-import type { NodeResizingStrategy } from "./node-resizing.strategy";
+import type { NodeSelectionStrategy } from "./node-selecting.strategy";
 
-export class ResizableNodeDecorator extends NodeDecorator {
+export class NodeSelectionDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: NodeResizingStrategy,
-        size?: Rect
+        protected readonly strategy: NodeSelectionStrategy
     ) {
         super(entry);
-
-        if (size) {
-            this.strategy.updateNodeSizes(this.entry, size);
-        }
     }
 
     public override render(children?: React.ReactNode) {

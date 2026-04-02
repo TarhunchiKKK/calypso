@@ -1,5 +1,5 @@
 export { NodeSelectionStrategy } from "./node-selecting.strategy";
 export * from "./select-nodes.helper";
-export { SelectableNodeDecorator } from "./selected-node.decorator";
+export { NodeSelectionDecorator } from "./node-selection.decorator";
 export { SelectionWindow } from "./selection-window.component";
 export * from "./types";
