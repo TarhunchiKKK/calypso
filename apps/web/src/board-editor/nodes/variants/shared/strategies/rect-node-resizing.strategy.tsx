@@ -1,7 +1,8 @@
 import type { RectNode } from "@repo/boards-common";
 import type { Rect } from "@repo/common";
 import { type Decoratable, getNodeId } from "@/board-editor/core";
-import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/board-editor/modules/resizing";
+import { ResizeBorders } from "../ui";
+import { NodeResizingStrategy, type ResizeDirection } from "@/board-editor/modules/resizing";
 
 export class RectNodeResizingStrategy extends NodeResizingStrategy {
     public override updateNodeSizes(node: Decoratable<RectNode>, size: Rect) {

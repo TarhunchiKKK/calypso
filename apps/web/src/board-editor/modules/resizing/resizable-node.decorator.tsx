@@ -1,5 +1,5 @@
 import type { Rect } from "@repo/common";
-import { type Decoratable, NodeDecorator } from "../../../core";
+import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeResizingStrategy } from "./node-resizing.strategy";
 
 export class ResizableNodeDecorator extends NodeDecorator {

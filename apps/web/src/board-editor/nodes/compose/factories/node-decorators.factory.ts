@@ -6,7 +6,7 @@ import { DraggableNodeDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
 import { EditableNodeDecorator } from "../../../modules/editing";
 import type { ResizeHandler } from "../../../modules/resizing";
-import { ResizableNodeDecorator } from "../../../modules/resizing/lib/resizable-node.decorator";
+import { ResizableNodeDecorator } from "../../../modules/resizing/resizable-node.decorator";
 import { SelectableNodeDecorator } from "../../../modules/selection";
 import { BindingStrategiesMap } from "../constants/binding-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
