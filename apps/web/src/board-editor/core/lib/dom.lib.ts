@@ -1,3 +1,4 @@
+import type { Id } from "@repo/common";
 import type React from "react";
 
 /**
@@ -32,7 +33,7 @@ export function getNodeId(e: React.MouseEvent) {
  * @param callback - A function to be called with the node ID and the original event.
  * @returns An event handler that extracts the node ID before invoking the callback.
  */
-export function withNodeId(callback: (nodeId: string, e: React.MouseEvent) => void) {
+export function withNodeId(callback: (nodeId: Id, e: React.MouseEvent) => void) {
     return (e: React.MouseEvent) => {
         const nodeId = getNodeId(e);
 

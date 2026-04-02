@@ -1,30 +1,30 @@
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards, Id } from "@repo/common";
 
 export class SelectionWindowNodesMapper extends NodesMapper {
-    private selectedIds!: Set<string>;
+    private selectedIds!: Set<Id>;
 
-    private selectionWIndowIds!: Set<string>;
+    private selectionWIndowIds!: Set<Id>;
 
-    public setSelectedIds(ids: Set<string>) {
+    public setSelectedIds(ids: Set<Id>) {
         this.selectedIds = ids;
         return this;
     }
 
-    public setSelectionWindowIds(selectedIds: Set<string>) {
+    public setSelectionWindowIds(selectedIds: Set<Id>) {
         this.selectionWIndowIds = selectedIds;
         return this;
     }
 
-    public static from(nodes: NodeBase[]) {
+    public static from(nodes: Boards.NodeBase[]) {
         return new SelectionWindowNodesMapper(nodes);
     }
 
     public override map() {
         return this.nodes.map(node => {
             if (this.selectedIds.has(node.id) || this.selectionWIndowIds.has(node.id)) {
-                return NodeDecoratorsFactory.select(node);
+                return NodeDecoratorsFactory.selectable(node);
             }
 
             return node;

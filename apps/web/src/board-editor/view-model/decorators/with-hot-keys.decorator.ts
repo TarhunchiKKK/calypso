@@ -1,6 +1,7 @@
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import { HotKeysMap } from "../../lib/hot-keys-map.constants";
-import type { ViewModel, ViewModelParams, ViewState } from "../types";
+import type { ViewModelParams, ViewState } from "../types";
+import type { DecoratableViewModel } from "../types/view-model.types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
 import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
@@ -8,8 +9,8 @@ import { switchToStickersCreation } from "../variants/stickers-creation/switcher
 export function withHotKeys(
     viewState: ViewState,
     { nodesModel, setViewState }: ViewModelParams,
-    viewModel: ViewModel
-): ViewModel {
+    viewModel: DecoratableViewModel
+): DecoratableViewModel {
     const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "editing") {
             return;

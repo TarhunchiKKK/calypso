@@ -1,3 +1,3 @@
-import { StickerNode, TextNode, ShapeNode } from "./variants.types";
+import type { ArrowNode, ShapeNode, StickerNode, TextNode } from "./variants.types";
 
-export type AnyNode = StickerNode | TextNode | ShapeNode;
+export type AnyNode = StickerNode | ArrowNode | TextNode | ShapeNode;

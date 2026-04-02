@@ -1,4 +1,4 @@
-import type { Point } from "@/shared/lib/geometry";
+import type { Point } from "@repo/common";
 
 export type ShapeSelectionViewState = {
     type: "shape-selection";

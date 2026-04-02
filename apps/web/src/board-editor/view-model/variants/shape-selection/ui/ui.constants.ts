@@ -1,14 +1,14 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
-import type { Offset } from "@/shared/lib/geometry";
+import type { Boards, Offset } from "@repo/common";
+import { Circle, Diamond, Hexagon, Square, Star, Triangle } from "lucide-react";
 
-export const AvailableShapeVariants: ShapeVariants[] = [
-    "rectangle",
-    "circle",
-    "triangle",
-    "diamond",
-    "star",
-    "hexagon"
-];
+export const ShapeVariantsIconsMap = {
+    rectangle: Square,
+    circle: Circle,
+    triangle: Triangle,
+    diamond: Diamond,
+    star: Star,
+    hexagon: Hexagon
+} satisfies Record<Boards.ShapeVariants, unknown>;
 
 export const IconsSizes = { width: 32, height: 32 };
 

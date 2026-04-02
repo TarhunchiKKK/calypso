@@ -1,5 +1,5 @@
+import type { Boards } from "@repo/common";
 import { Type } from "lucide-react";
-import type { NodeStyles } from "@/entities/nodes";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { BackgroundColorPlaceholder, TextColorPlaceholder } from "../constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "../constants/ui.constants";
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function ColorsGroup({ onUpdate }: Props) {
-    const handleBackgroundColorSelect = (backgroundColor: NodeStyles["backgroundColor"]) => {
+    const handleBackgroundColorSelect = (backgroundColor: Boards.NodeStyles["backgroundColor"]) => {
         onUpdate(node => ({
             ...node,
             styles: {
@@ -22,7 +22,7 @@ export function ColorsGroup({ onUpdate }: Props) {
         }));
     };
 
-    const handleTextColorSelect = (color: NodeStyles["color"]) => {
+    const handleTextColorSelect = (color: Boards.NodeStyles["textColor"]) => {
         onUpdate(node => ({
             ...node,
             styles: {

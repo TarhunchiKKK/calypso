@@ -1,4 +1,4 @@
-import type { Point } from "@/shared/lib/geometry";
+import type { Point } from "@repo/common";
 import type { ShapeSelectionViewState } from "./view-state";
 
 export function switchToShapeSelection(clickPoint: Point): ShapeSelectionViewState {

@@ -9,119 +9,127 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
-import { RectGrpc } from "./geometry";
+import { RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 
 const protobufPackage = "boards";
 
 export interface BoardGrpc {
-  id: string;
-  title: string;
-  creatorId: string;
-  createdAt: string;
-  updatedAt?: string | undefined;
+    id: string;
+    title: string;
+    creatorId: string;
+    createdAt: string;
+    updatedAt?: string | undefined;
 }
 
 export interface BoardGrpcResponse {
-  data?: BoardGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface CreateBoardGrpcRequest {
-  title: string;
-  userId: string;
+    title: string;
+    userId: string;
 }
 
 export interface DuplicateBoardGrpcRequest {
-  boardId: string;
-  userId: string;
+    boardId: string;
+    userId: string;
 }
 
 export interface FindAllBoardsGrpcRequest {
-  userId: string;
+    userId: string;
 }
 
 export interface BoardsList {
-  boards: BoardGrpc[];
+    boards: BoardGrpc[];
 }
 
 export interface FindAllBoardsGrpcResponse {
-  data?: BoardsList | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardsList | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface UpdateBoardGrpcRequest {
-  id: string;
-  userId: string;
-  title?: string | undefined;
+    id: string;
+    userId: string;
+    title?: string | undefined;
 }
 
 export interface RemoveBoardGrpcRequest {
-  id: string;
-  userId: string;
+    id: string;
+    userId: string;
 }
 
 export interface BoardNodeBaseGrpc {
-  id: string;
-  type: string;
-  locked: boolean;
-  styles: { [key: string]: any } | undefined;
+    id: string;
+    type: string;
+    locked: boolean;
+    styles: { [key: string]: any } | undefined;
 }
 
 export interface StickerBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  text: string;
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    text: string;
+}
+
+export interface ArrowBoardNodeGrpc {
+    base: BoardNodeBaseGrpc | undefined;
+    start: RelativePointGrpc | undefined;
+    end: RelativePointGrpc | undefined;
+    text?: string | undefined;
 }
 
 export interface TextBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  text: { [key: string]: any }[];
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    text: { [key: string]: any }[];
 }
 
 export interface ShapeBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  variant: string;
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    variant: string;
 }
 
 export interface BoardNodeGrpc {
-  sticker?: StickerBoardNodeGrpc | undefined;
-  text?: TextBoardNodeGrpc | undefined;
-  shape?: ShapeBoardNodeGrpc | undefined;
+    sticker?: StickerBoardNodeGrpc | undefined;
+    arrow?: ArrowBoardNodeGrpc | undefined;
+    text?: TextBoardNodeGrpc | undefined;
+    shape?: ShapeBoardNodeGrpc | undefined;
 }
 
 export interface CreateManyBoardNodesGrpcRequest {
-  nodes: BoardNodeGrpc[];
-  boardId: string;
-  userId: string;
+    nodes: BoardNodeGrpc[];
+    boardId: string;
+    userId: string;
 }
 
 export interface FindAllBoardNodesGrpcRequest {
-  boardId: string;
-  userId: string;
+    boardId: string;
+    userId: string;
 }
 
 export interface BoardNodesListGrpc {
-  nodes: BoardNodeGrpc[];
+    nodes: BoardNodeGrpc[];
 }
 
 export interface FindAllBoardNodesGrpcResponse {
-  data?: BoardNodesListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardNodesListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface UpdateManyBoardNodesGrpcRequest {
-  nodes: BoardNodeGrpc[];
-  boardId: string;
-  userId: string;
+    nodes: BoardNodeGrpc[];
+    boardId: string;
+    userId: string;
 }
 
 export interface RemoveManyBoardNodesGrpcRequest {
-  ids: string[];
-  boardId: string;
-  userId: string;
+    ids: string[];
+    boardId: string;
+    userId: string;
 }
 
 export const BOARDS_PACKAGE_NAME = "boards";
@@ -129,97 +137,100 @@ export const BOARDS_PACKAGE_NAME = "boards";
 wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struct.unwrap } as any;
 
 export interface BoardsServiceClient {
-  create(request: CreateBoardGrpcRequest): Observable<BoardGrpcResponse>;
+    create(request: CreateBoardGrpcRequest): Observable<BoardGrpcResponse>;
 
-  duplicate(request: DuplicateBoardGrpcRequest): Observable<BoardGrpcResponse>;
+    duplicate(request: DuplicateBoardGrpcRequest): Observable<BoardGrpcResponse>;
 
-  findAll(request: FindAllBoardsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
+    findAll(request: FindAllBoardsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
 
-  update(request: UpdateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
+    update(request: UpdateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  remove(request: RemoveBoardGrpcRequest): Observable<EmptyGrpcResponse>;
+    remove(request: RemoveBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardsServiceController {
-  create(
-    request: CreateBoardGrpcRequest,
-  ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
+    create(
+        request: CreateBoardGrpcRequest
+    ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
 
-  duplicate(
-    request: DuplicateBoardGrpcRequest,
-  ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
+    duplicate(
+        request: DuplicateBoardGrpcRequest
+    ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
 
-  findAll(
-    request: FindAllBoardsGrpcRequest,
-  ): Promise<FindAllBoardsGrpcResponse> | Observable<FindAllBoardsGrpcResponse> | FindAllBoardsGrpcResponse;
+    findAll(
+        request: FindAllBoardsGrpcRequest
+    ): Promise<FindAllBoardsGrpcResponse> | Observable<FindAllBoardsGrpcResponse> | FindAllBoardsGrpcResponse;
 
-  update(
-    request: UpdateBoardGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    update(
+        request: UpdateBoardGrpcRequest
+    ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  remove(
-    request: RemoveBoardGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    remove(
+        request: RemoveBoardGrpcRequest
+    ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 
 export function BoardsServiceControllerMethods() {
-  return function (constructor: Function) {
-    const grpcMethods: string[] = ["create", "duplicate", "findAll", "update", "remove"];
-    for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("BoardsService", method)(constructor.prototype[method], method, descriptor);
-    }
-    const grpcStreamMethods: string[] = [];
-    for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("BoardsService", method)(constructor.prototype[method], method, descriptor);
-    }
-  };
+    return function (constructor: Function) {
+        const grpcMethods: string[] = ["create", "duplicate", "findAll", "update", "remove"];
+        for (const method of grpcMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcMethod("BoardsService", method)(constructor.prototype[method], method, descriptor);
+        }
+        const grpcStreamMethods: string[] = [];
+        for (const method of grpcStreamMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcStreamMethod("BoardsService", method)(constructor.prototype[method], method, descriptor);
+        }
+    };
 }
 
 export const BOARDS_SERVICE_NAME = "BoardsService";
 
 export interface BoardNodesServiceClient {
-  createMany(request: CreateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    createMany(request: CreateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  findAll(request: FindAllBoardNodesGrpcRequest): Observable<FindAllBoardNodesGrpcResponse>;
+    findAll(request: FindAllBoardNodesGrpcRequest): Observable<FindAllBoardNodesGrpcResponse>;
 
-  updateMany(request: UpdateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    updateMany(request: UpdateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  removeMany(request: RemoveManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    removeMany(request: RemoveManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardNodesServiceController {
-  createMany(
-    request: CreateManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    createMany(
+        request: CreateManyBoardNodesGrpcRequest
+    ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  findAll(
-    request: FindAllBoardNodesGrpcRequest,
-  ): Promise<FindAllBoardNodesGrpcResponse> | Observable<FindAllBoardNodesGrpcResponse> | FindAllBoardNodesGrpcResponse;
+    findAll(
+        request: FindAllBoardNodesGrpcRequest
+    ):
+        | Promise<FindAllBoardNodesGrpcResponse>
+        | Observable<FindAllBoardNodesGrpcResponse>
+        | FindAllBoardNodesGrpcResponse;
 
-  updateMany(
-    request: UpdateManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    updateMany(
+        request: UpdateManyBoardNodesGrpcRequest
+    ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  removeMany(
-    request: RemoveManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    removeMany(
+        request: RemoveManyBoardNodesGrpcRequest
+    ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 
 export function BoardNodesServiceControllerMethods() {
-  return function (constructor: Function) {
-    const grpcMethods: string[] = ["createMany", "findAll", "updateMany", "removeMany"];
-    for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
-    }
-    const grpcStreamMethods: string[] = [];
-    for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
-    }
-  };
+    return function (constructor: Function) {
+        const grpcMethods: string[] = ["createMany", "findAll", "updateMany", "removeMany"];
+        for (const method of grpcMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
+        }
+        const grpcStreamMethods: string[] = [];
+        for (const method of grpcStreamMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcStreamMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
+        }
+    };
 }
 
 export const BOARD_NODES_SERVICE_NAME = "BoardNodesService";

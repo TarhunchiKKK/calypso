@@ -1,7 +1,7 @@
 import { StylesBar } from "@/board-editor/modules/styling";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToSelection } from "../selection/switcher";
 import { StylingNodesMapper } from "./lib/nodes-mapper";
 import type { StylingViewState } from "./view-state";
@@ -11,7 +11,7 @@ export function useStylingViewModel(params: ViewModelParams) {
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (viewState: StylingViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: StylingViewState): DecoratableViewModel => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => switchToSelection({ selectedIds: viewState.selectedIds })
@@ -19,7 +19,7 @@ export function useStylingViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: StylingNodesMapper.from(nodesModel.nodes).seteSelectedIds(viewState.selectedIds).map(),
+            nodes: StylingNodesMapper.from(nodesModel.nodes).setSelectedIds(viewState.selectedIds).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (

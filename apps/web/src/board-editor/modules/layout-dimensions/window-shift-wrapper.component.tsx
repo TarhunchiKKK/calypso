@@ -1,4 +1,4 @@
-import type { Offset } from "@/shared/lib/geometry";
+import type { Offset } from "@repo/common";
 import type { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { selectNodes } from "@/board-editor/modules/selection";
-import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import { Geometry, type Rect } from "@/shared/lib/geometry";
+import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToIdle } from "../../idle/switcher";
 import { switchToSelection } from "../../selection/switcher";
 import type { SelectionWindowViewState } from "../view-state";
+import type { Rect } from "@repo/common";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();
@@ -13,7 +14,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
         selectedNodesIds = nodesModel.nodes
-            .map(node => NodeDecoratorsFactory.wrap(node))
+            .map(node => NodeWrappersFactory.wrap(nodesModel.nodes, node))
             .filter(node => Geometry.rectsIntersecting(selectionWindowRect, node.rect))
             .map(node => node.id);
     }

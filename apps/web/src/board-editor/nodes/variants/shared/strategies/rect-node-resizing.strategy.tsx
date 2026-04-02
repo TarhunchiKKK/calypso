@@ -1,0 +1,25 @@
+import type { Boards, Rect } from "@repo/common";
+import { type Decoratable, getNodeId } from "@/board-editor/core";
+import { NodeResizingStrategy, ResizeBorders, type ResizeDirection } from "@/board-editor/modules/resizing";
+
+export class RectNodeResizingStrategy extends NodeResizingStrategy {
+    public override updateNodeSizes(node: Decoratable<Boards.RectNode>, size: Rect) {
+        node.data = { ...node.data, rect: size };
+    }
+
+    public override ui() {
+        const onResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
+            e.stopPropagation();
+
+            const nodeId = getNodeId(e);
+
+            if (!nodeId) {
+                throw new Error("Node id not found");
+            }
+
+            this.handler?.(nodeId, direction);
+        };
+
+        return <ResizeBorders main cross diagonal onResizeStart={onResizeStart} />;
+    }
+}

@@ -1,13 +1,14 @@
+import type { Boards } from "@repo/common";
 import { NodeWrapper } from "@/board-editor/core";
 import { StickerComponent } from "./sticker.component";
-import type { StickerNode } from "./sticker.type";
 
-export class StickerNodeWrapper extends NodeWrapper<StickerNode> {
+export class StickerNodeWrapper extends NodeWrapper<Boards.StickerNode> {
     public override get rect() {
         return this.node.rect;
     }
 
-    public override clone(data: Partial<StickerNode> = {}) {
+    // QUESTION: is this method necessary?
+    public override clone(data: Partial<Boards.StickerNode> = {}) {
         return new StickerNodeWrapper({ ...this.node, ...data });
     }
 

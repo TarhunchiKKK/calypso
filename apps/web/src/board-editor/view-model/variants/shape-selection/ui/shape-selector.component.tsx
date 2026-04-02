@@ -1,18 +1,17 @@
-import type { ShapeVariants } from "@/board-editor/nodes/variants/shape/shape-node.type";
-import { ShapeVariantIconsMap } from "@/board-editor/nodes/variants/shape/ui.constants";
+import type { Boards } from "@repo/common";
 import { Wrapper } from "@/shared/ui";
 import { Button } from "@/shared/ui/kit";
-import { AvailableShapeVariants, IconsSizes } from "./ui.constants";
+import { IconsSizes, ShapeVariantsIconsMap } from "./ui.constants";
 
 type Props = {
-    onSelect: (variant: ShapeVariants) => void;
+    onSelect: (variant: Boards.ShapeVariants) => void;
 };
 
 export function ShapeSelector({ onSelect }: Props) {
     return (
         <Wrapper className="grid grid-cols-3 gap-2 p-2">
-            {AvailableShapeVariants.map(variant => {
-                const VariantIcon = ShapeVariantIconsMap[variant];
+            {(Object.keys(ShapeVariantsIconsMap) as Boards.ShapeVariants[]).map(variant => {
+                const VariantIcon = ShapeVariantsIconsMap[variant];
 
                 return (
                     <Button

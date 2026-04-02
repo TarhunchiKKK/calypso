@@ -1,4 +1,4 @@
-import type { Rect } from "@/shared/lib/geometry";
+import type { Rect } from "@repo/common";
 import { type Decoratable, NodeDecorator } from "../../../core";
 import type { NodeResizingStrategy } from "./node-resizing.strategy";
 
@@ -11,14 +11,14 @@ export class ResizableNodeDecorator extends NodeDecorator {
         super(entry);
 
         if (size) {
-            this.strategy.updateNodeSizes(this.entry.wrapper, size);
+            this.strategy.updateNodeSizes(this.entry, size);
         }
     }
 
     public override render(children?: React.ReactNode) {
         return this.entry.render(
             <>
-                {this.strategy.ui()}
+                {this.strategy.ui(this.entry)}
 
                 {children}
             </>

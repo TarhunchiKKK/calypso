@@ -1,10 +1,11 @@
 import type { NodeResizingStrategy } from "@/board-editor/modules/resizing";
-import type { NodeTypes } from "@/entities/nodes";
-import type { ConstructorFunction } from "@/shared/lib/typescript";
-import { RectNodeResizingStrategy } from "../../variants/shared";
+import { ArrowResizingStrategy } from "../../variants/arrow/strategies/resizing.strategy";
+import { RectNodeResizingStrategy } from "../../variants/shared/strategies";
+import type { StrategiesMap } from "./types";
 
-export const ResizingStrategiesMap: Record<NodeTypes, ConstructorFunction<typeof NodeResizingStrategy>> = {
+export const ResizingStrategiesMap: StrategiesMap<typeof NodeResizingStrategy> = {
     sticker: handler => new RectNodeResizingStrategy(handler),
+    arrow: handler => new ArrowResizingStrategy(handler),
     text: handler => new RectNodeResizingStrategy(handler),
     shape: handler => new RectNodeResizingStrategy(handler)
 };

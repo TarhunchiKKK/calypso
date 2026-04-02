@@ -1,10 +1,10 @@
+import type { Boards } from "@repo/common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
-import type { ShapeNode } from "./shape-node.type";
-import { ShapeVariantIconsMap } from "./ui.constants";
+import { ShapeVariantsMap } from "./lib/shape-variants.map";
 
 type Props = PropsWithChildren<{
-    node: ShapeNode;
+    node: Boards.ShapeNode;
 
     handlers: NodeHandlers;
 }>;
@@ -17,16 +17,13 @@ export function ShapeNodeComponent({ node, handlers, children }: Props) {
         top: node.rect.y
     };
 
-    const iconStyles = {
-        fill: node.styles.backgroundColor,
-        color: node.styles.borderColor
-    };
-
-    const ShapeToRender = ShapeVariantIconsMap[node.variant];
+    const renderShape = ShapeVariantsMap[node.variant];
 
     return (
         <div data-id={node.id} className="absolute cursor-pointer" style={wrapperStyles} {...handlers}>
-            <ShapeToRender className="w-full h-full" {...iconStyles} />
+            <svg className="w-full h-full pointer-events-none overflow-visible" {...handlers}>
+                {renderShape(node, handlers)}
+            </svg>
 
             {children}
         </div>

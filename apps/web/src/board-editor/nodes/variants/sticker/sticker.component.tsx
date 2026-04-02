@@ -1,9 +1,9 @@
+import type { Boards } from "@repo/common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
-import type { StickerNode } from "./sticker.type";
 
 type Props = PropsWithChildren<{
-    node: StickerNode;
+    node: Boards.StickerNode;
 
     handlers: NodeHandlers;
 
@@ -26,7 +26,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
     const textStyles: CSSProperties = {
         fontFamily: node.styles.fontFamily,
         fontSize: node.styles.fontSize,
-        color: node.styles.color,
+        color: node.styles.textColor,
         textAlign: node.styles.textAlign
     };
 

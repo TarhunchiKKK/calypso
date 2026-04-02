@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { MousePointer2, StickerIcon } from "lucide-react";
-import { ActionButton, ActionsBar } from "../../../../src/board-editor/ui/action-bar.component";
+import { ActionsBar } from "@/board-editor/ui/actions-bar.component";
 
 const meta = {
     title: "Board Editor/ui/Actions Bar",
@@ -13,16 +12,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        children: (
-            <>
-                <ActionButton isActive={false} onClick={() => {}}>
-                    <MousePointer2 />
-                </ActionButton>
-
-                <ActionButton isActive={true} onClick={() => {}}>
-                    <StickerIcon />
-                </ActionButton>
-            </>
-        )
+        actions: {
+            idle: {
+                isActive: false,
+                onClick: () => {}
+            },
+            stickers: {
+                isActive: true,
+                onClick: () => {}
+            },
+            arrows: {
+                isActive: false,
+                onClick: () => {}
+            },
+            shapes: {
+                isActive: false,
+                onClick: () => {}
+            }
+        }
     }
 };

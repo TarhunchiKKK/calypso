@@ -1,16 +1,16 @@
-import type { NodeBase } from "@/entities/nodes";
-import { NodeDecoratorsFactory } from "../../nodes/compose/factories/node-decorators.factory";
+import type { Boards } from "@repo/common";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
-import type { Renderable } from "../types/ui.types";
+import type { Decoratable } from "../types/decorators.types";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 
 export abstract class NodesMapper {
     protected nodes: NodeWrapper[] = [];
 
-    public constructor(protected inputNodes: NodeBase[]) {
-        this.nodes = inputNodes.map(NodeDecoratorsFactory.wrap);
+    public constructor(protected inputNodes: Boards.NodeBase[]) {
+        this.nodes = inputNodes.map(node => NodeWrappersFactory.wrap(inputNodes, node));
     }
 
-    public map(): Renderable[] {
+    public map(): Decoratable[] {
         return this.nodes;
     }
 }

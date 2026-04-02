@@ -108,6 +108,16 @@ message StickerBoardNodeGrpc {
     string text = 3;
 }
 
+message ArrowBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
+
+    geometry.RelativePointGrpc start = 2;
+
+    geometry.RelativePointGrpc end = 3;
+
+    optional string text = 4;
+}
+
 message TextBoardNodeGrpc {
     BoardNodeBaseGrpc base = 1;
 
@@ -126,7 +136,9 @@ message ShapeBoardNodeGrpc {
 
 message BoardNodeGrpc {
     oneof specific {
-        StickerBoardNodeGrpc sticker = 2;
+        StickerBoardNodeGrpc sticker = 1;
+
+        ArrowBoardNodeGrpc arrow = 2;
 
         TextBoardNodeGrpc text = 3;
 

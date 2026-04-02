@@ -1,6 +1,8 @@
 import type React from "react";
 import type { ResizeDirection } from "./types";
 
+// QUESTION: should not this component be in `RectNodeResizingStrategy`
+
 type Props = {
     main?: boolean;
 

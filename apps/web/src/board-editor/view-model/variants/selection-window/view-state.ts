@@ -1,12 +1,12 @@
 import type { NodesSelectionMode } from "@/board-editor/modules/selection";
-import type { Point } from "@/shared/lib/geometry";
+import type { Id, Point } from "@repo/common";
 
 export type SelectionWindowViewState = {
     type: "selection-window";
 
     startPoint: Point;
 
-    selectedIds: Set<string>;
+    selectedIds: Set<Id>;
 
     selectionMode: NodesSelectionMode;
 };

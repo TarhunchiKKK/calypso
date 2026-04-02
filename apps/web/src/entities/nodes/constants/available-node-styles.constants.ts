@@ -1,13 +1,13 @@
-import type { NodeStyles } from "../types/node-styles.types";
+import type { Boards } from "@repo/common";
 
-export const AvailableFontFamilies: NodeStyles["fontFamily"][] = [
+export const AvailableFontFamilies: Boards.NodeStyles["fontFamily"][] = [
     "sans-serif",
     "fantasy",
     "math",
     "monospace"
 ] as const;
 
-export const AvailableFontSizes: NodeStyles["fontSize"][] = [4, 8, 12, 18, 24, 32, 48] as const;
+export const AvailableFontSizes: Boards.NodeStyles["fontSize"][] = [4, 8, 12, 18, 24, 32, 48] as const;
 
 export const AvailableColors = [
     "#FF3B30",
@@ -28,4 +28,4 @@ export const AvailableColors = [
     "#005F78"
 ];
 
-export const AvailableBorderRadiuses: NodeStyles["borderRadius"][] = [0, 4, 8, 16, 24, 9999];
+export const AvailableBorderRadiuses: Boards.NodeStyles["borderRadius"][] = [0, 4, 8, 16, 24, 9999];

@@ -1,12 +1,12 @@
-import { BoardEditorPage } from "../pages";
+import { CurrentUi } from "@/dev";
 import { Providers } from "./providers.component";
 
 export function App() {
     return (
         <Providers>
-            <BoardEditorPage />
+            {/* <BoardEditorPage /> */}
 
-            {/* <CurrentUi /> */}
+            <CurrentUi />
         </Providers>
     );
 }

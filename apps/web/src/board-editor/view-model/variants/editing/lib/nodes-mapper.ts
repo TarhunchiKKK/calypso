@@ -1,29 +1,29 @@
 import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@/entities/nodes";
+import type { Boards, Id } from "@repo/common";
 
 export class EditingNodesMapper extends NodesMapper {
-    private selectedNodeId!: string;
+    private selectedNodeId!: Id;
 
-    private endEditingHandler!: (node: NodeBase) => void;
+    private endEditingHandler!: (node: Boards.NodeBase) => void;
 
     private nodesHandlers!: NodeHandlers;
 
-    public static from(nodes: NodeBase[]) {
+    public static from(nodes: Boards.NodeBase[]) {
         return new EditingNodesMapper(nodes);
     }
 
-    public setSelectedNodeId(selectedNodeId: string) {
+    public setSelectedNodeId(selectedNodeId: Id) {
         this.selectedNodeId = selectedNodeId;
         return this;
     }
 
-    public setEndEditingHandler(endEditingHandler: (node: NodeBase) => void) {
+    public setEndEditingHandler(endEditingHandler: (node: Boards.NodeBase) => void) {
         this.endEditingHandler = endEditingHandler;
         return this;
     }
 
-    public setNodeshandlers(nodesHandlers: NodeHandlers) {
+    public setNodesHandlers(nodesHandlers: NodeHandlers) {
         this.nodesHandlers = nodesHandlers;
         return this;
     }
@@ -32,7 +32,7 @@ export class EditingNodesMapper extends NodesMapper {
         return this.nodes.map(node => {
             if (this.selectedNodeId === node.id) {
                 return NodeDecoratorsFactory.editable(
-                    NodeDecoratorsFactory.select(node.clone()),
+                    NodeDecoratorsFactory.selectable(node.clone()),
                     this.endEditingHandler
                 );
             }

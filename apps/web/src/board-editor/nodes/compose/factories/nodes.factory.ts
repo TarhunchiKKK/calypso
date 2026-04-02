@@ -1,14 +1,10 @@
+import type { Boards, Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
-import type { Point } from "@/shared/lib/geometry";
-import type { ShapeNode } from "../../variants/shape/shape-node.type";
-import type { StickerNode } from "../../variants/sticker/sticker.type";
-import type { TextNode } from "../../variants/text/text-node.type";
 
 export class NodesFactory {
-    public static sticker(data: Pick<StickerNode, "boardId"> & { point: Point }): StickerNode {
+    public static sticker(data: { point: Point }): Boards.StickerNode {
         return {
             id: crypto.randomUUID(),
-            boardId: data.boardId,
             type: "sticker",
             locked: false,
             text: "Hello",
@@ -21,13 +17,23 @@ export class NodesFactory {
         };
     }
 
-    public static text(data: Pick<TextNode, "boardId"> & { point: Point }): TextNode {
+    public static arrow(data: Pick<Boards.ArrowNode, "start" | "end">): Boards.ArrowNode {
         return {
             id: crypto.randomUUID(),
-            boardId: data.boardId,
+            type: "arrow",
+            locked: false,
+            styles: DefaultNodeStyles,
+            ...data
+        };
+    }
+
+    public static text(data: { point: Point }): Boards.TextNode {
+        return {
+            id: crypto.randomUUID(),
             type: "text",
             locked: false,
-            text: [],
+            // FIX: type casting
+            text: [] as any,
             rect: {
                 ...data.point,
                 width: 100,
@@ -37,10 +43,9 @@ export class NodesFactory {
         };
     }
 
-    public static shape(data: Pick<ShapeNode, "boardId" | "variant"> & { point: Point }): ShapeNode {
+    public static shape(data: Pick<Boards.ShapeNode, "variant"> & { point: Point }): Boards.ShapeNode {
         return {
             id: crypto.randomUUID(),
-            boardId: data.boardId,
             type: "shape",
             locked: false,
             variant: data.variant,

@@ -1,11 +1,12 @@
+import type { Id, OmitFields } from "@repo/common";
 import type React from "react";
-import type { Renderable } from "../../core";
+import type { Decoratable, Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
 
 export type ViewModelParams = {
-    boardId: string;
+    boardId: Id;
 
     nodesModel: NodesModel;
 
@@ -44,10 +45,15 @@ export type ViewModel = {
         layout?: React.ReactNode;
     };
 
-    actions?: {
+    actions: {
         idle?: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
+        };
+
+        arrows?: {
+            isActive: boolean;
+            onClick: React.MouseEventHandler;
         };
 
         stickers?: {
@@ -61,3 +67,5 @@ export type ViewModel = {
         };
     };
 };
+
+export type DecoratableViewModel = OmitFields<ViewModel, "nodes" | "actions"> & { nodes: Decoratable[] };

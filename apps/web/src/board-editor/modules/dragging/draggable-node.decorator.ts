@@ -1,4 +1,4 @@
-import type { Offset } from "@/shared/lib/geometry";
+import type { Offset } from "@repo/common";
 import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeDraggingStrategy } from "./node-dragging.strategy";
 
@@ -11,7 +11,7 @@ export class DraggableNodeDecorator extends NodeDecorator {
         super(entry);
 
         if (offset) {
-            this.strategy.updateNodePosition(entry.wrapper, offset);
+            this.strategy.updateNodePosition(entry, offset);
         }
     }
 

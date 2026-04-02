@@ -1,15 +1,15 @@
-import type { NodeBase } from "@/entities/nodes";
-import type { Rect } from "@/shared/lib/geometry";
+import type { Boards, Rect } from "@repo/common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 
+// FIX: set same types from enent names
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: (e: React.MouseEvent) => void;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
+export abstract class NodeWrapper<T extends Boards.NodeBase = Boards.NodeBase> implements Renderable, Decoratable<T> {
     protected showContent = true;
 
     protected handlers: NodeHandlers = {};
@@ -46,8 +46,10 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
+    // DELETE
     public abstract get rect(): Rect;
 
+    // DELETE
     public abstract clone(data?: Partial<T>): NodeWrapper<T>;
 
     public abstract render(children?: React.ReactNode): React.ReactNode;

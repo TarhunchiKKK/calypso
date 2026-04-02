@@ -17,7 +17,7 @@ export const BackgroundColorPlaceholder = (
     <div className="w-5 h-5 rounded-full" style={{ backgroundColor: DefaultNodeStyles.backgroundColor }} />
 );
 
-export const TextColorPlaceholder = <Type style={{ color: DefaultNodeStyles.color }} />;
+export const TextColorPlaceholder = <Type style={{ color: DefaultNodeStyles.textColor }} />;
 
 export const BorderStylePlaceholder = <SquareDashed className="dark:text-white" />;
 

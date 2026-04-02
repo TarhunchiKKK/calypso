@@ -1,5 +1,6 @@
 import { type Boards, DebugException, type NoNullableFields } from "@repo/common";
 import type {
+    ArrowBoardNodeGrpc,
     BoardNodeBaseGrpc,
     BoardNodeGrpc,
     ShapeBoardNodeGrpc,
@@ -18,6 +19,16 @@ export class BoardNodesGrpcMapper {
                         text: node.text
                     }
                 };
+            case "arrow": {
+                return {
+                    arrow: {
+                        base: BoardNodesGrpcMapper.mapBase(node),
+                        start: node.start,
+                        end: node.end,
+                        text: node.text
+                    }
+                };
+            }
             case "text":
                 return {
                     text: {
@@ -45,6 +56,16 @@ export class BoardNodesGrpcMapper {
         if (node.sticker) {
             const { base, ...specific } = node.sticker as NoNullableFields<StickerBoardNodeGrpc>;
             return { ...(base as Boards.NodeBase), ...specific, type: "sticker" };
+        }
+
+        if (node.arrow) {
+            const { base, ...specific } = node.arrow as NoNullableFields<ArrowBoardNodeGrpc>;
+
+            return {
+                ...(base as Boards.NodeBase),
+                ...specific,
+                type: "arrow"
+            };
         }
 
         if (node.text) {

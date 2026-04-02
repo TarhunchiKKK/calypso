@@ -9,10 +9,16 @@
 const protobufPackage = "geometry";
 
 export interface RectGrpc {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
+
+export interface RelativePointGrpc {
+    x: number;
+    y: number;
+    relativeTo?: string | undefined;
 }
 
 export const GEOMETRY_PACKAGE_NAME = "geometry";

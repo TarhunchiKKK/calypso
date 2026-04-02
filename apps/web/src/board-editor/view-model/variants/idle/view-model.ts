@@ -1,8 +1,8 @@
 import { withNodeId } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
@@ -22,7 +22,7 @@ export function useIdleViewModel(params: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: IdleViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: IdleViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: withNodeId((nodeId, e) => {

@@ -1,10 +1,10 @@
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { FormatableTextarea } from "@/features/formatable-input";
-import type { TextNode } from "./text-node.type";
+import type { Boards } from "@repo/common";
 
 type Props = PropsWithChildren<{
-    node: TextNode;
+    node: Boards.TextNode;
 
     handlers: NodeHandlers;
 
@@ -19,6 +19,7 @@ export function TextNodeComponent({ node, handlers, showContent, children }: Pro
         top: node.rect.y
     };
 
+    // FIX: type casting
     return (
         <div
             data-id={node.id}
@@ -28,7 +29,7 @@ export function TextNodeComponent({ node, handlers, showContent, children }: Pro
         >
             {showContent && (
                 <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    <FormatableTextarea value={node.text} disabled />
+                    <FormatableTextarea value={node.text as any} disabled />
                 </div>
             )}
 

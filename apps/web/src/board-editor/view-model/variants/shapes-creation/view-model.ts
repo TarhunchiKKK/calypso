@@ -1,28 +1,26 @@
-import type React from "react";
 import { NodesFactory } from "@/board-editor/nodes";
 import { Geometry } from "@/shared/lib/geometry";
-import type { OmitFields } from "@/shared/lib/typescript";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModel, ViewModelParams } from "../../types";
+import type { ViewModelParams } from "../../types";
+import type { DecoratableViewModel } from "../../types/view-model.types";
 import { ShapesCreationNodesMapper } from "./lib/nodes-mapper";
 import type { ShapesCreationViewState } from "./view-state";
 
 export function useShapesCreationViewModel(params: ViewModelParams) {
-    const { nodesModel, layoutDimensionsModel, boardId } = params;
+    const { nodesModel, layoutDimensionsModel } = params;
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (viewState: ShapesCreationViewState): OmitFields<ViewModel, "actions"> => {
+    return (viewState: ShapesCreationViewState): DecoratableViewModel => {
         canvasMediator.setHandlers({
             left: {
-                onClick: (e: React.MouseEvent) => {
+                onClick: e => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
                     nodesModel.service.createOne(
                         NodesFactory.shape({
                             point: clickPoint,
-                            variant: viewState.variant,
-                            boardId: boardId
+                            variant: viewState.variant
                         })
                     );
                 }

@@ -16,7 +16,8 @@
                 "noAutofocus": "off",
                 "noStaticElementInteractions": "off",
                 "noNoninteractiveTabindex": "off",
-                "useAltText": "on"
+                "useAltText": "on",
+                "noSvgWithoutTitle": "off"
             },
             "correctness": {
                 "noChildrenProp": "off"

@@ -1,12 +1,12 @@
 "use client";
 
-import { MousePointer2, StickerIcon, TriangleIcon } from "lucide-react";
+import type { Boards, Id } from "@repo/common";
 import type { PropsWithChildren } from "react";
-import type { NodeBase, NodesApi } from "@/entities/nodes";
+import type { NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
-import { ActionButton, ActionsBar } from "./ui/action-bar.component";
+import { ActionsBar } from "./ui/actions-bar.component";
 import { Canvas } from "./ui/canvas.component";
 import { Dots } from "./ui/dots.component";
 import { Layout } from "./ui/layout.component";
@@ -14,9 +14,9 @@ import { Overlay } from "./ui/overlay.component";
 import { useViewModel } from "./view-model/use-view-model.hook";
 
 type Props = PropsWithChildren<{
-    nodes: NodeBase[];
+    nodes: Boards.NodeBase[];
 
-    boardId: string;
+    boardId: Id;
 
     api: NodesApi;
 }>;
@@ -57,25 +57,7 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                 {viewModel.additionalElements?.canvas}
             </Canvas>
 
-            <ActionsBar>
-                <ActionButton isActive={viewModel.actions?.idle?.isActive} onClick={viewModel.actions?.idle?.onClick}>
-                    <MousePointer2 />
-                </ActionButton>
-
-                <ActionButton
-                    isActive={viewModel.actions?.stickers?.isActive}
-                    onClick={viewModel.actions?.stickers?.onClick}
-                >
-                    <StickerIcon />
-                </ActionButton>
-
-                <ActionButton
-                    isActive={viewModel.actions?.shapes?.isActive}
-                    onClick={viewModel.actions?.shapes?.onClick}
-                >
-                    <TriangleIcon />
-                </ActionButton>
-            </ActionsBar>
+            <ActionsBar actions={viewModel.actions} />
 
             {children}
 

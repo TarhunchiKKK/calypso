@@ -1,9 +1,10 @@
+import type { Id } from "@repo/common";
 import type { ResizeDirection } from "../../../modules/resizing";
 import type { ViewModelParams } from "../../types";
 import type { ResizingViewState } from "./view-state";
 
 type Params = {
-    nodeId: string;
+    nodeId: Id;
 
     direction: ResizeDirection;
 };
@@ -16,8 +17,9 @@ export function switchToResizing({ nodeId, direction }: Params): ResizingViewSta
     };
 }
 
+// DELETE
 export function useSwitchToResizing({ setViewState }: ViewModelParams) {
-    const onMouseDown = (nodeId: string, direction: ResizeDirection) => {
+    const onMouseDown = (nodeId: Id, direction: ResizeDirection) => {
         setViewState(switchToResizing({ nodeId, direction }));
     };
 

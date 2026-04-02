@@ -1,8 +1,8 @@
-import type { Point } from "@/shared/lib/geometry";
+import type { Id, Point } from "@repo/common";
 import type { StylingViewState } from "./view-state";
 
 type Params = {
-    selectedIds: Set<string>;
+    selectedIds: Set<Id>;
 
     position: Point;
 };
