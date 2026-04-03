@@ -1,6 +1,6 @@
 import type { Rect } from "@repo/common";
-import { type Decoratable, NodeDecorator } from "../../core";
-import type { NodeResizingStrategy } from "./node-resizing.strategy";
+import { type Decoratable, NodeDecorator } from "../../../core";
+import type { NodeResizingStrategy } from "../strategies/node-resizing.strategy";
 
 export class NodeResizingDecorator extends NodeDecorator {
     public constructor(
@@ -16,12 +16,6 @@ export class NodeResizingDecorator extends NodeDecorator {
     }
 
     public override render(children?: React.ReactNode) {
-        return this.entry.render(
-            <>
-                {this.strategy.ui(this.entry)}
-
-                {children}
-            </>
-        );
+        return this.entry.render(children);
     }
 }

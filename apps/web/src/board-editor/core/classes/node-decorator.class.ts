@@ -1,6 +1,6 @@
+import type { NodeBase } from "@repo/boards-common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
-import type { NodeBase } from "@repo/boards-common";
 
 export abstract class NodeDecorator<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     public constructor(protected readonly entry: Decoratable<T>) {}

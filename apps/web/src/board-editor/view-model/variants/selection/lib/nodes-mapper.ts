@@ -1,8 +1,8 @@
-import { type Decoratable, type NodeHandlers, NodesMapper } from "@/board-editor/core";
-import type { ResizeDirection, ResizeHandler } from "@/board-editor/modules/resizing";
-import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
+import { type Decoratable, type NodeHandlers, NodesMapper } from "@/board-editor/core";
+import type { ResizeHandler } from "@/board-editor/modules/resizing";
+import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 
 export class SelectionNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
@@ -21,7 +21,7 @@ export class SelectionNodesMapper extends NodesMapper {
         return this;
     }
 
-    public setResizeHandler(handler: (nodeId: Id, direction: ResizeDirection) => void) {
+    public setResizeHandler(handler: ResizeHandler) {
         this.resizeHandler = handler;
         return this;
     }
@@ -38,7 +38,7 @@ export class SelectionNodesMapper extends NodesMapper {
             const nodeId = this.selectedIds.values().next().value as string;
 
             withResizing = withHandlers.map(node =>
-                node.id === nodeId ? NodeDecoratorsFactory.resizing(node, undefined, this.resizeHandler) : node
+                node.id === nodeId ? NodeDecoratorsFactory.resizable(node, this.resizeHandler) : node
             );
         } else {
             withResizing = withHandlers;
