@@ -10,32 +10,62 @@ type Props = {
     onSelect: () => void;
 };
 
+const THUMBNAILS_IN_ROW = 5;
+
+// TODO: implement file uploading to S3
 export function ProjectThumbnailSelector({ projectId, onSelect }: Props) {
     const onClick = async (thumbnail: string) => {
         await ProjectsApi.updateOne(projectId, {
-            thumbnail: thumbnail
+            thumbnail: thumbnail,
         });
 
         onSelect();
     };
 
+    const groupedThumbnails: string[][] = [];
+
+    ProjectThumbnails.forEach((thumbnail, index) => {
+        const newIndex = Math.floor(index / THUMBNAILS_IN_ROW);
+
+        if (index % THUMBNAILS_IN_ROW === 0) {
+            groupedThumbnails.push([]);
+        }
+
+        groupedThumbnails[newIndex].push(thumbnail);
+    });
+
     return (
-        <div>
-            <div className="grid grid-cols-5">
-                {ProjectThumbnails.map((thumbnail, index) => (
+        <>
+            <div className="mb-5">
+                {groupedThumbnails.map((group, index) => (
                     <div
                         key={index}
-                        className="w-12 h-12 hover:bg-secondary/30 cursor-pointer"
-                        onClick={() => onClick(thumbnail)}
+                        className="w-full flex flex-row justify-between items-center"
                     >
-                        <img src={thumbnail} alt="" className="w-full h-full" />
+                        {group.map((thumbnail, index) => (
+                            <div
+                                key={index}
+                                className="p-2 rounded-md hover:bg-secondary cursor-pointer"
+                                onClick={() => onClick(thumbnail)}
+                            >
+                                <img
+                                    src={thumbnail}
+                                    alt="Icon"
+                                    className="w-12 h-12"
+                                />
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>
 
-            <div className="mt-5">
-                <Input type="file" onChange={e => onClick(e.target.value)} />
+            <div className="flex flex-row justify-center items-center">
+                <Input
+                    type="file"
+                    className="max-w-60 cursor-pointer"
+                    onChange={(e) => onClick(e.target.value)}
+                />
             </div>
-        </div>
+        </>
     );
 }
