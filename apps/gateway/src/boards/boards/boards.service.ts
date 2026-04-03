@@ -16,8 +16,8 @@ export class BoardsService implements OnModuleInit {
         this.boardsClient = this.grpcClient.getService<BoardsServiceClient>(BOARDS_SERVICE_NAME);
     }
 
-    public create(userId: Id, dto: CreateBoardDto) {
-        return this.boardsClient.create({ userId, ...dto });
+    public create(dto: CreateBoardDto) {
+        return this.boardsClient.create(dto);
     }
 
     public findAll(userId: string) {
