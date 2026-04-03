@@ -12,8 +12,8 @@ export class BoardsController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     @Post()
-    public create(@Authorized() payload: TokenPayload, @Body() createBoardDto: CreateBoardDto) {
-        return this.boardsService.create(payload.userId, createBoardDto);
+    public create(@Body() createBoardDto: CreateBoardDto) {
+        return this.boardsService.create(createBoardDto);
     }
 
     @Get()

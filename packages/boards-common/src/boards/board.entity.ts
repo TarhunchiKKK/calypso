@@ -1,13 +1,3 @@
-import type { Id } from "@repo/common";
+import type { Project } from "@repo/common";
 
-export type Board = {
-    id: Id;
-
-    title: string;
-
-    creatorId: Id;
-
-    createdAt: Date;
-
-    updatedAt?: Date;
-};
+export type Board = Project;

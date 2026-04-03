@@ -11,6 +11,7 @@ import {
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/api";
+import type { NoNullableFields } from "@repo/common";
 import { Operations } from "src/lib/auth.constants";
 import { BoardsService } from "../boards.service";
 
@@ -20,7 +21,7 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     public async create(dto: CreateBoardGrpcRequest) {
-        return await this.boardsService.create(dto);
+        return await this.boardsService.create(dto as NoNullableFields<CreateBoardGrpcRequest>);
     }
 
     @CheckAccess({

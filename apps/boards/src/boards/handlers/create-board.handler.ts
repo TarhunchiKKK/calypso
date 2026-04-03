@@ -25,7 +25,7 @@ export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCom
 
         await this.accessRightsService.create<ProjectRoles>({
             resourceId: board.id,
-            userId: dto.userId,
+            userId: dto.creator.id,
             role: "creator"
         });
 

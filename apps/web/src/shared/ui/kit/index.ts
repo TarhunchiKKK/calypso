@@ -5,6 +5,7 @@ export * from "./input";
 export * from "./popover";
 export * from "./separator";
 export * from "./switch";
+export * from "./table";
 export * from "./textarea";
 export * from "./toggle";
 export * from "./toggle-group";

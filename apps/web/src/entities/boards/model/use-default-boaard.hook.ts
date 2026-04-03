@@ -12,7 +12,10 @@ function getBoard() {
         id: crypto.randomUUID(),
         title: "New board",
         createdAt: new Date(),
-        creatorId: "creator"
+        creator: {
+            id: "creator-id",
+            email: "creator@example.com"
+        }
     };
 
     localStorage.setItem(import.meta.env.VITE_BOARD_LS_KEY, JSON.stringify(board));
