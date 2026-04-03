@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package projects;
+
+message ProjectCreatorGrpc {
+    string id = 1;
+
+    string email = 2;
+}

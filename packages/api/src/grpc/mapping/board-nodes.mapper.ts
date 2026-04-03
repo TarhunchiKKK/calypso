@@ -1,4 +1,5 @@
-import { type Boards, DebugException, type NoNullableFields } from "@repo/common";
+import type { AnyNode, ArrowNode, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
+import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
     ArrowBoardNodeGrpc,
     BoardNodeBaseGrpc,
@@ -9,7 +10,7 @@ import type {
 } from "../generated";
 
 export class BoardNodesGrpcMapper {
-    public static toGrpc(node: Boards.AnyNode): BoardNodeGrpc {
+    public static toGrpc(node: AnyNode): BoardNodeGrpc {
         switch (node.type) {
             case "sticker":
                 return {
@@ -52,17 +53,21 @@ export class BoardNodesGrpcMapper {
         }
     }
 
-    public static fromGrpc(node: BoardNodeGrpc): Boards.AnyNode {
+    public static fromGrpc(node: BoardNodeGrpc): AnyNode {
         if (node.sticker) {
             const { base, ...specific } = node.sticker as NoNullableFields<StickerBoardNodeGrpc>;
-            return { ...(base as Boards.NodeBase), ...specific, type: "sticker" };
+            return {
+                ...(base as NodeBase & Pick<StickerNode, "styles">),
+                ...specific,
+                type: "sticker"
+            };
         }
 
         if (node.arrow) {
             const { base, ...specific } = node.arrow as NoNullableFields<ArrowBoardNodeGrpc>;
 
             return {
-                ...(base as Boards.NodeBase),
+                ...(base as NodeBase & Pick<ArrowNode, "styles">),
                 ...specific,
                 type: "arrow"
             };
@@ -72,23 +77,23 @@ export class BoardNodesGrpcMapper {
             const { base, ...specific } = node.text as NoNullableFields<TextBoardNodeGrpc>;
 
             // FIX: remove `text: ""`
-            return { ...(base as Boards.NodeBase), ...specific, type: "text", text: "" };
+            return { ...(base as NodeBase), ...specific, type: "text", text: "" };
         }
 
         if (node.shape) {
             const { base, ...specific } = node.shape as NoNullableFields<ShapeBoardNodeGrpc>;
             return {
-                ...(base as Boards.NodeBase),
+                ...(base as NodeBase & Pick<ShapeNode, "styles">),
                 ...specific,
                 type: "shape",
-                variant: specific.variant as Boards.ShapeVariants
+                variant: specific.variant as ShapeVariants
             };
         }
 
         throw new DebugException(`NodesGrpcMapper: Unknown node type: ${node} `);
     }
 
-    private static mapBase(node: Boards.AnyNode): BoardNodeBaseGrpc {
+    private static mapBase(node: AnyNode): BoardNodeBaseGrpc {
         return {
             id: node.id,
             type: node.type,

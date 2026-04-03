@@ -1,8 +1,9 @@
-import type { Boards, NoNullableFields } from "@repo/common";
+import type { Board } from "@repo/boards-common";
+import type { NoNullableFields } from "@repo/common";
 import type { BoardGrpc } from "../generated";
 
 export class BoardsGrpcMapper {
-    public static toGrpc(board: Boards.Board): BoardGrpc {
+    public static toGrpc(board: Board): BoardGrpc {
         return {
             ...board,
             createdAt: board.createdAt.toISOString(),
@@ -10,7 +11,7 @@ export class BoardsGrpcMapper {
         };
     }
 
-    public static fromGrpc(board: BoardGrpc): Boards.Board {
+    public static fromGrpc(board: BoardGrpc): Board {
         return {
             ...(board as NoNullableFields<BoardGrpc>),
             createdAt: new Date(board.createdAt),

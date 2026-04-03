@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "common.proto";
 import "geometry.proto";
+import "projects.proto";
 import "google/protobuf/struct.proto";
 
 package boards;
@@ -23,11 +24,15 @@ message BoardGrpc {
 
     string title = 2;
 
-    string creatorId = 3;
+    optional string description = 3;
 
-    string createdAt = 4;
+    optional string thumbnail = 4;
 
-    optional string updatedAt = 5;
+    projects.ProjectCreatorGrpc creator = 5;
+
+    string createdAt = 6;
+
+    optional string updatedAt = 7;
 }
 
 message BoardGrpcResponse {
@@ -41,7 +46,7 @@ message BoardGrpcResponse {
 message CreateBoardGrpcRequest {
     string title = 1;
 
-    string userId = 2;
+    projects.ProjectCreatorGrpc creator = 2; 
 }
 
 message DuplicateBoardGrpcRequest {
@@ -72,6 +77,10 @@ message UpdateBoardGrpcRequest {
     string userId = 2;
 
     optional string title = 3;
+
+    optional string description = 4;
+
+    optional string thumbnail = 5;
 }
 
 message RemoveBoardGrpcRequest {

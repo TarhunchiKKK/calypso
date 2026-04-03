@@ -1,7 +1,7 @@
-import type { Id } from "@repo/common";
+import type { Board } from "@repo/boards-common";
 
 export type CreateBoardDto = {
     title: string;
 
-    userId: Id;
+    creator: Board["creator"];
 };
