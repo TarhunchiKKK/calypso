@@ -1,8 +1,12 @@
+import type { ProjectTypes } from "@repo/common";
+
 export enum OwnerFilters {
     ANYONE,
     ME,
     NOT_ME
 }
+
+export type TypeFilter = ProjectTypes | null;
 
 export enum SortOrders {
     ALPHABETIC,
@@ -12,6 +16,8 @@ export enum SortOrders {
 
 export type Filters = {
     title?: string;
+
+    typeFilter: ProjectTypes | null;
 
     ownerFilter: OwnerFilters;
 

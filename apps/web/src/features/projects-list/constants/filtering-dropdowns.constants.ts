@@ -1,5 +1,21 @@
+import type { ProjectTypes } from "@repo/common";
 import type { DropdownItem } from "@/shared/ui";
 import { OwnerFilters, SortOrders } from "../types/filtering.types";
+
+export const TypeDropdownItems: DropdownItem<ProjectTypes | null>[] = [
+    {
+        label: "All",
+        value: null
+    },
+    {
+        label: "Boards",
+        value: "board"
+    },
+    {
+        label: "Notes",
+        value: "note"
+    }
+];
 
 export const OwnerDropdownItems: DropdownItem<OwnerFilters>[] = [
     {
