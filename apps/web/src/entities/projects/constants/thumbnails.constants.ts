@@ -1,3 +1,5 @@
+// FIX: move this images to S3
+
 export const ProjectThumbnails = [
     "public/thumbnails/1-cloud.svg",
     "public/thumbnails/2-electronic-pen.svg",
