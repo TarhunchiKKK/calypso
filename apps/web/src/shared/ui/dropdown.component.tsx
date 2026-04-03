@@ -2,6 +2,7 @@
 
 import type React from "react";
 import {
+    Button,
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
@@ -18,7 +19,7 @@ export type DropdownItem<T> = {
 };
 
 type Props<T> = {
-    title: string;
+    title?: string;
 
     placeholder: React.ReactNode;
 
@@ -31,11 +32,15 @@ export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer">
-                <Tooltip>
-                    <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
+                {title ? (
+                    <Tooltip>
+                        <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
 
-                    <TooltipContent>{title}</TooltipContent>
-                </Tooltip>
+                        <TooltipContent>{title}</TooltipContent>
+                    </Tooltip>
+                ) : (
+                    <Button variant="outline">{placeholder}</Button>
+                )}
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>

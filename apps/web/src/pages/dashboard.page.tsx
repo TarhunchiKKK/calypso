@@ -45,7 +45,7 @@ const MockProjects: ProjectWithType[] = [
 
 export function DashBoardPage() {
     return (
-        <div className="container">
+        <div className="container mx-auto">
             <ProjectsList projects={MockProjects} />
         </div>
     );

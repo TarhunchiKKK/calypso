@@ -1,10 +1,20 @@
 import type { ProjectWithType } from "@repo/common";
-import { ProjectsTable } from "./projects-table.component";
+import { useProjectsFilters } from "./hooks/use-projects-filters.hook";
+import { ProjectsFilters } from "./ui/projects-filters";
+import { ProjectsTable } from "./ui/projects-table.component";
 
 type Props = {
     projects: ProjectWithType[];
 };
 
 export function ProjectsList({ projects }: Props) {
-    return <ProjectsTable projects={projects} />;
+    const { filteredProjects, filters, setFilters } = useProjectsFilters(projects);
+
+    return (
+        <div className="flex flex-col justify-between gap-8">
+            <ProjectsFilters filters={filters} onChange={setFilters} />
+
+            <ProjectsTable projects={filteredProjects} />
+        </div>
+    );
 }
