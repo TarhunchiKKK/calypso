@@ -1,15 +1,13 @@
 import type { Project } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../api/projects-api.constants";
+import { ProjectsApi } from "../api/projects.api";
 
 type Props = {
     project: Project;
-
-    onCancel?: () => void;
 };
 
-export function RenameProjectForm({ project, onCancel }: Props) {
+export function RenameProjectForm({ project }: Props) {
     const form = useForm<Pick<Project, "title">>({
         defaultValues: {
             title: project.title,
@@ -17,7 +15,7 @@ export function RenameProjectForm({ project, onCancel }: Props) {
     });
 
     const onSubmit = async (data: Pick<Project, "title">) => {
-        await ProjectsApi.updateOne(project.id, data);
+        await ProjectsApi.update(project.id, data);
     };
 
     return (
@@ -39,7 +37,7 @@ export function RenameProjectForm({ project, onCancel }: Props) {
                 />
             </FieldGroup>
 
-            <div className="mt-6 flex flex-row justify-start items-center gap-4">
+            <div className="mt-6 flex flex-row justify-end items-center gap-4">
                 <Button
                     type="submit"
                     variant="default"
@@ -47,16 +45,6 @@ export function RenameProjectForm({ project, onCancel }: Props) {
                     className="cursor-pointer"
                 >
                     Rename
-                </Button>
-
-                <Button
-                    type="reset"
-                    variant="outline"
-                    size="lg"
-                    className="cursor-pointer"
-                    onClick={onCancel}
-                >
-                    Cancel
                 </Button>
             </div>
         </form>

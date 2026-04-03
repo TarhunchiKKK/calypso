@@ -9,7 +9,7 @@ import {
     DropdownMenuTrigger,
     Tooltip,
     TooltipContent,
-    TooltipTrigger
+    TooltipTrigger,
 } from "@/shared/ui/kit";
 
 export type DropdownItem<T> = {
@@ -31,10 +31,10 @@ type Props<T> = {
 export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer">
+            <DropdownMenuTrigger className="cursor-pointer" asChild>
                 {title ? (
                     <Tooltip>
-                        <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
+                        <TooltipTrigger>{placeholder}</TooltipTrigger>
 
                         <TooltipContent>{title}</TooltipContent>
                     </Tooltip>
@@ -45,8 +45,12 @@ export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
 
             <DropdownMenuContent>
                 {items.map((item, index) => (
-                    // biome-ignore lint/suspicious/noArrayIndexKey: Index key will not change
-                    <DropdownMenuItem key={index} className="cursor-pointer" onClick={onSelect.bind(null, item.value)}>
+                    <DropdownMenuItem
+                        // biome-ignore lint/suspicious/noArrayIndexKey: Index key will not change
+                        key={index}
+                        className="cursor-pointer"
+                        onClick={onSelect.bind(null, item.value)}
+                    >
                         {item.label}
                     </DropdownMenuItem>
                 ))}

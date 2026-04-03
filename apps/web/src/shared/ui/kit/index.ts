@@ -1,7 +1,9 @@
 export * from "./button";
 export * from "./card";
 export * from "./context-menu";
+export * from "./dialog";
 export * from "./dropdown-menu";
+export * from "./field";
 export * from "./input";
 export * from "./popover";
 export * from "./separator";
@@ -11,4 +13,3 @@ export * from "./textarea";
 export * from "./toggle";
 export * from "./toggle-group";
 export * from "./tooltip";
-export * from "./field";

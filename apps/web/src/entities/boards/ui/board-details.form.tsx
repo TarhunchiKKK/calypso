@@ -9,12 +9,10 @@ import {
     Input,
     Textarea,
 } from "@/shared/ui/kit";
-import { BoardsApi } from "../api/boards-api.constant";
+import { BoardsApi } from "../api/boards.api";
 
 type Props = {
     board: Board;
-
-    afterSubmit?: () => void;
 };
 
 const commonFields = [
@@ -33,15 +31,13 @@ const commonFields = [
     },
 ];
 
-export function BoardDetailsForm({ board, afterSubmit }: Props) {
+export function BoardDetailsForm({ board }: Props) {
     const form = useForm<UpdateBoardDto>({
         defaultValues: board,
     });
 
     const onSubmit = async (data: UpdateBoardDto) => {
         await BoardsApi.update(board.id, data);
-
-        afterSubmit?.();
     };
 
     return (
@@ -75,7 +71,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                 />
             </FieldGroup>
 
-            <div className="grid grid-cols-2 mb-4">
+            <div className="grid grid-cols-2 mt-8">
                 {commonFields.map((field) => (
                     <>
                         <div className="text-gray-600 dark:text-gray-400">
@@ -86,7 +82,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                 ))}
             </div>
 
-            <div className="flex flex-row justify-end items-center">
+            <div className="flex flex-row justify-end items-center mt-8">
                 <Button type="submit">Save</Button>
             </div>
         </form>

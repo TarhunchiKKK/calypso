@@ -4,9 +4,13 @@ import { Input } from "@/shared/ui/kit";
 import {
     OwnerDropdownItems,
     SortOrdersDropdownItems,
-    TypeDropdownItems
+    TypeDropdownItems,
 } from "../constants/filtering-dropdowns.constants";
-import type { Filters, OwnerFilters, SortOrders } from "../types/filtering.types";
+import type {
+    Filters,
+    OwnerFilters,
+    SortOrders,
+} from "../types/filtering.types";
 
 type Props = {
     filters: Filters;
@@ -18,34 +22,40 @@ export function ProjectsFilters({ filters, onChange }: Props) {
     const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange({
             ...filters,
-            title: e.target.value
+            title: e.target.value,
         });
     };
 
     const onTypeFilterChange = (typeFilter: ProjectTypes | null) => {
         onChange({
             ...filters,
-            typeFilter
+            typeFilter,
         });
     };
 
     const onOwnerFilterChange = (ownerFilter: OwnerFilters) => {
         onChange({
             ...filters,
-            ownerFilter
+            ownerFilter,
         });
     };
 
     const onSortOrderChange = (sortOrder: SortOrders) => {
         onChange({
             ...filters,
-            sortOrder
+            sortOrder,
         });
     };
 
-    const currentTypeFilter = TypeDropdownItems.find(item => item.value === filters.typeFilter);
-    const currentOwnerFilter = OwnerDropdownItems.find(item => item.value === filters.ownerFilter);
-    const currentSortOrder = SortOrdersDropdownItems.find(item => item.value === filters.sortOrder);
+    const currentTypeFilter = TypeDropdownItems.find(
+        (item) => item.value === filters.typeFilter,
+    );
+    const currentOwnerFilter = OwnerDropdownItems.find(
+        (item) => item.value === filters.ownerFilter,
+    );
+    const currentSortOrder = SortOrdersDropdownItems.find(
+        (item) => item.value === filters.sortOrder,
+    );
 
     return (
         <div className="flex flex-row justify-between items-center gap-4">
@@ -58,19 +68,25 @@ export function ProjectsFilters({ filters, onChange }: Props) {
 
             <div className="flex flex-row justify-between items-center gap-2">
                 <Dropdown
-                    placeholder={currentTypeFilter ? currentTypeFilter.label : null}
+                    placeholder={
+                        currentTypeFilter ? currentTypeFilter.label : null
+                    }
                     items={TypeDropdownItems}
                     onSelect={onTypeFilterChange}
                 />
 
                 <Dropdown
-                    placeholder={currentOwnerFilter ? currentOwnerFilter.label : null}
+                    placeholder={
+                        currentOwnerFilter ? currentOwnerFilter.label : null
+                    }
                     items={OwnerDropdownItems}
                     onSelect={onOwnerFilterChange}
                 />
 
                 <Dropdown
-                    placeholder={currentSortOrder ? currentSortOrder.label : null}
+                    placeholder={
+                        currentSortOrder ? currentSortOrder.label : null
+                    }
                     items={SortOrdersDropdownItems}
                     onSelect={onSortOrderChange}
                 />

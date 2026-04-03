@@ -1,21 +1,25 @@
-import { BoardDetailsForm } from "@/entities/boards/ui/board-details-form.component";
+import type { ProjectWithType } from "@repo/common";
+import { ProjectsList } from "@/features/projects-list";
+
+const projects: ProjectWithType[] = [
+    {
+        id: "1",
+        type: "board",
+        title: "Title",
+        description: "Description",
+        creator: {
+            id: "creator",
+            email: "creator@email.com",
+        },
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    },
+];
 
 export function CurrentUi() {
     return (
         <div className="container mx-auto">
-            <BoardDetailsForm
-                board={{
-                    id: "id",
-                    title: "title",
-                    description: "description",
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                    creator: {
-                        id: "id",
-                        email: "creator@gmail.com",
-                    },
-                }}
-            />
+            <ProjectsList projects={projects} />
         </div>
     );
 }

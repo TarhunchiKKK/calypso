@@ -1,25 +1,19 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Here items relative order cannot be changed */
+
 import type { Id } from "@repo/common";
 import { Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../api/projects-api.constants";
+import { ProjectsApi } from "../api/projects.api";
 import { ProjectThumbnails } from "../constants/thumbnails.constants";
 
 type Props = {
     projectId: Id;
-
-    onSelect: () => void;
 };
 
 const THUMBNAILS_IN_ROW = 5;
 
-// TODO: implement file uploading to S3
-export function ProjectThumbnailSelector({ projectId, onSelect }: Props) {
+export function ProjectThumbnailSelector({ projectId }: Props) {
     const onClick = async (thumbnail: string) => {
-        await ProjectsApi.updateOne(projectId, {
-            thumbnail: thumbnail,
-        });
-
-        onSelect();
+        await ProjectsApi.update(projectId, { thumbnail });
     };
 
     const groupedThumbnails: string[][] = [];
@@ -35,8 +29,8 @@ export function ProjectThumbnailSelector({ projectId, onSelect }: Props) {
     });
 
     return (
-        <>
-            <div className="mb-5">
+        <div className="space-y-5">
+            <div>
                 {groupedThumbnails.map((group, index) => (
                     <div
                         key={index}
@@ -66,6 +60,6 @@ export function ProjectThumbnailSelector({ projectId, onSelect }: Props) {
                     onChange={(e) => onClick(e.target.value)}
                 />
             </div>
-        </>
+        </div>
     );
 }
