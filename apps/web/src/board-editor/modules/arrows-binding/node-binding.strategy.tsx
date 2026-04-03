@@ -18,16 +18,11 @@ export abstract class NodeBindingStrategy<T extends NodeBase = NodeBase> {
                 this.handlers.onMouseUp?.({
                     relativeTo: node.id,
                     x: e.currentTarget.clientLeft,
-                    y: e.currentTarget.clientTop,
+                    y: e.currentTarget.clientTop
                 });
-            },
+            }
         };
 
-        return (
-            <BindingPoints
-                referencePoints={referencePoints}
-                handlers={handlers}
-            />
-        );
+        return <BindingPoints referencePoints={referencePoints} handlers={handlers} />;
     }
 }

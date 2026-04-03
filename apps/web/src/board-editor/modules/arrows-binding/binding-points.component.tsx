@@ -4,10 +4,7 @@ import type { DOMAttributes } from "react";
 type Props = {
     referencePoints: Point[];
 
-    handlers: Pick<
-        DOMAttributes<HTMLDivElement>,
-        "onMouseEnter" | "onMouseLeave" | "onMouseUp"
-    >;
+    handlers: Pick<DOMAttributes<HTMLDivElement>, "onMouseEnter" | "onMouseLeave" | "onMouseUp">;
 };
 
 const className =

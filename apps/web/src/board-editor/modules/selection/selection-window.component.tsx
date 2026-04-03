@@ -11,7 +11,7 @@ export function SelectionWindow({ rect }: Props) {
             style={{
                 transform: `translate(${rect.x}px, ${rect.y}px)`,
                 width: rect.width,
-                height: rect.height,
+                height: rect.height
             }}
         />
     );

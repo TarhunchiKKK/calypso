@@ -11,7 +11,7 @@ export class TextNodeBindingStrategy extends NodeBindingStrategy<TextNode> {
             { x: node.rect.width, y: node.rect.height },
             { x: node.rect.width / 2, y: node.rect.height },
             { x: 0, y: node.rect.height },
-            { x: 0, y: node.rect.height / 2 },
+            { x: 0, y: node.rect.height / 2 }
         ];
     }
 }

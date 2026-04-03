@@ -23,17 +23,17 @@ export function RenameProjectForm({ project }: Props) {
                 <Controller
                     name="title"
                     control={form.control}
-                    render={({field, fieldState}) => (
+                    render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
-                            <FieldLabel>
-                                New title
-                            </FieldLabel>
+                            <FieldLabel>New title</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter new name of this project"  />
+                            <Input
+                                {...field}
+                                aria-invalid={fieldState.invalid}
+                                placeholder="Enter new name of this project"
+                            />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]}  />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

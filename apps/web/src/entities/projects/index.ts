@@ -1,1 +1,1 @@
-export {RenameProjectForm} from "./ui/rename-project.form"
+export { RenameProjectForm } from "./ui/rename-project.form";
