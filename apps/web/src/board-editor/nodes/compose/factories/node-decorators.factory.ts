@@ -5,11 +5,12 @@ import { type BindingNodeHandlers, NodeBindingDecorator } from "@/board-editor/m
 import { NodeDraggingDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked } from "@/board-editor/modules/locking";
 import { NodeEditingDecorator } from "../../../modules/editing";
-import { NodeResizingDecorator, type ResizeHandler } from "../../../modules/resizing";
+import { NodeResizingDecorator, ResizableNodeDecorator, type ResizeHandler } from "../../../modules/resizing";
 import { NodeSelectionDecorator } from "../../../modules/selection";
 import { BindingStrategiesMap } from "../constants/binding-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
+import { ResizableStrategiesMap } from "../constants/resizable-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 
@@ -37,14 +38,25 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static resizing(node: Decoratable, size?: Rect, handler?: ResizeHandler) {
+    public static resizable(node: Decoratable, handler: ResizeHandler) {
+        const strategyCreator = ResizableStrategiesMap[node.type];
+
+        if (!strategyCreator) {
+            return node;
+        }
+
+        return new ResizableNodeDecorator(node, strategyCreator(handler));
+    }
+
+    @CheckLocked()
+    public static resizing(node: Decoratable, size?: Rect) {
         const strategyCreator = ResizingStrategiesMap[node.type];
 
         if (!strategyCreator) {
             return node;
         }
 
-        return new NodeResizingDecorator(node, strategyCreator(handler), size);
+        return new NodeResizingDecorator(node, strategyCreator(), size);
     }
 
     @CheckLocked()

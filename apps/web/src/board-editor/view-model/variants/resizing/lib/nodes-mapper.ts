@@ -1,7 +1,7 @@
+import type { NodeBase } from "@repo/boards-common";
 import type { Id, Rect } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@repo/boards-common";
 
 export class ResizingNodesMapper extends NodesMapper {
     private nodeId!: Id;

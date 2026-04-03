@@ -5,6 +5,6 @@ import { MockNodes } from "./mock-nodes.constant";
 export function CurrentUi() {
     const nodes = MockNodes.map(node => NodeWrappersFactory.wrap(MockNodes, node))
         .map(NodeDecoratorsFactory.selection)
-        .map(node => NodeDecoratorsFactory.resizing(node, undefined, () => {}));
+        .map(node => NodeDecoratorsFactory.resizable(node, () => {}));
     return <div className="relative w-screen h-screen">{nodes.map(node => node.render())}</div>;
 }
