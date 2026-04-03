@@ -1,5 +1,5 @@
-import { Project } from "entry";
+import type { Project } from "entry";
 
-export type UpdateProjectDto = Pick<Project, "title" | "thumbnail">;
+export type UpdateProjectDto = Partial<Pick<Project, "title" | "thumbnail">>;
 
 export type DuplicateProjectDto = Pick<Project, "id" | "creator">;
