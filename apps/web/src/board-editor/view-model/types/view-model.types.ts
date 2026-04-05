@@ -46,24 +46,44 @@ export type ViewModel = {
     };
 
     actions: {
-        idle?: {
+        idle: {
             isActive: boolean;
             onClick?: React.MouseEventHandler;
         };
 
-        arrows?: {
+        stickers: {
+            isActive: boolean;
+            onClick?: React.MouseEventHandler;
+        };
+
+        arrows: {
             isActive: boolean;
             onClick: React.MouseEventHandler;
         };
 
-        stickers?: {
+        text: {
             isActive: boolean;
-            onClick?: React.MouseEventHandler;
+            onClick: React.MouseEventHandler;
         };
 
-        shapes?: {
+        shapes: {
             isActive: boolean;
-            onClick?: React.MouseEventHandler;
+            onClick: React.MouseEventHandler;
+        };
+
+        media: {
+            isActive: boolean;
+            onClick: React.MouseEventHandler;
+        };
+
+        notes: {
+            isActive: boolean;
+            onClick: React.MouseEventHandler;
+        };
+
+        draw: {
+            isActive: boolean;
+            onClick: React.MouseEventHandler;
         };
     };
 };
