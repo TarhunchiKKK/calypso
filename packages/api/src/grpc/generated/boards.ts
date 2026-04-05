@@ -11,7 +11,12 @@ import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
 import { RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
-import { ProjectCreatorGrpc } from "./projects";
+import {
+  DuplicateProjectGrpcRequest,
+  FindAllProjectsGrpcRequest,
+  ProjectCreatorGrpc,
+  RemoveProjectGrpcRequest,
+} from "./projects";
 
 const protobufPackage = "boards";
 
@@ -36,16 +41,6 @@ export interface CreateBoardGrpcRequest {
   creator: ProjectCreatorGrpc | undefined;
 }
 
-export interface DuplicateBoardGrpcRequest {
-  id: string;
-  title: string;
-  creator: ProjectCreatorGrpc | undefined;
-}
-
-export interface FindAllBoardsGrpcRequest {
-  userId: string;
-}
-
 export interface BoardsList {
   boards: BoardGrpc[];
 }
@@ -61,11 +56,6 @@ export interface UpdateBoardGrpcRequest {
   title?: string | undefined;
   description?: string | undefined;
   thumbnail?: string | undefined;
-}
-
-export interface RemoveBoardGrpcRequest {
-  id: string;
-  userId: string;
 }
 
 export interface BoardNodeBaseGrpc {
@@ -146,13 +136,13 @@ wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struc
 export interface BoardsServiceClient {
   create(request: CreateBoardGrpcRequest): Observable<BoardGrpcResponse>;
 
-  duplicate(request: DuplicateBoardGrpcRequest): Observable<BoardGrpcResponse>;
+  duplicate(request: DuplicateProjectGrpcRequest): Observable<BoardGrpcResponse>;
 
-  findAll(request: FindAllBoardsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
+  findAll(request: FindAllProjectsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
 
   update(request: UpdateBoardGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  remove(request: RemoveBoardGrpcRequest): Observable<EmptyGrpcResponse>;
+  remove(request: RemoveProjectGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardsServiceController {
@@ -161,11 +151,11 @@ export interface BoardsServiceController {
   ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
 
   duplicate(
-    request: DuplicateBoardGrpcRequest,
+    request: DuplicateProjectGrpcRequest,
   ): Promise<BoardGrpcResponse> | Observable<BoardGrpcResponse> | BoardGrpcResponse;
 
   findAll(
-    request: FindAllBoardsGrpcRequest,
+    request: FindAllProjectsGrpcRequest,
   ): Promise<FindAllBoardsGrpcResponse> | Observable<FindAllBoardsGrpcResponse> | FindAllBoardsGrpcResponse;
 
   update(
@@ -173,7 +163,7 @@ export interface BoardsServiceController {
   ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
   remove(
-    request: RemoveBoardGrpcRequest,
+    request: RemoveProjectGrpcRequest,
   ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 

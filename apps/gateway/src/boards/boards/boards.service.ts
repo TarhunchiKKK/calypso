@@ -1,6 +1,6 @@
-import { Inject, Injectable, type OnModuleInit, UnauthorizedException } from "@nestjs/common";
+import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient } from "@repo/api";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponse } from "@repo/api";
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { map } from "rxjs";
@@ -16,21 +16,23 @@ export class BoardsService implements OnModuleInit {
         @Inject(SupabaseService) private readonly supabaseService: SupabaseService
     ) {}
 
+    public get client() {
+        return this.boardsClient;
+    }
+
     public onModuleInit() {
         this.boardsClient = this.grpcClient.getService<BoardsServiceClient>(BOARDS_SERVICE_NAME);
     }
 
     public async create(accessToken: string, dto: CreateBoardDto) {
-        const { data, error } = await this.supabaseService.client.auth.getUser(accessToken);
+        const user = await this.supabaseService.findUser(accessToken);
 
-        if (error) {
-            throw new UnauthorizedException("Invalid token");
-        }
-
-        return this.boardsClient.create({
+        const response = this.boardsClient.create({
             ...dto,
-            creator: this.supabaseService.mapUser(data.user)
+            creator: user
         });
+
+        return extractGrpcResponse(response);
     }
 
     public findAll(userId: string) {
@@ -44,11 +46,7 @@ export class BoardsService implements OnModuleInit {
         );
     }
 
-    public update(id: Id, userId: string, dto: UpdateBoardDto) {
-        return this.boardsClient.update({ id, userId, ...dto });
-    }
-
-    public remove(id: Id, userId: string) {
-        return this.boardsClient.remove({ id, userId });
+    public update(boardId: Id, userId: string, dto: UpdateBoardDto) {
+        this.boardsClient.update({ id: boardId, userId, ...dto });
     }
 }

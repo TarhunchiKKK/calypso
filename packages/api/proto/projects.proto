@@ -7,3 +7,21 @@ message ProjectCreatorGrpc {
 
     optional string email = 2;
 }
+
+message DuplicateProjectGrpcRequest {
+    string id = 1;
+
+    string title = 2;
+
+    ProjectCreatorGrpc creator = 3; 
+}
+
+message FindAllProjectsGrpcRequest {
+    string userId = 1;
+}
+
+message RemoveProjectGrpcRequest {
+    string id = 1;
+
+    string userId = 2;
+}

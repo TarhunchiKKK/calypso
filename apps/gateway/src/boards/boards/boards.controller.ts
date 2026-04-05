@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from "@nestjs/common";
+import { Body, Controller, Inject, Param, Patch, Post, Req } from "@nestjs/common";
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { Request } from "express";
@@ -22,18 +22,8 @@ export class BoardsController {
         return this.boardsService.create(accessToken, createBoardDto);
     }
 
-    @Get()
-    public findAll(@Authorized() payload: TokenPayload) {
-        return this.boardsService.findAll(payload.userId);
-    }
-
     @Patch(":id")
     public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() updateBoardDto: UpdateBoardDto) {
-        return this.boardsService.update(id, payload.userId, updateBoardDto);
-    }
-
-    @Delete(":id")
-    public remove(@Param("id") id: Id, @Authorized() payload: TokenPayload) {
-        return this.boardsService.remove(id, payload.userId);
+        this.boardsService.update(id, payload.userId, updateBoardDto);
     }
 }

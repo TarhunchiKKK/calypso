@@ -10,13 +10,13 @@ package boards;
 service BoardsService {
     rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
 
-    rpc Duplicate(DuplicateBoardGrpcRequest) returns (BoardGrpcResponse) {} 
+    rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {} 
 
-    rpc FindAll(FindAllBoardsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+    rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
     rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc Remove(RemoveBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+    rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
 message BoardGrpc {
@@ -51,18 +51,6 @@ message CreateBoardGrpcRequest {
     projects.ProjectCreatorGrpc creator = 3; 
 }
 
-message DuplicateBoardGrpcRequest {
-    string id = 1;
-
-    string title = 2;
-
-    projects.ProjectCreatorGrpc creator = 3; 
-}
-
-message FindAllBoardsGrpcRequest {
-    string userId = 1;
-}
-
 message BoardsList {
     repeated BoardGrpc boards = 1;
 }
@@ -85,12 +73,6 @@ message UpdateBoardGrpcRequest {
     optional string description = 4;
 
     optional string thumbnail = 5;
-}
-
-message RemoveBoardGrpcRequest {
-    string id = 1;
-
-    string userId = 2;
 }
 
 service BoardNodesService {

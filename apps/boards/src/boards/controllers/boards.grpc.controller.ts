@@ -4,14 +4,12 @@ import {
     BoardsServiceControllerMethods,
     CheckAccess,
     type CreateBoardGrpcRequest,
-    type DuplicateBoardGrpcRequest,
-    type FindAllBoardsGrpcRequest,
     GrpcController,
-    type RemoveBoardGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/api";
-import { asType, type NoNullableFields } from "@repo/common";
+import type { DuplicateProjectGrpcRequest, FindAllProjectsGrpcRequest, RemoveProjectGrpcRequest } from "@repo/api/dist/grpc/generated/projects";
+import type { NoNullableFields, NoNullableFieldsDeep } from "@repo/common";
 import { Operations } from "src/lib/auth.constants";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
@@ -23,18 +21,18 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     public async create(dto: CreateBoardGrpcRequest) {
-        return await this.boardsService.create(asType<CreateBoardDto>(dto));
+        return await this.boardsService.create(dto as NoNullableFieldsDeep<CreateBoardDto>);
     }
 
     @CheckAccess({
         operation: Operations.duplicate,
-        extract: (dto: NoNullableFields<DuplicateBoardGrpcRequest>) => ({ resourceId: dto.id, userId: dto.creator.id })
+        extract: (dto: NoNullableFields<DuplicateProjectGrpcRequest>) => ({ resourceId: dto.id, userId: dto.creator.id })
     })
-    public async duplicate(dto: DuplicateBoardGrpcRequest) {
-        return await this.boardsService.duplicate(asType<DuplicateBoardDto>(dto));
+    public async duplicate(dto: DuplicateProjectGrpcRequest) {
+        return await this.boardsService.duplicate(dto as NoNullableFieldsDeep<DuplicateBoardDto>);
     }
 
-    public async findAll(dto: FindAllBoardsGrpcRequest) {
+    public async findAll(dto: FindAllProjectsGrpcRequest) {
         return await this.boardsService.findAll(dto.userId);
     }
 
@@ -43,16 +41,16 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
         extract: (dto: UpdateBoardGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
     })
     public async update(dto: UpdateBoardGrpcRequest) {
-        const { userId, id, ...data } = dto;
+        const { id, userId, ...data } = dto;
 
         return this.boardsService.update(id, data);
     }
 
     @CheckAccess({
         operation: Operations.remove,
-        extract: (dto: RemoveBoardGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
+        extract: (dto: RemoveProjectGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
     })
-    public async remove(dto: RemoveBoardGrpcRequest) {
+    public async remove(dto: RemoveProjectGrpcRequest) {
         return this.boardsService.remove(dto.userId);
     }
 }
