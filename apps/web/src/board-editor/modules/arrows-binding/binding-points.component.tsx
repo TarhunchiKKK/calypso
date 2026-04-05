@@ -13,13 +13,7 @@ export function BindingPoints({ referencePoints, handlers }: Props) {
     return (
         <>
             {referencePoints.map((point, index) => (
-                <div
-                    // biome-ignore lint/suspicious/noArrayIndexKey: in this component this cannot give an error
-                    key={index}
-                    className={className}
-                    style={{ left: point.x, top: point.y }}
-                    {...handlers}
-                />
+                <div key={index} className={className} style={{ left: point.x, top: point.y }} {...handlers} />
             ))}
         </>
     );

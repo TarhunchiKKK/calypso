@@ -36,12 +36,7 @@ export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
 
             <DropdownMenuContent>
                 {items.map((item, index) => (
-                    <DropdownMenuItem
-                        // biome-ignore lint/suspicious/noArrayIndexKey: Index key will not change
-                        key={index}
-                        className="cursor-pointer"
-                        onClick={onSelect.bind(null, item.value)}
-                    >
+                    <DropdownMenuItem key={index} className="cursor-pointer" onClick={onSelect.bind(null, item.value)}>
                         {item.label}
                     </DropdownMenuItem>
                 ))}

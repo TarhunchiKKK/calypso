@@ -62,7 +62,6 @@ const map = {
         destination: path.join(rootDir, "apps/web/.env"),
         variables: {
             VITE_APP_URL: "WEB_URL",
-            VITE_BOARD_LS_KEY: "WEB_BOARD_LS_KEY",
             VITE_THEME_LS_KEY: "WEB_THEME_LS_KEY",
             VITE_API_URL: "GATEWAY_SERVICE_APP_URL",
             VITE_API_STALE_TIME: "WEB_API_STALE_TIME",

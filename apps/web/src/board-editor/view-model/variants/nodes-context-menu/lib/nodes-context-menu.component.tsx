@@ -22,7 +22,6 @@ export function NodesContextMenu({ groups }: NodesContextMenuProps) {
 
             <DropdownMenuContent className="w-48" align="start">
                 {groups.map((group, groupIndex) => (
-                    // biome-ignore lint/suspicious/noArrayIndexKey: `group.label` cannot be used as key because it's nullable
                     <div key={groupIndex}>
                         <DropdownMenuGroup>
                             {group.label && <DropdownMenuLabel>{group.label}</DropdownMenuLabel>}
