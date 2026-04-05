@@ -1,19 +1,25 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Here items relative order cannot be changed */
 
-import type { Id } from "@repo/common";
+import type { ProjectWithType } from "@repo/common";
 import { Input } from "@/shared/ui/kit";
 import { ProjectThumbnails } from "../constants/thumbnails.constants";
-import { ProjectsApi } from "../model/use-projects-api.hook";
+import { useProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
-    projectId: Id;
+    project: ProjectWithType;
 };
 
 const THUMBNAILS_IN_ROW = 5;
 
-export function ProjectThumbnailSelector({ projectId }: Props) {
+export function ProjectThumbnailSelector({ project }: Props) {
+    const projectsApi = useProjectsApi();
+
     const onClick = async (thumbnail: string) => {
-        await ProjectsApi.update(projectId, { thumbnail });
+        await projectsApi.update.mutateAsync({
+            id: project.id,
+            type: project.type,
+            thumbnail: thumbnail
+        });
     };
 
     const groupedThumbnails: string[][] = [];

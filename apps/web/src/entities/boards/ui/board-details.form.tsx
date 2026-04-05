@@ -2,7 +2,7 @@ import type { Board, UpdateBoardDto } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { formatDate } from "@/shared/lib/date";
 import { Button, Field, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
-import { BoardsApi } from "../api/boards.api";
+import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
     board: Board;
@@ -28,8 +28,13 @@ export function BoardDetailsForm({ board }: Props) {
         defaultValues: board
     });
 
+    const boardsApi = useBoardsApi();
+
     const onSubmit = async (data: UpdateBoardDto) => {
-        await BoardsApi.update(board.id, data);
+        await boardsApi.update.mutateAsync({
+            id: board.id,
+            ...data
+        });
     };
 
     return (

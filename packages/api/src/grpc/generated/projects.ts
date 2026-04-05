@@ -9,28 +9,28 @@
 const protobufPackage = "projects";
 
 export interface ProjectCreatorGrpc {
-  id: string;
-  email?: string | undefined;
+    id: string;
+    email?: string | undefined;
 }
 
 export interface DuplicateProjectGrpcRequest {
-  id: string;
-  title: string;
-  creator: ProjectCreatorGrpc | undefined;
+    id: string;
+    title: string;
+    creator: ProjectCreatorGrpc | undefined;
 }
 
 export interface FindAllProjectsGrpcRequest {
-  userId: string;
+    userId: string;
 }
 
 export interface FindOneProjectGrpcRequest {
-  id: string;
-  userId: string;
+    id: string;
+    userId: string;
 }
 
 export interface RemoveProjectGrpcRequest {
-  id: string;
-  userId: string;
+    id: string;
+    userId: string;
 }
 
 export const PROJECTS_PACKAGE_NAME = "projects";

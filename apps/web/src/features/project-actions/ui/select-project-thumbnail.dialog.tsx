@@ -1,9 +1,9 @@
-import type { Project } from "@repo/common";
+import type { ProjectWithType } from "@repo/common";
 import { ProjectThumbnailSelector } from "@/entities/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
 export type Props = {
-    project: Project;
+    project: ProjectWithType;
 
     trigger: React.ReactNode;
 };
@@ -18,7 +18,7 @@ export function SelectProjectThumbnailModal({ project, trigger }: Props) {
                     <DialogTitle>Choose thumbnail</DialogTitle>
                 </DialogHeader>
 
-                <ProjectThumbnailSelector projectId={project.id} />
+                <ProjectThumbnailSelector project={project} />
             </DialogContent>
         </Dialog>
     );

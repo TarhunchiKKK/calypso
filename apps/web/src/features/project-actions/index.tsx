@@ -1,5 +1,6 @@
 import type { ProjectWithType } from "@repo/common";
 import { CopyIcon, EllipsisVertical, ImageIcon, InfoIcon, LinkIcon, PencilIcon, SquareArrowOutUpRightIcon, TrashIcon } from "lucide-react";
+import { useProjectsApi } from "@/entities/projects";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { copyProjectLink, openInNewTab, preventDefaultEventHandler } from "./events.constants";
 import { ProjectDetailsDialog } from "./ui/project-details.dialog";
@@ -11,6 +12,20 @@ export type Props = {
 };
 
 export function ProjectActions({ project }: Props) {
+    const projectsApi = useProjectsApi();
+
+    const duplicateBoard = async () => {
+        await projectsApi.duplicate.mutateAsync({
+            id: project.id,
+            type: project.type,
+            title: `${project.title} (Copy)`
+        });
+    };
+
+    const removeBoard = async () => {
+        await projectsApi.remove.mutateAsync({ id: project.id, type: project.type });
+    };
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -35,7 +50,7 @@ export function ProjectActions({ project }: Props) {
                 <DropdownMenuSeparator />
 
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onSelect={duplicateBoard}>
                         <CopyIcon />
                         Duplicate
                     </DropdownMenuItem>
@@ -62,7 +77,7 @@ export function ProjectActions({ project }: Props) {
                 <DropdownMenuSeparator />
 
                 <DropdownMenuGroup>
-                    <DropdownMenuItem variant="destructive">
+                    <DropdownMenuItem variant="destructive" onSelect={removeBoard}>
                         <TrashIcon />
                         Delete
                     </DropdownMenuItem>

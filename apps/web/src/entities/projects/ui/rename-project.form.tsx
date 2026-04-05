@@ -1,10 +1,10 @@
-import type { Project } from "@repo/common";
+import type { Project, ProjectWithType } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../model/use-projects-api.hook";
+import { useProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
-    project: Project;
+    project: ProjectWithType;
 };
 
 export function RenameProjectForm({ project }: Props) {
@@ -14,8 +14,10 @@ export function RenameProjectForm({ project }: Props) {
         }
     });
 
+    const projectsAPi = useProjectsApi();
+
     const onSubmit = async (data: Pick<Project, "title">) => {
-        await ProjectsApi.update(project.id, data);
+        await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
     };
 
     return (
