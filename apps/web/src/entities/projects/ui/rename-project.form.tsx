@@ -5,9 +5,11 @@ import { useProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
     project: ProjectWithType;
+
+    afterSubmit?: () => void;
 };
 
-export function RenameProjectForm({ project }: Props) {
+export function RenameProjectForm({ project, afterSubmit }: Props) {
     const form = useForm<Pick<Project, "title">>({
         defaultValues: {
             title: project.title
@@ -18,6 +20,8 @@ export function RenameProjectForm({ project }: Props) {
 
     const onSubmit = async (data: Pick<Project, "title">) => {
         await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
+
+        afterSubmit?.();
     };
 
     return (
@@ -36,10 +40,8 @@ export function RenameProjectForm({ project }: Props) {
                 />
             </FieldGroup>
 
-            <div className="mt-6 flex flex-row justify-end items-center gap-4">
-                <Button type="submit" variant="default" size="default" className="cursor-pointer">
-                    Rename
-                </Button>
+            <div className="flex flex-row justify-end items-center mt-6">
+                <Button type="submit">Rename</Button>
             </div>
         </form>
     );

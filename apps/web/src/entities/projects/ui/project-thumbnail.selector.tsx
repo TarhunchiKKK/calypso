@@ -7,11 +7,13 @@ import { useProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
     project: ProjectWithType;
+
+    afterSubmit?: () => void;
 };
 
 const THUMBNAILS_IN_ROW = 5;
 
-export function ProjectThumbnailSelector({ project }: Props) {
+export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
     const projectsApi = useProjectsApi();
 
     const onClick = async (thumbnail: string) => {
@@ -20,6 +22,8 @@ export function ProjectThumbnailSelector({ project }: Props) {
             type: project.type,
             thumbnail: thumbnail
         });
+
+        afterSubmit?.();
     };
 
     const groupedThumbnails: string[][] = [];

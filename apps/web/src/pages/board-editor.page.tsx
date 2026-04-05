@@ -2,8 +2,8 @@ import { BoardEditor } from "@/board-editor";
 import { MockNodes } from "@/dev";
 import { useDefaultBoard } from "@/entities/boards";
 import { NodesMongoApi } from "@/entities/nodes";
-import { BoardHeader } from "@/features/board-header";
 import { ThemeSwitch } from "@/features/dark-mode";
+import { BoardHeader } from "@/features/header";
 
 // TODO:
 // * nodes fetching

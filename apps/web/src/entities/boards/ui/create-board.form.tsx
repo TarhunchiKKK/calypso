@@ -5,9 +5,9 @@ import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
     afterSubmit?: () => void;
-}
+};
 
-export function CreateBoardForm({afterSubmit}: Props) {
+export function CreateBoardForm({ afterSubmit }: Props) {
     const form = useForm<Pick<Board, "title" | "thumbnail">>({
         defaultValues: {
             title: "",
@@ -20,7 +20,7 @@ export function CreateBoardForm({afterSubmit}: Props) {
     const onSubmit = async (data: Pick<Board, "title" | "thumbnail">) => {
         await boardsApi.create.mutateAsync(data);
 
-        afterSubmit?.()
+        afterSubmit?.();
     };
 
     return (
@@ -39,8 +39,8 @@ export function CreateBoardForm({afterSubmit}: Props) {
                 />
             </FieldGroup>
 
-            <div className="flex flex-row justify-end items-center">
-                <Button type="submit" >Save</Button>
+            <div className="flex flex-row justify-end items-center mt-6">
+                <Button type="submit">Save</Button>
             </div>
         </form>
     );
