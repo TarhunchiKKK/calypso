@@ -9,7 +9,7 @@ import {
     SquareArrowOutUpRightIcon,
     TrashIcon,
 } from "lucide-react";
-import { Env, Routes } from "@/shared/config";
+import { Routes } from "@/shared/config";
 import {
     Button,
     DropdownMenu,
@@ -33,7 +33,13 @@ export function ProjectActions({ project }: Props) {
     const copyProjectLink = () => {
         const link = Routes.apps[project.type](project.id);
 
-        navigator.clipboard.writeText(`${Env.app.url}/${link}`);
+        navigator.clipboard.writeText(`${window.location.origin}/${link}`);
+    };
+
+    const openInNewTab = () => {
+        const link = Routes.apps[project.type](project.id);
+
+        window.open(`${window.location.origin}/${link}`);
     };
 
     return (
@@ -51,7 +57,7 @@ export function ProjectActions({ project }: Props) {
                         Copy link
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onSelect={openInNewTab}>
                         <SquareArrowOutUpRightIcon />
                         Open in new tab
                     </DropdownMenuItem>
