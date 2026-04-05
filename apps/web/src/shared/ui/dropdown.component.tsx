@@ -1,16 +1,7 @@
 "use client";
 
 import type React from "react";
-import {
-    Button,
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/shared/ui/kit";
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
 
 export type DropdownItem<T> = {
     label: React.ReactNode;

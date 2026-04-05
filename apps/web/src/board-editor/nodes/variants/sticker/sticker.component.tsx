@@ -38,10 +38,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
             {...handlers}
         >
             {showContent && (
-                <div
-                    style={textStyles}
-                    className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all"
-                >
+                <div style={textStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
                     {node.text}
                 </div>
             )}

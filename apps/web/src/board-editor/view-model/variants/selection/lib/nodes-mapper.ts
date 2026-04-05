@@ -37,9 +37,7 @@ export class SelectionNodesMapper extends NodesMapper {
         if (this.selectedIds.size === 1) {
             const nodeId = this.selectedIds.values().next().value as string;
 
-            withResizing = withHandlers.map(node =>
-                node.id === nodeId ? NodeDecoratorsFactory.resizable(node, this.resizeHandler) : node
-            );
+            withResizing = withHandlers.map(node => (node.id === nodeId ? NodeDecoratorsFactory.resizable(node, this.resizeHandler) : node));
         } else {
             withResizing = withHandlers;
         }

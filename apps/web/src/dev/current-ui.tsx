@@ -9,11 +9,11 @@ const projects: ProjectWithType[] = [
         description: "Description",
         creator: {
             id: "creator",
-            email: "creator@email.com",
+            email: "creator@email.com"
         },
         createdAt: new Date(),
-        updatedAt: new Date(),
-    },
+        updatedAt: new Date()
+    }
 ];
 
 export function CurrentUi() {

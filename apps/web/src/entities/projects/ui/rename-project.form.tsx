@@ -10,8 +10,8 @@ type Props = {
 export function RenameProjectForm({ project }: Props) {
     const form = useForm<Pick<Project, "title">>({
         defaultValues: {
-            title: project.title,
-        },
+            title: project.title
+        }
     });
 
     const onSubmit = async (data: Pick<Project, "title">) => {
@@ -28,22 +28,14 @@ export function RenameProjectForm({ project }: Props) {
                         <Field>
                             <FieldLabel>New title</FieldLabel>
 
-                            <Input
-                                {...field}
-                                placeholder="Enter new name of this project"
-                            />
+                            <Input {...field} placeholder="Enter new name of this project" />
                         </Field>
                     )}
                 />
             </FieldGroup>
 
             <div className="mt-6 flex flex-row justify-end items-center gap-4">
-                <Button
-                    type="submit"
-                    variant="default"
-                    size="default"
-                    className="cursor-pointer"
-                >
+                <Button type="submit" variant="default" size="default" className="cursor-pointer">
                     Rename
                 </Button>
             </div>

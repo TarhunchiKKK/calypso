@@ -1,16 +1,7 @@
 "use client";
 
 import type React from "react";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-    ToggleGroup,
-    ToggleGroupItem,
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger
-} from "@/shared/ui/kit";
+import { Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
 import { PopoverSideOffset } from "../constants/ui.constants";
 
 type Props = {
@@ -40,12 +31,7 @@ export function ColorsDropdown({ title, colors, placeholder, renderItem, onSelec
                 <ToggleGroup type="single" variant="default" className="w-full grid!">
                     <div className="grid grid-cols-4">
                         {colors.map(color => (
-                            <ToggleGroupItem
-                                key={color}
-                                value={color}
-                                className="cursor-pointer p-1!"
-                                onClick={onSelect.bind(null, color)}
-                            >
+                            <ToggleGroupItem key={color} value={color} className="cursor-pointer p-1!" onClick={onSelect.bind(null, color)}>
                                 {renderItem(color)}
                             </ToggleGroupItem>
                         ))}

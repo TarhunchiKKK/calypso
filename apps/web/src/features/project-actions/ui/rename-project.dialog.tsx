@@ -1,12 +1,6 @@
 import type { Project } from "@repo/common";
 import { RenameProjectForm } from "@/entities/projects/ui/rename-project.form";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/shared/ui/kit";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
 type Props = {
     project: Project;

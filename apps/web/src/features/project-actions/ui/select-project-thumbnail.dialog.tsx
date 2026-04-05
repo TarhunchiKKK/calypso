@@ -1,12 +1,6 @@
 import type { Project } from "@repo/common";
 import { ProjectThumbnailSelector } from "@/entities/projects";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/shared/ui/kit";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
 export type Props = {
     project: Project;

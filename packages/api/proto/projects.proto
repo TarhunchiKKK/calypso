@@ -5,5 +5,5 @@ package projects;
 message ProjectCreatorGrpc {
     string id = 1;
 
-    string email = 2;
+    optional string email = 2;
 }

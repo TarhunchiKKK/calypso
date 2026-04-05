@@ -1,14 +1,7 @@
 import type { Board, UpdateBoardDto } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { formatDate } from "@/shared/lib/date";
-import {
-    Button,
-    Field,
-    FieldGroup,
-    FieldLabel,
-    Input,
-    Textarea,
-} from "@/shared/ui/kit";
+import { Button, Field, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { BoardsApi } from "../api/boards.api";
 
 type Props = {
@@ -18,22 +11,21 @@ type Props = {
 const commonFields = [
     {
         label: "Owner",
-        value: (board: Board) => board.creator.email,
+        value: (board: Board) => board.creator.email
     },
     {
         label: "Created",
-        value: (board: Board) => formatDate(board.createdAt),
+        value: (board: Board) => formatDate(board.createdAt)
     },
     {
         label: "Modified",
-        value: (board: Board) =>
-            board.updatedAt ? formatDate(board.updatedAt) : "-",
-    },
+        value: (board: Board) => (board.updatedAt ? formatDate(board.updatedAt) : "-")
+    }
 ];
 
 export function BoardDetailsForm({ board }: Props) {
     const form = useForm<UpdateBoardDto>({
-        defaultValues: board,
+        defaultValues: board
     });
 
     const onSubmit = async (data: UpdateBoardDto) => {
@@ -62,21 +54,16 @@ export function BoardDetailsForm({ board }: Props) {
                         <Field>
                             <FieldLabel>Description</FieldLabel>
 
-                            <Textarea
-                                {...field}
-                                placeholder="Enter board description"
-                            />
+                            <Textarea {...field} placeholder="Enter board description" />
                         </Field>
                     )}
                 />
             </FieldGroup>
 
             <div className="grid grid-cols-2 mt-8">
-                {commonFields.map((field) => (
+                {commonFields.map(field => (
                     <>
-                        <div className="text-gray-600 dark:text-gray-400">
-                            {field.label}
-                        </div>
+                        <div className="text-gray-600 dark:text-gray-400">{field.label}</div>
                         <div>{field.value(board)}</div>
                     </>
                 ))}

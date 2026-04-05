@@ -7,8 +7,7 @@ type Props = {
     handlers: Pick<DOMAttributes<HTMLDivElement>, "onMouseEnter" | "onMouseLeave" | "onMouseUp">;
 };
 
-const className =
-    "absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-binding hover:w-3.5 hover:h-3.5 hover:blur-[2px]";
+const className = "absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-binding hover:w-3.5 hover:h-3.5 hover:blur-[2px]";
 
 export function BindingPoints({ referencePoints, handlers }: Props) {
     return (

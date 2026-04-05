@@ -6,11 +6,7 @@ import { switchToIdle } from "../variants/idle/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
 import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
 
-export function withHotKeys(
-    viewState: ViewState,
-    { nodesModel, setViewState }: ViewModelParams,
-    viewModel: DecoratableViewModel
-): DecoratableViewModel {
+export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
     const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "editing") {
             return;

@@ -22,12 +22,7 @@ export function TextFormattingGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown
-                title="Text Align"
-                items={TextAligns}
-                placeholder={TextAlignPlaceholder}
-                onSelect={handleTextAlignSelected}
-            />
+            <Dropdown title="Text Align" items={TextAligns} placeholder={TextAlignPlaceholder} onSelect={handleTextAlignSelected} />
         </StylesGroupWrapper>
     );
 }

@@ -8,7 +8,7 @@ export type Project = {
 
     description?: string;
 
-    thumbnail?: string;
+    thumbnail: string;
 
     creator: ProjectCreator;
 

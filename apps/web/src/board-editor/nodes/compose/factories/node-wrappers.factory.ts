@@ -23,10 +23,7 @@ export class NodeWrappersFactory {
             case "sticker":
                 return new StickerNodeWrapper(node as StickerNode);
             case "arrow":
-                return new ArrowNodeWrapper(
-                    node as ArrowNode,
-                    resolveArrowAbsolutePosition(allNodes, node as ArrowNode)
-                );
+                return new ArrowNodeWrapper(node as ArrowNode, resolveArrowAbsolutePosition(allNodes, node as ArrowNode));
             case "text":
                 return new TextNodeWrapper(node as TextNode);
             case "shape":

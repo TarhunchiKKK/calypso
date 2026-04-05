@@ -6,8 +6,7 @@ import { defaultTheme, setDocumentTheme, type Theme } from "./lib";
 
 export function ThemeProvider({ children }: PropsWithChildren) {
     useEffect(() => {
-        const theme =
-            (localStorage.getItem(Env.ls.themeKey) as Theme) ?? defaultTheme;
+        const theme = (localStorage.getItem(Env.ls.themeKey) as Theme) ?? defaultTheme;
 
         setDocumentTheme(theme);
 

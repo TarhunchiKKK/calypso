@@ -2,12 +2,7 @@
 
 import React, { type RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const recalculateFontSize = (
-    value: string,
-    setFontSize: (_: number) => void,
-    wrapper: HTMLDivElement,
-    measure: HTMLDivElement
-) => {
+const recalculateFontSize = (value: string, setFontSize: (_: number) => void, wrapper: HTMLDivElement, measure: HTMLDivElement) => {
     const { width: maxW, height: maxH } = wrapper.getBoundingClientRect();
 
     measure.style.width = `${Math.max(10, Math.floor(maxW))}px`;
@@ -82,13 +77,7 @@ function Wrapper({ value: initialValue, onEditingEnd }: Props) {
 
     return (
         <div ref={wrapperRef} className="relative w-full h-full flex flex-col">
-            <Textarea
-                value={value}
-                onValueChange={setValue}
-                onEditingEnd={handleEditingEnd}
-                fontSize={fontSize}
-                wrapperRef={wrapperRef}
-            />
+            <Textarea value={value} onValueChange={setValue} onEditingEnd={handleEditingEnd} fontSize={fontSize} wrapperRef={wrapperRef} />
 
             <div
                 ref={measureRef}

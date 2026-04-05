@@ -9,8 +9,8 @@
 const protobufPackage = "projects";
 
 export interface ProjectCreatorGrpc {
-    id: string;
-    email: string;
+  id: string;
+  email?: string | undefined;
 }
 
 export const PROJECTS_PACKAGE_NAME = "projects";

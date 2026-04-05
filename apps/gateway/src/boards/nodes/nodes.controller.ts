@@ -1,10 +1,5 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import type {
-    AnyNode,
-    CreateManyNodesRequest,
-    RemoveManyNodesRequest,
-    UpdateManyNodesRequest
-} from "@repo/boards-common";
+import type { AnyNode, CreateManyNodesRequest, RemoveManyNodesRequest, UpdateManyNodesRequest } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { Observable } from "rxjs";
 import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";

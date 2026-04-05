@@ -26,7 +26,7 @@ message BoardGrpc {
 
     optional string description = 3;
 
-    optional string thumbnail = 4;
+    string thumbnail = 4;
 
     projects.ProjectCreatorGrpc creator = 5;
 
@@ -46,13 +46,17 @@ message BoardGrpcResponse {
 message CreateBoardGrpcRequest {
     string title = 1;
 
-    projects.ProjectCreatorGrpc creator = 2; 
+    string thumbnail = 2;
+
+    projects.ProjectCreatorGrpc creator = 3; 
 }
 
 message DuplicateBoardGrpcRequest {
-    string boardId = 1;
+    string id = 1;
 
-    string userId = 2;
+    string title = 2;
+
+    projects.ProjectCreatorGrpc creator = 3; 
 }
 
 message FindAllBoardsGrpcRequest {

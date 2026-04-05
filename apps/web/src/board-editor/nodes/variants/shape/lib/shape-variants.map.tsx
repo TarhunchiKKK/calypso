@@ -26,14 +26,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
             ry: node.rect.height / 2
         };
 
-        return (
-            <ellipse
-                {...dimensions}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
-        );
+        return <ellipse {...dimensions} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />;
     },
     triangle: (node, handlers) => {
         const referencePoints = ShapeVariantsReferencePointsMap.triangle(node);

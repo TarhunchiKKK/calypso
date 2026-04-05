@@ -9,7 +9,6 @@ import {
     SquareArrowOutUpRightIcon,
     TrashIcon,
 } from "lucide-react";
-import { Routes } from "@/shared/config";
 import {
     Button,
     DropdownMenu,
@@ -19,6 +18,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/shared/ui/kit";
+import {
+    copyProjectLink,
+    openInNewTab,
+    preventDefaultEventHandler,
+} from "./events.constants";
 import { ProjectDetailsDialog } from "./ui/project-details.dialog";
 import { RenameProjectDialog } from "./ui/rename-project.dialog";
 import { SelectProjectThumbnailModal } from "./ui/select-project-thumbnail.dialog";
@@ -27,21 +31,7 @@ export type Props = {
     project: ProjectWithType;
 };
 
-const preventDefaultEventHandler = (e: Event) => e.preventDefault();
-
 export function ProjectActions({ project }: Props) {
-    const copyProjectLink = () => {
-        const link = Routes.apps[project.type](project.id);
-
-        navigator.clipboard.writeText(`${window.location.origin}/${link}`);
-    };
-
-    const openInNewTab = () => {
-        const link = Routes.apps[project.type](project.id);
-
-        window.open(`${window.location.origin}/${link}`);
-    };
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -52,12 +42,16 @@ export function ProjectActions({ project }: Props) {
 
             <DropdownMenuContent className="w-48" align="start">
                 <DropdownMenuGroup>
-                    <DropdownMenuItem onSelect={copyProjectLink}>
+                    <DropdownMenuItem
+                        onSelect={copyProjectLink.bind(null, project)}
+                    >
                         <LinkIcon />
                         Copy link
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem onSelect={openInNewTab}>
+                    <DropdownMenuItem
+                        onSelect={openInNewTab.bind(null, project)}
+                    >
                         <SquareArrowOutUpRightIcon />
                         Open in new tab
                     </DropdownMenuItem>
@@ -82,7 +76,7 @@ export function ProjectActions({ project }: Props) {
 
                     <DropdownMenuItem onSelect={preventDefaultEventHandler}>
                         <ImageIcon />
-
+ 
                         <SelectProjectThumbnailModal
                             project={project}
                             trigger="Change thumbnail"

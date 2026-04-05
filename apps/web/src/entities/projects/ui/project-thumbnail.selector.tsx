@@ -32,21 +32,10 @@ export function ProjectThumbnailSelector({ projectId }: Props) {
         <div className="space-y-5">
             <div>
                 {groupedThumbnails.map((group, index) => (
-                    <div
-                        key={index}
-                        className="w-full flex flex-row justify-between items-center"
-                    >
+                    <div key={index} className="w-full flex flex-row justify-between items-center">
                         {group.map((thumbnail, index) => (
-                            <div
-                                key={index}
-                                className="p-2 rounded-md hover:bg-secondary cursor-pointer"
-                                onClick={() => onClick(thumbnail)}
-                            >
-                                <img
-                                    src={thumbnail}
-                                    alt="Icon"
-                                    className="w-12 h-12"
-                                />
+                            <div key={index} className="p-2 rounded-md hover:bg-secondary cursor-pointer" onClick={() => onClick(thumbnail)}>
+                                <img src={thumbnail} alt="Icon" className="w-12 h-12" />
                             </div>
                         ))}
                     </div>
@@ -54,11 +43,7 @@ export function ProjectThumbnailSelector({ projectId }: Props) {
             </div>
 
             <div className="flex flex-row justify-center items-center">
-                <Input
-                    type="file"
-                    className="max-w-60 cursor-pointer"
-                    onChange={(e) => onClick(e.target.value)}
-                />
+                <Input type="file" className="max-w-60 cursor-pointer" onChange={e => onClick(e.target.value)} />
             </div>
         </div>
     );

@@ -1,17 +1,11 @@
 import type { Board } from "@repo/boards-common";
 import type { Project, ProjectTypes, ProjectWithType } from "@repo/common";
 import { BoardDetailsForm } from "@/entities/boards";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/shared/ui/kit";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
 const formsMap: Record<ProjectTypes, (project: Project) => React.ReactNode> = {
-    board: (project) => <BoardDetailsForm board={project as Board} />,
-    note: () => null,
+    board: project => <BoardDetailsForm board={project as Board} />,
+    note: () => null
 };
 
 type Props = {

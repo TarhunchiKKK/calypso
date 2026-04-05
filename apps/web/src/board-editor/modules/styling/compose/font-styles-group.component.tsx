@@ -32,19 +32,9 @@ export function FontStylesGroup({ onUpdate }: Props) {
 
     return (
         <StylesGroupWrapper>
-            <Dropdown
-                title="Font Family"
-                placeholder={FontFamilyPlaceholder}
-                items={FontFamilies}
-                onSelect={handleFontFamilySelect}
-            />
+            <Dropdown title="Font Family" placeholder={FontFamilyPlaceholder} items={FontFamilies} onSelect={handleFontFamilySelect} />
 
-            <Dropdown
-                title="Font Size"
-                placeholder={FontSizePlaceholder}
-                items={FontSizes}
-                onSelect={handleFontSizeSelect}
-            />
+            <Dropdown title="Font Size" placeholder={FontSizePlaceholder} items={FontSizes} onSelect={handleFontSizeSelect} />
         </StylesGroupWrapper>
     );
 }

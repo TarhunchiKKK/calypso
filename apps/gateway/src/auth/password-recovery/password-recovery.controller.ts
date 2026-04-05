@@ -8,9 +8,7 @@ import { PasswordRecoveryService } from "./password-recovery.service";
 @Controller("password-recovery")
 @Authorization()
 export class PasswordRecoveryController {
-    public constructor(
-        @Inject(PasswordRecoveryService) private readonly passwordRecoveryService: PasswordRecoveryService
-    ) {}
+    public constructor(@Inject(PasswordRecoveryService) private readonly passwordRecoveryService: PasswordRecoveryService) {}
 
     @Post("reset")
     public async reset(@Authorized() payload: TokenPayload) {
