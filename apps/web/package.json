@@ -23,6 +23,8 @@
         "@repo/boards-common": "*",
         "@repo/common": "*",
         "@tailwindcss/vite": "^4.2.0",
+        "@tanstack/react-query": "^5.96.2",
+        "axios": "^1.14.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "lucide-react": "^0.556.0",

@@ -1,7 +1,7 @@
 import type { Project } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../api/projects.api";
+import { ProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
     project: Project;

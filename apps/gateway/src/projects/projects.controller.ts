@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Inject, Param, Patch, Post, Req } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from "@nestjs/common";
 import type { DuplicateProjectDto, Id, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
 import type { Request } from "express";
 import { CookieService } from "src/auth/lib/cookie/cookie.service";
@@ -19,6 +19,11 @@ export class ProjectsController {
     public async duplicate(@Req() request: Request, @Body() dto: DuplicateProjectDto) {
         const accessToken = this.cookieService.getToken(request, "access");
         return await this.projectsService.duplicate(accessToken, dto);
+    }
+
+    @Get()
+    public findAll(@Authorized() payload: TokenPayload) {
+        return this.projectsService.findAll(payload.userId);
     }
 
     @Patch(":id")

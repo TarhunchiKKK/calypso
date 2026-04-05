@@ -2,8 +2,8 @@
 
 import type { Id } from "@repo/common";
 import { Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../api/projects.api";
 import { ProjectThumbnails } from "../constants/thumbnails.constants";
+import { ProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
     projectId: Id;
