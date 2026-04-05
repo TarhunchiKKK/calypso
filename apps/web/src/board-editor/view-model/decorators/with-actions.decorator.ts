@@ -29,9 +29,25 @@ export function withActions(viewState: ViewState, setViewState: ViewModelParams[
             isActive: isArrows,
             onClick: () => setViewState(switchToArrowCreation())
         },
+        text: {
+            isActive: false,
+            onClick: () => {}
+        },
         shapes: {
             isActive: isShapes,
             onClick: e => (!isShapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+        },
+        media: {
+            isActive: false,
+            onClick: () => {}
+        },
+        notes: {
+            isActive: false,
+            onClick: () => {}
+        },
+        draw: {
+            isActive: false,
+            onClick: () => {}
         }
     };
 
