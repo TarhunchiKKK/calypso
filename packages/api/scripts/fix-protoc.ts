@@ -10,10 +10,7 @@ function fixProtobufPackage(filePath: string): void {
 
         // Удаляем export из строки protobufPackage
         content = content.replace(/^export const protobufPackage = /gm, "const protobufPackage = ");
-        content = content.replace(
-            /^export const GOOGLE_PROTOBUF_PACKAGE_NAME = /gm,
-            "const GOOGLE_PROTOBUF_PACKAGE_NAME = "
-        );
+        content = content.replace(/^export const GOOGLE_PROTOBUF_PACKAGE_NAME = /gm, "const GOOGLE_PROTOBUF_PACKAGE_NAME = ");
 
         // export const GOOGLE_PROTOBUF_PACKAGE_NAME
         fs.writeFileSync(filePath, content, "utf8");

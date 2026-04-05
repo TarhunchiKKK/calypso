@@ -1,5 +1,7 @@
 import type { ProjectTypes } from "@repo/common";
 
+// FIX: move this images to S3
+
 export const ThumbnailStyles = {
     width: 40,
     height: 40

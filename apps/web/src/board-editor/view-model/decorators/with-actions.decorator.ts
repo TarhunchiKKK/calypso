@@ -10,11 +10,7 @@ const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-win
 const arrowsViewStates: ViewState["type"][] = ["arrow-creation", "arrow-binding"];
 const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creation"];
 
-export function withActions(
-    viewState: ViewState,
-    setViewState: ViewModelParams["setViewState"],
-    viewModel: DecoratableViewModel
-) {
+export function withActions(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: DecoratableViewModel) {
     const isIdle = idleViewStates.includes(viewState.type);
     const isStickers = viewState.type === "stickers-creation";
     const isArrows = arrowsViewStates.includes(viewState.type);

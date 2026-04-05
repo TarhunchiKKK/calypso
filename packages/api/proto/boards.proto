@@ -10,13 +10,15 @@ package boards;
 service BoardsService {
     rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
 
-    rpc Duplicate(DuplicateBoardGrpcRequest) returns (BoardGrpcResponse) {} 
+    rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {} 
 
-    rpc FindAll(FindAllBoardsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+    rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+
+    rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
     rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc Remove(RemoveBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+    rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
 message BoardGrpc {
@@ -26,7 +28,7 @@ message BoardGrpc {
 
     optional string description = 3;
 
-    optional string thumbnail = 4;
+    string thumbnail = 4;
 
     projects.ProjectCreatorGrpc creator = 5;
 
@@ -46,17 +48,9 @@ message BoardGrpcResponse {
 message CreateBoardGrpcRequest {
     string title = 1;
 
-    projects.ProjectCreatorGrpc creator = 2; 
-}
+    string thumbnail = 2;
 
-message DuplicateBoardGrpcRequest {
-    string boardId = 1;
-
-    string userId = 2;
-}
-
-message FindAllBoardsGrpcRequest {
-    string userId = 1;
+    projects.ProjectCreatorGrpc creator = 3; 
 }
 
 message BoardsList {
@@ -81,12 +75,6 @@ message UpdateBoardGrpcRequest {
     optional string description = 4;
 
     optional string thumbnail = 5;
-}
-
-message RemoveBoardGrpcRequest {
-    string id = 1;
-
-    string userId = 2;
 }
 
 service BoardNodesService {

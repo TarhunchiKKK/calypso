@@ -14,9 +14,7 @@ export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode
             const relativeNode = nodes.find(node => node.id === arrow[pointKey].relativeTo);
 
             if (!relativeNode) {
-                throw new Error(
-                    `Relative ${pointKey} node with id="${arrow[pointKey].relativeTo}" to arrow with id="${arrow.id}" not found`
-                );
+                throw new Error(`Relative ${pointKey} node with id="${arrow[pointKey].relativeTo}" to arrow with id="${arrow.id}" not found`);
             }
 
             const relativeNodeRect = NodeRectsFactory.rect(relativeNode);

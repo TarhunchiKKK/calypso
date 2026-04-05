@@ -13,8 +13,8 @@ export class Board implements BoardType {
     @Column({ nullable: true })
     public description?: string;
 
-    @Column({ nullable: true })
-    public thumbnail?: string;
+    @Column()
+    public thumbnail: string;
 
     @ManyToOne(
         () => BoardCreator,

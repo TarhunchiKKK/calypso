@@ -19,9 +19,7 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
         }
         case "remove": {
             for (const removingNodeId of payload.nodes) {
-                const arrow = arrows.find(
-                    node => node.start.relativeTo === removingNodeId || node.end.relativeTo === removingNodeId
-                );
+                const arrow = arrows.find(node => node.start.relativeTo === removingNodeId || node.end.relativeTo === removingNodeId);
 
                 if (!arrow) {
                     continue;

@@ -1,12 +1,4 @@
-import {
-    applyDecorators,
-    type CallHandler,
-    type ExecutionContext,
-    Injectable,
-    Logger,
-    type NestInterceptor,
-    UseInterceptors
-} from "@nestjs/common";
+import { applyDecorators, type CallHandler, type ExecutionContext, Injectable, Logger, type NestInterceptor, UseInterceptors } from "@nestjs/common";
 import type { RmqContext } from "@nestjs/microservices";
 import { catchError, tap, throwError } from "rxjs";
 import { BrokerAcknowledgementService } from "./broker-acknowledgement.service";

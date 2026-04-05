@@ -1,10 +1,7 @@
 import type { ViewModelParams } from "../types";
 import type { DecoratableViewModel } from "../types/view-model.types";
 
-export function withLayoutDimensions(
-    { layoutDimensionsModel }: ViewModelParams,
-    viewModel: DecoratableViewModel
-): DecoratableViewModel {
+export function withLayoutDimensions({ layoutDimensionsModel }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
     return {
         ...viewModel,
         overlay: {

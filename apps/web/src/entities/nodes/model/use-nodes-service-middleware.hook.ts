@@ -2,9 +2,7 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { useCallback, useRef } from "react";
 
-export type NodesServiceMiddlewarePayload =
-    | { operation: "create" | "update"; nodes: NodeBase[] }
-    | { operation: "remove"; nodes: Id[] };
+export type NodesServiceMiddlewarePayload = { operation: "create" | "update"; nodes: NodeBase[] } | { operation: "remove"; nodes: Id[] };
 
 export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
 

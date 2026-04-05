@@ -7,17 +7,7 @@ export type StickerNode = RectNode & {
 
     text: string;
 
-    styles: Pick<
-        NodeStyles,
-        | "backgroundColor"
-        | "borderStyle"
-        | "borderColor"
-        | "borderRadius"
-        | "fontFamily"
-        | "fontSize"
-        | "textColor"
-        | "textAlign"
-    >;
+    styles: Pick<NodeStyles, "backgroundColor" | "borderStyle" | "borderColor" | "borderRadius" | "fontFamily" | "fontSize" | "textColor" | "textAlign">;
 };
 
 export type ArrowNode = NodeBase & {

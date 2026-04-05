@@ -14,13 +14,7 @@ export function ShapeSelector({ onSelect }: Props) {
                 const VariantIcon = ShapeVariantsIconsMap[variant];
 
                 return (
-                    <Button
-                        key={variant}
-                        variant="outline"
-                        size="icon-lg"
-                        className="cursor-pointer p-1"
-                        onClick={onSelect.bind(null, variant)}
-                    >
+                    <Button key={variant} variant="outline" size="icon-lg" className="cursor-pointer p-1" onClick={onSelect.bind(null, variant)}>
                         <VariantIcon style={IconsSizes} />
                     </Button>
                 );

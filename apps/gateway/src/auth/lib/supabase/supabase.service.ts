@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import type { AuthResponse, Session, User } from "@repo/common";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -9,21 +9,27 @@ export class SupabaseService {
     private readonly supabaseClient: SupabaseClient;
 
     public constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
-        this.supabaseClient = createClient(
-            this.configService.getOrThrow("SUPABASE_URL"),
-            this.configService.getOrThrow("SUPABASE_KEY"),
-            {
-                auth: {
-                    autoRefreshToken: true,
-                    persistSession: true,
-                    detectSessionInUrl: true
-                }
+        this.supabaseClient = createClient(this.configService.getOrThrow("SUPABASE_URL"), this.configService.getOrThrow("SUPABASE_KEY"), {
+            auth: {
+                autoRefreshToken: true,
+                persistSession: true,
+                detectSessionInUrl: true
             }
-        );
+        });
     }
 
     public get client() {
         return this.supabaseClient;
+    }
+
+    public async findUser(accessToken: string) {
+        const { data, error } = await this.supabaseClient.auth.getUser(accessToken);
+
+        if (error) {
+            throw new UnauthorizedException("Invalid token");
+        }
+
+        return this.mapUser(data.user);
     }
 
     public mapAuthResponse(data: { user: SupabaseUser | null; session: SupabaseSession | null }): AuthResponse {

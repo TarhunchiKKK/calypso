@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Square, Type } from "lucide-react";
 import { centered } from "#/common/decorators";
-import {
-    BackgroundColorPlaceholder,
-    BorderColorPlaceholder,
-    TextColorPlaceholder
-} from "@/board-editor/modules/styling/constants/placeholders.constants";
+import { BackgroundColorPlaceholder, BorderColorPlaceholder, TextColorPlaceholder } from "@/board-editor/modules/styling/constants/placeholders.constants";
 import { ColorsDropdownItemSizes } from "@/board-editor/modules/styling/constants/ui.constants";
 import { ColorsDropdown } from "@/board-editor/modules/styling/ui/colors-dropdown.component";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
@@ -24,9 +20,7 @@ export const BackgroundColors: Story = {
         title: "Background",
         placeholder: BackgroundColorPlaceholder,
         colors: AvailableColors,
-        renderItem: backgroundColor => (
-            <div className="w-5 h-5 rounded-full" style={{ backgroundColor, ...ColorsDropdownItemSizes }} />
-        ),
+        renderItem: backgroundColor => <div className="w-5 h-5 rounded-full" style={{ backgroundColor, ...ColorsDropdownItemSizes }} />,
         onSelect: () => {}
     },
     decorators: centered

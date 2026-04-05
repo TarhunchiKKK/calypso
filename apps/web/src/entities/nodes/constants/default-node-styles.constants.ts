@@ -1,10 +1,5 @@
 import type { NodeStyles } from "@repo/boards-common";
-import {
-    AvailableBorderRadiuses,
-    AvailableColors,
-    AvailableFontFamilies,
-    AvailableFontSizes
-} from "./available-node-styles.constants";
+import { AvailableBorderRadiuses, AvailableColors, AvailableFontFamilies, AvailableFontSizes } from "./available-node-styles.constants";
 
 export const DefaultNodeStyles: NodeStyles = {
     fontFamily: AvailableFontFamilies[0],

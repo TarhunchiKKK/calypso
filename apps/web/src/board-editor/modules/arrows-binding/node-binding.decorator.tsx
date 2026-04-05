@@ -4,7 +4,7 @@ import type { NodeBindingStrategy } from "./node-binding.strategy";
 export class NodeBindingDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: NodeBindingStrategy,
+        protected readonly strategy: NodeBindingStrategy
     ) {
         super(entry);
     }
@@ -15,7 +15,7 @@ export class NodeBindingDecorator extends NodeDecorator {
                 {this.strategy.ui(this.entry.data)}
 
                 {children}
-            </>,
+            </>
         );
     }
 }

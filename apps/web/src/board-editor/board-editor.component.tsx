@@ -43,11 +43,7 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                 offset={layoutDimensionsModel.layoutOffset.offset}
                 zoom={layoutDimensionsModel.layoutZoom.zoom}
                 overlay={
-                    <Overlay
-                        onKeyDown={viewModel.overlay?.onKeyDown}
-                        onMouseDown={viewModel.overlay?.onMouseDown}
-                        onMouseUp={viewModel.overlay?.onMouseUp}
-                    />
+                    <Overlay onKeyDown={viewModel.overlay?.onKeyDown} onMouseDown={viewModel.overlay?.onMouseDown} onMouseUp={viewModel.overlay?.onMouseUp} />
                 }
                 onMouseDown={viewModel.canvas?.onMouseDown}
                 onMouseUp={viewModel.canvas?.onMouseUp}

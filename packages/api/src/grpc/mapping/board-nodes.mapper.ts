@@ -1,13 +1,6 @@
 import type { AnyNode, ArrowNode, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
-import type {
-    ArrowBoardNodeGrpc,
-    BoardNodeBaseGrpc,
-    BoardNodeGrpc,
-    ShapeBoardNodeGrpc,
-    StickerBoardNodeGrpc,
-    TextBoardNodeGrpc
-} from "../generated";
+import type { ArrowBoardNodeGrpc, BoardNodeBaseGrpc, BoardNodeGrpc, ShapeBoardNodeGrpc, StickerBoardNodeGrpc, TextBoardNodeGrpc } from "../generated";
 
 export class BoardNodesGrpcMapper {
     public static toGrpc(node: AnyNode): BoardNodeGrpc {

@@ -30,6 +30,7 @@ import { NodesService } from "./nodes/nodes.service";
         ])
     ],
     controllers: [BoardsController, NodesController],
-    providers: [BoardsService, NodesService]
+    providers: [BoardsService, NodesService],
+    exports: [BoardsService]
 })
 export class BoardsModule {}

@@ -1,21 +1,11 @@
-import {
-    ALargeSmall,
-    CaseSensitive,
-    Square,
-    SquareDashed,
-    SquareRoundCorner,
-    TextAlignStart,
-    Type
-} from "lucide-react";
+import { ALargeSmall, CaseSensitive, Square, SquareDashed, SquareRoundCorner, TextAlignStart, Type } from "lucide-react";
 import { DefaultNodeStyles } from "@/entities/nodes";
 
 export const FontFamilyPlaceholder = <CaseSensitive className="dark:text-white" />;
 
 export const FontSizePlaceholder = <ALargeSmall className="dark:text-white" />;
 
-export const BackgroundColorPlaceholder = (
-    <div className="w-5 h-5 rounded-full" style={{ backgroundColor: DefaultNodeStyles.backgroundColor }} />
-);
+export const BackgroundColorPlaceholder = <div className="w-5 h-5 rounded-full" style={{ backgroundColor: DefaultNodeStyles.backgroundColor }} />;
 
 export const TextColorPlaceholder = <Type style={{ color: DefaultNodeStyles.textColor }} />;
 

@@ -13,9 +13,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
 
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
-        selectedNodesIds = nodesModel.nodes
-            .filter(node => Geometry.rectsIntersecting(selectionWindowRect, NodeRectsFactory.rect(node)))
-            .map(node => node.id);
+        selectedNodesIds = nodesModel.nodes.filter(node => Geometry.rectsIntersecting(selectionWindowRect, NodeRectsFactory.rect(node))).map(node => node.id);
     }
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {

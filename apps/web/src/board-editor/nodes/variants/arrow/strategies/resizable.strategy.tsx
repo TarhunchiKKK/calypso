@@ -15,17 +15,9 @@ export class ResizableArrowStrategy extends ResizableNodeStrategy {
 
         return (
             <>
-                <div
-                    className={className}
-                    style={{ left: start.x, top: start.y }}
-                    onMouseDown={() => this?.handler?.(node.id, "s")}
-                />
+                <div className={className} style={{ left: start.x, top: start.y }} onMouseDown={() => this?.handler?.(node.id, "s")} />
 
-                <div
-                    className={className}
-                    style={{ left: end.x, top: end.y }}
-                    onMouseDown={() => this?.handler?.(node.id, "n")}
-                />
+                <div className={className} style={{ left: end.x, top: end.y }} onMouseDown={() => this?.handler?.(node.id, "n")} />
             </>
         );
     }

@@ -1,7 +1,8 @@
+import type { Board } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 
 export type DuplicateBoardDto = {
-    boardId: Id;
+    id: Id;
 
-    userId: string;
+    creator: Board["creator"];
 };

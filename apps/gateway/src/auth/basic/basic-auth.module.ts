@@ -11,13 +11,6 @@ import { SignUpCommandHandler } from "./handlers/sign-up.handler";
 @Module({
     imports: [SupabaseModule],
     controllers: [BasicAuthController],
-    providers: [
-        BasicAuthService,
-        SignUpCommandHandler,
-        SignInCommandHandler,
-        SignOutCommandHandler,
-        GetProfileQueryHandler,
-        RefreshSessionQueryHandler
-    ]
+    providers: [BasicAuthService, SignUpCommandHandler, SignInCommandHandler, SignOutCommandHandler, GetProfileQueryHandler, RefreshSessionQueryHandler]
 })
 export class BasicAuthModule {}

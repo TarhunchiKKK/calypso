@@ -19,8 +19,6 @@ export const BoardHeader = {
         );
     },
     RightPanel: ({ children }: Props["RightPanel"]) => {
-        return (
-            <Wrapper className="w-min h-13 px-4 flex flex-row justify-between items-center gap-6">{children}</Wrapper>
-        );
+        return <Wrapper className="w-min h-13 px-4 flex flex-row justify-between items-center gap-6">{children}</Wrapper>;
     }
 };

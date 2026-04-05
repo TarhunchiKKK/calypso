@@ -17,7 +17,8 @@
                 "noStaticElementInteractions": "off",
                 "noNoninteractiveTabindex": "off",
                 "useAltText": "on",
-                "noSvgWithoutTitle": "off"
+                "noSvgWithoutTitle": "off",
+                "useKeyWithClickEvents": "off"
             },
             "correctness": {
                 "noChildrenProp": "off"
@@ -33,7 +34,7 @@
         "indentStyle": "space",
         "indentWidth": 4,
         "lineEnding": "lf",
-        "lineWidth": 120,
+        "lineWidth": 160,
         "attributePosition": "auto",
         "bracketSameLine": false,
         "bracketSpacing": true,

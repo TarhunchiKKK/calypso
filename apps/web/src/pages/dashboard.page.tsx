@@ -7,7 +7,7 @@ const MockProjects: ProjectWithType[] = [
         type: "board",
         title: "Board 1",
         description: "Description 1",
-        thumbnail: undefined,
+        thumbnail: "",
         creator: {
             id: "Creator 1",
             email: "Creator 1"
@@ -20,7 +20,7 @@ const MockProjects: ProjectWithType[] = [
         type: "board",
         title: "Board 2",
         description: "Description 2",
-        thumbnail: undefined,
+        thumbnail: "",
         creator: {
             id: "Creator 1",
             email: "Creator 1"
@@ -33,7 +33,7 @@ const MockProjects: ProjectWithType[] = [
         type: "note",
         title: "Note 1",
         description: "Description 1",
-        thumbnail: undefined,
+        thumbnail: "",
         creator: {
             id: "Creator 1",
             email: "Creator 1"
