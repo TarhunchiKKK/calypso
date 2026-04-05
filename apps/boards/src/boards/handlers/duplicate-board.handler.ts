@@ -1,8 +1,9 @@
-import { NotFoundException } from "@nestjs/common";
+import { Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Id } from "@repo/common";
+import { AccessRightsService } from "@repo/api";
+import type { Id, ProjectRoles } from "@repo/common";
 import type { Model } from "mongoose";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import type { Repository } from "typeorm";
@@ -19,13 +20,14 @@ export class DuplicateBoardCommand extends Command<Board> {
 export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBoardCommand> {
     public constructor(
         @InjectRepository(Board) private readonly boardRepository: Repository<Board>,
-        @InjectModel(NodeBase.name) private readonly nodesModel: Model<NodeBase>
+        @InjectModel(NodeBase.name) private readonly nodesModel: Model<NodeBase>,
+        @Inject(AccessRightsService) private readonly accessRightsService: AccessRightsService
     ) {}
 
     public async execute({ dto }: DuplicateBoardCommand) {
         const board = await this.createBoard(dto);
 
-        await this.createNodes(dto.boardId, board.id);
+        await Promise.all([this.createAccessRights(board), this.createNodes(dto.id, board.id)]);
 
         return board;
     }
@@ -33,7 +35,7 @@ export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBo
     private async createBoard(dto: DuplicateBoardDto) {
         const board = await this.boardRepository.findOne({
             where: {
-                id: dto.boardId
+                id: dto.id
             }
         });
 
@@ -43,7 +45,15 @@ export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBo
 
         return await this.boardRepository.save({
             title: board.title,
-            creatorId: dto.userId
+            creator: dto.creator
+        });
+    }
+
+    private async createAccessRights(board: Board) {
+        return await this.accessRightsService.create<ProjectRoles>({
+            resourceId: board.id,
+            userId: board.creator.id,
+            role: "creator"
         });
     }
 

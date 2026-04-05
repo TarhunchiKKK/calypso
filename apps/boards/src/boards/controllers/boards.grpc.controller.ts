@@ -11,9 +11,11 @@ import {
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/api";
-import type { NoNullableFields } from "@repo/common";
+import { asType, type NoNullableFields } from "@repo/common";
 import { Operations } from "src/lib/auth.constants";
 import { BoardsService } from "../boards.service";
+import type { CreateBoardDto } from "../dto/create-board.dto";
+import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";
 
 @GrpcController()
 @BoardsServiceControllerMethods()
@@ -21,15 +23,15 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     public async create(dto: CreateBoardGrpcRequest) {
-        return await this.boardsService.create(dto as NoNullableFields<CreateBoardGrpcRequest>);
+        return await this.boardsService.create(asType<CreateBoardDto>(dto));
     }
 
     @CheckAccess({
         operation: Operations.duplicate,
-        extract: (dto: DuplicateBoardGrpcRequest) => ({ resourceId: dto.boardId, userId: dto.userId })
+        extract: (dto: NoNullableFields<DuplicateBoardGrpcRequest>) => ({ resourceId: dto.id, userId: dto.creator.id })
     })
     public async duplicate(dto: DuplicateBoardGrpcRequest) {
-        return await this.boardsService.duplicate(dto);
+        return await this.boardsService.duplicate(asType<DuplicateBoardDto>(dto));
     }
 
     public async findAll(dto: FindAllBoardsGrpcRequest) {
