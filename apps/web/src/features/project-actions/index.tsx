@@ -9,6 +9,7 @@ import {
     SquareArrowOutUpRightIcon,
     TrashIcon,
 } from "lucide-react";
+import { Env, Routes } from "@/shared/config";
 import {
     Button,
     DropdownMenu,
@@ -29,6 +30,12 @@ export type Props = {
 const preventDefaultEventHandler = (e: Event) => e.preventDefault();
 
 export function ProjectActions({ project }: Props) {
+    const copyProjectLink = () => {
+        const link = Routes.apps[project.type](project.id);
+
+        navigator.clipboard.writeText(`${Env.app.url}/${link}`);
+    };
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -39,7 +46,7 @@ export function ProjectActions({ project }: Props) {
 
             <DropdownMenuContent className="w-48" align="start">
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onSelect={copyProjectLink}>
                         <LinkIcon />
                         Copy link
                     </DropdownMenuItem>

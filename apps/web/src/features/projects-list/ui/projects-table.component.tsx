@@ -34,7 +34,7 @@ export function ProjectsTable({ projects }: Props) {
 
             <TableBody>
                 {projects.map((project) => (
-                    <TableRow key={project.id} className="cursor-pointer">
+                    <TableRow key={project.id}>
                         <TableCell>
                             {project.thumbnail ? (
                                 <img
