@@ -1,10 +1,9 @@
 import type { DuplicateProjectDto, Id, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { Env } from "@/shared/config";
+import { MockProjects } from "@/dev";
 
 // TODO: implement token extraction
-const token = "mock-token";
+// const token = "mock-token";
 
 export const ProjectsQueryKeys = {
     projects: ["projects"]
@@ -15,11 +14,13 @@ export function useProjectsApi() {
 
     const duplicate = useMutation({
         mutationFn: async (dto: DuplicateProjectDto) => {
-            return await axios.post(`${Env.api.url}/projects/duplicate`, dto, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            // return await axios.post(`${Env.api.url}/projects/duplicate`, dto, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // });
+
+            return await Promise.resolve(dto);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
@@ -28,12 +29,14 @@ export function useProjectsApi() {
 
     const findAll = useQuery({
         queryKey: ProjectsQueryKeys.projects,
-        queryFn: () => {
-            return axios.get(`${Env.api.url}/projects`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+        queryFn: async () => {
+            // return await axios.get<ProjectWithType[]>(`${Env.api.url}/projects`, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // });
+
+            return await Promise.resolve(MockProjects);
         }
     });
 
@@ -41,11 +44,13 @@ export function useProjectsApi() {
         mutationFn: async (dto: UpdateProjectDto & { id: Id }) => {
             const { id, ...data } = dto;
 
-            return await axios.patch(`${Env.api.url}/projects/${id}`, data, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            // return await axios.patch(`${Env.api.url}/projects/${id}`, data, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // });
+
+            return await Promise.resolve({ id, data });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
@@ -54,12 +59,14 @@ export function useProjectsApi() {
 
     const remove = useMutation({
         mutationFn: async (dto: RemoveProjectDto) => {
-            return await axios.delete(`${Env.api.url}/projects`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
-                data: dto
-            });
+            // return await axios.delete(`${Env.api.url}/projects`, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     },
+            //     data: dto
+            // });
+
+            return await Promise.resolve(dto);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
