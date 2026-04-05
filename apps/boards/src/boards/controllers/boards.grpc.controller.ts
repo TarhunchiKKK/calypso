@@ -4,6 +4,7 @@ import {
     BoardsServiceControllerMethods,
     CheckAccess,
     type CreateBoardGrpcRequest,
+    type FindOneProjectGrpcRequest,
     GrpcController,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
@@ -34,6 +35,14 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
 
     public async findAll(dto: FindAllProjectsGrpcRequest) {
         return await this.boardsService.findAll(dto.userId);
+    }
+
+    @CheckAccess({
+        operation: Operations.view,
+        extract: (dto: FindOneProjectGrpcRequest) => ({ resourceId: dto.id, userId: dto.userId })
+    })
+    public async findOne(dto: FindOneProjectGrpcRequest) {
+        return this.boardsService.findOne(dto.id);
     }
 
     @CheckAccess({

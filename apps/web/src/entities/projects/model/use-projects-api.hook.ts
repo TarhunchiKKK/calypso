@@ -6,7 +6,8 @@ import { MockProjects } from "@/dev";
 // const token = "mock-token";
 
 export const ProjectsQueryKeys = {
-    projects: ["projects"]
+    projects: ["projects"],
+    singleProject: (projectId: Id) => ["projects", projectId]
 };
 
 export function useProjectsApi() {
@@ -30,7 +31,7 @@ export function useProjectsApi() {
     const findAll = useQuery({
         queryKey: ProjectsQueryKeys.projects,
         queryFn: async () => {
-            // return await axios.get<ProjectWithType[]>(`${Env.api.url}/projects`, {
+            // return await axios.get<ProjectWithType[]>(`${Env.api.url}/projects/all`, {
             //     headers: {
             //         Authorization: `Bearer ${token}`
             //     }

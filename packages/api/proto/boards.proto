@@ -14,6 +14,8 @@ service BoardsService {
 
     rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
+    rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
+
     rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
     rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}

@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from "@nestjs/common";
-import type { DuplicateProjectDto, Id, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
+import type { DuplicateProjectDto, FindOneProjectDto, Id, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
 import type { Request } from "express";
 import { CookieService } from "src/auth/lib/cookie/cookie.service";
 import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
@@ -21,9 +21,14 @@ export class ProjectsController {
         return await this.projectsService.duplicate(accessToken, dto);
     }
 
-    @Get()
+    @Get("/all")
     public findAll(@Authorized() payload: TokenPayload) {
         return this.projectsService.findAll(payload.userId);
+    }
+
+    @Get("/one")
+    public findOne(@Authorized() payload: TokenPayload, @Body() dto: FindOneProjectDto) {
+        return this.projectsService.findOne(payload.userId, dto);
     }
 
     @Patch(":id")

@@ -20,6 +20,12 @@ message FindAllProjectsGrpcRequest {
     string userId = 1;
 }
 
+message FindOneProjectGrpcRequest {
+    string id = 1;
+
+    string userId = 2;
+}
+
 message RemoveProjectGrpcRequest {
     string id = 1;
 

@@ -11,6 +11,7 @@ import { ChangeBoardUpdateDateCommand } from "./handlers/change-board-update-dat
 import { CreateBoardCommand } from "./handlers/create-board.handler";
 import { DuplicateBoardCommand } from "./handlers/duplicate-board.handler";
 import { FindAllBoardsQuery } from "./handlers/find-all-boards.handler";
+import { FindOneBoardQuery } from "./handlers/find-one-board.handler";
 import { RemoveBoardCommand } from "./handlers/remove-board.handler";
 import { RemoveBoardAccessRightsCommand } from "./handlers/remove-board-access-rights.handler";
 import { UpdateBoardCommand } from "./handlers/update-board.handler";
@@ -41,6 +42,12 @@ export class BoardsService {
         const mappedBoards = boards.map(BoardsGrpcMapper.toGrpc);
 
         return { boards: mappedBoards };
+    }
+
+    public async findOne(boardId: Id) {
+        const board = await this.queryBus.execute(new FindOneBoardQuery(boardId));
+
+        return BoardsGrpcMapper.toGrpc(board);
     }
 
     public async update(id: Id, dto: UpdateBoardDto) {

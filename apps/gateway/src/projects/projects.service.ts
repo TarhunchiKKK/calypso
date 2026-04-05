@@ -1,5 +1,14 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { DebugException, type DuplicateProjectDto, type Id, type ProjectTypes, type RemoveProjectDto, type UpdateProjectDto } from "@repo/common";
+import { extractGrpcResponse } from "@repo/api";
+import {
+    DebugException,
+    type DuplicateProjectDto,
+    type FindOneProjectDto,
+    type Id,
+    type ProjectTypes,
+    type RemoveProjectDto,
+    type UpdateProjectDto
+} from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
 import { BoardsService } from "src/boards/boards/boards.service";
 
@@ -24,14 +33,27 @@ export class ProjectsService {
 
         const user = await this.supabaseService.findUser(accessToken);
 
-        return service.client.duplicate({
+        const response = service.client.duplicate({
             ...dto,
             creator: user
         });
+
+        return extractGrpcResponse(response);
     }
 
     public findAll(userId: Id) {
         return this.boardsService.findAll(userId);
+    }
+
+    public findOne(userId: Id, dto: FindOneProjectDto) {
+        const service = this.getService(dto.type);
+
+        const response = service.client.findOne({
+            id: dto.id,
+            userId: userId
+        });
+
+        return extractGrpcResponse(response);
     }
 
     public update(projectId: Id, userId: Id, dto: UpdateProjectDto) {
