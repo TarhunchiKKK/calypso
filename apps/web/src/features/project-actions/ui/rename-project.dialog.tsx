@@ -1,4 +1,5 @@
 import type { ProjectWithType } from "@repo/common";
+import { useState } from "react";
 import { RenameProjectForm } from "@/entities/projects/ui/rename-project.form";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
@@ -9,8 +10,10 @@ type Props = {
 };
 
 export function RenameProjectDialog({ project, trigger }: Props) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>{trigger}</DialogTrigger>
 
             <DialogContent>
@@ -18,7 +21,7 @@ export function RenameProjectDialog({ project, trigger }: Props) {
                     <DialogTitle>Rename project</DialogTitle>
                 </DialogHeader>
 
-                <RenameProjectForm project={project} />
+                <RenameProjectForm project={project} afterSubmit={setOpen.bind(null, false)} />
             </DialogContent>
         </Dialog>
     );

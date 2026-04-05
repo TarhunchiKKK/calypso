@@ -1,10 +1,5 @@
-import { ProjectsList } from "@/features/projects-list";
-import { MockProjects } from "./mock-projects.constants";
+import { DashBoardPage } from "@/pages";
 
 export function CurrentUi() {
-    return (
-        <div className="container mx-auto">
-            <ProjectsList projects={MockProjects} />
-        </div>
-    );
+    return <DashBoardPage />;
 }

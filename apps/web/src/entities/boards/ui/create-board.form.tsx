@@ -1,25 +1,24 @@
-import type { Project, ProjectWithType } from "@repo/common";
+import type { Board } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { useProjectsApi } from "../model/use-projects-api.hook";
+import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
-    project: ProjectWithType;
-
     afterSubmit?: () => void;
 };
 
-export function RenameProjectForm({ project, afterSubmit }: Props) {
-    const form = useForm<Pick<Project, "title">>({
+export function CreateBoardForm({ afterSubmit }: Props) {
+    const form = useForm<Pick<Board, "title" | "thumbnail">>({
         defaultValues: {
-            title: project.title
+            title: "",
+            thumbnail: ""
         }
     });
 
-    const projectsAPi = useProjectsApi();
+    const boardsApi = useBoardsApi();
 
-    const onSubmit = async (data: Pick<Project, "title">) => {
-        await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
+    const onSubmit = async (data: Pick<Board, "title" | "thumbnail">) => {
+        await boardsApi.create.mutateAsync(data);
 
         afterSubmit?.();
     };
@@ -32,16 +31,16 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
                     control={form.control}
                     render={({ field }) => (
                         <Field>
-                            <FieldLabel>New title</FieldLabel>
+                            <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} placeholder="Enter new name of this project" />
+                            <Input {...field} placeholder="Enter board title" />
                         </Field>
                     )}
                 />
             </FieldGroup>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit">Rename</Button>
+                <Button type="submit">Save</Button>
             </div>
         </form>
     );

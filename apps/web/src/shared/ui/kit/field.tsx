@@ -1,5 +1,5 @@
-import { useMemo } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import { useMemo } from "react";
 
 import { cn } from "@/shared/lib/shadcn";
 import { Label } from "@/shared/ui/kit/label";
@@ -61,6 +61,7 @@ const fieldVariants = cva("group/field flex w-full gap-3 data-[invalid=true]:tex
 });
 
 function Field({ className, orientation = "vertical", ...props }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
+    // biome-ignore lint/a11y/useSemanticElements: It is library code
     return <div role="group" data-slot="field" data-orientation={orientation} className={cn(fieldVariants({ orientation }), className)} {...props} />;
 }
 
@@ -151,7 +152,7 @@ function FieldError({
 
         const uniqueErrors = [...new Map(errors.map(error => [error?.message, error])).values()];
 
-        if (uniqueErrors?.length == 1) {
+        if (uniqueErrors?.length === 1) {
             return uniqueErrors[0]?.message;
         }
 
@@ -171,4 +172,4 @@ function FieldError({
     );
 }
 
-export { Field, FieldLabel, FieldDescription, FieldError, FieldGroup, FieldLegend, FieldSeparator, FieldSet, FieldContent, FieldTitle };
+export { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle };

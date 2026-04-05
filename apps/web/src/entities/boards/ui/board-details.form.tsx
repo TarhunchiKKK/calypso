@@ -6,6 +6,8 @@ import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
     board: Board;
+
+    afterSubmit?: () => void;
 };
 
 const commonFields = [
@@ -23,7 +25,7 @@ const commonFields = [
     }
 ];
 
-export function BoardDetailsForm({ board }: Props) {
+export function BoardDetailsForm({ board, afterSubmit }: Props) {
     const form = useForm<UpdateBoardDto>({
         defaultValues: board
     });
@@ -35,6 +37,8 @@ export function BoardDetailsForm({ board }: Props) {
             id: board.id,
             ...data
         });
+
+        afterSubmit?.();
     };
 
     return (
@@ -74,7 +78,7 @@ export function BoardDetailsForm({ board }: Props) {
                 ))}
             </div>
 
-            <div className="flex flex-row justify-end items-center mt-8">
+            <div className="flex flex-row justify-end items-center mt-6">
                 <Button type="submit">Save</Button>
             </div>
         </form>
