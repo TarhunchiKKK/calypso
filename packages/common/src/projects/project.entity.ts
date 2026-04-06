@@ -1,24 +1,24 @@
-import type { Id } from "../shared";
-import type { ProjectCreator } from "./project-creator.entity";
+import z from "zod";
+import { ProjectCreatorZodSchema } from "./project-creator.entity";
 
-export type Project = {
-    id: Id;
+export const ProjectZodSchema = z.object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string().optional(),
+    thumbnail: z.string(),
+    creator: ProjectCreatorZodSchema,
+    createdAt: z.date(),
+    updatedAt: z.date().optional()
+});
 
-    title: string;
+export const ProjectTypesZodSchema = z.enum(["board", "note"]);
 
-    description?: string;
+export const ProjectWithTypeZodSchema = ProjectZodSchema.extend({
+    type: ProjectTypesZodSchema
+});
 
-    thumbnail: string;
+export type Project = z.infer<typeof ProjectZodSchema>;
 
-    creator: ProjectCreator;
+export type ProjectTypes = z.infer<typeof ProjectTypesZodSchema>;
 
-    createdAt: Date;
-
-    updatedAt?: Date;
-};
-
-export type ProjectTypes = "board" | "note";
-
-export type ProjectWithType = Project & {
-    type: ProjectTypes;
-};
+export type ProjectWithType = z.infer<typeof ProjectWithTypeZodSchema>;

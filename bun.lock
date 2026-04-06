@@ -214,6 +214,9 @@
     "packages/common": {
       "name": "@repo/common",
       "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
       "devDependencies": {
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",

@@ -1,9 +1,32 @@
-import type { ProjectWithType } from "entry";
+import { ProjectWithTypeZodSchema } from "entry";
+import type z from "zod";
 
-export type DuplicateProjectDto = Pick<ProjectWithType, "id" | "type" | "title">;
+export const DuplicateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+    id: true,
+    type: true,
+    title: true
+});
 
-export type FindOneProjectDto = Pick<ProjectWithType, "id" | "type">;
+export const FindOneProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+    id: true,
+    type: true
+});
 
-export type UpdateProjectDto = Partial<Pick<ProjectWithType, "type" | "title" | "thumbnail">>;
+export const UpdateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+    type: true,
+    title: true,
+    thumbnail: true
+});
 
-export type RemoveProjectDto = Pick<ProjectWithType, "id" | "type">;
+export const RemoveProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+    id: true,
+    type: true
+});
+
+export type DuplicateProjectDto = z.infer<typeof DuplicateProjectDtoZodSchema>;
+
+export type FindOneProjectDto = z.infer<typeof FindOneProjectDtoZodSchema>;
+
+export type UpdateProjectDto = z.infer<typeof UpdateProjectDtoZodSchema>;
+
+export type RemoveProjectDto = z.infer<typeof RemoveProjectDtoZodSchema>;

@@ -1,3 +1,9 @@
-import type { User } from "auth";
+import { UserZodSchema } from "auth";
+import type z from "zod";
 
-export type ProjectCreator = Pick<User, "id" | "email">;
+export const ProjectCreatorZodSchema = UserZodSchema.pick({
+    id: true,
+    email: true
+});
+
+export type ProjectCreator = z.infer<typeof ProjectCreatorZodSchema>;

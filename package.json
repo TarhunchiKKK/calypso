@@ -19,6 +19,7 @@
         "build:gateway": "turbo run build --filter=gateway",
         "build:boards": "turbo run build --filter=boards",
         "build:web": "turbo run build --filter=web",
+        "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
         "build:api": "turbo run build --filter=@repo/api",
         "build:common": "turbo run build --filter=@repo/common",
         "build:boards-common": "turbo run build --filter=@repo/boards-common",
