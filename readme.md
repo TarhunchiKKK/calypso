@@ -8,127 +8,177 @@
 
 ## Stack🚀
 
+<div align="center">
+    <table width="100%" border="1">
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Task</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="9">Common</td>
+                <td>Language🧠</td>
+                <td>
+                    <a href="https://www.typescriptlang.org/">TypeScript</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Runtime⚡</td>
+                <td>
+                    <a href="https://bun.sh/">Bun</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Project Structure🏫</td>
+                <td>
+                    <a href="https://turborepo.dev/">Turborepo</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Linting✨</td>
+                <td rowspan="2">
+                    <a href="https://biomejs.dev/">BiomeJS</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Formatting✨</td>
+            </tr>
+            <tr>
+                <td>Code Quality✨</td>
+                <td>
+                    <a href="https://knip.dev/">Knip</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Testing⚙</td>
+                <td>
+                    <a href="https://vitest.dev/">Vitest</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">CI🔄</td>
+                <td>
+                    <a href="https://www.docker.com/">Docker</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://docs.github.com/en/actions">Github Actions</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="11">Backend🚀</td>
+                <td>Framework🎭</td>
+                <td>
+                    <a href="https://nestjs.com/">NestJS</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Database🗃️</td>
+                <td>
+                    <a href="https://www.postgresql.org/">Postgres</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.mongodb.com/home?pk_campaign=VentureBeat">MongoDB</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">ORM🗃️</td>
+                <td>
+                    <a href="https://typeorm.io/">TypeORM</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://mongoosejs.com/">Mongoose</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Authorization🔑</td>
+                <td>
+                    <a href="https://supabase.com/">Supabase</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Architecture🏫</td>
+                <td>Microservices</td>
+            </tr>
+                <tr>
+                <td>CQRS</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Transport🔀</td>
+                <td>
+                    <a href="https://grpc.io/">gRPC</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.rabbitmq.com/docs">RabbitMQ</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Validation🔒</td>
+                <td>
+                    <a href="https://zod.dev/">Zod</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="7">Frontend🎨</td>
+                <td>Framework🎭</td>
+                <td>
+                    <a href="https://react.dev/">React</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Architecture🏫</td>
+                <td>
+                    <a href="https://ed.evocomm.space/">Evolution Design</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Styling🎨</td>
+                <td>
+                    <a href="https://tailwindcss.com/?ref=yon.fun">TailwindCSS</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://ui.shadcn.com/">Shadcn</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Storage☁️</td>
+                <td>
+                    <a href="https://www.min.io/">Minio</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Text Formatting📄</td>
+                <td>
+                    <a href="https://docs.slatejs.org/">Slate.js</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Docs📚</td>
+                <td>
+                    <a href="https://storybook.js.org/">Storybook</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-<table width="100%" border="1">
-  <thead>
-    <tr>
-      <th>Scope</th>
-      <th>Task</th>
-      <th>Solution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="9">Common</td>
-      <td>Language</td>
-      <td>TypeScript</td>
-    </tr>
-    <tr>
-      <td>Runtime</td>
-      <td>Bun</td>
-    </tr>
-    <tr>
-        <td>Project Structure</td>
-        <td>Turborepo</td>
-    </tr>
-    <tr>
-      <td>Linting</td>
-      <td rowspan="2">BiomeJS</td>
-    </tr>
-    <tr>
-        <td>Formatting</td>
-    </tr>
-    <tr>
-        <td>Code Quality</td>
-        <td>Knip</td>
-    </tr>
-    <tr>
-        <td>Testing</td>
-        <td>Vitest</td>
-    </tr>
-    <tr>
-        <td rowspan="2">CI</td>
-        <td>Docker</td>
-    </tr>
-    <tr>
-        <td>Github Actions</td>
-    </tr>
-    <tr>
-        <td rowspan="11">Backend</td>
-        <td>Framework</td>
-        <td>Nest.js</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Database</td>
-        <td>Postgres</td>
-    </tr>
-    <tr>
-        <td>MongoDB</td>
-    </tr>
-     <tr>
-        <td rowspan="2">ORM</td>
-        <td>TypeORM</td>
-    </tr>
-    <tr>
-        <td>Mongoose</td>
-    </tr>
-    <tr>
-        <td>Authorization</td>
-        <td>Supabase Auth</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Architecture</td>
-        <td>Microservices</td>
-    </tr>
-     <tr>
-        <td>CQRS</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Transport</td>
-        <td>gRPC</td>
-    </tr>
-    <tr>
-        <td>RabbitMQ</td>
-    </tr>
-    <tr>
-        <td>Validation</td>
-        <td>Zod</td>
-    </tr>
-    <tr>
-        <td rowspan="7">Frontend</td>
-        <td>Framework</td>
-        <td>React</td>
-    </tr>
-    <tr>
-        <td>Architecture</td>
-        <td>Evolution Design</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Styling</td>
-        <td>TailwindCSS</td>
-    </tr>
-    <tr>
-        <td>shadcn</td>
-    </tr>
-    <tr>
-        <td>Storage</td>
-        <td>Minio</td>
-    </tr>
-    <tr>
-        <td>Text Formatting</td>
-        <td>Slate.js</td>
-    </tr>
-    <tr>
-        <td>Docs</td>
-        <td>Storybook</td>
-    </tr>
-  </tbody>
-</table>
 
 
 
 
-| Scope             | Solution                                                                                                 |
+<!-- | Scope             | Solution                                                                                                 |
 | ----------------- | -------------------------------------------------------------------------------------------------------- |
 | Language🧠        | [TypeScript](https://www.typescriptlang.org/)                                                            |
 | Runtime⚡         | [Bun](https://bun.sh/)                                                                                   |
@@ -141,7 +191,7 @@
 | CI🔄              | [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)                  |
 | Docs📚            | [Storybook](https://storybook.js.org/)                                                                   |
 | Debug⚙            | [Sentry](https://sentry.io/welcome/?ref=shopstorm)                                                       |
-| Architecture🏫    | [Evolution Design](https://ed.evocomm.space/)                                                            |
+| Architecture🏫    | [Evolution Design](https://ed.evocomm.space/)                                                            | -->
 
 ## Run Calypso Locally💡
 
