@@ -1,5 +1,6 @@
 import { Body, Controller, Inject, Patch, Post } from "@nestjs/common";
-import type { ChangePasswordDto } from "@repo/common";
+import { Validation } from "@repo/api";
+import { type ChangePasswordDto, ChangePasswordDtoZodSchema } from "@repo/common";
 import { Authorization } from "../lib/supabase/security/authorization.decorator";
 import { Authorized } from "../lib/supabase/security/authorized.decorator";
 import type { TokenPayload } from "../lib/supabase/supabase.types";
@@ -16,6 +17,7 @@ export class PasswordRecoveryController {
     }
 
     @Patch("change")
+    @Validation(ChangePasswordDtoZodSchema)
     public async change(@Authorized() payload: TokenPayload, @Body() dto: ChangePasswordDto) {
         await this.passwordRecoveryService.change({
             userId: payload.userId,

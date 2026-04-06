@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Param, Post, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
-import type { OAuthCallbackDto, OAuthProviders } from "@repo/common";
+import { type OAuthCallbackDto, OAuthCallbackDtoZodSchema, type OAuthProviders } from "@repo/common";
 import type { Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { Authorization } from "../lib/supabase/security/authorization.decorator";
@@ -20,7 +20,7 @@ export class ProvidersAuthController {
     }
 
     @Post("callback")
-    @Validation()
+    @Validation(OAuthCallbackDtoZodSchema)
     public async callback(@Body() dto: OAuthCallbackDto, @Res() response: Response) {
         const result = await this.providersAuthService.callback(dto);
 
