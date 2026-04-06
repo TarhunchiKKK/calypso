@@ -8,8 +8,8 @@
 
 ## Stack🚀
 
-<div align="center">
-    <table width="100%" border="1">
+<div style="width: 100%; border-collapse: collapse;" align="center">
+    <table style="width: 100%; border-collapse: collapse;" border="1">
         <thead>
             <tr>
                 <th>Scope</th>
@@ -19,7 +19,7 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="9">Common</td>
+                <td rowspan="9">Common🚢</td>
                 <td>Language🧠</td>
                 <td>
                     <a href="https://www.typescriptlang.org/">TypeScript</a>
