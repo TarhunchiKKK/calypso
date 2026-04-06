@@ -1,8 +1,7 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { AuthResponse } from "@repo/common";
+import type { AuthResponse, OAuthCallbackDto } from "@repo/common";
 import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
-import type { OAuthCallbackDto } from "../dto/oauth-callback.dto";
 
 export class OAuthCallbackCommand extends Command<AuthResponse> {
     public constructor(public dto: OAuthCallbackDto) {
