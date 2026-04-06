@@ -197,7 +197,7 @@
 </table>
 
 
-## Run Calypso Locally💡
+## Run `Calypso` Locally💡
 
 1. Checkout code:
 
