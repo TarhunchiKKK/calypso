@@ -8,6 +8,7 @@ export * from "./field";
 export * from "./input";
 export * from "./popover";
 export * from "./separator";
+export * from "./sonner";
 export * from "./switch";
 export * from "./table";
 export * from "./textarea";

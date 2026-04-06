@@ -1,5 +1,6 @@
 import type { Project, ProjectWithType } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { useProjectsApi } from "../model/use-projects-api.hook";
 
@@ -20,6 +21,12 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
 
     const onSubmit = async (data: Pick<Project, "title">) => {
         await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
+
+        if (projectsAPi.update.isError) {
+            toast.error("Error renaming");
+        } else {
+            toast.success("Project renamed");
+        }
 
         afterSubmit?.();
     };
