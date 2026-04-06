@@ -8,8 +8,8 @@
 
 ## Stack🚀
 
-<div style="width: 100%; border-collapse: collapse;" align="center">
-    <table style="width: 100%; border-collapse: collapse;" border="1">
+<div style="width: 100%;" align="center">
+    <table width="700" border="1">
         <thead>
             <tr>
                 <th>Scope</th>
@@ -217,23 +217,29 @@ npm i -g bun
 bun install
 ```
 
-4. Run Docker images:
+4. Load environment variables:
+
+```bash
+bun env:load
+```
+
+5. Run Docker services:
 
 ```bash
 docker compose up
 ```
 
-5. Start dev server:
+6. Run apps:
 
 ```bash
-bun dev
+bun run dev
 ```
 
 Now you application is still running.
 
-6. Open application:
+7. Open application:
 
-In browser open the https://localhost:3000 to access the app.
+In browser open the https://localhost:5173 to access the app.
 
 ## Features🚀
 
@@ -242,23 +248,23 @@ In browser open the https://localhost:3000 to access the app.
 - Stickers
 - Arrows
 - Text
-- Formattable documents
 - Shapes (circles, rectangles, etc.)
 - Media (images and videos)
+- Formattable documents
 - Drawings
 
 ### Editor Features
 
-- Nodes selecting
+- Nodes selection
 - Selection window
+- Node text editing
 - Nodes dragging
 - Nodes resizing
 - Nodes blocking
 - Copy/Paste
 - Undo/Redo
 - Multiple nodes styling (Font formatting, text/background color, etc.)
-- Window shifting
-- Window zooming
+- Window shifting & zooming
 
 ### Hot Keys
 
@@ -280,8 +286,3 @@ In browser open the https://localhost:3000 to access the app.
 
 - No state manager
 - No drag-n-drop library
-
-### Other features
-
-- Dark mode
-- Offline mode
