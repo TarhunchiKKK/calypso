@@ -17,4 +17,5 @@ jobs:
               run: bun install
 
             - name: Storybook
-              run: bun build:storybook
+              working-directory: ./apps/web
+              run: bun storybook:build
