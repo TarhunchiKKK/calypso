@@ -13,7 +13,6 @@ export const SignUpDtoZodSchema = z.object({
 export const SignInDtoZodSchema = SignUpDtoZodSchema.clone();
 
 export type SignUpDto = z.infer<typeof SignUpDtoZodSchema>;
-
 export type SignInDto = z.infer<typeof SignInDtoZodSchema>;
 
 export type AuthResponse = {

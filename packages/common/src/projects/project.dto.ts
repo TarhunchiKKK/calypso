@@ -24,9 +24,6 @@ export const RemoveProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
 });
 
 export type DuplicateProjectDto = z.infer<typeof DuplicateProjectDtoZodSchema>;
-
 export type FindOneProjectDto = z.infer<typeof FindOneProjectDtoZodSchema>;
-
 export type UpdateProjectDto = z.infer<typeof UpdateProjectDtoZodSchema>;
-
 export type RemoveProjectDto = z.infer<typeof RemoveProjectDtoZodSchema>;

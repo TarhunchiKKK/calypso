@@ -17,9 +17,7 @@ export const RectZodSchema = z.object({
 });
 
 export type Point = z.infer<typeof PointZodSchema>;
-
 export type RelativePoint = z.infer<typeof RelativePointZOdSchema>;
-
 export type Rect = z.infer<typeof RectZodSchema>;
 
 export type Offset = {

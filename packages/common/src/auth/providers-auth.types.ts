@@ -7,5 +7,4 @@ export const OAuthCallbackDtoZodSchema = z.object({
 });
 
 export type OAuthProviders = z.infer<typeof OAuthProvidersZodSchema>;
-
 export type OAuthCallbackDto = z.infer<typeof OAuthCallbackDtoZodSchema>;

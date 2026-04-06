@@ -1,8 +1,9 @@
+import { IdZodSchema } from "shared";
 import z from "zod";
 import { ProjectCreatorZodSchema } from "./project-creator.entity";
 
 export const ProjectZodSchema = z.object({
-    id: z.string(),
+    id: IdZodSchema,
     title: z.string(),
     description: z.string().optional(),
     thumbnail: z.string(),
@@ -18,7 +19,5 @@ export const ProjectWithTypeZodSchema = ProjectZodSchema.extend({
 });
 
 export type Project = z.infer<typeof ProjectZodSchema>;
-
 export type ProjectTypes = z.infer<typeof ProjectTypesZodSchema>;
-
 export type ProjectWithType = z.infer<typeof ProjectWithTypeZodSchema>;

@@ -10,5 +10,4 @@ export const ChangePasswordDtoZodSchema = SignUpDtoZodSchema.pick({
 });
 
 export type ResetPasswordDto = z.infer<typeof ResetPasswordDtoZodSchema>;
-
 export type ChangePasswordDto = z.infer<typeof ChangePasswordDtoZodSchema>;

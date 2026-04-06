@@ -1,8 +1,8 @@
 import z from "zod";
-import type { Id } from "../shared/db.types";
+import { type Id, IdZodSchema } from "../shared/db.types";
 
 export const UserZodSchema = z.object({
-    id: z.string(),
+    id: IdZodSchema,
     email: z.string().optional(),
     metadata: z.object({
         fullName: z.string().optional(),
