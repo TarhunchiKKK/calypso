@@ -1,5 +1,16 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from "@nestjs/common";
-import type { DuplicateProjectDto, FindOneProjectDto, Id, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
+import { Validation } from "@repo/api";
+import {
+    type DuplicateProjectDto,
+    DuplicateProjectDtoZodSchema,
+    type FindOneProjectDto,
+    FindOneProjectDtoZodSchema,
+    type Id,
+    type RemoveProjectDto,
+    RemoveProjectDtoZodSchema,
+    type UpdateProjectDto,
+    UpdateProjectDtoZodSchema
+} from "@repo/common";
 import type { Request } from "express";
 import { CookieService } from "src/auth/lib/cookie/cookie.service";
 import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
@@ -16,6 +27,7 @@ export class ProjectsController {
     ) {}
 
     @Post("duplicate")
+    @Validation(DuplicateProjectDtoZodSchema)
     public async duplicate(@Req() request: Request, @Body() dto: DuplicateProjectDto) {
         const accessToken = this.cookieService.getToken(request, "access");
         return await this.projectsService.duplicate(accessToken, dto);
@@ -27,16 +39,19 @@ export class ProjectsController {
     }
 
     @Get("/one")
+    @Validation(FindOneProjectDtoZodSchema)
     public findOne(@Authorized() payload: TokenPayload, @Body() dto: FindOneProjectDto) {
         return this.projectsService.findOne(payload.userId, dto);
     }
 
     @Patch(":id")
+    @Validation(UpdateProjectDtoZodSchema)
     public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() dto: UpdateProjectDto) {
         this.projectsService.update(id, payload.userId, dto);
     }
 
     @Delete()
+    @Validation(RemoveProjectDtoZodSchema)
     public remove(@Authorized() payload: TokenPayload, @Body() dto: RemoveProjectDto) {
         this.projectsService.remove(payload.userId, dto);
     }

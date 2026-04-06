@@ -1,16 +1,16 @@
 import type z from "zod";
 import { BoardZodSchema } from "./board.entity";
 
-export const CreateBoardZodSchema = BoardZodSchema.pick({
+export const CreateBoardDtoZodSchema = BoardZodSchema.pick({
     title: true,
     thumbnail: true
 });
 
-export const UpdateBoardZodSchema = BoardZodSchema.pick({
+export const UpdateBoardDtoZodSchema = BoardZodSchema.pick({
     title: true,
     description: true,
     thumbnail: true
 });
 
-export type CreateBoardDto = z.infer<typeof CreateBoardZodSchema>;
-export type UpdateBoardDto = z.infer<typeof UpdateBoardZodSchema>;
+export type CreateBoardDto = z.infer<typeof CreateBoardDtoZodSchema>;
+export type UpdateBoardDto = z.infer<typeof UpdateBoardDtoZodSchema>;
