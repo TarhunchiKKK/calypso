@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Here items relative order cannot be changed */
 
 import type { ProjectWithType } from "@repo/common";
+import { toast } from "sonner";
 import { Input } from "@/shared/ui/kit";
 import { ProjectThumbnails } from "../constants/thumbnails.constants";
 import { useProjectsApi } from "../model/use-projects-api.hook";
@@ -22,6 +23,12 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
             type: project.type,
             thumbnail: thumbnail
         });
+
+        if (projectsApi.update.isError) {
+            toast.error("Thumbnail changing error");
+        } else {
+            toast.success("Thumbnail changed");
+        }
 
         afterSubmit?.();
     };

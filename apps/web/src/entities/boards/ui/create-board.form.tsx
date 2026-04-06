@@ -1,5 +1,6 @@
-import type { Board } from "@repo/boards-common";
+import type { CreateBoardDto } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { useBoardsApi } from "../model/use-boards-api.hook";
 
@@ -8,7 +9,7 @@ type Props = {
 };
 
 export function CreateBoardForm({ afterSubmit }: Props) {
-    const form = useForm<Pick<Board, "title" | "thumbnail">>({
+    const form = useForm<CreateBoardDto>({
         defaultValues: {
             title: "",
             thumbnail: ""
@@ -17,8 +18,14 @@ export function CreateBoardForm({ afterSubmit }: Props) {
 
     const boardsApi = useBoardsApi();
 
-    const onSubmit = async (data: Pick<Board, "title" | "thumbnail">) => {
+    const onSubmit = async (data: CreateBoardDto) => {
         await boardsApi.create.mutateAsync(data);
+
+        if (boardsApi.create.isError) {
+            toast.error("Error creating board");
+        } else {
+            toast.success("Board created");
+        }
 
         afterSubmit?.();
     };
