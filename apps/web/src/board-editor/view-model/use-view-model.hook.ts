@@ -1,3 +1,4 @@
+import type { OmitFields } from "@repo/common";
 import { useEffect, useState } from "react";
 import { ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
@@ -17,7 +18,7 @@ import { useShapeSelectionViewModel } from "./variants/shape-selection/view-mode
 import { useShapesCreationViewModel } from "./variants/shapes-creation/view-model";
 import { useStickersCreationViewModel } from "./variants/stickers-creation/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
-import type { OmitFields } from "@repo/common";
+import { useTextCreationViewModel } from "./variants/text-creation/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
@@ -35,6 +36,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const stickersCreationViewModel = useStickersCreationViewModel(newParams);
     const arrowCreationViewModel = useArrowCreationViewModel(newParams);
     const arrowBindingViewModel = useArrowBindingViewModel(newParams);
+    const textCreationViewModel = useTextCreationViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
     const shapesCreationViewModel = useShapesCreationViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
@@ -58,6 +60,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "arrow-binding":
             viewModel = arrowBindingViewModel(viewState);
+            break;
+        case "text-creation":
+            viewModel = textCreationViewModel();
             break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);
