@@ -2,13 +2,13 @@
     <img src="./logo.svg" width="270" alt="Logo" />
 </p>
 
-<h1 align="center">Calypso Board Editor🚀</h1>
+<h1 align="center">Calypso Board Editor✨</h1>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
 ## Stack🚀
 
-### Common🚢
+### Common⚓
 
 <table border="1">
     <thead>
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
          <tr>
-            <td>Language🧠</td>
+            <td>Language</td>
             <td>
                 <a href="https://www.typescriptlang.org/">TypeScript</a>
             </td>
@@ -31,34 +31,34 @@
             </td>
         </tr>
         <tr>
-            <td>Project Structure🏫</td>
+            <td>Project Structure</td>
             <td>
                 <a href="https://turborepo.dev/">Turborepo</a>
             </td>
         </tr>
         <tr>
-            <td>Linting✨</td>
+            <td>Linting</td>
             <td rowspan="2">
                 <a href="https://biomejs.dev/">BiomeJS</a>
             </td>
         </tr>
         <tr>
-            <td>Formatting✨</td>
+            <td>Formatting</td>
         </tr>
         <tr>
-            <td>Code Quality✨</td>
+            <td>Code Quality</td>
             <td>
                 <a href="https://knip.dev/">Knip</a>
             </td>
         </tr>
         <tr>
-            <td>Testing⚙</td>
+            <td>Testing</td>
             <td>
                 <a href="https://vitest.dev/">Vitest</a>
             </td>
         </tr>
         <tr>
-            <td rowspan="2">CI🔄</td>
+            <td rowspan="2">CI</td>
             <td>
                 <a href="https://www.docker.com/">Docker</a>
             </td>
@@ -71,7 +71,7 @@
     </tbody>
 </table>
 
-### Backend🚀
+### Backend⚡
 
 <table border="1">
     <thead>
@@ -82,13 +82,13 @@
     </thead>
     <tbody>
         <tr>
-            <td>Framework🎭</td>
+            <td>Framework</td>
             <td>
                 <a href="https://nestjs.com/">NestJS</a>
             </td>
         </tr>
         <tr>
-            <td rowspan="2">Database🗃️</td>
+            <td rowspan="2">Database</td>
             <td>
                 <a href="https://www.postgresql.org/">Postgres</a>
             </td>
@@ -99,7 +99,7 @@
             </td>
         </tr>
         <tr>
-            <td rowspan="2">ORM🗃️</td>
+            <td rowspan="2">ORM</td>
             <td>
                 <a href="https://typeorm.io/">TypeORM</a>
             </td>
@@ -110,20 +110,20 @@
             </td>
         </tr>
         <tr>
-            <td>Authorization🔑</td>
+            <td>Authorization</td>
             <td>
                 <a href="https://supabase.com/">Supabase</a>
             </td>
         </tr>
         <tr>
-            <td rowspan="2">Architecture🏫</td>
+            <td rowspan="2">Architecture</td>
             <td>Microservices</td>
         </tr>
             <tr>
             <td>CQRS</td>
         </tr>
         <tr>
-            <td rowspan="2">Transport🔀</td>
+            <td rowspan="2">Transport</td>
             <td>
                 <a href="https://grpc.io/">gRPC</a>
             </td>
@@ -134,7 +134,7 @@
             </td>
         </tr>
         <tr>
-            <td>Validation🔒</td>
+            <td>Validation</td>
             <td>
                 <a href="https://zod.dev/">Zod</a>
             </td>
@@ -153,19 +153,19 @@
     </thead>
     <tbody>
         <tr>
-            <td>Framework🎭</td>
+            <td>Framework</td>
             <td>
                 <a href="https://react.dev/">React</a>
             </td>
         </tr>
         <tr>
-            <td>Architecture🏫</td>
+            <td>Architecture</td>
             <td>
                 <a href="https://ed.evocomm.space/">Evolution Design</a>
             </td>
         </tr>
         <tr>
-            <td rowspan="2">Styling🎨</td>
+            <td rowspan="2">Styling</td>
             <td>
                 <a href="https://tailwindcss.com/?ref=yon.fun">TailwindCSS</a>
             </td>
@@ -176,19 +176,19 @@
             </td>
         </tr>
         <tr>
-            <td>Storage☁️</td>
+            <td>Storage</td>
             <td>
                 <a href="https://www.min.io/">Minio</a>
             </td>
         </tr>
         <tr>
-            <td>Text Formatting📄</td>
+            <td>Text Formatting</td>
             <td>
                 <a href="https://docs.slatejs.org/">Slate.js</a>
             </td>
         </tr>
         <tr>
-            <td>Docs📚</td>
+            <td>Docs</td>
             <td>
                 <a href="https://storybook.js.org/">Storybook</a>
             </td>
@@ -197,7 +197,7 @@
 </table>
 
 
-## Run `Calypso` Locally💡
+## Run app Locally💡
 
 1. Checkout code:
 
@@ -245,7 +245,7 @@ Now you application is still running.
 
 In browser open the https://localhost:5173 to access the app.
 
-## Features🚀
+## Features🎭
 
 ### Node Types
 
