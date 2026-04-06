@@ -1,10 +1,9 @@
 import { Body, Controller, Inject, Param, Post, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
-import type { OAuthProviders } from "@repo/common";
+import type { OAuthCallbackDto, OAuthProviders } from "@repo/common";
 import type { Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { Authorization } from "../lib/supabase/security/authorization.decorator";
-import type { OAuthCallbackDto } from "./dto/oauth-callback.dto";
 import { ProvidersAuthService } from "./providers-auth.service";
 
 @Controller("providers-auth")

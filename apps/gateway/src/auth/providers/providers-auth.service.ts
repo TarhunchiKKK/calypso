@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
-import type { OAuthProviders } from "@repo/common";
-import type { OAuthCallbackDto } from "./dto/oauth-callback.dto";
+import type { OAuthCallbackDto, OAuthProviders } from "@repo/common";
 import { OAuthCallbackCommand } from "./handlers/oauth-callback.handler";
 import { SignInWithOAuthCommand } from "./handlers/sign-in-with-oauth.handler";
 

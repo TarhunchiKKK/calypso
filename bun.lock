@@ -186,6 +186,7 @@
         "protobufjs": "^8.0.0",
         "rxjs": "^7.8.2",
         "typeorm": "^0.3.28",
+        "zod": "^4.3.6",
       },
       "devDependencies": {
         "@repo/eslint-config": "*",
@@ -201,6 +202,9 @@
     "packages/boards-common": {
       "name": "@repo/boards-common",
       "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
       "devDependencies": {
         "@repo/common": "*",
         "@repo/eslint-config": "*",
@@ -214,6 +218,9 @@
     "packages/common": {
       "name": "@repo/common",
       "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
       "devDependencies": {
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",

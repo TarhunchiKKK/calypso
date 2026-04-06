@@ -1,5 +1,16 @@
-import type { Id } from "../shared/db.types";
+import z from "zod";
+import { type Id, IdZodSchema } from "../shared/db.types";
 
+export const UserZodSchema = z.object({
+    id: IdZodSchema,
+    email: z.string().optional(),
+    metadata: z.object({
+        fullName: z.string().optional(),
+        avatar: z.string().optional()
+    })
+});
+
+// DELETE
 export type UserInfo = {
     id: Id;
 
@@ -8,14 +19,4 @@ export type UserInfo = {
     avatar?: string;
 };
 
-export type User = {
-    id: Id;
-
-    email?: string;
-
-    metadata: {
-        fullName?: string;
-
-        avatar?: string;
-    };
-};
+export type User = z.infer<typeof UserZodSchema>;

@@ -1,17 +1,19 @@
-import type { Id, Rect } from "@repo/common";
+import { IdZodSchema, RectZodSchema } from "@repo/common";
+import z from "zod";
 
-export type NodeTypes = "sticker" | "text" | "shape" | "arrow";
+export const NodeTypesZodSchema = z.enum(["sticker", "text", "shape", "arrow"]);
 
-export type NodeBase = {
-    id: Id;
+export const NodeBaseZodSchema = z.object({
+    id: IdZodSchema,
+    type: NodeTypesZodSchema,
+    locked: z.boolean(),
+    styles: z.record(z.string(), z.unknown())
+});
 
-    type: NodeTypes;
+export const RectNodeZodSchema = NodeBaseZodSchema.extend({
+    rect: RectZodSchema
+});
 
-    locked: boolean;
-
-    styles: Record<string, unknown>;
-};
-
-export type RectNode = NodeBase & {
-    rect: Rect;
-};
+export type NodeTypes = z.infer<typeof NodeTypesZodSchema>;
+export type NodeBase = z.infer<typeof NodeBaseZodSchema>;
+export type RectNode = z.infer<typeof RectNodeZodSchema>;

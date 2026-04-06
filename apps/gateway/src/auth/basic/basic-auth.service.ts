@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import type { SignInDto } from "./dto/sign-in.dto";
-import type { SignUpDto } from "./dto/sign-up.dto";
+import type { SignInDto, SignUpDto } from "@repo/common";
 import { GetProfileQuery } from "./handlers/get-profile.handler";
 import { RefreshSessionQuery } from "./handlers/refresh-session.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";

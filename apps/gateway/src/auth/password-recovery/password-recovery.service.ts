@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
-import type { ChangePasswordDto } from "./dto/change-password.dto";
+import type { ChangePasswordDto } from "@repo/common";
 import { ChangePasswordCommand } from "./handlers/change-password.handler";
 import { ResetPasswordCommand } from "./handlers/reset-password.handler";
 

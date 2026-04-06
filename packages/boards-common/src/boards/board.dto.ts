@@ -1,5 +1,16 @@
-import type { Board } from "./board.entity";
+import type z from "zod";
+import { BoardZodSchema } from "./board.entity";
 
-export type CreateBoardDto = Pick<Board, "title" | "thumbnail">;
+export const CreateBoardDtoZodSchema = BoardZodSchema.pick({
+    title: true,
+    thumbnail: true
+});
 
-export type UpdateBoardDto = Partial<Pick<Board, "title" | "description" | "thumbnail">>;
+export const UpdateBoardDtoZodSchema = BoardZodSchema.pick({
+    title: true,
+    description: true,
+    thumbnail: true
+});
+
+export type CreateBoardDto = z.infer<typeof CreateBoardDtoZodSchema>;
+export type UpdateBoardDto = z.infer<typeof UpdateBoardDtoZodSchema>;

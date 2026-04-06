@@ -1,20 +1,22 @@
-import type { Id } from "@repo/common";
-import type { AnyNode } from "./compose.types";
+import { IdZodSchema } from "@repo/common";
+import z from "zod";
+import { AnyNodeZodSchema } from "./compose.types";
 
-export type CreateManyNodesRequest = {
-    nodes: AnyNode[];
+export const CreateManyNodesDtoZodSchema = z.object({
+    nodes: z.array(AnyNodeZodSchema),
+    boardId: IdZodSchema
+});
 
-    boardId: Id;
-};
+export const UpdateManyNodesDtoZodSchema = z.object({
+    nodes: z.array(AnyNodeZodSchema),
+    boardId: IdZodSchema
+});
 
-export type UpdateManyNodesRequest = {
-    nodes: AnyNode[];
+export const RemoveManyNodesDtoZodSchema = z.object({
+    ids: z.array(IdZodSchema),
+    boardId: IdZodSchema
+});
 
-    boardId: Id;
-};
-
-export type RemoveManyNodesRequest = {
-    ids: Id[];
-
-    boardId: Id;
-};
+export type CreateManyNodesDto = z.infer<typeof CreateManyNodesDtoZodSchema>;
+export type UpdateManyNodesDto = z.infer<typeof UpdateManyNodesDtoZodSchema>;
+export type RemoveManyNodesDto = z.infer<typeof RemoveManyNodesDtoZodSchema>;

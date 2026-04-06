@@ -1,5 +1,14 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { AnyNode, CreateManyNodesRequest, RemoveManyNodesRequest, UpdateManyNodesRequest } from "@repo/boards-common";
+import { Validation } from "@repo/api";
+import {
+    type AnyNode,
+    type CreateManyNodesDto,
+    CreateManyNodesDtoZodSchema,
+    type RemoveManyNodesDto,
+    RemoveManyNodesDtoZodSchema,
+    type UpdateManyNodesDto,
+    UpdateManyNodesDtoZodSchema
+} from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { Observable } from "rxjs";
 import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
@@ -13,7 +22,8 @@ export class NodesController {
     public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
 
     @Post()
-    public createMany(@Authorized() payload: TokenPayload, @Body() dto: CreateManyNodesRequest): void {
+    @Validation(CreateManyNodesDtoZodSchema)
+    public createMany(@Authorized() payload: TokenPayload, @Body() dto: CreateManyNodesDto): void {
         this.nodesService.createMany(payload.userId, dto);
     }
 
@@ -23,12 +33,14 @@ export class NodesController {
     }
 
     @Patch()
-    public updateMany(@Authorized() payload: TokenPayload, @Body() dto: UpdateManyNodesRequest): void {
+    @Validation(UpdateManyNodesDtoZodSchema)
+    public updateMany(@Authorized() payload: TokenPayload, @Body() dto: UpdateManyNodesDto): void {
         this.nodesService.updateMany(payload.userId, dto);
     }
 
     @Delete()
-    public removeMany(@Authorized() payload: TokenPayload, @Body() dto: RemoveManyNodesRequest): void {
+    @Validation(RemoveManyNodesDtoZodSchema)
+    public removeMany(@Authorized() payload: TokenPayload, @Body() dto: RemoveManyNodesDto): void {
         this.nodesService.removeMany(payload.userId, dto);
     }
 }

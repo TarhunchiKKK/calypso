@@ -1,3 +1,6 @@
-import type { Project } from "@repo/common";
+import { ProjectZodSchema } from "@repo/common";
+import type z from "zod";
 
-export type Board = Project;
+export const BoardZodSchema = ProjectZodSchema.extend({});
+
+export type Board = z.infer<typeof BoardZodSchema>;
