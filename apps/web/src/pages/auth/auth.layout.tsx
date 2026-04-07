@@ -21,7 +21,7 @@ export function AuthLayout({ card, form }: Props) {
 
                 <CardContent>{form}</CardContent>
 
-                <CardFooter className="flex justify-center">
+                <CardFooter id="footer" className="flex justify-center mb-2">
                     <p className="text-sm text-muted-foreground [&_a]:underline [&_a]:text-primary">{card.footerContent} </p>
                 </CardFooter>
             </Card>

@@ -35,7 +35,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
 
     const boardsApi = useBoardsApi();
 
-    const onSubmit = async (data: UpdateBoardDto) => {
+    const onSubmit = form.handleSubmit(async data => {
         await boardsApi.update.mutateAsync({
             id: board.id,
             ...data
@@ -47,10 +47,10 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
             toast.success("Board updated");
             afterSubmit?.();
         }
-    };
+    });
 
     return (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <FieldGroup>
                 <Controller
                     name="title"

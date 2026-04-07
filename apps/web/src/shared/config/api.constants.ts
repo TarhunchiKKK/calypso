@@ -1,4 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
+import axios from "axios";
 import { Env } from "./env.constants";
 
 export const QueryClientInstance = new QueryClient({
@@ -8,4 +9,8 @@ export const QueryClientInstance = new QueryClient({
             gcTime: Env.api.gcTime * 60 * 1000
         }
     }
+});
+
+export const AxiosInstance = axios.create({
+    baseURL: Env.api.url
 });

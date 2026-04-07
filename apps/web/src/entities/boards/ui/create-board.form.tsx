@@ -20,7 +20,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
 
     const boardsApi = useBoardsApi();
 
-    const onSubmit = async (data: CreateBoardDto) => {
+    const onSubmit = form.handleSubmit(async data => {
         await boardsApi.create.mutateAsync(data);
 
         if (boardsApi.create.isError) {
@@ -29,10 +29,10 @@ export function CreateBoardForm({ afterSubmit }: Props) {
             toast.success("Board created");
             afterSubmit?.();
         }
-    };
+    });
 
     return (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <FieldGroup>
                 <Controller
                     name="title"

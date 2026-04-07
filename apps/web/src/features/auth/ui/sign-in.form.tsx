@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type SignInDto, SignInDtoZodSchema } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+import { AuthApi } from "../model/auth.api";
 
 type Props = {
     afterSubmit?: () => void;
@@ -16,10 +18,17 @@ export function SignInForm({ afterSubmit }: Props) {
         resolver: zodResolver(SignInDtoZodSchema)
     });
 
-    const onSubmit = form.handleSubmit(data => {
-        console.log(data);
+    const signIn = AuthApi.useSignIn();
 
-        afterSubmit?.();
+    const onSubmit = form.handleSubmit(async data => {
+        await signIn.mutateAsync(data);
+
+        if (signIn.isError) {
+            toast.error("Error via sign in");
+        } else {
+            toast.success("You are signed up");
+            afterSubmit?.();
+        }
     });
 
     return (

@@ -21,7 +21,7 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
 
     const projectsAPi = useProjectsApi();
 
-    const onSubmit = async (data: UpdateProjectDto) => {
+    const onSubmit = form.handleSubmit(async data => {
         await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
 
         if (projectsAPi.update.isError) {
@@ -30,10 +30,10 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
             toast.success("Project renamed");
             afterSubmit?.();
         }
-    };
+    });
 
     return (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <FieldGroup>
                 <Controller
                     name="title"
