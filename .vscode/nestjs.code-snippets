@@ -104,55 +104,17 @@
 
     // * Tests
 
-    "Create Controller Test": {
+    "Create Test": {
         "scope": "typescript",
-        "prefix": "n-test-controller",
+        "prefix": "pw-test",
         "body": [
-            "import { Test } from \"@nestjs/testing\";",
+            "import { expect, test } from \"@playwright/test\";",
             "",
-            "describe(\"$1Controller\", () => {",
-            "    let controller: $1Controller;",
-            "    let service: $1Service;",
-            "",
-            "    beforeEach(async () => {",
-            "        const module = await Test.createTestingModule({",
-            "            controllers: [$1Controller],",
-            "            providers: [$1Service],",
-            "        }).compile();",
-            "",
-            "        service = module.get<$1Service>($1Service);",
-            "        controller = module.get<$1Controller>($1Controller);",
-            "    });",
-            "",
-            "    describe(\"METHOD_NAME_SHOULD_BE_HERE\", () => {",
-            "        it(\"CASE_TITLE_SHOULD_BE_HERE\", async () => {",
-            "            ",
-            "        });",
-            "    });",
-            "});"
-        ]
-    },
-    "Create Service Test": {
-        "scope": "typescript",
-        "prefix": "typescript",
-        "body": [
-            "import { Test } from \"@nestjs/testing\";",
-            "",
-            "describe(\"$1Service\", () => {",
-            "    let service: $1Service;",
-            "",
-            "    beforeEach(async () => {",
-            "        const module = await Test.createTestingModule({",
-            "            providers: [$1Service],",
-            "        }).compile();",
-            "",
-            "        service = module.get<$1Service>($1Service);",
-            "    });",
-            "",
-            "    it(\"should be defined\", () => {",
-            "        expect(service).toBeDefined();",
-            "    });",
-            "});"
+            "test.describe(\"\", () => {",
+            "   test(\"\", async ({ request }) => {",
+            "       $1",
+            "   });",
+            "})"
         ]
     }
 }
