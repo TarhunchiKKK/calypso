@@ -91,7 +91,9 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
             </div>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit">Save</Button>
+                <Button type="submit" disabled={boardsApi.update.isPending}>
+                    Save
+                </Button>
             </div>
         </form>
     );

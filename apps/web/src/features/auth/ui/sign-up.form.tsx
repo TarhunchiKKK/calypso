@@ -64,7 +64,9 @@ export function SignUpForm({ afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="flex flex-row justify-center items-center mt-6">
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit" disabled={signUp.isPending}>
+                    Sign Up
+                </Button>
             </div>
         </form>
     );

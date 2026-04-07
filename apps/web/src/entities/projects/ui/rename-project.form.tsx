@@ -51,7 +51,9 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit">Rename</Button>
+                <Button type="submit" disabled={projectsAPi.update.isPending}>
+                    Rename
+                </Button>
             </div>
         </form>
     );

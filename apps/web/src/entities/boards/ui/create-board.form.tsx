@@ -50,7 +50,9 @@ export function CreateBoardForm({ afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit">Save</Button>
+                <Button type="submit" disabled={boardsApi.create.isPending}>
+                    Save
+                </Button>
             </div>
         </form>
     );
