@@ -1,5 +1,6 @@
 import type { Board, UpdateBoardDto } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
 import { Button, Field, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { useBoardsApi } from "../model/use-boards-api.hook";
@@ -38,7 +39,12 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
             ...data
         });
 
-        afterSubmit?.();
+        if (boardsApi.update.isError) {
+            toast.error("Error board updating");
+        } else {
+            toast.success("Board updated");
+            afterSubmit?.();
+        }
     };
 
     return (

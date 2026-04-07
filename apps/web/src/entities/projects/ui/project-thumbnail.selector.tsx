@@ -28,9 +28,8 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
             toast.error("Thumbnail changing error");
         } else {
             toast.success("Thumbnail changed");
+            afterSubmit?.();
         }
-
-        afterSubmit?.();
     };
 
     const groupedThumbnails: string[][] = [];

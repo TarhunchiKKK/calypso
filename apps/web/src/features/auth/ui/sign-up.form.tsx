@@ -1,0 +1,62 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+
+type Props = {
+    afterSubmit?: () => void;
+};
+
+export function SignUpForm({ afterSubmit }: Props) {
+    const form = useForm<SignUpDto>({
+        defaultValues: {
+            email: "",
+            password: ""
+        },
+        resolver: zodResolver(SignUpDtoZodSchema)
+    });
+
+    const onSubmit = form.handleSubmit(data => {
+        console.log(data);
+
+        afterSubmit?.();
+    });
+
+    return (
+        <form onSubmit={onSubmit}>
+            <FieldGroup>
+                <Controller
+                    name="email"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel>Email</FieldLabel>
+
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="yourname@gmail.com" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                        </Field>
+                    )}
+                />
+
+                <Controller
+                    name="password"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel>Password</FieldLabel>
+
+                            <Input {...field} aria-invalid={fieldState.invalid} type="password" placeholder="********" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                        </Field>
+                    )}
+                />
+            </FieldGroup>
+
+            <div className="flex flex-row justify-center items-center mt-6">
+                <Button type="submit">Sign Up</Button>
+            </div>
+        </form>
+    );
+}

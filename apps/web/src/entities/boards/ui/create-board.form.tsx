@@ -25,9 +25,8 @@ export function CreateBoardForm({ afterSubmit }: Props) {
             toast.error("Error creating board");
         } else {
             toast.success("Board created");
+            afterSubmit?.();
         }
-
-        afterSubmit?.();
     };
 
     return (

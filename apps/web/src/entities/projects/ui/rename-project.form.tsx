@@ -26,9 +26,8 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
             toast.error("Error renaming");
         } else {
             toast.success("Project renamed");
+            afterSubmit?.();
         }
-
-        afterSubmit?.();
     };
 
     return (

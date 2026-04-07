@@ -1,5 +1,5 @@
-import { IdZodSchema } from "shared";
 import z from "zod";
+import { IdZodSchema } from "../shared";
 import { ProjectCreatorZodSchema } from "./project-creator.entity";
 
 export const ProjectZodSchema = z.object({

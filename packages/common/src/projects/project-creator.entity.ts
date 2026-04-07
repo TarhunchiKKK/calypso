@@ -1,5 +1,5 @@
-import { UserZodSchema } from "auth";
 import type z from "zod";
+import { UserZodSchema } from "../auth";
 
 export const ProjectCreatorZodSchema = UserZodSchema.pick({
     id: true,

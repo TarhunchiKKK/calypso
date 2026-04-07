@@ -1,5 +1,5 @@
-import { ProjectWithTypeZodSchema } from "entry";
 import type z from "zod";
+import { ProjectWithTypeZodSchema } from "./project.entity";
 
 export const DuplicateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     id: true,
@@ -16,7 +16,7 @@ export const UpdateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     type: true,
     title: true,
     thumbnail: true
-});
+}).partial({ title: true, thumbnail: true });
 
 export const RemoveProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     id: true,

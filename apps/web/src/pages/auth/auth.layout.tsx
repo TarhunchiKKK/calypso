@@ -12,7 +12,7 @@ type Props = {
 export function AuthLayout({ card, form }: Props) {
     return (
         <main>
-            <Card className="w-full max-w-100">
+            <Card className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-100">
                 <CardHeader>
                     <CardTitle>{card.title}</CardTitle>
 
@@ -21,7 +21,7 @@ export function AuthLayout({ card, form }: Props) {
 
                 <CardContent>{form}</CardContent>
 
-                <CardFooter>
+                <CardFooter className="flex justify-center">
                     <p className="text-sm text-muted-foreground [&_a]:underline [&_a]:text-primary">{card.footerContent} </p>
                 </CardFooter>
             </Card>
