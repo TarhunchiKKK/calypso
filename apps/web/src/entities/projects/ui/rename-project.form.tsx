@@ -1,7 +1,8 @@
-import type { Project, ProjectWithType } from "@repo/common";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { useProjectsApi } from "../model/use-projects-api.hook";
 
 type Props = {
@@ -11,15 +12,16 @@ type Props = {
 };
 
 export function RenameProjectForm({ project, afterSubmit }: Props) {
-    const form = useForm<Pick<Project, "title">>({
+    const form = useForm<UpdateProjectDto>({
         defaultValues: {
             title: project.title
-        }
+        },
+        resolver: zodResolver(UpdateProjectDtoZodSchema)
     });
 
     const projectsAPi = useProjectsApi();
 
-    const onSubmit = async (data: Pick<Project, "title">) => {
+    const onSubmit = async (data: UpdateProjectDto) => {
         await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
 
         if (projectsAPi.update.isError) {
@@ -36,11 +38,13 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
                 <Controller
                     name="title"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>New title</FieldLabel>
 
-                            <Input {...field} placeholder="Enter new name of this project" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter new name of this project" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

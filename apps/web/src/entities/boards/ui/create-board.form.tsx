@@ -1,7 +1,8 @@
-import type { CreateBoardDto } from "@repo/boards-common";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
@@ -13,7 +14,8 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         defaultValues: {
             title: "",
             thumbnail: ""
-        }
+        },
+        resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
     const boardsApi = useBoardsApi();
@@ -35,11 +37,13 @@ export function CreateBoardForm({ afterSubmit }: Props) {
                 <Controller
                     name="title"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} placeholder="Enter board title" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

@@ -1,8 +1,9 @@
-import type { Board, UpdateBoardDto } from "@repo/boards-common";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
-import { Button, Field, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { useBoardsApi } from "../model/use-boards-api.hook";
 
 type Props = {
@@ -28,7 +29,8 @@ const commonFields = [
 
 export function BoardDetailsForm({ board, afterSubmit }: Props) {
     const form = useForm<UpdateBoardDto>({
-        defaultValues: board
+        defaultValues: board,
+        resolver: zodResolver(UpdateBoardDtoZodSchema)
     });
 
     const boardsApi = useBoardsApi();
@@ -53,11 +55,13 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                 <Controller
                     name="title"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} placeholder="Enter board title" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
@@ -65,11 +69,13 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                 <Controller
                     name="description"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Description</FieldLabel>
 
-                            <Textarea {...field} placeholder="Enter board description" />
+                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
