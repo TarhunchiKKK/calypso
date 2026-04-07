@@ -1,3 +1,4 @@
 export { CurrentUi } from "./current-ui";
-export { MockNodes } from "./mock-nodes.constant";
-export { MockProjects } from "./mock-projects.constants";
+export { MockAuthResponse } from "./mocks/auth-response.mock";
+export { MockNodes } from "./mocks/nodes.mock";
+export { MockProjects } from "./mocks/projects.mock";
