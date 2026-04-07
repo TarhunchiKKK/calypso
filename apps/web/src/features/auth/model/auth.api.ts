@@ -36,8 +36,8 @@ function useSignOut() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (dto: SignInDto) => {
-            return await ApiInstance.post("/auth/sign-out", dto);
+        mutationFn: async () => {
+            return await ApiInstance.post("/auth/sign-out");
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKeys.profile });
