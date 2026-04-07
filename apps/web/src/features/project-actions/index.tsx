@@ -1,44 +1,18 @@
 import type { ProjectWithType } from "@repo/common";
-import { CopyIcon, EllipsisVertical, ImageIcon, InfoIcon, LinkIcon, PencilIcon, SquareArrowOutUpRightIcon, TrashIcon } from "lucide-react";
-import { useProjectsApi } from "@/entities/projects";
-import { Routes } from "@/shared/config";
+import { EllipsisVertical, ImageIcon, InfoIcon, PencilIcon } from "lucide-react";
 import { preventDefaultHandler } from "@/shared/lib/events";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shared/ui/kit";
-import { ProjectDetailsDialog } from "./ui/project-details.dialog";
-import { RenameProjectDialog } from "./ui/rename-project.dialog";
-import { SelectProjectThumbnailModal } from "./ui/select-project-thumbnail.dialog";
+import { ProjectDetailsDialog } from "./dialogs/project-details.dialog";
+import { RenameProjectDialog } from "./dialogs/rename-project.dialog";
+import { SelectProjectThumbnailModal } from "./dialogs/select-project-thumbnail.dialog";
+import { ProjectLinkDropdownGroup } from "./dropdown/project-link.dropdown-group";
+import { DuplicateProjectDropdownItem, RemoveProjectDropdownItem } from "./dropdown/projects-crud.dropdown-items";
 
 export type Props = {
     project: ProjectWithType;
 };
 
 export function ProjectActions({ project }: Props) {
-    const projectsApi = useProjectsApi();
-
-    const copyProjectLink = () => {
-        const link = Routes.apps[project.type](project.id);
-
-        navigator.clipboard.writeText(`${window.location.origin}/${link}`);
-    };
-
-    const openInNewTab = () => {
-        const link = Routes.apps[project.type](project.id);
-
-        window.open(`${window.location.origin}/${link}`);
-    };
-
-    const duplicateBoard = async () => {
-        await projectsApi.duplicate.mutateAsync({
-            id: project.id,
-            type: project.type,
-            title: `${project.title} (Copy)`
-        });
-    };
-
-    const removeBoard = async () => {
-        await projectsApi.remove.mutateAsync({ id: project.id, type: project.type });
-    };
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -48,25 +22,12 @@ export function ProjectActions({ project }: Props) {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-48" align="start">
-                <DropdownMenuGroup>
-                    <DropdownMenuItem onSelect={copyProjectLink}>
-                        <LinkIcon />
-                        Copy link
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem onSelect={openInNewTab}>
-                        <SquareArrowOutUpRightIcon />
-                        Open in new tab
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
+                <ProjectLinkDropdownGroup project={project} />
 
                 <DropdownMenuSeparator />
 
                 <DropdownMenuGroup>
-                    <DropdownMenuItem onSelect={duplicateBoard}>
-                        <CopyIcon />
-                        Duplicate
-                    </DropdownMenuItem>
+                    <DuplicateProjectDropdownItem project={project} />
 
                     <DropdownMenuItem onSelect={preventDefaultHandler}>
                         <PencilIcon />
@@ -90,10 +51,7 @@ export function ProjectActions({ project }: Props) {
                 <DropdownMenuSeparator />
 
                 <DropdownMenuGroup>
-                    <DropdownMenuItem variant="destructive" onSelect={removeBoard}>
-                        <TrashIcon />
-                        Delete
-                    </DropdownMenuItem>
+                    <RemoveProjectDropdownItem project={project} />
                 </DropdownMenuGroup>
             </DropdownMenuContent>
         </DropdownMenu>

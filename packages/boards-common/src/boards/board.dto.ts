@@ -10,7 +10,7 @@ export const UpdateBoardDtoZodSchema = BoardZodSchema.pick({
     title: true,
     description: true,
     thumbnail: true
-});
+}).partial({ title: true, thumbnail: true });
 
 export type CreateBoardDto = z.infer<typeof CreateBoardDtoZodSchema>;
 export type UpdateBoardDto = z.infer<typeof UpdateBoardDtoZodSchema>;
