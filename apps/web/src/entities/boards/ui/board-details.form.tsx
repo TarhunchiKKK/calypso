@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
-import { useBoardsApi } from "../model/use-boards-api.hook";
+import { BoardsApi } from "../model/bards.api";
 
 type Props = {
     board: Board;
@@ -33,15 +33,15 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
         resolver: zodResolver(UpdateBoardDtoZodSchema)
     });
 
-    const boardsApi = useBoardsApi();
+    const update = BoardsApi.useUpdate();
 
     const onSubmit = form.handleSubmit(async data => {
-        await boardsApi.update.mutateAsync({
+        await update.mutateAsync({
             id: board.id,
             ...data
         });
 
-        if (boardsApi.update.isError) {
+        if (update.isError) {
             toast.error("Error board updating");
         } else {
             toast.success("Board updated");
@@ -91,7 +91,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
             </div>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit" disabled={boardsApi.update.isPending}>
+                <Button type="submit" disabled={update.isPending}>
                     Save
                 </Button>
             </div>

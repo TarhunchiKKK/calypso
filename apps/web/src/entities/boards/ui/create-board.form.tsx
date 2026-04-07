@@ -3,7 +3,7 @@ import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards-commo
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { useBoardsApi } from "../model/use-boards-api.hook";
+import { BoardsApi } from "../model/bards.api";
 
 type Props = {
     afterSubmit?: () => void;
@@ -18,12 +18,12 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
-    const boardsApi = useBoardsApi();
+    const create = BoardsApi.useCreate();
 
     const onSubmit = form.handleSubmit(async data => {
-        await boardsApi.create.mutateAsync(data);
+        await create.mutateAsync(data);
 
-        if (boardsApi.create.isError) {
+        if (create.isError) {
             toast.error("Error creating board");
         } else {
             toast.success("Board created");
@@ -50,7 +50,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit" disabled={boardsApi.create.isPending}>
+                <Button type="submit" disabled={create.isPending}>
                     Save
                 </Button>
             </div>

@@ -3,7 +3,7 @@ import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema 
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { useProjectsApi } from "../model/use-projects-api.hook";
+import { ProjectsApi } from "../model/projects.api";
 
 type Props = {
     project: ProjectWithType;
@@ -19,12 +19,12 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
         resolver: zodResolver(UpdateProjectDtoZodSchema)
     });
 
-    const projectsAPi = useProjectsApi();
+    const update = ProjectsApi.useUpdate();
 
     const onSubmit = form.handleSubmit(async data => {
-        await projectsAPi.update.mutateAsync({ id: project.id, type: project.type, title: data.title });
+        await update.mutateAsync({ id: project.id, type: project.type, title: data.title });
 
-        if (projectsAPi.update.isError) {
+        if (update.isError) {
             toast.error("Error renaming");
         } else {
             toast.success("Project renamed");
@@ -51,7 +51,7 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="flex flex-row justify-end items-center mt-6">
-                <Button type="submit" disabled={projectsAPi.update.isPending}>
+                <Button type="submit" disabled={update.isPending}>
                     Rename
                 </Button>
             </div>

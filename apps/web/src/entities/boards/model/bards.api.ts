@@ -1,15 +1,12 @@
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ProjectsQueryKeys } from "@/entities/projects/model/use-projects-api.hook";
+import { ProjectsQueryKeys } from "@/entities/projects";
 
-// TODO: implement token extraction
-const token = "mock-token";
-
-export function useBoardsApi() {
+function useCreate() {
     const queryClient = useQueryClient();
 
-    const create = useMutation({
+    return useMutation({
         mutationFn: async (dto: CreateBoardDto) => {
             // return axios.post(`${Env.api.url}/boards`, dto, {
             //     headers: {
@@ -23,8 +20,12 @@ export function useBoardsApi() {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
         }
     });
+}
 
-    const update = useMutation({
+function useUpdate() {
+    const queryClient = useQueryClient();
+
+    return useMutation({
         mutationFn: async (dto: UpdateBoardDto & { id: Id }) => {
             // const { id, ...data } = dto;
 
@@ -40,6 +41,9 @@ export function useBoardsApi() {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
         }
     });
-
-    return { create, update };
 }
+
+export const BoardsApi = {
+    useCreate,
+    useUpdate
+};

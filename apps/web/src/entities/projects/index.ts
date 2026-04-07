@@ -1,4 +1,3 @@
-export { useFindOneProject } from "./model/use-find-one-project.hook";
-export { useProjectsApi } from "./model/use-projects-api.hook";
+export { ProjectsApi, ProjectsQueryKeys } from "./model/projects.api";
 export { ProjectThumbnailSelector } from "./ui/project-thumbnail.selector";
 export { RenameProjectForm } from "./ui/rename-project.form";
