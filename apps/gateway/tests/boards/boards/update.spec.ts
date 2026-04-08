@@ -7,7 +7,7 @@ test.describe("PATCH /boards", () => {
     test("success", async ({ request }) => {
         let board: Board;
 
-        await test.step("Ureate board", async () => {
+        await test.step("Update board", async () => {
             const dto: CreateBoardDto = {
                 title: faker.word.words({ count: 2 }),
                 thumbnail: faker.internet.url()
