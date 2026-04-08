@@ -2,8 +2,7 @@ import { faker } from "@faker-js/faker";
 import { expect, test } from "@playwright/test";
 import type { Board, CreateBoardDto } from "@repo/boards-common";
 import type { DuplicateProjectDto } from "@repo/common";
-import { BoardsApi } from "tests/boards/boards/boards.api";
-import { ProjectsApi } from "./projects.api";
+import { BoardsApi, ProjectsApi } from "../shared/api";
 
 test.describe("POST /projects/duplicate", () => {
     test("success", async ({ request }) => {
