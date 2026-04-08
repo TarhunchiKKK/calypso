@@ -14,7 +14,9 @@ test.describe("PATCH /projects/:id", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, createDto);
+            const result = await BoardsApi.create(request, createDto);
+
+            board = result.json;
         });
 
         const dto: UpdateProjectDto = {
@@ -28,7 +30,7 @@ test.describe("PATCH /projects/:id", () => {
         });
 
         await test.step("Get updated board", async () => {
-            const updatedBoard = await ProjectsApi.findOne(request, {
+            const { json: updatedBoard } = await ProjectsApi.findOne(request, {
                 id: board.id,
                 type: "board"
             });

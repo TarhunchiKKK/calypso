@@ -1,8 +1,7 @@
 import { faker } from "@faker-js/faker/.";
 import { test } from "@playwright/test";
 import type { Board, CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi } from "tests/shared/api";
-import { BoardNodesApi } from "tests/shared/api/board-nodes.api";
+import { BoardNodesApi, BoardsApi } from "../../shared/api";
 
 test.describe("PATCH /board-nodes", () => {
     test("success", async ({ request }) => {
@@ -14,7 +13,9 @@ test.describe("PATCH /board-nodes", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         await test.step("Create nodes", async () => {

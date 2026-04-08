@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker/.";
 import { expect, test } from "@playwright/test";
 import type { AnyNode, Board, CreateBoardDto } from "@repo/boards-common";
 import { BoardsApi } from "tests/shared/api";
-import { BoardNodesApi } from "tests/shared/api/board-nodes.api";
+import { BoardNodesApi } from "../../shared/api";
 
 test.describe("POST /board-nodes", () => {
     test("success", async ({ request }) => {
@@ -14,7 +14,9 @@ test.describe("POST /board-nodes", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         let mockNodes: AnyNode[];
@@ -26,7 +28,7 @@ test.describe("POST /board-nodes", () => {
         });
 
         await test.step("Verify nodes", async () => {
-            const nodes = await BoardNodesApi.findAll(request, board.id);
+            const { json: nodes } = await BoardNodesApi.findAll(request, board.id);
 
             for (const node of nodes) {
                 expect(mockNodes.find(n => n.id === node.id)).toBeTruthy();

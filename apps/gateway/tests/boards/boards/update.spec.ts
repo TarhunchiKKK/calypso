@@ -13,7 +13,9 @@ test.describe("PATCH /boards", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         const dto: UpdateBoardDto = {
@@ -27,7 +29,7 @@ test.describe("PATCH /boards", () => {
         });
 
         await test.step("Get board", async () => {
-            const updatedBoard = await ProjectsApi.findOne(request, { id: board.id, type: "board" });
+            const { json: updatedBoard } = await ProjectsApi.findOne(request, { id: board.id, type: "board" });
 
             expect(updatedBoard.title).toBe(dto.title);
             expect(updatedBoard.description).toBe(dto.description);

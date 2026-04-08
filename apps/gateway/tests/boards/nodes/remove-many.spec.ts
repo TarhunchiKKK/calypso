@@ -1,8 +1,7 @@
 import { faker } from "@faker-js/faker/.";
 import { expect, test } from "@playwright/test";
 import type { AnyNode, Board, CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi } from "tests/shared/api";
-import { BoardNodesApi } from "tests/shared/api/board-nodes.api";
+import { BoardNodesApi, BoardsApi } from "../../shared/api";
 
 test.describe("DELETE /board-nodes", () => {
     test("success", async ({ request }) => {
@@ -14,7 +13,9 @@ test.describe("DELETE /board-nodes", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         let mockNodes: AnyNode[];
@@ -33,7 +34,7 @@ test.describe("DELETE /board-nodes", () => {
         });
 
         await test.step("Check nodes", async () => {
-            const nodes = await BoardNodesApi.findAll(request, board.id);
+            const { json: nodes } = await BoardNodesApi.findAll(request, board.id);
 
             expect(nodes.length).toBeLessThanOrEqual(mockNodes.length);
         });

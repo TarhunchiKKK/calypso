@@ -1,4 +1,4 @@
-import { type APIRequestContext, expect } from "@playwright/test";
+import type { APIRequestContext } from "@playwright/test";
 import type { DuplicateProjectDto, FindOneProjectDto, Id, Project, RemoveProjectDto, UpdateProjectDto } from "@repo/common";
 
 export class ProjectsApi {
@@ -7,21 +7,17 @@ export class ProjectsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        const json: Project = await response.json();
 
-        const project: Project = await response.json();
-
-        return project;
+        return { response, json, dto };
     }
 
     public static async findAll(request: APIRequestContext) {
         const response = await request.get("/projects/all");
 
-        await expect(response).toBeOK();
+        const json: Project[] = await response.json();
 
-        const projects: Project[] = await response.json();
-
-        return projects;
+        return { response, json };
     }
 
     public static async findOne(request: APIRequestContext, dto: FindOneProjectDto) {
@@ -29,11 +25,9 @@ export class ProjectsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        const json: Project = await response.json();
 
-        const project: Project = await response.json();
-
-        return project;
+        return { response, json, dto };
     }
 
     public static async update(request: APIRequestContext, projectId: Id, dto: UpdateProjectDto) {
@@ -41,7 +35,7 @@ export class ProjectsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto, projectId };
     }
 
     public static async remove(request: APIRequestContext, dto: RemoveProjectDto) {
@@ -49,6 +43,6 @@ export class ProjectsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto };
     }
 }

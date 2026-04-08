@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker/.";
-import { type APIRequestContext, expect } from "@playwright/test";
+import type { APIRequestContext } from "@playwright/test";
 import type { AnyNode, CreateManyNodesDto, NodeBase, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 
@@ -95,7 +95,7 @@ export class BoardNodesApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto };
     }
 
     public static async createManyWithMock(request: APIRequestContext, boardId: Id) {
@@ -104,19 +104,17 @@ export class BoardNodesApi {
             boardId: boardId
         };
 
-        await BoardNodesApi.createMany(request, dto);
+        const result = await BoardNodesApi.createMany(request, dto);
 
-        return { dto };
+        return { ...result, dto, boardId };
     }
 
     public static async findAll(request: APIRequestContext, boardId: Id) {
         const response = await request.get(`/board-nodes/${boardId}`);
 
-        await expect(response).toBeOK();
+        const json: NodeBase[] = await response.json();
 
-        const nodes: NodeBase[] = await response.json();
-
-        return nodes;
+        return { response, json, boardId };
     }
 
     public static async updateMany(request: APIRequestContext, dto: UpdateManyNodesDto) {
@@ -124,7 +122,7 @@ export class BoardNodesApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto };
     }
 
     public static async updateManyWithMock(request: APIRequestContext, boardId: Id) {
@@ -133,9 +131,9 @@ export class BoardNodesApi {
             boardId: boardId
         };
 
-        await BoardNodesApi.updateMany(request, dto);
+        const result = await BoardNodesApi.updateMany(request, dto);
 
-        return { dto };
+        return { ...result, dto, boardId };
     }
 
     public static async removeMany(request: APIRequestContext, dto: RemoveManyNodesDto) {
@@ -143,6 +141,6 @@ export class BoardNodesApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto };
     }
 }

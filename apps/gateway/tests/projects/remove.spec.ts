@@ -13,7 +13,9 @@ test.describe("DELETE /projects", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         await test.step("Delete board", async () => {

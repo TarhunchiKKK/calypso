@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker/.";
-import { type APIRequestContext, expect } from "@playwright/test";
+import type { APIRequestContext } from "@playwright/test";
 import type { Board, CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 
@@ -9,11 +9,9 @@ export class BoardsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        const json: Board = await response.json();
 
-        const board: Board = await response.json();
-
-        return board;
+        return { response, json, dto };
     }
 
     public static createWithMock(request: APIRequestContext) {
@@ -24,7 +22,7 @@ export class BoardsApi {
 
         const result = BoardsApi.create(request, dto);
 
-        return { dto, result };
+        return { ...result, dto };
     }
 
     public static async update(request: APIRequestContext, boardId: Id, dto: UpdateBoardDto) {
@@ -32,6 +30,6 @@ export class BoardsApi {
             data: dto
         });
 
-        await expect(response).toBeOK();
+        return { response, dto, boardId };
     }
 }

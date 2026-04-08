@@ -10,7 +10,7 @@ test.describe("POST /boards", () => {
             thumbnail: faker.internet.url()
         };
 
-        const board = await BoardsApi.create(request, dto);
+        const { json: board } = await BoardsApi.create(request, dto);
 
         expect(board.title).toBe(dto.title);
         expect(board.thumbnail).toBe(dto.thumbnail);

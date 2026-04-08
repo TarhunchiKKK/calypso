@@ -14,7 +14,9 @@ test.describe("POST /projects/duplicate", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         await test.step("Duplicate board", async () => {
@@ -24,7 +26,7 @@ test.describe("POST /projects/duplicate", () => {
                 title: "New Board Title"
             };
 
-            const copy = await ProjectsApi.duplicate(request, dto);
+            const { json: copy } = await ProjectsApi.duplicate(request, dto);
 
             expect(copy.id).toBe(board.id);
             expect(copy.title).toBe(dto.title);

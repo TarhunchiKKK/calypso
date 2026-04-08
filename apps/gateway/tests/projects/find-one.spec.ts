@@ -13,11 +13,13 @@ test.describe("GET /projets/one", () => {
                 thumbnail: faker.internet.url()
             };
 
-            board = await BoardsApi.create(request, dto);
+            const result = await BoardsApi.create(request, dto);
+
+            board = result.json;
         });
 
         await test.step("Get board", async () => {
-            const result = await ProjectsApi.findOne(request, { id: board.id, type: "board" });
+            const { json: result } = await ProjectsApi.findOne(request, { id: board.id, type: "board" });
 
             expect(result).toEqual(board);
         });

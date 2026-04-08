@@ -1,2 +1,3 @@
-export { BoardsApi } from "./boards.api";
+export { BoardsApi } from "./boards/boards.api";
+export { BoardNodesApi } from "./boards/nodes.api";
 export { ProjectsApi } from "./projects.api";
