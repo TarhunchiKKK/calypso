@@ -29,6 +29,6 @@ export class ProvidersAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result;
+        return result.user;
     }
 }

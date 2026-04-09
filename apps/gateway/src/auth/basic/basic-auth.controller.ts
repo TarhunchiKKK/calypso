@@ -22,7 +22,7 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result;
+        return result.user;
     }
 
     @Post("sign-in")
@@ -35,7 +35,7 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result;
+        return result.user;
     }
 
     @Post("sign-out")
@@ -65,6 +65,6 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result;
+        return result.user;
     }
 }
