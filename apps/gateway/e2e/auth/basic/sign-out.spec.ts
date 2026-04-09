@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import type { SignUpDto } from "@repo/common";
-import { BasicAuthApi } from "tests/shared/api/auth/basic-auth.api";
+import { BasicAuthApi } from "e2e/shared/api/auth/basic-auth.api";
 
-test.describe("POST /basic-auth/profile", () => {
+test.describe("POST /basic-auth/sign-out", () => {
     test("success", async ({ request }) => {
         const dto: SignUpDto = {
             email: faker.internet.email(),
@@ -14,10 +14,8 @@ test.describe("POST /basic-auth/profile", () => {
             await BasicAuthApi.signUp(request, dto);
         });
 
-        await test.step("Get profile", async () => {
-            const { json: profile } = await BasicAuthApi.getProfile(request);
-
-            expect(profile.email).toBe(dto.email);
+        await test.step("Sign out", async () => {
+            await BasicAuthApi.signOut(request);
         });
     });
 });

@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import { test } from "@playwright/test";
 import type { Board, CreateBoardDto } from "@repo/boards-common";
 import { BoardNodesApi, BoardsApi } from "../../shared/api";

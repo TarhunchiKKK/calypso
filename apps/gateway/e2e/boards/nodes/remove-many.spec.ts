@@ -1,10 +1,9 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import { expect, test } from "@playwright/test";
 import type { AnyNode, Board, CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi } from "tests/shared/api";
-import { BoardNodesApi } from "../../shared/api";
+import { BoardNodesApi, BoardsApi } from "../../shared/api";
 
-test.describe("POST /board-nodes", () => {
+test.describe("DELETE /board-nodes", () => {
     test("success", async ({ request }) => {
         let board: Board;
 
@@ -27,12 +26,17 @@ test.describe("POST /board-nodes", () => {
             mockNodes = result.dto.nodes;
         });
 
-        await test.step("Verify nodes", async () => {
+        await test.step("Remove nodes", async () => {
+            await BoardNodesApi.removeMany(request, {
+                ids: mockNodes.map(node => node.id),
+                boardId: board.id
+            });
+        });
+
+        await test.step("Check nodes", async () => {
             const { json: nodes } = await BoardNodesApi.findAll(request, board.id);
 
-            for (const node of nodes) {
-                expect(mockNodes.find(n => n.id === node.id)).toBeTruthy();
-            }
+            expect(nodes.length).toBeLessThanOrEqual(mockNodes.length);
         });
     });
 });

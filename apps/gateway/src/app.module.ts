@@ -2,6 +2,7 @@ import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
+import { PassportModule } from "@nestjs/passport";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { SupabaseModule } from "./auth/lib/supabase/supabase.module";
@@ -14,6 +15,7 @@ import { ProjectsModule } from "./projects/projects.module";
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         CqrsModule.forRoot(),
+        PassportModule.register({ defaultStrategy: "jwt" }),
         HttpModule,
         ProjectsModule,
         BoardsModule,

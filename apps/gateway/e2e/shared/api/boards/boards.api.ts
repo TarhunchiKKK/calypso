@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import type { APIRequestContext } from "@playwright/test";
 import type { Board, CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";

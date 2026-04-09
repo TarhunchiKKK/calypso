@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import type { APIRequestContext } from "@playwright/test";
 import type { AnyNode, CreateManyNodesDto, NodeBase, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
