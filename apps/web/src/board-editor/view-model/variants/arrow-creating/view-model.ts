@@ -1,10 +1,10 @@
+import { NodesFactory } from "@/board-editor/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
-import { ArrowCreationNodesMapper } from "./lib/nodes.mapper";
-import { NodesFactory } from "@/board-editor/nodes";
 import { switchToArrowBinding } from "../arrow-binding/switcher";
+import { ArrowCreationNodesMapper } from "./lib/nodes.mapper";
 
 export function useArrowCreationViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel, setViewState } = params;

@@ -1,8 +1,8 @@
 import type { NodeBase } from "@repo/boards-common";
 import { NodesMapper } from "@/board-editor/core";
 
-export class ShapesCreationNodesMapper extends NodesMapper {
+export class NodeCreationNodesMapper extends NodesMapper {
     public static from(nodes: NodeBase[]) {
-        return new ShapesCreationNodesMapper(nodes);
+        return new NodeCreationNodesMapper(nodes);
     }
 }
