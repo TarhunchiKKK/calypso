@@ -18,7 +18,6 @@ const Buttons: { key: keyof ViewModel["actions"]; element: React.ReactNode }[] =
     { key: "draw", element: <BrushIcon /> }
 ];
 
-// REFACTOR: remove commented code
 export function ActionsBar({ actions }: Props) {
     return (
         <Wrapper className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">
@@ -27,38 +26,6 @@ export function ActionsBar({ actions }: Props) {
                     {button.element}
                 </ActionButton>
             ))}
-
-            {/* <ActionButton isActive={actions.idle.isActive} onClick={actions.idle.onClick}>
-                <MousePointer2 />
-            </ActionButton>
-
-            <ActionButton isActive={actions.stickers.isActive} onClick={actions.stickers.onClick}>
-                <StickyNoteIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.arrows.isActive} onClick={actions.arrows.onClick}>
-                <MoveUpRightIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.text.isActive} onClick={actions.text.onClick}>
-                <TypeIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.shapes.isActive} onClick={actions.shapes.onClick}>
-                <DiamondIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.media.isActive} onClick={actions.media.onClick}>
-                <CirclePlayIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.notes.isActive} onClick={actions.notes.onClick}>
-                <FileTextIcon />
-            </ActionButton>
-
-            <ActionButton isActive={actions.draw.isActive} onClick={actions.draw.onClick}>
-                <BrushIcon />
-            </ActionButton> */}
         </Wrapper>
     );
 }
