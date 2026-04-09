@@ -1,52 +1,59 @@
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 import type { DecoratableViewModel } from "../types/view-model.types";
-import { switchToArrowCreation } from "../variants/arrow-creating/switcher";
 import { switchToIdle } from "../variants/idle/switcher";
+import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
-import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
 
 const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-window", "dragging"];
-const arrowsViewStates: ViewState["type"][] = ["arrow-creation", "arrow-binding"];
-const shapesViewStates: ViewState["type"][] = ["shape-selection", "shapes-creation"];
+
+function determineState(viewState: ViewState) {
+    return {
+        isIdle: idleViewStates.includes(viewState.type),
+        isStickers: viewState.type === "node-creation" && viewState.payload.type === "sticker",
+        isArrows: (viewState.type === "node-creation" && viewState.payload.type === "arrow") || viewState.type === "arrow-binding",
+        isText: viewState.type === "node-creation" && viewState.payload.type === "text",
+        isShapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
+        isMedia: false,
+        isNotes: false,
+        isDraw: false
+    };
+}
 
 export function withActions(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: DecoratableViewModel) {
-    const isIdle = idleViewStates.includes(viewState.type);
-    const isStickers = viewState.type === "stickers-creation";
-    const isArrows = arrowsViewStates.includes(viewState.type);
-    const isShapes = shapesViewStates.includes(viewState.type);
+    const state = determineState(viewState);
 
     const actions: ViewModel["actions"] = {
         idle: {
-            isActive: isIdle,
-            onClick: !isIdle ? () => setViewState(switchToIdle()) : undefined
+            isActive: state.isIdle,
+            onClick: !state.isIdle ? () => setViewState(switchToIdle()) : undefined
         },
         stickers: {
-            isActive: isStickers,
-            onClick: !isStickers ? () => setViewState(switchToStickersCreation()) : undefined
+            isActive: state.isStickers,
+            onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
         },
         arrows: {
-            isActive: isArrows,
-            onClick: () => setViewState(switchToArrowCreation())
+            isActive: state.isArrows,
+            onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
         },
         text: {
-            isActive: false,
-            onClick: () => {}
+            isActive: state.isText,
+            onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined
         },
         shapes: {
-            isActive: isShapes,
-            onClick: e => (!isShapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+            isActive: state.isShapes,
+            onClick: e => (!state.isShapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
         },
         media: {
-            isActive: false,
+            isActive: state.isMedia,
             onClick: () => {}
         },
         notes: {
-            isActive: false,
+            isActive: state.isMedia,
             onClick: () => {}
         },
         draw: {
-            isActive: false,
+            isActive: state.isMedia,
             onClick: () => {}
         }
     };

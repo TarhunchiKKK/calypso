@@ -58,32 +58,32 @@ export type ViewModel = {
 
         arrows: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
 
         text: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
 
         shapes: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
 
         media: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
 
         notes: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
 
         draw: {
             isActive: boolean;
-            onClick: React.MouseEventHandler;
+            onClick?: React.MouseEventHandler;
         };
     };
 };
