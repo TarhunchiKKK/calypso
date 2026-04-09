@@ -1,33 +1,25 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
-import { ExtractJwt, Strategy } from "passport-jwt";
-import type { TokenPayload } from "../supabase.types";
+import type { Request } from "express";
+import { Strategy } from "passport-jwt";
+import type { CookieFields } from "../../cookie/cookie.types";
 
 @Injectable()
-export class AuthStrategy extends PassportStrategy(Strategy) {
-    public constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
+export class JwtStrategy extends PassportStrategy(Strategy) {
+    public constructor(@Inject(ConfigService) readonly configService: ConfigService) {
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            jwtFromRequest: (req: Request) => {
+                const tokenKey: keyof CookieFields = "access_token";
+
+                return req?.cookies?.[tokenKey] || null;
+            },
             ignoreExpiration: false,
-            secretOrKeyProvider: async (_, __, done) => {
-                try {
-                    const supabaseUrl = this.configService.getOrThrow("SUPABASE_URL");
-
-                    const { data } = await fetch(`${supabaseUrl}/auth/v1/keys`).then(res => res.json());
-
-                    done(null, data[0].key);
-                } catch (error) {
-                    done(error);
-                }
-            }
+            secretOrKey: configService.getOrThrow("SUPABASE_JWT_SECRET")
         });
     }
 
-    public validate(payload: Record<string, unknown>): TokenPayload {
-        return {
-            userId: payload.sub as string,
-            email: payload.email as string
-        };
+    public async validate(payload: Record<string, unknown>) {
+        return { userId: payload.sub, email: payload.email };
     }
 }

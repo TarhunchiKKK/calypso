@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { expect, test } from "@playwright/test";
 import type { Board, CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi, ProjectsApi } from "tests/shared/api";
+import { BoardsApi, ProjectsApi } from "e2e/shared/api";
 
-test.describe("GET /projets/one", () => {
+test.describe("DELETE /projects", () => {
     test("success", async ({ request }) => {
         let board: Board;
 
@@ -18,10 +18,12 @@ test.describe("GET /projets/one", () => {
             board = result.json;
         });
 
-        await test.step("Get board", async () => {
-            const { json: result } = await ProjectsApi.findOne(request, { id: board.id, type: "board" });
+        await test.step("Delete board", async () => {
+            await ProjectsApi.remove(request, { id: board.id, type: "board" });
+        });
 
-            expect(result).toEqual(board);
+        await test.step("Get deleted board", async () => {
+            await expect(ProjectsApi.findOne(request, { id: board.id, type: "board" })).rejects.toHaveProperty("status", 404);
         });
     });
 });

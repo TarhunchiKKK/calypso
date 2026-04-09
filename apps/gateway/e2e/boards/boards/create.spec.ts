@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { expect, test } from "@playwright/test";
 import type { CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi } from "tests/shared/api";
+import { BoardsApi } from "e2e/shared/api";
 
 test.describe("POST /boards", () => {
     test("success", async ({ request }) => {

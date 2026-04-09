@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker/.";
 import { expect, test } from "@playwright/test";
 import type { AnyNode, Board, CreateBoardDto } from "@repo/boards-common";
-import { BoardsApi } from "tests/shared/api";
+import { BoardsApi } from "e2e/shared/api";
 import { BoardNodesApi } from "../../shared/api";
 
 test.describe("POST /board-nodes", () => {

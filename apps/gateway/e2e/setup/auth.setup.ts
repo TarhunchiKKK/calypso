@@ -1,5 +1,5 @@
 import { expect, test as setup } from "@playwright/test";
-import { TestUser } from "tests/shared/constants";
+import { TestUser } from "e2e/shared/constants";
 
 const authFile = "playwright/.auth/session.json";
 
