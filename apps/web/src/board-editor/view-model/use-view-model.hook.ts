@@ -5,20 +5,17 @@ import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
-import { useArrowCreationViewModel } from "./variants/arrow-creating/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
 import { useIdleViewModel } from "./variants/idle/view-model";
+import { useNodeCreationViewModel } from "./variants/node-creation/view-model";
 import { useNodesContextMenuViewModel } from "./variants/nodes-context-menu/view-model";
 import { useResizingViewModel } from "./variants/resizing/view-model";
 import { useSelectionViewModel } from "./variants/selection/view-model";
 import { useSelectionWindowViewModel } from "./variants/selection-window/view-model";
 import { useShapeSelectionViewModel } from "./variants/shape-selection/view-model";
-import { useShapesCreationViewModel } from "./variants/shapes-creation/view-model";
-import { useStickersCreationViewModel } from "./variants/stickers-creation/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
-import { useTextCreationViewModel } from "./variants/text-creation/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
@@ -33,12 +30,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     }, [params.nodesModel.service.middleware.add]);
 
     const idleViewModel = useIdleViewModel(newParams);
-    const stickersCreationViewModel = useStickersCreationViewModel(newParams);
-    const arrowCreationViewModel = useArrowCreationViewModel(newParams);
+    const nodeCreation = useNodeCreationViewModel(newParams);
     const arrowBindingViewModel = useArrowBindingViewModel(newParams);
-    const textCreationViewModel = useTextCreationViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
-    const shapesCreationViewModel = useShapesCreationViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
@@ -52,23 +46,14 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         case "idle":
             viewModel = idleViewModel(viewState);
             break;
-        case "stickers-creation":
-            viewModel = stickersCreationViewModel();
-            break;
-        case "arrow-creation":
-            viewModel = arrowCreationViewModel();
+        case "node-creation":
+            viewModel = nodeCreation(viewState);
             break;
         case "arrow-binding":
             viewModel = arrowBindingViewModel(viewState);
             break;
-        case "text-creation":
-            viewModel = textCreationViewModel();
-            break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);
-            break;
-        case "shapes-creation":
-            viewModel = shapesCreationViewModel(viewState);
             break;
         case "selection":
             viewModel = selectionViewModel(viewState);
