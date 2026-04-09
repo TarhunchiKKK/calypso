@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import { expect, test } from "@playwright/test";
 import type { AnyNode, Board, CreateBoardDto } from "@repo/boards-common";
 import { BoardsApi } from "e2e/shared/api";
