@@ -3,7 +3,7 @@ import { SignInForm } from "@/features/auth";
 import { Routes } from "@/shared/config";
 import { AuthLayout } from "./auth.layout";
 
-export function SignInPage() {
+function SignInPage() {
     const navigate = useNavigate();
 
     return (
@@ -21,3 +21,5 @@ export function SignInPage() {
         />
     );
 }
+
+export const Component = SignInPage;

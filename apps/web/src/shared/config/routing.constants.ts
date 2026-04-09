@@ -1,4 +1,4 @@
-import type { Id, ProjectTypes } from "@repo/common";
+import type { Id } from "@repo/common";
 
 export const Routes = {
     home: "/",
@@ -8,7 +8,13 @@ export const Routes = {
         signIn: "/auth/sign-in"
     },
     apps: {
-        board: (id: Id) => `board/${id}`,
-        note: (id: Id) => `note/${id}`
-    } satisfies Record<ProjectTypes, (id: Id) => string>
+        board: {
+            pattern: "/board/:id",
+            get: (id: Id) => `/board/${id}`
+        },
+        note: {
+            pattern: "/note/:id",
+            get: (id: Id) => `/note/${id}`
+        }
+    }
 };

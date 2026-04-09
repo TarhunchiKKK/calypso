@@ -3,7 +3,7 @@ import { SignUpForm } from "@/features/auth";
 import { Routes } from "@/shared/config";
 import { AuthLayout } from "./auth.layout";
 
-export function SignUpPage() {
+function SignUpPage() {
     const navigate = useNavigate();
 
     return (
@@ -21,3 +21,5 @@ export function SignUpPage() {
         />
     );
 }
+
+export const Component = SignUpPage;
