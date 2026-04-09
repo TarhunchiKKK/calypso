@@ -4,7 +4,7 @@ import { NodesMongoApi } from "@/entities/nodes";
 import { ThemeSwitch } from "@/features/dark-mode";
 import { BoardHeader } from "@/features/header";
 
-export function BoardEditorPage() {
+function BoardEditorPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <BoardEditor nodes={MockNodes} boardId="1" api={NodesMongoApi}>
@@ -19,3 +19,5 @@ export function BoardEditorPage() {
         </div>
     );
 }
+
+export const Component = BoardEditorPage;

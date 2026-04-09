@@ -1,10 +1,10 @@
 import { CurrentUi } from "@/dev";
-import { Providers } from "./providers.component";
+import { Providers } from "./compose/providers.component";
 
 export function App() {
     return (
         <Providers>
-            {/* <BoardEditorPage /> */}
+            {/* <RouterProvider router={Router} /> */}
 
             <CurrentUi />
         </Providers>

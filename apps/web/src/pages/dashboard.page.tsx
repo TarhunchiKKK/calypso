@@ -3,7 +3,7 @@ import { DashboardHeader } from "@/features/header";
 import { CreateProjectButton } from "@/features/project-creating";
 import { ProjectsList } from "@/features/projects-list";
 
-export function DashBoardPage() {
+function DashBoardPage() {
     return (
         <>
             <DashboardHeader />
@@ -20,3 +20,5 @@ export function DashBoardPage() {
         </>
     );
 }
+
+export const Component = DashBoardPage;
