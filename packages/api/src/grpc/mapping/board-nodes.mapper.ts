@@ -1,4 +1,4 @@
-import type { AnyNode, ArrowNode, MediaVariants, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
     ArrowBoardNodeGrpc,
@@ -54,7 +54,6 @@ export class BoardNodesGrpcMapper {
                     media: {
                         base: BoardNodesGrpcMapper.mapBase(node),
                         rect: node.rect,
-                        variant: node.variant,
                         url: node.url
                     }
                 };
@@ -106,7 +105,6 @@ export class BoardNodesGrpcMapper {
                 ...(base as NodeBase & Pick<ShapeNode, "styles">),
                 ...specific,
                 type: "media",
-                variant: specific.variant as MediaVariants,
                 url: specific.url
             };
         }

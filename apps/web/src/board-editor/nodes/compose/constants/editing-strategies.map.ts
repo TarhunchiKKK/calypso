@@ -8,5 +8,6 @@ export const EditingStrategiesMap: StrategiesMap<typeof NodeEditingStrategy> = {
     sticker: handler => new StickerEditingStrategy(handler),
     arrow: handler => new ArrowEditingStrategy(handler),
     text: handler => new TextNodeEditingStrategy(handler),
-    shape: null
+    shape: null,
+    media: null
 };

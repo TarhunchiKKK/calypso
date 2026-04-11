@@ -3,7 +3,7 @@ import type { Decoratable } from "@/board-editor/core";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { Geometry } from "@/shared/lib/geometry";
 import { Textarea } from "@/shared/ui/kit";
-import type { ArrowNodeWrapper } from "../arrow-node.wrapper";
+import type { ArrowNodeWrapper } from "../wrapper";
 
 export class ArrowEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<ArrowNode>) {

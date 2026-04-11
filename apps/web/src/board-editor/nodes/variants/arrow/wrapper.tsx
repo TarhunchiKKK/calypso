@@ -1,7 +1,7 @@
 import type { ArrowNode } from "@repo/boards-common";
 import { NodeWrapper } from "@/board-editor/core";
 import type { ArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution/types";
-import { ArrowNodeComponent } from "./arrow-node.component";
+import { ArrowNodeComponent } from "./component";
 
 export class ArrowNodeWrapper extends NodeWrapper<ArrowNode> {
     public constructor(

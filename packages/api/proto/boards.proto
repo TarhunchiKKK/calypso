@@ -136,9 +136,7 @@ message MediaBoardNodeGrpc {
     
     geometry.RectGrpc rect = 2;
 
-    string variant = 3;
-
-    string url = 4;
+    string url = 3;
 }
 
 message BoardNodeGrpc {

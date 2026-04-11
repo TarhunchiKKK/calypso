@@ -47,11 +47,9 @@ export const ShapeNodeZodSchema = RectNodeZodSchema.extend({
     })
 });
 
-export const MediaVariantsZodSchema = z.enum(["image", "video"]);
 
 export const MediaNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("media"),
-    variant: MediaVariantsZodSchema,
     url: z.string()
 });
 
@@ -60,5 +58,4 @@ export type ArrowNode = z.infer<typeof ArrowNodeZodSchema>;
 export type TextNode = z.infer<typeof TextNodeZodSchema>;
 export type ShapeVariants = z.infer<typeof ShapeVariantsZodSchema>;
 export type ShapeNode = z.infer<typeof ShapeNodeZodSchema>;
-export type MediaVariants = z.infer<typeof MediaVariantsZodSchema>;
 export type MediaNode = z.infer<typeof MediaNodeZodSchema>;

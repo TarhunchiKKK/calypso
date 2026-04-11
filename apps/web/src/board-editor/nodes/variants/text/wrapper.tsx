@@ -1,6 +1,6 @@
 import type { TextNode } from "@repo/boards-common";
 import { NodeWrapper } from "@/board-editor/core";
-import { TextNodeComponent } from "./text-node.component";
+import { TextNodeComponent } from "./component";
 
 export class TextNodeWrapper extends NodeWrapper<TextNode> {
     public override render(children?: React.ReactNode) {
