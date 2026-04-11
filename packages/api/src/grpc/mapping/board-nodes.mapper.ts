@@ -1,6 +1,14 @@
-import type { AnyNode, ArrowNode, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, MediaVariants, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
-import type { ArrowBoardNodeGrpc, BoardNodeBaseGrpc, BoardNodeGrpc, ShapeBoardNodeGrpc, StickerBoardNodeGrpc, TextBoardNodeGrpc } from "../generated";
+import type {
+    ArrowBoardNodeGrpc,
+    BoardNodeBaseGrpc,
+    BoardNodeGrpc,
+    MediaBoardNodeGrpc,
+    ShapeBoardNodeGrpc,
+    StickerBoardNodeGrpc,
+    TextBoardNodeGrpc
+} from "../generated";
 
 export class BoardNodesGrpcMapper {
     public static toGrpc(node: AnyNode): BoardNodeGrpc {
@@ -39,6 +47,15 @@ export class BoardNodesGrpcMapper {
                         base: BoardNodesGrpcMapper.mapBase(node),
                         rect: node.rect,
                         variant: node.variant
+                    }
+                };
+            case "media":
+                return {
+                    media: {
+                        base: BoardNodesGrpcMapper.mapBase(node),
+                        rect: node.rect,
+                        variant: node.variant,
+                        url: node.url
                     }
                 };
             default:
@@ -80,6 +97,17 @@ export class BoardNodesGrpcMapper {
                 ...specific,
                 type: "shape",
                 variant: specific.variant as ShapeVariants
+            };
+        }
+
+        if (node.media) {
+            const { base, ...specific } = node.media as NoNullableFields<MediaBoardNodeGrpc>;
+            return {
+                ...(base as NodeBase & Pick<ShapeNode, "styles">),
+                ...specific,
+                type: "media",
+                variant: specific.variant as MediaVariants,
+                url: specific.url
             };
         }
 

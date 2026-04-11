@@ -131,6 +131,16 @@ message ShapeBoardNodeGrpc {
     string variant = 3;
 }
 
+message MediaBoardNodeGrpc {
+    BoardNodeBaseGrpc base = 1;
+    
+    geometry.RectGrpc rect = 2;
+
+    string variant = 3;
+
+    string url = 4;
+}
+
 message BoardNodeGrpc {
     oneof specific {
         StickerBoardNodeGrpc sticker = 1;
@@ -140,6 +150,8 @@ message BoardNodeGrpc {
         TextBoardNodeGrpc text = 3;
 
         ShapeBoardNodeGrpc shape = 4;
+
+        MediaBoardNodeGrpc media = 5;
     }
 }
 
