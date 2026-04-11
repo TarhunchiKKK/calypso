@@ -3,8 +3,8 @@ import { HotKeysMap } from "../../lib/hot-keys-map.constants";
 import type { ViewModelParams, ViewState } from "../types";
 import type { DecoratableViewModel } from "../types/view-model.types";
 import { switchToIdle } from "../variants/idle/switcher";
+import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import { switchToSelection } from "../variants/selection/switcher";
-import { switchToStickersCreation } from "../variants/stickers-creation/switcher";
 
 export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
     const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
@@ -16,8 +16,8 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             setViewState(switchToIdle());
         }
 
-        if (viewState.type !== "stickers-creation" && HotKeyUtils.is(HotKeysMap.switch.toStickersCreation, e)) {
-            setViewState(switchToStickersCreation());
+        if (viewState.type === "node-creation" && viewState.payload.type !== "sticker" && HotKeyUtils.is(HotKeysMap.switch.toStickersCreation, e)) {
+            setViewState(switchToNodeCreation({ type: "sticker" }));
         }
     };
 

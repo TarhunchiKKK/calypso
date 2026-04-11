@@ -31,9 +31,7 @@ export function useShapeSelectionViewModel(params: ViewModelParams) {
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (
-                    <div style={{ left: shapeSelectorPosition.x, top: shapeSelectorPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                        <ShapeSelector onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))} />
-                    </div>
+                    <ShapeSelector style={{ left: shapeSelectorPosition.x, top: shapeSelectorPosition.y }} onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))} />
                 )
             }
         };

@@ -1,24 +1,28 @@
 import type { ShapeVariants } from "@repo/boards-common";
-import { Wrapper } from "@/shared/ui";
-import { Button } from "@/shared/ui/kit";
-import { IconsSizes, ShapeVariantsIconsMap } from "./ui.constants";
+import { CircleIcon, Diamond, HexagonIcon, SquareIcon, StarIcon, TriangleIcon } from "lucide-react";
+import type { CSSProperties } from "react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { ShapeSelectorItems } from "./ui.constants";
 
 type Props = {
+    style: CSSProperties;
     onSelect: (variant: ShapeVariants) => void;
 };
 
-export function ShapeSelector({ onSelect }: Props) {
+export function ShapeSelector({ onSelect, ...attributes }: Props) {
     return (
-        <Wrapper className="grid grid-cols-3 gap-2 p-2">
-            {(Object.keys(ShapeVariantsIconsMap) as ShapeVariants[]).map(variant => {
-                const VariantIcon = ShapeVariantsIconsMap[variant];
+        <DropdownMenu open={true} modal={false}>
+            <DropdownMenuTrigger className="bg-transparent p-0 h-0"></DropdownMenuTrigger>
 
-                return (
-                    <Button key={variant} variant="outline" size="icon-lg" className="cursor-pointer p-1" onClick={onSelect.bind(null, variant)}>
-                        <VariantIcon style={IconsSizes} />
-                    </Button>
-                );
-            })}
-        </Wrapper>
+            <DropdownMenuContent {...attributes} className="absolute -translate-x-1/2 -translate-y-1/2">
+                {ShapeSelectorItems.map((item, index) => (
+                    <DropdownMenuItem key={index} onClick={onSelect.bind(null, item.value)}>
+                        {item.icon}
+
+                        {item.label}
+                    </DropdownMenuItem>
+                ))}
+            </DropdownMenuContent>
+        </DropdownMenu>
     );
 }
