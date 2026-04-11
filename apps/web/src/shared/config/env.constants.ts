@@ -13,6 +13,7 @@ export const Env = {
     s3: {
         region: import.meta.env.VITE_S3_REGION,
         endpoint: import.meta.env.VITE_S3_ENDPOINT,
+        bucket: import.meta.env.VITE_S3_BUCKET,
         accessKey: import.meta.env.VITE_S3_ACCESS_KEY,
         secretKey: import.meta.env.VITE_S3_SECRETE_KEY
     }

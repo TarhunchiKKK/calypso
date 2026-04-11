@@ -49,4 +49,4 @@ export const ShapeSelectorItems = [
         icon: <HexagonIcon />,
         value: "hexagon" satisfies ShapeVariants
     }
-] as const
+] as const;

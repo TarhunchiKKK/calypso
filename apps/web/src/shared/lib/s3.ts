@@ -2,9 +2,10 @@ import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client
 import { Env } from "../config";
 
 export class S3Service {
-    private readonly client: S3Client;
+    protected readonly client: S3Client;
+    protected readonly bucket: string;
 
-    public constructor(private readonly bucket: string) {
+    public constructor() {
         this.client = new S3Client({
             region: Env.s3.region,
             endpoint: Env.s3.endpoint,
@@ -14,9 +15,10 @@ export class S3Service {
             },
             forcePathStyle: true
         });
+        this.bucket = Env.s3.bucket;
     }
 
-    public async upload(key: string, body: Buffer, contentType: string) {
+    protected async uploadFile(key: string, body: Buffer, contentType: string) {
         const command = new PutObjectCommand({
             Bucket: this.bucket,
             Key: key,
@@ -27,7 +29,7 @@ export class S3Service {
         return await this.client.send(command);
     }
 
-    public async remove(key: string) {
+    protected async removeFile(key: string) {
         const command = new DeleteObjectCommand({
             Bucket: this.bucket,
             Key: key

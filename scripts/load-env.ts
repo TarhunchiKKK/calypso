@@ -69,6 +69,7 @@ const map = {
             VITE_API_GC_TIME: "WEB_API_GC_TIME",
             VITE_S3_REGION: "S3_REGION",
             VITE_S3_ENDPOINT: "S3_ENDPOINT",
+            VITE_S3_BUCKET: "S3_BUCKET",
             VITE_S3_ACCESS_KEY: "S3_ACCESS_KEY",
             VITE_S3_SECRET_KEY: "S3_SECRET_KEY"
         }

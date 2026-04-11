@@ -47,7 +47,6 @@ export const ShapeNodeZodSchema = RectNodeZodSchema.extend({
     })
 });
 
-
 export const MediaNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("media"),
     url: z.string()
