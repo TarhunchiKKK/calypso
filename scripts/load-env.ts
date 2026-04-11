@@ -67,9 +67,10 @@ const map = {
             VITE_API_URL: "GATEWAY_SERVICE_APP_URL",
             VITE_API_STALE_TIME: "WEB_API_STALE_TIME",
             VITE_API_GC_TIME: "WEB_API_GC_TIME",
-            VITE_MINIO_USER: "MINIO_USER",
-            VITE_MINIO_PASS: "MINIO_PASS",
-            VITE_MINIO_API_PORT: "MINIO_API_PORT"
+            VITE_S3_REGION: "S3_REGION",
+            VITE_S3_ENDPOINT: "S3_ENDPOINT",
+            VITE_S3_ACCESS_KEY: "S3_ACCESS_KEY",
+            VITE_S3_SECRET_KEY: "S3_SECRET_KEY"
         }
     }
 };
