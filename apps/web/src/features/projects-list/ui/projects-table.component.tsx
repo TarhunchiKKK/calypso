@@ -2,7 +2,6 @@ import type { ProjectWithType } from "@repo/common";
 import { ProjectActions } from "@/features/project-actions";
 import { formatDate } from "@/shared/lib/date";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/kit";
-import { ThumbnailStyles, ThumbnailsMap } from "../constants/thumbnails.constants";
 
 type Props = {
     projects: ProjectWithType[];
@@ -26,7 +25,7 @@ export function ProjectsTable({ projects }: Props) {
                 {projects.map(project => (
                     <TableRow key={project.id}>
                         <TableCell>
-                            {project.thumbnail ? <img src={project.thumbnail} style={ThumbnailStyles} alt={project.title} /> : ThumbnailsMap[project.type]}
+                            <img src={project.thumbnail} alt={project.title} className="w-10 h-10" />
                         </TableCell>
 
                         <TableCell className="font-medium">{project.title}</TableCell>
