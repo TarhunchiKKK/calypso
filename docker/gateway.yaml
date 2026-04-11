@@ -1,7 +1,4 @@
-version: "3.7"
-
 services:
-  # Supabase
   supabase-db:
     image: supabase/postgres:15.1.1.78
     container_name: supabase-db
@@ -31,36 +28,3 @@ services:
       GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
       GOTRUE_SITE_URL: ${WEB_URL}
       API_EXTERNAL_URL: ${GATEWAY_SERVICE_APP_URL}
-
-  # Boards
-  boards-slq-db:
-    container_name: boards-slq-db
-    image: postgres:15.2
-    restart: always
-    environment:
-      - POSTGRES_DB=${BOARDS_SERVICE_SQL_DB_NAME}
-      - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
-      - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
-    ports:
-      - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
-    volumes:
-      - boards-postgres_data:/var/lib/postgresql/data
-  
-  boards-nosql-db:
-    container_name: boards-nosql-db
-    image: mongo:latest
-    environment:
-      - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
-    ports:
-      - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
-
-  # Broker
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    ports:
-      - ${RMQ_PORT}:5672
-      - ${RMQ_MANAGEMENT_PORT}:15672
-
-volumes:
-  boards-postgres_data:

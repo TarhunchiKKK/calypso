@@ -66,7 +66,10 @@ const map = {
             VITE_THEME_LS_KEY: "WEB_THEME_LS_KEY",
             VITE_API_URL: "GATEWAY_SERVICE_APP_URL",
             VITE_API_STALE_TIME: "WEB_API_STALE_TIME",
-            VITE_API_GC_TIME: "WEB_API_GC_TIME"
+            VITE_API_GC_TIME: "WEB_API_GC_TIME",
+            VITE_MINIO_USER: "MINIO_USER",
+            VITE_MINIO_PASS: "MINIO_PASS",
+            VITE_MINIO_API_PORT: "MINIO_API_PORT"
         }
     }
 };
