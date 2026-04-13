@@ -9,6 +9,7 @@ import { useDraggingViewModel } from "./variants/dragging/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
 import { useIdleViewModel } from "./variants/idle/view-model";
+import { useMediaSelectionViewModel } from "./variants/media-selection/view-model";
 import { useNodeCreationViewModel } from "./variants/node-creation/view-model";
 import { useNodesContextMenuViewModel } from "./variants/nodes-context-menu/view-model";
 import { useResizingViewModel } from "./variants/resizing/view-model";
@@ -33,6 +34,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const nodeCreation = useNodeCreationViewModel(newParams);
     const arrowBindingViewModel = useArrowBindingViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
+    const mediaSelectionViewModel = useMediaSelectionViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
@@ -54,6 +56,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);
+            break;
+        case "media-selection":
+            viewModel = mediaSelectionViewModel(viewState);
             break;
         case "selection":
             viewModel = selectionViewModel(viewState);

@@ -9,9 +9,7 @@ import { ShapeSelector } from "./ui/shape-selector.component";
 import { ShapeSelectorOffset } from "./ui/ui.constants";
 import type { ShapeSelectionViewState } from "./view-state";
 
-export function useShapeSelectionViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState } = params;
-
+export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewModelParams) {
     const canvasMediator = useMouseEventsMediator();
 
     return (viewState: ShapeSelectionViewState): DecoratableViewModel => {
