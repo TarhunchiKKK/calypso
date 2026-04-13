@@ -9,8 +9,8 @@ import { SupabaseModule } from "./auth/lib/supabase/supabase.module";
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
 import { ProvidersAuthModule } from "./auth/providers/providers-auth.module";
 import { BoardsModule } from "./boards/boards.module";
+import { MediaModule } from "./media/media.module";
 import { ProjectsModule } from "./projects/projects.module";
-import { AssetsModule } from './assets/assets.module';
 
 @Module({
     imports: [
@@ -25,7 +25,7 @@ import { AssetsModule } from './assets/assets.module';
         ProvidersAuthModule,
         PasswordRecoveryModule,
         CookieModule,
-        AssetsModule
+        MediaModule
     ]
 })
 export class AppModule {}
