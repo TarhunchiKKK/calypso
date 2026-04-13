@@ -4,7 +4,7 @@ import { MediaDomainsZodSchema } from "./types";
 
 export const FindPresetsDtoZodSchema = z.object({
     domain: MediaDomainsZodSchema,
-    groupId: IdZodSchema
+    groupId: IdZodSchema.optional()
 });
 
 export const GetPresignedUrlDtoZodSchema = z.object({

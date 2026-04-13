@@ -1,5 +1,6 @@
+import type { Media } from "@repo/common";
+import { MediaApi } from "@/entities/media";
 import { Skeleton } from "@/shared/ui/kit";
-import { ThumbnailsApi } from "../model/thumbnails.api";
 
 type Props = {
     onSelect: (thumbnail: string) => void;
@@ -8,7 +9,9 @@ type Props = {
 const ROWS_COUNT = 4;
 const THUMBNAILS_IN_ROW = 5;
 
-function splitThumbnails(thumbnails: string[]) {
+function splitThumbnails(media: Media[]) {
+    const thumbnails = media.map(m => m.url);
+
     const result: string[][] = [];
 
     for (let i = 0; i < thumbnails.length; i += THUMBNAILS_IN_ROW) {
@@ -19,7 +22,9 @@ function splitThumbnails(thumbnails: string[]) {
 }
 
 export function ThumbnailPresetsGrid({ onSelect }: Props) {
-    const thumbnails = ThumbnailsApi.useGetPresets();
+    const thumbnails = MediaApi.useFindPresets({
+        domain: "project-thumbnails"
+    });
 
     if (!thumbnails.data) {
         return (
@@ -35,7 +40,7 @@ export function ThumbnailPresetsGrid({ onSelect }: Props) {
         );
     }
 
-    const groupedThumbnails = splitThumbnails(thumbnails.data as string[]);
+    const groupedThumbnails = splitThumbnails(thumbnails.data.data);
 
     return (
         <div>

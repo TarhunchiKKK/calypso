@@ -1,9 +1,10 @@
 import type { ProjectWithType } from "@repo/common";
 import type { ChangeEvent } from "react";
 import { toast } from "sonner";
+import { MediaApi } from "@/entities/media";
+import { S3Service } from "@/shared/lib/s3";
 import { Input } from "@/shared/ui/kit";
 import { ProjectsApi } from "../model/projects.api";
-import { ThumbnailsS3ServiceInstance } from "../model/thumbnails.s3-service";
 import { ThumbnailPresetsGrid } from "./thumbnail-presets-grid.component";
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 
 export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
     const update = ProjectsApi.useUpdate();
+    const getPresignedUrl = MediaApi.useGetPresignedUrl();
 
     const handleSelect = async (thumbnail: string) => {
         await update.mutateAsync({
@@ -37,16 +39,19 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
             return;
         }
 
-        const key = ThumbnailsS3ServiceInstance.generateKey(file);
+        const presignedUrl = await getPresignedUrl.mutateAsync({
+            fileName: file.name,
+            contentType: file.type
+        });
 
         try {
             await Promise.all([
                 update.mutateAsync({
                     id: project.id,
                     type: project.type,
-                    thumbnail: key
+                    thumbnail: presignedUrl.data.key
                 }),
-                ThumbnailsS3ServiceInstance.upload(key, file)
+                S3Service.upload(file, presignedUrl.data.url)
             ]).then(() => {
                 toast.success("Thumbnail changed");
                 afterSubmit?.();

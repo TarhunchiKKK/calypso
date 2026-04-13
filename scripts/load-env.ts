@@ -184,15 +184,16 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     }
 };
 
+// Read .env file and create key/value record
+
+const envContent = fs.readFileSync(sourceEnvFile, "utf-8");
+
 const contentsMap: Record<Apps, string> = {
     gateway: "",
     boards: "",
     media: "",
     web: ""
 };
-
-// Read .env file and create key/value record
-const envContent = fs.readFileSync(sourceEnvFile, "utf-8");
 
 for (const line of envContent.split("\n")) {
     if (line.includes("=")) {
@@ -214,7 +215,7 @@ for (const line of envContent.split("\n")) {
     }
 }
 
-// get corresponding variables and write them to corresponding files
+// Get corresponding variables and write them to corresponding files
 
 const destinationsMap: Record<Apps, string> = {
     gateway: path.join(rootDir, "apps/gateway/.env"),
