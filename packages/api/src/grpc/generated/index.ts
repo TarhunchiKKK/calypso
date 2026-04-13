@@ -4,4 +4,5 @@ export * from "./common";
 export * from "./geometry";
 export * from "./google/protobuf/empty";
 export * from "./google/protobuf/struct";
+export * from "./media";
 export * from "./projects";

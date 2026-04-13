@@ -9,11 +9,11 @@ import { GetPresignedUrlQuery } from "./handlers/get-presigned-url.handler";
 export class MediaService {
     public constructor(@Inject(QueryBus) private readonly queryBus: QueryBus) {}
 
-    public async findMedia(dto: FindPresetsDto) {
+    public async findPresets(dto: FindPresetsDto) {
         return await this.queryBus.execute(new FindPresetsQuery(dto));
     }
 
-    public async findMediaGroups(domain: MediaDomains) {
+    public async findGroups(domain: MediaDomains) {
         return await this.queryBus.execute(new FindGroupsQuery(domain));
     }
 
