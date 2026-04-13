@@ -1,11 +1,11 @@
 import type { ShapeVariants } from "@repo/boards-common";
-import { CircleIcon, Diamond, HexagonIcon, SquareIcon, StarIcon, TriangleIcon } from "lucide-react";
 import type { CSSProperties } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { ShapeSelectorItems } from "./ui.constants";
 
 type Props = {
     style: CSSProperties;
+
     onSelect: (variant: ShapeVariants) => void;
 };
 

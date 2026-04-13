@@ -1,10 +1,10 @@
+import { DefaultNodesMapper } from "@/board-editor/lib/default-nodes-mapper.class";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToNodeCreation } from "../node-creation/switcher";
-import { ShapeSelectionNodesMapper } from "./lib/nodes-mapper";
 import { ShapeSelector } from "./ui/shape-selector.component";
 import { ShapeSelectorOffset } from "./ui/ui.constants";
 import type { ShapeSelectionViewState } from "./view-state";
@@ -25,7 +25,7 @@ export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewMod
         const shapeSelectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
 
         return {
-            nodes: ShapeSelectionNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (

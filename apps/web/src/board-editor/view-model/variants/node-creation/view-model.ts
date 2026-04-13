@@ -1,8 +1,8 @@
+import { DefaultNodesMapper } from "@/board-editor/lib/default-nodes-mapper.class";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
-import { NodeCreationNodesMapper } from "./lib/nodes-mapper";
 import type { NodeCreationViewState } from "./view-state";
 
 export function useNodeCreationViewModel(params: ViewModelParams) {
@@ -26,7 +26,7 @@ export function useNodeCreationViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: new NodeCreationNodesMapper(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers
         };
     };

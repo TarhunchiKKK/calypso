@@ -1,5 +1,5 @@
-import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
 import type { NodeBase } from "@repo/boards-common";
+import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
 
 export class IdleNodesMapper extends NodesMapper {
     private nodesHandlers!: NodeHandlers;

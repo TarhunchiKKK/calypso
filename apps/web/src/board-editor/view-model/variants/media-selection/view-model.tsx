@@ -1,8 +1,8 @@
+import { DefaultNodesMapper } from "@/board-editor/lib/default-nodes-mapper.class";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToIdle } from "../idle/switcher";
-import { MediaSelectionNodesMapper } from "./lib/nodes-mapper";
 import type { MediaSelectionViewState } from "./view-state";
 
 export function useMediaSelectionViewModel({ nodesModel, setViewState }: ViewModelParams) {
@@ -19,7 +19,7 @@ export function useMediaSelectionViewModel({ nodesModel, setViewState }: ViewMod
         });
 
         return {
-            nodes: MediaSelectionNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: <div />
