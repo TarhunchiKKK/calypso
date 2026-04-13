@@ -10,6 +10,7 @@ import { PasswordRecoveryModule } from "./auth/password-recovery/password-recove
 import { ProvidersAuthModule } from "./auth/providers/providers-auth.module";
 import { BoardsModule } from "./boards/boards.module";
 import { ProjectsModule } from "./projects/projects.module";
+import { AssetsModule } from './assets/assets.module';
 
 @Module({
     imports: [
@@ -23,7 +24,8 @@ import { ProjectsModule } from "./projects/projects.module";
         BasicAuthModule,
         ProvidersAuthModule,
         PasswordRecoveryModule,
-        CookieModule
+        CookieModule,
+        AssetsModule
     ]
 })
 export class AppModule {}
