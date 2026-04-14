@@ -1,0 +1,16 @@
+services:
+  media-slq-db:
+    container_name: media-slq-db
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_DB=${BOARDS_SERVICE_SQL_DB_NAME}
+      - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
+      - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
+    ports:
+      - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
+    volumes:
+      - media-postgres_data:/var/lib/postgresql/data
+
+volumes:
+  media-postgres_data:
