@@ -1,6 +1,6 @@
 import type { ShapeVariants } from "@repo/boards-common";
 import type { CSSProperties } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { ShapeSelectorItems } from "./ui.constants";
 
 type Props = {
@@ -20,6 +20,8 @@ export function ShapeSelector({ onSelect, ...attributes }: Props) {
                         {item.icon}
 
                         {item.label}
+
+                        {item.hotKey && <DropdownMenuShortcut>HotKeyUtils.stringify(item.hotKey)</DropdownMenuShortcut>}
                     </DropdownMenuItem>
                 ))}
             </DropdownMenuContent>
