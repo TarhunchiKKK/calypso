@@ -1,4 +1,4 @@
-import { DefaultNodesMapper } from "@/board-editor/lib/default-nodes-mapper.class";
+import { DefaultNodesMapper } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";

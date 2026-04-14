@@ -23,7 +23,7 @@ export function MediaSelector({ style, onSelect }: Props) {
 
             {groupId && (
                 <div className="pl-2 py-2">
-                    <ArrowLeftIcon />
+                    <ArrowLeftIcon /> All
                 </div>
             )}
 
