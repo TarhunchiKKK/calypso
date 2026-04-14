@@ -47,8 +47,14 @@ export const ShapeNodeZodSchema = RectNodeZodSchema.extend({
     })
 });
 
+export const MediaNodeZodSchema = RectNodeZodSchema.extend({
+    type: z.literal("media"),
+    url: z.string()
+});
+
 export type StickerNode = z.infer<typeof StickerNodeZodSchema>;
 export type ArrowNode = z.infer<typeof ArrowNodeZodSchema>;
 export type TextNode = z.infer<typeof TextNodeZodSchema>;
 export type ShapeVariants = z.infer<typeof ShapeVariantsZodSchema>;
 export type ShapeNode = z.infer<typeof ShapeNodeZodSchema>;
+export type MediaNode = z.infer<typeof MediaNodeZodSchema>;

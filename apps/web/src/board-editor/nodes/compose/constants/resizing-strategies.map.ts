@@ -6,5 +6,6 @@ export const ResizingStrategiesMap: StrategiesMap<typeof NodeResizingStrategy> =
     sticker: () => new RectNodeResizingStrategy(),
     arrow: null,
     text: () => new RectNodeResizingStrategy(),
-    shape: () => new RectNodeResizingStrategy()
+    shape: () => new RectNodeResizingStrategy(),
+    media: () => new RectNodeResizingStrategy()
 };

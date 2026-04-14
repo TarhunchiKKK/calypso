@@ -1,10 +1,11 @@
-/** biome-ignore-all lint/suspicious/noArrayIndexKey: Here items relative order cannot be changed */
-
 import type { ProjectWithType } from "@repo/common";
+import type { ChangeEvent } from "react";
 import { toast } from "sonner";
+import { MediaApi } from "@/entities/media";
+import { S3Service } from "@/shared/lib/s3";
 import { Input } from "@/shared/ui/kit";
-import { ProjectThumbnails } from "../constants/thumbnails.constants";
 import { ProjectsApi } from "../model/projects.api";
+import { ThumbnailPresetsGrid } from "./thumbnail-presets-grid.component";
 
 type Props = {
     project: ProjectWithType;
@@ -12,12 +13,11 @@ type Props = {
     afterSubmit?: () => void;
 };
 
-const THUMBNAILS_IN_ROW = 5;
-
 export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
     const update = ProjectsApi.useUpdate();
+    const getPresignedUrl = MediaApi.useGetPresignedUrl();
 
-    const onClick = async (thumbnail: string) => {
+    const handleSelect = async (thumbnail: string) => {
         await update.mutateAsync({
             id: project.id,
             type: project.type,
@@ -32,34 +32,41 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
         }
     };
 
-    const groupedThumbnails: string[][] = [];
-
-    ProjectThumbnails.forEach((thumbnail, index) => {
-        const newIndex = Math.floor(index / THUMBNAILS_IN_ROW);
-
-        if (index % THUMBNAILS_IN_ROW === 0) {
-            groupedThumbnails.push([]);
+    const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) {
+            toast.warning("No file selected");
+            return;
         }
 
-        groupedThumbnails[newIndex].push(thumbnail);
-    });
+        const presignedUrl = await getPresignedUrl.mutateAsync({
+            fileName: file.name,
+            contentType: file.type
+        });
+
+        try {
+            await Promise.all([
+                update.mutateAsync({
+                    id: project.id,
+                    type: project.type,
+                    thumbnail: presignedUrl.data.key
+                }),
+                S3Service.upload(file, presignedUrl.data.url)
+            ]).then(() => {
+                toast.success("Thumbnail changed");
+                afterSubmit?.();
+            });
+        } catch (_) {
+            toast.error("Thumbnail changing error");
+        }
+    };
 
     return (
         <div className="space-y-5">
-            <div>
-                {groupedThumbnails.map((group, index) => (
-                    <div key={index} className="w-full flex flex-row justify-between items-center">
-                        {group.map((thumbnail, index) => (
-                            <div key={index} className="p-2 rounded-md hover:bg-secondary cursor-pointer" onClick={() => onClick(thumbnail)}>
-                                <img src={thumbnail} alt="Icon" className="w-12 h-12" />
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
+            <ThumbnailPresetsGrid onSelect={handleSelect} />
 
             <div className="flex flex-row justify-center items-center">
-                <Input type="file" className="max-w-60 cursor-pointer" onChange={e => onClick(e.target.value)} />
+                <Input type="file" className="max-w-60 cursor-pointer" onChange={handleUpload} />
             </div>
         </div>
     );

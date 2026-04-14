@@ -14,3 +14,9 @@ export abstract class NodesMapper {
         return this.nodes;
     }
 }
+
+export class DefaultNodesMapper extends NodesMapper {
+    public static from(nodes: NodeBase[]) {
+        return new DefaultNodesMapper(nodes);
+    }
+}

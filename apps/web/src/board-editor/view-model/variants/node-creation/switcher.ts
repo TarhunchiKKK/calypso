@@ -3,6 +3,7 @@ import type { OmitFields } from "@repo/common";
 import { NodesFactory } from "@/board-editor/nodes";
 import { switchToArrowBinding } from "../arrow-binding/switcher";
 import { switchToEditing } from "../editing/switcher";
+import { switchToIdle } from "../idle/switcher";
 import type { NodeCreationPayload, NodeCreationViewState } from "./view-state";
 
 const HandlersRecord: Record<NodeTypes, OmitFields<NodeCreationViewState, "type" | "payload">> = {
@@ -29,13 +30,28 @@ const HandlersRecord: Record<NodeTypes, OmitFields<NodeCreationViewState, "type"
     shape: {
         createNode: (clickPint, viewState) => {
             if (viewState.payload.type !== "shape") {
-                throw new Error(`Expect type="shape", but got ${viewState.payload.type}`);
+                throw new Error(`Expect type="shape", but got "${viewState.payload.type}"`);
             }
 
             return NodesFactory.shape({
                 point: clickPint,
                 variant: viewState.payload.variant
             });
+        }
+    },
+    media: {
+        createNode: (clickPoint, viewState) => {
+            if (viewState.payload.type !== "media") {
+                throw new Error(`Expect type="media", but got "${viewState.payload.type}"`);
+            }
+
+            return NodesFactory.media({
+                point: clickPoint,
+                url: viewState.payload.url
+            });
+        },
+        afterCreate: (_, params) => {
+            params.setViewState(switchToIdle());
         }
     }
 };

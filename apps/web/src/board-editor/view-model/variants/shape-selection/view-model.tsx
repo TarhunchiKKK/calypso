@@ -1,17 +1,15 @@
+import { DefaultNodesMapper } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
 import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToNodeCreation } from "../node-creation/switcher";
-import { ShapeSelectionNodesMapper } from "./lib/nodes-mapper";
 import { ShapeSelector } from "./ui/shape-selector.component";
 import { ShapeSelectorOffset } from "./ui/ui.constants";
 import type { ShapeSelectionViewState } from "./view-state";
 
-export function useShapeSelectionViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState } = params;
-
+export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewModelParams) {
     const canvasMediator = useMouseEventsMediator();
 
     return (viewState: ShapeSelectionViewState): DecoratableViewModel => {
@@ -24,16 +22,17 @@ export function useShapeSelectionViewModel(params: ViewModelParams) {
             }
         });
 
-        const shapeSelectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
+        const selectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
 
         return {
-            nodes: ShapeSelectionNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (
-                    <div style={{ left: shapeSelectorPosition.x, top: shapeSelectorPosition.y }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                        <ShapeSelector onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))} />
-                    </div>
+                    <ShapeSelector
+                        style={{ left: selectorPosition.x, top: selectorPosition.y }}
+                        onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))}
+                    />
                 )
             }
         };

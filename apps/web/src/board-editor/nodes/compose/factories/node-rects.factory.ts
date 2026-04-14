@@ -13,6 +13,8 @@ export class NodeRectsFactory {
                 return { ...(node as TextNode).rect };
             case "shape":
                 return { ...(node as ShapeNode).rect };
+            case "media":
+                return { ...(node as ShapeNode).rect };
             default:
                 throw new Error(`Unknown node type: ${node}`);
         }

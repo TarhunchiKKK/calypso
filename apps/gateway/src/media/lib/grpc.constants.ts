@@ -1,0 +1,1 @@
+export const MEDIA_GRPC_CLIENT_INJECTION_TOKEN = Symbol();

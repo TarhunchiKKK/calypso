@@ -7,5 +7,6 @@ export const ResizableStrategiesMap: StrategiesMap<typeof ResizableNodeStrategy>
     sticker: handler => new ResizableRectNodeStrategy(handler),
     arrow: handler => new ResizableArrowStrategy(handler),
     text: handler => new ResizableRectNodeStrategy(handler),
-    shape: handler => new ResizableRectNodeStrategy(handler)
+    shape: handler => new ResizableRectNodeStrategy(handler),
+    media: handler => new ResizableRectNodeStrategy(handler)
 };

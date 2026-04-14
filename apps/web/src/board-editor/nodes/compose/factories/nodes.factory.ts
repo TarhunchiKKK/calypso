@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
 
@@ -64,6 +64,21 @@ export class NodesFactory {
                 height: 100
             },
             styles: DefaultNodeStyles
+        };
+    }
+
+    public static media(data: Pick<MediaNode, "url"> & { point: Point }): MediaNode {
+        return {
+            id: crypto.randomUUID(),
+            type: "media",
+            locked: false,
+            url: data.url,
+            rect: {
+                ...data.point,
+                width: 100,
+                height: 100
+            },
+            styles: {}
         };
     }
 }
