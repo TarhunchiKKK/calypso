@@ -114,6 +114,11 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         media: "GRPC_URL"
     },
 
+    // // Assets
+    ASSETS_DIR: {
+        media: "ASSETS_DIR"
+    },
+
     // // Postgres
     MEDIA_SERVICE_SQL_DB_NAME: {
         media: "SQL_DB_NAME"
@@ -131,7 +136,9 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         media: "SQL_DB_PASS"
     },
 
-    // RabbitMQ
+    // Infrastructure
+
+    // // RabbitMQ
     RMQ_URLS: {
         gateway: "RMQ_URLS",
         boards: "RMQ_URLS"
@@ -139,7 +146,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     RMQ_PORT: {},
     RMQ_MANAGEMENT_PORT: {},
 
-    // S3
+    // // S3
     S3_USER: {},
     S3_PASS: {},
     S3_REGION: {
