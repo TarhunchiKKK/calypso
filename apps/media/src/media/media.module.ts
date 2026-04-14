@@ -7,7 +7,7 @@ import { FindPresetsQueryHandler } from "./handlers/find-presets.handlers";
 import { GetPresignedUrlQueryHandler } from "./handlers/get-presigned-url.handler";
 import { MediaController } from "./media.grpc.controller";
 import { MediaService } from "./media.service";
-import { MediaGroupsSeeder } from "./seed/media-groups.seeder";
+import { BoardNodeMediaSeeder } from "./seed/board-node-media.seeder";
 import { ProjectThumbnailsSeeder } from "./seed/project-thumbnails.seeder";
 import { S3Service } from "./services/s3.service";
 
@@ -20,7 +20,7 @@ import { S3Service } from "./services/s3.service";
         FindPresetsQueryHandler,
         FindGroupsQueryHandler,
         GetPresignedUrlQueryHandler,
-        MediaGroupsSeeder,
+        BoardNodeMediaSeeder,
         ProjectThumbnailsSeeder
     ]
 })

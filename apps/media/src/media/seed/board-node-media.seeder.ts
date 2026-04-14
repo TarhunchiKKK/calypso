@@ -15,7 +15,7 @@ const domain: MediaDomains = "board-node-media";
 const defaultContentType = "application/octet-stream";
 
 @Injectable()
-export class MediaGroupsSeeder {
+export class BoardNodeMediaSeeder {
     private readonly seedDir: string;
 
     public constructor(
