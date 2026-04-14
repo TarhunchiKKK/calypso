@@ -1,9 +1,9 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Inject } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import type { GetPresignedUrlDto, GetPresignedUrlResponse } from "@repo/common";
+import { S3Service } from "../services/s3.service";
 
 export class GetPresignedUrlQuery extends Query<GetPresignedUrlResponse> {
     public constructor(public dto: GetPresignedUrlDto) {
@@ -13,39 +13,19 @@ export class GetPresignedUrlQuery extends Query<GetPresignedUrlResponse> {
 
 @QueryHandler(GetPresignedUrlQuery)
 export class GetPresignedUrlQueryHandler implements IQueryHandler<GetPresignedUrlQuery> {
-    private readonly client: S3Client;
-
-    private readonly bucket: string;
-
-    private readonly urlExpiration: number;
-
-    public constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
-        this.client = new S3Client({
-            region: this.configService.getOrThrow("S3_REGION"),
-            endpoint: this.configService.getOrThrow("S3_ENDPOINT"),
-            credentials: {
-                accessKeyId: this.configService.getOrThrow("S3_ACCESS_KEY"),
-                secretAccessKey: this.configService.getOrThrow("S3_SECRETE_KEY")
-            },
-            forcePathStyle: true
-        });
-
-        this.bucket = this.configService.getOrThrow("S3_BUCKET");
-
-        this.urlExpiration = +this.configService.getOrThrow("S3_URL_EXPIRATION");
-    }
+    public constructor(@Inject(S3Service) private readonly s3Service: S3Service) {}
 
     public async execute({ dto }: GetPresignedUrlQuery) {
         const extension = dto.fileName.split(".").pop();
-        const uniqueKey = `uploads/${crypto.randomUUID()}.${extension}`;
+        const uniqueKey = `${this.s3Service.bucket}/${crypto.randomUUID()}.${extension}`;
 
         const command = new PutObjectCommand({
-            Bucket: this.bucket,
+            Bucket: this.s3Service.bucket,
             Key: uniqueKey,
             ContentType: dto.contentType
         });
 
-        const url = await getSignedUrl(this.client, command, { expiresIn: this.urlExpiration });
+        const url = await getSignedUrl(this.s3Service.client, command, { expiresIn: this.s3Service.urlExpiration });
 
         return {
             url: url,
