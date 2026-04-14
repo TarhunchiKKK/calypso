@@ -9,12 +9,5 @@ export const Env = {
         url: import.meta.env.VITE_API_URL,
         staleTime: +import.meta.env.VITE_API_STALE_TIME,
         gcTime: +import.meta.env.VITE_API_GC_TIME
-    },
-    s3: {
-        region: import.meta.env.VITE_S3_REGION,
-        endpoint: import.meta.env.VITE_S3_ENDPOINT,
-        bucket: import.meta.env.VITE_S3_BUCKET,
-        accessKey: import.meta.env.VITE_S3_ACCESS_KEY,
-        secretKey: import.meta.env.VITE_S3_SECRETE_KEY
     }
 };
