@@ -11,5 +11,5 @@ export type MediaGroup = {
 
     title: string;
 
-    media: Media[];
+    thumbnail: string;
 };

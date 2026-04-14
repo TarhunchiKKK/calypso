@@ -23,7 +23,7 @@ message MediaGroupGrpc {
 
     string title = 2;
 
-    repeated MediaGrpc media = 3;
+    string thumbnail = 3;
 }
 
 message MediaListGrpc {

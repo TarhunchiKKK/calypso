@@ -10,6 +10,9 @@ export class MediaGroup implements MediaGroupType {
     @Column()
     public title: string;
 
+    @Column()
+    public thumbnail: string;
+
     @OneToMany(
         () => Media,
         media => media.group

@@ -19,7 +19,7 @@ export interface MediaGrpc {
 export interface MediaGroupGrpc {
   id: string;
   title: string;
-  media: MediaGrpc[];
+  thumbnail: string;
 }
 
 export interface MediaListGrpc {

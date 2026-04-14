@@ -22,7 +22,7 @@ export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewMod
             }
         });
 
-        const shapeSelectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
+        const selectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
 
         return {
             nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
@@ -30,7 +30,7 @@ export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewMod
             additionalElements: {
                 layout: (
                     <ShapeSelector
-                        style={{ left: shapeSelectorPosition.x, top: shapeSelectorPosition.y }}
+                        style={{ left: selectorPosition.x, top: selectorPosition.y }}
                         onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))}
                     />
                 )
