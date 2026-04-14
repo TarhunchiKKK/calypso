@@ -1,23 +1,47 @@
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
-import { HotKeysMap } from "../../lib/hot-keys-map.constants";
+import { BoardHotKeys } from "../../lib/hot-keys.lib";
 import type { ViewModelParams, ViewState } from "../types";
 import type { DecoratableViewModel } from "../types/view-model.types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
+import type { NodeCreationViewState } from "../variants/node-creation/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
 
+function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewState["payload"]["type"]) {
+    return viewState.type === "node-creation" && viewState.payload.type !== payloadType;
+}
+
 export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
+    const handleNodeCreationHotKeys = (e: React.KeyboardEvent) => {
+        if (isValidCreation(viewState, "sticker") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.sticker, e)) {
+            setViewState(switchToNodeCreation({ type: "sticker" }));
+        }
+
+        if (isValidCreation(viewState, "arrow") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.arrow, e)) {
+            setViewState(switchToNodeCreation({ type: "arrow" }));
+        }
+
+        if (isValidCreation(viewState, "text") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.text, e)) {
+            setViewState(switchToNodeCreation({ type: "text" }));
+        }
+
+        if (isValidCreation(viewState, "shape")) {
+            if (HotKeyUtils.is(BoardHotKeys.switch.toCreation.shape.rectangle, e)) {
+                setViewState(switchToNodeCreation({ type: "shape", variant: "rectangle" }));
+            } else if (HotKeyUtils.is(BoardHotKeys.switch.toCreation.shape.circle, e)) {
+                setViewState(switchToNodeCreation({ type: "shape", variant: "circle" }));
+            } else if (HotKeyUtils.is(BoardHotKeys.switch.toCreation.shape.hexagon, e)) {
+                setViewState(switchToNodeCreation({ type: "shape", variant: "hexagon" }));
+            }
+        }
+    };
     const handleSwitchViewModelHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "editing") {
             return;
         }
 
-        if (viewState.type !== "idle" && HotKeyUtils.is(HotKeysMap.switch.toIdle, e)) {
+        if (viewState.type !== "idle" && HotKeyUtils.is(BoardHotKeys.switch.toIdle, e)) {
             setViewState(switchToIdle());
-        }
-
-        if (viewState.type === "node-creation" && viewState.payload.type !== "sticker" && HotKeyUtils.is(HotKeysMap.switch.toStickersCreation, e)) {
-            setViewState(switchToNodeCreation({ type: "sticker" }));
         }
     };
 
@@ -26,7 +50,7 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             return;
         }
 
-        if (HotKeyUtils.is(HotKeysMap.selection.remove, e)) {
+        if (HotKeyUtils.is(BoardHotKeys.selection.remove, e)) {
             nodesModel.service.removeMany(viewState.selectedIds);
             setViewState(switchToIdle());
         }
@@ -37,7 +61,7 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
             return;
         }
 
-        if (HotKeyUtils.is(HotKeysMap.selection.all, e)) {
+        if (HotKeyUtils.is(BoardHotKeys.selection.all, e)) {
             e.preventDefault();
             setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));
         }
@@ -45,6 +69,7 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
 
     const handleHotKeys = (e: React.KeyboardEvent) => {
         handleSwitchViewModelHotKeys(e);
+        handleNodeCreationHotKeys(e);
         handleSelectionHotKeys(e);
         handleGlobalHotKeys(e);
     };
@@ -53,9 +78,7 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
         ...viewModel,
         layout: {
             ...(viewModel.layout ?? {}),
-            onKeyDown: e => {
-                handleHotKeys(e);
-            }
+            onKeyDown: handleHotKeys
         }
     };
 }

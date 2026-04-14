@@ -5,3 +5,7 @@ export type HotKey = {
 
     ctrlKey: boolean;
 };
+
+export type HotKeysMap = {
+    [Key: string]: HotKey | HotKey[] | HotKeysMap;
+};
