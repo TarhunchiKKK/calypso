@@ -11,6 +11,7 @@ function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewStat
     return viewState.type === "node-creation" && viewState.payload.type !== payloadType;
 }
 
+// TODO: add missing hot keys
 export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
     const handleNodeCreationHotKeys = (e: React.KeyboardEvent) => {
         if (isValidCreation(viewState, "sticker") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.sticker, e)) {
