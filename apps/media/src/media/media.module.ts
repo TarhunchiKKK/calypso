@@ -8,11 +8,20 @@ import { GetPresignedUrlQueryHandler } from "./handlers/get-presigned-url.handle
 import { MediaController } from "./media.grpc.controller";
 import { MediaService } from "./media.service";
 import { MediaGroupsSeeder } from "./seed/media-groups.seeder";
+import { ProjectThumbnailsSeeder } from "./seed/project-thumbnails.seeder";
 import { S3Service } from "./services/s3.service";
 
 @Module({
     imports: [TypeOrmModule.forFeature([Media, MediaGroup])],
     controllers: [MediaController],
-    providers: [MediaService, S3Service, FindPresetsQueryHandler, FindGroupsQueryHandler, GetPresignedUrlQueryHandler, MediaGroupsSeeder]
+    providers: [
+        MediaService,
+        S3Service,
+        FindPresetsQueryHandler,
+        FindGroupsQueryHandler,
+        GetPresignedUrlQueryHandler,
+        MediaGroupsSeeder,
+        ProjectThumbnailsSeeder
+    ]
 })
 export class MediaModule {}

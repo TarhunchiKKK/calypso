@@ -7,11 +7,11 @@ import { InjectRepository } from "@nestjs/typeorm";
 import type { MediaDomains } from "@repo/common";
 import * as mime from "mime-types";
 import type { Repository } from "typeorm";
-import { Media } from "../entities/media.entity";
+import type { Media } from "../entities/media.entity";
 import { MediaGroup } from "../entities/media-group.entity";
 import { S3Service } from "../services/s3.service";
 
-const subDirName: MediaDomains = "board-node-media";
+const domain: MediaDomains = "board-node-media";
 const defaultContentType = "application/octet-stream";
 
 @Injectable()
@@ -21,26 +21,24 @@ export class MediaGroupsSeeder {
     public constructor(
         @Inject(ConfigService) private readonly configService: ConfigService,
         @Inject(S3Service) private readonly s3Service: S3Service,
-        @InjectRepository(Media) private readonly mediaRepository: Repository<Media>,
         @InjectRepository(MediaGroup) private readonly mediaGroupsRepository: Repository<MediaGroup>
     ) {
         const assetsDir = this.configService.getOrThrow("ASSETS_DIRECTORY");
 
-        this.seedDir = path.join(__dirname, `../../../../../${assetsDir}/${subDirName}`);
+        this.seedDir = path.join(__dirname, `../../../../../${assetsDir}/${domain}`);
     }
 
     public async seed() {
         const dirNames = this.getDirnames();
 
-        await this.mediaGroupsRepository.clear();
-        await this.mediaRepository.clear();
-
         for (const dirName of dirNames) {
             await this.processDir(dirName);
         }
+
+        Logger.log(`📂 Folder "${this.seedDir}" processed`);
     }
 
-    private getDirnames() {
+    public verifyDir() {
         if (!fs.existsSync(this.seedDir)) {
             Logger.error(`Folder "${this.seedDir}" not exists`);
             throw new Error();
@@ -50,7 +48,9 @@ export class MediaGroupsSeeder {
             Logger.error(`File "${this.seedDir}" is not a directory`);
             throw new Error();
         }
+    }
 
+    private getDirnames() {
         return fs.readdirSync(this.seedDir).filter(file => fs.statSync(path.join(this.seedDir, file)).isDirectory());
     }
 
@@ -73,10 +73,10 @@ export class MediaGroupsSeeder {
 
             const fileBuffer = fs.readFileSync(filePath);
 
-            const key = await this.loadToS3(dirName, fileName, fileBuffer);
+            const key = await this.loadToS3(fileName, fileBuffer);
 
             mediaDtos.push({
-                domain: "board-node-media",
+                domain: domain,
                 url: key
             });
         }
@@ -86,12 +86,10 @@ export class MediaGroupsSeeder {
             thumbnail: mediaDtos[0]?.url,
             media: mediaDtos
         });
-
-        Logger.log(`📂 Group "${dirName}" processed`);
     }
 
-    private async loadToS3(dirName: string, fileName: string, fileBuffer: NonSharedBuffer) {
-        const key = `${this.s3Service.bucket}/presets/${dirName}/${fileName}`;
+    private async loadToS3(fileName: string, fileBuffer: NonSharedBuffer) {
+        const key = `${this.s3Service.bucket}/presets/${domain}/${fileName}`;
         const contentType = mime.lookup(fileName) || defaultContentType;
 
         const command = new PutObjectCommand({
