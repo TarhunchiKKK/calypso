@@ -1,18 +1,7 @@
 import type { ShapeVariants } from "@repo/boards-common";
 import type { Offset } from "@repo/common";
-import { Circle, CircleIcon, Diamond, Hexagon, HexagonIcon, Square, SquareIcon, Star, StarIcon, Triangle, TriangleIcon } from "lucide-react";
+import { CircleIcon, Diamond, HexagonIcon, SquareIcon, StarIcon, TriangleIcon } from "lucide-react";
 import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";
-
-export const ShapeVariantsIconsMap = {
-    rectangle: Square,
-    circle: Circle,
-    triangle: Triangle,
-    diamond: Diamond,
-    star: Star,
-    hexagon: Hexagon
-} satisfies Record<ShapeVariants, unknown>;
-
-export const IconsSizes = { width: 32, height: 32 };
 
 export const ShapeSelectorOffset: Offset = {
     dx: 100,

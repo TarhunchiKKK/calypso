@@ -15,8 +15,7 @@ function useFindPresets(dto: FindPresetsDto) {
             return await ApiInstance.get<Media[]>("/media/presets", {
                 data: dto
             });
-        },
-        select: response => response.data
+        }
     });
 }
 
@@ -25,19 +24,16 @@ function useFindPresetsGroups(domain: MediaDomains) {
         queryKey: queryKeys.groups(domain),
         queryFn: async () => {
             return await ApiInstance.get<MediaGroup[]>(`/media/presets/${domain}`);
-        },
-        select: response => response.data
+        }
     });
 }
 
 function useGetPresignedUrl() {
     return useMutation({
         mutationFn: async (dto: GetPresignedUrlDto) => {
-            const response = await ApiInstance.get<GetPresignedUrlResponse>("/media/presigned-url", {
+            return await ApiInstance.get<GetPresignedUrlResponse>("/media/presigned-url", {
                 data: dto
             });
-
-            return response.data;
         },
         onError: () => {
             toast.error("Cannot get presigned url");

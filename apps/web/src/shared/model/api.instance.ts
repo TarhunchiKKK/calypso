@@ -19,41 +19,46 @@ class Api implements ApiType {
         return error?.response?.status === 401 || error?.response?.status === 403;
     }
 
-    private refreshSession() {
-        this.instance.get("/auth/refresh");
+    private async refreshSession() {
+        await this.instance.get("/auth/refresh");
     }
 
-    private async executeQuery<T>(cb: () => Promise<T>): Promise<T> {
+    private async executeQuery<T>(cb: () => Promise<AxiosResponse<T>>): Promise<T> {
         try {
-            return await cb();
+            const response = await cb();
+
+            return response.data;
         } catch (error) {
             if (this.isAuthError(error)) {
-                this.refreshSession();
-                return await this.executeQuery(cb);
-            }
+                await this.refreshSession();
 
-            throw error;
+                const response = await cb();
+
+                return response.data;
+            } else {
+                throw error;
+            }
         }
     }
 
-    public get<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
-        return this.executeQuery(() => this.instance.get<T, R, D>(url, config));
+    public async get<T = any>(url: string, config?: AxiosRequestConfig) {
+        return await this.executeQuery(() => this.instance.get<T>(url, config));
     }
 
-    public post<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
-        return this.executeQuery(() => this.instance.post<T, R, D>(url, data, config));
+    public async post<T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+        return await this.executeQuery(() => this.instance.post<T>(url, data, config));
     }
 
-    public patch<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
-        return this.executeQuery(() => this.instance.patch<T, R, D>(url, data, config));
+    public async patch<T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+        return await this.executeQuery(() => this.instance.patch<T>(url, data, config));
     }
 
-    public put<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
-        return this.executeQuery(() => this.instance.put<T, R, D>(url, data, config));
+    public async put<T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+        return await this.executeQuery(() => this.instance.put<T>(url, data, config));
     }
 
-    public delete<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
-        return this.executeQuery(() => this.instance.delete<T, R, D>(url, config));
+    public async delete<T = any>(url: string, config?: AxiosRequestConfig) {
+        return await this.executeQuery(() => this.instance.delete<T>(url, config));
     }
 }
 

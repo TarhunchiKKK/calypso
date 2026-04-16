@@ -16,9 +16,9 @@ const protobufPackage = "google.protobuf";
  * The JSON representation for `NullValue` is JSON `null`.
  */
 export enum NullValue {
-  /** NULL_VALUE - Null value. */
-  NULL_VALUE = 0,
-  UNRECOGNIZED = -1,
+    /** NULL_VALUE - Null value. */
+    NULL_VALUE = 0,
+    UNRECOGNIZED = -1
 }
 
 /**
@@ -32,13 +32,13 @@ export enum NullValue {
  * The JSON representation for `Struct` is JSON object.
  */
 export interface Struct {
-  /** Unordered map of dynamically typed values. */
-  fields: { [key: string]: any | undefined };
+    /** Unordered map of dynamically typed values. */
+    fields: { [key: string]: any | undefined };
 }
 
 export interface Struct_FieldsEntry {
-  key: string;
-  value: any | undefined;
+    key: string;
+    value: any | undefined;
 }
 
 /**
@@ -50,28 +50,18 @@ export interface Struct_FieldsEntry {
  * The JSON representation for `Value` is JSON value.
  */
 export interface Value {
-  /** Represents a null value. */
-  null_value?:
-    | NullValue
-    | undefined;
-  /** Represents a double value. */
-  number_value?:
-    | number
-    | undefined;
-  /** Represents a string value. */
-  string_value?:
-    | string
-    | undefined;
-  /** Represents a boolean value. */
-  bool_value?:
-    | boolean
-    | undefined;
-  /** Represents a structured value. */
-  struct_value?:
-    | { [key: string]: any }
-    | undefined;
-  /** Represents a repeated `Value`. */
-  list_value?: Array<any> | undefined;
+    /** Represents a null value. */
+    null_value?: NullValue | undefined;
+    /** Represents a double value. */
+    number_value?: number | undefined;
+    /** Represents a string value. */
+    string_value?: string | undefined;
+    /** Represents a boolean value. */
+    bool_value?: boolean | undefined;
+    /** Represents a structured value. */
+    struct_value?: { [key: string]: any } | undefined;
+    /** Represents a repeated `Value`. */
+    list_value?: Array<any> | undefined;
 }
 
 /**
@@ -80,118 +70,117 @@ export interface Value {
  * The JSON representation for `ListValue` is JSON array.
  */
 export interface ListValue {
-  /** Repeated field of dynamically typed values. */
-  values: any[];
+    /** Repeated field of dynamically typed values. */
+    values: any[];
 }
 
 const GOOGLE_PROTOBUF_PACKAGE_NAME = "google.protobuf";
 
 function createBaseStruct(): Struct {
-  return { fields: {} };
+    return { fields: {} };
 }
 
 export const Struct: MessageFns<Struct> & StructWrapperFns = {
-  wrap(object: { [key: string]: any } | undefined): Struct {
-    const struct = createBaseStruct();
+    wrap(object: { [key: string]: any } | undefined): Struct {
+        const struct = createBaseStruct();
 
-    if (object !== undefined) {
-      for (const key of globalThis.Object.keys(object)) {
-        struct.fields[key] = Value.wrap(object[key]);
-      }
-    }
-    return struct;
-  },
+        if (object !== undefined) {
+            for (const key of globalThis.Object.keys(object)) {
+                struct.fields[key] = Value.wrap(object[key]);
+            }
+        }
+        return struct;
+    },
 
-  unwrap(message: Struct): { [key: string]: any } {
-    const object: { [key: string]: any } = {};
-    if (message.fields) {
-      for (const key of globalThis.Object.keys(message.fields)) {
-        object[key] = Value.unwrap(message.fields[key]);
-      }
+    unwrap(message: Struct): { [key: string]: any } {
+        const object: { [key: string]: any } = {};
+        if (message.fields) {
+            for (const key of globalThis.Object.keys(message.fields)) {
+                object[key] = Value.unwrap(message.fields[key]);
+            }
+        }
+        return object;
     }
-    return object;
-  },
 };
 
 function createBaseValue(): Value {
-  return {};
+    return {};
 }
 
 export const Value: MessageFns<Value> & AnyValueWrapperFns = {
-  wrap(value: any): Value {
-    const result = {} as any;
-    if (value === null) {
-      result.null_value = NullValue.NULL_VALUE;
-    } else if (typeof value === "boolean") {
-      result.bool_value = value;
-    } else if (typeof value === "number") {
-      result.number_value = value;
-    } else if (typeof value === "string") {
-      result.string_value = value;
-    } else if (globalThis.Array.isArray(value)) {
-      result.list_value = ListValue.wrap(value);
-    } else if (typeof value === "object") {
-      result.struct_value = Struct.wrap(value);
-    } else if (typeof value !== "undefined") {
-      throw new globalThis.Error("Unsupported any value type: " + typeof value);
-    }
-    return result;
-  },
+    wrap(value: any): Value {
+        const result = {} as any;
+        if (value === null) {
+            result.null_value = NullValue.NULL_VALUE;
+        } else if (typeof value === "boolean") {
+            result.bool_value = value;
+        } else if (typeof value === "number") {
+            result.number_value = value;
+        } else if (typeof value === "string") {
+            result.string_value = value;
+        } else if (globalThis.Array.isArray(value)) {
+            result.list_value = ListValue.wrap(value);
+        } else if (typeof value === "object") {
+            result.struct_value = Struct.wrap(value);
+        } else if (typeof value !== "undefined") {
+            throw new globalThis.Error("Unsupported any value type: " + typeof value);
+        }
+        return result;
+    },
 
-  unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
-    if (message?.hasOwnProperty("string_value") && message.string_value !== undefined) {
-      return message.string_value;
-    } else if (message?.hasOwnProperty("number_value") && message?.number_value !== undefined) {
-      return message.number_value;
-    } else if (message?.hasOwnProperty("bool_value") && message?.bool_value !== undefined) {
-      return message.bool_value;
-    } else if (message?.hasOwnProperty("struct_value") && message?.struct_value !== undefined) {
-      return Struct.unwrap(message.struct_value as any);
-    } else if (message?.hasOwnProperty("list_value") && message?.list_value !== undefined) {
-      return ListValue.unwrap(message.list_value);
-    } else if (message?.hasOwnProperty("null_value") && message?.null_value !== undefined) {
-      return null;
+    unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
+        if (message?.hasOwnProperty("string_value") && message.string_value !== undefined) {
+            return message.string_value;
+        } else if (message?.hasOwnProperty("number_value") && message?.number_value !== undefined) {
+            return message.number_value;
+        } else if (message?.hasOwnProperty("bool_value") && message?.bool_value !== undefined) {
+            return message.bool_value;
+        } else if (message?.hasOwnProperty("struct_value") && message?.struct_value !== undefined) {
+            return Struct.unwrap(message.struct_value as any);
+        } else if (message?.hasOwnProperty("list_value") && message?.list_value !== undefined) {
+            return ListValue.unwrap(message.list_value);
+        } else if (message?.hasOwnProperty("null_value") && message?.null_value !== undefined) {
+            return null;
+        }
+        return undefined;
     }
-    return undefined;
-  },
 };
 
 function createBaseListValue(): ListValue {
-  return { values: [] };
+    return { values: [] };
 }
 
 export const ListValue: MessageFns<ListValue> & ListValueWrapperFns = {
-  wrap(array: Array<any> | undefined): ListValue {
-    const result = createBaseListValue();
-    result.values = (array ?? []).map(Value.wrap);
-    return result;
-  },
+    wrap(array: Array<any> | undefined): ListValue {
+        const result = createBaseListValue();
+        result.values = (array ?? []).map(Value.wrap);
+        return result;
+    },
 
-  unwrap(message: ListValue): Array<any> {
-    if (message?.hasOwnProperty("values") && globalThis.Array.isArray(message.values)) {
-      return message.values.map(Value.unwrap);
-    } else {
-      return message as any;
+    unwrap(message: ListValue): Array<any> {
+        if (message?.hasOwnProperty("values") && globalThis.Array.isArray(message.values)) {
+            return message.values.map(Value.unwrap);
+        } else {
+            return message as any;
+        }
     }
-  },
 };
 
 wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struct.unwrap } as any;
 
-export interface MessageFns<T> {
-}
+export type MessageFns<T> = {};
 
 export interface StructWrapperFns {
-  wrap(object: { [key: string]: any } | undefined): Struct;
-  unwrap(message: Struct): { [key: string]: any };
+    wrap(object: { [key: string]: any } | undefined): Struct;
+    unwrap(message: Struct): { [key: string]: any };
 }
 
 export interface AnyValueWrapperFns {
-  wrap(value: any): Value;
-  unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined;
+    wrap(value: any): Value;
+    unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined;
 }
 
 export interface ListValueWrapperFns {
-  wrap(array: Array<any> | undefined): ListValue;
-  unwrap(message: ListValue): Array<any>;
+    wrap(array: Array<any> | undefined): ListValue;
+    unwrap(message: ListValue): Array<any>;
 }

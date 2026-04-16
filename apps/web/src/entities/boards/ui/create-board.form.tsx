@@ -3,7 +3,7 @@ import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards-commo
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { BoardsApi } from "../model/bards.api";
+import { BoardsApi } from "../model/boards.api";
 
 type Props = {
     afterSubmit?: () => void;

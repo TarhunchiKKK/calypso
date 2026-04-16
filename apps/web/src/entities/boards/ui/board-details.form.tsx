@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
-import { BoardsApi } from "../model/bards.api";
+import { BoardsApi } from "../model/boards.api";
 
 type Props = {
     board: Board;

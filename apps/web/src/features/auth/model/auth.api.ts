@@ -11,10 +11,10 @@ export function useSignUp() {
 
     return useMutation({
         mutationFn: async (dto: SignUpDto) => {
-            return (await ApiInstance.post<AuthResponse>("/auth/sign-up", dto)).data;
+            return await ApiInstance.post<AuthResponse>("/auth/sign-up", dto);
         },
         onSuccess: data => {
-            queryClient.setQueryData(queryKeys.profile, () => data);
+            queryClient.setQueryData(queryKeys.profile, () => data.user);
         }
     });
 }
@@ -24,10 +24,10 @@ function useSignIn() {
 
     return useMutation({
         mutationFn: async (dto: SignInDto) => {
-            return (await ApiInstance.post<AuthResponse>("/auth/sign-in", dto)).data;
+            return await ApiInstance.post<AuthResponse>("/auth/sign-in", dto);
         },
         onSuccess: data => {
-            queryClient.setQueryData(queryKeys.profile, () => data);
+            queryClient.setQueryData(queryKeys.profile, () => data.user);
         }
     });
 }
@@ -50,8 +50,7 @@ function useProfile() {
         queryKey: queryKeys.profile,
         queryFn: async () => {
             return await ApiInstance.get<AuthResponse>("/auth/profile");
-        },
-        select: data => data.data
+        }
     });
 }
 
