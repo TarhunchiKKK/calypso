@@ -9,13 +9,13 @@ export type Props = {
 
 export function ProjectLinkDropdownGroup({ project }: Props) {
     const copyProjectLink = () => {
-        const link = Routes.apps[project.type](project.id);
+        const link = Routes.apps[project.type].get(project.id);
 
         navigator.clipboard.writeText(`${window.location.origin}/${link}`);
     };
 
     const openInNewTab = () => {
-        const link = Routes.apps[project.type](project.id);
+        const link = Routes.apps[project.type].get(project.id);
 
         window.open(`${window.location.origin}/${link}`);
     };
