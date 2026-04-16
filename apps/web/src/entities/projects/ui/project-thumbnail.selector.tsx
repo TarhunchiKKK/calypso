@@ -49,9 +49,9 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
                 update.mutateAsync({
                     id: project.id,
                     type: project.type,
-                    thumbnail: presignedUrl.data.key
+                    thumbnail: presignedUrl.key
                 }),
-                S3Service.upload(file, presignedUrl.data.url)
+                S3Service.upload(file, presignedUrl.url)
             ]).then(() => {
                 toast.success("Thumbnail changed");
                 afterSubmit?.();
