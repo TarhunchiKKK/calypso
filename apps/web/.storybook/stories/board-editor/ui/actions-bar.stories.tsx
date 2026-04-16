@@ -10,25 +10,25 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const emptyAction = {
+    isActive: false,
+    onClick: () => {}
+};
+
 export const Default: Story = {
     args: {
         actions: {
-            idle: {
-                isActive: false,
-                onClick: () => {}
-            },
+            idle: emptyAction,
             stickers: {
                 isActive: true,
                 onClick: () => {}
             },
-            arrows: {
-                isActive: false,
-                onClick: () => {}
-            },
-            shapes: {
-                isActive: false,
-                onClick: () => {}
-            }
+            arrows: emptyAction,
+            text: emptyAction,
+            shapes: emptyAction,
+            media: emptyAction,
+            notes: emptyAction,
+            draw: emptyAction
         }
     }
 };

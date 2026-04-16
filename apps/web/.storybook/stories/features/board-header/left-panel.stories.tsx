@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "#/common/decorators";
-import { BoardHeader } from "@/features/board-header";
+import { BoardHeader } from "@/features/header";
 
 const meta = {
     title: "Features/Board Header/Left Panel",
