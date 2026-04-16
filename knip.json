@@ -1,7 +1,7 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "project": ["apps/**/*.ts"],
-    "ignore": ["apps/web/src/shared/ui/kit/*", "apps/web/src/@types/*", "apps/web/src/dev/*"],
+    "ignore": ["apps/web/src/shared/ui/kit/*", "apps/web/src/dev/*", "**/e2e/**", "**/*.page.tsx"],
+    "ignoreBinaries": ["protoc"],
     "rules": {
         "files": "error",
         "classMembers": "error",
