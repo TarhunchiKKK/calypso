@@ -24,7 +24,6 @@
         "build": "tsc -b -v"
     },
     "devDependencies": {
-        "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "ts-loader": "^9.4.3",

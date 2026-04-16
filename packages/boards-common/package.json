@@ -25,7 +25,6 @@
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
-        "@repo/eslint-config": "*",
         "@repo/common": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
