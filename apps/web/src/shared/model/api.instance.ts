@@ -1,5 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
-/** biome-ignore-all lint/complexity/noBannedTypes: <explanation> */
+/** biome-ignore-all lint/suspicious/noExplicitAny: Type `any` is necessary for valid error handling */
 import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { Env } from "../config";
 
@@ -37,23 +36,23 @@ class Api implements ApiType {
         }
     }
 
-    public get<T = any, R = AxiosResponse<T, any, {}>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
+    public get<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
         return this.executeQuery(() => this.instance.get<T, R, D>(url, config));
     }
 
-    public post<T = any, R = AxiosResponse<T, any, {}>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+    public post<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
         return this.executeQuery(() => this.instance.post<T, R, D>(url, data, config));
     }
 
-    public patch<T = any, R = AxiosResponse<T, any, {}>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+    public patch<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
         return this.executeQuery(() => this.instance.patch<T, R, D>(url, data, config));
     }
 
-    public put<T = any, R = AxiosResponse<T, any, {}>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
+    public put<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>) {
         return this.executeQuery(() => this.instance.put<T, R, D>(url, data, config));
     }
 
-    public delete<T = any, R = AxiosResponse<T, any, {}>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
+    public delete<T = any, R = AxiosResponse<T, any, object>, D = any>(url: string, config?: AxiosRequestConfig<D>) {
         return this.executeQuery(() => this.instance.delete<T, R, D>(url, config));
     }
 }

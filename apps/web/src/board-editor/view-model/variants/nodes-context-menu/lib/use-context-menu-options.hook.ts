@@ -1,4 +1,4 @@
-import { HotKeysMap } from "@/board-editor/lib/hot-keys.lib";
+import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { switchToIdle } from "../../idle/switcher";
 import type { NodesContextMenuViewState } from "../view-state";
@@ -12,14 +12,14 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                 options: [
                     {
                         label: "Copy",
-                        hotKey: HotKeysMap.exchangeBuffer.copy,
+                        hotKey: BoardHotKeys.exchangeBuffer.copy,
                         onClick: () => {
                             // IMPLEMENTATION
                         }
                     },
                     {
                         label: "Cut",
-                        hotKey: HotKeysMap.exchangeBuffer.cut,
+                        hotKey: BoardHotKeys.exchangeBuffer.cut,
                         onClick: () => setViewState(switchToIdle())
                     }
                 ]
@@ -29,7 +29,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                 options: [
                     {
                         label: "Lock",
-                        hotKey: HotKeysMap.locking.lock,
+                        hotKey: BoardHotKeys.locking.lock,
                         onClick: () => {
                             nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
                                 ...node,
@@ -39,7 +39,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                     },
                     {
                         label: "Unlock",
-                        hotKey: HotKeysMap.locking.unlock,
+                        hotKey: BoardHotKeys.locking.unlock,
                         onClick: () => {
                             nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
                                 ...node,
@@ -53,7 +53,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                 options: [
                     {
                         label: "Delete",
-                        hotKey: HotKeysMap.selection.remove[0],
+                        hotKey: BoardHotKeys.selection.remove[0],
                         onClick: () => {
                             nodesModel.service.removeMany(viewState.selectedIds);
 

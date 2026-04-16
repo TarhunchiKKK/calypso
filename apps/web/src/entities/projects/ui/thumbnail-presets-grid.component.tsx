@@ -40,7 +40,7 @@ export function ThumbnailPresetsGrid({ onSelect }: Props) {
         );
     }
 
-    const groupedThumbnails = splitThumbnails(thumbnails.data.data);
+    const groupedThumbnails = splitThumbnails(thumbnails.data);
 
     return (
         <div>
