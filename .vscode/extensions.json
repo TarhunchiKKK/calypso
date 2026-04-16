@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "Gruntfuggly.todo-tree",
+        "biomejs.biome",
+        "streetsidesoftware.code-spell-checker",
+        "ms-playwright.playwright",
+        "kingwl.vscode-vitest-runner"
+    ]
+}
