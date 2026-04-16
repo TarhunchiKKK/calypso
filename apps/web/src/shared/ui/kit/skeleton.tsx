@@ -1,3 +1,4 @@
+import type * as React from "react";
 import { cn } from "@/shared/lib/shadcn";
 
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
