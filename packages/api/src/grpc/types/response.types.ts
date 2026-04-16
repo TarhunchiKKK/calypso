@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: Type `any` is necessary */
 import type { Observable } from "rxjs";
 import type { GrpcError } from "../generated";
 

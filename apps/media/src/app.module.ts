@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeormConfigFactory } from "@repo/api";
-import { MediaModule } from './media/media.module';
+import { MediaModule } from "./media/media.module";
 
 @Module({
     imports: [
