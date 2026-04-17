@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
       - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
     ports:
-      - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
+      - ${MEDIA_SERVICE_SQL_DB_MANAGEMENT_PORT}:5432
     volumes:
       - media-postgres_data:/var/lib/postgresql/data
 

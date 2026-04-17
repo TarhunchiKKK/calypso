@@ -44,6 +44,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     GATEWAY_SERVICE_SQL_DB_PORT: {
         gateway: "SQL_DB_PORT"
     },
+    GATEWAY_SERVICE_SQL_DB_MANAGEMENT_PORT: {},
     GATEWAY_SERVICE_SQL_DB_USER: {
         gateway: "SQL_DB_USER"
     },
@@ -83,6 +84,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     BOARDS_SERVICE_SQL_DB_PORT: {
         boards: "SQL_DB_PORT"
     },
+    BOARDS_SERVICE_SQL_DB_MANAGEMENT_PORT: {},
     BOARDS_SERVICE_SQL_DB_USER: {
         boards: "SQL_DB_USER"
     },
@@ -100,6 +102,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     BOARDS_SERVICE_NOSQL_DB_PORT: {
         boards: "NOSQL_DB_PORT"
     },
+    BOARDS_SERVICE_NOSQL_DB_MANAGEMENT_PORT: {},
 
     // // RabbitMQ
     BOARDS_SERVICE_RMQ_QUEUE: {
@@ -128,6 +131,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     MEDIA_SERVICE_SQL_DB_PORT: {
         media: "SQL_DB_PORT"
     },
+    MEDIA_SERVICE_SQL_DB_MANAGEMENT_PORT: {},
     MEDIA_SERVICE_SQL_DB_USER: {
         media: "SQL_DB_USER"
     },

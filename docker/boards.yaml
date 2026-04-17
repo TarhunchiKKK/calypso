@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
       - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
     ports:
-      - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
+      - ${BOARDS_SERVICE_SQL_DB_MANAGEMENT_PORT}:5432
     volumes:
       - boards-postgres_data:/var/lib/postgresql/data
   
@@ -18,7 +18,7 @@ services:
     environment:
       - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
     ports:
-      - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
+      - ${BOARDS_SERVICE_NOSQL_DB_MANAGEMENT_PORT}:27017
       
 volumes:
   boards-postgres_data:

@@ -24,7 +24,7 @@ services:
             - POSTGRES_USER=${GATEWAY_SERVICE_SQL_DB_USER}
             - POSTGRES_PASSWORD=${GATEWAY_SERVICE_SQL_DB_PASS}
         ports:
-            - ${GATEWAY_SERVICE_SQL_DB_PORT}:5432
+            - ${GATEWAY_SERVICEGATEWAY_SERVICE_SQL_DB_MANAGEMENT_PORT_SQL_DB_PORT}:5432
         volumes:
             - gateway-postgres_data:/var/lib/postgresql/data
 
