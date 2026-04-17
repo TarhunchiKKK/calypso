@@ -21,6 +21,7 @@
         "build": "turbo run build",
         "build:gateway": "turbo run build --filter=gateway",
         "build:boards": "turbo run build --filter=boards",
+        "build:media": "turbo run build --filter=media",
         "build:web": "turbo run build --filter=web",
         "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
         "build:api": "turbo run build --filter=@repo/api",
@@ -47,7 +48,7 @@
         "docker:infra": "docker compose -f docker/infra.yaml --env-file .env up",
         "docker:gateway": "docker compose -f docker/infra.yaml -f docker/gateway.yaml --env-file .env up --build",
         "docker:boards": "docker compose -f docker/infra.yaml -f docker/boards.yaml --env-file .env up",
-        "docker:media": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/media.yaml --env-file .env up",
+        "docker:media": "docker compose -f docker/infra.yaml -f docker/media.yaml --env-file .env up",
         "docker:web": "docker compose -f docker/web.yaml --env-file .env up",
         "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/web.yaml down"
     },
