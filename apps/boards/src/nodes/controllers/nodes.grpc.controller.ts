@@ -11,7 +11,7 @@ import {
     type UnwrapGrpcResponse,
     type UpdateManyBoardNodesGrpcRequest
 } from "@repo/api";
-import type { AnyNode } from "@repo/common/dist/boards";
+import type { AnyNode } from "@repo/boards-common";
 import { Operations } from "src/lib/auth.constants";
 import { NodesService } from "../nodes.service";
 

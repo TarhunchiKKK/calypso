@@ -5,7 +5,7 @@ services:
         depends_on:
             - gateway-slq-db
         build:
-            context: ..
+            context: .. 
             dockerfile: apps/gateway/Dockerfile
             args:
                 APP_PORT: ${GATEWAY_SERVICE_APP_PORT}

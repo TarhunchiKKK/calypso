@@ -12,7 +12,7 @@ COPY . .
 
 RUN bun install
 
-RUN bun run build:packages && bun run build:gateway
+RUN bun run build:gateway
 
 EXPOSE $APP_PORT
 

@@ -1,7 +1,7 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: rabbit
     ports:
       - ${RMQ_PORT}:5672
       - ${RMQ_MANAGEMENT_PORT}:15672
@@ -23,3 +23,4 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+

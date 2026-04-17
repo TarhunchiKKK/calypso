@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
@@ -9,6 +10,7 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
 
+    console.log("before");
     app.connectMicroservice<MicroserviceOptions>({
         transport: Transport.GRPC,
         options: {
@@ -18,13 +20,16 @@ async function bootstrap() {
             loader: GrpcLoaderOptions
         }
     });
+    console.log("after");
 
     // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
     app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);
 
     await app.startAllMicroservices();
 
-    await app.listen(3005);
+    await app.init();
+
+    Logger.log("Booting up boards service");
 }
 
 void bootstrap();

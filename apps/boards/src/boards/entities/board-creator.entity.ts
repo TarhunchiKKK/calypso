@@ -10,6 +10,12 @@ export class BoardCreator implements ProjectCreator {
     @Column()
     public email: string;
 
+    @Column()
+    public username: string;
+
+    @Column({ nullable: true, default: null })
+    public avatar?: string;
+
     @OneToMany(
         () => Board,
         board => board.creator

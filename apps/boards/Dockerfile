@@ -1,23 +1,13 @@
-FROM node:18-alpine
-
-ARG APP_PORT
-
-ENV APP_PORT=$APP_PORT
+FROM node:20-alpine
 
 RUN npm install -g bun
 
 WORKDIR /app
 
-COPY package.json ./
-
-COPY bun.lock ./
-
-RUN bun install --no-save --frozen-lockfile
-
 COPY . .
 
-EXPOSE $APP_PORT
+RUN bun install
 
-CMD ["bun", "run", "build"]
+RUN bun run build:boards
 
-CMD ["bun", "run", "start:prod"]
+CMD ["sh", "-c", "cd apps/boards && if [ -f dist/main.js ]; then bun dist/main.js; elif [ -f dist/src/main.js ]; then bun dist/src/main.js; else echo 'boards service build output not found in dist'; ls -la dist || true; exit 1; fi"]
