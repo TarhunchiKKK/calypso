@@ -8,6 +8,9 @@ setup("sign up new user", async ({ request }) => {
         data: TestUser
     });
 
+    console.log(response);
+    console.log(await response.json());
+
     await expect(response).toBeOK();
 
     await request.storageState({ path: authFile });

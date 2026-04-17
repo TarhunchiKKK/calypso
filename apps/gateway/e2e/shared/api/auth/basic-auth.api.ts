@@ -1,5 +1,5 @@
 import type { APIRequestContext } from "@playwright/test";
-import type { SignInDto, SignUpDto, User } from "@repo/common";
+import type { SignInDto, SignUpDto, Profile } from "@repo/common";
 
 export class BasicAuthApi {
     public static async signUp(request: APIRequestContext, dto: SignUpDto) {
@@ -7,7 +7,7 @@ export class BasicAuthApi {
             data: dto
         });
 
-        const json: User = await response.json();
+        const json: Profile = await response.json();
 
         return { response, json };
     }
@@ -17,7 +17,7 @@ export class BasicAuthApi {
             data: dto
         });
 
-        const json: User = await response.json();
+        const json: Profile = await response.json();
 
         return { response, json };
     }
@@ -31,7 +31,7 @@ export class BasicAuthApi {
     public static async getProfile(request: APIRequestContext) {
         const response = await request.get("/basic-auth/profile");
 
-        const json: User = await response.json();
+        const json: Profile = await response.json();
 
         return { response, json };
     }

@@ -2,6 +2,7 @@ import type { CreateBoardDto } from "@repo/boards-common";
 import type { SignUpDto } from "@repo/common";
 
 export const TestUser: SignUpDto = {
+    username: "testusername",
     email: "test@gmail.com",
     password: "TestPassword123"
 };

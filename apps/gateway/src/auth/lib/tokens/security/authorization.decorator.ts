@@ -2,7 +2,7 @@ import { applyDecorators, Injectable, UnauthorizedException, UseGuards } from "@
 import { AuthGuard } from "@nestjs/passport";
 
 @Injectable()
-class SupabaseAuthGuard extends AuthGuard("jwt") {
+class JwtAuthGuard extends AuthGuard("jwt") {
     // biome-ignore lint/suspicious/noExplicitAny: Library requires `any` type for `user` argument
     public handleRequest(err: unknown, user: any) {
         if (err || !user) {
@@ -13,5 +13,5 @@ class SupabaseAuthGuard extends AuthGuard("jwt") {
 }
 
 export function Authorization() {
-    return applyDecorators(UseGuards(SupabaseAuthGuard));
+    return applyDecorators(UseGuards(JwtAuthGuard));
 }

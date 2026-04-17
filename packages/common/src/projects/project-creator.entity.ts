@@ -1,7 +1,7 @@
 import type z from "zod";
-import { UserZodSchema } from "../auth";
+import { ProfileZodSchema } from "../auth";
 
-export const ProjectCreatorZodSchema = UserZodSchema.pick({
+export const ProjectCreatorZodSchema = ProfileZodSchema.pick({
     id: true,
     email: true
 });

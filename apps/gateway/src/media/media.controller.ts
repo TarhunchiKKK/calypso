@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Inject, Param } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@repo/common";
-import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
+import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { MediaService } from "./media.service";
 
 @Controller("media")

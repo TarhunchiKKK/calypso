@@ -9,15 +9,12 @@ import {
     type RemoveProjectDto,
     type UpdateProjectDto
 } from "@repo/common";
-import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
+import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BoardsService } from "src/boards/boards/boards.service";
 
 @Injectable()
 export class ProjectsService {
-    public constructor(
-        @Inject(SupabaseService) private readonly supabaseService: SupabaseService,
-        @Inject(BoardsService) private readonly boardsService: BoardsService
-    ) {}
+    public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
     private getService(type: ProjectTypes) {
         switch (type) {
@@ -28,14 +25,12 @@ export class ProjectsService {
         }
     }
 
-    public async duplicate(accessToken: string, dto: DuplicateProjectDto) {
+    public async duplicate(payload: TokenPayload, dto: DuplicateProjectDto) {
         const service = this.getService(dto.type);
-
-        const user = await this.supabaseService.findUser(accessToken);
 
         const response = service.client.duplicate({
             ...dto,
-            creator: user
+            creator: payload
         });
 
         return extractGrpcResponse(response);

@@ -11,6 +11,9 @@ import { defineConfig, devices } from "@playwright/test";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+const useDockerGateway = process.env.E2E_USE_DOCKER === "true";
+const baseURL = process.env.E2E_BASE_URL ?? (useDockerGateway ? "http://127.0.0.1:4000" : "http://127.0.0.1:3000");
+
 export default defineConfig({
     testDir: "./e2e",
     fullyParallel: true,
@@ -19,7 +22,7 @@ export default defineConfig({
     workers: process.env.CI ? 1 : undefined,
     reporter: "html",
     use: {
-        baseURL: "http://localhost:3000",
+        baseURL,
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry"
@@ -36,12 +39,17 @@ export default defineConfig({
             },
             dependencies: ["setup"]
         }
-    ]
+    ],
 
-    /* Run your local dev server before starting the tests */
-    // webServer: {
-    //   command: 'npm run start',
-    //   url: 'http://localhost:3000',
-    //   reuseExistingServer: !process.env.CI,
-    // },
+    /* Run gateway before tests (or reuse existing one locally). */
+    ...(useDockerGateway
+        ? {}
+        : {
+              webServer: {
+                  command: "bun run start",
+                  url: baseURL,
+                  cwd: ".",
+                  reuseExistingServer: !process.env.CI
+              }
+          })
 });

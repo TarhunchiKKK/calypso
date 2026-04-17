@@ -1,7 +1,8 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import type { AuthResponse } from "@repo/common";
-import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
+import { TokensService } from "src/auth/lib/tokens/tokens.service";
+import { UsersService } from "src/auth/users/users.service";
 
 export class RefreshSessionQuery extends Query<AuthResponse> {
     public constructor(public refreshToken: string) {
@@ -11,17 +12,25 @@ export class RefreshSessionQuery extends Query<AuthResponse> {
 
 @QueryHandler(RefreshSessionQuery)
 export class RefreshSessionQueryHandler implements IQueryHandler<RefreshSessionQuery> {
-    public constructor(@Inject(SupabaseService) private readonly supabaseService: SupabaseService) {}
+    public constructor(
+        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(TokensService) private readonly tokensService: TokensService
+    ) {}
 
     public async execute({ refreshToken }: RefreshSessionQuery) {
-        const { data, error } = await this.supabaseService.client.auth.refreshSession({
-            refresh_token: refreshToken
-        });
+        const payload = this.tokensService.verify(refreshToken);
 
-        if (error) {
-            throw new UnauthorizedException("Failed to refresh session");
+        const user = await this.usersService.findOneById(payload.id);
+
+        if (!user) {
+            throw new UnauthorizedException("profile not found");
         }
 
-        return this.supabaseService.mapAuthResponse(data);
+        const session = this.tokensService.sign(user);
+
+        return {
+            user: this.usersService.userToProfile(user),
+            session
+        };
     }
 }

@@ -1,7 +1,8 @@
-import { BadRequestException, Inject } from "@nestjs/common";
+import { BadRequestException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { AuthResponse, SignInDto } from "@repo/common";
-import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
+import { TokensService } from "src/auth/lib/tokens/tokens.service";
+import { UsersService } from "src/auth/users/users.service";
 
 export class SignInCommand extends Command<AuthResponse> {
     public constructor(public dto: SignInDto) {
@@ -11,18 +12,29 @@ export class SignInCommand extends Command<AuthResponse> {
 
 @CommandHandler(SignInCommand)
 export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
-    public constructor(@Inject(SupabaseService) private readonly supabaseService: SupabaseService) {}
+    public constructor(
+        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(TokensService) private readonly tokensService: TokensService
+    ) {}
 
     public async execute({ dto }: SignInCommand) {
-        const { data, error } = await this.supabaseService.client.auth.signInWithPassword({
-            email: dto.email,
-            password: dto.email
-        });
+        const user = await this.usersService.findOneByEmail(dto.email);
 
-        if (error) {
-            throw new BadRequestException(error.message);
+        if (!user) {
+            throw new NotFoundException("User not found");
         }
 
-        return this.supabaseService.mapAuthResponse(data);
+        const passwordsMatch = await Bun.password.verify(dto.password, user.password);
+
+        if (!passwordsMatch) {
+            throw new BadRequestException("Passwords not match");
+        }
+
+        const session = this.tokensService.sign(user);
+
+        return {
+            user: this.usersService.userToProfile(user),
+            session
+        };
     }
 }

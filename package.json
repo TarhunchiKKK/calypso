@@ -53,9 +53,11 @@
     },
     "dependencies": {
         "@biomejs/biome": "^2.4.7",
+        "jsonwebtoken": "^9.0.3",
         "knip": "^5.86.0"
     },
     "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.10",
         "turbo": "^2.8.17"
     },
     "packageManager": "bun@1.3.4",

@@ -1,31 +1,36 @@
 import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { PassportModule } from "@nestjs/passport";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
-import { SupabaseModule } from "./auth/lib/supabase/supabase.module";
-import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
-import { ProvidersAuthModule } from "./auth/providers/providers-auth.module";
 import { BoardsModule } from "./boards/boards.module";
 import { MediaModule } from "./media/media.module";
 import { ProjectsModule } from "./projects/projects.module";
+import { TokensModule } from "./auth/lib/tokens/tokens.module";
+import { UsersModule } from "./auth/users/users.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { typeormConfigFactory } from "@repo/api";
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         CqrsModule.forRoot(),
+        TypeOrmModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: typeormConfigFactory
+        }),
         PassportModule.register({ defaultStrategy: "jwt" }),
         HttpModule,
         ProjectsModule,
         BoardsModule,
-        SupabaseModule,
         BasicAuthModule,
-        ProvidersAuthModule,
-        PasswordRecoveryModule,
         CookieModule,
-        MediaModule
+        MediaModule,
+        TokensModule,
+        UsersModule
     ]
 })
 export class AppModule {}

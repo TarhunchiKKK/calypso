@@ -11,9 +11,9 @@ import {
 } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { Observable } from "rxjs";
-import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
-import { Authorized } from "src/auth/lib/supabase/security/authorized.decorator";
-import type { TokenPayload } from "src/auth/lib/supabase/supabase.types";
+import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
+import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
+import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { NodesService } from "./nodes.service";
 
 @Controller("board-nodes")
@@ -24,23 +24,23 @@ export class NodesController {
     @Post()
     @Validation(CreateManyNodesDtoZodSchema)
     public createMany(@Authorized() payload: TokenPayload, @Body() dto: CreateManyNodesDto): void {
-        this.nodesService.createMany(payload.userId, dto);
+        this.nodesService.createMany(payload.id, dto);
     }
 
     @Get(":boardId")
     public findAll(@Param("boardId") boardId: Id, @Authorized() payload: TokenPayload): Observable<AnyNode[]> {
-        return this.nodesService.findAll(boardId, payload.userId);
+        return this.nodesService.findAll(boardId, payload.id);
     }
 
     @Patch()
     @Validation(UpdateManyNodesDtoZodSchema)
     public updateMany(@Authorized() payload: TokenPayload, @Body() dto: UpdateManyNodesDto): void {
-        this.nodesService.updateMany(payload.userId, dto);
+        this.nodesService.updateMany(payload.id, dto);
     }
 
     @Delete()
     @Validation(RemoveManyNodesDtoZodSchema)
     public removeMany(@Authorized() payload: TokenPayload, @Body() dto: RemoveManyNodesDto): void {
-        this.nodesService.removeMany(payload.userId, dto);
+        this.nodesService.removeMany(payload.id, dto);
     }
 }
