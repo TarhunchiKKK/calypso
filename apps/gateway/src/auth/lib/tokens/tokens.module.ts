@@ -9,8 +9,7 @@ import { TokensService } from "./tokens.service";
         JwtModule.registerAsync({
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({
-                secret: configService.getOrThrow<string>("JWT_SECRET"),
-                signOptions: {}
+                secret: configService.getOrThrow<string>("JWT_SECRET")
             })
         })
     ],

@@ -13,4 +13,4 @@ services:
       - media-postgres_data:/var/lib/postgresql/data
 
 volumes:
-  media-postgres_data:
+  media-postgres_data:  

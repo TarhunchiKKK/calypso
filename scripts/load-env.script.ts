@@ -35,7 +35,6 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
 
     // // Postgres
-    // // Postgres
     GATEWAY_SERVICE_SQL_DB_NAME: {
         gateway: "SQL_DB_NAME"
     },
@@ -61,6 +60,11 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
     REFRESH_JWT_EXPIRATION: {
         gateway: "REFRESH_JWT_EXPIRATION"
+    },
+
+    // E2e
+    E2E_USE_DOCKER: {
+        gateway: "E2E_USE_DOCKER"
     },
 
     // Boards Service
