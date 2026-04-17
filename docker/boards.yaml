@@ -19,13 +19,6 @@ services:
       - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
     ports:
       - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
-    
-  boards-service:
-    container_name: boards-service
-    build:
-      context: ..
-      dockerfile: docker/boards.Dockerfile
-    env_file: ../apps/boards/.env
       
 volumes:
   boards-postgres_data:
