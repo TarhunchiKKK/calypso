@@ -45,7 +45,7 @@
         "env:load": "bun run scripts/load-env.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
         "docker:infra": "docker compose -f docker/infra.yaml --env-file .env up",
-        "docker:gateway": "docker compose -f docker/infra.yaml -f docker/gateway.yaml --env-file .env up",
+        "docker:gateway": "docker compose -f docker/infra.yaml -f docker/gateway.yaml --env-file .env up --build",
         "docker:boards": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml --env-file .env up",
         "docker:media": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/media.yaml --env-file .env up",
         "docker:web": "docker compose -f docker/web.yaml --env-file .env up",

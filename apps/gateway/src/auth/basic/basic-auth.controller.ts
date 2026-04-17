@@ -15,6 +15,7 @@ export class BasicAuthController {
     @Post("sign-up")
     @Validation(SignUpDtoZodSchema)
     public async signUp(@Body() dto: SignUpDto, @Res() response: Response) {
+        console.log("incoming");
         const result = await this.basicAuthService.signUp(dto);
 
         if (result.session) {

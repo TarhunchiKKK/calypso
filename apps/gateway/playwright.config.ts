@@ -19,7 +19,7 @@ export default defineConfig({
     workers: process.env.CI ? 1 : undefined,
     reporter: "html",
     use: {
-        baseURL: "https://localhost:3000",
+        baseURL: "http://localhost:3000",
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry"

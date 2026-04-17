@@ -8,16 +8,12 @@ RUN npm install -g bun
 
 WORKDIR /app
 
-COPY package.json ./
-
-COPY bun.lock ./
-
-RUN bun install --no-save --frozen-lockfile
-
 COPY . .
+
+RUN bun install
+
+RUN bun run build:packages && bun run build:gateway
 
 EXPOSE $APP_PORT
 
-CMD ["bun", "run", "build"]
-
-CMD ["bun", "run", "start:prod"]
+CMD ["sh", "-c", "cd apps/gateway && if [ -f dist/main.js ]; then node dist/main.js; elif [ -f dist/src/main.js ]; then node dist/src/main.js; else echo 'gateway build output not found in dist'; ls -la dist || true; exit 1; fi"]
