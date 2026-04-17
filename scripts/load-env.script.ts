@@ -34,30 +34,33 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         gateway: "REFRESH_COOKIE_EXPIRATION"
     },
 
-    // // Supabase
-    SUPABASE_URL: {
-        gateway: "SUPABASE_URL"
+    // // Postgres
+    // // Postgres
+    GATEWAY_SERVICE_SQL_DB_NAME: {
+        gateway: "SQL_DB_NAME"
     },
-    SUPABASE_KEY: {
-        gateway: "SUPABASE_KEY"
+    GATEWAY_SERVICE_SQL_DB_HOST: {
+        gateway: "SQL_DB_HOST"
     },
-    SUPABASE_DB_NAME: {
-        gateway: "SUPABASE_DB_NAME"
+    GATEWAY_SERVICE_SQL_DB_PORT: {
+        gateway: "SQL_DB_PORT"
     },
-    SUPABASE_DB_USER: {
-        gateway: "SUPABASE_DB_USER"
+    GATEWAY_SERVICE_SQL_DB_USER: {
+        gateway: "SQL_DB_USER"
     },
-    SUPABASE_DB_PASS: {
-        gateway: "SUPABASE_DB_PASS"
+    GATEWAY_SERVICE_SQL_DB_PASS: {
+        gateway: "SQL_DB_PASS"
     },
-    SUPABASE_JWT_SECRET: {
-        gateway: "SUPABASE_JWT_SECRET"
+
+    // // JWT
+    JWT_SECRET: {
+        gateway: "JWT_SECRET"
     },
-    SUPABASE_JWT_EXPIRATION: {
-        gateway: "SUPABASE_JWT_EXPIRATION"
+    ACCESS_JWT_EXPIRATION: {
+        gateway: "ACCESS_JWT_EXPIRATION"
     },
-    GOTRUE_PORT: {
-        gateway: "GOTRUE_PORT"
+    REFRESH_JWT_EXPIRATION: {
+        gateway: "REFRESH_JWT_EXPIRATION"
     },
 
     // Boards Service
