@@ -6,12 +6,12 @@ services:
       - ${RMQ_PORT}:5672
       - ${RMQ_MANAGEMENT_PORT}:15672
 
-minio:
+  minio:
     image: quay.io/minio/minio:latest
     container_name: minio
     ports:
-      - ${s3_PORT}:9000
-      - ${s3_UI_PORT}:9001
+      - ${S3_PORT}:9000
+      - ${S3_UI_PORT}:9001
     environment:
       MINIO_ROOT_USER: ${S3_USER}
       MINIO_ROOT_PASSWORD: ${S3_PASS}

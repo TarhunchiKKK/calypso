@@ -61,10 +61,6 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
 
     // Boards Service
-    BOARDS_SERVICE_APP_URL: {},
-    BOARDS_SERVICE_APP_PORT: {
-        boards: "APP_PORT"
-    },
     BOARDS_SERVICE_GRPC_URL: {
         gateway: "BOARDS_SERVICE_GRPC_URL",
         boards: "GRPC_URL"
@@ -105,10 +101,6 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
 
     // Media Service
-    MEDIA_SERVICE_APP_URL: {},
-    MEDIA_SERVICE_APP_PORT: {
-        media: "APP_PORT"
-    },
     MEDIA_SERVICE_GRPC_URL: {
         gateway: "MEDIA_SERVICE_GRPC_URL",
         media: "GRPC_URL"

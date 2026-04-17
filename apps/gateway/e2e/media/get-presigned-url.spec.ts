@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import type { GetPresignedUrlDto, MediaDomains } from "@repo/common";
+import type { GetPresignedUrlDto } from "@repo/common";
 import { MediaApi } from "e2e/shared/api/media.api";
 
 test.describe("GET /media/presigned-url", () => {
