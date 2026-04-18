@@ -41,6 +41,11 @@ export class BasicAuthController {
         return result.user;
     }
 
+    @Post("sign-out")
+    public signOut(@Res() response: Response) {
+        this.cookieService.clear(response);
+    }
+
     @Get("profile")
     public getProfile(@Authorized() payload: TokenPayload): Profile {
         return payload;
