@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
@@ -22,6 +23,8 @@ async function bootstrap() {
     await app.startAllMicroservices();
 
     await app.init();
+
+    Logger.log("Media service is running");
 }
 
 void bootstrap();

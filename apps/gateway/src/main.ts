@@ -13,7 +13,7 @@ async function bootstrap() {
 
     await app.listen(appPort);
 
-    Logger.log(`App is running on ${await app.getUrl()}`);
+    Logger.log(`Gateway is running on ${await app.getUrl()}`);
 }
 
 void bootstrap();

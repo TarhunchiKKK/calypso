@@ -27,7 +27,7 @@ async function bootstrap() {
 
     await app.init();
 
-    Logger.log("Booting up boards service");
+    Logger.log("Boards service is running");
 }
 
 void bootstrap();
