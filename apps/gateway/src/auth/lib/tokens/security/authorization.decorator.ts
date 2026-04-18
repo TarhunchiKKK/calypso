@@ -8,6 +8,7 @@ class JwtAuthGuard extends AuthGuard("jwt") {
         if (err || !user) {
             throw err || new UnauthorizedException("Authentication required");
         }
+
         return user;
     }
 }

@@ -10,7 +10,6 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
 
-    console.log("before");
     app.connectMicroservice<MicroserviceOptions>({
         transport: Transport.GRPC,
         options: {
@@ -20,7 +19,6 @@ async function bootstrap() {
             loader: GrpcLoaderOptions
         }
     });
-    console.log("after");
 
     // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
     app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);

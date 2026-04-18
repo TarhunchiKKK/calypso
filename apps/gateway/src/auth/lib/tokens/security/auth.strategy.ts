@@ -4,6 +4,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import type { Request } from "express";
 import { Strategy } from "passport-jwt";
 import type { CookieFields } from "../../cookie/cookie.types";
+import type { TokenPayload } from "../types";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -19,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    public async validate(payload: Record<string, unknown>) {
-        return { userId: payload.sub, email: payload.email };
+    public validate(payload: TokenPayload) {
+        return payload;
     }
 }

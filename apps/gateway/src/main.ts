@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import cookieParser from "cookie-parser";
 import { AppModule } from "./app.module";
@@ -11,6 +12,8 @@ async function bootstrap() {
     app.enableCors();
 
     await app.listen(appPort);
+
+    Logger.log(`App is running on ${await app.getUrl()}`);
 }
 
 void bootstrap();

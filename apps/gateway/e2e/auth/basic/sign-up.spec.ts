@@ -7,6 +7,7 @@ test.describe("POST /basic-auth/sign-up", () => {
     test("success", async ({ request }) => {
         const dto: SignUpDto = {
             email: faker.internet.email(),
+            username: faker.internet.username(),
             password: faker.internet.password()
         };
 

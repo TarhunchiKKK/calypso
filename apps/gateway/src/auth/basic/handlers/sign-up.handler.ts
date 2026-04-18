@@ -1,4 +1,4 @@
-import { Inject } from "@nestjs/common";
+import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { AuthResponse, SignUpDto } from "@repo/common";
 import { TokensService } from "src/auth/lib/tokens/tokens.service";
@@ -18,7 +18,9 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     ) {}
 
     public async execute({ dto }: SignUpCommand) {
-        const user = await this.usersService.create(dto);
+        await this.verifyExistingUser(dto.email);
+
+        const user = await this.createUser(dto);
 
         const session = this.tokensService.sign(user);
 
@@ -26,5 +28,22 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
             user: this.usersService.userToProfile(user),
             session
         };
+    }
+
+    private async verifyExistingUser(email: string) {
+        const existingUser = await this.usersService.findOneByEmail(email);
+
+        if (existingUser) {
+            throw new ConflictException("User with such email already exists");
+        }
+    }
+
+    private async createUser(dto: SignUpDto) {
+        const hashedPassword = await Bun.password.hash(dto.password);
+
+        return await this.usersService.create({
+            ...dto,
+            password: hashedPassword
+        });
     }
 }

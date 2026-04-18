@@ -1,5 +1,5 @@
 import type { APIRequestContext } from "@playwright/test";
-import type { SignInDto, SignUpDto, Profile } from "@repo/common";
+import type { Profile, SignInDto, SignUpDto } from "@repo/common";
 
 export class BasicAuthApi {
     public static async signUp(request: APIRequestContext, dto: SignUpDto) {

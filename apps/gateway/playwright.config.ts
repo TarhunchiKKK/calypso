@@ -22,7 +22,7 @@ export default defineConfig({
     workers: process.env.CI ? 1 : undefined,
     reporter: "html",
     use: {
-        baseURL,
+        baseURL: "http://[::1]:4000",
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry"
@@ -39,17 +39,17 @@ export default defineConfig({
             },
             dependencies: ["setup"]
         }
-    ],
+    ]
 
-    /* Run gateway before tests (or reuse existing one locally). */
-    ...(useDockerGateway
-        ? {}
-        : {
-              webServer: {
-                  command: "bun run start",
-                  url: baseURL,
-                  cwd: ".",
-                  reuseExistingServer: !process.env.CI
-              }
-          })
+    // /* Run gateway before tests (or reuse existing one locally). */
+    // ...(useDockerGateway
+    //     ? {}
+    //     : {
+    //           webServer: {
+    //               command: "bun run start",
+    //               url: baseURL,
+    //               cwd: ".",
+    //               reuseExistingServer: !process.env.CI
+    //           }
+    //       })
 });

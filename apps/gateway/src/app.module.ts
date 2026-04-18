@@ -2,16 +2,16 @@ import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
-import { PassportModule } from "@nestjs/passport";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { typeormConfigFactory } from "@repo/api";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
+import { TokensModule } from "./auth/lib/tokens/tokens.module";
+import { User } from "./auth/users/entities/user.entity";
+import { UsersModule } from "./auth/users/users.module";
 import { BoardsModule } from "./boards/boards.module";
 import { MediaModule } from "./media/media.module";
 import { ProjectsModule } from "./projects/projects.module";
-import { TokensModule } from "./auth/lib/tokens/tokens.module";
-import { UsersModule } from "./auth/users/users.module";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { typeormConfigFactory } from "@repo/api";
 
 @Module({
     imports: [
@@ -20,9 +20,8 @@ import { typeormConfigFactory } from "@repo/api";
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: typeormConfigFactory
+            useFactory: typeormConfigFactory([User])
         }),
-        PassportModule.register({ defaultStrategy: "jwt" }),
         HttpModule,
         ProjectsModule,
         BoardsModule,
