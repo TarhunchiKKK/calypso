@@ -1,9 +1,12 @@
+include:
+  - infra.yaml
+
 services:
     media-service:
         container_name: media-service
-        image: calypso/media-service:latest
         depends_on:
             - media-slq-db
+            - minio
         build:
             context: ..
             dockerfile: apps/media/Dockerfile

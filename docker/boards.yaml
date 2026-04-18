@@ -4,7 +4,6 @@ include:
 services:
     boards-service:
         container_name: boards-service
-        image: calypso/boards-service:latest
         depends_on:
             - boards-slq-db
             - boards-nosql-db
