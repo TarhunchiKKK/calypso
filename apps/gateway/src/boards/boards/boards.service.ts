@@ -27,7 +27,7 @@ export class BoardsService implements OnModuleInit {
             creator: payload
         });
 
-        return extractGrpcResponse(response);
+        return extractGrpcResponse(response).pipe(map(BoardsGrpcMapper.fromGrpc));
     }
 
     public findAll(userId: string) {

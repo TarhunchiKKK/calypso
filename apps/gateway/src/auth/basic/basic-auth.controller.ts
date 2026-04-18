@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Inject, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
-import { type Profile, type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
+import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
 import type { Request, Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { Authorization } from "../lib/tokens/security/authorization.decorator";
@@ -8,7 +8,7 @@ import { Authorized } from "../lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "../lib/tokens/types";
 import { BasicAuthService } from "./basic-auth.service";
 
-@Controller("basic-auth")
+@Controller("auth/basic")
 export class BasicAuthController {
     public constructor(
         @Inject(BasicAuthService)
@@ -17,6 +17,7 @@ export class BasicAuthController {
     ) {}
 
     @Post("sign-up")
+    @HttpCode(HttpStatus.CREATED)
     @Validation(SignUpDtoZodSchema)
     public async signUp(@Body() dto: SignUpDto, @Res() response: Response) {
         const result = await this.basicAuthService.signUp(dto);
@@ -30,6 +31,7 @@ export class BasicAuthController {
     }
 
     @Post("sign-in")
+    @HttpCode(HttpStatus.OK)
     @Validation(SignInDtoZodSchema)
     public async signIn(@Body() dto: SignInDto, @Res() response: Response) {
         const result = await this.basicAuthService.signIn(dto);
@@ -43,18 +45,21 @@ export class BasicAuthController {
     }
 
     @Post("sign-out")
+    @HttpCode(HttpStatus.OK)
     public signOut(@Res() response: Response) {
         this.cookieService.clear(response);
         response.send();
     }
 
     @Get("profile")
+    @HttpCode(HttpStatus.OK)
     @Authorization()
-    public getProfile(@Authorized() payload: TokenPayload): Profile {
+    public getProfile(@Authorized() payload: TokenPayload) {
         return payload;
     }
 
     @Get("refresh-session")
+    @HttpCode(HttpStatus.OK)
     public async refreshSession(@Req() request: Request, @Res() response: Response) {
         const refreshToken = this.cookieService.getToken(request, "refresh");
 

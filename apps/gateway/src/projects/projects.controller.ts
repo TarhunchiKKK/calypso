@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import {
     type DuplicateProjectDto,
@@ -22,29 +22,34 @@ export class ProjectsController {
     public constructor(@Inject(ProjectsService) private projectsService: ProjectsService) {}
 
     @Post("duplicate")
+    @HttpCode(HttpStatus.CREATED)
     @Validation(DuplicateProjectDtoZodSchema)
     public async duplicate(@Authorized() payload: TokenPayload, @Body() dto: DuplicateProjectDto) {
         return await this.projectsService.duplicate(payload, dto);
     }
 
     @Get("/all")
+    @HttpCode(HttpStatus.OK)
     public findAll(@Authorized() payload: TokenPayload) {
         return this.projectsService.findAll(payload.id);
     }
 
     @Get("/one")
+    @HttpCode(HttpStatus.OK)
     @Validation(FindOneProjectDtoZodSchema)
     public findOne(@Authorized() payload: TokenPayload, @Body() dto: FindOneProjectDto) {
         return this.projectsService.findOne(payload.id, dto);
     }
 
     @Patch(":id")
+    @HttpCode(HttpStatus.OK)
     @Validation(UpdateProjectDtoZodSchema)
     public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() dto: UpdateProjectDto) {
         this.projectsService.update(id, payload.id, dto);
     }
 
     @Delete()
+    @HttpCode(HttpStatus.NO_CONTENT)
     @Validation(RemoveProjectDtoZodSchema)
     public remove(@Authorized() payload: TokenPayload, @Body() dto: RemoveProjectDto) {
         this.projectsService.remove(payload.id, dto);
