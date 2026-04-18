@@ -20,9 +20,9 @@ async function bootstrap() {
         }
     });
 
-    await app.startAllMicroservices();
-
     await app.init();
+
+    await app.startAllMicroservices();
 
     Logger.log("Media service is running");
 }

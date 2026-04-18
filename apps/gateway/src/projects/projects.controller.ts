@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import {
     type DuplicateProjectDto,
@@ -11,6 +11,7 @@ import {
     type UpdateProjectDto,
     UpdateProjectDtoZodSchema
 } from "@repo/common";
+import { firstValueFrom } from "rxjs";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
@@ -23,35 +24,31 @@ export class ProjectsController {
 
     @Post("duplicate")
     @HttpCode(HttpStatus.CREATED)
-    @Validation(DuplicateProjectDtoZodSchema)
-    public async duplicate(@Authorized() payload: TokenPayload, @Body() dto: DuplicateProjectDto) {
+    public async duplicate(@Authorized() payload: TokenPayload, @Validation(DuplicateProjectDtoZodSchema) dto: DuplicateProjectDto) {
         return await this.projectsService.duplicate(payload, dto);
     }
 
     @Get("/all")
     @HttpCode(HttpStatus.OK)
-    public findAll(@Authorized() payload: TokenPayload) {
-        return this.projectsService.findAll(payload.id);
+    public async findAll(@Authorized() payload: TokenPayload) {
+        return await firstValueFrom(this.projectsService.findAll(payload.id));
     }
 
     @Get("/one")
     @HttpCode(HttpStatus.OK)
-    @Validation(FindOneProjectDtoZodSchema)
-    public findOne(@Authorized() payload: TokenPayload, @Body() dto: FindOneProjectDto) {
-        return this.projectsService.findOne(payload.id, dto);
+    public async findOne(@Authorized() payload: TokenPayload, @Validation(FindOneProjectDtoZodSchema) dto: FindOneProjectDto) {
+        return await firstValueFrom(this.projectsService.findOne(payload.id, dto));
     }
 
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
-    @Validation(UpdateProjectDtoZodSchema)
-    public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() dto: UpdateProjectDto) {
-        this.projectsService.update(id, payload.id, dto);
+    public async update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Validation(UpdateProjectDtoZodSchema) dto: UpdateProjectDto) {
+        await firstValueFrom(this.projectsService.update(id, payload.id, dto));
     }
 
     @Delete()
     @HttpCode(HttpStatus.NO_CONTENT)
-    @Validation(RemoveProjectDtoZodSchema)
-    public remove(@Authorized() payload: TokenPayload, @Body() dto: RemoveProjectDto) {
-        this.projectsService.remove(payload.id, dto);
+    public async remove(@Authorized() payload: TokenPayload, @Validation(RemoveProjectDtoZodSchema) dto: RemoveProjectDto) {
+        await firstValueFrom(this.projectsService.remove(payload.id, dto));
     }
 }

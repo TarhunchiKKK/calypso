@@ -1,7 +1,8 @@
-import { Body, Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import { type CreateBoardDto, CreateBoardDtoZodSchema, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/boards-common";
 import type { Id } from "@repo/common";
+import { firstValueFrom } from "rxjs";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
@@ -14,15 +15,13 @@ export class BoardsController {
 
     @Post()
     @HttpCode(HttpStatus.ACCEPTED)
-    @Validation(CreateBoardDtoZodSchema)
-    public create(@Authorized() payload: TokenPayload, @Body() createBoardDto: CreateBoardDto) {
-        return this.boardsService.create(payload, createBoardDto);
+    public async create(@Authorized() payload: TokenPayload, @Validation(CreateBoardDtoZodSchema) createBoardDto: CreateBoardDto) {
+        return await this.boardsService.create(payload, createBoardDto);
     }
 
     @Patch(":id")
     @HttpCode(HttpStatus.OK)
-    @Validation(UpdateBoardDtoZodSchema)
-    public update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Body() updateBoardDto: UpdateBoardDto) {
-        this.boardsService.update(id, payload.id, updateBoardDto);
+    public async update(@Param("id") id: Id, @Authorized() payload: TokenPayload, @Validation(UpdateBoardDtoZodSchema) updateBoardDto: UpdateBoardDto) {
+        await firstValueFrom(this.boardsService.update(id, payload.id, updateBoardDto));
     }
 }

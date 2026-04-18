@@ -1,555 +1,662 @@
 {
-    "info": {
-        "_postman_id": "1bfee351-021b-4512-9889-eea678f16ceb",
-        "name": "calypso",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "_exporter_id": "31972477"
+  "info": {
+    "_postman_id": "1bfee351-021b-4512-9889-eea678f16ceb",
+    "name": "calypso",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31972477"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "basic",
+          "item": [
+            {
+              "name": "sign-up",
+              "item": [
+                {
+                  "name": "201: Created",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"username\": \"testusername\",\r\n    \"password\": \"GoodPassword\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/auth/basic/sign-up",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic",
+                        "sign-up"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "sign-in",
+              "item": [
+                {
+                  "name": "200:OK",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"GoodPassword\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/auth/basic/sign-in",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic",
+                        "sign-in"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "sign-out",
+              "item": [
+                {
+                  "name": "200:OK",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{API_URL}}/auth/basic/sign-out",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic",
+                        "sign-out"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "profile",
+              "item": [
+                {
+                  "name": "200: OK",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{API_URL}}/auth/basic/profile",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic",
+                        "profile"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "refresh",
+              "item": [
+                {
+                  "name": "200: OK",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{API_URL}}/auth/basic/refresh-session",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic",
+                        "refresh-session"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
-    "item": [
+    {
+      "name": "boards",
+      "item": [
         {
-            "name": "auth",
-            "item": [
+          "name": "boards",
+          "item": [
+            {
+              "name": "create",
+              "item": [
                 {
-                    "name": "basic",
-                    "item": [
-                        {
-                            "name": "sign-up",
-                            "item": [
-                                {
-                                    "name": "201: Created",
-                                    "request": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"username\": \"testusername\",\r\n    \"password\": \"GoodPassword\"\r\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/auth/basic/sign-up",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["auth", "basic", "sign-up"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "sign-in",
-                            "item": [
-                                {
-                                    "name": "200:OK",
-                                    "request": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"GoodPassword\"\r\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/auth/basic/sign-in",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["auth", "basic", "sign-in"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "sign-out",
-                            "item": [
-                                {
-                                    "name": "200:OK",
-                                    "request": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "{{API_URL}}/auth/basic/sign-out",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["auth", "basic", "sign-out"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "profile",
-                            "item": [
-                                {
-                                    "name": "200: OK",
-                                    "request": {
-                                        "method": "GET",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "{{API_URL}}/auth/basic/profile",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["auth", "basic", "profile"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "refresh",
-                            "item": [
-                                {
-                                    "name": "200: OK",
-                                    "request": {
-                                        "method": "GET",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "{{API_URL}}/basic/auth/refresh-session",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["basic", "auth", "refresh-session"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
+                  "name": "201: Created",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"title\": \"My new board\",\n    \"thumbnail\": \"my-new-board-thumbnail\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
                         }
-                    ]
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/boards/management",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "management"
+                      ]
+                    }
+                  },
+                  "response": []
                 }
-            ]
-        },
-        {
-            "name": "boards",
-            "item": [
+              ]
+            },
+            {
+              "name": "update",
+              "item": [
                 {
-                    "name": "boards",
-                    "item": [
-                        {
-                            "name": "create",
-                            "item": [
-                                {
-                                    "name": "201: Created",
-                                    "request": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\n    \"title\": \"My new board\",\n    \"thumbnail\": \"my-new-board-thumbnail\"\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/management",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "management"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "update",
-                            "item": [
-                                {
-                                    "name": "200: OK",
-                                    "request": {
-                                        "method": "PATCH",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\n    \"title\": \"My new board\",\n    \"description\": \"Magic board\",\n    \"thumbnail\": \"my-new-board-thumbnail\"\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/management/{{BOARD_ID}}",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "management", "{{BOARD_ID}}"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
+                  "name": "200: OK",
+                  "request": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"title\": \"My new board\",\n    \"description\": \"Magic board\",\n    \"thumbnail\": \"my-new-board-thumbnail\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
                         }
-                    ]
-                },
-                {
-                    "name": "nodes",
-                    "item": [
-                        {
-                            "name": "create-many",
-                            "item": [
-                                {
-                                    "name": "201: Created",
-                                    "request": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"nodes\": [\n        {\n            \"id\": \"sticker-1\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-1\",\n            \"rect\": {\n                \"x\": 100,\n                \"y\": 100,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#cccccc\",\n                \"borderStyle\": \"solid\",\n                \"borderColor\": \"#656565\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Cascadia Mono\",\n                \"fontSize\": 14,\n                \"textColor\": \"#999999\",\n                \"textAlign\": \"left\"\n            }\n        },\n        {\n            \"id\": \"sticker-2\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-2\",\n            \"rect\": {\n                \"x\": 300,\n                \"y\": 300,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#dddddd\",\n                \"borderStyle\": \"dashed\",\n                \"borderColor\": \"#232323\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Arial\",\n                \"fontSize\": 10,\n                \"textColor\": \"#eeeeee\",\n                \"textAlign\": \"justify\"\n            }\n        }\n    ]\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/nodes",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "nodes"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "find-all",
-                            "item": [
-                                {
-                                    "name": "200: OK",
-                                    "request": {
-                                        "method": "GET",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/nodes/{{BOARD_ID}}",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "nodes", "{{BOARD_ID}}"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "update-many",
-                            "item": [
-                                {
-                                    "name": "200: OK",
-                                    "request": {
-                                        "method": "PATCH",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"nodes\": [\n        {\n            \"id\": \"sticker-1\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-1-updated\",\n            \"rect\": {\n                \"x\": 100,\n                \"y\": 100,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#cccccc\",\n                \"borderStyle\": \"solid\",\n                \"borderColor\": \"#656565\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Cascadia Mono\",\n                \"fontSize\": 14,\n                \"textColor\": \"#999999\",\n                \"textAlign\": \"left\"\n            }\n        },\n        {\n            \"id\": \"sticker-2\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-2-updated\",\n            \"rect\": {\n                \"x\": 300,\n                \"y\": 300,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#dddddd\",\n                \"borderStyle\": \"dashed\",\n                \"borderColor\": \"#232323\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Arial\",\n                \"fontSize\": 10,\n                \"textColor\": \"#eeeeee\",\n                \"textAlign\": \"justify\"\n            }\n        }\n    ]\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/nodes",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "nodes"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        },
-                        {
-                            "name": "remove-many",
-                            "item": [
-                                {
-                                    "name": "204: No Content",
-                                    "request": {
-                                        "method": "DELETE",
-                                        "header": [],
-                                        "body": {
-                                            "mode": "raw",
-                                            "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"ids\": [\"sticker-1\"]\n}",
-                                            "options": {
-                                                "raw": {
-                                                    "language": "json"
-                                                }
-                                            }
-                                        },
-                                        "url": {
-                                            "raw": "{{API_URL}}/boards/nodes",
-                                            "host": ["{{API_URL}}"],
-                                            "path": ["boards", "nodes"]
-                                        }
-                                    },
-                                    "response": []
-                                }
-                            ]
-                        }
-                    ]
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/boards/management/{{BOARD_ID}}",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "management",
+                        "{{BOARD_ID}}"
+                      ]
+                    }
+                  },
+                  "response": []
                 }
-            ]
-        },
-        {
-            "name": "projects",
-            "item": [
-                {
-                    "name": "duplicate",
-                    "item": [
-                        {
-                            "name": "201: Created",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\",\n    \"title\": \"New Title\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/projects/duplicate",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["projects", "duplicate"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "find-all",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{API_URL}}/projects/all",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["projects", "all"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "find-one",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "protocolProfileBehavior": {
-                                "disableBodyPruning": true
-                            },
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/projects/one",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["projects", "one"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "update",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "request": {
-                                "method": "PATCH",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"type\": \"board\",\n    \"title\": \"Updated Title\",\n    \"thumbnail\": \"new_thumbnail\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/projects/{{BOARD_ID}}",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["projects", "{{BOARD_ID}}"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "remove",
-                    "item": [
-                        {
-                            "name": "204: No Content",
-                            "request": {
-                                "method": "DELETE",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/projects/",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["projects", ""]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "media",
-            "item": [
-                {
-                    "name": "find-presets",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "protocolProfileBehavior": {
-                                "disableBodyPruning": true
-                            },
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"domain\": \"project-thumbnails\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/media/presets",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["media", "presets"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "find-groups",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{API_URL}}/media/presets/project-thumbnails",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["media", "presets", "project-thumbnails"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                },
-                {
-                    "name": "get-presigned-url",
-                    "item": [
-                        {
-                            "name": "200: OK",
-                            "protocolProfileBehavior": {
-                                "disableBodyPruning": true
-                            },
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n    \"filName\": \"my-new-image.png\",\n    \"contentType\": \"image/png\"\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{API_URL}}/media/presigned-url",
-                                    "host": ["{{API_URL}}"],
-                                    "path": ["media", "presigned-url"]
-                                }
-                            },
-                            "response": []
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "event": [
-        {
-            "listen": "prerequest",
-            "script": {
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {},
-                "exec": [""]
+              ]
             }
+          ]
         },
         {
-            "listen": "test",
-            "script": {
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {},
-                "exec": [""]
+          "name": "nodes",
+          "item": [
+            {
+              "name": "create-many",
+              "item": [
+                {
+                  "name": "201: Created",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"nodes\": [\n        {\n            \"id\": \"sticker-1\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-1\",\n            \"rect\": {\n                \"x\": 100,\n                \"y\": 100,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#cccccc\",\n                \"borderStyle\": \"solid\",\n                \"borderColor\": \"#656565\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Cascadia Mono\",\n                \"fontSize\": 14,\n                \"textColor\": \"#999999\",\n                \"textAlign\": \"left\"\n            }\n        },\n        {\n            \"id\": \"sticker-2\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-2\",\n            \"rect\": {\n                \"x\": 300,\n                \"y\": 300,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#dddddd\",\n                \"borderStyle\": \"dashed\",\n                \"borderColor\": \"#232323\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Arial\",\n                \"fontSize\": 10,\n                \"textColor\": \"#eeeeee\",\n                \"textAlign\": \"justify\"\n            }\n        }\n    ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/boards/nodes",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "nodes"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "find-all",
+              "item": [
+                {
+                  "name": "200: OK",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{API_URL}}/boards/nodes/{{BOARD_ID}}",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "nodes",
+                        "{{BOARD_ID}}"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "update-many",
+              "item": [
+                {
+                  "name": "200: OK",
+                  "request": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"nodes\": [\n        {\n            \"id\": \"sticker-1\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-1-updated\",\n            \"rect\": {\n                \"x\": 100,\n                \"y\": 100,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#cccccc\",\n                \"borderStyle\": \"solid\",\n                \"borderColor\": \"#656565\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Cascadia Mono\",\n                \"fontSize\": 14,\n                \"textColor\": \"#999999\",\n                \"textAlign\": \"left\"\n            }\n        },\n        {\n            \"id\": \"sticker-2\",\n            \"type\": \"sticker\",\n            \"locked\": false,\n            \"text\": \"Hello-2-updated\",\n            \"rect\": {\n                \"x\": 300,\n                \"y\": 300,\n                \"width\": 100,\n                \"height\": 100\n            },\n            \"styles\": {\n                \"backgroundColor\": \"#dddddd\",\n                \"borderStyle\": \"dashed\",\n                \"borderColor\": \"#232323\",\n                \"borderRadius\": 0,\n                \"fontFamily\": \"Arial\",\n                \"fontSize\": 10,\n                \"textColor\": \"#eeeeee\",\n                \"textAlign\": \"justify\"\n            }\n        }\n    ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/boards/nodes",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "nodes"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "remove-many",
+              "item": [
+                {
+                  "name": "204: No Content",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"boardId\": \"{{BOARD_ID}}\",\n    \"ids\": [\"sticker-1\"]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{API_URL}}/boards/nodes",
+                      "host": [
+                        "{{API_URL}}"
+                      ],
+                      "path": [
+                        "boards",
+                        "nodes"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
             }
+          ]
         }
-    ],
-    "variable": [
+      ]
+    },
+    {
+      "name": "projects",
+      "item": [
         {
-            "key": "API_URL",
-            "value": ""
+          "name": "duplicate",
+          "item": [
+            {
+              "name": "201: Created",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\",\n    \"title\": \"New Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/projects/duplicate",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "duplicate"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
-            "key": "BOARD_ID",
-            "value": ""
+          "name": "find-all",
+          "item": [
+            {
+              "name": "200: OK",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}/projects/all",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "all"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
-            "key": "NON_EXISTINS_BOARD_ID",
-            "value": ""
+          "name": "find-one",
+          "item": [
+            {
+              "name": "200: OK",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/projects/one",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "one"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
-            "key": "BOARD_NODE_ID",
-            "value": ""
+          "name": "update",
+          "item": [
+            {
+              "name": "200: OK",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"type\": \"board\",\n    \"title\": \"Updated Title\",\n    \"thumbnail\": \"new_thumbnail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/projects/{{BOARD_ID}}",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{BOARD_ID}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
-            "key": "NON_EXISTING_BOARD_NODE_ID",
-            "value": ""
+          "name": "remove",
+          "item": [
+            {
+              "name": "204: No Content",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"id\": \"{{BOARD_ID}}\",\n    \"type\": \"board\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/projects/",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "name": "media",
+      "item": [
+        {
+          "name": "find-presets",
+          "item": [
+            {
+              "name": "200: OK",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"domain\": \"project-thumbnails\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/media/presets",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "media",
+                    "presets"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "find-groups",
+          "item": [
+            {
+              "name": "200: OK",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}/media/presets/project-thumbnails",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "media",
+                    "presets",
+                    "project-thumbnails"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "get-presigned-url",
+          "item": [
+            {
+              "name": "200: OK",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"filName\": \"my-new-image.png\",\n    \"contentType\": \"image/png\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}/media/presigned-url",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "media",
+                    "presigned-url"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_URL",
+      "value": ""
+    },
+    {
+      "key": "BOARD_ID",
+      "value": ""
+    },
+    {
+      "key": "NON_EXISTINS_BOARD_ID",
+      "value": ""
+    },
+    {
+      "key": "BOARD_NODE_ID",
+      "value": ""
+    },
+    {
+      "key": "NON_EXISTING_BOARD_NODE_ID",
+      "value": ""
+    }
+  ]
 }

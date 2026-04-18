@@ -23,9 +23,9 @@ async function bootstrap() {
     // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
     app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);
 
-    await app.startAllMicroservices();
-
     await app.init();
+
+    await app.startAllMicroservices();
 
     Logger.log("Boards service is running");
 }

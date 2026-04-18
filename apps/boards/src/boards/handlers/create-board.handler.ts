@@ -1,11 +1,9 @@
-import { Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AccessRightsService } from "@repo/api";
-import type { ProjectRoles } from "@repo/common/dist/projects";
 import type { Repository } from "typeorm";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import { Board } from "../entities/board.entity";
+import { BoardCreator } from "../entities/board-creator.entity";
 
 export class CreateBoardCommand extends Command<Board> {
     public constructor(public dto: CreateBoardDto) {
@@ -17,18 +15,27 @@ export class CreateBoardCommand extends Command<Board> {
 export class CreateBoardCommandHandler implements ICommandHandler<CreateBoardCommand> {
     public constructor(
         @InjectRepository(Board) private readonly boardsRepository: Repository<Board>,
-        @Inject(AccessRightsService) private readonly accessRightsService: AccessRightsService
+        @InjectRepository(BoardCreator) private readonly creatorsRepository: Repository<BoardCreator>
     ) {}
 
     public async execute({ dto }: CreateBoardCommand) {
-        const board = await this.boardsRepository.save(dto);
+        const { creator, ...board } = dto;
 
-        await this.accessRightsService.create<ProjectRoles>({
-            resourceId: board.id,
-            userId: dto.creator.id,
-            role: "creator"
+        const creatorExists = await this.creatorsRepository.exists({
+            where: {
+                id: creator.id
+            }
         });
 
-        return board;
+        if (!creatorExists) {
+            await this.creatorsRepository.save(creator);
+        }
+
+        return await this.boardsRepository.save({
+            ...board,
+            creator: {
+                id: creator.id
+            }
+        });
     }
 }

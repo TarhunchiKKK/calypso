@@ -42,6 +42,6 @@ export class BoardsService implements OnModuleInit {
     }
 
     public update(boardId: Id, userId: string, dto: UpdateBoardDto) {
-        this.boardsClient.update({ id: boardId, userId, ...dto });
+        return this.boardsClient.update({ id: boardId, userId, ...dto });
     }
 }

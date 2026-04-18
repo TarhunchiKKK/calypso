@@ -1,7 +1,7 @@
-import { applyDecorators, UsePipes } from "@nestjs/common";
+import { Body } from "@nestjs/common";
 import type { ZodSchema } from "zod";
 import { ZodValidationPipe } from "./zod-validation.pipe";
 
 export function Validation(schema: ZodSchema) {
-    return applyDecorators(UsePipes(new ZodValidationPipe(schema)));
+    return Body(new ZodValidationPipe(schema));
 }

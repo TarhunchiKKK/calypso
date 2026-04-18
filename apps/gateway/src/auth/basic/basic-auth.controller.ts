@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
+import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
 import type { Request, Response } from "express";
@@ -18,8 +18,7 @@ export class BasicAuthController {
 
     @Post("sign-up")
     @HttpCode(HttpStatus.CREATED)
-    @Validation(SignUpDtoZodSchema)
-    public async signUp(@Body() dto: SignUpDto, @Res() response: Response) {
+    public async signUp(@Validation(SignUpDtoZodSchema) dto: SignUpDto, @Res() response: Response) {
         const result = await this.basicAuthService.signUp(dto);
 
         if (result.session) {
@@ -32,8 +31,7 @@ export class BasicAuthController {
 
     @Post("sign-in")
     @HttpCode(HttpStatus.OK)
-    @Validation(SignInDtoZodSchema)
-    public async signIn(@Body() dto: SignInDto, @Res() response: Response) {
+    public async signIn(@Validation(SignInDtoZodSchema) dto: SignInDto, @Res() response: Response) {
         const result = await this.basicAuthService.signIn(dto);
 
         if (result.session) {
