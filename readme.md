@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/logo.svg" width="270" alt="Logo" />
+    <img src="./docs/logo.svg" width="270" alt="Logo" />
 </p>
 
 <h1 align="center">Calypso Board Editor✨</h1>
