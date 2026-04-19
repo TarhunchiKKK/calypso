@@ -5,8 +5,7 @@
         "baseUrl": "src",
         "esModuleInterop": true,
         "incremental": false,
-        "module": "ESNext",
-        "moduleResolution": "bundler",
+        "module": "commonjs",
         "outDir": "dist",
         "types": ["node"],
         "strictNullChecks": true

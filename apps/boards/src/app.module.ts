@@ -6,6 +6,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
 import { BoardsModule } from "./boards/boards.module";
+import { Board } from "./boards/entities/board.entity";
 import { AccessRightsRecord } from "./lib/auth.constants";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
 import { NodesModule } from "./nodes/nodes.module";
@@ -17,7 +18,7 @@ import { NodesModule } from "./nodes/nodes.module";
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: typeormConfigFactory
+            useFactory: typeormConfigFactory([Board])
         }),
         MongooseModule.forRootAsync({
             imports: [ConfigModule],

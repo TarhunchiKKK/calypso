@@ -26,7 +26,6 @@ export class BoardsService {
 
     public async create(dto: CreateBoardDto) {
         const board = await this.commandBus.execute(new CreateBoardCommand(dto));
-
         return BoardsGrpcMapper.toGrpc(board);
     }
 

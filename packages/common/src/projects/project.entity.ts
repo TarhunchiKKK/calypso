@@ -1,13 +1,13 @@
 import z from "zod";
+import type { Profile } from "../auth";
 import { IdZodSchema } from "../shared";
-import { ProjectCreatorZodSchema } from "./project-creator.entity";
 
 export const ProjectZodSchema = z.object({
     id: IdZodSchema,
     title: z.string(),
     description: z.string().optional(),
     thumbnail: z.string(),
-    creator: ProjectCreatorZodSchema,
+    creatorId: IdZodSchema,
     createdAt: z.date(),
     updatedAt: z.date().optional()
 });
@@ -21,3 +21,9 @@ export const ProjectWithTypeZodSchema = ProjectZodSchema.extend({
 export type Project = z.infer<typeof ProjectZodSchema>;
 export type ProjectTypes = z.infer<typeof ProjectTypesZodSchema>;
 export type ProjectWithType = z.infer<typeof ProjectWithTypeZodSchema>;
+
+export type FullProject = Project & {
+    type: ProjectTypes;
+
+    creator: Profile;
+};

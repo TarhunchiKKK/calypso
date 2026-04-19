@@ -1,1 +1,1 @@
-export const RMQ_CLIENT_INJECTION_TOKEN = Symbol();
+export const RMQ_CLIENT_INJECTION_TOKEN = "rmq-client-injection-token";

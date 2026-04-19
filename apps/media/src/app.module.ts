@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeormConfigFactory } from "@repo/api";
+import { Media } from "./media/entities/media.entity";
+import { MediaGroup } from "./media/entities/media-group.entity";
 import { MediaModule } from "./media/media.module";
 
 @Module({
@@ -12,7 +14,7 @@ import { MediaModule } from "./media/media.module";
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: typeormConfigFactory
+            useFactory: typeormConfigFactory([Media, MediaGroup])
         }),
         MediaModule
     ]

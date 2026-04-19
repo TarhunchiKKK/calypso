@@ -1,7 +1,6 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from "@nestjs/common";
-import { Validation } from "@repo/api";
+import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import { ExtractGrpc, Validation } from "@repo/api";
 import {
-    type AnyNode,
     type CreateManyNodesDto,
     CreateManyNodesDtoZodSchema,
     type RemoveManyNodesDto,
@@ -10,37 +9,38 @@ import {
     UpdateManyNodesDtoZodSchema
 } from "@repo/boards-common";
 import type { Id } from "@repo/common";
-import type { Observable } from "rxjs";
-import { Authorization } from "src/auth/lib/supabase/security/authorization.decorator";
-import { Authorized } from "src/auth/lib/supabase/security/authorized.decorator";
-import type { TokenPayload } from "src/auth/lib/supabase/supabase.types";
+import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
+import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
+import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { NodesService } from "./nodes.service";
 
-@Controller("board-nodes")
+@Controller("boards/nodes")
+@ExtractGrpc()
 @Authorization()
 export class NodesController {
     public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
 
     @Post()
-    @Validation(CreateManyNodesDtoZodSchema)
-    public createMany(@Authorized() payload: TokenPayload, @Body() dto: CreateManyNodesDto): void {
-        this.nodesService.createMany(payload.userId, dto);
+    @HttpCode(HttpStatus.CREATED)
+    public createMany(@Authorized() payload: TokenPayload, @Validation(CreateManyNodesDtoZodSchema) dto: CreateManyNodesDto) {
+        return this.nodesService.createMany(payload.id, dto);
     }
 
     @Get(":boardId")
-    public findAll(@Param("boardId") boardId: Id, @Authorized() payload: TokenPayload): Observable<AnyNode[]> {
-        return this.nodesService.findAll(boardId, payload.userId);
+    @HttpCode(HttpStatus.OK)
+    public findAll(@Param("boardId") boardId: Id, @Authorized() payload: TokenPayload) {
+        return this.nodesService.findAll(boardId, payload.id);
     }
 
     @Patch()
-    @Validation(UpdateManyNodesDtoZodSchema)
-    public updateMany(@Authorized() payload: TokenPayload, @Body() dto: UpdateManyNodesDto): void {
-        this.nodesService.updateMany(payload.userId, dto);
+    @HttpCode(HttpStatus.OK)
+    public updateMany(@Authorized() payload: TokenPayload, @Validation(UpdateManyNodesDtoZodSchema) dto: UpdateManyNodesDto) {
+        return this.nodesService.updateMany(payload.id, dto);
     }
 
     @Delete()
-    @Validation(RemoveManyNodesDtoZodSchema)
-    public removeMany(@Authorized() payload: TokenPayload, @Body() dto: RemoveManyNodesDto): void {
-        this.nodesService.removeMany(payload.userId, dto);
+    @HttpCode(HttpStatus.NO_CONTENT)
+    public removeMany(@Authorized() payload: TokenPayload, @Validation(RemoveManyNodesDtoZodSchema) dto: RemoveManyNodesDto) {
+        return this.nodesService.removeMany(payload.id, dto);
     }
 }

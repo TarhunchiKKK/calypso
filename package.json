@@ -15,12 +15,13 @@
     },
     "scripts": {
         "dev": "turbo run dev",
-        "dev:gateway": "turbo run dev --filter=gateway",
+        "dev:current": "turbo run dev --filter=gateway --filter=boards",
         "dev:boards": "turbo run dev --filter=boards",
         "dev:web": "turbo run dev --filter=web",
         "build": "turbo run build",
         "build:gateway": "turbo run build --filter=gateway",
         "build:boards": "turbo run build --filter=boards",
+        "build:media": "turbo run build --filter=media",
         "build:web": "turbo run build --filter=web",
         "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
         "build:api": "turbo run build --filter=@repo/api",
@@ -35,8 +36,6 @@
         "type-check:boards-common": "turbo run type-check --filter=@repo/boards-common",
         "test:unit": "turbo run test:unit",
         "test:unit:web": "turbo run test:unit --filter=web",
-        "test:e2e": "turbo run test:e2e",
-        "test:e2e:web": "turbo run test:e2e --filter=web",
         "format:check": "bunx biome format",
         "format:fix": "bunx biome format --write",
         "lint:check": "bunx --bun biome lint",
@@ -44,11 +43,10 @@
         "knip": "knip",
         "env:load": "bun run scripts/load-env.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
-        "docker:infra": "docker compose -f docker/infra.yaml --env-file .env up -d",
-        "docker:gateway": "docker compose -f docker/infra.yaml -f docker/gateway.yaml --env-file .env up -d",
-        "docker:boards": "docker compose -f docker/infra.yaml -f docker/boards.yaml --env-file .env up -d",
-        "docker:web": "docker compose -f docker/web.yaml --env-file .env up",
-        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/web.yaml down"
+        "docker:full": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
+        "docker:current": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml --env-file .env up",
+        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
+        "seed:media": "turbo run seed --filter=media"
     },
     "dependencies": {
         "@biomejs/biome": "^2.4.7",
@@ -58,5 +56,8 @@
         "turbo": "^2.8.17"
     },
     "packageManager": "bun@1.3.4",
-    "workspaces": ["apps/*", "packages/*"]
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
 }

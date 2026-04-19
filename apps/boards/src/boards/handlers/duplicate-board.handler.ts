@@ -1,9 +1,8 @@
-import { Inject, NotFoundException } from "@nestjs/common";
+import { NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AccessRightsService } from "@repo/api";
-import type { Id, ProjectRoles } from "@repo/common";
+import type { Id } from "@repo/common";
 import type { Model } from "mongoose";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import type { Repository } from "typeorm";
@@ -20,14 +19,13 @@ export class DuplicateBoardCommand extends Command<Board> {
 export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBoardCommand> {
     public constructor(
         @InjectRepository(Board) private readonly boardRepository: Repository<Board>,
-        @InjectModel(NodeBase.name) private readonly nodesModel: Model<NodeBase>,
-        @Inject(AccessRightsService) private readonly accessRightsService: AccessRightsService
+        @InjectModel(NodeBase.name) private readonly nodesModel: Model<NodeBase>
     ) {}
 
     public async execute({ dto }: DuplicateBoardCommand) {
         const board = await this.createBoard(dto);
 
-        await Promise.all([this.createAccessRights(board), this.createNodes(dto.id, board.id)]);
+        await this.createNodes(dto.id, board.id);
 
         return board;
     }
@@ -43,18 +41,7 @@ export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBo
             throw new NotFoundException("Board not found");
         }
 
-        return await this.boardRepository.save({
-            title: board.title,
-            creator: dto.creator
-        });
-    }
-
-    private async createAccessRights(board: Board) {
-        return await this.accessRightsService.create<ProjectRoles>({
-            resourceId: board.id,
-            userId: board.creator.id,
-            role: "creator"
-        });
+        return await this.boardRepository.save(dto);
     }
 
     private async createNodes(oldBoardId: Id, newBoardId: Id) {

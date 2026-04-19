@@ -1,10 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { SignInDto, SignUpDto } from "@repo/common";
-import { GetProfileQuery } from "./handlers/get-profile.handler";
 import { RefreshSessionQuery } from "./handlers/refresh-session.handler";
 import { SignInCommand } from "./handlers/sign-in.handler";
-import { SignOutCommand } from "./handlers/sign-out.handler";
 import { SignUpCommand } from "./handlers/sign-up.handler";
 
 @Injectable()
@@ -20,14 +18,6 @@ export class BasicAuthService {
 
     public async signIn(dto: SignInDto) {
         return await this.commandBus.execute(new SignInCommand(dto));
-    }
-
-    public async signOut(accessToken: string) {
-        return await this.commandBus.execute(new SignOutCommand(accessToken));
-    }
-
-    public async getProfile(accessToken: string) {
-        return await this.queryBus.execute(new GetProfileQuery(accessToken));
     }
 
     public async refreshSession(refreshToken: string) {

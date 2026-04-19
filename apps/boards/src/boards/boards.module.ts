@@ -5,7 +5,6 @@ import { BoardsService } from "./boards.service";
 import { BoardsGrpcController } from "./controllers/boards.grpc.controller";
 import { BoardsRmqController } from "./controllers/boards.rmq.controller";
 import { Board } from "./entities/board.entity";
-import { BoardCreator } from "./entities/board-creator.entity";
 import { ChangeBoardUpdateDateCommandHandler } from "./handlers/change-board-update-date.handler";
 import { CreateBoardCommandHandler } from "./handlers/create-board.handler";
 import { DuplicateBoardCommandHandler } from "./handlers/duplicate-board.handler";
@@ -17,7 +16,7 @@ import { UpdateBoardCommandHandler } from "./handlers/update-board.handler";
 import { BoardsHelper } from "./lib/boards.helper";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Board, BoardCreator]), NodesMongooseModule],
+    imports: [TypeOrmModule.forFeature([Board]), NodesMongooseModule],
     controllers: [BoardsGrpcController, BoardsRmqController],
     providers: [
         BoardsService,

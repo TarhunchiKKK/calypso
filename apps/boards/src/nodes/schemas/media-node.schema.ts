@@ -1,13 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { MediaNode as MediaNodeType } from "@repo/boards-common";
-import type { Rect } from "@repo/common";
-import { NodeBase } from "./node-base.schema";
+import type { MediaNode as MediaNodeType, NodeBase } from "@repo/boards-common";
+import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class MediaNode extends NodeBase implements MediaNodeType {
-    @Prop({ type: String, required: true })
-    public declare type: "media";
-
+export class MediaNode implements OmitFields<MediaNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: true })
     public rect: Rect;
 

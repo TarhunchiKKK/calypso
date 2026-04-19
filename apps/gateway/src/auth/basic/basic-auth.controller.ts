@@ -1,20 +1,24 @@
-import { Body, Controller, Get, Inject, Post, Req, Res } from "@nestjs/common";
+import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
 import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
 import type { Request, Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
+import { Authorization } from "../lib/tokens/security/authorization.decorator";
+import { Authorized } from "../lib/tokens/security/authorized.decorator";
+import type { TokenPayload } from "../lib/tokens/types";
 import { BasicAuthService } from "./basic-auth.service";
 
-@Controller("basic-auth")
+@Controller("auth/basic")
 export class BasicAuthController {
     public constructor(
-        @Inject(BasicAuthService) private readonly basicAuthService: BasicAuthService,
+        @Inject(BasicAuthService)
+        private readonly basicAuthService: BasicAuthService,
         @Inject(CookieService) private readonly cookieService: CookieService
     ) {}
 
     @Post("sign-up")
-    @Validation(SignUpDtoZodSchema)
-    public async signUp(@Body() dto: SignUpDto, @Res() response: Response) {
+    @HttpCode(HttpStatus.CREATED)
+    public async signUp(@Validation(SignUpDtoZodSchema) dto: SignUpDto, @Res() response: Response) {
         const result = await this.basicAuthService.signUp(dto);
 
         if (result.session) {
@@ -22,12 +26,12 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result.user;
+        response.send(result.user);
     }
 
     @Post("sign-in")
-    @Validation(SignInDtoZodSchema)
-    public async signIn(@Body() dto: SignInDto, @Res() response: Response) {
+    @HttpCode(HttpStatus.OK)
+    public async signIn(@Validation(SignInDtoZodSchema) dto: SignInDto, @Res() response: Response) {
         const result = await this.basicAuthService.signIn(dto);
 
         if (result.session) {
@@ -35,26 +39,25 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result.user;
+        response.send(result.user);
     }
 
     @Post("sign-out")
-    public async signOut(@Req() request: Request, @Res() response: Response) {
-        const accessToken = this.cookieService.getToken(request, "access");
-
-        await this.basicAuthService.signOut(accessToken);
-
+    @HttpCode(HttpStatus.OK)
+    public signOut(@Res() response: Response) {
         this.cookieService.clear(response);
+        response.send();
     }
 
     @Get("profile")
-    public async getProfile(@Req() request: Request) {
-        const accessToken = this.cookieService.getToken(request, "access");
-
-        return await this.basicAuthService.getProfile(accessToken);
+    @HttpCode(HttpStatus.OK)
+    @Authorization()
+    public getProfile(@Authorized() payload: TokenPayload) {
+        return payload;
     }
 
-    @Get("refresh")
+    @Get("refresh-session")
+    @HttpCode(HttpStatus.OK)
     public async refreshSession(@Req() request: Request, @Res() response: Response) {
         const refreshToken = this.cookieService.getToken(request, "refresh");
 
@@ -65,6 +68,6 @@ export class BasicAuthController {
             this.cookieService.setToken(response, "refresh", result.session.refreshToken);
         }
 
-        return result.user;
+        response.send(result.user);
     }
 }

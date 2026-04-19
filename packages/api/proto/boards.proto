@@ -30,7 +30,7 @@ message BoardGrpc {
 
     string thumbnail = 4;
 
-    projects.ProjectCreatorGrpc creator = 5;
+    string creatorId = 5;
 
     string createdAt = 6;
 
@@ -50,7 +50,7 @@ message CreateBoardGrpcRequest {
 
     string thumbnail = 2;
 
-    projects.ProjectCreatorGrpc creator = 3; 
+    string creatorId = 3; 
 }
 
 message BoardsList {

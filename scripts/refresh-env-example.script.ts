@@ -2,26 +2,33 @@ import fs from "node:fs";
 import path from "node:path";
 
 const rootDir = process.cwd();
-const sourceEnvFile = path.join(rootDir, ".env");
-const destinationFile = path.join(rootDir, ".env.example");
+const source = ".env";
+const destination = ".env.example";
 
-if (!fs.existsSync(sourceEnvFile)) {
-    console.error(`Error: Source file not found at ${sourceEnvFile}`);
-    process.exit(1);
+const exclude: string[] = [];
+
+const content = fs.readFileSync(path.join(rootDir, source), "utf-8");
+let result = "";
+
+for (const line of content.split("\n")) {
+    if (!line.includes("=")) {
+        result += `${line}\n`;
+        continue;
+    }
+
+    const [key, value] = line.split("=");
+
+    if (!key || !value) {
+        throw new Error(`Invalid environment variable format: ${key}=${value}`);
+    }
+
+    if (exclude.includes(key)) {
+        result += `${key}\n`;
+    } else {
+        result += `${key}=${value}\n`;
+    }
 }
 
-// load environment variables to example environment variables file
-const envContent: string = fs.readFileSync(sourceEnvFile, "utf-8");
+fs.writeFileSync(path.join(rootDir, destination), result);
 
-const envKeys = envContent.split("\n").map(line => {
-    if (line.includes("=")) {
-        return `${line.split("=")[0]}=`;
-    } else {
-        return line;
-    }
-});
-
-const exampleEnvContent = envKeys.join("\n");
-fs.writeFileSync(destinationFile, exampleEnvContent);
-
-console.info(`✅ Example environment file successfully refreshed!`);
+console.info(`✅ '${destination}' successfully loaded!`);

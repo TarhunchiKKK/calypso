@@ -5,7 +5,9 @@
     "license": "MIT",
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "publishConfig": {
         "access": "public"
     },
@@ -23,7 +25,7 @@
         "dev": "pnpm build --watch",
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit",
-        "protoc": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/grpc/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.ts",
+        "protoc": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/grpc/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
         "fix": "bun run ./scripts/fix-protoc.script.ts"
     },
     "dependencies": {
@@ -33,8 +35,8 @@
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/boards-common": "*",
         "@repo/common": "*",
+        "@repo/boards-common": "*",
         "protobufjs": "^8.0.0",
         "rxjs": "^7.8.2",
         "typeorm": "^0.3.28",

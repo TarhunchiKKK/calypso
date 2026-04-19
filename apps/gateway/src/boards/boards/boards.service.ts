@@ -4,17 +4,14 @@ import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extrac
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { map } from "rxjs";
-import { SupabaseService } from "src/auth/lib/supabase/supabase.service";
+import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 
 @Injectable()
 export class BoardsService implements OnModuleInit {
     private boardsClient: BoardsServiceClient;
 
-    public constructor(
-        @Inject(BOARDS_GRPC_CLIENT_INJECTION_TOKEN) private readonly grpcClient: ClientGrpc,
-        @Inject(SupabaseService) private readonly supabaseService: SupabaseService
-    ) {}
+    public constructor(@Inject(BOARDS_GRPC_CLIENT_INJECTION_TOKEN) private readonly grpcClient: ClientGrpc) {}
 
     public get client() {
         return this.boardsClient;
@@ -24,15 +21,13 @@ export class BoardsService implements OnModuleInit {
         this.boardsClient = this.grpcClient.getService<BoardsServiceClient>(BOARDS_SERVICE_NAME);
     }
 
-    public async create(accessToken: string, dto: CreateBoardDto) {
-        const user = await this.supabaseService.findUser(accessToken);
-
+    public async create(payload: TokenPayload, dto: CreateBoardDto) {
         const response = this.boardsClient.create({
             ...dto,
-            creator: user
+            creatorId: payload.id
         });
 
-        return extractGrpcResponse(response);
+        return extractGrpcResponse(response).pipe(map(BoardsGrpcMapper.fromGrpc));
     }
 
     public findAll(userId: string) {
@@ -47,6 +42,6 @@ export class BoardsService implements OnModuleInit {
     }
 
     public update(boardId: Id, userId: string, dto: UpdateBoardDto) {
-        this.boardsClient.update({ id: boardId, userId, ...dto });
+        return this.boardsClient.update({ id: boardId, userId, ...dto });
     }
 }

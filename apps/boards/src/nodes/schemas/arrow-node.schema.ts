@@ -1,13 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { ArrowNode as ArrowNodeType } from "@repo/boards-common";
-import type { RelativePoint } from "@repo/common";
-import { NodeBase } from "./node-base.schema";
+import type { ArrowNode as ArrowNodeType, NodeBase } from "@repo/boards-common";
+import type { OmitFields, RelativePoint } from "@repo/common";
 
 @Schema()
-export class ArrowNode extends NodeBase implements ArrowNodeType {
-    @Prop({ type: String, required: true })
-    public declare type: "arrow";
-
+export class ArrowNode implements OmitFields<ArrowNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: false })
     public start: RelativePoint;
 

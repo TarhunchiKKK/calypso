@@ -1,13 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { TextNode as TextNodeType } from "@repo/boards-common";
-import type { Rect } from "@repo/common";
-import { NodeBase } from "./node-base.schema";
+import type { NodeBase, TextNode as TextNodeType } from "@repo/boards-common";
+import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class TextNode extends NodeBase implements TextNodeType {
-    @Prop({ type: String, required: true })
-    public declare type: "text";
-
+export class TextNode implements OmitFields<TextNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: true })
     public rect: Rect;
 

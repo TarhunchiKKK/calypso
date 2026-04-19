@@ -5,19 +5,19 @@
 // source: common.proto
 
 /* eslint-disable */
-import type { Empty } from "./google/protobuf/empty";
+import { Empty } from "./google/protobuf/empty";
 
 const protobufPackage = "common";
 
 export interface GrpcError {
-    message: string[];
-    error: string;
-    statusCode: number;
+  message: string[];
+  error: string;
+  statusCode: number;
 }
 
 export interface EmptyGrpcResponse {
-    data?: Empty | undefined;
-    error?: GrpcError | undefined;
+  data?: Empty | undefined;
+  error?: GrpcError | undefined;
 }
 
 export const COMMON_PACKAGE_NAME = "common";

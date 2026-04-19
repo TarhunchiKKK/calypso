@@ -17,7 +17,7 @@ export function extractGrpcResponse<T>(response: Observable<GrpcResponse<T>>): O
                 throw new ExceptionConstructor(res.error.message);
             }
 
-            return res.data as T;
+            return res?.data as T;
         })
     );
 }

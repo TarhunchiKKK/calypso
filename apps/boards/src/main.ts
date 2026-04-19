@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
@@ -22,9 +23,11 @@ async function bootstrap() {
     // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
     app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);
 
+    await app.init();
+
     await app.startAllMicroservices();
 
-    await app.init();
+    Logger.log("Boards service is running");
 }
 
 void bootstrap();

@@ -11,7 +11,7 @@
             "outputs": [".next/**", "!.next/cache/**", "dist/**"]
         },
         "test:unit": {},
-        "test:e2e": {},
-        "type-check": {}
+        "type-check": {},
+        "seed": {}
     }
 }
