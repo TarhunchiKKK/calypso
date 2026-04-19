@@ -1,22 +1,6 @@
-include:
-  - infra.yaml 
-
 services:
-    boards-service:
-        container_name: boards-service
-        depends_on:
-            - boards-slq-db
-            - boards-nosql-db
-            - rabbitmq
-        build:
-            context: ..
-            dockerfile: apps/boards/Dockerfile
-        env_file:
-            - ../apps/boards/.env
-        restart: unless-stopped
-        
     boards-slq-db:
-        container_name: boards-slq-db 
+        container_name: boards-slq-db
         image: postgres:15.2
         restart: always
         environment:
@@ -24,17 +8,17 @@ services:
             - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
             - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
         ports:
-            - ${BOARDS_SERVICE_SQL_DB_MANAGEMENT_PORT}:5432
+            - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
         volumes:
             - boards-postgres_data:/var/lib/postgresql/data
-  
+
     boards-nosql-db:
         container_name: boards-nosql-db
         image: mongo:latest
         environment:
             - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
         ports:
-            - ${BOARDS_SERVICE_NOSQL_DB_MANAGEMENT_PORT}:27017
-      
+            - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
+
 volumes:
-    boards-postgres_data: 
+    boards-postgres_data:

@@ -1,19 +1,4 @@
-include:
-  - infra.yaml
-
 services:
-    media-service:
-        container_name: media-service
-        depends_on:
-            - media-slq-db
-            - minio
-        build:
-            context: ..
-            dockerfile: apps/media/Dockerfile
-        env_file:
-            - ../apps/media/.env
-        restart: unless-stopped
-
     media-slq-db:
         container_name: media-slq-db
         image: postgres:15.2
@@ -23,9 +8,9 @@ services:
             - POSTGRES_USER=${MEDIA_SERVICE_SQL_DB_USER}
             - POSTGRES_PASSWORD=${MEDIA_SERVICE_SQL_DB_PASS}
         ports:
-            - ${MEDIA_SERVICE_SQL_DB_MANAGEMENT_PORT}:5432
+            - ${MEDIA_SERVICE_SQL_DB_PORT}:5432
         volumes:
             - media-postgres_data:/var/lib/postgresql/data
 
 volumes:
-    media-postgres_data:  
+    media-postgres_data:
