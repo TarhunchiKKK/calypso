@@ -15,7 +15,6 @@ import {
   DuplicateProjectGrpcRequest,
   FindAllProjectsGrpcRequest,
   FindOneProjectGrpcRequest,
-  ProjectCreatorGrpc,
   RemoveProjectGrpcRequest,
 } from "./projects";
 
@@ -26,7 +25,7 @@ export interface BoardGrpc {
   title: string;
   description?: string | undefined;
   thumbnail: string;
-  creator: ProjectCreatorGrpc | undefined;
+  creatorId: string;
   createdAt: string;
   updatedAt?: string | undefined;
 }
@@ -39,7 +38,7 @@ export interface BoardGrpcResponse {
 export interface CreateBoardGrpcRequest {
   title: string;
   thumbnail: string;
-  creator: ProjectCreatorGrpc | undefined;
+  creatorId: string;
 }
 
 export interface BoardsList {

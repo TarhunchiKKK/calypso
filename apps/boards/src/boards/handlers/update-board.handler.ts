@@ -24,12 +24,7 @@ export class UpdateBoardCommandHandler implements ICommandHandler<UpdateBoardCom
     ) {}
 
     public async execute({ id, dto }: UpdateBoardCommand) {
-        console.log("before start");
-        console.log(id);
-        console.log(dto);
         const board = await this.boardsHelper.findOneById(id);
-
-        console.log("during");
 
         Object.assign(board, {
             ...dto,

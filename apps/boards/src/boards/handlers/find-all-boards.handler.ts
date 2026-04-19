@@ -17,12 +17,7 @@ export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQue
     public async execute({ userId }: FindAllBoardsQuery) {
         return await this.boardsRepository.find({
             where: {
-                creator: {
-                    id: userId
-                }
-            },
-            relations: {
-                creator: true
+                creatorId: userId
             }
         });
     }

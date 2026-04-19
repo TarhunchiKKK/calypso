@@ -17,7 +17,7 @@ message DuplicateProjectGrpcRequest {
 
     string title = 2;
 
-    ProjectCreatorGrpc creator = 3; 
+    string creatorId = 3; 
 }
 
 message FindAllProjectsGrpcRequest {

@@ -24,7 +24,7 @@ export class BoardsService implements OnModuleInit {
     public async create(payload: TokenPayload, dto: CreateBoardDto) {
         const response = this.boardsClient.create({
             ...dto,
-            creator: payload
+            creatorId: payload.id
         });
 
         return extractGrpcResponse(response).pipe(map(BoardsGrpcMapper.fromGrpc));

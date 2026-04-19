@@ -1,9 +1,3 @@
-import type { Id } from "@repo/common";
+import type { Profile } from "@repo/common";
 
-export type TokenPayload = {
-    id: Id;
-
-    email: string;
-
-    username: string;
-};
+export type TokenPayload = Pick<Profile, "id" | "username" | "email" | "avatar">;

@@ -1,7 +1,3 @@
-export type UpdateBoardDto = {
-    title?: string;
+import type { Board } from "@repo/boards-common";
 
-    description?: string;
-
-    thumbnail?: string;
-};
+export type UpdateBoardDto = Partial<Pick<Board, "title" | "description" | "thumbnail">>;

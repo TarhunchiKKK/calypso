@@ -22,7 +22,8 @@ export class TokensService {
         const claims: TokenPayload = {
             id: payload.id,
             username: payload.username,
-            email: payload.email
+            email: payload.email,
+            avatar: payload.avatar
         };
 
         const accessToken = this.jwtService.sign(claims, { expiresIn: this.accessExpiresIn });

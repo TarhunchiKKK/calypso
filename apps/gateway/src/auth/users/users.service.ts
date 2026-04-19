@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Id, Profile } from "@repo/common";
-import type { Repository } from "typeorm";
+import { In, type Repository } from "typeorm";
 import type { CreateUserDto } from "./dto/create-user.dto";
 import { User } from "./entities/user.entity";
 
@@ -25,6 +25,20 @@ export class UsersService {
         return await this.usersRepository.findOne({
             where: {
                 email: email
+            }
+        });
+    }
+
+    public async findManyByIds(ids: Id[]) {
+        return await this.usersRepository.find({
+            where: {
+                id: In(ids)
+            },
+            select: {
+                id: true,
+                username: true,
+                email: true,
+                avatar: true
             }
         });
     }

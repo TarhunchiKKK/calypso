@@ -18,7 +18,7 @@ export interface ProjectCreatorGrpc {
 export interface DuplicateProjectGrpcRequest {
   id: string;
   title: string;
-  creator: ProjectCreatorGrpc | undefined;
+  creatorId: string;
 }
 
 export interface FindAllProjectsGrpcRequest {
