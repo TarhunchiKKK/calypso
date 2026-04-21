@@ -1,6 +1,6 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
 
-export const MockProjects: ProjectWithType[] = [
+export const MockProjects: ProjectWithCreator<ProjectWithType>[] = [
     {
         id: "1",
         type: "board",
@@ -9,7 +9,8 @@ export const MockProjects: ProjectWithType[] = [
         thumbnail: "",
         creator: {
             id: "Creator 1",
-            email: "Creator 1"
+            email: "Creator 1",
+            username: "Username-1"
         },
         createdAt: new Date(),
         updatedAt: new Date()
@@ -22,7 +23,8 @@ export const MockProjects: ProjectWithType[] = [
         thumbnail: "",
         creator: {
             id: "Creator 1",
-            email: "Creator 1"
+            email: "Creator 1",
+            username: "Username-1"
         },
         createdAt: new Date(),
         updatedAt: undefined
@@ -35,7 +37,8 @@ export const MockProjects: ProjectWithType[] = [
         thumbnail: "",
         creator: {
             id: "Creator 1",
-            email: "Creator 1"
+            email: "Creator 1",
+            username: "Username-1"
         },
         createdAt: new Date(),
         updatedAt: new Date()

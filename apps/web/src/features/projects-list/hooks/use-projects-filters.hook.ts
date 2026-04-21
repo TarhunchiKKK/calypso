@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
 import { useState } from "react";
 import { OwnerFilteringFunctions, SortingFunctions } from "../constants/filtering-maps.constants";
 import { type Filters, OwnerFilters, SortOrders } from "../types/filtering.types";
@@ -12,7 +12,7 @@ const defaultFilters: Filters = {
 // TODO: user id getting
 const userId = "Mock id";
 
-export function useProjectsFilters(projects: ProjectWithType[]) {
+export function useProjectsFilters(projects: ProjectWithCreator<ProjectWithType>[]) {
     const [filters, setFilters] = useState(defaultFilters);
 
     const filteredProjects = projects
