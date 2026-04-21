@@ -41,7 +41,7 @@ class Api implements ApiType {
         }
     }
 
-    public async get<T = any>(url: string, config?: AxiosRequestConfig) {
+    public async get<T>(url: string, config?: AxiosRequestConfig) {
         return await this.executeQuery(() => this.instance.get<T>(url, config));
     }
 

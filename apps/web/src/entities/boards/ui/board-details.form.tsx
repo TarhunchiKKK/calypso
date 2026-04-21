@@ -32,11 +32,12 @@ const commonFields = [
     },
     {
         label: "Created",
-        value: (board: Board) => formatDate(board.createdAt),
+        value: (board: ProjectWithCreator<Board>) =>
+            formatDate(board.createdAt),
     },
     {
         label: "Modified",
-        value: (board: Board) =>
+        value: (board: ProjectWithCreator<Board>) =>
             board.updatedAt ? formatDate(board.updatedAt) : "-",
     },
 ];

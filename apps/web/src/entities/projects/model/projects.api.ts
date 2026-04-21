@@ -33,7 +33,7 @@ function useFindAll() {
     return useQuery({
         queryKey: ProjectsQueryKeys.projects,
         queryFn: async () => {
-            return await ApiInstance.get<ProjectWithCreator<ProjectWithType>>("/projects/all");
+            return await ApiInstance.get<ProjectWithCreator<ProjectWithType>[]>("/projects/all");
         }
     });
 }

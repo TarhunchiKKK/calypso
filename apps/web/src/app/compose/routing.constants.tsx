@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, redirect } from "react-router-dom";
 import { ProtectedRoute } from "@/features/auth";
 import { Routes } from "@/shared/config";
 
+// FIX: bad config
 export const Router = createBrowserRouter([
     {
         path: Routes.home,
