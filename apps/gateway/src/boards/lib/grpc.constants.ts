@@ -1,1 +1,1 @@
-export const BOARDS_GRPC_CLIENT_INJECTION_TOKEN = "aaaaa";
+export const BOARDS_GRPC_CLIENT_INJECTION_TOKEN = Symbol();
