@@ -108,8 +108,8 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
 
     // // Assets
-    ASSETS_DIR: {
-        media: "ASSETS_DIR"
+    ASSETS_DIRECTORY: {
+        media: "ASSETS_DIRECTORY"
     },
 
     // // Postgres

@@ -15,7 +15,8 @@ export class MediaGroup implements MediaGroupType {
 
     @OneToMany(
         () => Media,
-        media => media.group
+        media => media.group,
+        { onDelete: "CASCADE" }
     )
     public media: Media[];
 }

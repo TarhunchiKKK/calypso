@@ -20,7 +20,7 @@ async function bootstrap() {
     }
 
     for (const repository of repositories) {
-        await repository.clear();
+        await repository.deleteAll();
     }
 
     for (const seeder of seeders) {

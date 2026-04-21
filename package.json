@@ -44,7 +44,7 @@
         "env:load": "bun run scripts/load-env.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
         "docker:full": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
-        "docker:current": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml --env-file .env up",
+        "docker:current": "docker compose -f docker/infra.yaml -f docker/media.yaml --env-file .env up",
         "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
         "seed:media": "turbo run seed --filter=media"
     },
