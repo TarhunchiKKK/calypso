@@ -37,6 +37,9 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     COOKIE_SECURE: {
         gateway: "COOKIE_SECURE"
     },
+    COOKIE_SAME_SITE: {
+        gateway: "COOKIE_SAME_SITE"
+    },
     ACCESS_COOKIE_EXPIRATION: {
         gateway: "ACCESS_COOKIE_EXPIRATION"
     },

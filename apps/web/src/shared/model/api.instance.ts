@@ -12,7 +12,8 @@ type ApiType = {
 
 class Api implements ApiType {
     private instance = axios.create({
-        baseURL: Env.api.url
+        baseURL: Env.api.url,
+        withCredentials: true
     });
 
     private isAuthError(error: any) {

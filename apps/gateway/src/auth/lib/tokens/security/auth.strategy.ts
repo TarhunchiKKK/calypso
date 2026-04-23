@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             jwtFromRequest: (req: Request) => {
                 const tokenKey: keyof CookieFields = "access_token";
 
-                return req?.cookies?.[tokenKey] || null;
+                return req.cookies?.[tokenKey] || null;
             },
             ignoreExpiration: false,
             secretOrKey: configService.getOrThrow("JWT_SECRET")

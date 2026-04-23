@@ -31,9 +31,9 @@ export class CookieService {
             tokenType === "access" ? this.configService.getOrThrow("ACCESS_COOKIE_EXPIRATION") : this.configService.getOrThrow("REFRESH_COOKIE_EXPIRATION");
 
         response.cookie(cookieField, token, {
-            httpOnly: !!this.configService.getOrThrow("COOKIE_HTTP_ONLY"),
-            secure: !!this.configService.getOrThrow("COOKIE_SECURE"),
-            sameSite: "strict",
+            httpOnly: this.configService.getOrThrow("COOKIE_HTTP_ONLY") === "true",
+            secure: this.configService.getOrThrow("COOKIE_SECURE") === "true",
+            sameSite: this.configService.getOrThrow("COOKIE_SECURE"),
             maxAge: ms(expiration as StringValue)
         });
     }

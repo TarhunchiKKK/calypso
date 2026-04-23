@@ -46,7 +46,7 @@ export class UsersService {
     public userToProfile(user: User): Profile {
         return {
             id: user.id,
-            username: user.id,
+            username: user.username,
             email: user.email,
             avatar: user.avatar
         };

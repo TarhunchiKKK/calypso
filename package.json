@@ -37,7 +37,7 @@
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
         "docker:full": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
         "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
-        "docker:current": "docker compose -f docker/infra.yaml -f docker/media.yaml --env-file .env up"
+        "docker:current": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml --env-file .env up"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",

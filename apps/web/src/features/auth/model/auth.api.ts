@@ -11,7 +11,7 @@ export function useSignUp() {
 
     return useMutation({
         mutationFn: async (dto: SignUpDto) => {
-            return await ApiInstance.post<Profile>("/auth/sign-up", dto);
+            return await ApiInstance.post<Profile>("/auth/basic/sign-up", dto);
         },
         onSuccess: data => {
             queryClient.setQueryData(queryKeys.profile, () => data);
@@ -24,7 +24,7 @@ function useSignIn() {
 
     return useMutation({
         mutationFn: async (dto: SignInDto) => {
-            return await ApiInstance.post<Profile>("/auth/sign-in", dto);
+            return await ApiInstance.post<Profile>("/auth/basic/sign-in", dto);
         },
         onSuccess: data => {
             queryClient.setQueryData(queryKeys.profile, () => data);
@@ -37,7 +37,7 @@ function useSignOut() {
 
     return useMutation({
         mutationFn: async () => {
-            return await ApiInstance.post("/auth/sign-out");
+            return await ApiInstance.post("/auth/basic/sign-out");
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKeys.profile });
@@ -49,7 +49,7 @@ function useProfile() {
     return useQuery({
         queryKey: queryKeys.profile,
         queryFn: async () => {
-            return await ApiInstance.get<Profile>("/auth/profile");
+            return await ApiInstance.get<Profile>("/auth/basic/profile");
         }
     });
 }
