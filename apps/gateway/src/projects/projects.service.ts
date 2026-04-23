@@ -4,11 +4,12 @@ import {
     DebugException,
     type DuplicateProjectDto,
     type FindOneProjectDto,
-    type FullProject,
     type Id,
     type Profile,
     type Project,
     type ProjectTypes,
+    type ProjectWithCreator,
+    type ProjectWithType,
     type RemoveProjectDto,
     type UpdateProjectDto
 } from "@repo/common";
@@ -44,7 +45,7 @@ export class ProjectsService {
         return extractGrpcResponse(response);
     }
 
-    public async findAll(userId: Id): Promise<FullProject[]> {
+    public async findAll(userId: Id): Promise<ProjectWithCreator<ProjectWithType>[]> {
         const boards = await firstValueFrom(this.boardsService.findAll(userId));
 
         const creators = await this.getProjectsCreatorsMap(boards);

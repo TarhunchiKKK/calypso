@@ -5,9 +5,7 @@
     "license": "MIT",
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": [
-        "./dist/**"
-    ],
+    "files": ["./dist/**"],
     "publishConfig": {
         "access": "public"
     },

@@ -15,7 +15,7 @@ export const Router = createBrowserRouter([
                     <ProtectedRoute>
                         <Outlet />
                     </ProtectedRoute>
-                ),
+                )
             },
             {
                 children: [
@@ -26,22 +26,22 @@ export const Router = createBrowserRouter([
                             </ProtectedRoute>
                         ),
                         path: Routes.apps.board.pattern,
-                        lazy: () => import("@/pages/apps/board-editor.page"),
-                    },
-                ],
+                        lazy: () => import("@/pages/apps/board-editor.page")
+                    }
+                ]
             },
             {
                 children: [
                     {
                         path: Routes.auth.signUp,
-                        lazy: () => import("@/pages/auth/sign-up.page"),
+                        lazy: () => import("@/pages/auth/sign-up.page")
                     },
                     {
                         path: Routes.auth.signIn,
-                        lazy: () => import("@/pages/auth/sign-in.page"),
-                    },
-                ],
-            },
-        ],
-    },
+                        lazy: () => import("@/pages/auth/sign-in.page")
+                    }
+                ]
+            }
+        ]
+    }
 ]);

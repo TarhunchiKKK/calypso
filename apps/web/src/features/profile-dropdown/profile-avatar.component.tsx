@@ -6,7 +6,7 @@ function extractAvatarFallback(profile: Profile) {
     return profile.username
         .split("")
         .slice(0, 2)
-        .map((word) => word[0].toUpperCase())
+        .map(word => word[0].toUpperCase())
         .join();
 }
 
@@ -19,9 +19,7 @@ export function ProfileAvatar() {
                 <Avatar>
                     <AvatarImage src={profile.avatar} alt="Avatar" />
 
-                    <AvatarFallback>
-                        {profile ? extractAvatarFallback(profile) : ""}
-                    </AvatarFallback>
+                    <AvatarFallback>{profile ? extractAvatarFallback(profile) : ""}</AvatarFallback>
                 </Avatar>
             )}
 

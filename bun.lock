@@ -9,6 +9,7 @@
         "knip": "^5.86.0",
       },
       "devDependencies": {
+        "@repo/typescript-config": "*",
         "turbo": "^2.8.17",
       },
     },

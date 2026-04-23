@@ -7,6 +7,7 @@ export const MockProjects: ProjectWithCreator<ProjectWithType>[] = [
         title: "Board 1",
         description: "Description 1",
         thumbnail: "",
+        creatorId: "Creator 1",
         creator: {
             id: "Creator 1",
             email: "Creator 1",
@@ -21,6 +22,7 @@ export const MockProjects: ProjectWithCreator<ProjectWithType>[] = [
         title: "Board 2",
         description: "Description 2",
         thumbnail: "",
+        creatorId: "Creator 1",
         creator: {
             id: "Creator 1",
             email: "Creator 1",
@@ -35,6 +37,7 @@ export const MockProjects: ProjectWithCreator<ProjectWithType>[] = [
         title: "Note 1",
         description: "Description 1",
         thumbnail: "",
+        creatorId: "Creator 1",
         creator: {
             id: "Creator 1",
             email: "Creator 1",

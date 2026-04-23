@@ -1,22 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-    type Board,
-    type UpdateBoardDto,
-    UpdateBoardDtoZodSchema,
-} from "@repo/boards-common";
+import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/boards-common";
 import type { ProjectWithCreator } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
-import {
-    Button,
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    Input,
-    Textarea,
-} from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
 type Props = {
@@ -28,32 +16,30 @@ type Props = {
 const commonFields = [
     {
         label: "Owner",
-        value: (board: ProjectWithCreator<Board>) => board.creator.email,
+        value: (board: ProjectWithCreator<Board>) => board.creator.email
     },
     {
         label: "Created",
-        value: (board: ProjectWithCreator<Board>) =>
-            formatDate(board.createdAt),
+        value: (board: ProjectWithCreator<Board>) => formatDate(board.createdAt)
     },
     {
         label: "Modified",
-        value: (board: ProjectWithCreator<Board>) =>
-            board.updatedAt ? formatDate(board.updatedAt) : "-",
-    },
+        value: (board: ProjectWithCreator<Board>) => (board.updatedAt ? formatDate(board.updatedAt) : "-")
+    }
 ];
 
 export function BoardDetailsForm({ board, afterSubmit }: Props) {
     const form = useForm<UpdateBoardDto>({
         defaultValues: board,
-        resolver: zodResolver(UpdateBoardDtoZodSchema),
+        resolver: zodResolver(UpdateBoardDtoZodSchema)
     });
 
     const update = BoardsApi.useUpdate();
 
-    const onSubmit = form.handleSubmit(async (data) => {
+    const onSubmit = form.handleSubmit(async data => {
         await update.mutateAsync({
             id: board.id,
-            ...data,
+            ...data
         });
 
         if (update.isError) {
@@ -74,15 +60,9 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder="Enter board title"
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
@@ -94,26 +74,18 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Description</FieldLabel>
 
-                            <Textarea
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder="Enter board description"
-                            />
+                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
             </FieldGroup>
 
             <div className="grid grid-cols-2 mt-8">
-                {commonFields.map((field) => (
+                {commonFields.map(field => (
                     <>
-                        <div className="text-gray-600 dark:text-gray-400">
-                            {field.label}
-                        </div>
+                        <div className="text-gray-600 dark:text-gray-400">{field.label}</div>
                         <div>{field.value(board)}</div>
                     </>
                 ))}
