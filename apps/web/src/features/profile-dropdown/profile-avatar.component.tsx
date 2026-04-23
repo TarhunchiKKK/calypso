@@ -2,12 +2,18 @@ import type { Profile } from "@repo/common";
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from "@/shared/ui/kit";
 import { AuthApi } from "../auth";
 
+// TODO: TEST
 function extractAvatarFallback(profile: Profile) {
-    return profile.username
-        .split("")
-        .slice(0, 2)
+    const parts = profile.username
+        .split("");
+
+    if (parts.length === 1) {
+        return parts[0].slice(0,2).toUpperCase();
+    }
+
+    return parts
         .map(word => word[0].toUpperCase())
-        .join();
+        .join("");
 }
 
 export function ProfileAvatar() {
