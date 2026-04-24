@@ -1,4 +1,4 @@
-import { CreateBucketCommand, HeadBucketCommand, S3Client } from "@aws-sdk/client-s3";
+import { CreateBucketCommand, DeleteBucketCommand, HeadBucketCommand, PutBucketPolicyCommand, S3Client } from "@aws-sdk/client-s3";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
@@ -27,18 +27,55 @@ export class S3Service {
     }
 
     public async verifyBucket() {
+        await this.removeBucket();
+
+        await this.createBucket();
+    }
+
+    private async createBucket() {
+        console.log("before create");
+        await this.client.send(new CreateBucketCommand({ Bucket: this.bucket }));
+
+        console.log("After create");
+        const policy = {
+            Version: "2012-10-17",
+            Statement: [
+                {
+                    Effect: "Allow",
+                    Principal: "*",
+                    Action: ["s3:GetObject"],
+                    Resource: [`arn:aws:s3:::${this.bucket}/*`]
+                }
+            ]
+        };
+
+        await this.client.send(
+            new PutBucketPolicyCommand({
+                Bucket: this.bucket,
+                Policy: JSON.stringify(policy)
+            })
+        );
+
+        console.log("After put");
+    }
+
+    private async removeBucket() {
         try {
             const command = new HeadBucketCommand({ Bucket: this.bucket });
 
             await this.client.send(command);
         } catch (_) {
             Logger.warn("Bucket not exists");
+        }
 
-            const command = new CreateBucketCommand({ Bucket: this.bucket });
+        try {
+            console.log("Before remove");
 
-            await this.client.send(command);
+            await this.client.send(new DeleteBucketCommand({ Bucket: this.bucket }));
 
-            Logger.log("Bucket created");
+            Logger.log("Bucket removed");
+        } catch (_) {
+            Logger.warn("Error via bucket deleting");
         }
     }
 }

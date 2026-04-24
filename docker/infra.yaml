@@ -13,7 +13,7 @@ services:
             - ../data/minio:/data
         ports:
             - ${S3_PORT}:9000
-            # - ${S3_UI_PORT}:9001
+            - ${S3_UI_PORT}:9001
         environment:
             MINIO_ACCESS_KEY: ${S3_ACCESS_KEY}
             MINIO_SECRET_KEY: ${S3_SECRET_KEY}
