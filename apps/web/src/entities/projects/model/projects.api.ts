@@ -39,7 +39,7 @@ function useFindAll() {
             projects.map(project => ({
                 ...project,
                 createdAt: new Date(project.createdAt),
-                updatedAt: project.updatedAt ? new Date(project.updatedAt) : null
+                updatedAt: project.updatedAt ? new Date(project.updatedAt) : undefined
             }))
     });
 }
@@ -61,7 +61,7 @@ function useUpdate() {
     return useMutation({
         mutationFn: async (dto: UpdateProjectDto & { id: Id }) => {
             const { id, ...data } = dto;
-            console.log("request");
+
             return await ApiInstance.patch<void>(`/projects/${id}`, data);
         },
         onSuccess: () => {

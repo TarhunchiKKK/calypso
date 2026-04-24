@@ -32,8 +32,6 @@ export class BoardsService {
     public async duplicate(dto: DuplicateBoardDto) {
         const board = await this.commandBus.execute(new DuplicateBoardCommand(dto));
 
-        console.log(board);
-
         return BoardsGrpcMapper.toGrpc(board);
     }
 

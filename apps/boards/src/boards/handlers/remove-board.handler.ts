@@ -20,8 +20,6 @@ export class RemoveBoardCommandHandler implements ICommandHandler<RemoveBoardCom
     ) {}
 
     public async execute({ id }: RemoveBoardCommand) {
-        console.log(id);
-
         const board = await this.boardsHelper.findOneById(id);
 
         await this.boardsRepository.remove(board);
