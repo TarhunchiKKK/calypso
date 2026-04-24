@@ -41,7 +41,11 @@ export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBo
             throw new NotFoundException("Board not found");
         }
 
-        return await this.boardRepository.save(dto);
+        return await this.boardRepository.save({
+            ...board,
+            title: dto.title,
+            creatorId: dto.creatorId
+        });
     }
 
     private async createNodes(oldBoardId: Id, newBoardId: Id) {
