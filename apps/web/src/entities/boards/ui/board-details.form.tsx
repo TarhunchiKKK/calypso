@@ -4,6 +4,7 @@ import type { ProjectWithCreator } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
+import { stopPropagationHandler } from "@/shared/lib/events";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
@@ -60,7 +61,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
@@ -74,7 +75,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Description</FieldLabel>
 
-                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" />
+                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>

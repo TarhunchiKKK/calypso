@@ -21,7 +21,7 @@ export function CreateProjectButton() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon" title="Create project">
-                    <PlusIcon  size={8}/>
+                    <PlusIcon size={8} />
                 </Button>
             </DropdownMenuTrigger>
 
