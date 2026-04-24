@@ -1,6 +1,6 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient } from "@repo/api";
+import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@repo/api";
 import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { map } from "rxjs";
@@ -19,40 +19,49 @@ export class NodesService implements OnModuleInit {
     public createMany(userId: Id, dto: CreateManyNodesDto) {
         const mappedNodes = dto.nodes.map(BoardNodesGrpcMapper.toGrpc);
 
-        return this.nodesClient.createMany({
-            userId,
-            boardId: dto.boardId,
-            nodes: mappedNodes
-        });
+        return this.nodesClient
+            .createMany({
+                userId,
+                boardId: dto.boardId,
+                nodes: mappedNodes
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 
     public findAll(boardId: Id, userId: Id) {
-        return this.nodesClient.findAll({ boardId, userId }).pipe(
-            map(res => {
-                if (res.data?.nodes) {
-                    return res.data.nodes.map(BoardNodesGrpcMapper.fromGrpc);
-                }
+        return this.nodesClient
+            .findAll({ boardId, userId })
+            .pipe(extractGrpcResponsePipe())
+            .pipe(
+                map(res => {
+                    if (res.nodes) {
+                        return res.nodes.map(BoardNodesGrpcMapper.fromGrpc);
+                    }
 
-                return [];
-            })
-        );
+                    return [];
+                })
+            );
     }
 
     public updateMany(userId: Id, dto: UpdateManyNodesDto) {
         const mappedNodes = dto.nodes.map(BoardNodesGrpcMapper.toGrpc);
 
-        return this.nodesClient.updateMany({
-            userId,
-            boardId: dto.boardId,
-            nodes: mappedNodes
-        });
+        return this.nodesClient
+            .updateMany({
+                userId,
+                boardId: dto.boardId,
+                nodes: mappedNodes
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 
     public removeMany(userId: Id, dto: RemoveManyNodesDto) {
-        return this.nodesClient.removeMany({
-            userId,
-            boardId: dto.boardId,
-            ids: dto.ids
-        });
+        return this.nodesClient
+            .removeMany({
+                userId,
+                boardId: dto.boardId,
+                ids: dto.ids
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 }

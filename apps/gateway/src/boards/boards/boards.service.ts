@@ -1,6 +1,6 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponse } from "@repo/api";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/api";
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { map } from "rxjs";
@@ -22,26 +22,31 @@ export class BoardsService implements OnModuleInit {
     }
 
     public async create(payload: TokenPayload, dto: CreateBoardDto) {
-        const response = this.boardsClient.create({
-            ...dto,
-            creatorId: payload.id
-        });
-
-        return extractGrpcResponse(response).pipe(map(BoardsGrpcMapper.fromGrpc));
+        return this.boardsClient
+            .create({
+                ...dto,
+                creatorId: payload.id
+            })
+            .pipe(extractGrpcResponsePipe())
+            .pipe(map(BoardsGrpcMapper.fromGrpc));
     }
 
     public findAll(userId: Id) {
-        return this.boardsClient.findAll({ userId }).pipe(
-            map(res => {
-                if (res.data?.boards) {
-                    return res.data.boards.map(BoardsGrpcMapper.fromGrpc);
-                }
-                return [];
-            })
-        );
+        return this.boardsClient
+            .findAll({ userId })
+            .pipe(extractGrpcResponsePipe())
+            .pipe(
+                map(res => {
+                    if (res?.boards) {
+                        return res.boards.map(BoardsGrpcMapper.fromGrpc);
+                    }
+
+                    return [];
+                })
+            );
     }
 
     public update(boardId: Id, userId: string, dto: UpdateBoardDto) {
-        return this.boardsClient.update({ id: boardId, userId, ...dto });
+        return this.boardsClient.update({ id: boardId, userId, ...dto }).pipe(extractGrpcResponsePipe());
     }
 }

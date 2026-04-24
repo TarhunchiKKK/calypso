@@ -1,1 +1,1 @@
-export { extractGrpcResponse } from "./extract-grpc-response.lib";
+export { extractGrpcResponsePipe } from "./extract-grpc-response.lib";

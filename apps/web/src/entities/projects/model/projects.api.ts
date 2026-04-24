@@ -61,7 +61,7 @@ function useUpdate() {
     return useMutation({
         mutationFn: async (dto: UpdateProjectDto & { id: Id }) => {
             const { id, ...data } = dto;
-
+            console.log("request");
             return await ApiInstance.patch<void>(`/projects/${id}`, data);
         },
         onSuccess: () => {

@@ -12,17 +12,23 @@ type Props = {
 };
 
 export function RenameProjectForm({ project, afterSubmit }: Props) {
+    const update = ProjectsApi.useUpdate();
+
     const form = useForm<UpdateProjectDto>({
         defaultValues: {
-            title: project.title
+            type: "board",
+            title: project.title,
+
         },
         resolver: zodResolver(UpdateProjectDtoZodSchema)
     });
 
-    const update = ProjectsApi.useUpdate();
 
     const onSubmit = form.handleSubmit(async data => {
-        await update.mutateAsync({ id: project.id, type: project.type, title: data.title });
+        await update.mutateAsync({ 
+            ...data,
+            id: project.id,
+          });
 
         if (update.isError) {
             toast.error("Error renaming");

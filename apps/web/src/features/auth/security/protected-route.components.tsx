@@ -11,10 +11,8 @@ export function ProtectedRoute({ children }: PropsWithChildren) {
     }
 
     if (!profile) {
-        console.log("ProtectedRoute: false");
         return <Navigate to={Routes.auth.signIn} />;
     }
 
-    console.log("ProtectedRoute: true");
     return children;
 }

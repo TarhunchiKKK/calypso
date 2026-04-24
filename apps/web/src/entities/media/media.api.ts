@@ -46,8 +46,6 @@ function useGetPresignedUrl() {
 function useRandomMedia(dto: FindPresetsDto) {
     const { data: thumbnails } = useFindPresets(dto);
 
-    console.log(thumbnails);
-
     return useMemo(() => {
         if (!thumbnails) {
             return null;
