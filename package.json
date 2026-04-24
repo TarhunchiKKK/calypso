@@ -18,7 +18,7 @@
     "scripts": {
         "dev": "turbo run dev",
         "dev:web": "turbo run dev --filter=web",
-        "dev:current": "turbo run dev --filter=gateway --filter=boards",
+        "dev:current": "turbo run dev --filter=gateway --filter=boards --filter=media",
         "seed:media": "turbo run seed --filter=media",
         "build": "turbo run build",
         "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
@@ -35,9 +35,8 @@
         "knip": "knip",
         "env:load": "bun run scripts/load-env.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
-        "docker:full": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
-        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
-        "docker:current": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml --env-file .env up"
+        "docker:up": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
+        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",

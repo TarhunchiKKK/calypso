@@ -17,7 +17,7 @@ export class GetPresignedUrlQueryHandler implements IQueryHandler<GetPresignedUr
 
     public async execute({ dto }: GetPresignedUrlQuery) {
         const extension = dto.fileName.split(".").pop();
-        const uniqueKey = `${this.s3Service.bucket}/${crypto.randomUUID()}.${extension}`;
+        const uniqueKey = `${crypto.randomUUID()}.${extension}`;
 
         const command = new PutObjectCommand({
             Bucket: this.s3Service.bucket,

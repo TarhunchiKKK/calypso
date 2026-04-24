@@ -9,6 +9,9 @@ interface ImportMetaEnv {
 
     readonly VITE_API_STALE_TIME: string;
     readonly VITE_API_GC_TIME: string;
+
+    readonly VITE_S3_ENDPOINT: string;
+    readonly VITE_S3_BUCKET: string;
 }
 
 interface ImportMeta {

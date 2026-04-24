@@ -2,6 +2,7 @@ import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
 import { EllipsisVertical } from "lucide-react";
 import { ProjectActions } from "@/features/project-actions";
 import { formatDate } from "@/shared/lib/date";
+import { S3Service } from "@/shared/lib/s3";
 import { Button, Skeleton, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/kit";
 
 type Props = {
@@ -26,7 +27,7 @@ export function ProjectsTable({ projects }: Props) {
                 {projects.map(project => (
                     <TableRow key={project.id}>
                         <TableCell>
-                            <img src={project.thumbnail} alt={project.title} className="w-10 h-10" />
+                            <img src={S3Service.getFullUrl(project.thumbnail)} alt={project.title} className="w-10 h-10" />
                         </TableCell>
 
                         <TableCell className="font-medium">{project.title}</TableCell>
@@ -75,7 +76,6 @@ export function ProjectsTableSkeleton() {
                         </TableCell>
 
                         <TableCell>
-                            {" "}
                             <Skeleton className="w-full" />
                         </TableCell>
 

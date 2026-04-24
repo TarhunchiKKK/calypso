@@ -149,10 +149,12 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         media: "S3_REGION"
     },
     S3_ENDPOINT: {
-        media: "S3_ENDPOINT"
+        media: "S3_ENDPOINT",
+        web: "VITE_S3_ENDPOINT"
     },
     S3_BUCKET: {
-        media: "S3_BUCKET"
+        media: "S3_BUCKET",
+        web: "VITE_S3_BUCKET"
     },
     S3_PORT: {},
     S3_UI_PORT: {},

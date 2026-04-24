@@ -3,7 +3,7 @@ import { defineConfig } from "tsup";
 export default defineConfig([
     {
         entry: {
-            "entry": "src/entry.ts",
+            entry: "src/entry.ts",
             "boards/index": "src/boards/index.ts",
             "nodes/index": "src/nodes/index.ts"
         },
@@ -16,7 +16,7 @@ export default defineConfig([
     },
     {
         entry: {
-            "entry": "src/entry.ts",
+            entry: "src/entry.ts",
             "boards/index": "src/boards/index.ts",
             "nodes/index": "src/nodes/index.ts"
         },

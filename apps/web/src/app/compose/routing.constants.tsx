@@ -26,13 +26,12 @@ export const Router = createBrowserRouter([
                     {
                         path: Routes.apps.board.pattern,
                         lazy: () => import("@/pages/apps/board-editor.page")
-                    },
-
+                    }
                 ]
             },
             {
                 path: Routes.auth.signUp,
-                lazy: () => import("@/pages/auth/sign-up.page"),
+                lazy: () => import("@/pages/auth/sign-up.page")
             },
             {
                 path: Routes.auth.signIn,

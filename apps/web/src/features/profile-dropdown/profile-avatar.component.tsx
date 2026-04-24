@@ -4,16 +4,13 @@ import { AuthApi } from "../auth";
 
 // TODO: TEST
 function extractAvatarFallback(profile: Profile) {
-    const parts = profile.username
-        .split("");
+    const parts = profile.username.split("");
 
     if (parts.length === 1) {
-        return parts[0].slice(0,2).toUpperCase();
+        return parts[0].slice(0, 2).toUpperCase();
     }
 
-    return parts
-        .map(word => word[0].toUpperCase())
-        .join("");
+    return parts.map(word => word[0].toUpperCase()).join("");
 }
 
 export function ProfileAvatar() {

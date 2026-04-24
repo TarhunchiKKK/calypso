@@ -1,5 +1,5 @@
-import { S3Client } from "@aws-sdk/client-s3";
-import { Inject, Injectable } from "@nestjs/common";
+import { CreateBucketCommand, HeadBucketCommand, S3Client } from "@aws-sdk/client-s3";
+import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
 @Injectable()
@@ -24,5 +24,21 @@ export class S3Service {
         this.bucket = this.configService.getOrThrow("S3_BUCKET");
 
         this.urlExpiration = +this.configService.getOrThrow("S3_URL_EXPIRATION");
+    }
+
+    public async verifyBucket() {
+        try {
+            const command = new HeadBucketCommand({ Bucket: this.bucket });
+
+            await this.client.send(command);
+        } catch (_) {
+            Logger.warn("Bucket not exists");
+
+            const command = new CreateBucketCommand({ Bucket: this.bucket });
+
+            await this.client.send(command);
+
+            Logger.log("Bucket created");
+        }
     }
 }

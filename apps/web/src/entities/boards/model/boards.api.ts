@@ -9,7 +9,7 @@ function useCreate() {
 
     return useMutation({
         mutationFn: async (dto: CreateBoardDto) => {
-            return await ApiInstance.post<Board>("/boards", dto);
+            return await ApiInstance.post<Board>("/boards/management", dto);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
@@ -24,7 +24,7 @@ function useUpdate() {
         mutationFn: async (dto: UpdateBoardDto & { id: Id }) => {
             const { id, ...data } = dto;
 
-            return await ApiInstance.patch<void>(`/boards/${id}`, data);
+            return await ApiInstance.patch<void>(`/boards/management/${id}`, data);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });

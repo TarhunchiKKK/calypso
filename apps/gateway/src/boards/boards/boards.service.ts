@@ -30,7 +30,7 @@ export class BoardsService implements OnModuleInit {
         return extractGrpcResponse(response).pipe(map(BoardsGrpcMapper.fromGrpc));
     }
 
-    public findAll(userId: string) {
+    public findAll(userId: Id) {
         return this.boardsClient.findAll({ userId }).pipe(
             map(res => {
                 if (res.data?.boards) {

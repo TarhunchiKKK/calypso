@@ -86,7 +86,7 @@ export class BoardNodeMediaSeeder {
     }
 
     private async loadToS3(fileName: string, fileBuffer: NonSharedBuffer) {
-        const key = `${this.s3Service.bucket}/presets/${domain}/${fileName}`;
+        const key = `presets/${domain}/${fileName}`;
         const contentType = mime.lookup(fileName) || defaultContentType;
 
         const command = new PutObjectCommand({

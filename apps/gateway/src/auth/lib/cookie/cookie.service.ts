@@ -33,7 +33,7 @@ export class CookieService {
         response.cookie(cookieField, token, {
             httpOnly: this.configService.getOrThrow("COOKIE_HTTP_ONLY") === "true",
             secure: this.configService.getOrThrow("COOKIE_SECURE") === "true",
-            sameSite: this.configService.getOrThrow("COOKIE_SECURE"),
+            sameSite: this.configService.getOrThrow("COOKIE_SAME_SITE"),
             maxAge: ms(expiration as StringValue)
         });
     }

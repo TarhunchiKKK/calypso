@@ -1,1 +1,1 @@
-export { Validation } from "./validation.decorator";
+export { QueryValidation, Validation } from "./validation.decorator";

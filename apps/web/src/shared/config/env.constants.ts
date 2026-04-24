@@ -9,5 +9,9 @@ export const Env = {
         url: import.meta.env.VITE_API_URL,
         staleTime: +import.meta.env.VITE_API_STALE_TIME,
         gcTime: +import.meta.env.VITE_API_GC_TIME
+    },
+    s3: {
+        endpoint: import.meta.env.VITE_S3_ENDPOINT,
+        bucket: import.meta.env.VITE_S3_BUCKET
     }
 };

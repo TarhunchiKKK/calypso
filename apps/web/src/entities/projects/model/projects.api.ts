@@ -34,7 +34,13 @@ function useFindAll() {
         queryKey: ProjectsQueryKeys.projects,
         queryFn: async () => {
             return await ApiInstance.get<ProjectWithCreator<ProjectWithType>[]>("/projects/all");
-        }
+        },
+        select: projects =>
+            projects.map(project => ({
+                ...project,
+                createdAt: new Date(project.createdAt),
+                updatedAt: project.updatedAt ? new Date(project.updatedAt) : null
+            }))
     });
 }
 

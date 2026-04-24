@@ -4,7 +4,11 @@ import { Routes } from "@/shared/config";
 import { AuthApi } from "../model/auth.api";
 
 export function ProtectedRoute({ children }: PropsWithChildren) {
-    const { data: profile } = AuthApi.useProfile();
+    const { data: profile, isLoading } = AuthApi.useProfile();
+
+    if (isLoading) {
+        return null;
+    }
 
     if (!profile) {
         console.log("ProtectedRoute: false");
