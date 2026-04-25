@@ -3,20 +3,30 @@ import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { type BindingNodeHandlers, NodeBindingDecorator } from "@/board-editor/modules/arrows-binding";
 import { NodeDraggingDecorator } from "@/board-editor/modules/dragging";
-import { CheckLocked } from "@/board-editor/modules/locking";
+import { CheckLocked, NodeLockingDecorator } from "@/board-editor/modules/locking";
 import { NodeEditingDecorator } from "../../../modules/editing";
 import { NodeResizingDecorator, ResizableNodeDecorator, type ResizeHandler } from "../../../modules/resizing";
 import { NodeSelectionDecorator } from "../../../modules/selection";
 import { BindingStrategiesMap } from "../constants/binding-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
+import { LockingStrategiesMap } from "../constants/locking-strategies.map";
 import { ResizableStrategiesMap } from "../constants/resizable-strategies.map";
 import { ResizingStrategiesMap } from "../constants/resizing-strategies.map";
 import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 
 export class NodeDecoratorsFactory {
-    @CheckLocked()
     public static selection(node: Decoratable): Decoratable {
+        if (node.data.locked) {
+            const strategyCreator = LockingStrategiesMap[node.type];
+
+            if (!strategyCreator) {
+                return node;
+            }
+
+            return new NodeLockingDecorator(node, strategyCreator());
+        }
+
         const strategyCreator = SelectionStrategiesMap[node.type];
 
         if (!strategyCreator) {

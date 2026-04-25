@@ -57,6 +57,7 @@
     --color-selection: var(--selection);
     --color-resizing: var(--resizing);
     --color-binding: var(--binding);
+    --color-locked: var(--locked);
 }
 
 :root {
@@ -97,6 +98,7 @@
     --selection: oklch(62.3% 0.214 259.815);
     --resizing: oklch(62.3% 0.214 259.815);
     --binding: oklch(62.3% 0.214 259.815);
+    --locked: oklch(70.7% 0.022 261.325);
 }
 
 .dark {
@@ -136,6 +138,8 @@
     --selection: oklch(62.3% 0.214 259.815);
     --resizing: oklch(62.3% 0.214 259.815);
     --binding: oklch(62.3% 0.214 259.815);
+    --locked: oklch(70.7% 0.022 261.325);
+
 }
 
 @layer base {

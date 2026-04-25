@@ -1,11 +1,11 @@
 import type React from "react";
 import { type Decoratable, NodeDecorator } from "../../core";
-import type { NodeSelectionStrategy } from "./node-selection.strategy";
+import type { NodeLockingStrategy } from "./node-locking.strategy";
 
-export class NodeSelectionDecorator extends NodeDecorator {
+export class NodeLockingDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: NodeSelectionStrategy
+        protected readonly strategy: NodeLockingStrategy
     ) {
         super(entry);
     }
