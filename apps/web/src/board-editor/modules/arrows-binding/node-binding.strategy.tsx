@@ -4,18 +4,17 @@ import { BindingPoints } from "./binding-points.component";
 import type { BindingNodeHandlers } from "./types";
 
 export abstract class NodeBindingStrategy<T extends NodeBase = NodeBase> {
-    public constructor(protected readonly handlers: BindingNodeHandlers) {}
 
     public abstract getReferencePoints(node: T): Point[];
 
-    public ui(node: T) {
+    public ui(node: T,handlers: BindingNodeHandlers) {
         const referencePoints = this.getReferencePoints(node);
 
-        const handlers = {
-            onMouseEnter: () => this.handlers.onMouseEnter?.(node.id),
-            onMouseLeave: this.handlers.onMouseLeave,
+        const updatedHandlers = {
+            onMouseEnter: () => handlers.onMouseEnter?.(node.id),
+            onMouseLeave: handlers.onMouseLeave,
             onMouseUp: (e: React.MouseEvent) => {
-                this.handlers.onMouseUp?.({
+                handlers.onMouseUp?.({
                     relativeTo: node.id,
                     x: e.currentTarget.clientLeft,
                     y: e.currentTarget.clientTop
@@ -23,6 +22,6 @@ export abstract class NodeBindingStrategy<T extends NodeBase = NodeBase> {
             }
         };
 
-        return <BindingPoints referencePoints={referencePoints} handlers={handlers} />;
+        return <BindingPoints referencePoints={referencePoints} handlers={updatedHandlers} />;
     }
 }

@@ -5,10 +5,10 @@ import { StickerBindingStrategy } from "../../variants/sticker/strategies/bindin
 import { TextNodeBindingStrategy } from "../../variants/text/strategies/binding.strategy";
 import type { StrategiesMap } from "./types";
 
-export const BindingStrategiesMap: StrategiesMap<typeof NodeBindingStrategy> = {
-    sticker: handlers => new StickerBindingStrategy(handlers),
+export const BindingStrategiesMap: StrategiesMap<NodeBindingStrategy> = {
+    sticker: new StickerBindingStrategy(),
     arrow: null,
-    text: handlers => new TextNodeBindingStrategy(handlers),
-    shape: handlers => new ShapeBindingStrategy(handlers),
-    media: handlers => new MediaNodeBindingStrategy(handlers)
+    text: new TextNodeBindingStrategy(),
+    shape: new ShapeBindingStrategy(),
+    media: new MediaNodeBindingStrategy()
 };

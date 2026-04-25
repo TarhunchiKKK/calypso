@@ -24,7 +24,7 @@ export class NodeDecoratorsFactory {
                 return node;
             }
 
-            return new NodeLockingDecorator(node, strategyCreator());
+            return new NodeLockingDecorator(node, strategyCreator);
         }
 
         const strategyCreator = SelectionStrategiesMap[node.type];
@@ -33,7 +33,7 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeSelectionDecorator(node, strategyCreator());
+        return new NodeSelectionDecorator(node, strategyCreator);
     }
 
     @CheckLocked()
@@ -44,7 +44,7 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeDraggingDecorator(node, strategyCreator(), offset);
+        return new NodeDraggingDecorator(node, strategyCreator, offset);
     }
 
     @CheckLocked()
@@ -55,7 +55,7 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new ResizableNodeDecorator(node, strategyCreator(handler));
+        return new ResizableNodeDecorator(node, strategyCreator, handler);
     }
 
     @CheckLocked()
@@ -66,7 +66,7 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeResizingDecorator(node, strategyCreator(), size);
+        return new NodeResizingDecorator(node, strategyCreator, size);
     }
 
     @CheckLocked()
@@ -77,7 +77,7 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeEditingDecorator(node, strategyCreator(handler));
+        return new NodeEditingDecorator(node, strategyCreator, handler);
     }
 
     @CheckLocked()
@@ -88,6 +88,6 @@ export class NodeDecoratorsFactory {
             return node;
         }
 
-        return new NodeBindingDecorator(node, strategyCreator(handlers));
+        return new NodeBindingDecorator(node, strategyCreator, handlers);
     }
 }

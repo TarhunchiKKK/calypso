@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode, NodeBase } from "@repo/boards-common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { Geometry } from "@/shared/lib/geometry";
@@ -6,7 +6,7 @@ import { Textarea } from "@/shared/ui/kit";
 import type { ArrowNodeWrapper } from "../wrapper";
 
 export class ArrowEditingStrategy extends NodeEditingStrategy {
-    public override ui(node: Decoratable<ArrowNode>) {
+    public override ui(node: Decoratable<ArrowNode>, handler: (node: NodeBase) => void) {
         const wrapper = node.wrapper as ArrowNodeWrapper;
 
         const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -15,7 +15,7 @@ export class ArrowEditingStrategy extends NodeEditingStrategy {
                 text: e.target.value
             };
 
-            this.handler(newNode);
+            handler(newNode);
         };
 
         const position = Geometry.middlePoint(wrapper.absolutePosition.start, wrapper.absolutePosition.end);

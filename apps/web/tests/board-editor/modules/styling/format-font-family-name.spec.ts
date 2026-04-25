@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { formatFontFamilyName } from "@/board-editor/modules/styling/lib/utils";
+import { formatFontFamilyName } from "@/board-editor/modules/styling/elements/font/constants";
 
 describe("`formatFontFamilyName` function", () => {
     test("formats font family name", () => {

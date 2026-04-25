@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Square, Type } from "lucide-react";
 import { centered } from "#/common/decorators";
-import { BackgroundColorPlaceholder, BorderColorPlaceholder, TextColorPlaceholder } from "@/board-editor/modules/styling/constants/placeholders.constants";
+import { BorderColorPlaceholder } from "@/board-editor/modules/styling/elements/border/constants";
+import { BackgroundColorPlaceholder, TextColorPlaceholder } from "@/board-editor/modules/styling/elements/color/constants";
 import { ColorsDropdown } from "@/board-editor/modules/styling/lib/colors-dropdown.component";
 import { ColorsDropdownItemSizes } from "@/board-editor/modules/styling/lib/ui.constants";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
