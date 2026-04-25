@@ -17,7 +17,7 @@ type Props = {
 const commonFields = [
     {
         label: "Owner",
-        value: (board: ProjectWithCreator<Board>) => board.creator.username ??  board.creator.email 
+        value: (board: ProjectWithCreator<Board>) => board.creator.username ?? board.creator.email
     },
     {
         label: "Created",

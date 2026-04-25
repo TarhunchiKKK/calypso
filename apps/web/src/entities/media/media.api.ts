@@ -14,8 +14,7 @@ function useFindPresets(dto: FindPresetsDto) {
         queryKey: queryKeys.presets(dto),
         queryFn: async () => {
             return await ApiInstance.get<Media[]>("/media/presets", {
-                params: dto,
-                data: dto
+                params: dto
             });
         }
     });
@@ -34,7 +33,7 @@ function useGetPresignedUrl() {
     return useMutation({
         mutationFn: async (dto: GetPresignedUrlDto) => {
             return await ApiInstance.get<GetPresignedUrlResponse>("/media/presigned-url", {
-                data: dto
+                params: dto
             });
         },
         onError: () => {
