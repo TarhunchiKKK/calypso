@@ -1,7 +1,9 @@
 import type { OmitFields } from "@repo/common";
-import { useState } from "react";
+import { useEffect } from "react";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
-import type { ViewModel, ViewModelParams, ViewState } from "./types";
+import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
+import { LockedNodesGuard } from "./middleware/locked-node.guard";
+import type { ViewModel, ViewModelParams } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
@@ -18,12 +20,16 @@ import { useShapeSelectionViewModel } from "./variants/shape-selection/view-mode
 import { useStylingViewModel } from "./variants/styling/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
+    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel.nodes, () => switchToIdle());
 
     const newParams = {
         ...params,
         setViewState
     };
+
+    useEffect(() => {
+        viewStateMiddleware.guards.add(LockedNodesGuard);
+    }, [viewStateMiddleware.guards.add]);
 
     // useEffect(() => {
     //     params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
