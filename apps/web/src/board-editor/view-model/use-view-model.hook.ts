@@ -1,6 +1,5 @@
 import type { OmitFields } from "@repo/common";
-import { useEffect, useState } from "react";
-import { ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
+import { useState } from "react";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import type { ViewModel, ViewModelParams, ViewState } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
@@ -26,9 +25,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         setViewState
     };
 
-    useEffect(() => {
-        params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
-    }, [params.nodesModel.service.middleware.add]);
+    // useEffect(() => {
+    //     params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
+    // }, [params.nodesModel.service.middleware.add]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
@@ -85,7 +84,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error(`useViewModel: Unknown view state - ${viewState}`);
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

@@ -33,10 +33,8 @@ export class S3Service {
     }
 
     private async createBucket() {
-        console.log("before create");
         await this.client.send(new CreateBucketCommand({ Bucket: this.bucket }));
 
-        console.log("After create");
         const policy = {
             Version: "2012-10-17",
             Statement: [
@@ -62,8 +60,6 @@ export class S3Service {
                 Policy: JSON.stringify(policy)
             })
         );
-
-        console.log("After put");
     }
 
     private async removeBucket() {
@@ -76,8 +72,6 @@ export class S3Service {
         }
 
         try {
-            console.log("Before remove");
-
             await this.client.send(new DeleteBucketCommand({ Bucket: this.bucket }));
 
             Logger.log("Bucket removed");

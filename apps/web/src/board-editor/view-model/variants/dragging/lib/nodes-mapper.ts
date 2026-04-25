@@ -1,7 +1,7 @@
-import { NodesMapper } from "@/board-editor/core";
-import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
 import type { NodeBase } from "@repo/boards-common";
 import type { Id, Offset } from "@repo/common";
+import { NodesMapper } from "@/board-editor/core";
+import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
 
 export class DraggingNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
