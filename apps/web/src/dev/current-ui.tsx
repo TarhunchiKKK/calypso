@@ -1,5 +1,6 @@
-import { Component as BoardEditorPage } from "@/pages/apps/board-editor.page";
+import { StylesPanel } from "@/board-editor/modules/styling";
 
 export function CurrentUi() {
-    return <BoardEditorPage />;
+    // return <BoardEditorPage />;
+    return <StylesPanel type="sticker" update={() => {}} />;
 }

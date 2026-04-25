@@ -1,8 +1,6 @@
-"use client";
-
 import type React from "react";
 import { Popover, PopoverContent, PopoverTrigger, ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
-import { PopoverSideOffset } from "../constants/ui.constants";
+import { PopoverSideOffset } from "./ui.constants";
 
 type Props = {
     renderItem: (color: string) => React.ReactNode;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "#/common/decorators";
-import { StylesGroupWrapper } from "@/board-editor/modules/styling/ui/styles-group-wrapper.component";
+import { StylesGroupWrapper } from "@/board-editor/modules/styling/lib/styles-group-wrapper.component";
 
 const meta = {
     title: "Board Editor/Modules/Styling/UI/Styles Group Wrapper",

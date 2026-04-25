@@ -1,4 +1,3 @@
-"use client";
 import { type CSSProperties, type KeyboardEventHandler, useCallback, useState } from "react";
 import { createEditor, type Descendant } from "slate";
 import { withHistory } from "slate-history";

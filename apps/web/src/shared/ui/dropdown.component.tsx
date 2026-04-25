@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/kit";
 
@@ -22,10 +20,10 @@ type Props<T> = {
 export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer" asChild>
+            <DropdownMenuTrigger className="cursor-pointer outline-none" onClick={() => console.log("click")}>
                 {title ? (
                     <Tooltip>
-                        <TooltipTrigger>{placeholder}</TooltipTrigger>
+                        <TooltipTrigger asChild>{placeholder}</TooltipTrigger>
 
                         <TooltipContent>{title}</TooltipContent>
                     </Tooltip>

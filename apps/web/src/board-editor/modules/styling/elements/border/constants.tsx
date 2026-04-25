@@ -1,7 +1,16 @@
 import type { NodeStyles } from "@repo/boards-common";
-import { Square, SquareDashed, SquareDot } from "lucide-react";
-import { AvailableBorderRadiuses } from "@/entities/nodes";
+import { Square, SquareDashed, SquareDot, SquareRoundCorner } from "lucide-react";
+import { AvailableBorderRadiuses, DefaultNodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";
+import { ColorsDropdownItemSizes } from "../../lib/ui.constants";
+
+export const BorderStylePlaceholder = <SquareDashed className="dark:text-white" />;
+
+export const BorderColorPlaceholder = <Square style={{ color: DefaultNodeStyles.borderColor }} />;
+
+export const BoarderRadiusPlaceholder = <SquareRoundCorner className="dark:text-white" />;
+
+export const renderBorderRadiusItem = (color: string) => <Square style={{ color, ...ColorsDropdownItemSizes }} />;
 
 export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] = [
     {
