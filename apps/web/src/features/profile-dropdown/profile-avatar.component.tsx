@@ -1,36 +1,32 @@
-import type { User } from "@repo/common";
+import type { Profile } from "@repo/common";
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from "@/shared/ui/kit";
 import { AuthApi } from "../auth";
 
-function extractAvatarFallback(user: User) {
-    if (user.metadata.fullName) {
-        return user.metadata.fullName
-            .split(" ")
-            .slice(0, 2)
-            .map(name => name[0].toUpperCase());
+// TODO: TEST
+function extractAvatarFallback(profile: Profile) {
+    const parts = profile.username.split(" ");
+
+    if (parts.length === 1) {
+        return parts[0].slice(0, 2).toUpperCase();
     }
 
-    if (user.email) {
-        return user.email[0].toUpperCase();
-    }
-
-    return "";
+    return parts.map(word => word[0].toUpperCase()).join("");
 }
 
 export function ProfileAvatar() {
-    const { data } = AuthApi.useProfile();
+    const { data: profile } = AuthApi.useProfile();
 
     return (
         <>
-            {data && (
+            {profile && (
                 <Avatar>
-                    <AvatarImage src={data.user?.metadata.avatar} alt="Avatar" />
+                    <AvatarImage src={profile.avatar} alt="Avatar" />
 
-                    <AvatarFallback>{data.user ? extractAvatarFallback(data.user) : ""}</AvatarFallback>
+                    <AvatarFallback>{profile ? extractAvatarFallback(profile) : ""}</AvatarFallback>
                 </Avatar>
             )}
 
-            {!data && <Skeleton className="size-10 shrink-0 rounded-full" />}
+            {!profile && <Skeleton className="size-10 shrink-0 rounded-full" />}
         </>
     );
 }

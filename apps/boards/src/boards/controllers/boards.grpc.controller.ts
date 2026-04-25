@@ -42,6 +42,8 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
     }
 
     public async remove(dto: RemoveProjectGrpcRequest) {
-        await this.boardsService.remove(dto.userId);
+        await this.boardsService.remove(dto.id);
+
+        return {};
     }
 }

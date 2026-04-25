@@ -1,6 +1,6 @@
 import z from "zod";
-import type { Session } from "./session.types";
 import type { Profile } from "./profile.types";
+import type { Session } from "./session.types";
 
 export const SignUpDtoZodSchema = z.object({
     email: z.string({ message: "Email should be string" }).email({ message: "Incorrect email format" }),

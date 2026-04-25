@@ -7,7 +7,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import type { MediaDomains } from "@repo/common";
 import * as mime from "mime-types";
 import type { Repository } from "typeorm";
-import type { Media } from "../entities/media.entity";
+import { Media } from "../entities/media.entity";
 import { MediaGroup } from "../entities/media-group.entity";
 import { S3Service } from "../services/s3.service";
 
@@ -21,6 +21,7 @@ export class BoardNodeMediaSeeder {
     public constructor(
         @Inject(ConfigService) private readonly configService: ConfigService,
         @Inject(S3Service) private readonly s3Service: S3Service,
+        @InjectRepository(Media) private readonly mediaRepository: Repository<Media>,
         @InjectRepository(MediaGroup) private readonly mediaGroupsRepository: Repository<MediaGroup>
     ) {
         const assetsDir = this.configService.getOrThrow("ASSETS_DIRECTORY");
@@ -81,15 +82,11 @@ export class BoardNodeMediaSeeder {
             });
         }
 
-        await this.mediaGroupsRepository.save({
-            title: dirName[0]?.toUpperCase() + dirName.slice(1),
-            thumbnail: mediaDtos[0]?.url,
-            media: mediaDtos
-        });
+        await this.saveMedia(dirName, mediaDtos);
     }
 
     private async loadToS3(fileName: string, fileBuffer: NonSharedBuffer) {
-        const key = `${this.s3Service.bucket}/presets/${domain}/${fileName}`;
+        const key = `presets/${domain}/${fileName}`;
         const contentType = mime.lookup(fileName) || defaultContentType;
 
         const command = new PutObjectCommand({
@@ -102,5 +99,21 @@ export class BoardNodeMediaSeeder {
         await this.s3Service.client.send(command);
 
         return key;
+    }
+
+    private async saveMedia(dirName: string, mediaDtos: Partial<Media>[]) {
+        const group = await this.mediaGroupsRepository.save({
+            title: dirName[0]?.toUpperCase() + dirName.slice(1),
+            thumbnail: mediaDtos[0]?.url
+        });
+
+        const mediaToSave = mediaDtos.map(dto => ({
+            ...dto,
+            group: {
+                id: group.id
+            }
+        }));
+
+        await this.mediaRepository.save(mediaToSave);
     }
 }

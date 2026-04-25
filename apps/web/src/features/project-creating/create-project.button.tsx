@@ -19,9 +19,9 @@ const options: DropdownItem<ProjectTypes>[] = [
 export function CreateProjectButton() {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon" title="Create project">
-                    <PlusIcon />
+                    <PlusIcon size={8} />
                 </Button>
             </DropdownMenuTrigger>
 

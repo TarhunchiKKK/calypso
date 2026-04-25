@@ -3,7 +3,7 @@ import type { ChangeEvent } from "react";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
-import { Input } from "@/shared/ui/kit";
+import { Field, FieldLabel, Input } from "@/shared/ui/kit";
 import { ProjectsApi } from "../model/projects.api";
 import { ThumbnailPresetsGrid } from "./thumbnail-presets-grid.component";
 
@@ -62,12 +62,33 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-8">
             <ThumbnailPresetsGrid onSelect={handleSelect} />
 
-            <div className="flex flex-row justify-center items-center">
-                <Input type="file" className="max-w-60 cursor-pointer" onChange={handleUpload} />
-            </div>
+            <Field className="flex flex-col justify-center items-center">
+                <FieldLabel className="text-base">Or select from your device:</FieldLabel>
+
+                <Input
+                    type="file"
+                    placeholder="Choose"
+                    onChange={handleUpload}
+                    className="
+                        max-w-60 
+                        relative
+                        text-transparent 
+                        file:text-transparent
+                        before:content-['Import_file']
+                        before:absolute
+                        before:top-1/2
+                        before:left-1/2
+                        before:-translate-x-1/2
+                        before:-translate-y-1/2
+                        before:pointer-events-none
+                        before:text-primary
+                        before:font-bold
+                    "
+                />
+            </Field>
         </div>
     );
 }

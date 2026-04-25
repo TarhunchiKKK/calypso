@@ -12,6 +12,7 @@ type Props = {
 export function SignUpForm({ afterSubmit }: Props) {
     const form = useForm<SignUpDto>({
         defaultValues: {
+            username: "",
             email: "",
             password: ""
         },
@@ -35,13 +36,27 @@ export function SignUpForm({ afterSubmit }: Props) {
         <form onSubmit={onSubmit}>
             <FieldGroup>
                 <Controller
+                    name="username"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel>Username</FieldLabel>
+
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Nickname" />
+
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                        </Field>
+                    )}
+                />
+
+                <Controller
                     name="email"
                     control={form.control}
                     render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Email</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="yourname@gmail.com" />
+                            <Input {...field} aria-invalid={fieldState.invalid} type="email" placeholder="yourname@gmail.com" />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>

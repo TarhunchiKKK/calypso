@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards-common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { MediaApi } from "@/entities/media";
+import { stopPropagationHandler } from "@/shared/lib/events";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
@@ -10,6 +12,10 @@ type Props = {
 };
 
 export function CreateBoardForm({ afterSubmit }: Props) {
+    const media = MediaApi.useRandomMedia({ domain: "project-thumbnails" });
+
+    const create = BoardsApi.useCreate();
+
     const form = useForm<CreateBoardDto>({
         defaultValues: {
             title: "",
@@ -18,10 +24,15 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
-    const create = BoardsApi.useCreate();
-
     const onSubmit = form.handleSubmit(async data => {
-        await create.mutateAsync(data);
+        if (!media) {
+            throw new ErrorEvent("CreateBoardForm: Random media is not defined");
+        }
+
+        await create.mutateAsync({
+            ...data,
+            thumbnail: media.url
+        });
 
         if (create.isError) {
             toast.error("Error creating board");
@@ -41,7 +52,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>

@@ -37,6 +37,9 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     COOKIE_SECURE: {
         gateway: "COOKIE_SECURE"
     },
+    COOKIE_SAME_SITE: {
+        gateway: "COOKIE_SAME_SITE"
+    },
     ACCESS_COOKIE_EXPIRATION: {
         gateway: "ACCESS_COOKIE_EXPIRATION"
     },
@@ -108,8 +111,8 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
 
     // // Assets
-    ASSETS_DIR: {
-        media: "ASSETS_DIR"
+    ASSETS_DIRECTORY: {
+        media: "ASSETS_DIRECTORY"
     },
 
     // // Postgres
@@ -146,10 +149,12 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         media: "S3_REGION"
     },
     S3_ENDPOINT: {
-        media: "S3_ENDPOINT"
+        media: "S3_ENDPOINT",
+        web: "VITE_S3_ENDPOINT"
     },
     S3_BUCKET: {
-        media: "S3_BUCKET"
+        media: "S3_BUCKET",
+        web: "VITE_S3_BUCKET"
     },
     S3_PORT: {},
     S3_UI_PORT: {},

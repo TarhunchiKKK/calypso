@@ -36,7 +36,7 @@ export interface FindMediaPresetsGrpcRequest {
 }
 
 export interface FindMediaPresetsGrpcResponse {
-  media?: MediaListGrpc | undefined;
+  data?: MediaListGrpc | undefined;
   error?: GrpcError | undefined;
 }
 
@@ -45,7 +45,7 @@ export interface FindMediaPresetsGroupsGrpcRequest {
 }
 
 export interface FindMediaPresetsGroupsGrpcResponse {
-  groups?: MediaGroupsListGrpc | undefined;
+  data?: MediaGroupsListGrpc | undefined;
   error?: GrpcError | undefined;
 }
 
@@ -60,7 +60,7 @@ export interface PresignUrlPairGrpc {
 }
 
 export interface GetPresignedMediaUrlGrpcResponse {
-  groups?: PresignUrlPairGrpc | undefined;
+  data?: PresignUrlPairGrpc | undefined;
   error?: GrpcError | undefined;
 }
 

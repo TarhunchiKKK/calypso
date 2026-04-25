@@ -1,6 +1,7 @@
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { AuthResponse, SignUpDto } from "@repo/common";
+import * as argon2 from "argon2";
 import { TokensService } from "src/auth/lib/tokens/tokens.service";
 import { UsersService } from "src/auth/users/users.service";
 
@@ -39,7 +40,7 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     }
 
     private async createUser(dto: SignUpDto) {
-        const hashedPassword = await Bun.password.hash(dto.password);
+        const hashedPassword = await argon2.hash(dto.password);
 
         return await this.usersService.create({
             ...dto,

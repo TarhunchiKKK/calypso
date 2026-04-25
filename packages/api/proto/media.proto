@@ -42,7 +42,7 @@ message FindMediaPresetsGrpcRequest {
 
 message FindMediaPresetsGrpcResponse {
     oneof response {
-        MediaListGrpc media = 1;
+        MediaListGrpc data = 1;
 
         common.GrpcError error = 2;
     }
@@ -54,7 +54,7 @@ message FindMediaPresetsGroupsGrpcRequest {
 
 message FindMediaPresetsGroupsGrpcResponse {
     oneof response {
-        MediaGroupsListGrpc groups = 1;
+        MediaGroupsListGrpc data = 1;
 
         common.GrpcError error = 2;
     }
@@ -74,7 +74,7 @@ message PresignUrlPairGrpc {
 
 message GetPresignedMediaUrlGrpcResponse {
     oneof response {
-        PresignUrlPairGrpc groups = 1;
+        PresignUrlPairGrpc data = 1;
 
         common.GrpcError error = 2;
     }

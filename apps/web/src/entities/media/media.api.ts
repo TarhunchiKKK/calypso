@@ -1,5 +1,6 @@
 import type { FindPresetsDto, GetPresignedUrlDto, GetPresignedUrlResponse, Media, MediaDomains, MediaGroup } from "@repo/common";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { toast } from "sonner";
 import { ApiInstance } from "@/shared/model";
 
@@ -13,7 +14,7 @@ function useFindPresets(dto: FindPresetsDto) {
         queryKey: queryKeys.presets(dto),
         queryFn: async () => {
             return await ApiInstance.get<Media[]>("/media/presets", {
-                data: dto
+                params: dto
             });
         }
     });
@@ -32,7 +33,7 @@ function useGetPresignedUrl() {
     return useMutation({
         mutationFn: async (dto: GetPresignedUrlDto) => {
             return await ApiInstance.get<GetPresignedUrlResponse>("/media/presigned-url", {
-                data: dto
+                params: dto
             });
         },
         onError: () => {
@@ -41,8 +42,23 @@ function useGetPresignedUrl() {
     });
 }
 
+function useRandomMedia(dto: FindPresetsDto) {
+    const { data: thumbnails } = useFindPresets(dto);
+
+    return useMemo(() => {
+        if (!thumbnails) {
+            return null;
+        }
+
+        const randomIndex = Math.floor(Math.random() * thumbnails.length);
+
+        return thumbnails[randomIndex];
+    }, [thumbnails]);
+}
+
 export const MediaApi = {
     useFindPresets,
     useFindPresetsGroups,
-    useGetPresignedUrl
+    useGetPresignedUrl,
+    useRandomMedia
 };

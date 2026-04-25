@@ -10,11 +10,13 @@ export class MediaService {
     public constructor(@Inject(QueryBus) private readonly queryBus: QueryBus) {}
 
     public async findPresets(dto: FindPresetsDto) {
-        return await this.queryBus.execute(new FindPresetsQuery(dto));
+        const media = await this.queryBus.execute(new FindPresetsQuery(dto));
+        return { media };
     }
 
     public async findGroups(domain: MediaDomains) {
-        return await this.queryBus.execute(new FindGroupsQuery(domain));
+        const groups = await this.queryBus.execute(new FindGroupsQuery(domain));
+        return { groups };
     }
 
     public async getPresignedUrl(dto: GetPresignedUrlDto) {

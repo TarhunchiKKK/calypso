@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode, HttpStatus, Inject, Param } from "@nestjs/common";
-import { ExtractGrpc, Validation } from "@repo/api";
+import { ExtractGrpc, QueryValidation } from "@repo/api";
 import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@repo/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { MediaService } from "./media.service";
@@ -12,7 +12,7 @@ export class MediaController {
 
     @Get("/presets")
     @HttpCode(HttpStatus.OK)
-    public findPresets(@Validation(FindPresetsDtoZodSchema) dto: FindPresetsDto) {
+    public findPresets(@QueryValidation(FindPresetsDtoZodSchema) dto: FindPresetsDto) {
         return this.mediaService.findPresets(dto);
     }
 
@@ -24,7 +24,7 @@ export class MediaController {
 
     @Get("/presigned-url")
     @HttpCode(HttpStatus.OK)
-    public getPresignedUrl(@Validation(GetPresignedUrlDtoZodSchema) dto: GetPresignedUrlDto) {
+    public getPresignedUrl(@QueryValidation(GetPresignedUrlDtoZodSchema) dto: GetPresignedUrlDto) {
         return this.mediaService.getPresignedUrl(dto);
     }
 }

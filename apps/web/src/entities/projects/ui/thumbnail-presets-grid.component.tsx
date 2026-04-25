@@ -1,5 +1,6 @@
 import type { Media } from "@repo/common";
 import { MediaApi } from "@/entities/media";
+import { S3Service } from "@/shared/lib/s3";
 import { Skeleton } from "@/shared/ui/kit";
 
 type Props = {
@@ -48,7 +49,7 @@ export function ThumbnailPresetsGrid({ onSelect }: Props) {
                 <div key={index} className="w-full flex flex-row justify-between items-center">
                     {group.map((thumbnail, index) => (
                         <div key={index} className="p-2 rounded-md hover:bg-secondary cursor-pointer" onClick={onSelect.bind(null, thumbnail)}>
-                            <img src={thumbnail} alt="Icon" className="w-12 h-12" />
+                            <img src={S3Service.getFullUrl(thumbnail)} alt="Icon" className="w-12 h-12" />
                         </div>
                     ))}
                 </div>

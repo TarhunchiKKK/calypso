@@ -41,7 +41,7 @@ export function SignInForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Email</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="yourname@gmail.com" />
+                            <Input {...field} aria-invalid={fieldState.invalid} type="email" placeholder="yourname@gmail.com" />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
@@ -65,7 +65,7 @@ export function SignInForm({ afterSubmit }: Props) {
 
             <div className="flex flex-row justify-center items-center mt-6">
                 <Button type="submit" disabled={signIn.isPending}>
-                    Sign Up
+                    Sign In
                 </Button>
             </div>
         </form>

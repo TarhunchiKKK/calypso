@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
 import { EllipsisVertical, ImageIcon, InfoIcon, PencilIcon } from "lucide-react";
 import { preventDefaultHandler } from "@/shared/lib/events";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shared/ui/kit";
@@ -9,7 +9,7 @@ import { ProjectLinkDropdownGroup } from "./dropdown/project-link.dropdown-group
 import { DuplicateProjectDropdownItem, RemoveProjectDropdownItem } from "./dropdown/projects-crud.dropdown-items";
 
 export type Props = {
-    project: ProjectWithType;
+    project: ProjectWithCreator<ProjectWithType>;
 };
 
 export function ProjectActions({ project }: Props) {

@@ -1,7 +1,7 @@
-import type { Id, ProjectWithType } from "@repo/common";
+import type { Id, ProjectWithCreator, ProjectWithType } from "@repo/common";
 import { OwnerFilters, SortOrders } from "../types/filtering.types";
 
-export const OwnerFilteringFunctions: Record<OwnerFilters, (project: ProjectWithType, userId: Id) => boolean> = {
+export const OwnerFilteringFunctions: Record<OwnerFilters, (project: ProjectWithCreator<ProjectWithType>, userId: Id) => boolean> = {
     [OwnerFilters.ANYONE]: () => true,
     [OwnerFilters.ME]: (project, userId) => project.creator.id === userId,
     [OwnerFilters.NOT_ME]: (project, userId) => project.creator.id !== userId

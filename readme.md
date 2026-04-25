@@ -2,13 +2,35 @@
     <img src="./docs/logo.svg" width="270" alt="Logo" />
 </p>
 
-<h1 align="center">Calypso Board Editor✨</h1>
+<h1 align="center"><span style="color: oklch(74.6% 0.16 232.661);">Calypso</span> Board Editor✨</h1>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
-## Stack🚀
 
-### Common⚓
+## Table of contents
+
+- [About](#about)
+- [Stack](#-stack)
+  - [Common](#-common)
+  - [Backend](#-backend)
+  - [Frontend](#-frontend)
+- [Features](#-features)
+  - [Node Types](#node-types)
+  - [Editor Features](#editor-features)
+  - [Complications](#complications)
+  - [Hot Keys](#hot-keys)
+- [Run app Locally](#-run-app-locally)
+
+
+## About 
+
+This project is a high-performance real-time collaborative whiteboard application, inspired by Miro. It allows multiple users to visualize ideas, map out workflows, and collaborate on a shared infinite canvas in real-time.
+
+Built as a full-stack solution, it focuses on seamless synchronization, low-latency interactions, and a robust scalable architecture.
+
+## 🚀 Stack
+
+### ⚓ Common
 
 <table border="1">
     <thead>
@@ -71,7 +93,7 @@
     </tbody>
 </table>
 
-### Backend⚡
+### ⚡ Backend
 
 <table border="1">
     <thead>
@@ -110,12 +132,6 @@
             </td>
         </tr>
         <tr>
-            <td>Authorization</td>
-            <td>
-                <a href="https://supabase.com/">Supabase</a>
-            </td>
-        </tr>
-        <tr>
             <td rowspan="2">Architecture</td>
             <td>Microservices</td>
         </tr>
@@ -142,9 +158,9 @@
     </tbody>
 </table>
 
-### Frontend🍓
+### 🍓 Frontend
 
-<table border="`">
+<table border="1">
     <thead>
         <tr>
             <th>Scope</th>
@@ -176,6 +192,18 @@
             </td>
         </tr>
         <tr>
+            <td>Queries</td>
+            <td>
+                <a href="https://tanstack.com/query/latest">TanStack Query</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Forms</td>
+            <td>
+                <a href="https://react-hook-form.com/">React Hook Form</a>
+            </td>
+        </tr>
+        <tr>
             <td>Storage</td>
             <td>
                 <a href="https://www.min.io/">Minio</a>
@@ -196,8 +224,141 @@
     </tbody>
 </table>
 
+## 🎨 Features
 
-## Run app Locally💡
+### Node Types
+
+- Stickers
+- Arrows
+- Text
+- Shapes (circles, diamonds, etc.)
+- Media (images and videos)
+- Formattable documents
+- Drawings
+
+### Editor Features
+
+- Nodes selection
+- Selection window
+- Node text editing
+- Nodes dragging
+- Nodes resizing
+- Nodes blocking
+- Exchange buffer (Copy/Paste/Cut)
+- Cancellation (Undo/Redo)
+- Multiple nodes styling (Text formatting, text/background color, etc.)
+- Window shifting & zooming
+
+### Complications 
+
+- No state manager
+- No Drag-N-Drop libraries
+
+### Hot Keys
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Scope</th>
+            <th>Key</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2"></td>
+            <td rowspan="2">Switch to idle mode</td>
+            <td><code>I</code></td>
+        </tr>
+        <tr>
+            <td><code>Escape</code></td>
+        </tr>
+        <tr>
+            <td rowspan="6">Switch to node creation</td> 
+            <td>To sticker creation</td>
+            <td><code>S</code></td>
+        </tr>
+        <tr>
+            <td>To arrow creation</td>
+            <td><code>A</code></td>
+        </tr>
+        <tr>
+            <td>To text creation</td>
+            <td><code>T</code></td>
+        </tr>
+        <tr>
+            <td>To rectangle shape selection</td>
+            <td><code>R</code></td>
+        </tr>
+        <tr>
+            <td>To circle shape creation</td>
+            <td><code>O</code></td>
+        </tr>
+        <tr>
+            <td>To hexagon shape creation</td>
+            <td><code>H</code></td>
+        </tr>
+        <tr>
+            <td rowspan="3">Selection</td>
+            <td>Select all</td>
+            <td><code>Ctrl</code> + <code>A</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2">Remove</td>
+            <td><code>Backspace</code></td>
+        </tr>
+        <tr>
+            <td><code>Delete</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2">Locking</td>
+            <td>Lock</td>
+            <td><code>Ctrl</code> + <code>L</code></td>
+        </tr>
+        <tr>
+            <td>Unlock</td>
+            <td><code>Ctrl</code> + <code>Shift</code> + <code>L</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2">Styling</td>
+            <td>Open styling bar</td>
+            <td><code>Shift</code> + <code>S</code></td>
+        </tr>
+        <tr>
+            <td>Open nodes context menu</td>
+            <td><code>Shift</code> + <code>C</code></td>
+        </tr>
+        <tr>
+            <td>Api</td>
+            <td>Save</td>
+            <td><code>Ctrl</code> + <code>S</code></td>
+        </tr>
+        <tr>
+            <td rowspan="3">Exchange buffer</td>
+            <td>Copy</td>
+            <td><code>Ctrl</code> + <code>C</code></td>
+        </tr>
+        <tr>
+            <td>Paste</td>
+            <td><code>Ctrl</code> + <code>V</code></td>
+        </tr>
+        <tr>
+            <td>Cut</td>
+            <td><code>Ctrl</code> + <code>X</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2">Cancellation</td>
+            <td>Undo</td>
+            <td><code>Ctrl</code> + <code>Z</code></td>
+        </tr>
+        <tr>
+            <td>Redo</td>
+            <td><code>Ctrl</code> + <code>Y</code></td>
+        </tr>
+    </tbody>
+</table>
+
+## 💡 Run app Locally
 
 1. Checkout code:
 
@@ -221,72 +382,44 @@ npm i -g bun
 bun install
 ```
 
-4. Load environment variables:
+4. Build shared packages:
+
+```bash
+bun build:packages
+```
+
+5. Load environment variables to appropriate apps:
 
 ```bash
 bun env:load
 ```
 
-5. Run Docker services:
+6. Run Docker services:
 
 ```bash
-docker compose up
+bun docker:full
 ```
 
-6. Run apps:
+7. Wait for <a href="https://www.docker.com/">Docker</a> containers to start
+
+8. Seed app with data:
+
+Seed <a href="https://www.min.io/">Minio</a> container:
+
+```bash
+bun seed:media
+```
+
+9. Run apps:
 
 ```bash
 bun run dev
 ```
 
+10. Wait for all apps to start
+
+11. Open application: 
+
 Now you application is still running.
 
-7. Open application:
-
 In browser open the https://localhost:5173 to access the app.
-
-## Features🎭
-
-### Node Types
-
-- Stickers
-- Arrows
-- Text
-- Shapes (circles, rectangles, etc.)
-- Media (images and videos)
-- Formattable documents
-- Drawings
-
-### Editor Features
-
-- Nodes selection
-- Selection window
-- Node text editing
-- Nodes dragging
-- Nodes resizing
-- Nodes blocking
-- Copy/Paste
-- Undo/Redo
-- Multiple nodes styling (Font formatting, text/background color, etc.)
-- Window shifting & zooming
-
-### Hot Keys
-
-| Keys                   | Description                      |
-| ---------------------- | -------------------------------- |
-| `Ctrl` + `C`           | Copy selected nodes              |
-| `Ctrl` + `V`           | Paste selected nodes             |
-| `Ctrl` + `X`           | Cut selected nodes               |
-| `Ctrl` + `A`           | Select all nodes                 |
-| `Ctrl` + `L`           | Lock selected nodes              |
-| `Ctrl` + `Shift` + `L` | Unlock selected nodes            |
-| `Delete`               | Delete selected nodes            |
-| `Backspace`            | Delete selected nodes            |
-| `Escape`               | Switch to idle mode              |
-| `I`                    | Switch to idle mode              |
-| `S`                    | Switch to stickers creating mode |
-
-### Limitations
-
-- No state manager
-- No drag-n-drop library

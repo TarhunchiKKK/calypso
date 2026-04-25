@@ -1,16 +1,16 @@
 import type { Board } from "@repo/boards-common";
-import type { Project, ProjectTypes, ProjectWithType } from "@repo/common";
+import type { Project, ProjectTypes, ProjectWithCreator, ProjectWithType } from "@repo/common";
 import { useState } from "react";
 import { BoardDetailsForm } from "@/entities/boards";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
-const formsMap: Record<ProjectTypes, (project: Project, afterSubmit: () => void) => React.ReactNode> = {
-    board: (project, afterSubmit) => <BoardDetailsForm board={project as Board} afterSubmit={afterSubmit} />,
+const formsMap: Record<ProjectTypes, (project: ProjectWithCreator<Project>, afterSubmit: () => void) => React.ReactNode> = {
+    board: (project, afterSubmit) => <BoardDetailsForm board={project as ProjectWithCreator<Board>} afterSubmit={afterSubmit} />,
     note: () => null
 };
 
 type Props = {
-    project: ProjectWithType;
+    project: ProjectWithCreator<ProjectWithType>;
 
     trigger: React.ReactNode;
 };

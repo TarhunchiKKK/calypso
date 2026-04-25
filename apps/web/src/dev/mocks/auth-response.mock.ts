@@ -4,10 +4,7 @@ export const MockAuthResponse: AuthResponse = {
     user: {
         id: "user-id",
         email: "email@gmail.com",
-        metadata: {
-            fullName: "John Doe",
-            avatar: "https://github.com/shadcn.png"
-        }
+        username: "test username"
     },
     session: {
         accessToken: "access-token",

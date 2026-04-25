@@ -1,14 +1,15 @@
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import { extractGrpcResponse } from "@repo/api";
+import { extractGrpcResponsePipe } from "@repo/api";
 import {
     DebugException,
     type DuplicateProjectDto,
     type FindOneProjectDto,
-    type FullProject,
     type Id,
     type Profile,
     type Project,
     type ProjectTypes,
+    type ProjectWithCreator,
+    type ProjectWithType,
     type RemoveProjectDto,
     type UpdateProjectDto
 } from "@repo/common";
@@ -36,15 +37,15 @@ export class ProjectsService {
     public async duplicate(payload: TokenPayload, dto: DuplicateProjectDto) {
         const service = this.getService(dto.type);
 
-        const response = service.client.duplicate({
-            ...dto,
-            creatorId: payload.id
-        });
-
-        return extractGrpcResponse(response);
+        return service.client
+            .duplicate({
+                ...dto,
+                creatorId: payload.id
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 
-    public async findAll(userId: Id): Promise<FullProject[]> {
+    public async findAll(userId: Id): Promise<ProjectWithCreator<ProjectWithType>[]> {
         const boards = await firstValueFrom(this.boardsService.findAll(userId));
 
         const creators = await this.getProjectsCreatorsMap(boards);
@@ -77,26 +78,28 @@ export class ProjectsService {
     public findOne(userId: Id, dto: FindOneProjectDto) {
         const service = this.getService(dto.type);
 
-        const response = service.client.findOne({
-            id: dto.id,
-            userId: userId
-        });
-
-        return extractGrpcResponse(response);
+        return service.client
+            .findOne({
+                id: dto.id,
+                userId: userId
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 
     public update(projectId: Id, userId: Id, dto: UpdateProjectDto) {
         const service = this.getService(dto.type);
 
-        return service.update(projectId, userId, dto);
+        return service.update(projectId, userId, dto).pipe(extractGrpcResponsePipe());
     }
 
     public remove(userId: Id, dto: RemoveProjectDto) {
         const service = this.getService(dto.type);
 
-        return service.client.remove({
-            id: dto.id,
-            userId: userId
-        });
+        return service.client
+            .remove({
+                id: dto.id,
+                userId: userId
+            })
+            .pipe(extractGrpcResponsePipe());
     }
 }

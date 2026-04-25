@@ -5,9 +5,7 @@
     "license": "MIT",
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": [
-        "./dist/**"
-    ],
+    "files": ["./dist/**"],
     "publishConfig": {
         "access": "public"
     },
@@ -35,8 +33,9 @@
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/common": "*",
         "@repo/boards-common": "*",
+        "@repo/common": "*",
+        "google-proto-files": "^5.0.1",
         "protobufjs": "^8.0.0",
         "rxjs": "^7.8.2",
         "typeorm": "^0.3.28",
@@ -46,6 +45,7 @@
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "ts-node": "^10.9.2",
+        "ts-proto": "^2.11.6",
         "typescript": "5.5.4"
     }
 }

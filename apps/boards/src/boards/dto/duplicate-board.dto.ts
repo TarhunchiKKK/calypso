@@ -4,4 +4,6 @@ export type DuplicateBoardDto = {
     id: Id;
 
     creatorId: Id;
+
+    title: string;
 };

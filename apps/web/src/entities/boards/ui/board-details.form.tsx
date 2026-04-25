@@ -1,13 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/boards-common";
+import type { ProjectWithCreator } from "@repo/common";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate } from "@/shared/lib/date";
+import { stopPropagationHandler } from "@/shared/lib/events";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
 type Props = {
-    board: Board;
+    board: ProjectWithCreator<Board>;
 
     afterSubmit?: () => void;
 };
@@ -15,15 +17,15 @@ type Props = {
 const commonFields = [
     {
         label: "Owner",
-        value: (board: Board) => board.creator.email
+        value: (board: ProjectWithCreator<Board>) => board.creator.username ?? board.creator.email
     },
     {
         label: "Created",
-        value: (board: Board) => formatDate(board.createdAt)
+        value: (board: ProjectWithCreator<Board>) => formatDate(board.createdAt)
     },
     {
         label: "Modified",
-        value: (board: Board) => (board.updatedAt ? formatDate(board.updatedAt) : "-")
+        value: (board: ProjectWithCreator<Board>) => (board.updatedAt ? formatDate(board.updatedAt) : "-")
     }
 ];
 
@@ -59,7 +61,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
@@ -73,7 +75,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Description</FieldLabel>
 
-                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" />
+                            <Textarea {...field} aria-invalid={fieldState.invalid} placeholder="Enter board description" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
