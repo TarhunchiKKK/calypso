@@ -40,11 +40,18 @@ export class S3Service {
         const policy = {
             Version: "2012-10-17",
             Statement: [
+                // {
+                //     Effect: "Allow",
+                //     Principal: "*",
+                //     Action: ["s3:GetObject"],
+                //     Resource: [`arn:aws:s3:::${this.bucket}/*`]
+                // }
                 {
+                    Sid: "PublicRead",
                     Effect: "Allow",
                     Principal: "*",
-                    Action: ["s3:GetObject"],
-                    Resource: [`arn:aws:s3:::${this.bucket}/*`]
+                    Action: "s3:GetObject",
+                    Resource: `arn:aws:s3:::${this.bucket}/*`
                 }
             ]
         };
