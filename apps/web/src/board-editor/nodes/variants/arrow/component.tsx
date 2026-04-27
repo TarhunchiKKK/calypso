@@ -24,7 +24,7 @@ export function ArrowNodeComponent({ node, absolutePosition, handlers, children 
 
     return (
         <>
-            <svg className="absolute left-0 top-0 pointer-events-none overflow-visible">
+            <svg data-id={node.id} className="absolute left-0 top-0 overflow-visible cursor-pointer" {...handlers}>
                 {renderLine(withAbsolutePosition, handlers, dimensions)}
 
                 {renderArrowHead(withAbsolutePosition, handlers, dimensions)}

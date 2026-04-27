@@ -1,40 +1,40 @@
-import type { StickerNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards-common";
 
 export const MockNodes = [
-    {
-        id: "sticker-1",
-        locked: false,
-        type: "sticker",
-        rect: { x: 100, y: 100, width: 100, height: 100 },
-        text: "Hello 1",
-        styles: {
-            fontFamily: "sans-serif",
-            fontSize: 14,
-            backgroundColor: "orange",
-            borderColor: "black",
-            borderStyle: "dashed",
-            borderRadius: 4,
-            textAlign: "left",
-            textColor: "black"
-        }
-    } satisfies StickerNode,
-    {
-        id: "sticker-2",
-        locked: false,
-        type: "sticker",
-        rect: { x: 220, y: 220, width: 150, height: 150 },
-        text: "Hello 2",
-        styles: {
-            fontFamily: "sans-serif",
-            fontSize: 14,
-            backgroundColor: "orange",
-            borderColor: "black",
-            borderStyle: "dashed",
-            borderRadius: 4,
-            textAlign: "left",
-            textColor: "black"
-        }
-    } satisfies StickerNode
+    // {
+    //     id: "sticker-1",
+    //     locked: false,
+    //     type: "sticker",
+    //     rect: { x: 100, y: 100, width: 100, height: 100 },
+    //     text: "Hello 1",
+    //     styles: {
+    //         fontFamily: "sans-serif",
+    //         fontSize: 14,
+    //         backgroundColor: "orange",
+    //         borderColor: "black",
+    //         borderStyle: "dashed",
+    //         borderRadius: 4,
+    //         textAlign: "left",
+    //         textColor: "black"
+    //     }
+    // } satisfies StickerNode,
+    // {
+    //     id: "sticker-2",
+    //     locked: false,
+    //     type: "sticker",
+    //     rect: { x: 220, y: 220, width: 150, height: 150 },
+    //     text: "Hello 2",
+    //     styles: {
+    //         fontFamily: "sans-serif",
+    //         fontSize: 14,
+    //         backgroundColor: "orange",
+    //         borderColor: "black",
+    //         borderStyle: "dashed",
+    //         borderRadius: 4,
+    //         textAlign: "left",
+    //         textColor: "black"
+    //     }
+    // } satisfies StickerNode,
     // {
     //     id: "sticker-3",
     //     type: "sticker",
@@ -53,21 +53,21 @@ export const MockNodes = [
     //         textColor: "black"
     //     }
     // } satisfies StickerNode,
-    // {
-    //     id: "arrow-1",
-    //     type: "arrow",
-    //     locked: false,
-    //     styles: {
-    //         angleType: "corner",
-    //         lineColor: "red",
-    //         lineType: "solid",
-    //         lineWidth: 2
-    //     },
-    //     start: { x: 10, y: 10, relativeTo: "sticker-1" },
-    //     end: { x: 10, y: 10, relativeTo: "sticker-2" }
-    //     // start: { x: 10, y: 10 },
-    //     // end: { x: 130, y: 30 }
-    // } satisfies ArrowNode
+    {
+        id: "arrow-1",
+        type: "arrow",
+        locked: false,
+        styles: {
+            angleType: "corner",
+            lineColor: "red",
+            lineType: "solid",
+            lineWidth: 2
+        },
+        // start: { x: 10, y: 10, relativeTo: "sticker-1" },
+        // end: { x: 10, y: 10, relativeTo: "sticker-2" }
+        start: { x: 100, y: 100 },
+        end: { x: 230, y: 230 }
+    } satisfies ArrowNode
     // {
     //     id: "arrow-2",
     //     type: "arrow",

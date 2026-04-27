@@ -91,7 +91,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error(`useViewModel: Unknown view state - ${viewState}`);
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }
