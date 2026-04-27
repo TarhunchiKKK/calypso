@@ -3,6 +3,8 @@ import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-re
 import type { NodesServiceMiddleware } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 
+export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();
+
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     const arrows = nodes.filter(node => node.type === "arrow");
 
@@ -28,7 +30,7 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
                 const removingNode = nodes.find(node => node.id === removingNodeId);
 
                 if (!removingNode) {
-                    throw Error(`ArrowsRelativePositionsMiddleware: node with id ${removingNodeId} not found`);
+                    throw Error(`Node with id ${removingNodeId} not found`);
                 }
 
                 const removingNodeRect = NodeRectsFactory.rect(removingNode);

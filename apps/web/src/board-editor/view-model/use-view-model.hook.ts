@@ -1,5 +1,6 @@
 import type { OmitFields } from "@repo/common";
 import { useEffect } from "react";
+import { ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
 import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
@@ -31,9 +32,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
         viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
     }, [viewStateMiddleware.guards.set]);
 
-    // useEffect(() => {
-    //     params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
-    // }, [params.nodesModel.service.middleware.add]);
+    useEffect(() => {
+        params.nodesModel.service.middleware.set(ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware);
+    }, [params.nodesModel.service.middleware.set]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
@@ -90,7 +91,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error(`useViewModel: Unknown view state - ${viewState}`);
     }
 
-    // console.log(viewState.type);
+    console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

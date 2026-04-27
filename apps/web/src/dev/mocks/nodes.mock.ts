@@ -3,7 +3,7 @@ import type { StickerNode } from "@repo/boards-common";
 export const MockNodes = [
     {
         id: "sticker-1",
-        locked: true,
+        locked: false,
         type: "sticker",
         rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1",
@@ -63,10 +63,10 @@ export const MockNodes = [
     //         lineType: "solid",
     //         lineWidth: 2
     //     },
-    //     // start: { x: 10, y: 10, relativeTo: "sticker-1" },
-    //     // end: { x: 10, y: 10, relativeTo: "sticker-2" }
-    //     start: { x: 10, y: 10 },
-    //     end: { x: 130, y: 30 }
+    //     start: { x: 10, y: 10, relativeTo: "sticker-1" },
+    //     end: { x: 10, y: 10, relativeTo: "sticker-2" }
+    //     // start: { x: 10, y: 10 },
+    //     // end: { x: 130, y: 30 }
     // } satisfies ArrowNode
     // {
     //     id: "arrow-2",

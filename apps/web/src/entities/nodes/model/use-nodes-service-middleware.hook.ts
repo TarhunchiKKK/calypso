@@ -7,10 +7,10 @@ export type NodesServiceMiddlewarePayload = { operation: "create" | "update"; no
 export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
 
 export function useNodesServiceMiddleware() {
-    const middlewaresRef = useRef<Set<NodesServiceMiddleware>>(new Set());
+    const middlewaresRef = useRef<Map<unknown, NodesServiceMiddleware>>(new Map());
 
-    const add = useCallback((middleware: NodesServiceMiddleware) => {
-        middlewaresRef.current.add(middleware);
+    const set = useCallback((key: unknown, middleware: NodesServiceMiddleware) => {
+        middlewaresRef.current.set(key, middleware);
     }, []);
 
     const remove = useCallback((middleware: NodesServiceMiddleware) => {
@@ -18,13 +18,13 @@ export function useNodesServiceMiddleware() {
     }, []);
 
     const apply = useCallback((nodes: NodeBase[], payload: NodesServiceMiddlewarePayload) => {
-        const middlewares = Array.from(middlewaresRef.current);
+        const middlewares = Array.from(middlewaresRef.current.values());
 
         return middlewares.reduce((copy, middleware) => middleware(copy, payload), [...nodes]);
     }, []);
 
     return {
-        add,
+        set,
         remove,
         apply
     };

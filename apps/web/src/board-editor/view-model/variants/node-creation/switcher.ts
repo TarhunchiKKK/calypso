@@ -16,7 +16,7 @@ const HandlersRecord: Record<NodeTypes, OmitFields<NodeCreationViewState, "type"
             params.setViewState(
                 switchToArrowBinding({
                     nodeId: arrow.id,
-                    direction: "n"
+                    side: "end"
                 })
             );
         }
