@@ -6,6 +6,9 @@ type ArrowLineVariants = NodeStyles["lineType"];
 
 type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions) => React.ReactNode;
 
+const commonClassNames = "cursor-pointer pointer-events-auto";
+
+// REFACTOR: move common props to function
 export const ArrowLinesMap: Record<ArrowLineVariants, CreateFunction> = {
     solid: (node, handlers, dimensions) => {
         return (
@@ -16,6 +19,7 @@ export const ArrowLinesMap: Record<ArrowLineVariants, CreateFunction> = {
                 y2={dimensions.base.y}
                 stroke={node.styles.lineColor}
                 strokeWidth={node.styles.lineWidth}
+                className={commonClassNames}
                 {...handlers}
             />
         );
@@ -30,6 +34,7 @@ export const ArrowLinesMap: Record<ArrowLineVariants, CreateFunction> = {
                 stroke={node.styles.lineColor}
                 strokeWidth={node.styles.lineWidth}
                 strokeDasharray={`${node.styles.lineWidth * 4} ${node.styles.lineWidth * 2}`}
+                className={commonClassNames}
                 {...handlers}
             />
         );
@@ -44,6 +49,7 @@ export const ArrowLinesMap: Record<ArrowLineVariants, CreateFunction> = {
                 stroke={node.styles.lineColor}
                 strokeWidth={node.styles.lineWidth}
                 strokeDasharray={`${node.styles.lineWidth} ${node.styles.lineWidth * 2}`}
+                className={commonClassNames}
                 {...handlers}
             />
         );

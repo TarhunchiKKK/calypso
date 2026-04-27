@@ -44,6 +44,4 @@ export function useStylesPanel(nodesModel: NodesModel) {
             }
         }
     };
-
-    
 }

@@ -1,23 +1,23 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode, StickerNode } from "@repo/boards-common";
 
 export const MockNodes = [
-    // {
-    //     id: "sticker-1",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 100, y: 100, width: 100, height: 100 },
-    //     text: "Hello 1",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
+    {
+        id: "sticker-1",
+        locked: false,
+        type: "sticker",
+        rect: { x: 100, y: 100, width: 100, height: 100 },
+        text: "Hello 1",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
+    } satisfies StickerNode,
     // {
     //     id: "sticker-2",
     //     locked: false,
@@ -65,8 +65,8 @@ export const MockNodes = [
         },
         // start: { x: 10, y: 10, relativeTo: "sticker-1" },
         // end: { x: 10, y: 10, relativeTo: "sticker-2" }
-        start: { x: 100, y: 100 },
-        end: { x: 230, y: 230 }
+        start: { x: 400, y: 400 },
+        end: { x: 300, y: 300 }
     } satisfies ArrowNode
     // {
     //     id: "arrow-2",

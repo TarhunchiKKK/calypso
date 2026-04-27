@@ -7,7 +7,6 @@ export class NodeEditingDecorator<T extends NodeBase = NodeBase> extends NodeDec
         protected readonly entry: Decoratable<T>,
         protected readonly strategy: NodeEditingStrategy,
         protected readonly handler: (node: NodeBase) => void
-
     ) {
         // NOTE: when node become editable it's content should not be displayed
         entry.wrapper.hideContent();

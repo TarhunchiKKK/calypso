@@ -33,7 +33,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
     return (
         <div
             data-id={node.id}
-            className="absolute px-2 py-4 shadow-md flex flex-col justify-center items-center cursor-pointer"
+            className="relative px-2 py-4 shadow-md flex flex-col justify-center items-center"
             style={wrapperStyles}
             {...handlers}
         >

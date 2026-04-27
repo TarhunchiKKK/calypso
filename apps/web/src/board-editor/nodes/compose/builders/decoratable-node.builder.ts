@@ -37,8 +37,8 @@ export class DecoratableNodeBuilder {
         return this;
     }
 
-    public bindable(handlers: BindingNodeHandlers) {
-        this.node = NodeDecoratorsFactory.bindable(this.node, handlers);
+    public bindable(handler: BindingNodeHandlers["onMouseUp"]) {
+        this.node = NodeDecoratorsFactory.bindable(this.node, handler);
         return this;
     }
 

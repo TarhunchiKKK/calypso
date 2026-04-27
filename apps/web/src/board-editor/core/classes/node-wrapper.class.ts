@@ -1,11 +1,15 @@
+import type { NodeBase } from "@repo/boards-common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
-import type { NodeBase } from "@repo/boards-common";
 
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: React.MouseEventHandler;
+
+    onMouseEnter?: React.MouseEventHandler;
+
+    onMouseLeave?: React.MouseEventHandler;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {

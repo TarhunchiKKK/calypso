@@ -6,7 +6,7 @@ export class NodeBindingDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
         protected readonly strategy: NodeBindingStrategy,
-        protected readonly handlers: BindingNodeHandlers
+        protected readonly handler: BindingNodeHandlers["onMouseUp"]
     ) {
         super(entry);
     }
@@ -14,7 +14,7 @@ export class NodeBindingDecorator extends NodeDecorator {
     public override render(children?: React.ReactNode) {
         return this.entry.render(
             <>
-                {this.strategy.ui(this.entry.data, this.handlers)}
+                {this.strategy.ui(this.entry.data, this.handler)}
 
                 {children}
             </>

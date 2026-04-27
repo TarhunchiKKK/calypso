@@ -6,6 +6,9 @@ type ArrowHeadVariants = NodeStyles["angleType"];
 
 type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions) => React.ReactNode;
 
+const commonClassNames = "cursor-pointer pointer-events-auto";
+
+// REFACTOR: move common props to function
 export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
     corner: (node, handlers, dimensions) => {
         return (
@@ -15,12 +18,13 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                {...handlers}
                 d={`
-          M ${dimensions.left.x} ${dimensions.left.y} 
-          L ${dimensions.tip.x} ${dimensions.tip.y} 
-          L ${dimensions.right.x} ${dimensions.right.y}
-          `}
+                    M ${dimensions.left.x} ${dimensions.left.y} 
+                    L ${dimensions.tip.x} ${dimensions.tip.y} 
+                    L ${dimensions.right.x} ${dimensions.right.y}
+                    `}
+                className={commonClassNames}
+                {...handlers}
             />
         );
     },
@@ -38,6 +42,7 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className={commonClassNames}
                 {...handlers}
             />
         );
@@ -56,6 +61,7 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                 fill={node.styles.lineColor}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className={commonClassNames}
                 {...handlers}
             />
         );
@@ -73,6 +79,7 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className={commonClassNames}
                 {...handlers}
             />
         );
@@ -90,6 +97,7 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                 fill={node.styles.lineColor}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className={commonClassNames}
                 {...handlers}
             />
         );

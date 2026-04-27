@@ -1,9 +1,9 @@
 import type { Id, RelativePoint } from "@repo/common";
 import { useState } from "react";
-import type { ArrowBindingViewState } from "../view-state";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
-import { findArrow } from "./find-arrow.helper";
 import { switchToSelection } from "../../selection/switcher";
+import type { ArrowBindingViewState } from "../view-state";
+import { findArrow } from "./find-arrow.helper";
 
 export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
     const [nodeId, setNodeId] = useState<Id>();

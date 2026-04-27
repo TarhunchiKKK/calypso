@@ -7,7 +7,7 @@ import { FormatableTextarea } from "@/features/formatable-input";
 export class TextNodeEditingStrategy extends NodeEditingStrategy {
     private value: Descendant[] = [];
 
-    public override ui(node: Decoratable<TextNode>,  handler: (node: NodeBase) => void) {
+    public override ui(node: Decoratable<TextNode>, handler: (node: NodeBase) => void) {
         const changeHandler = (value: Descendant[]) => {
             this.value = value;
         };

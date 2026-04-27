@@ -81,13 +81,13 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static bindable(node: Decoratable, handlers: BindingNodeHandlers) {
+    public static bindable(node: Decoratable, handler: BindingNodeHandlers["onMouseUp"]) {
         const strategyCreator = BindingStrategiesMap[node.type];
 
         if (!strategyCreator) {
             return node;
         }
 
-        return new NodeBindingDecorator(node, strategyCreator, handlers);
+        return new NodeBindingDecorator(node, strategyCreator, handler);
     }
 }
