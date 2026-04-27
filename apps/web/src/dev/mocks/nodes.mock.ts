@@ -3,7 +3,7 @@ import type { StickerNode } from "@repo/boards-common";
 export const MockNodes = [
     {
         id: "sticker-1",
-        locked: false,
+        locked: true,
         type: "sticker",
         rect: { x: 100, y: 100, width: 100, height: 100 },
         text: "Hello 1",

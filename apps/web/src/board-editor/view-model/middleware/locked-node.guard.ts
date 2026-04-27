@@ -2,6 +2,8 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { ViewStateGuard } from "../hooks/use-view-state-mediator.hook";
 
+export const LOCKED_NODES_GUARD_KEY = Symbol();
+
 function isNodeLocked(nodes: NodeBase[], nodeId: Id) {
     const node = nodes.find(n => n.id === nodeId);
 

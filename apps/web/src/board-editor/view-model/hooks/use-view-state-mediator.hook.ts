@@ -7,10 +7,10 @@ export type ViewStateGuard = (nodes: NodeBase[], next: ViewState, prev: ViewStat
 export function useViewStateMediator(nodes: NodeBase[], initialState: ViewState | (() => ViewState)) {
     const [viewState, setViewState] = useState<ViewState>(initialState);
 
-    const guardsRef = useRef<Set<ViewStateGuard>>(new Set());
+    const guardsRef = useRef<Map<unknown, ViewStateGuard>>(new Map());
 
     const setWIthMiddleware = (next: ViewState) => {
-        for (const guard of guardsRef.current) {
+        for (const guard of guardsRef.current.values()) {
             if (!guard(nodes, next, viewState)) {
                 return;
             }

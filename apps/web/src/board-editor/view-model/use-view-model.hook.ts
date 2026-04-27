@@ -2,7 +2,7 @@ import type { OmitFields } from "@repo/common";
 import { useEffect } from "react";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
-import { LockedNodesGuard } from "./middleware/locked-node.guard";
+import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
 import type { ViewModel, ViewModelParams } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
@@ -28,8 +28,8 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     };
 
     useEffect(() => {
-        viewStateMiddleware.guards.add(LockedNodesGuard);
-    }, [viewStateMiddleware.guards.add]);
+        viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
+    }, [viewStateMiddleware.guards.set]);
 
     // useEffect(() => {
     //     params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
