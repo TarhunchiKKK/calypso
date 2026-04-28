@@ -1,13 +1,13 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import { type BindingNodeHandlers, NodeBindingDecorator } from "@/board-editor/modules/arrows-binding";
+import { BindableNodeDecorator, type BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { NodeDraggingDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked, NodeLockingDecorator } from "@/board-editor/modules/locking";
 import { NodeEditingDecorator } from "../../../modules/editing";
 import { NodeResizingDecorator, ResizableNodeDecorator, type ResizeHandler } from "../../../modules/resizing";
 import { NodeSelectionDecorator } from "../../../modules/selection";
-import { BindingStrategiesMap } from "../constants/binding-strategies.map";
+import { BindableStrategiesMap } from "../constants/bindable-strategies.map";
 import { DraggingStrategiesMap } from "../constants/dragging-strategies.map";
 import { EditingStrategiesMap } from "../constants/editing-strategies.map";
 import { LockingStrategiesMap } from "../constants/locking-strategies.map";
@@ -82,12 +82,12 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static bindable(node: Decoratable, handler: BindingNodeHandlers["onMouseUp"]) {
-        const strategyCreator = BindingStrategiesMap[node.type];
+        const strategyCreator = BindableStrategiesMap[node.type];
 
         if (!strategyCreator) {
             return node;
         }
 
-        return new NodeBindingDecorator(node, strategyCreator, handler);
+        return new BindableNodeDecorator(node, strategyCreator, handler);
     }
 }

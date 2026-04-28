@@ -1,8 +1,8 @@
-import type { MediaNode } from "@repo/boards-common";
-import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
+import type { StickerNode } from "@repo/boards-common";
+import { BindableNodeStrategy } from "@/board-editor/modules/arrows-binding";
 
-export class MediaNodeBindingStrategy extends NodeBindingStrategy<MediaNode> {
-    public override getReferencePoints(node: MediaNode) {
+export class BindableStickerStrategy extends BindableNodeStrategy<StickerNode> {
+    public override getReferencePoints(node: StickerNode) {
         return [
             { x: 0, y: 0 },
             { x: node.rect.width / 2, y: 0 },

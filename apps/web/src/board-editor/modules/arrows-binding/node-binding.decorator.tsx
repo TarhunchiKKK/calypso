@@ -1,11 +1,11 @@
 import { type Decoratable, NodeDecorator } from "@/board-editor/core";
-import type { NodeBindingStrategy } from "./node-binding.strategy";
+import type { BindableNodeStrategy } from "./node-binding.strategy";
 import type { BindingNodeHandlers } from "./types";
 
-export class NodeBindingDecorator extends NodeDecorator {
+export class BindableNodeDecorator extends NodeDecorator {
     public constructor(
         protected readonly entry: Decoratable,
-        protected readonly strategy: NodeBindingStrategy,
+        protected readonly strategy: BindableNodeStrategy,
         protected readonly handler: BindingNodeHandlers["onMouseUp"]
     ) {
         super(entry);
