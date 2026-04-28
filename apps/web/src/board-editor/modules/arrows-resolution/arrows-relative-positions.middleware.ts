@@ -17,6 +17,26 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
             break;
         }
         case "update": {
+            for (const node of payload.nodes) {
+                const arrow = arrows.find(arrow => arrow.start.relativeTo === node.id || arrow.end.relativeTo === node.id);
+
+                if (!arrow) {
+                    continue;
+                }
+
+                const updatedNodeRect = NodeRectsFactory.rect(node);
+
+                for (const side of ["start", "end"] as const) {
+                    if (arrow[side].relativeTo === node.id) {
+                        const newPoint = Geometry.addPoints(arrow[side], updatedNodeRect);
+
+                        arrow[side] = {
+                            ...newPoint,
+                            relativeTo: node.id
+                        };
+                    }
+                }
+            }
             break;
         }
         case "remove": {
@@ -35,12 +55,10 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
 
                 const removingNodeRect = NodeRectsFactory.rect(removingNode);
 
-                if (arrow.start.relativeTo === removingNodeId) {
-                    arrow.start = Geometry.addPoints(arrow.start, removingNodeRect);
-                }
-
-                if (arrow.end.relativeTo === removingNodeId) {
-                    arrow.end = Geometry.addPoints(arrow.end, removingNodeRect);
+                for (const side of ["start", "end"] as const) {
+                    if (arrow[side].relativeTo === removingNodeId) {
+                        arrow[side] = Geometry.addPoints(arrow[side], removingNodeRect);
+                    }
                 }
             }
             break;

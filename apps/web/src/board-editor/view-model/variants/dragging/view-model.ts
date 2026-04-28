@@ -11,7 +11,7 @@ export function useDraggingViewModel(params: ViewModelParams) {
 
     return (viewState: DraggingViewState): DecoratableViewModel => {
         return {
-            nodes: DraggingNodesMapper.from(nodesModel.nodes).setSelectedIds(viewState.selectedIds).setOffset(dragging.offset).map(),
+            nodes: DraggingNodesMapper.from(nodesModel.nodes, viewState.selectedIds, dragging.offset).setSelectedIds(viewState.selectedIds).map(),
             window: {
                 onMouseMove: e => dragging.onWindowMouseMove(viewState, e),
                 onMouseUp: () => dragging.onWindowMouseUp(viewState)
