@@ -20,7 +20,7 @@ type Props<T> = {
 export function Dropdown<T>({ placeholder, items, title, onSelect }: Props<T>) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer outline-none" onClick={() => console.log("click")}>
+            <DropdownMenuTrigger className="cursor-pointer outline-none">
                 {title ? (
                     <Tooltip>
                         <TooltipTrigger asChild>{placeholder}</TooltipTrigger>

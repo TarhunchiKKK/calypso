@@ -8,13 +8,13 @@ export class NodeBindingDecorator extends NodeDecorator {
     ) {
         super(entry);
 
-        this.strategy.updateNode(this.entry)
+        this.strategy.updateNode(this.entry);
     }
 
     public override render(children?: React.ReactNode): React.ReactNode {
         return this.entry.render(
             <>
-                {this.strategy.ui(this.entry.data)}
+                {this.strategy.ui(this.entry)}
 
                 {children}
             </>

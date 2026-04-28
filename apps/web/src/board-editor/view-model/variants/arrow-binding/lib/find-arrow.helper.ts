@@ -1,7 +1,8 @@
-import type { ViewModelParams } from "@/board-editor/view-model/types";
 import type { ArrowNode } from "@repo/boards-common";
 import type { Id } from "@repo/common";
+import type { ViewModelParams } from "@/board-editor/view-model/types";
 
+// REFACTOR: move this to to `NodesService`
 export function findArrow(nodesModel: ViewModelParams["nodesModel"], arrowId: Id) {
     const arrow = nodesModel.nodes.find(node => node.id === arrowId);
 

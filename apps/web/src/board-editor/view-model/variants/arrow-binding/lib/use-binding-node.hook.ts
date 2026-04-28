@@ -17,8 +17,6 @@ export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
     };
 
     const onMouseUp = (viewState: ArrowBindingViewState, point: RelativePoint) => {
-        console.log(point);
-
         const arrow = findArrow(nodesModel, viewState.arrowId);
 
         const newNode = {

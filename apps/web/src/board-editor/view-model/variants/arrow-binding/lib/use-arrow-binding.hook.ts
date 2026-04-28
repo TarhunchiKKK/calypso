@@ -4,6 +4,7 @@ import { switchToSelection } from "../../selection/switcher";
 import type { ArrowBindingViewState } from "../view-state";
 import { findArrow } from "./find-arrow.helper";
 
+// FIX: remove `onMouseUp`
 export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const onMouseMove = (viewState: ArrowBindingViewState, e: MouseEvent) => {
         const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
