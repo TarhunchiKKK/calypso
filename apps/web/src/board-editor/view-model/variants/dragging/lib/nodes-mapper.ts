@@ -12,6 +12,10 @@ export class DraggingNodesMapper extends NodesMapper {
             return new DraggingNodesMapper(nodes);
         }
 
+        return new DraggingNodesMapper(DraggingNodesMapper.getNodesWithOffset(nodes, selectedIds, offset));
+    }
+
+    public static getNodesWithOffset(nodes: NodeBase[], selectedIds: Set<Id>, offset?: Offset) {
         const nodesToDrag = nodes
             .filter(node => selectedIds.has(node.id))
             .map(node => NodeWrappersFactory.wrap(nodes, node))
@@ -19,7 +23,7 @@ export class DraggingNodesMapper extends NodesMapper {
 
         const otherNodes = nodes.filter(node => !selectedIds.has(node.id));
 
-        return new DraggingNodesMapper([...nodesToDrag, ...otherNodes]);
+        return [...nodesToDrag, ...otherNodes];
     }
 
     public setSelectedIds(selectedIds: Set<Id>) {
