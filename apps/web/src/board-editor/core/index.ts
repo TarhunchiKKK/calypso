@@ -1,5 +1,5 @@
 export { NodeDecorator } from "./classes/node-decorator.class";
-export { type NodeHandlers, NodeWrapper } from "./classes/node-wrapper.class";
+export { type NodeHandlers, type NodeUiSettings, NodeWrapper } from "./classes/node-wrapper.class";
 export { getNodeId, withNodeId } from "./lib/dom.lib";
 export { DefaultNodesMapper, NodesMapper } from "./lib/nodes-mapper.class";
 export type { Decoratable } from "./types/decorators.types";

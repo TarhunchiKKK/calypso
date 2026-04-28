@@ -12,10 +12,19 @@ export type NodeHandlers = {
     onMouseLeave?: React.MouseEventHandler;
 };
 
-export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
-    protected showContent = true;
+export type NodeUiSettings = {
+    showContent: boolean;
 
+    noPointerEvents: boolean;
+};
+
+export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     protected handlers: NodeHandlers = {};
+
+    protected uiSettings: NodeUiSettings = {
+        showContent: true,
+        noPointerEvents: false
+    };
 
     public constructor(protected node: T) {}
 
@@ -39,9 +48,9 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
-    public hideContent() {
-        this.showContent = false;
-        return true;
+    public setUiSetting<Setting extends keyof NodeUiSettings>(key: Setting, value: NodeUiSettings[Setting]) {
+        this.uiSettings[key] = value;
+        return this;
     }
 
     public setHandlers(handlers: NodeHandlers) {

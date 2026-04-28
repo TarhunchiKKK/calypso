@@ -1,6 +1,6 @@
 import type { TextNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
-import type { NodeHandlers } from "@/board-editor/core";
+import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import { FormatableTextarea } from "@/features/formatable-input";
 
 type Props = PropsWithChildren<{
@@ -8,10 +8,10 @@ type Props = PropsWithChildren<{
 
     handlers: NodeHandlers;
 
-    showContent: boolean;
+    uiSettings: NodeUiSettings;
 }>;
 
-export function TextNodeComponent({ node, handlers, showContent, children }: Props) {
+export function TextNodeComponent({ node, handlers, uiSettings, children }: Props) {
     const styles: CSSProperties = {
         width: node.rect.width,
         height: node.rect.height,
@@ -27,7 +27,7 @@ export function TextNodeComponent({ node, handlers, showContent, children }: Pro
             style={styles}
             {...handlers}
         >
-            {showContent && (
+            {uiSettings.showContent && (
                 <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
                     <FormatableTextarea value={node.text as any} disabled />
                 </div>

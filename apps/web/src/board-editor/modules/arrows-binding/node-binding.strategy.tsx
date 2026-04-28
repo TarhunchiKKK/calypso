@@ -9,11 +9,10 @@ export abstract class NodeBindingStrategy<T extends NodeBase = NodeBase> {
     public ui(node: T, handler: BindingNodeHandlers["onMouseUp"]) {
         const referencePoints = this.getReferencePoints(node);
 
-        const handlerWithNode = (e: React.MouseEvent) => {
+        const handlerWithNode = (point: Point) => {
             handler({
                 relativeTo: node.id,
-                x: e.currentTarget.clientLeft,
-                y: e.currentTarget.clientTop
+                ...point
             });
         };
 

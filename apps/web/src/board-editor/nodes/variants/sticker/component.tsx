@@ -1,16 +1,16 @@
 import type { StickerNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
-import type { NodeHandlers } from "@/board-editor/core";
+import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 
 type Props = PropsWithChildren<{
     node: StickerNode;
 
     handlers: NodeHandlers;
 
-    showContent: boolean;
+    uiSettings: NodeUiSettings;
 }>;
 
-export function StickerComponent({ node, handlers, showContent, children }: Props) {
+export function StickerComponent({ node, handlers, uiSettings, children }: Props) {
     const wrapperStyles: CSSProperties = {
         width: node.rect.width,
         height: node.rect.height,
@@ -23,7 +23,7 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
         borderRadius: node.styles.borderRadius
     };
 
-    const textStyles: CSSProperties = {
+    const contentStyles: CSSProperties = {
         fontFamily: node.styles.fontFamily,
         fontSize: node.styles.fontSize,
         color: node.styles.textColor,
@@ -31,14 +31,9 @@ export function StickerComponent({ node, handlers, showContent, children }: Prop
     };
 
     return (
-        <div
-            data-id={node.id}
-            className="relative px-2 py-4 shadow-md flex flex-col justify-center items-center"
-            style={wrapperStyles}
-            {...handlers}
-        >
-            {showContent && (
-                <div style={textStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
+        <div data-id={node.id} className="relative px-2 py-4 shadow-md flex flex-col justify-center items-center" style={wrapperStyles} {...handlers}>
+            {uiSettings.showContent && (
+                <div style={contentStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
                     {node.text}
                 </div>
             )}

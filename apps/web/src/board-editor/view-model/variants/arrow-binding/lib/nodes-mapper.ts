@@ -38,7 +38,8 @@ export class ArrowBindingNodesMapper extends NodesMapper {
         return this.nodes
             .map(node => {
                 if (node.id === this.arrowId) {
-                    return node;
+                    // REFACTOR: move this to strategy
+                    return node.setUiSetting("noPointerEvents", true);
                 }
 
                 return node.setHandlers({

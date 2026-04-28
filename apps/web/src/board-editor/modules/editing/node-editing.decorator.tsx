@@ -9,7 +9,7 @@ export class NodeEditingDecorator<T extends NodeBase = NodeBase> extends NodeDec
         protected readonly handler: (node: NodeBase) => void
     ) {
         // NOTE: when node become editable it's content should not be displayed
-        entry.wrapper.hideContent();
+        entry.wrapper.setUiSetting("showContent", false);
 
         super(entry);
     }
