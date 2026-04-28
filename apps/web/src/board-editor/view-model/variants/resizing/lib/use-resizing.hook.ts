@@ -13,7 +13,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
     const [newSize, setNewSize] = useState<Rect>();
 
     const getResizingNode = (nodeId: Id) => {
-        const node = nodesModel.nodes.find(node => node.id === nodeId);
+        const node = nodesModel.service.findOne(nodeId);
 
         if (!node) {
             throw Error("Node to resize not found");

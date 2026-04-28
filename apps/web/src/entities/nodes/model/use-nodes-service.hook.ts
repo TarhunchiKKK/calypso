@@ -3,7 +3,7 @@ import type { Id } from "@repo/common";
 import type { Dispatch, SetStateAction } from "react";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
-export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
+export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
     const middleware = useNodesServiceMiddleware();
 
     const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
@@ -22,6 +22,17 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
             },
             nodes => [...nodes, node]
         );
+    };
+
+    // OPTIMIZE: add map (`Record<Id, NodeBase>`) for less complexity
+    const findOne = <T extends NodeBase = NodeBase>(nodeId: Id) => {
+        const node = nodes.find(node => node.id === nodeId);
+
+        if (!node) {
+            throw new Error(`Node with id=${nodeId} not found`);
+        }
+
+        return node as T;
     };
 
     const updateOne = (newNode: NodeBase) => {
@@ -64,6 +75,7 @@ export function useNodesService(setNodes: Dispatch<SetStateAction<NodeBase[]>>) 
 
     return {
         createOne,
+        findOne,
         updateOne,
         replaceAll: setNodes,
         removeOne,

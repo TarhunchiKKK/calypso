@@ -21,7 +21,7 @@ import { useShapeSelectionViewModel } from "./variants/shape-selection/view-mode
 import { useStylingViewModel } from "./variants/styling/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel.nodes, () => switchToIdle());
+    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 
     const newParams = {
         ...params,

@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { switchToSelection } from "../../selection/switcher";
 import type { ArrowBindingViewState } from "../view-state";
-import { findArrow } from "./find-arrow.helper";
+import type { ArrowNode } from "@repo/boards-common";
 
 export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
     const [nodeId, setNodeId] = useState<Id>();
@@ -17,7 +17,7 @@ export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
     };
 
     const onMouseUp = (viewState: ArrowBindingViewState, point: RelativePoint) => {
-        const arrow = findArrow(nodesModel, viewState.arrowId);
+        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
 
         const newNode = {
             ...arrow,

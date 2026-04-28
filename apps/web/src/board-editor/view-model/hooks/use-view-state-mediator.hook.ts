@@ -1,17 +1,17 @@
-import type { NodeBase } from "@repo/boards-common";
 import { useRef, useState } from "react";
 import type { ViewState } from "../types";
+import type { NodesModel } from "@/board-editor/nodes";
 
-export type ViewStateGuard = (nodes: NodeBase[], next: ViewState, prev: ViewState) => boolean;
+export type ViewStateGuard = (nodesModel: NodesModel, next: ViewState, prev: ViewState) => boolean;
 
-export function useViewStateMediator(nodes: NodeBase[], initialState: ViewState | (() => ViewState)) {
+export function useViewStateMediator(nodesModel: NodesModel, initialState: ViewState | (() => ViewState)) {
     const [viewState, setViewState] = useState<ViewState>(initialState);
 
     const guardsRef = useRef<Map<unknown, ViewStateGuard>>(new Map());
 
     const setWIthMiddleware = (next: ViewState) => {
         for (const guard of guardsRef.current.values()) {
-            if (!guard(nodes, next, viewState)) {
+            if (!guard(nodesModel, next, viewState)) {
                 return;
             }
         }

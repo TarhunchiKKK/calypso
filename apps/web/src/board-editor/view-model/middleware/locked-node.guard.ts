@@ -1,31 +1,30 @@
-import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { ViewStateGuard } from "../hooks/use-view-state-mediator.hook";
+import type { NodesModel } from "@/board-editor/nodes";
 
 export const LOCKED_NODES_GUARD_KEY = Symbol();
 
-function isNodeLocked(nodes: NodeBase[], nodeId: Id) {
-    const node = nodes.find(n => n.id === nodeId);
-
+function isNodeLocked(nodesModel: NodesModel, nodeId: Id) {
+    const node = nodesModel.service.findOne(nodeId);
     return !!node && node.locked;
 }
 
-function areNodesLocked(nodes: NodeBase[], nodeIds: Set<Id>) {
-    return nodes.filter(n => nodeIds.has(n.id)).every(node => node.locked);
+function areNodesLocked(nodesModel: NodesModel, nodeIds: Set<Id>) {
+    return nodesModel.nodes.filter(n => nodeIds.has(n.id)).every(node => node.locked);
 }
 
-export const LockedNodesGuard: ViewStateGuard = (nodes, next) => {
+export const LockedNodesGuard: ViewStateGuard = (nodesModel, next) => {
     switch (next.type) {
         case "dragging":
-            return !areNodesLocked(nodes, next.selectedIds);
+            return !areNodesLocked(nodesModel, next.selectedIds);
         case "editing":
-            return !isNodeLocked(nodes, next.selectedNodeId);
+            return !isNodeLocked(nodesModel, next.selectedNodeId);
         case "resizing":
-            return !isNodeLocked(nodes, next.nodeId);
+            return !isNodeLocked(nodesModel, next.nodeId);
         case "styling":
-            return !areNodesLocked(nodes, next.selectedIds);
+            return !areNodesLocked(nodesModel, next.selectedIds);
         case "nodes-context-menu":
-            return !areNodesLocked(nodes, next.selectedIds);
+            return !areNodesLocked(nodesModel, next.selectedIds);
         default:
             return true;
     }

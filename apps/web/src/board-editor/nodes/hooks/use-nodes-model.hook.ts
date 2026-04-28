@@ -5,7 +5,7 @@ import { useNodesService } from "@/entities/nodes";
 export function useNodesModel(inputNodes: NodeBase[]) {
     const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
 
-    const nodesService = useNodesService(setNodes);
+    const nodesService = useNodesService(nodes, setNodes);
 
     return { nodes, service: nodesService };
 }

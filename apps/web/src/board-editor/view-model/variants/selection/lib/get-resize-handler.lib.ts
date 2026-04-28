@@ -18,7 +18,7 @@ const directionsMap: Record<ResizeDirection, ArrowBindingViewState["side"]> = {
 };
 export function getResizeHandler({ nodesModel, setViewState }: ViewModelParams) {
     return (nodeId: Id, direction: ResizeDirection) => {
-        const node = nodesModel.nodes.find(node => node.id === nodeId);
+        const node = nodesModel.service.findOne(nodeId);
 
         if (!node) {
             throw new Error(`Node with id=${nodeId} not found`);
