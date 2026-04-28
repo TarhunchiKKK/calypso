@@ -1,6 +1,6 @@
 import { type Decoratable, NodeDecorator } from "@/board-editor/core";
-import type { BindableNodeStrategy } from "./node-binding.strategy";
-import type { BindingNodeHandlers } from "./types";
+import type { BindableNodeStrategy } from "../strategies/bindable-node.strategy";
+import type { BindingNodeHandlers } from "../types";
 
 export class BindableNodeDecorator extends NodeDecorator {
     public constructor(

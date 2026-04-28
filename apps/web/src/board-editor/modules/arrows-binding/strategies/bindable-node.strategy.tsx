@@ -1,7 +1,7 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Point } from "@repo/common";
-import { BindingPoints } from "./binding-points.component";
-import type { BindingNodeHandlers } from "./types";
+import type { BindingNodeHandlers } from "../types";
+import { BindingPoints } from "../ui/binding-points.component";
 
 export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
     public abstract getReferencePoints(node: T): Point[];
