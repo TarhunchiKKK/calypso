@@ -7,24 +7,19 @@ import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node
 export class DraggingNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
 
-
     public static from(nodes: NodeBase[], selectedIds: Set<Id>, offset?: Offset) {
-        
-        
         if (!offset) {
             return new DraggingNodesMapper(nodes);
         }
-        
-        
+
         const nodesToDrag = nodes
             .filter(node => selectedIds.has(node.id))
-            .map((node) => NodeWrappersFactory.wrap(nodes, node))
+            .map(node => NodeWrappersFactory.wrap(nodes, node))
             .map(wrapper => DecoratableNodeBuilder.from(wrapper).dragging(offset).build().data);
-        
+
         const otherNodes = nodes.filter(node => !selectedIds.has(node.id));
 
-        return new DraggingNodesMapper([...nodesToDrag, ...otherNodes])
-
+        return new DraggingNodesMapper([...nodesToDrag, ...otherNodes]);
     }
 
     public setSelectedIds(selectedIds: Set<Id>) {
