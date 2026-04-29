@@ -3,6 +3,7 @@ import type { Point } from "@repo/common";
 import { type Decoratable, withNodeId } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "../types";
 import { BindingPoints } from "../ui/binding-points.component";
+import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
     public abstract getReferencePoints(node: T): Point[];
@@ -19,6 +20,8 @@ export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
     public ui(node: T, handlers: BindingNodeHandlers) {
         const referencePoints = this.getReferencePoints(node);
 
+        const rect = NodeRectsFactory.rect(node);
+
         const handleMouseUp = (point: Point) => {
             handlers.onMouseUp?.({
                 relativeTo: node.id,
@@ -26,6 +29,6 @@ export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
             });
         };
 
-        return <BindingPoints referencePoints={referencePoints} onMouseUp={handleMouseUp} />;
+        return <BindingPoints referencePoints={referencePoints} rect={rect} onMouseUp={handleMouseUp} />;
     }
 }

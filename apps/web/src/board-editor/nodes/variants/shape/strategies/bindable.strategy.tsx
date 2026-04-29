@@ -4,6 +4,6 @@ import { ShapeVariantsReferencePointsMap } from "../lib/shape-variants-reference
 
 export class BindableShapeStrategy extends BindableNodeStrategy<ShapeNode> {
     public override getReferencePoints(node: ShapeNode) {
-        return ShapeVariantsReferencePointsMap[node.variant](node);
+        return ShapeVariantsReferencePointsMap[node.variant];
     }
 }
