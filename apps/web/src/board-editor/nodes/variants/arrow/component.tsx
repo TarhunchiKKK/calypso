@@ -1,6 +1,6 @@
 import type { ArrowNode } from "@repo/boards-common";
 import type { PropsWithChildren } from "react";
-import type { NodeHandlers } from "@/board-editor/core";
+import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import type { ArrowPosition } from "./lib/arrow.types";
 import { ArrowHeadsMap } from "./lib/arrow-heads.map";
 import { ArrowLinesMap } from "./lib/arrow-lines.map";
@@ -12,9 +12,11 @@ type Props = PropsWithChildren<{
     absolutePosition: ArrowPosition;
 
     handlers: NodeHandlers;
+
+    uiSettings: NodeUiSettings;
 }>;
 
-export function ArrowNodeComponent({ node, absolutePosition, handlers, children }: Props) {
+export function ArrowNodeComponent({ node, absolutePosition, handlers, uiSettings, children }: Props) {
     const dimensions = calculateArrowHeadDimensions(node.styles.angleType, absolutePosition);
 
     const renderArrowHead = ArrowHeadsMap[node.styles.angleType];
@@ -24,10 +26,10 @@ export function ArrowNodeComponent({ node, absolutePosition, handlers, children 
 
     return (
         <>
-            <svg className="absolute left-0 top-0 pointer-events-none overflow-visible">
-                {renderLine(withAbsolutePosition, handlers, dimensions)}
+            <svg data-id={node.id} className="absolute left-0 top-0 overflow-visible pointer-events-none" {...handlers}>
+                {renderLine(withAbsolutePosition, handlers, dimensions, uiSettings)}
 
-                {renderArrowHead(withAbsolutePosition, handlers, dimensions)}
+                {renderArrowHead(withAbsolutePosition, handlers, dimensions, uiSettings)}
             </svg>
 
             {children}

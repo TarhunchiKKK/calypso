@@ -1,5 +1,3 @@
-"use client";
-
 import { Moon, Sun } from "lucide-react";
 import { Env } from "@/shared/config";
 import { Button } from "@/shared/ui/kit";

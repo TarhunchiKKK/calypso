@@ -1,8 +1,10 @@
 import type { OmitFields } from "@repo/common";
-import { useEffect, useState } from "react";
-import { ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
+import { useEffect } from "react";
+import { ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { applyDecorators } from "./decorators/apply-decorators.facade";
-import type { ViewModel, ViewModelParams, ViewState } from "./types";
+import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
+import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
+import type { ViewModel, ViewModelParams } from "./types";
 import type { DecoratableViewModel } from "./types/view-model.types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
@@ -19,7 +21,7 @@ import { useShapeSelectionViewModel } from "./variants/shape-selection/view-mode
 import { useStylingViewModel } from "./variants/styling/view-model";
 
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const [viewState, setViewState] = useState<ViewState>(() => switchToIdle());
+    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 
     const newParams = {
         ...params,
@@ -27,8 +29,12 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     };
 
     useEffect(() => {
-        params.nodesModel.service.middleware.add(ArrowsRelativePositionsMiddleware);
-    }, [params.nodesModel.service.middleware.add]);
+        viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
+    }, [viewStateMiddleware.guards.set]);
+
+    useEffect(() => {
+        params.nodesModel.service.middleware.set(ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware);
+    }, [params.nodesModel.service.middleware.set]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
@@ -85,7 +91,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             throw new Error(`useViewModel: Unknown view state - ${viewState}`);
     }
 
-    console.log(viewState.type);
+    // console.log(viewState.type);
 
     return applyDecorators(viewModel, viewState, newParams);
 }

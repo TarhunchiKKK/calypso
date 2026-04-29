@@ -1,30 +1,36 @@
 import type { ArrowNode, NodeStyles } from "@repo/boards-common";
-import type { NodeHandlers } from "@/board-editor/core";
+import clsx from "clsx";
+import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
-type ArrowHeadVariants = NodeStyles["angleType"];
+type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions, uiSettings: NodeUiSettings) => React.ReactNode;
 
-type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions) => React.ReactNode;
+function getCommonStyles(node: ArrowNode, uiSettings: NodeUiSettings) {
+    return {
+        stroke: node.styles.lineColor,
+        strokeWidth: node.styles.lineWidth,
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        className: clsx("cursor-pointer", uiSettings.noPointerEvents ? "pointer-events-none" : "pointer-events-auto")
+    } as const;
+}
 
-export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
-    corner: (node, handlers, dimensions) => {
+export const ArrowHeadsMap: Record<NodeStyles["angleType"], CreateFunction> = {
+    corner: (node, handlers, dimensions, uiSettings) => {
         return (
             <path
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                {...handlers}
                 d={`
-          M ${dimensions.left.x} ${dimensions.left.y} 
-          L ${dimensions.tip.x} ${dimensions.tip.y} 
-          L ${dimensions.right.x} ${dimensions.right.y}
-          `}
+                M ${dimensions.left.x} ${dimensions.left.y} 
+                L ${dimensions.tip.x} ${dimensions.tip.y} 
+                L ${dimensions.right.x} ${dimensions.right.y}
+                `}
+                fill="none"
+                {...getCommonStyles(node, uiSettings)}
+                {...handlers}
             />
         );
     },
-    kite: (node, handlers, dimensions) => {
+    kite: (node, handlers, dimensions, uiSettings) => {
         return (
             <polygon
                 points={`
@@ -33,16 +39,13 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                     ${dimensions.tip.x},${dimensions.tip.y}
                     ${dimensions.right.x},${dimensions.right.y}
                 `}
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
                 fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                {...getCommonStyles(node, uiSettings)}
                 {...handlers}
             />
         );
     },
-    "kite-filled": (node, handlers, dimensions) => {
+    "kite-filled": (node, handlers, dimensions, uiSettings) => {
         return (
             <polygon
                 points={`
@@ -51,16 +54,13 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                     ${dimensions.tip.x},${dimensions.tip.y}
                     ${dimensions.right.x},${dimensions.right.y}
                 `}
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
                 fill={node.styles.lineColor}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                {...getCommonStyles(node, uiSettings)}
                 {...handlers}
             />
         );
     },
-    triangle: (node, handlers, dimensions) => {
+    triangle: (node, handlers, dimensions, uiSettings) => {
         return (
             <polygon
                 points={`
@@ -68,16 +68,13 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                     ${dimensions.tip.x},${dimensions.tip.y}
                     ${dimensions.right.x},${dimensions.right.y}
                 `}
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
                 fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                {...getCommonStyles(node, uiSettings)}
                 {...handlers}
             />
         );
     },
-    "triangle-filled": (node, handlers, dimensions) => {
+    "triangle-filled": (node, handlers, dimensions, uiSettings) => {
         return (
             <polygon
                 points={`
@@ -85,11 +82,8 @@ export const ArrowHeadsMap: Record<ArrowHeadVariants, CreateFunction> = {
                     ${dimensions.tip.x},${dimensions.tip.y}
                     ${dimensions.right.x},${dimensions.right.y}
                 `}
-                stroke={node.styles.lineColor}
-                strokeWidth={node.styles.lineWidth}
                 fill={node.styles.lineColor}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                {...getCommonStyles(node, uiSettings)}
                 {...handlers}
             />
         );

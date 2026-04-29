@@ -24,8 +24,8 @@ export function useArrowBindingViewModel(params: ViewModelParams) {
                 })
                 .map(),
             window: {
-                onMouseMove: arrowBinding.onMouseMove.bind(null, viewState),
-                onMouseUp: arrowBinding.onMouseUp.bind(null, viewState)
+                onMouseMove: arrowBinding.onMouseMove.bind(null, viewState)
+                // onMouseUp: arrowBinding.onMouseUp.bind(null, viewState)
             }
         };
     };

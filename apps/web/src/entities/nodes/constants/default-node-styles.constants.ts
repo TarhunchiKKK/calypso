@@ -7,7 +7,7 @@ export const DefaultNodeStyles: NodeStyles = {
     backgroundColor: AvailableColors[0],
     textColor: AvailableColors[0],
     borderStyle: "none",
-    borderColor: "",
+    borderColor: AvailableColors[0],
     borderRadius: AvailableBorderRadiuses[0],
     textAlign: "left",
     angleType: "corner",

@@ -3,10 +3,12 @@ import { ResizableRectNodeStrategy } from "../../shared/strategies/resizable-rec
 import { ResizableArrowStrategy } from "../../variants/arrow/strategies/resizable.strategy";
 import type { StrategiesMap } from "./types";
 
-export const ResizableStrategiesMap: StrategiesMap<typeof ResizableNodeStrategy> = {
-    sticker: handler => new ResizableRectNodeStrategy(handler),
-    arrow: handler => new ResizableArrowStrategy(handler),
-    text: handler => new ResizableRectNodeStrategy(handler),
-    shape: handler => new ResizableRectNodeStrategy(handler),
-    media: handler => new ResizableRectNodeStrategy(handler)
+const ResizableRectNodeStrategyInstance = new ResizableRectNodeStrategy();
+
+export const ResizableStrategiesMap: StrategiesMap<ResizableNodeStrategy> = {
+    sticker: ResizableRectNodeStrategyInstance,
+    arrow: new ResizableArrowStrategy(),
+    text: ResizableRectNodeStrategyInstance,
+    shape: ResizableRectNodeStrategyInstance,
+    media: ResizableRectNodeStrategyInstance
 };

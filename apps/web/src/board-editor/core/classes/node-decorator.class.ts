@@ -17,6 +17,10 @@ export abstract class NodeDecorator<T extends NodeBase = NodeBase> implements Re
         return this.entry.data;
     }
 
+    public set data(data: T) {
+        this.entry.data = data;
+    }
+
     public get wrapper() {
         return this.entry.wrapper;
     }

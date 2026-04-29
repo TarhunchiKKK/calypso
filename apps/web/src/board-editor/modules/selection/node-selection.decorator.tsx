@@ -1,6 +1,6 @@
 import type React from "react";
 import { type Decoratable, NodeDecorator } from "../../core";
-import type { NodeSelectionStrategy } from "./node-selecting.strategy";
+import type { NodeSelectionStrategy } from "./node-selection.strategy";
 
 export class NodeSelectionDecorator extends NodeDecorator {
     public constructor(

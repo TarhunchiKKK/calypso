@@ -33,7 +33,13 @@ export const ArrowNodeZodSchema = NodeBaseZodSchema.extend({
 
 export const TextNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("text"),
-    text: z.string()
+    text: z.string(),
+    styles: NodeStylesZodSchema.pick({
+        fontFamily: true,
+        fontSize: true,
+        textColor: true,
+        textAlign: true
+    })
 });
 
 export const ShapeVariantsZodSchema = z.enum(["rectangle", "circle", "triangle", "diamond", "star", "hexagon"]);

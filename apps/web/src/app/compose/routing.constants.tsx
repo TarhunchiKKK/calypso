@@ -3,7 +3,6 @@ import { ProtectedRoute } from "@/features/auth";
 import { Routes } from "@/shared/config";
 import { Providers } from "./providers.component";
 
-// FIX: bad config
 export const Router = createBrowserRouter([
     {
         element: (

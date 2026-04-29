@@ -3,10 +3,12 @@ import { RectNodeDraggingStrategy } from "../../shared/strategies";
 import { ArrowDraggingStrategy } from "../../variants/arrow/strategies/dragging.strategy";
 import type { StrategiesMap } from "./types";
 
-export const DraggingStrategiesMap: StrategiesMap<typeof NodeDraggingStrategy> = {
-    sticker: () => new RectNodeDraggingStrategy(),
-    arrow: () => new ArrowDraggingStrategy(),
-    text: () => new RectNodeDraggingStrategy(),
-    shape: () => new RectNodeDraggingStrategy(),
-    media: () => new RectNodeDraggingStrategy()
+const RectNodeDraggingStrategyInstance = new RectNodeDraggingStrategy();
+
+export const DraggingStrategiesMap: StrategiesMap<NodeDraggingStrategy> = {
+    sticker: RectNodeDraggingStrategyInstance,
+    arrow: new ArrowDraggingStrategy(),
+    text: RectNodeDraggingStrategyInstance,
+    shape: RectNodeDraggingStrategyInstance,
+    media: RectNodeDraggingStrategyInstance
 };

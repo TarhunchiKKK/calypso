@@ -1,17 +1,30 @@
+import type { NodeBase } from "@repo/boards-common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
-import type { NodeBase } from "@repo/boards-common";
 
 export type NodeHandlers = {
     onMouseDown?: React.MouseEventHandler;
 
     onMouseUp?: React.MouseEventHandler;
+
+    onMouseEnter?: React.MouseEventHandler;
+
+    onMouseLeave?: React.MouseEventHandler;
+};
+
+export type NodeUiSettings = {
+    showContent: boolean;
+
+    noPointerEvents: boolean;
 };
 
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
-    protected showContent = true;
-
     protected handlers: NodeHandlers = {};
+
+    protected uiSettings: NodeUiSettings = {
+        showContent: true,
+        noPointerEvents: false
+    };
 
     public constructor(protected node: T) {}
 
@@ -35,9 +48,9 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Rend
         return this;
     }
 
-    public hideContent() {
-        this.showContent = false;
-        return true;
+    public setUiSetting<Setting extends keyof NodeUiSettings>(key: Setting, value: NodeUiSettings[Setting]) {
+        this.uiSettings[key] = value;
+        return this;
     }
 
     public setHandlers(handlers: NodeHandlers) {

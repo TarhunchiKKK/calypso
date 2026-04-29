@@ -1,5 +1,3 @@
-"use client";
-
 import React, { type RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const recalculateFontSize = (value: string, setFontSize: (_: number) => void, wrapper: HTMLDivElement, measure: HTMLDivElement) => {

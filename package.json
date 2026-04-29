@@ -17,15 +17,11 @@
     "workspaces": ["apps/*", "packages/*"],
     "scripts": {
         "dev": "turbo run dev",
-        "dev:web": "turbo run dev --filter=web",
-        "dev:current": "turbo run dev --filter=gateway --filter=boards --filter=media",
         "seed:media": "turbo run seed --filter=media",
         "build": "turbo run build",
         "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
-        "build:current": "turbo run build --filter=web",
         "type-check": "turbo run type-check",
         "type-check:packages": "turbo run type-check --filter=@repo/common",
-        "type-check:current": "turbo run type-check --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",
         "test:unit": "turbo run test:unit",
         "test:unit:web": "turbo run test:unit --filter=web",
         "format:check": "bunx biome format",
@@ -36,7 +32,9 @@
         "env:load": "bun run scripts/load-env.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
         "docker:up": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
-        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down"
+        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
+        "dev:current": "turbo run dev --filter=web",
+        "build:current": "turbo run build --filter=web"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",

@@ -1,33 +1,26 @@
-"use client";
-
+import type { NodeTypes } from "@repo/boards-common";
 import { Wrapper } from "@/shared/ui";
-import { Separator } from "@/shared/ui/kit";
-import { BorderStylesGroup } from "./compose/border-styles-group.component";
-import { ColorsGroup } from "./compose/colors-group.component";
-import { FontStylesGroup } from "./compose/font-styles-group.component";
-import { TextFormattingGroup } from "./compose/text-formatting-group.component";
-import type { UpdateFn } from "./lib/types";
+import { getNodeSpecificStyles } from "./compose.ui";
+import { Lock } from "./elements/lock/components";
+import { StylesGroupWrapper } from "./lib/styles-group-wrapper.component";
+import type { ElementProps } from "./lib/types";
 
-type Props = {
-    onUpdate: (fn: UpdateFn) => void;
+type Props = ElementProps & {
+    type: NodeTypes | null;
 };
 
-export function StylesBar({ onUpdate }: Props) {
+export function StylesPanel({ type, update }: Props) {
+    const renderSpecificStyles = getNodeSpecificStyles(type);
+
     return (
-        <Wrapper className="flex flex-row justify-between items-center gap-4 px-4 py-3">
-            <FontStylesGroup onUpdate={onUpdate} />
+        <Wrapper className="flex flex-row justify-between items-center gap-4 px-4 py-3 w-min">
+            {renderSpecificStyles(update)}
 
-            <Separator orientation="vertical" className="h-5!" />
+            <StylesGroupWrapper>
+                <Lock value={true} update={update} />
 
-            <ColorsGroup onUpdate={onUpdate} />
-
-            <Separator orientation="vertical" className="h-5!" />
-
-            <BorderStylesGroup onUpdate={onUpdate} />
-
-            <Separator orientation="vertical" className="h-5!" />
-
-            <TextFormattingGroup onUpdate={onUpdate} />
+                <Lock value={false} update={update} />
+            </StylesGroupWrapper>
         </Wrapper>
     );
 }

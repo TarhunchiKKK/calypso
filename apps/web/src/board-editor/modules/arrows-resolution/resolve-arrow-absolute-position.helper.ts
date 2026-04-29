@@ -1,6 +1,5 @@
 import type { ArrowNode, NodeBase } from "@repo/boards-common";
 import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
-import { Geometry } from "@/shared/lib/geometry";
 import type { ArrowAbsolutePosition } from "./types";
 
 export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode): ArrowAbsolutePosition {
@@ -9,17 +8,20 @@ export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode
         end: arrow.end
     };
 
-    for (const pointKey of ["start", "end"] as const) {
-        if (arrow[pointKey].relativeTo) {
-            const relativeNode = nodes.find(node => node.id === arrow[pointKey].relativeTo);
+    for (const side of ["start", "end"] as const) {
+        if (arrow[side].relativeTo) {
+            const relativeNode = nodes.find(node => node.id === arrow[side].relativeTo);
 
             if (!relativeNode) {
-                throw new Error(`Relative ${pointKey} node with id="${arrow[pointKey].relativeTo}" to arrow with id="${arrow.id}" not found`);
+                throw new Error(`Relative ${side} node with id="${arrow[side].relativeTo}" to arrow with id="${arrow.id}" not found`);
             }
 
             const relativeNodeRect = NodeRectsFactory.rect(relativeNode);
 
-            result[pointKey] = Geometry.addPoints(relativeNodeRect, arrow[pointKey]);
+            result[side] = {
+                x: relativeNodeRect.x + relativeNodeRect.width * arrow[side].x,
+                y: relativeNodeRect.y + relativeNodeRect.height * arrow[side].y
+            };
         }
     }
 

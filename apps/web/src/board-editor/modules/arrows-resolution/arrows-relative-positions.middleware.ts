@@ -2,43 +2,46 @@ import { NodesFactory } from "@/board-editor/nodes";
 import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 import type { NodesServiceMiddleware } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
+import type { ArrowNode, NodeBase } from "@repo/boards-common";
 
-export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
+export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();
+
+function getArrows(nodes: NodeBase[]): ArrowNode[] {
     const arrows = nodes.filter(node => node.type === "arrow");
 
     if (!NodesFactory.are(arrows, "arrow")) {
-        return nodes;
+        return [];
     }
 
-    switch (payload.operation) {
-        case "create": {
-            break;
-        }
-        case "update": {
-            break;
-        }
-        case "remove": {
-            for (const removingNodeId of payload.nodes) {
-                const arrow = arrows.find(node => node.start.relativeTo === removingNodeId || node.end.relativeTo === removingNodeId);
+    return arrows;
+}
 
-                if (!arrow) {
-                    continue;
+export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
+    switch (payload.operation) {
+        case "remove": {
+            const arrows = getArrows(nodes);
+
+            for (const nodeId of payload.nodes) {
+                const relatedArrows = arrows.filter(arrow => arrow.start.relativeTo === nodeId || arrow.end.relativeTo === nodeId);
+
+                if (relatedArrows.length === 0) {
+                    return nodes;
                 }
 
-                const removingNode = nodes.find(node => node.id === removingNodeId);
+                const removingNode = nodes.find(node => node.id === nodeId);
 
                 if (!removingNode) {
-                    throw Error(`ArrowsRelativePositionsMiddleware: node with id ${removingNodeId} not found`);
+                    throw Error(`Node with id ${nodeId} not found`);
                 }
 
                 const removingNodeRect = NodeRectsFactory.rect(removingNode);
 
-                if (arrow.start.relativeTo === removingNodeId) {
-                    arrow.start = Geometry.addPoints(arrow.start, removingNodeRect);
-                }
-
-                if (arrow.end.relativeTo === removingNodeId) {
-                    arrow.end = Geometry.addPoints(arrow.end, removingNodeRect);
+                for (const arrow of relatedArrows) {
+                    for (const side of ["start", "end"] as const) {
+                        if (arrow[side].relativeTo === nodeId) {
+                            arrow[side] = Geometry.addPoints(arrow[side], removingNodeRect);
+                        }
+                    }
                 }
             }
             break;

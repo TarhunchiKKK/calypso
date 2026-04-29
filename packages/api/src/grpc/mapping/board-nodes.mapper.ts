@@ -86,7 +86,7 @@ export class BoardNodesGrpcMapper {
             const { base, ...specific } = node.text as NoNullableFields<TextBoardNodeGrpc>;
 
             // FIX: remove `text: ""`
-            return { ...(base as NodeBase), ...specific, type: "text", text: "" };
+            return { ...(base as NodeBase), ...specific, type: "text", text: "" } as any;
         }
 
         if (node.shape) {

@@ -37,8 +37,13 @@ export class DecoratableNodeBuilder {
         return this;
     }
 
-    public bindable(handlers: BindingNodeHandlers) {
-        this.node = NodeDecoratorsFactory.bindable(this.node, handlers);
+    public bindable(handlers: BindingNodeHandlers, active: boolean) {
+        this.node = NodeDecoratorsFactory.bindable(this.node, handlers, active);
+        return this;
+    }
+
+    public binding() {
+        this.node = NodeDecoratorsFactory.binding(this.node);
         return this;
     }
 

@@ -1,0 +1,28 @@
+import type { ArrowNode } from "@repo/boards-common";
+import type { Decoratable } from "@/board-editor/core";
+import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+
+const className = "absolute -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-resizing rounded-full cursor-crosshair pointer-events-none";
+
+export class ArrowBindingStrategy extends NodeBindingStrategy {
+    public override updateNode(entry: Decoratable) {
+        entry.wrapper.setUiSetting("noPointerEvents", true);
+    }
+
+    public override ui(entry: Decoratable<ArrowNode>) {
+        if (!NodeWrappersFactory.is(entry.wrapper, "arrow")) {
+            throw Error("Wrapper should be instance of ArrowNodeWrapper");
+        }
+
+        const { start, end } = entry.wrapper.absolutePosition;
+
+        return (
+            <>
+                <div className={className} style={{ left: start.x, top: start.y }} />
+
+                <div className={className} style={{ left: end.x, top: end.y }} />
+            </>
+        );
+    }
+}

@@ -4,10 +4,10 @@ import { StickerEditingStrategy } from "../../variants/sticker/strategies/editin
 import { TextNodeEditingStrategy } from "../../variants/text/strategies/editing.strategy";
 import type { StrategiesMap } from "./types";
 
-export const EditingStrategiesMap: StrategiesMap<typeof NodeEditingStrategy> = {
-    sticker: handler => new StickerEditingStrategy(handler),
-    arrow: handler => new ArrowEditingStrategy(handler),
-    text: handler => new TextNodeEditingStrategy(handler),
+export const EditingStrategiesMap: StrategiesMap<NodeEditingStrategy> = {
+    sticker: new StickerEditingStrategy(),
+    arrow: new ArrowEditingStrategy(),
+    text: new TextNodeEditingStrategy(),
     shape: null,
     media: null
 };

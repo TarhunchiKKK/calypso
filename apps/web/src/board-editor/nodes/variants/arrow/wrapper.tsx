@@ -13,9 +13,14 @@ export class ArrowNodeWrapper extends NodeWrapper<ArrowNode> {
 
     public override render(children?: React.ReactNode) {
         return (
-            <ArrowNodeComponent key={this.node.id} node={this.node} absolutePosition={this.absolutePosition} handlers={this.handlers}>
-                {children}
-            </ArrowNodeComponent>
+            <ArrowNodeComponent
+                key={this.node.id}
+                node={this.node}
+                absolutePosition={this.absolutePosition}
+                uiSettings={this.uiSettings}
+                handlers={this.handlers}
+                children={children}
+            />
         );
     }
 }

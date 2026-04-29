@@ -8,7 +8,7 @@ import { SelectProjectThumbnailModal } from "./dialogs/select-project-thumbnail.
 import { ProjectLinkDropdownGroup } from "./dropdown/project-link.dropdown-group";
 import { DuplicateProjectDropdownItem, RemoveProjectDropdownItem } from "./dropdown/projects-crud.dropdown-items";
 
-export type Props = {
+type Props = {
     project: ProjectWithCreator<ProjectWithType>;
 };
 

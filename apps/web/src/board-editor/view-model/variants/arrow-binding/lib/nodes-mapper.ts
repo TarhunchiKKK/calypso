@@ -1,15 +1,15 @@
+import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
-import type { NodeBase } from "@repo/boards-common";
 
 export class ArrowBindingNodesMapper extends NodesMapper {
     private arrowId!: Id;
 
     private bindingNodeId?: Id;
 
-    private bindingNodeHandlers: BindingNodeHandlers = {};
+    private bindingHandlers!: BindingNodeHandlers;
 
     public static from(nodes: NodeBase[]) {
         return new ArrowBindingNodesMapper(nodes);
@@ -26,21 +26,23 @@ export class ArrowBindingNodesMapper extends NodesMapper {
     }
 
     public setBindingHandlers(handlers: BindingNodeHandlers) {
-        this.bindingNodeHandlers = handlers;
+        this.bindingHandlers = handlers;
         return this;
     }
 
     public override map() {
         return this.nodes.map(node => {
+            const builder = DecoratableNodeBuilder.from(node);
+
             if (node.id === this.arrowId) {
-                return DecoratableNodeBuilder.from(node).selection().resizing().build();
+                builder.selection().binding();
+            } else {
+                const isActive = node.id === this.bindingNodeId;
+
+                builder.bindable(this.bindingHandlers, isActive);
             }
 
-            if (node.id === this.bindingNodeId) {
-                return DecoratableNodeBuilder.from(node).bindable(this.bindingNodeHandlers).build();
-            }
-
-            return node;
+            return builder.build();
         });
     }
 }

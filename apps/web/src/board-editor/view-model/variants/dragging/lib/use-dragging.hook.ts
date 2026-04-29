@@ -16,9 +16,13 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
     };
 
     const onWindowMouseUp = (viewState: DraggingViewState) => {
-        const wrappers = DraggingNodesMapper.from(nodesModel.nodes).setSelectedIds(viewState.selectedIds).setOffset(offset).map();
+        if (!offset) {
+            return;
+        }
 
-        nodesModel.service.replaceAll(wrappers.map(wrapper => wrapper.data));
+        const shiftedNodes = DraggingNodesMapper.getNodesWithOffset(nodesModel.nodes, viewState.selectedIds, offset);
+
+        nodesModel.service.replaceAll(shiftedNodes);
 
         setViewState(
             switchToSelection({

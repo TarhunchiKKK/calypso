@@ -2,13 +2,14 @@ import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { Geometry } from "@/shared/lib/geometry";
 import { switchToSelection } from "../../selection/switcher";
 import type { ArrowBindingViewState } from "../view-state";
-import { findArrow } from "./find-arrow.helper";
+import type { ArrowNode } from "@repo/boards-common";
 
+// FIX: remove `onMouseUp`
 export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const onMouseMove = (viewState: ArrowBindingViewState, e: MouseEvent) => {
         const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-        const arrow = findArrow(nodesModel, viewState.arrowId);
+        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
 
         const newNode = {
             ...arrow,
@@ -21,7 +22,7 @@ export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewStat
     const onMouseUp = (viewState: ArrowBindingViewState, e: MouseEvent) => {
         const point = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-        const arrow = findArrow(nodesModel, viewState.arrowId);
+        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
 
         const newNode = {
             ...arrow,

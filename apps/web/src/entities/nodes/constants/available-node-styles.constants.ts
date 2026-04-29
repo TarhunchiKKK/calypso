@@ -24,3 +24,5 @@ export const AvailableColors = [
 ];
 
 export const AvailableBorderRadiuses: NodeStyles["borderRadius"][] = [0, 4, 8, 16, 24, 9999];
+
+export const AvailableLineWidths: NodeStyles["lineWidth"][] = [0, 1, 2, 3, 4, 5];

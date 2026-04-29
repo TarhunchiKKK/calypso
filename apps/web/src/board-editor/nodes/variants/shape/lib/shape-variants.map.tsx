@@ -1,8 +1,9 @@
 import type { ShapeNode, ShapeVariants } from "@repo/boards-common";
+import type React from "react";
 import type { NodeHandlers } from "@/board-editor/core";
-import { ShapeVariantsReferencePointsMap } from "./shape-variants-reference-points.map";
+import { computeShapeReferencePoints } from "./shape-variants-reference-points.map";
 
-type CreateFunction = (node: ShapeNode, handlers: NodeHandlers) => React.ReactNode;
+type CreateFunction = (node: ShapeNode, handler: NodeHandlers) => React.ReactNode;
 
 export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
     rectangle: (node, handlers) => {
@@ -29,7 +30,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
         return <ellipse {...dimensions} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />;
     },
     triangle: (node, handlers) => {
-        const referencePoints = ShapeVariantsReferencePointsMap.triangle(node);
+        const referencePoints = computeShapeReferencePoints(node);
 
         return (
             <polygon
@@ -41,7 +42,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
         );
     },
     diamond: (node, handlers) => {
-        const referencePoints = ShapeVariantsReferencePointsMap.diamond(node);
+        const referencePoints = computeShapeReferencePoints(node);
 
         return (
             <polygon
@@ -53,7 +54,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
         );
     },
     star: (node, handlers) => {
-        const referencePoints = ShapeVariantsReferencePointsMap.star(node);
+        const referencePoints = computeShapeReferencePoints(node);
 
         return (
             <polygon
@@ -65,7 +66,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
         );
     },
     hexagon: (node, handlers) => {
-        const referencePoints = ShapeVariantsReferencePointsMap.hexagon(node);
+        const referencePoints = computeShapeReferencePoints(node);
 
         return (
             <polygon
