@@ -14,7 +14,7 @@ import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
 
 export function useSelectionViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState, layoutDimensionsModel } = params;
+    const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
 
@@ -22,7 +22,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
-    const canvasMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
@@ -59,12 +58,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
             }
         });
 
-        canvasMediator.setHandlers({
-            left: {
-                onClick: layoutDimensionsModel.lastClick.handle
-            }
-        });
-
         const handleResize = getResizeHandler(params);
 
         return {
@@ -73,7 +66,6 @@ export function useSelectionViewModel(params: ViewModelParams) {
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)
                 .map(),
-            canvas: canvasMediator.handlers,
             overlay: overlayMediator.handlers
         };
     };

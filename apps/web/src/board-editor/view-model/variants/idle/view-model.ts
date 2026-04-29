@@ -13,7 +13,7 @@ import { IdleNodesMapper } from "./lib/nodes-mapper";
 import type { IdleViewState } from "./view-state";
 
 export function useIdleViewModel(params: ViewModelParams) {
-    const { nodesModel, setViewState, layoutDimensionsModel } = params;
+    const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
 
@@ -21,7 +21,6 @@ export function useIdleViewModel(params: ViewModelParams) {
 
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
-    const canvasMediator = useMouseEventsMediator();
 
     return (viewState: IdleViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
@@ -64,15 +63,8 @@ export function useIdleViewModel(params: ViewModelParams) {
             }
         });
 
-        canvasMediator.setHandlers({
-            left: {
-                onClick: layoutDimensionsModel.lastClick.handle
-            }
-        });
-
         return {
             nodes: IdleNodesMapper.from(nodesModel.nodes).setNodesHandlers(nodesMediator.handlers).map(),
-            canvas: canvasMediator.handlers,
             overlay: overlayMediator.handlers
         };
     };

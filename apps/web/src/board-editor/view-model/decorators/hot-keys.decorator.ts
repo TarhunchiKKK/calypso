@@ -12,7 +12,7 @@ function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewStat
 }
 
 // TODO: add missing hot keys
-export function withHotKeys(
+export function useHotKeysDecorator(
     viewState: ViewState,
     { nodesModel, setViewState, layoutDimensionsModel }: ViewModelParams,
     viewModel: DecoratableViewModel
@@ -75,12 +75,14 @@ export function withHotKeys(
     const handleExchangeBufferHotKeys = (e: React.KeyboardEvent) => {
         if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.copy, e)) {
             e.preventDefault();
+            e.stopPropagation();
             nodesModel.exchangeBuffer.copy(viewState.selectedIds);
             return;
         }
 
         if (["selection", "idle"].includes(viewState.type) && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.paste, e)) {
             e.preventDefault();
+            e.stopPropagation();
 
             if (!layoutDimensionsModel.lastClick.point) {
                 return;
@@ -93,6 +95,7 @@ export function withHotKeys(
 
         if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.cut, e)) {
             e.preventDefault();
+            e.stopPropagation();
             nodesModel.exchangeBuffer.cut(viewState.selectedIds);
             return;
         }
