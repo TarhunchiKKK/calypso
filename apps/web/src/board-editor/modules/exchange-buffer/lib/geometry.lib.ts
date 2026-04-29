@@ -8,28 +8,43 @@ const basePoint: Point = {
     y: 0
 };
 
-export function calculateMinPoint(nodes: NodeBase[]) {
+export function calculateMiddlePoint(nodes: NodeBase[]) {
     let minPoint: Point | null = null;
+    let maxPoint: Point | null = null;
 
     for (const node of nodes) {
         const rect = NodeRectsFactory.rect(node);
 
         if (!minPoint) {
             minPoint = rect;
-            continue;
         }
 
-        const currentDistance = Geometry.pointsDistance(basePoint, minPoint);
+        if (!maxPoint) {
+            maxPoint = {
+                x: rect.x + rect.width,
+                y: rect.y + rect.height
+            };
+        }
+
+        const minDistance = Geometry.pointsDistance(basePoint, minPoint);
+        const maxDistance = Geometry.pointsDistance(basePoint, maxPoint);
         const distance = Geometry.pointsDistance(basePoint, rect);
 
-        if (distance < currentDistance) {
+        if (distance < minDistance) {
             minPoint = rect;
+        }
+
+        if (distance > maxDistance) {
+            maxPoint = {
+                x: rect.x + rect.width,
+                y: rect.y + rect.height
+            };
         }
     }
 
-    if (!minPoint) {
-        throw Error("Min point not calculated");
+    if (!minPoint || !maxPoint) {
+        throw Error("Min/max point not calculated");
     }
 
-    return minPoint;
+    return Geometry.middlePoint(minPoint, maxPoint);
 }

@@ -1,17 +1,14 @@
-import type { NodeBase } from "@repo/boards-common";
-import type { Id } from "@repo/common";
+import type { NodeBase, StickerNode } from "@repo/boards-common";
+import type { Id, Point } from "@repo/common";
 import { useState } from "react";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 import type { NodesService } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
-import { calculateMinPoint } from "../lib/geometry.lib";
+import { calculateMiddlePoint } from "../lib/geometry.lib";
 import { NodeClonesFactory } from "../lib/node-clones.factory";
-import { useLastClick } from "./use-last-click.hook";
 
 export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
     const [selectedNodes, setSelectedNodes] = useState<NodeBase[]>();
-
-    const lastClickPoint = useLastClick();
 
     const copy = (nodeIds: Set<Id>) => {
         if (nodes.length === 0) {
@@ -26,17 +23,19 @@ export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
         setSelectedNodes(nodesWithResolvedPositions);
     };
 
-    const paste = () => {
+    const paste = (pastePoint: Point) => {
         if (!selectedNodes) {
             return;
         }
 
-        if (!lastClickPoint) {
-            throw Error("No click occurred");
-        }
+        const middlePoint = calculateMiddlePoint(selectedNodes);
+        const offset = Geometry.calculateOffset(middlePoint, pastePoint);
 
-        const minPoint = calculateMinPoint(selectedNodes);
-        const offset = Geometry.calculateOffset(minPoint, lastClickPoint);
+        console.log("Middle: ", middlePoint);
+        console.log("Paste: ", pastePoint);
+        console.log("Offset: ", offset);
+        console.log("Selected: ", (selectedNodes[0] as StickerNode).rect);
+        console.log("********************");
 
         const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));
 
