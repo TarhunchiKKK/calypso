@@ -1,4 +1,4 @@
-import type { NodeBase, StickerNode } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards-common";
 import type { Id, Point } from "@repo/common";
 import { useState } from "react";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
@@ -34,7 +34,7 @@ export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
         console.log("Middle: ", middlePoint);
         console.log("Paste: ", pastePoint);
         console.log("Offset: ", offset);
-        console.log("Selected: ", (selectedNodes[0] as StickerNode).rect);
+        // console.log("Selected: ", (selectedNodes[0] as StickerNode).rect);
         console.log("********************");
 
         const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));

@@ -14,31 +14,29 @@ export function calculateMiddlePoint(nodes: NodeBase[]) {
 
     for (const node of nodes) {
         const rect = NodeRectsFactory.rect(node);
+        const minRectPoint: Point = { x: rect.x, y: rect.y };
+        const maxRectPoint: Point = { x: rect.x + rect.width, y: rect.y + rect.height };
 
         if (!minPoint) {
-            minPoint = rect;
+            minPoint = minRectPoint;
         }
 
         if (!maxPoint) {
-            maxPoint = {
-                x: rect.x + rect.width,
-                y: rect.y + rect.height
-            };
+            maxPoint = maxRectPoint;
         }
 
         const minDistance = Geometry.pointsDistance(basePoint, minPoint);
         const maxDistance = Geometry.pointsDistance(basePoint, maxPoint);
-        const distance = Geometry.pointsDistance(basePoint, rect);
 
-        if (distance < minDistance) {
-            minPoint = rect;
+        const minRectDistance = Geometry.pointsDistance(basePoint, minRectPoint);
+        const maxRectDistance = Geometry.pointsDistance(basePoint, maxRectPoint);
+
+        if (minRectDistance < minDistance) {
+            minPoint = minRectPoint;
         }
 
-        if (distance > maxDistance) {
-            maxPoint = {
-                x: rect.x + rect.width,
-                y: rect.y + rect.height
-            };
+        if (maxRectDistance > maxDistance) {
+            maxPoint = maxRectPoint;
         }
     }
 
