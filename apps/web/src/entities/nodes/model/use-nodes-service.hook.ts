@@ -14,6 +14,7 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
         });
     };
 
+    // DELETE: this function is useless because `createMany` exists
     const createOne = (node: NodeBase) => {
         setWithMiddleware(
             {
@@ -21,6 +22,16 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
                 nodes: [node]
             },
             nodes => [...nodes, node]
+        );
+    };
+
+    const createMany = (newNodes: NodeBase[]) => {
+        setWithMiddleware(
+            {
+                operation: "create",
+                nodes: newNodes
+            },
+            nodes => [...nodes, ...newNodes]
         );
     };
 
@@ -75,6 +86,7 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
 
     return {
         createOne,
+        createMany,
         findOne,
         updateOne,
         replaceAll: setNodes,
