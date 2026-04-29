@@ -6,6 +6,10 @@ export function useExchangeBuffer(service: NodesService) {
     const [data, setData] = useState<NodeBase[]>();
 
     const copy = (nodes: NodeBase[]) => {
+        if (nodes.length === 0) {
+            return;
+        }
+
         setData(nodes);
     };
 
