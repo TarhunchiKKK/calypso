@@ -49,6 +49,7 @@ export function ProjectsTable({ projects }: Props) {
 }
 
 const skeletonTableItemsCount = 10;
+const titleCellColSpan = 4;
 
 export function ProjectsTableSkeleton() {
     return (
@@ -71,20 +72,8 @@ export function ProjectsTableSkeleton() {
                             <Skeleton className="w-10 h-10" />
                         </TableCell>
 
-                        <TableCell className="font-medium">
-                            <Skeleton className="w-full" />
-                        </TableCell>
-
-                        <TableCell>
-                            <Skeleton className="w-full" />
-                        </TableCell>
-
-                        <TableCell>
-                            <Skeleton className="w-full" />
-                        </TableCell>
-
-                        <TableCell>
-                            <Skeleton className="w-full" />
+                        <TableCell colSpan={titleCellColSpan} className="font-medium">
+                            <Skeleton className="w-full h-4" />
                         </TableCell>
 
                         <TableHead className="text-right">

@@ -6,7 +6,7 @@ type Props = PropsWithChildren<{
     style?: CSSProperties;
 }>;
 
-const defaultClassName = "bg-white p-1 rounded-md shadow-lg dark:bg-gray-900 dark:shadow-amber-50 dark:shadow-sm";
+const defaultClassName = "bg-white p-1 rounded-md shadow-lg dark:shadow-amber-50 dark:bg-black dark:shadow-sm";
 
 export function Wrapper({ style, className, children }: Props) {
     return (
