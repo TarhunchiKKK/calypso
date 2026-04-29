@@ -1,32 +1,43 @@
 import type { NodeBase } from "@repo/boards-common";
+import type { Point } from "@repo/common";
 import { useState } from "react";
 import type { NodesService } from "@/entities/nodes";
+import { Geometry } from "@/shared/lib/geometry";
+import { calculateMinPoint } from "./lib/geometry.lib";
+import { NodeClonesFactory } from "./lib/node-clones.factory";
 
 export function useExchangeBuffer(service: NodesService) {
-    const [data, setData] = useState<NodeBase[]>();
+    const [selectedNodes, setSelectedNodes] = useState<NodeBase[]>();
 
     const copy = (nodes: NodeBase[]) => {
         if (nodes.length === 0) {
             return;
         }
 
-        setData(nodes);
+        setSelectedNodes(nodes);
     };
 
-    const paste = () => {
-        if (!data) {
+    const paste = (pastePoint: Point) => {
+        if (!selectedNodes) {
             return;
         }
 
-        service.createMany(data);
+        const minPoint = calculateMinPoint(selectedNodes);
+        const offset = Geometry.calculateOffset(minPoint, pastePoint);
+
+        const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));
+
+        service.createMany(shiftedNodes);
     };
 
     const cut = (nodes: NodeBase[]) => {
-        const nodeIds = nodes.map(node => node.id);
+        if (nodes.length === 0) {
+            return;
+        }
 
-        service.removeMany(new Set(nodeIds));
+        setSelectedNodes(nodes);
 
-        setData(nodes);
+        service.removeMany(new Set(nodes.map(node => node.id)));
     };
 
     return {
