@@ -2,14 +2,32 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id, Rect } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 
 export class ResizingNodesMapper extends NodesMapper {
     private nodeId!: Id;
 
     private newSize?: Rect = undefined;
 
-    public static from(nodes: NodeBase[]) {
-        return new ResizingNodesMapper(nodes);
+    public static from(nodes: NodeBase[], nodeId: Id, newSize?: Rect) {
+        if (!newSize) {
+            return new ResizingNodesMapper(nodes);
+        }
+
+        const resizedNodes = ResizingNodesMapper.getNodesWithUpdatedSizes(nodes, nodeId, newSize);
+        return new ResizingNodesMapper(resizedNodes);
+    }
+
+    public static getNodesWithUpdatedSizes(nodes: NodeBase[], nodeId: Id, newSize: Rect) {
+        const resizingNode = nodes.find(node => node.id === nodeId);
+
+        if (!resizingNode) {
+            throw new Error(`Resizing node not found (id='${nodeId})'`);
+        }
+
+        const resizedNode = NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(nodes, resizingNode), newSize).data;
+
+        return [...nodes.filter(node => node.id !== nodeId), resizedNode];
     }
 
     public setNodeId(nodeId: Id) {
@@ -31,7 +49,7 @@ export class ResizingNodesMapper extends NodesMapper {
                     return selectedNode;
                 }
 
-                return NodeDecoratorsFactory.resizing(selectedNode, this.newSize);
+                return NodeDecoratorsFactory.resizing(selectedNode);
             }
 
             return node;
