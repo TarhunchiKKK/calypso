@@ -1,6 +1,6 @@
 import { SelectionWindow } from "@/board-editor/modules/selection";
+import type { DecoratableViewModel } from "../../decorators";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { SelectionWindowNodesMapper } from "./lib/nodes-mapper";
 import { useSelectionWindow } from "./lib/use-selection-window.hook";
 import type { SelectionWindowViewState } from "./view-state";

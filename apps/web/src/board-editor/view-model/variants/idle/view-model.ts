@@ -1,8 +1,8 @@
 import { withNodeId } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
+import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";

@@ -1,7 +1,6 @@
-import type { ViewModelParams } from "../types";
-import type { DecoratableViewModel } from "../types/view-model.types";
+import type { ViewModelDecorator } from "./types";
 
-export function useLayoutDimensionsDecorator({ layoutDimensionsModel }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
+export const useLayoutDimensionsDecorator: ViewModelDecorator = (viewModel, _, { layoutDimensionsModel }) => {
     return {
         ...viewModel,
         overlay: {
@@ -24,4 +23,4 @@ export function useLayoutDimensionsDecorator({ layoutDimensionsModel }: ViewMode
             onWheel: layoutDimensionsModel.layoutZoom.handleZoom
         }
     };
-}
+};

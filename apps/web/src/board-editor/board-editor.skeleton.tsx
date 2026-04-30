@@ -12,14 +12,25 @@ const emptyAction = {
 };
 
 const actions: ViewModel["actions"] = {
-    idle: emptyAction,
-    stickers: emptyAction,
-    arrows: emptyAction,
-    text: emptyAction,
-    shapes: emptyAction,
-    media: emptyAction,
-    notes: emptyAction,
-    draw: emptyAction
+    nodes: {
+        idle: emptyAction,
+        stickers: emptyAction,
+        arrows: emptyAction,
+        text: emptyAction,
+        shapes: emptyAction,
+        media: emptyAction,
+        notes: emptyAction,
+        draw: emptyAction
+    },
+    exchangeBuffer: {
+        copy: emptyAction,
+        paste: emptyAction,
+        cut: emptyAction
+    },
+    cancellation: {
+        undo: emptyAction,
+        redo: emptyAction
+    }
 };
 
 const layoutDimensions = {

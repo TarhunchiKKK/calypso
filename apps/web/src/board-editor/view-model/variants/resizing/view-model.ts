@@ -1,5 +1,5 @@
+import type { DecoratableViewModel } from "../../decorators";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { ResizingNodesMapper } from "./lib/nodes-mapper";
 import { useResizing } from "./lib/use-resizing.hook";
 import type { ResizingViewState } from "./view-state";

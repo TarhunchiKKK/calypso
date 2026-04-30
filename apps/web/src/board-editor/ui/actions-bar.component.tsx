@@ -33,15 +33,15 @@ const ButtonsMap = {
         { key: "notes", element: <FileTextIcon /> },
         { key: "draw", element: <BrushIcon /> }
     ] satisfies { key: keyof ViewModel["actions"]["nodes"]; element: React.ReactNode }[],
-    cancellation: [
-        { key: "undo", element: <UndoIcon /> },
-        { key: "redo", element: <RedoIcon /> }
-    ] satisfies { key: keyof ViewModel["actions"]["cancellation"]; element: React.ReactNode }[],
     exchangeBuffer: [
         { key: "copy", element: <CopyIcon /> },
         { key: "paste", element: <ClipboardPasteIcon /> },
         { key: "cut", element: <ScissorsIcon /> }
-    ] satisfies { key: keyof ViewModel["actions"]["exchangeBuffer"]; element: React.ReactNode }[]
+    ] satisfies { key: keyof ViewModel["actions"]["exchangeBuffer"]; element: React.ReactNode }[],
+    cancellation: [
+        { key: "undo", element: <UndoIcon /> },
+        { key: "redo", element: <RedoIcon /> }
+    ] satisfies { key: keyof ViewModel["actions"]["cancellation"]; element: React.ReactNode }[]
 };
 
 export function ActionsBar({ actions }: Props) {
@@ -55,16 +55,16 @@ export function ActionsBar({ actions }: Props) {
 
             <Separator orientation="horizontal" />
 
-            {ButtonsMap.cancellation.map(({ key, element }) => (
-                <ActionButton key={key} isActive={actions.cancellation[key].isActive} onClick={actions.cancellation[key].onClick}>
+            {ButtonsMap.exchangeBuffer.map(({ key, element }) => (
+                <ActionButton key={key} isActive={actions.exchangeBuffer[key].isActive} onClick={actions.exchangeBuffer[key].onClick}>
                     {element}
                 </ActionButton>
             ))}
 
             <Separator orientation="horizontal" />
 
-            {ButtonsMap.exchangeBuffer.map(({ key, element }) => (
-                <ActionButton key={key} isActive={actions.exchangeBuffer[key].isActive} onClick={actions.exchangeBuffer[key].onClick}>
+            {ButtonsMap.cancellation.map(({ key, element }) => (
+                <ActionButton key={key} isActive={actions.cancellation[key].isActive} onClick={actions.cancellation[key].onClick}>
                     {element}
                 </ActionButton>
             ))}

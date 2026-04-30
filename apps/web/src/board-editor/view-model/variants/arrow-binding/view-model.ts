@@ -1,5 +1,5 @@
+import type { DecoratableViewModel } from "../../decorators";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { ArrowBindingNodesMapper } from "./lib/nodes-mapper";
 import { useArrowBinding } from "./lib/use-arrow-binding.hook";
 import { useBindingNode } from "./lib/use-binding-node.hook";

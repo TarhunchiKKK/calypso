@@ -1,5 +1,5 @@
+import type { DecoratableViewModel } from "../../decorators";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { DraggingNodesMapper } from "./lib/nodes-mapper";
 import { useDragging } from "./lib/use-dragging.hook";
 import type { DraggingViewState } from "./view-state";

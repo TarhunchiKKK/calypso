@@ -1,12 +1,12 @@
 import type React from "react";
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import { BoardHotKeys } from "../../lib/hot-keys.lib";
-import type { ViewModelParams, ViewState } from "../types";
-import type { DecoratableViewModel } from "../types/view-model.types";
+import type { ViewState } from "../types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import type { NodeCreationViewState } from "../variants/node-creation/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
+import type { ViewModelDecorator } from "./types";
 
 function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewState["payload"]["type"]) {
     return viewState.type === "node-creation" && viewState.payload.type !== payloadType;
@@ -16,11 +16,7 @@ function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewStat
 // OPTIMIZE:
 // 1. `e.preventDefault()` and `e.stopPropagation()` are called everywhere. If they will before all handlers, they will prevent `Ctrl+R` and other hotkeys.
 // 2. If hot key was found - next handlers should not be called
-export function useHotKeysDecorator(
-    viewState: ViewState,
-    { nodesModel, setViewState, layoutDimensionsModel }: ViewModelParams,
-    viewModel: DecoratableViewModel
-): DecoratableViewModel {
+export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { nodesModel, setViewState, layoutDimensionsModel }) => {
     const handleNodeCreationHotKeys = (e: React.KeyboardEvent) => {
         if (isValidCreation(viewState, "sticker") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.sticker, e)) {
             setViewState(switchToNodeCreation({ type: "sticker" }));
@@ -135,4 +131,4 @@ export function useHotKeysDecorator(
             onKeyDown: handleHotKeys
         }
     };
-}
+};

@@ -1,9 +1,10 @@
 import { Geometry } from "@/shared/lib/geometry";
-import type { ViewModelParams, ViewState } from "../types";
-import type { DecoratableViewModel, ViewModel } from "../types/view-model.types";
+import type { ViewState } from "../types";
+import type { ViewModel } from "../types/view-model.types";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
+import type { ViewModelDecorator } from "./types";
 
 const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-window", "dragging"];
 
@@ -20,11 +21,7 @@ function determineState(viewState: ViewState) {
     };
 }
 
-export function useActionsDecorator(
-    viewState: ViewState,
-    { setViewState, nodesModel, layoutDimensionsModel }: ViewModelParams,
-    viewModel: DecoratableViewModel
-) {
+export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, viewState, { setViewState, nodesModel, layoutDimensionsModel }) => {
     const state = determineState(viewState);
 
     return {
@@ -64,16 +61,6 @@ export function useActionsDecorator(
                     onClick: () => {}
                 }
             },
-            cancellation: {
-                undo: {
-                    isActive: false,
-                    onClick: nodesModel.cancellation.undo
-                },
-                redo: {
-                    isActive: false,
-                    onClick: nodesModel.cancellation.redo
-                }
-            },
             exchangeBuffer: {
                 copy: {
                     isActive: false,
@@ -99,7 +86,17 @@ export function useActionsDecorator(
                         }
                     }
                 }
+            },
+            cancellation: {
+                undo: {
+                    isActive: false,
+                    onClick: nodesModel.cancellation.undo
+                },
+                redo: {
+                    isActive: false,
+                    onClick: nodesModel.cancellation.redo
+                }
             }
         } satisfies ViewModel["actions"]
     };
-}
+};
