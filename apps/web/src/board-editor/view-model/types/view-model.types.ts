@@ -1,6 +1,6 @@
-import type { Id, OmitFields } from "@repo/common";
+import type { Id } from "@repo/common";
 import type React from "react";
-import type { Decoratable, Renderable } from "../../core";
+import type { Renderable } from "../../core";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { ViewState } from "./view-state.type";
@@ -13,6 +13,12 @@ export type ViewModelParams = {
     layoutDimensionsModel: LayoutDimensionsModel;
 
     setViewState: (viewState: ViewState) => void;
+};
+
+type Action = {
+    isActive: boolean;
+
+    onClick?: React.MouseEventHandler;
 };
 
 export type ViewModel = {
@@ -46,46 +52,24 @@ export type ViewModel = {
     };
 
     actions: {
-        idle: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        nodes: {
+            idle: Action;
+            stickers: Action;
+            arrows: Action;
+            text: Action;
+            shapes: Action;
+            media: Action;
+            notes: Action;
+            draw: Action;
         };
-
-        stickers: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        exchangeBuffer: {
+            copy: Action;
+            paste: Action;
+            cut: Action;
         };
-
-        arrows: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        text: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        shapes: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        media: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        notes: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        draw: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        cancellation: {
+            undo: Action;
+            redo: Action;
         };
     };
 };
-
-export type DecoratableViewModel = OmitFields<ViewModel, "nodes" | "actions"> & { nodes: Decoratable[] };

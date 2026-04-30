@@ -1,8 +1,7 @@
 import { useMouseEventsMediator } from "../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../types";
-import type { DecoratableViewModel } from "../types/view-model.types";
+import type { ViewModelDecorator } from "./types";
 
-export function useLastClickDecorator({ layoutDimensionsModel }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
+export const useLastClickDecorator: ViewModelDecorator = (viewModel, _, { layoutDimensionsModel }) => {
     const canvasMediator = useMouseEventsMediator();
 
     canvasMediator.setHandlers({
@@ -25,4 +24,4 @@ export function useLastClickDecorator({ layoutDimensionsModel }: ViewModelParams
             }
         }
     };
-}
+};

@@ -1,7 +1,7 @@
 import type { ArrowNode } from "@repo/boards-common";
 import type { Decoratable } from "@/board-editor/core";
 import { ResizableNodeStrategy, type ResizeHandler } from "@/board-editor/modules/resizing";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 
 const className = "absolute -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-resizing rounded-full cursor-crosshair";
 

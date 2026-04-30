@@ -1,7 +1,7 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
-import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/builders/decoratable-node.builder";
+import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 
 export class EditingNodesMapper extends NodesMapper {
     private selectedNodeId!: Id;

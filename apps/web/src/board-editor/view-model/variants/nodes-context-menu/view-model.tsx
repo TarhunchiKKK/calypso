@@ -1,7 +1,7 @@
 import { Geometry } from "@/shared/lib/geometry";
+import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
 import type { ViewModelParams } from "../../types";
-import type { DecoratableViewModel } from "../../types/view-model.types";
 import { switchToSelection } from "../selection/switcher";
 import { switchToStyling } from "../styling/switcher";
 import { NodesContextMenu } from "./lib/nodes-context-menu.component";

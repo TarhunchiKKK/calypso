@@ -1,6 +1,6 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Point } from "@repo/common";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
+import { NodeRectsFactory } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 
 const basePoint: Point = {

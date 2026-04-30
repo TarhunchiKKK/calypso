@@ -19,7 +19,7 @@ export const AvailableColors = [
     "#5EE9B5",
     "#F0B100",
     "#C27AFF",
-    "#64D2FF",
+    "#000000",
     "#005F78"
 ];
 

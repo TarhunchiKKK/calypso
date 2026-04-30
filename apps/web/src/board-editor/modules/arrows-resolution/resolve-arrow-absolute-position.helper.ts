@@ -1,5 +1,5 @@
 import type { ArrowNode, NodeBase } from "@repo/boards-common";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
+import { NodeRectsFactory } from "@/entities/nodes";
 import type { ArrowAbsolutePosition } from "./types";
 
 export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode): ArrowAbsolutePosition {

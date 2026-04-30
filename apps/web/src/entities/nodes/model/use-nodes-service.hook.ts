@@ -14,7 +14,6 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
         });
     };
 
-    // DELETE: this function is useless because `createMany` exists
     const createOne = (node: NodeBase) => {
         setWithMiddleware(
             {

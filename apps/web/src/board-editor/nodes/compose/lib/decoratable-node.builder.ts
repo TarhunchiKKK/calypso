@@ -3,7 +3,7 @@ import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import type { ResizeHandler } from "@/board-editor/modules/resizing";
-import { NodeDecoratorsFactory } from "../factories/node-decorators.factory";
+import { NodeDecoratorsFactory } from "./node-decorators.factory";
 
 export class DecoratableNodeBuilder {
     private constructor(private node: Decoratable) {}

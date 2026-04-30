@@ -1,9 +1,9 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { type Decoratable, withNodeId } from "@/board-editor/core";
+import { NodeRectsFactory } from "@/entities/nodes";
 import type { BindingNodeHandlers } from "../types";
 import { BindingPoints } from "../ui/binding-points.component";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
     public abstract getReferencePoints(node: T): Point[];
