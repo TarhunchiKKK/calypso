@@ -1,12 +1,12 @@
+import type { Rect } from "@repo/common";
 import { useState } from "react";
 import { selectNodes } from "@/board-editor/modules/selection";
+import { NodeRectsFactory } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToIdle } from "../../idle/switcher";
 import { switchToSelection } from "../../selection/switcher";
 import type { SelectionWindowViewState } from "../view-state";
-import type { Rect } from "@repo/common";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
 
 export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [selectionWindowRect, setSelectionWindowRect] = useState<Rect>();

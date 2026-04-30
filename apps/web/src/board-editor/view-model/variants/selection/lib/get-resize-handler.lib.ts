@@ -1,7 +1,7 @@
 import type { Id } from "@repo/common";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
-import { NodesFactory } from "@/board-editor/nodes";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
+import { NodesFactory } from "@/entities/nodes";
 import { switchToArrowBinding } from "../../arrow-binding/switcher";
 import type { ArrowBindingViewState } from "../../arrow-binding/view-state";
 import { switchToResizing } from "../../resizing/switcher";

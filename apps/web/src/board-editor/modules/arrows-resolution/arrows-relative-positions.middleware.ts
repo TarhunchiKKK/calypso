@@ -1,8 +1,6 @@
-import { NodesFactory } from "@/board-editor/nodes";
-import { NodeRectsFactory } from "@/board-editor/nodes/compose/factories/node-rects.factory";
-import type { NodesServiceMiddleware } from "@/entities/nodes";
-import { Geometry } from "@/shared/lib/geometry";
 import type { ArrowNode, NodeBase } from "@repo/boards-common";
+import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
+import { Geometry } from "@/shared/lib/geometry";
 
 export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();
 

@@ -2,7 +2,7 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id, Point } from "@repo/common";
 import { useState } from "react";
 import { toast } from "sonner";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import type { NodesService } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 import { calculateMiddlePoint } from "./geometry.lib";

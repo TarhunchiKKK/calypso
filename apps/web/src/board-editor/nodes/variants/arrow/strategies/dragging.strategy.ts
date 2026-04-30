@@ -2,7 +2,7 @@ import type { ArrowNode } from "@repo/boards-common";
 import type { Offset } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { Geometry } from "@/shared/lib/geometry";
 
 export class ArrowDraggingStrategy extends NodeDraggingStrategy {

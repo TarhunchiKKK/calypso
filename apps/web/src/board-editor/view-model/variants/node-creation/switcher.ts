@@ -1,6 +1,6 @@
 import type { NodeTypes } from "@repo/boards-common";
 import type { OmitFields } from "@repo/common";
-import { NodesFactory } from "@/board-editor/nodes";
+import { NodesFactory } from "@/entities/nodes";
 import { switchToArrowBinding } from "../arrow-binding/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";

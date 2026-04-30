@@ -2,7 +2,7 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id, Rect } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 
 export class ResizingNodesMapper extends NodesMapper {
     private nodeId!: Id;
