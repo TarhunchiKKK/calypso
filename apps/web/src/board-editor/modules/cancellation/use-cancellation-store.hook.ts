@@ -1,36 +1,58 @@
 import { useState } from "react";
 
-type CancellationPair = {
-    do: () => void;
+type Callback = () => void;
 
-    undo: () => void;
+type UndoItem = {
+    undo: Callback;
+
+    redo: Callback;
 };
 
+type RedoItem = Callback;
+
 export function useCancellationStore() {
-    const [pairs, setPairs] = useState<CancellationPair[]>([]);
-    const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+    const [undoQueue, setUndoQueue] = useState<UndoItem[]>([]);
+    const [redoQueue, setRedoQueue] = useState<RedoItem[]>([]);
 
-    const push = (pair: CancellationPair) => {
-        if (currentIndex === null) {
-            setCurrentIndex(0);
-            setPairs([pair]);
-            return;
-        }
-
-        const newIndex = currentIndex + 1;
-
-        setCurrentIndex(newIndex);
-        setPairs(prev => [...prev.slice(0, newIndex), pair]);
+    const push = (item: UndoItem) => {
+        setUndoQueue(prev => [...prev, item]);
+        setRedoQueue(prev => (prev.length === 0 ? prev : []));
     };
 
     const pop = () => {
-        if (currentIndex === null) {
+        if (undoQueue.length === 0) {
             return;
         }
 
-        setCurrentIndex(prev => (prev ? prev - 1 : null));
-        setPairs(prev => prev.slice(0, prev.length - 1));
+        const lastUndoItem = undoQueue[undoQueue.length - 1];
+
+        setUndoQueue(prev => prev.slice(0, prev.length - 1));
+        setRedoQueue(prev => [...prev, lastUndoItem.redo]);
     };
 
-    return { push, pop, current: currentIndex !== null ? pairs[currentIndex] : null };
+    const undo = () => {
+        if (undoQueue.length === 0) {
+            return;
+        }
+
+        const lastUndoItem = undoQueue[undoQueue.length - 1];
+
+        pop();
+
+        lastUndoItem.undo();
+    };
+
+    const redo = () => {
+        if (redoQueue.length === 0) {
+            return;
+        }
+
+        const lastRedoItem = redoQueue[redoQueue.length - 1];
+
+        setRedoQueue(prev => prev.slice(0, redoQueue.length - 1));
+
+        lastRedoItem();
+    };
+
+    return { push, undo, redo };
 }
