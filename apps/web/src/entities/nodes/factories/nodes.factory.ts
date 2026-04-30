@@ -1,6 +1,6 @@
 import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Point } from "@repo/common";
-import { DefaultNodeStyles } from "@/entities/nodes";
+import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
 
 export class NodesFactory {
     public static is<T extends NodeTypes>(node: NodeBase, type: T): node is NodeTypesMap[T] {

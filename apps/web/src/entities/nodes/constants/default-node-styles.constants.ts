@@ -4,8 +4,8 @@ import { AvailableBorderRadiuses, AvailableColors, AvailableFontFamilies, Availa
 export const DefaultNodeStyles: NodeStyles = {
     fontFamily: AvailableFontFamilies[0],
     fontSize: AvailableFontSizes[2],
-    backgroundColor: AvailableColors[0],
-    textColor: AvailableColors[0],
+    backgroundColor: AvailableColors[3],
+    textColor: AvailableColors[14],
     borderStyle: "none",
     borderColor: AvailableColors[0],
     borderRadius: AvailableBorderRadiuses[0],
