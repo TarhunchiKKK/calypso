@@ -2,17 +2,7 @@ import type { NodeBase } from "@repo/boards-common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellationStore } from "./use-cancellation-store.hook";
 
-type CancellationModel = {
-    service: NodesService;
-
-    cancellation: {
-        undo: () => void;
-
-        redo: () => void;
-    };
-};
-
-export function useCancellationDecorator(nodes: NodeBase[], service: NodesService): CancellationModel {
+export function useCancellationDecorator(nodes: NodeBase[], service: NodesService) {
     const store = useCancellationStore();
 
     const createOne: NodesService["createOne"] = node => {
@@ -107,7 +97,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
             removeMany,
             removeAll,
             replaceAll
-        },
+        } satisfies NodesService,
         cancellation: {
             undo: store.undo,
             redo: store.redo
