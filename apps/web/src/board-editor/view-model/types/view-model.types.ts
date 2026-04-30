@@ -15,6 +15,12 @@ export type ViewModelParams = {
     setViewState: (viewState: ViewState) => void;
 };
 
+type Action = {
+    isActive: boolean;
+
+    onClick?: React.MouseEventHandler;
+};
+
 export type ViewModel = {
     nodes: Renderable[];
 
@@ -46,44 +52,24 @@ export type ViewModel = {
     };
 
     actions: {
-        idle: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        nodes: {
+            idle: Action;
+            stickers: Action;
+            arrows: Action;
+            text: Action;
+            shapes: Action;
+            media: Action;
+            notes: Action;
+            draw: Action;
         };
-
-        stickers: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        cancellation: {
+            undo: Action;
+            redo: Action;
         };
-
-        arrows: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        text: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        shapes: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        media: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        notes: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
-        };
-
-        draw: {
-            isActive: boolean;
-            onClick?: React.MouseEventHandler;
+        exchangeBuffer: {
+            copy: Action;
+            paste: Action;
+            cut: Action;
         };
     };
 };

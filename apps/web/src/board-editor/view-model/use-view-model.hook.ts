@@ -1,7 +1,7 @@
 import type { OmitFields } from "@repo/common";
 import { useEffect } from "react";
 import { ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
-import { useApplyDecorators } from "./decorators";
+import { useViewModelDecorators } from "./decorators";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
 import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
 import type { ViewModel, ViewModelParams } from "./types";
@@ -93,5 +93,5 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
 
     // console.log(viewState.type);
 
-    return useApplyDecorators(viewModel, viewState, newParams);
+    return useViewModelDecorators(viewModel, viewState, newParams);
 }
