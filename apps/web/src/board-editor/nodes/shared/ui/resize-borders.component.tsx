@@ -1,5 +1,5 @@
-import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import type React from "react";
+import type { ResizeDirection } from "@/board-editor/modules/resizing";
 
 type Props = {
     main?: boolean;
