@@ -1,12 +1,14 @@
-import { useRef, useState } from "react";
-import { Geometry } from "@/shared/lib/geometry";
-import { DefaultLayoutOffset, DefaultLayoutZoom, ZoomDown, ZoomUp } from "./layot-dimensions.constants";
 import type { Point } from "@repo/common";
+import { useRef, useState } from "react";
+import { useLastClick } from "@/shared/lib/events";
+import { Geometry } from "@/shared/lib/geometry";
+import { DefaultLayoutOffset, DefaultLayoutZoom, ZoomDown, ZoomUp } from "./layout-dimensions.constants";
 
 export function useLayoutDimensionsModel() {
     const [offset, setOffset] = useState(DefaultLayoutOffset);
     const [zoom, setZoom] = useState(DefaultLayoutZoom);
     const startPointRef = useRef<Point | undefined>(undefined);
+    const lastClick = useLastClick();
 
     const isShifting = (e: React.MouseEvent) => {
         return e.button === 2;
@@ -34,6 +36,7 @@ export function useLayoutDimensionsModel() {
         const newOffset = Geometry.calculateOffset(startPointRef.current, currentPoint);
 
         startPointRef.current = currentPoint;
+
         setOffset(prev => ({
             dx: prev.dx - newOffset.dx,
             dy: prev.dy - newOffset.dy
@@ -73,7 +76,11 @@ export function useLayoutDimensionsModel() {
     return {
         layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
         layoutZoom: { zoom, handleZoom },
-        applyForPoint
+        applyForPoint,
+        lastClick: {
+            point: lastClick.point ? applyForPoint(lastClick.point) : undefined,
+            handle: lastClick.handle
+        }
     };
 }
 

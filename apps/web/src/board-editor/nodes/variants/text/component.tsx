@@ -21,19 +21,16 @@ export function TextNodeComponent({ node, handlers, uiSettings, children }: Prop
 
     // FIX: type casting
     return (
-        <div
-            data-id={node.id}
-            className="absolute bg-yellow-300 px-2 py-4 rounded-xs shadow-md flex flex-col justify-center items-center cursor-pointer"
-            style={styles}
-            {...handlers}
-        >
-            {uiSettings.showContent && (
-                <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    <FormatableTextarea value={node.text as any} disabled />
-                </div>
-            )}
+        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={styles} {...handlers}>
+            <div className="relative w-full h-full px-2 py-4">
+                {uiSettings.showContent && (
+                    <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
+                        <FormatableTextarea value={node.text as any} disabled />
+                    </div>
+                )}
 
-            {children}
+                {children}
+            </div>
         </div>
     );
 }

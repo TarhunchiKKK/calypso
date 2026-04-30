@@ -1,4 +1,4 @@
-import type { ArrowNode, StickerNode } from "@repo/boards-common";
+import type { StickerNode } from "@repo/boards-common";
 
 export const MockNodes = [
     {
@@ -18,23 +18,23 @@ export const MockNodes = [
             textColor: "black"
         }
     } satisfies StickerNode,
-    // {
-    //     id: "sticker-2",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 220, y: 220, width: 150, height: 150 },
-    //     text: "Hello 2",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
+    {
+        id: "sticker-2",
+        locked: false,
+        type: "sticker",
+        rect: { x: 220, y: 220, width: 150, height: 150 },
+        text: "Hello 2",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
+    } satisfies StickerNode
     // {
     //     id: "sticker-3",
     //     type: "sticker",
@@ -53,21 +53,21 @@ export const MockNodes = [
     //         textColor: "black"
     //     }
     // } satisfies StickerNode,
-    {
-        id: "arrow-1",
-        type: "arrow",
-        locked: false,
-        styles: {
-            angleType: "corner",
-            lineColor: "red",
-            lineType: "solid",
-            lineWidth: 2
-        },
-        // start: { x: 10, y: 10, relativeTo: "sticker-1" },
-        // end: { x: 10, y: 10, relativeTo: "sticker-2" }
-        start: { x: 400, y: 400 },
-        end: { x: 300, y: 300 }
-    } satisfies ArrowNode
+    // {
+    //     id: "arrow-1",
+    //     type: "arrow",
+    //     locked: false,
+    //     styles: {
+    //         angleType: "corner",
+    //         lineColor: "red",
+    //         lineType: "solid",
+    //         lineWidth: 2
+    //     },
+    //     // start: { x: 10, y: 10, relativeTo: "sticker-1" },
+    //     // end: { x: 10, y: 10, relativeTo: "sticker-2" }
+    //     start: { x: 400, y: 400 },
+    //     end: { x: 300, y: 300 }
+    // } satisfies ArrowNode
     // {
     //     id: "arrow-2",
     //     type: "arrow",
@@ -135,7 +135,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "rectangle"
-    // } satisfies ShapeNode,
+    // } satisfies ShapeNode
     // {
     //     id: "shape-2",
     //     type: "shape",

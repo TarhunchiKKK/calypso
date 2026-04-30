@@ -20,7 +20,7 @@ function determineState(viewState: ViewState) {
     };
 }
 
-export function withActions(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: DecoratableViewModel) {
+export function useActionsDecorator(viewState: ViewState, setViewState: ViewModelParams["setViewState"], viewModel: DecoratableViewModel) {
     const state = determineState(viewState);
 
     const actions: ViewModel["actions"] = {

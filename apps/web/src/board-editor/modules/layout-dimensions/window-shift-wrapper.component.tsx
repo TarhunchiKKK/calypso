@@ -10,6 +10,7 @@ type Props = PropsWithChildren<{
 export function LayoutDimensionsWrapper({ offset, zoom, children }: Props) {
     return (
         <div
+            data-testid="layout-dimensions-wrapper"
             style={{
                 transformOrigin: "left top",
                 transform: `scale(${zoom}) translate(${-offset.dx}px, ${-offset.dy}px)`

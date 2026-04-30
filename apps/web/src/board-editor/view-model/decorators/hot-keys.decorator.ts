@@ -12,7 +12,14 @@ function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewStat
 }
 
 // TODO: add missing hot keys
-export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: ViewModelParams, viewModel: DecoratableViewModel): DecoratableViewModel {
+// OPTIMIZE:
+// 1. `e.preventDefault()` and `e.stopPropagation()` are called everywhere. If they will before all handlers, they will prevent `Ctrl+R` and other hotkeys.
+// 2. If hot key was found - next handlers should not be called
+export function useHotKeysDecorator(
+    viewState: ViewState,
+    { nodesModel, setViewState, layoutDimensionsModel }: ViewModelParams,
+    viewModel: DecoratableViewModel
+): DecoratableViewModel {
     const handleNodeCreationHotKeys = (e: React.KeyboardEvent) => {
         if (isValidCreation(viewState, "sticker") && HotKeyUtils.is(BoardHotKeys.switch.toCreation.sticker, e)) {
             setViewState(switchToNodeCreation({ type: "sticker" }));
@@ -68,11 +75,41 @@ export function withHotKeys(viewState: ViewState, { nodesModel, setViewState }: 
         }
     };
 
+    const handleExchangeBufferHotKeys = (e: React.KeyboardEvent) => {
+        if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.copy, e)) {
+            e.preventDefault();
+            e.stopPropagation();
+            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
+            return;
+        }
+
+        if (["selection", "idle"].includes(viewState.type) && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.paste, e)) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (!layoutDimensionsModel.lastClick.point) {
+                return;
+            }
+
+            nodesModel.exchangeBuffer.paste(layoutDimensionsModel.lastClick.point);
+
+            return;
+        }
+
+        if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.cut, e)) {
+            e.preventDefault();
+            e.stopPropagation();
+            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+            return;
+        }
+    };
+
     const handleHotKeys = (e: React.KeyboardEvent) => {
         handleSwitchViewModelHotKeys(e);
         handleNodeCreationHotKeys(e);
         handleSelectionHotKeys(e);
         handleGlobalHotKeys(e);
+        handleExchangeBufferHotKeys(e);
     };
 
     return {

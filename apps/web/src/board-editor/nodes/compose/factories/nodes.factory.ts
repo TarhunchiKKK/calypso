@@ -2,6 +2,7 @@ import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode
 import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "@/entities/nodes";
 
+// REFACTOR: move to `entities` slice
 export class NodesFactory {
     public static is<T extends NodeTypes>(node: NodeBase, type: T): node is NodeTypesMap[T] {
         return node.type === type;
