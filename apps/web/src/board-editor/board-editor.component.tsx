@@ -25,7 +25,6 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
 
-
     const viewModel = useViewModel({
         boardId,
         nodesModel,

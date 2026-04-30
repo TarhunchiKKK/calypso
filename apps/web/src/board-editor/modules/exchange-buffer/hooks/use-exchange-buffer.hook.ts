@@ -1,6 +1,7 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Id, Point } from "@repo/common";
 import { useState } from "react";
+import { toast } from "sonner";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/factories/node-wrappers.factory";
 import type { NodesService } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
@@ -12,6 +13,7 @@ export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
 
     const copy = (nodeIds: Set<Id>) => {
         if (nodes.length === 0) {
+            toast.warning("No nodes selected");
             return;
         }
 
@@ -21,21 +23,18 @@ export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
             .map(wrapper => wrapper.data);
 
         setSelectedNodes(nodesWithResolvedPositions);
+
+        toast.info("Nodes copied");
     };
 
     const paste = (pastePoint: Point) => {
         if (!selectedNodes) {
+            toast.warning("No nodes selected");
             return;
         }
 
         const middlePoint = calculateMiddlePoint(selectedNodes);
         const offset = Geometry.calculateOffset(middlePoint, pastePoint);
-
-        console.log("Middle: ", middlePoint);
-        console.log("Paste: ", pastePoint);
-        console.log("Offset: ", offset);
-        // console.log("Selected: ", (selectedNodes[0] as StickerNode).rect);
-        console.log("********************");
 
         const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));
 

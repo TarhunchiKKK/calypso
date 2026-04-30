@@ -31,14 +31,16 @@ export function StickerComponent({ node, handlers, uiSettings, children }: Props
     };
 
     return (
-        <div data-id={node.id} className="relative px-2 py-4 shadow-md flex flex-col justify-center items-center" style={wrapperStyles} {...handlers}>
-            {uiSettings.showContent && (
-                <div style={contentStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                    {node.text}
-                </div>
-            )}
+        <div data-id={node.id} className="absolute shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
+            <div className="relative w-full h-full px-2 py-4">
+                {uiSettings.showContent && (
+                    <div style={contentStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
+                        {node.text}
+                    </div>
+                )}
 
-            {children}
+                {children}
+            </div>
         </div>
     );
 }

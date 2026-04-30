@@ -12,6 +12,9 @@ function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewStat
 }
 
 // TODO: add missing hot keys
+// OPTIMIZE:
+// 1. `e.preventDefault()` and `e.stopPropagation()` are called everywhere. If they will before all handlers, they will prevent `Ctrl+R` and other hotkeys.
+// 2. If hot key was found - next handlers should not be called
 export function useHotKeysDecorator(
     viewState: ViewState,
     { nodesModel, setViewState, layoutDimensionsModel }: ViewModelParams,

@@ -17,24 +17,24 @@ export const MockNodes = [
             textAlign: "left",
             textColor: "black"
         }
+    } satisfies StickerNode,
+    {
+        id: "sticker-2",
+        locked: false,
+        type: "sticker",
+        rect: { x: 220, y: 220, width: 150, height: 150 },
+        text: "Hello 2",
+        styles: {
+            fontFamily: "sans-serif",
+            fontSize: 14,
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "left",
+            textColor: "black"
+        }
     } satisfies StickerNode
-    // {
-    //     id: "sticker-2",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 220, y: 220, width: 150, height: 150 },
-    //     text: "Hello 2",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         fontSize: 14,
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "left",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
     // {
     //     id: "sticker-3",
     //     type: "sticker",
@@ -135,7 +135,7 @@ export const MockNodes = [
     //         height: 100
     //     },
     //     variant: "rectangle"
-    // } satisfies ShapeNode,
+    // } satisfies ShapeNode
     // {
     //     id: "shape-2",
     //     type: "shape",
