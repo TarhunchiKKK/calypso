@@ -8,7 +8,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
     const createOne: NodesService["createOne"] = node => {
         store.push({
             undo: () => service.removeOne(node.id),
-            redo: () => service.createOne(node)
+            redo: () => createOne(node)
         });
 
         service.createOne(node);
@@ -19,7 +19,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
         store.push({
             undo: () => service.removeMany(new Set(nodeIds)),
-            redo: () => service.createMany(nodes)
+            redo: () => createMany(nodes)
         });
 
         service.createMany(nodes);
@@ -30,7 +30,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
         store.push({
             undo: () => service.updateOne(oldNode),
-            redo: () => service.updateOne(node)
+            redo: () => updateOne(node)
         });
 
         service.updateOne(node);
@@ -39,7 +39,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
     const updateManyWithFn: NodesService["updateManyWithFn"] = (ids, fn) => {
         store.push({
             undo: () => service.replaceAll(nodes),
-            redo: () => service.updateManyWithFn(ids, fn)
+            redo: () => updateManyWithFn(ids, fn)
         });
 
         service.updateManyWithFn(ids, fn);
@@ -50,7 +50,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
         store.push({
             undo: () => service.createOne(oldNode),
-            redo: () => service.removeOne(nodeId)
+            redo: () => removeOne(nodeId)
         });
 
         service.removeOne(nodeId);
@@ -61,7 +61,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
         store.push({
             undo: () => service.createMany(oldNodes),
-            redo: () => service.removeMany(ids)
+            redo: () => removeMany(ids)
         });
 
         service.removeMany(ids);
@@ -70,7 +70,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
     const removeAll: NodesService["removeAll"] = () => {
         store.push({
             undo: () => service.replaceAll(nodes),
-            redo: () => service.removeAll()
+            redo: () => removeAll()
         });
 
         service.removeAll();
@@ -79,7 +79,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
     const replaceAll: NodesService["replaceAll"] = param => {
         store.push({
             undo: () => service.replaceAll(nodes),
-            redo: () => service.replaceAll(param)
+            redo: () => replaceAll(param)
         });
 
         service.replaceAll(param);

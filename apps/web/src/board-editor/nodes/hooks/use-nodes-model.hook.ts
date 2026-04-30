@@ -15,7 +15,7 @@ export function useNodesModel(inputNodes: NodeBase[]) {
 
     return {
         nodes,
-        service: nodesService,
+        service: withCancellation.service,
         exchangeBuffer: exchangeBuffer,
         cancellation: withCancellation.cancellation
     };

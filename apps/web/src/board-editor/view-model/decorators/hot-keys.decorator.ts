@@ -1,3 +1,4 @@
+import type React from "react";
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import { BoardHotKeys } from "../../lib/hot-keys.lib";
 import type { ViewModelParams, ViewState } from "../types";
@@ -104,12 +105,27 @@ export function useHotKeysDecorator(
         }
     };
 
+    const handleCancellationHotKeys = (e: React.KeyboardEvent) => {
+        if (HotKeyUtils.is(BoardHotKeys.cancellation.undo, e)) {
+            e.preventDefault();
+            nodesModel.cancellation.undo();
+            return;
+        }
+
+        if (HotKeyUtils.is(BoardHotKeys.cancellation.redo, e)) {
+            e.preventDefault();
+            nodesModel.cancellation.redo();
+            return;
+        }
+    };
+
     const handleHotKeys = (e: React.KeyboardEvent) => {
         handleSwitchViewModelHotKeys(e);
         handleNodeCreationHotKeys(e);
         handleSelectionHotKeys(e);
         handleGlobalHotKeys(e);
         handleExchangeBufferHotKeys(e);
+        handleCancellationHotKeys(e);
     };
 
     return {

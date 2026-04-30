@@ -16,18 +16,6 @@ export function useCancellationStore() {
 
     const push = (item: UndoItem) => {
         setUndoQueue(prev => [...prev, item]);
-        setRedoQueue(prev => (prev.length === 0 ? prev : []));
-    };
-
-    const pop = () => {
-        if (undoQueue.length === 0) {
-            return;
-        }
-
-        const lastUndoItem = undoQueue[undoQueue.length - 1];
-
-        setUndoQueue(prev => prev.slice(0, prev.length - 1));
-        setRedoQueue(prev => [...prev, lastUndoItem.redo]);
     };
 
     const undo = () => {
@@ -37,7 +25,8 @@ export function useCancellationStore() {
 
         const lastUndoItem = undoQueue[undoQueue.length - 1];
 
-        pop();
+        setUndoQueue(prev => prev.slice(0, prev.length - 1));
+        setRedoQueue(prev => [...prev, lastUndoItem.redo]);
 
         lastUndoItem.undo();
     };
