@@ -1,4 +1,4 @@
-import { RelativePointZOdSchema } from "@repo/common";
+import { FormatableElementBaseZodSchema, FormatableParagraphZodSchema, RelativePointZOdSchema } from "@repo/common";
 import z from "zod";
 import { NodeBaseZodSchema, RectNodeZodSchema } from "./core.types";
 import { NodeStylesZodSchema } from "./styles.types";
@@ -33,7 +33,7 @@ export const ArrowNodeZodSchema = NodeBaseZodSchema.extend({
 
 export const TextNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("text"),
-    text: z.string(),
+    content: z.array(FormatableParagraphZodSchema),
     styles: NodeStylesZodSchema.pick({
         fontFamily: true,
         fontSize: true,
@@ -58,9 +58,15 @@ export const MediaNodeZodSchema = RectNodeZodSchema.extend({
     url: z.string()
 });
 
+export const NoteNodeZodSchema = RectNodeZodSchema.extend({
+    type: z.literal("note"),
+    content: z.array(FormatableElementBaseZodSchema)
+});
+
 export type StickerNode = z.infer<typeof StickerNodeZodSchema>;
 export type ArrowNode = z.infer<typeof ArrowNodeZodSchema>;
 export type TextNode = z.infer<typeof TextNodeZodSchema>;
 export type ShapeVariants = z.infer<typeof ShapeVariantsZodSchema>;
 export type ShapeNode = z.infer<typeof ShapeNodeZodSchema>;
 export type MediaNode = z.infer<typeof MediaNodeZodSchema>;
+export type NoteNode = z.infer<typeof NoteNodeZodSchema>;
