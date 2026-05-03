@@ -61,7 +61,8 @@ export function useSelectionViewModel(params: ViewModelParams) {
         const handleResize = getResizeHandler(params);
 
         return {
-            nodes: SelectionNodesMapper.from(nodesModel.nodes)
+            nodes: SelectionNodesMapper.create()
+                .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
                 .setSelectedIds(viewState.selectedIds)
                 .setResizeHandler(handleResize)

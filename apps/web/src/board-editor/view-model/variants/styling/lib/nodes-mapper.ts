@@ -1,13 +1,12 @@
+import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@repo/boards-common";
-import type { Id } from "@repo/common";
 
 export class StylingNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
 
-    public static from(nodes: NodeBase[]) {
-        return new StylingNodesMapper(nodes);
+    public static create() {
+        return new StylingNodesMapper();
     }
 
     public setSelectedIds(selectedIds: Set<Id>) {
@@ -16,6 +15,12 @@ export class StylingNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
+        return this.wrapNodes().map(wrapper => {
+            if (this.selectedIds.has(wrapper.id)) {
+                return NodeDecoratorsFactory.selection(wrapper);
+            }
+
+            return wrapper;
+        });
     }
 }

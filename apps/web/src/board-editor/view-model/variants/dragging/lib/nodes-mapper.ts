@@ -1,33 +1,15 @@
-import type { NodeBase } from "@repo/boards-common";
 import type { Id, Offset } from "@repo/common";
+import { NodesMapper } from "@/board-editor/core";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 
-export class DraggingNodesMapper {
-    private nodes: NodeBase[] = [];
-
+export class DraggingNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
 
     private offset?: Offset;
 
     public static create() {
         return new DraggingNodesMapper();
-    }
-
-    private getNodesWithOffset() {
-        const nodesToDrag = this.nodes
-            .filter(node => this.selectedIds.has(node.id))
-            .map(node => NodeWrappersFactory.wrap(this.nodes, node))
-            .map(wrapper => DecoratableNodeBuilder.from(wrapper).dragging(this.offset).build().data);
-
-        const otherNodes = this.nodes.filter(node => !this.selectedIds.has(node.id));
-
-        return [...nodesToDrag, ...otherNodes];
-    }
-
-    public setNodes(nodes: NodeBase[]) {
-        this.nodes = nodes;
-        return this;
     }
 
     public setSelectedIds(selectedIds: Set<Id>) {
@@ -38,6 +20,17 @@ export class DraggingNodesMapper {
     public setOffset(offset?: Offset) {
         this.offset = offset;
         return this;
+    }
+
+    public getNodesWithOffset() {
+        const nodesToDrag = this.nodes
+            .filter(node => this.selectedIds.has(node.id))
+            .map(node => NodeWrappersFactory.wrap(this.nodes, node))
+            .map(wrapper => DecoratableNodeBuilder.from(wrapper).dragging(this.offset).build().data);
+
+        const otherNodes = this.nodes.filter(node => !this.selectedIds.has(node.id));
+
+        return [...nodesToDrag, ...otherNodes];
     }
 
     public map() {

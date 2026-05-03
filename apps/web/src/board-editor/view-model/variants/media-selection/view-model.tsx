@@ -25,7 +25,7 @@ export function useMediaSelectionViewModel({ nodesModel, setViewState }: ViewMod
         const selectorPosition = Geometry.applyOffset(viewState.clickPoint, MediaSelectorOffset);
 
         return {
-            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.create().setNodes(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (

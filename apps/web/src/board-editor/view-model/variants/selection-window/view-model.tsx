@@ -12,7 +12,8 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
 
     return (viewState: SelectionWindowViewState): DecoratableViewModel => {
         return {
-            nodes: SelectionWindowNodesMapper.from(nodesModel.nodes)
+            nodes: SelectionWindowNodesMapper.create()
+                .setNodes(nodesModel.nodes)
                 .setSelectedIds(viewState.selectedIds)
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .map(),

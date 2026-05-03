@@ -1,6 +1,6 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
-import { type NodeHandlers, NodesMapper } from "@/board-editor/core";
+import { NodesMapper } from "@/board-editor/core";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 
 export class EditingNodesMapper extends NodesMapper {
@@ -8,10 +8,8 @@ export class EditingNodesMapper extends NodesMapper {
 
     private endEditingHandler!: (node: NodeBase) => void;
 
-    private nodesHandlers!: NodeHandlers;
-
-    public static from(nodes: NodeBase[]) {
-        return new EditingNodesMapper(nodes);
+    public static create() {
+        return new EditingNodesMapper();
     }
 
     public setSelectedNodeId(selectedNodeId: Id) {
@@ -24,18 +22,13 @@ export class EditingNodesMapper extends NodesMapper {
         return this;
     }
 
-    public setNodesHandlers(nodesHandlers: NodeHandlers) {
-        this.nodesHandlers = nodesHandlers;
-        return this;
-    }
-
     public override map() {
-        return this.nodes.map(node => {
-            if (this.selectedNodeId === node.id) {
-                return DecoratableNodeBuilder.from(node).selection().editing(this.endEditingHandler).build();
+        return this.wrapNodes().map(wrapper => {
+            if (this.selectedNodeId === wrapper.id) {
+                return DecoratableNodeBuilder.from(wrapper).selection().editing(this.endEditingHandler).build();
             }
 
-            return node.setHandlers(this.nodesHandlers);
+            return wrapper;
         });
     }
 }
