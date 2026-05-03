@@ -1,4 +1,4 @@
-import { withNodeId } from "@/board-editor/core";
+import { DefaultNodesMapper, withNodeId } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
 import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
@@ -9,7 +9,6 @@ import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { switchToStyling } from "../styling/switcher";
-import { IdleNodesMapper } from "./lib/nodes-mapper";
 import type { IdleViewState } from "./view-state";
 
 export function useIdleViewModel(params: ViewModelParams) {
@@ -64,7 +63,7 @@ export function useIdleViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: IdleNodesMapper.from(nodesModel.nodes).setNodesHandlers(nodesMediator.handlers).map(),
+            nodes: DefaultNodesMapper.create().setNodes(nodesModel.nodes).setHandlers(nodesMediator.handlers).map(),
             overlay: overlayMediator.handlers
         };
     };

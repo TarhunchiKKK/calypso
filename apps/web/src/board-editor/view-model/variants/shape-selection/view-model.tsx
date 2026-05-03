@@ -25,7 +25,7 @@ export function useShapeSelectionViewModel({ nodesModel, setViewState }: ViewMod
         const selectorPosition = Geometry.applyOffset(viewState.clickPoint, ShapeSelectorOffset);
 
         return {
-            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.create().setNodes(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: (

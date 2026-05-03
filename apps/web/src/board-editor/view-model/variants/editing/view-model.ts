@@ -27,10 +27,11 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
         });
 
         return {
-            nodes: EditingNodesMapper.from(nodesModel.nodes)
+            nodes: EditingNodesMapper.create()
+                .setNodes(nodesModel.nodes)
+                .setHandlers(nodesMediator.handlers)
                 .setSelectedNodeId(viewState.selectedNodeId)
                 .setEndEditingHandler(nodesModel.service.updateOne)
-                .setNodesHandlers(nodesMediator.handlers)
                 .map(),
             overlay: overlayMediator.handlers
         };

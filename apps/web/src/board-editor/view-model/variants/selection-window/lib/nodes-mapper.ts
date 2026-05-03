@@ -1,4 +1,3 @@
-import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
@@ -18,17 +17,17 @@ export class SelectionWindowNodesMapper extends NodesMapper {
         return this;
     }
 
-    public static from(nodes: NodeBase[]) {
-        return new SelectionWindowNodesMapper(nodes);
+    public static create() {
+        return new SelectionWindowNodesMapper();
     }
 
     public override map() {
-        return this.nodes.map(node => {
-            if (this.selectedIds.has(node.id) || this.selectionWIndowIds.has(node.id)) {
-                return NodeDecoratorsFactory.selection(node);
+        return this.wrapNodes().map(wrapper => {
+            if (this.selectedIds.has(wrapper.id) || this.selectionWIndowIds.has(wrapper.id)) {
+                return NodeDecoratorsFactory.selection(wrapper);
             }
 
-            return node;
+            return wrapper;
         });
     }
 }

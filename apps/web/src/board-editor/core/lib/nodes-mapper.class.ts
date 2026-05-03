@@ -1,22 +1,36 @@
 import type { NodeBase } from "@repo/boards-common";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
-import type { NodeWrapper } from "../classes/node-wrapper.class";
+import type { NodeHandlers } from "../classes/node-wrapper.class";
 import type { Decoratable } from "../types/decorators.types";
 
 export abstract class NodesMapper {
-    protected nodes: NodeWrapper[] = [];
+    protected nodes: NodeBase[] = [];
 
-    public constructor(protected inputNodes: NodeBase[]) {
-        this.nodes = inputNodes.map(node => NodeWrappersFactory.wrap(inputNodes, node));
+    protected handlers: NodeHandlers = {};
+
+    public setNodes(nodes: NodeBase[]) {
+        this.nodes = nodes;
+        return this;
     }
 
-    public map(): Decoratable[] {
-        return this.nodes;
+    public setHandlers(handlers: NodeHandlers) {
+        this.handlers = handlers;
+        return this;
     }
+
+    public wrapNodes() {
+        return this.nodes.map(node => NodeWrappersFactory.wrap(this.nodes, node)).map(wrapper => wrapper.setHandlers(this.handlers));
+    }
+
+    public abstract map(): Decoratable[];
 }
 
 export class DefaultNodesMapper extends NodesMapper {
-    public static from(nodes: NodeBase[]) {
-        return new DefaultNodesMapper(nodes);
+    public static create() {
+        return new DefaultNodesMapper();
+    }
+
+    public override map() {
+        return this.wrapNodes();
     }
 }

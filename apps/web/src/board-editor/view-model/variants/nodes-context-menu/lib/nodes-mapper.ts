@@ -1,13 +1,12 @@
+import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
-import type { NodeBase } from "@repo/boards-common";
-import type { Id } from "@repo/common";
 
 export class NodesContextMenuNodesMapper extends NodesMapper {
     private selectedIds!: Set<Id>;
 
-    public static from(nodes: NodeBase[]) {
-        return new NodesContextMenuNodesMapper(nodes);
+    public static create() {
+        return new NodesContextMenuNodesMapper();
     }
 
     public setSelectedIds(selectedIds: Set<Id>) {
@@ -16,6 +15,12 @@ export class NodesContextMenuNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.nodes.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
+        return this.wrapNodes().map(wrapper => {
+            if (this.selectedIds.has(wrapper.id)) {
+                return NodeDecoratorsFactory.selection(wrapper);
+            }
+
+            return wrapper;
+        });
     }
 }

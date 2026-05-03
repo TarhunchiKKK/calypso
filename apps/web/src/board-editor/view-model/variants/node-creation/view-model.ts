@@ -26,7 +26,7 @@ export function useNodeCreationViewModel(params: ViewModelParams) {
         });
 
         return {
-            nodes: DefaultNodesMapper.from(nodesModel.nodes).map(),
+            nodes: DefaultNodesMapper.create().setNodes(nodesModel.nodes).map(),
             canvas: canvasMediator.handlers
         };
     };

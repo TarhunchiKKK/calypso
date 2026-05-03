@@ -14,7 +14,8 @@ export function useArrowBindingViewModel(params: ViewModelParams) {
 
     return (viewState: ArrowBindingViewState): DecoratableViewModel => {
         return {
-            nodes: ArrowBindingNodesMapper.from(nodesModel.nodes)
+            nodes: ArrowBindingNodesMapper.create()
+                .setNodes(nodesModel.nodes)
                 .setArrowId(viewState.arrowId)
                 .setBindingNodeId(bindingNode.nodeId)
                 .setBindingHandlers({

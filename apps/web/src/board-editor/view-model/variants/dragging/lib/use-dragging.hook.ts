@@ -20,7 +20,11 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
             return;
         }
 
-        const shiftedNodes = DraggingNodesMapper.getNodesWithOffset(nodesModel.nodes, viewState.selectedIds, offset);
+        const shiftedNodes = DraggingNodesMapper.create()
+            .setNodes(nodesModel.nodes)
+            .setSelectedIds(viewState.selectedIds)
+            .setOffset(offset)
+            .getNodesWithOffset();
 
         nodesModel.service.replaceAll(shiftedNodes);
 
