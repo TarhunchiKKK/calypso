@@ -1,5 +1,5 @@
 {
-    "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "RECHECK", "INCOMPLETE", "TODO", "USEFUL", "REFACTOR", "DELETE", "OPTIMIZE", "DOC", "WARN", "QUESTION"],
+    "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "RECHECK", "INCOMPLETE", "TODO", "USEFUL", "REFACTOR", "DELETE", "OPTIMIZE", "DOC", "WARN", "QUESTION", "IMPLEMENTATION", "STORY", "CHECK", "TEST"],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
         "type": "text-and-comment",
@@ -59,6 +59,18 @@
         "IMPLEMENTATION": {
             "icon": "code",
             "iconColour": "cyan"
+        },
+        "STORY": {
+            "icon": "book",
+            "iconColour": "#ed28bf"
+        },
+        "CHECK": {
+            "icon": "eye",
+            "iconColour": "#06B6D4"
+        },
+        "TEST": {
+            "icon": "beaker",
+            "iconColour": "#F59E0B"
         }
     },
 

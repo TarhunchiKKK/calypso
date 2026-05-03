@@ -2,7 +2,7 @@ import type { Profile } from "@repo/common";
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from "@/shared/ui/kit";
 import { AuthApi } from "../auth";
 
-// TODO: TEST
+// TEST
 function extractAvatarFallback(profile: Profile) {
     const parts = profile.username.split(" ");
 

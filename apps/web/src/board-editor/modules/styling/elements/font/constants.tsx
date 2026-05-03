@@ -4,7 +4,7 @@ import { AvailableFontFamilies, AvailableFontSizes } from "@/entities/nodes/cons
 import { capitalize } from "@/shared/lib/string";
 import type { DropdownItem } from "@/shared/ui";
 
-// TODO: TEST
+// TEST
 export function formatFontFamilyName(fontFamily: string) {
     return fontFamily.split("-").map(capitalize).join(" ");
 }
