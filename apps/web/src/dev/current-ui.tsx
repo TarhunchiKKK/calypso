@@ -1,5 +1,5 @@
-import { Component as BoardEditorPage } from "@/pages/apps/board-editor.page";
+import { FormatableText } from "@/features/formatable";
 
 export function CurrentUi() {
-    return <BoardEditorPage />;
+    return <FormatableText value={[]} />;
 }

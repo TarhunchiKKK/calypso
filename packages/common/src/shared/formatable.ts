@@ -26,6 +26,7 @@ export const FormatableCodeZodSchema = FormatableElementBaseZodSchema.extend({
 export const AnyFormatableElementZodSchema = z.discriminatedUnion("type", [FormatableParagraphZodSchema, FormatableCodeZodSchema]);
 
 export type FormatableElementTypes = z.infer<typeof FormatableElementTypesZodSchema>;
+export type FormatableText = z.infer<typeof FormatableTextZodSchema>;
 export type FormatableElementBase = z.infer<typeof FormatableElementBaseZodSchema>;
 export type FormatableParagraph = z.infer<typeof FormatableParagraphZodSchema>;
 export type FormatableCode = z.infer<typeof FormatableCodeZodSchema>;
