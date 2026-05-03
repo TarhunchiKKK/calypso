@@ -1,5 +1,5 @@
-import { FormatableText } from "@/features/formatable";
+import { FormatableDocument } from "@/features/formatting";
 
 export function CurrentUi() {
-    return <FormatableText value={[]} />;
+    return <FormatableDocument />;
 }
