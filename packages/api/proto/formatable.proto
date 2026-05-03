@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package formatable;
+
+message FormatableTextGrpc {
+    string text = 1;
+
+    optional bool bold = 2;
+
+    optional bool italic = 3;
+
+    optional bool underline = 4;
+
+    optional bool lineThrough = 5;
+}
+
+message FormatableParagraphGrpc {
+    string type = 1;
+
+    repeated FormatableTextGrpc children = 2;
+}
+
+message FormatableCodeGrpc {
+    string type = 1;
+
+    repeated FormatableTextGrpc children = 2;
+}
+
+message AnyFormatableElementGrpc { 
+    oneof specific {
+        FormatableParagraphGrpc paragraph = 1;
+
+        FormatableCodeGrpc code = 2;
+    }
+}

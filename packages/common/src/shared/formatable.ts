@@ -4,10 +4,10 @@ export const FormatableElementTypesZodSchema = z.enum(["paragraph", "code"]);
 
 export const FormatableTextZodSchema = z.object({
     text: z.string(),
-    bold: z.boolean().nullable(),
-    italic: z.boolean().nullable(),
-    underline: z.boolean().nullable(),
-    lineThrough: z.boolean().nullable()
+    bold: z.boolean().optional(),
+    italic: z.boolean().optional(),
+    underline: z.boolean().optional(),
+    lineThrough: z.boolean().optional()
 });
 
 export const FormatableElementBaseZodSchema = z.object({
