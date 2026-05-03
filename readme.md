@@ -9,18 +9,21 @@
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [About](#about)
-- [Stack](#-stack)
-  - [Common](#-common)
-  - [Backend](#-backend)
-  - [Frontend](#-frontend)
-  - [Infrastructure](#-infrasctructure)
-- [Features](#-features)
+- [🛠️ Stack](#️-stack)
+  - [⚓ Core](#-core)
+  - [🍓 Frontend](#-frontend)
+  - [⚡ Backend](#-backend)
+  - [🏗️ Infrastructure](#️-infrastructure)
+- [🚀 Run app Locally](#-run-app-locally)
+  - [📋 Requirements](#-requirements)
+  - [⚙️ Setup Steps](#️-setup-steps)
+- [✨ Features](#-features)
   - [Node Types](#node-types)
   - [Editor Features](#editor-features)
   - [Complications](#complications)
   - [Hot Keys](#hot-keys)
-- [Run app Locally](#-run-app-locally)
 
 
 ## About 
@@ -75,202 +78,81 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **📨 Message Broker**: [RabbitMQ](https://www.rabbitmq.com/docs)
 - **🗄️ S3 Storage**: [Minio](https://www.min.io/)
 
-
-<!-- ### ⚓ Common
+## 🚀 Run app Locally
  
-Language
+### 📋 Requirements
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Scope</th>
-            <th>Solution</th>
-        </tr>
-    </thead>
-    <tbody>
-         <tr>
-            <td>Language</td>
-            <td>
-                <a href="https://www.typescriptlang.org/">TypeScript</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Runtime⚡</td>
-            <td>
-                <a href="https://bun.sh/">Bun</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Project Structure</td>
-            <td>
-                <a href="https://turborepo.dev/">Turborepo</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Linting</td>
-            <td rowspan="2">
-                <a href="https://biomejs.dev/">BiomeJS</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Formatting</td>
-        </tr>
-        <tr>
-            <td>Code Quality</td>
-            <td>
-                <a href="https://knip.dev/">Knip</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Testing</td>
-            <td>
-                <a href="https://vitest.dev/">Vitest</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2">CI</td>
-            <td>
-                <a href="https://www.docker.com/">Docker</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://docs.github.com/en/actions">Github Actions</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+- **Node.js**: version 18+ ([download](https://nodejs.org/))
+- **Bun**: ([download](https://bun.sh/))
+- **Git**: ([download](https://git-scm.com/))
+- **Docker**: ([download](https://docker.com))
+- **OS**: any (Linux, macOS, Windows). Developed on [Kali Linux](https://www.kali.org/)
 
-### ⚡ Backend
+### ⚙️ Setup Steps
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Scope</th>
-            <th>Solution</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Framework</td>
-            <td>
-                <a href="https://nestjs.com/">NestJS</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2">Database</td>
-            <td>
-                <a href="https://www.postgresql.org/">Postgres</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://www.mongodb.com/home?pk_campaign=VentureBeat">MongoDB</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2">ORM</td>
-            <td>
-                <a href="https://typeorm.io/">TypeORM</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://mongoosejs.com/">Mongoose</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2">Architecture</td>
-            <td>Microservices</td>
-        </tr>
-            <tr>
-            <td>CQRS</td>
-        </tr>
-        <tr>
-            <td rowspan="2">Transport</td>
-            <td>
-                <a href="https://grpc.io/">gRPC</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://www.rabbitmq.com/docs">RabbitMQ</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Validation</td>
-            <td>
-                <a href="https://zod.dev/">Zod</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+1. Checkout code:
 
-### 🍓 Frontend
+```bash
+git clone https://github.com/TarhunchiKKK/calypso.git
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Scope</th>
-            <th>Solution</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Framework</td>
-            <td>
-                <a href="https://react.dev/">React</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Architecture</td>
-            <td>
-                <a href="https://ed.evocomm.space/">Evolution Design</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2">Styling</td>
-            <td>
-                <a href="https://tailwindcss.com/?ref=yon.fun">TailwindCSS</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://ui.shadcn.com/">Shadcn</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Queries</td>
-            <td>
-                <a href="https://tanstack.com/query/latest">TanStack Query</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Forms</td>
-            <td>
-                <a href="https://react-hook-form.com/">React Hook Form</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Storage</td>
-            <td>
-                <a href="https://www.min.io/">Minio</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Text Formatting</td>
-            <td>
-                <a href="https://docs.slatejs.org/">Slate.js</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Docs</td>
-            <td>
-                <a href="https://storybook.js.org/">Storybook</a>
-            </td>
-        </tr>
-    </tbody>
-</table> -->
+cd calypso
+```
+
+2. Install dependencies:
+
+```bash
+bun install
+```
+
+3. Build shared packages:
+
+```bash
+bun build:packages
+```
+
+4. Create and fill `.env` file
+
+Example: `.env.example` file.
+
+You also can copy values from `.env.example` file and paste them to `.env` file.
+
+5. Load environment variables to appropriate apps:
+
+```bash
+bun env:load
+```
+
+6. Run [Docker](https://www.docker.com/) containers:
+
+```bash
+bun docker:up
+```
+
+Wait for containers to start.
+
+7. Seed app with data:
+
+Seed [Minio](https://www.min.io/) container:
+
+```bash
+bun seed:media
+```
+
+8. Run apps:
+
+```bash
+bun run dev
+```
+
+Wait for all apps to start.
+
+
+9. Open application: 
+
+Now you application is still running.
+
+In browser open the https://localhost:5173 to access the app.
+
 
 ## ✨ Features
 
@@ -405,69 +287,3 @@ Language
         </tr>
     </tbody>
 </table>
-
-## 🚀 Run app Locally
-
-1. Checkout code:
-
-```bash
-git clone https://github.com/TarhunchiKKK/calypso.git
-
-cd calypso
-```
-
-2. Install [Bun](https://bun.sh/) globally:
-
-You can use different Node.js package managers for this project developing but [Bun](https://bun.sh/) package manager is preferred.
-
-```bash
-npm i -g bun
-```
-
-3. Install dependencies:
-
-```bash
-bun install
-```
-
-4. Build shared packages:
-
-```bash
-bun build:packages
-```
-
-5. Load environment variables to appropriate apps:
-
-```bash
-bun env:load
-```
-
-6. Run Docker services:
-
-```bash
-bun docker:full
-```
-
-7. Wait for <a href="https://www.docker.com/">Docker</a> containers to start
-
-8. Seed app with data:
-
-Seed <a href="https://www.min.io/">Minio</a> container:
-
-```bash
-bun seed:media
-```
-
-9. Run apps:
-
-```bash
-bun run dev
-```
-
-10. Wait for all apps to start
-
-11. Open application: 
-
-Now you application is still running.
-
-In browser open the https://localhost:5173 to access the app.
