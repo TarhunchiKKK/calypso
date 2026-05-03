@@ -11,6 +11,7 @@ import { NodesService } from "./nodes.service";
 import { ArrowNode, ArrowNodeSchema } from "./schemas/arrow-node.schema";
 import { MediaNode, MediaNodeSchema } from "./schemas/media-node.schema";
 import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
+import { NoteNode, NoteNodeSchema } from "./schemas/note-node.schema";
 import { ShapeNode, ShapeNodeSchema } from "./schemas/shape-node.schema";
 import { StickerNode, StickerNodeSchema } from "./schemas/sticker-node.schema";
 import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
@@ -26,6 +27,7 @@ export const NodesMongooseModule = MongooseModule.forFeatureAsync([
             schema.discriminator(TextNode.name, TextNodeSchema);
             schema.discriminator(ShapeNode.name, ShapeNodeSchema);
             schema.discriminator(MediaNode.name, MediaNodeSchema);
+            schema.discriminator(NoteNode.name, NoteNodeSchema);
             return schema;
         }
     }
