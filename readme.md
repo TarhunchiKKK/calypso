@@ -14,6 +14,7 @@
   - [Common](#-common)
   - [Backend](#-backend)
   - [Frontend](#-frontend)
+  - [Infrastructure](#-infrasctructure)
 - [Features](#-features)
   - [Node Types](#node-types)
   - [Editor Features](#editor-features)
@@ -28,9 +29,56 @@ This project is a high-performance real-time collaborative whiteboard applicatio
 
 Built as a full-stack solution, it focuses on seamless synchronization, low-latency interactions, and a robust scalable architecture.
 
-## 🚀 Stack
+## 🛠️ Stack
 
-### ⚓ Common
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Biome](https://img.shields.io/badge/Biome-60B5CC?logo=biome&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?logo=tanstack&logoColor=white)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)
+
+### ⚓ Core
+
+- **🐍 Language**: [TypeScript](https://www.typescriptlang.org/)
+- **📦 Package Manager**: [Bun](https://bun.sh/)
+- **🏗️ Project Structure**: [Turborepo](https://turborepo.dev/)
+- **✨ Linting & Formatting**: [BiomeJS](https://biomejs.dev/)
+- **🔍 Code quality**: [Knip](https://knip.dev/)
+- **🔄 CI**: [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)
+
+### 🍓 Frontend
+
+- **⚛️ Framework**: [React](https://react.dev/)
+- **🏛️ Architecture**: [Evolution Design](https://ed.evocomm.space/)
+- **🎨 Styling**: [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)
+- **📡 Queries**: [Tanstack Query](https://tanstack.com/query/latest)
+- **📝 Forms**: [React Hook Form](https://react-hook-form.com/)
+- **✍️ Text Formatting**: [Slate.js](https://docs.slatejs.org/)
+- **📚 Docs**: [Storybook](https://storybook.js.org/)
+- **🧪 Testing**: [Vitest](https://vitest.dev/)
+
+### ⚡ Backend
+
+- **🖥️ Framework**: [NestJS](https://nestjs.com/)
+- **🏛️ Architecture**: Microservices, CQRS
+- **🚚 Transporters**: [gRPC](https://grpc.io/), [RabbitMQ](https://www.rabbitmq.com/docs)
+- **🗄️ ORM's**: [TypeORM](https://typeorm.io/), [Mongoose](https://mongoosejs.com/)
+- **🔐 Authentication & Authorization**: [JWT](https://www.jwt.io/)
+- **✅ Validation**: [Zod](https://zod.dev/)
+
+### 🏗️ Infrastructure
+
+- **💾 Databases**: [Postgres](https://www.postgresql.org/), [MongoDB](https://www.mongodb.com/home?pk_campaign=VentureBeat)
+- **📨 Message Broker**: [RabbitMQ](https://www.rabbitmq.com/docs)
+- **🗄️ S3 Storage**: [Minio](https://www.min.io/)
+
+
+<!-- ### ⚓ Common
+ 
+Language
 
 <table border="1">
     <thead>
@@ -222,9 +270,9 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
 
-## 🎨 Features
+## ✨ Features
 
 ### Node Types
 
@@ -358,7 +406,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
     </tbody>
 </table>
 
-## 💡 Run app Locally
+## 🚀 Run app Locally
 
 1. Checkout code:
 
