@@ -19,10 +19,15 @@ export function NoteNodeComponent({ node, handlers, uiSettings, children }: Prop
         height: node.rect.height
     };
 
+    const editorStyles: CSSProperties = {
+        backgroundColor: node.styles.backgroundColor,
+        borderColor: node.styles.borderColor
+    }
+
     return (
         <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
             <div className="relative w-full h-full">
-                {uiSettings.showContent && <FormattableDocument value={node.content} onChange={() => {}} className="pointer-events-none" />}
+                {uiSettings.showContent && <FormattableDocument value={node.content} styles={editorStyles} className="pointer-events-none" />}
 
                 {children}
             </div>

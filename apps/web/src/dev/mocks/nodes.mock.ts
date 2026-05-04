@@ -1,4 +1,4 @@
-import type { TextNode } from "@repo/boards-common";
+import type { NoteNode } from "@repo/boards-common";
 
 export const MockNodes = [
     // {
@@ -216,27 +216,48 @@ export const MockNodes = [
     //     },
     //     variant: "hexagon"
     // } satisfies ShapeNode,
+    // {
+    //     type: "text",
+    //     id: "text-1",
+    //     locked: false,
+    //     rect: {
+    //         x: 400,
+    //         y: 400,
+    //         width: 400,
+    //         height: 200
+    //     },
+    //     styles: {
+    //         fontFamily: "Sans Serif",
+    //         fontSize: 18,
+    //         textAlign: "center",
+    //         textColor: "#cccccc"
+    //     },
+    //     content: [
+    //         {
+    //             children: [{ text: "With some " }, { bold: true, text: "bold", underline: true }, { text: " text for emphasis!" }],
+    //             type: "p"
+    //         }
+    //     ]
+    // } satisfies TextNode,
     {
-        type: "text",
-        id: "text-1",
+        id: "note-1",
+        type: "note",
         locked: false,
         rect: {
-            x: 400,
-            y: 400,
+            x: 200,
+            y: 200,
             width: 400,
-            height: 200
+            height: 500
         },
         styles: {
-            fontFamily: "Sans Serif",
-            fontSize: 18,
-            textAlign: "center",
-            textColor: "#cccccc"
+            backgroundColor: "green",
+            borderColor: "red"
         },
         content: [
             {
-                children: [{ text: "With some " }, { bold: true, text: "bold", underline: true }, { text: " text for emphasis!" }],
-                type: "p"
+                type: "h1",
+                children: [{ text: "Title" }]
             }
         ]
-    } satisfies TextNode
+    } satisfies NoteNode
 ];

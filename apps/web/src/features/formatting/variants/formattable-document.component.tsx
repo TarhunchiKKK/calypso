@@ -5,6 +5,7 @@ import type { FormattableElement } from "@repo/common";
 import clsx from "clsx";
 import { KEYS } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";
+import type { CSSProperties } from "react";
 import {
     BlockquoteElement,
     BulletedListElement,
@@ -31,9 +32,11 @@ type Props = {
     disabled?: boolean;
 
     className?: string;
+
+    styles?: CSSProperties;
 };
 
-export function FormattableDocument({ value, onChange, onBlur, className, disabled }: Props) {
+export function FormattableDocument({ value, onChange, onBlur, className, disabled, styles }: Props) {
     const editor = usePlateEditor({
         value: value,
         plugins: [
@@ -63,8 +66,9 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
     });
 
     return (
+    <div style={styles} className={clsx("w-full h-full flex flex-col rounded-lg pointer-events-none border", className ?? className)} >
         <Plate editor={editor} onChange={data => onChange?.(data.value)}>
-            <FixedToolbar className="justify-start rounded-t-lg">
+            <FixedToolbar className="justify-start bg-transparent">
                 <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
                 <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>
                 <ToolbarButton onClick={() => editor.tf.h3.toggle()}>H3</ToolbarButton>
@@ -88,9 +92,10 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
                 <ListToolbarButton nodeType={KEYS.ulClassic} />
             </FixedToolbar>
 
-            <EditorContainer onBlur={onBlur} className={clsx("w-full h-max", className ?? className)}>
-                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} />
+            <EditorContainer  onBlur={onBlur}  >
+                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled}  />
             </EditorContainer>
-        </Plate>
+        </Plate>      
+    </div>  
     );
 }
