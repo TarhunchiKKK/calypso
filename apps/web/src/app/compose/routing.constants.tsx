@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, redirect } from "react-router-dom";
 import { Routes } from "@/shared/config";
 import { Providers } from "./providers.component";
 
+// TEMP: uncomment `<ProtectedRoute />`
 export const Router = createBrowserRouter([
     {
         element: (

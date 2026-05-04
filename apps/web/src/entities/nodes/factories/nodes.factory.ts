@@ -41,8 +41,12 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             type: "text",
             locked: false,
-            // FIX: type casting
-            text: [] as any,
+            content: [
+                {
+                    type: "p",
+                    children: [{ text: "Type anything..." }]
+                }
+            ],
             rect: {
                 ...data.point,
                 width: 100,
