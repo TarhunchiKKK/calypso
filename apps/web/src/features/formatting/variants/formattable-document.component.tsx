@@ -2,6 +2,7 @@ import { BlockquotePlugin, BoldPlugin, H1Plugin, H2Plugin, H3Plugin, ItalicPlugi
 import { BulletedListRules, OrderedListRules } from "@platejs/list-classic";
 import { BulletedListPlugin, ListItemPlugin, ListPlugin, NumberedListPlugin } from "@platejs/list-classic/react";
 import type { FormattableElement } from "@repo/common";
+import clsx from "clsx";
 import { KEYS } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";
 import {
@@ -23,12 +24,16 @@ import { ToolbarButton, ToolbarSeparator } from "@/shared/ui/kit";
 type Props = {
     value: FormattableElement[];
 
-    onChange: (value: FormattableElement[]) => void;
+    onChange?: (value: FormattableElement[]) => void;
+
+    onBlur?: () => void;
+
+    disabled?: boolean;
 
     className?: string;
 };
 
-export function FormattableDocument({ value, onChange }: Props) {
+export function FormattableDocument({ value, onChange, onBlur, className, disabled }: Props) {
     const editor = usePlateEditor({
         value: value,
         plugins: [
@@ -58,7 +63,7 @@ export function FormattableDocument({ value, onChange }: Props) {
     });
 
     return (
-        <Plate editor={editor} onChange={data => onChange(data.value)}>
+        <Plate editor={editor} onChange={data => onChange?.(data.value)}>
             <FixedToolbar className="justify-start rounded-t-lg">
                 <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
                 <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>
@@ -83,8 +88,8 @@ export function FormattableDocument({ value, onChange }: Props) {
                 <ListToolbarButton nodeType={KEYS.ulClassic} />
             </FixedToolbar>
 
-            <EditorContainer>
-                <Editor placeholder="Type your amazing content here..." />
+            <EditorContainer onBlur={onBlur} className={clsx("w-full h-max", className ?? className)}>
+                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled}/>
             </EditorContainer>
         </Plate>
     );
