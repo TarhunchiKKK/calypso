@@ -1,23 +1,25 @@
 import type { NodeBase, TextNode } from "@repo/boards-common";
-import type { Descendant } from "slate";
+import type { FormattableElement } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { FormatableTextarea } from "@/features/formatable-input";
+import { FormattableText } from "@/features/formatting";
 
 export class TextNodeEditingStrategy extends NodeEditingStrategy {
-    private value: Descendant[] = [];
+    private value: FormattableElement[] = [];
 
     public override ui(node: Decoratable<TextNode>, handler: (node: NodeBase) => void) {
-        const changeHandler = (value: Descendant[]) => {
+        const changeHandler = (value: FormattableElement[]) => {
             this.value = value;
         };
 
-        // FIX: type casting
         const endEditingHandler = () => {
-            handler({ ...node, text: this.value } as any);
+            const newNode = {
+                ...node.data,
+                content: this.value
+            };
+            handler(newNode);
         };
 
-        // FIX: type casting
-        return <FormatableTextarea value={node.data.text as any} onChange={changeHandler} onBlur={endEditingHandler} />;
+        return <FormattableText value={node.data.content} onChange={changeHandler} onBlur={endEditingHandler} />;
     }
 }

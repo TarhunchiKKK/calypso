@@ -5,7 +5,7 @@ import { TextareaAutoSize } from "@/shared/ui";
 
 export class StickerEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<StickerNode>, handler: (node: NodeBase) => void) {
-        const onEditingEnd = (text: string) => {
+        const handleEditingEnd = (text: string) => {
             const newNode = {
                 ...node.data,
                 text: text
@@ -14,6 +14,6 @@ export class StickerEditingStrategy extends NodeEditingStrategy {
             handler(newNode);
         };
 
-        return <TextareaAutoSize value={node.data.text} onEditingEnd={onEditingEnd} />;
+        return <TextareaAutoSize value={node.data.text} onEditingEnd={handleEditingEnd} />;
     }
 }

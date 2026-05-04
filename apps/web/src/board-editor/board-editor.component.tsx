@@ -1,7 +1,6 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import type { PropsWithChildren } from "react";
-import type { NodesApi } from "@/entities/nodes";
 import { useWindowEvents } from "../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
@@ -16,8 +15,6 @@ type Props = PropsWithChildren<{
     nodes: NodeBase[];
 
     boardId: Id;
-
-    api: NodesApi;
 }>;
 
 export function BoardEditor({ nodes, boardId, children }: Props) {
