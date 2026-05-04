@@ -1,7 +1,7 @@
 import type { NoteNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
-import { FormattableDocument } from "@/features/formatting";
+import { FormattableDocument } from "@/features/formattable-input";
 
 type Props = PropsWithChildren<{
     node: NoteNode;

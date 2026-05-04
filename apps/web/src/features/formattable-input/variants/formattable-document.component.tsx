@@ -19,7 +19,7 @@ import {
     ListToolbarButton,
     MarkToolbarButton,
     NumberedListElement
-} from "@/features/formatting/ui";
+} from "@/features/formattable-input/ui";
 import { ToolbarButton, ToolbarSeparator } from "@/shared/ui/kit";
 
 type Props = {

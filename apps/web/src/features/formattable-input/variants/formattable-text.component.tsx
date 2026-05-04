@@ -3,7 +3,7 @@ import type { FormattableElement } from "@repo/common";
 import clsx from "clsx";
 import { Plate, usePlateEditor } from "platejs/react";
 import type { KeyboardEventHandler } from "react";
-import { Editor, EditorContainer } from "@/features/formatting/ui";
+import { Editor, EditorContainer } from "@/features/formattable-input/ui";
 
 type Props = {
     value: FormattableElement[];

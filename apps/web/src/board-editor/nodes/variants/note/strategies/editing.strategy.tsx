@@ -3,7 +3,7 @@ import type { FormattableElement } from "@repo/common";
 import type { CSSProperties } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { FormattableDocument } from "@/features/formatting";
+import { FormattableDocument } from "@/features/formattable-input";
 
 export class NoteNodeEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<NoteNode>, handlers: NodeEditingHandlers) {
