@@ -1,10 +1,10 @@
 import { BlockquotePlugin, BoldPlugin, H1Plugin, H2Plugin, H3Plugin, ItalicPlugin, UnderlinePlugin } from "@platejs/basic-nodes/react";
-import type { Value } from "platejs";
+import type { FormattableElement } from "@repo/common";
 import { Plate, usePlateEditor } from "platejs/react";
 import { BlockquoteElement, Editor, EditorContainer, FixedToolbar, H1Element, H2Element, H3Element, MarkToolbarButton } from "@/features/formatting/ui";
 import { ToolbarButton } from "@/shared/ui/kit";
 
-const initialValue: Value = [
+const initialValue: FormattableElement[] = [
     {
         children: [{ text: "Title" }],
         type: "h3"
@@ -60,7 +60,7 @@ export function FormattableDocument() {
             {/* Provides editor context */}
             <EditorContainer>
                 {/* Styles the editor area */}
-                <Editor placeholder="Type your amazing content here..."  />
+                <Editor placeholder="Type your amazing content here..." />
             </EditorContainer>
         </Plate>
     );

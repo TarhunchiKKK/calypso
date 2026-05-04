@@ -1,5 +1,4 @@
 import type { AnyFormatableElement } from "@repo/common";
-import type { AnyFormatableElementGrpc } from "entry";
 
 export class FormatableMapper {
     public static toGrpc(element: AnyFormatableElement): AnyFormatableElementGrpc {

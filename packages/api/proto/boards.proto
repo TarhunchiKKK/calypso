@@ -3,7 +3,7 @@ syntax = "proto3";
 import "common.proto";
 import "geometry.proto";
 import "projects.proto";
-import "formatable.proto";
+import "formattable.proto";
 import "google/protobuf/struct.proto";
 
 package boards;
@@ -121,7 +121,7 @@ message TextBoardNodeGrpc {
 
     geometry.RectGrpc rect = 2;
 
-    repeated formatable.FormatableParagraphGrpc content = 3;
+    repeated formattable.FormattableElementGrpc content = 3;
 }
 
 message ShapeBoardNodeGrpc {
@@ -145,7 +145,7 @@ message NoteBoardNodeGrc {
 
     geometry.RectGrpc rect = 2;
 
-    repeated formatable.AnyFormatableElementGrpc content = 3;
+    repeated formattable.FormattableElementGrpc content = 3;
 }
 
 message AnyBoardNodeGrpc {
