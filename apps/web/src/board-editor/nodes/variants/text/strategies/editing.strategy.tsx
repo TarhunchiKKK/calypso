@@ -1,23 +1,24 @@
-import type { NodeBase, TextNode } from "@repo/boards-common";
-import type { Descendant } from "slate";
+import type { TextNode } from "@repo/boards-common";
+import type { FormattableElement } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import { NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { FormatableTextarea } from "@/features/formatable-input";
+import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
+import { FormattableText } from "@/features/formattable-input";
 
 export class TextNodeEditingStrategy extends NodeEditingStrategy {
-    private value: Descendant[] = [];
+    public override ui(node: Decoratable<TextNode>, handlers: NodeEditingHandlers) {
+        const handleChange = (value: FormattableElement[]) => {
+            const newNode = {
+                ...node.data,
+                content: value
+            } satisfies TextNode;
 
-    public override ui(node: Decoratable<TextNode>, handler: (node: NodeBase) => void) {
-        const changeHandler = (value: Descendant[]) => {
-            this.value = value;
+            handlers.change(newNode);
         };
 
-        // FIX: type casting
-        const endEditingHandler = () => {
-            handler({ ...node, text: this.value } as any);
-        };
+        const keyHandlers = {
+            "Escape": handlers.end
+        }
 
-        // FIX: type casting
-        return <FormatableTextarea value={node.data.text as any} onChange={changeHandler} onBlur={endEditingHandler} />;
+        return <FormattableText value={node.data.content} onChange={handleChange} keyHandlers={keyHandlers} />;
     }
 }

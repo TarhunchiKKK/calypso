@@ -4,6 +4,8 @@ import {
     ArrowNodeZodSchema,
     type MediaNode,
     MediaNodeZodSchema,
+    type NoteNode,
+    NoteNodeZodSchema,
     type ShapeNode,
     ShapeNodeZodSchema,
     type StickerNode,
@@ -17,7 +19,8 @@ export const AnyNodeZodSchema = z.discriminatedUnion("type", [
     ArrowNodeZodSchema,
     TextNodeZodSchema,
     ShapeNodeZodSchema,
-    MediaNodeZodSchema
+    MediaNodeZodSchema,
+    NoteNodeZodSchema
 ]);
 
 export type AnyNode = z.infer<typeof AnyNodeZodSchema>;
@@ -28,4 +31,5 @@ export type NodeTypesMap = {
     text: TextNode;
     shape: ShapeNode;
     media: MediaNode;
+    note: NoteNode;
 };

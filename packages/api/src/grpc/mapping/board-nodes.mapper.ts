@@ -1,17 +1,18 @@
-import type { AnyNode, ArrowNode, NodeBase, ShapeNode, ShapeVariants, StickerNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
+    AnyBoardNodeGrpc,
     ArrowBoardNodeGrpc,
     BoardNodeBaseGrpc,
-    BoardNodeGrpc,
     MediaBoardNodeGrpc,
+    NoteBoardNodeGrc,
     ShapeBoardNodeGrpc,
     StickerBoardNodeGrpc,
     TextBoardNodeGrpc
 } from "../generated";
 
 export class BoardNodesGrpcMapper {
-    public static toGrpc(node: AnyNode): BoardNodeGrpc {
+    public static toGrpc(node: AnyNode): AnyBoardNodeGrpc {
         switch (node.type) {
             case "sticker":
                 return {
@@ -32,13 +33,12 @@ export class BoardNodesGrpcMapper {
                 };
             }
             case "text":
+                node.content;
                 return {
                     text: {
                         base: BoardNodesGrpcMapper.mapBase(node),
                         rect: node.rect,
-
-                        // FIX: add appropriate type
-                        text: []
+                        content: node.content
                     }
                 };
             case "shape":
@@ -57,18 +57,29 @@ export class BoardNodesGrpcMapper {
                         url: node.url
                     }
                 };
+            case "note": {
+                return {
+                    note: {
+                        base: BoardNodesGrpcMapper.mapBase(node),
+                        rect: node.rect,
+                        content: node.content
+                    }
+                };
+            }
             default:
                 throw new DebugException("NodesGrpcMapper: Unknown node type");
         }
     }
 
-    public static fromGrpc(node: BoardNodeGrpc): AnyNode {
+    public static fromGrpc(node: AnyBoardNodeGrpc): AnyNode {
         if (node.sticker) {
-            const { base, ...specific } = node.sticker as NoNullableFields<StickerBoardNodeGrpc>;
+            const sticker = node.sticker as NoNullableFields<StickerBoardNodeGrpc>;
+
             return {
-                ...(base as NodeBase & Pick<StickerNode, "styles">),
-                ...specific,
-                type: "sticker"
+                ...(sticker.base as NodeBase & Pick<StickerNode, "styles">),
+                type: "sticker",
+                rect: sticker.rect,
+                text: sticker.text
             };
         }
 
@@ -83,29 +94,46 @@ export class BoardNodesGrpcMapper {
         }
 
         if (node.text) {
-            const { base, ...specific } = node.text as NoNullableFields<TextBoardNodeGrpc>;
+            const text = node.text as NoNullableFields<TextBoardNodeGrpc>;
 
-            // FIX: remove `text: ""`
-            return { ...(base as NodeBase), ...specific, type: "text", text: "" } as any;
+            return {
+                ...(text.base as NodeBase & Pick<TextNode, "styles">),
+                type: "text",
+                rect: text.rect,
+                content: text.content
+            };
         }
 
         if (node.shape) {
-            const { base, ...specific } = node.shape as NoNullableFields<ShapeBoardNodeGrpc>;
+            const shape = node.shape as NoNullableFields<ShapeBoardNodeGrpc>;
+
             return {
-                ...(base as NodeBase & Pick<ShapeNode, "styles">),
-                ...specific,
+                ...(shape.base as NodeBase & Pick<ShapeNode, "styles">),
                 type: "shape",
-                variant: specific.variant as ShapeVariants
+                rect: shape.rect,
+                variant: shape.variant as ShapeVariants
             };
         }
 
         if (node.media) {
-            const { base, ...specific } = node.media as NoNullableFields<MediaBoardNodeGrpc>;
+            const media = node.media as NoNullableFields<MediaBoardNodeGrpc>;
+
             return {
-                ...(base as NodeBase & Pick<ShapeNode, "styles">),
-                ...specific,
+                ...(media.base as NodeBase & Pick<MediaNode, "styles">),
                 type: "media",
-                url: specific.url
+                rect: media.rect,
+                url: media.url
+            };
+        }
+
+        if (node.note) {
+            const note = node.note as NoNullableFields<NoteBoardNodeGrc>;
+
+            return {
+                ...(note.base as NodeBase & Pick<NoteNode, "styles">),
+                type: "note",
+                rect: note.rect,
+                content: note.content
             };
         }
 

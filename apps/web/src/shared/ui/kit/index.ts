@@ -1,6 +1,7 @@
 export * from "./avatar";
 export * from "./button";
 export * from "./card";
+export * from "./checkbox";
 export * from "./context-menu";
 export * from "./dialog";
 export * from "./dropdown-menu";
@@ -15,4 +16,5 @@ export * from "./table";
 export * from "./textarea";
 export * from "./toggle";
 export * from "./toggle-group";
+export * from "./toolbar";
 export * from "./tooltip";

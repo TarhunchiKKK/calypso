@@ -1,5 +1,6 @@
-import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Point } from "@repo/common";
+import { pickFields } from "@/shared/lib/object";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
 
 export class NodesFactory {
@@ -22,7 +23,16 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: DefaultNodeStyles
+            styles: pickFields(DefaultNodeStyles, [
+                "backgroundColor",
+                "fontFamily",
+                "fontSize",
+                "textColor",
+                "borderColor",
+                "borderRadius",
+                "borderStyle",
+                "textAlign"
+            ])
         };
     }
 
@@ -31,7 +41,7 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             type: "arrow",
             locked: false,
-            styles: DefaultNodeStyles,
+            styles: pickFields(DefaultNodeStyles, ["lineColor", "lineType", "lineWidth", "angleType"]),
             ...data
         };
     }
@@ -41,14 +51,18 @@ export class NodesFactory {
             id: crypto.randomUUID(),
             type: "text",
             locked: false,
-            // FIX: type casting
-            text: [] as any,
+            content: [
+                {
+                    type: "p",
+                    children: [{ text: "Type anything..." }]
+                }
+            ],
             rect: {
                 ...data.point,
                 width: 100,
                 height: 100
             },
-            styles: DefaultNodeStyles
+            styles: pickFields(DefaultNodeStyles, ["fontFamily", "fontSize", "textColor", "textAlign"])
         };
     }
 
@@ -63,7 +77,7 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: DefaultNodeStyles
+            styles: pickFields(DefaultNodeStyles, ["backgroundColor", "borderColor"])
         };
     }
 
@@ -78,7 +92,27 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: {}
+            styles: pickFields(DefaultNodeStyles, ["borderColor", "borderRadius"])
+        };
+    }
+
+    public static note(data: { point: Point }): NoteNode {
+        return {
+            id: crypto.randomUUID(),
+            type: "note",
+            locked: false,
+            rect: {
+                ...data.point,
+                width: 300,
+                height: 700
+            },
+            styles: pickFields(DefaultNodeStyles, ["backgroundColor", "borderColor"]),
+            content: [
+                {
+                    type: "h1",
+                    children: [{ text: "Title" }]
+                }
+            ]
         };
     }
 }

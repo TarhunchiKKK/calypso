@@ -9,5 +9,6 @@ export const ResizingStrategiesMap: StrategiesMap<NodeResizingStrategy> = {
     arrow: null,
     text: RectNodeResizingStrategyInstance,
     shape: RectNodeResizingStrategyInstance,
-    media: RectNodeResizingStrategyInstance
+    media: RectNodeResizingStrategyInstance,
+    note: RectNodeResizingStrategyInstance
 };

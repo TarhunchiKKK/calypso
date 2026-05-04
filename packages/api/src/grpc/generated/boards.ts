@@ -9,6 +9,7 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
+import { FormattableElementGrpc } from "./formattable";
 import { RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 import {
@@ -81,7 +82,7 @@ export interface ArrowBoardNodeGrpc {
 export interface TextBoardNodeGrpc {
   base: BoardNodeBaseGrpc | undefined;
   rect: RectGrpc | undefined;
-  text: { [key: string]: any }[];
+  content: FormattableElementGrpc[];
 }
 
 export interface ShapeBoardNodeGrpc {
@@ -96,16 +97,23 @@ export interface MediaBoardNodeGrpc {
   url: string;
 }
 
-export interface BoardNodeGrpc {
+export interface NoteBoardNodeGrc {
+  base: BoardNodeBaseGrpc | undefined;
+  rect: RectGrpc | undefined;
+  content: FormattableElementGrpc[];
+}
+
+export interface AnyBoardNodeGrpc {
   sticker?: StickerBoardNodeGrpc | undefined;
   arrow?: ArrowBoardNodeGrpc | undefined;
   text?: TextBoardNodeGrpc | undefined;
   shape?: ShapeBoardNodeGrpc | undefined;
   media?: MediaBoardNodeGrpc | undefined;
+  note?: NoteBoardNodeGrc | undefined;
 }
 
 export interface CreateManyBoardNodesGrpcRequest {
-  nodes: BoardNodeGrpc[];
+  nodes: AnyBoardNodeGrpc[];
   boardId: string;
   userId: string;
 }
@@ -116,7 +124,7 @@ export interface FindAllBoardNodesGrpcRequest {
 }
 
 export interface BoardNodesListGrpc {
-  nodes: BoardNodeGrpc[];
+  nodes: AnyBoardNodeGrpc[];
 }
 
 export interface FindAllBoardNodesGrpcResponse {
@@ -125,7 +133,7 @@ export interface FindAllBoardNodesGrpcResponse {
 }
 
 export interface UpdateManyBoardNodesGrpcRequest {
-  nodes: BoardNodeGrpc[];
+  nodes: AnyBoardNodeGrpc[];
   boardId: string;
   userId: string;
 }

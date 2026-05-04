@@ -1,5 +1,23 @@
 {
-    "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "RECHECK", "INCOMPLETE", "TODO", "USEFUL", "REFACTOR", "DELETE", "OPTIMIZE", "DOC", "WARN", "QUESTION", "IMPLEMENTATION", "STORY", "CHECK", "TEST"],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "RECHECK",
+        "INCOMPLETE",
+        "TODO",
+        "USEFUL",
+        "REFACTOR",
+        "DELETE",
+        "OPTIMIZE",
+        "DOC",
+        "WARN",
+        "QUESTION",
+        "IMPLEMENTATION",
+        "STORY",
+        "CHECK",
+        "TEST"
+    ],
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
         "type": "text-and-comment",

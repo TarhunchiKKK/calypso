@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package formattable;
+
+message FormattableTextGrpc {
+    string text = 1;
+
+    optional bool bold = 2;
+
+    optional bool italic = 3;
+
+    optional bool underline = 4;
+}
+
+message FormattableElementGrpc { 
+    string type = 1;
+
+    repeated google.protobuf.Any children = 2;
+}

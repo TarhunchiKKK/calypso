@@ -1,7 +1,7 @@
 import type { TextNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
-import { FormatableTextarea } from "@/features/formatable-input";
+import { FormattableText } from "@/features/formattable-input";
 
 type Props = PropsWithChildren<{
     node: TextNode;
@@ -12,22 +12,16 @@ type Props = PropsWithChildren<{
 }>;
 
 export function TextNodeComponent({ node, handlers, uiSettings, children }: Props) {
-    const styles: CSSProperties = {
+    const wrapperStyles: CSSProperties = {
         width: node.rect.width,
-        height: node.rect.height,
         left: node.rect.x,
         top: node.rect.y
     };
 
-    // FIX: type casting
     return (
-        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={styles} {...handlers}>
+        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
             <div className="relative w-full h-full px-2 py-4">
-                {uiSettings.showContent && (
-                    <div className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                        <FormatableTextarea value={node.text as any} disabled />
-                    </div>
-                )}
+                {uiSettings.showContent && <FormattableText value={node.content} disabled={node.locked} className="pointer-events-none" />}
 
                 {children}
             </div>

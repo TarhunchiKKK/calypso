@@ -4,6 +4,7 @@ import type { SelectionViewState } from "./view-state";
 type Params = {
     selectedIds?: Set<Id>;
 
+    // REFACTOR: remove this arg
     skipNextClick?: boolean;
 };
 

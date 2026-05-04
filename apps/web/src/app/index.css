@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+@plugin "tailwind-scrollbar-hide";
 @import "tw-animate-css";
 
 @layer utilities {
@@ -58,6 +60,7 @@
     --color-resizing: var(--resizing);
     --color-binding: var(--binding);
     --color-locked: var(--locked);
+    --color-highlight: var(--highlight);
 }
 
 :root {
@@ -99,6 +102,7 @@
     --resizing: oklch(62.3% 0.214 259.815);
     --binding: oklch(62.3% 0.214 259.815);
     --locked: oklch(70.7% 0.022 261.325);
+    --highlight: oklch(0.852 0.199 91.936);
 }
 
 .dark {
@@ -139,6 +143,7 @@
     --resizing: oklch(62.3% 0.214 259.815);
     --binding: oklch(62.3% 0.214 259.815);
     --locked: oklch(70.7% 0.022 261.325);
+    --highlight: oklch(0.852 0.199 91.936);
 }
 
 @layer base {

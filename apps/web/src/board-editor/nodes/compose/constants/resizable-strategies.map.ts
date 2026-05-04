@@ -10,5 +10,6 @@ export const ResizableStrategiesMap: StrategiesMap<ResizableNodeStrategy> = {
     arrow: new ResizableArrowStrategy(),
     text: ResizableRectNodeStrategyInstance,
     shape: ResizableRectNodeStrategyInstance,
-    media: ResizableRectNodeStrategyInstance
+    media: ResizableRectNodeStrategyInstance,
+    note: ResizableRectNodeStrategyInstance
 };
