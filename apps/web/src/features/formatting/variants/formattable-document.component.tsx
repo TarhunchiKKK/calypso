@@ -20,28 +20,17 @@ import {
 } from "@/features/formatting/ui";
 import { ToolbarButton, ToolbarSeparator } from "@/shared/ui/kit";
 
-const initialValue: FormattableElement[] = [
-    {
-        children: [{ text: "Title" }],
-        type: "h3"
-    },
-    {
-        children: [
-            {
-                children: [{ text: "This is a quote." }],
-                type: "p"
-            }
-        ],
-        type: "blockquote"
-    },
-    {
-        children: [{ text: "With some " }, { bold: true, text: "bold", underline: true }, { text: " text for emphasis!" }],
-        type: "p"
-    }
-];
+type Props = {
+    value: FormattableElement[];
 
-export function FormattableDocument() {
+    onChange: (value: FormattableElement[]) => void;
+
+    className?: string;
+};
+
+export function FormattableDocument({ value, onChange }: Props) {
     const editor = usePlateEditor({
+        value: value,
         plugins: [
             BoldPlugin,
             ItalicPlugin,
@@ -65,12 +54,11 @@ export function FormattableDocument() {
                 node: { component: NumberedListElement }
             }),
             ListItemPlugin.withComponent(ListItemElement)
-        ],
-        value: initialValue
+        ]
     });
 
     return (
-        <Plate editor={editor} onChange={console.log}>
+        <Plate editor={editor} onChange={data => onChange(data.value)}>
             <FixedToolbar className="justify-start rounded-t-lg">
                 <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
                 <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>
@@ -92,9 +80,7 @@ export function FormattableDocument() {
                 <ToolbarSeparator className="w-0.5 h-4" />
 
                 <ListToolbarButton nodeType={KEYS.olClassic} />
-                
                 <ListToolbarButton nodeType={KEYS.ulClassic} />
-                
             </FixedToolbar>
 
             <EditorContainer>
