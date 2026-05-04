@@ -7,5 +7,6 @@ export const BindingStrategiesMap: StrategiesMap<NodeBindingStrategy> = {
     arrow: new ArrowBindingStrategy(),
     text: null,
     shape: null,
-    media: null
+    media: null,
+    note: null
 };

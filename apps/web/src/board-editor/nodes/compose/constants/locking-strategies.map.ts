@@ -10,5 +10,6 @@ export const LockingStrategiesMap: StrategiesMap<NodeLockingStrategy> = {
     arrow: new ArrowLockingStrategy(),
     text: RectNodeLockingStrategyInstance,
     shape: RectNodeLockingStrategyInstance,
-    media: RectNodeLockingStrategyInstance
+    media: RectNodeLockingStrategyInstance,
+    note: RectNodeLockingStrategyInstance
 };
