@@ -1,10 +1,9 @@
-import type { NodeBase } from "@repo/boards-common";
 import type { Offset, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { BindableNodeDecorator, type BindingNodeHandlers, NodeBindingDecorator } from "@/board-editor/modules/arrows-binding";
 import { NodeDraggingDecorator } from "@/board-editor/modules/dragging";
 import { CheckLocked, NodeLockingDecorator } from "@/board-editor/modules/locking";
-import { NodeEditingDecorator } from "../../../modules/editing";
+import { NodeEditingDecorator, type NodeEditingHandlers } from "../../../modules/editing";
 import { NodeResizingDecorator, ResizableNodeDecorator, type ResizeHandler } from "../../../modules/resizing";
 import { NodeSelectionDecorator } from "../../../modules/selection";
 import { BindableStrategiesMap } from "../constants/bindable-strategies.map";
@@ -71,14 +70,14 @@ export class NodeDecoratorsFactory {
     }
 
     @CheckLocked()
-    public static editing(node: Decoratable, handler: (node: NodeBase) => void) {
+    public static editing(node: Decoratable, handlers: NodeEditingHandlers) {
         const strategy = EditingStrategiesMap[node.type];
 
         if (!strategy) {
             return node;
         }
 
-        return new NodeEditingDecorator(node, strategy, handler);
+        return new NodeEditingDecorator(node, strategy, handlers);
     }
 
     @CheckLocked()

@@ -66,36 +66,36 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
     });
 
     return (
-    <div style={styles} className={clsx("w-full h-full flex flex-col rounded-lg pointer-events-none border", className ?? className)} >
-        <Plate editor={editor} onChange={data => onChange?.(data.value)}>
-            <FixedToolbar className="justify-start bg-transparent">
-                <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
-                <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>
-                <ToolbarButton onClick={() => editor.tf.h3.toggle()}>H3</ToolbarButton>
-                <ToolbarButton onClick={() => editor.tf.blockquote.toggle()}>Quote</ToolbarButton>
+        <div style={styles} className={clsx("w-full h-full flex flex-col rounded-lg border", className ?? className)}>
+            <Plate editor={editor} onChange={data => onChange?.(data.value)}>
+                <FixedToolbar className="justify-start bg-transparent">
+                    <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
+                    <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>
+                    <ToolbarButton onClick={() => editor.tf.h3.toggle()}>H3</ToolbarButton>
+                    <ToolbarButton onClick={() => editor.tf.blockquote.toggle()}>Quote</ToolbarButton>
 
-                <ToolbarSeparator className="w-0.5 h-4" />
+                    <ToolbarSeparator className="w-0.5 h-4" />
 
-                <MarkToolbarButton nodeType="bold" tooltip="Bold (⌘+B)">
-                    B
-                </MarkToolbarButton>
-                <MarkToolbarButton nodeType="italic" tooltip="Italic (⌘+I)">
-                    I
-                </MarkToolbarButton>
-                <MarkToolbarButton nodeType="underline" tooltip="Underline (⌘+U)">
-                    U
-                </MarkToolbarButton>
+                    <MarkToolbarButton nodeType="bold" tooltip="Bold (⌘+B)">
+                        B
+                    </MarkToolbarButton>
+                    <MarkToolbarButton nodeType="italic" tooltip="Italic (⌘+I)">
+                        I
+                    </MarkToolbarButton>
+                    <MarkToolbarButton nodeType="underline" tooltip="Underline (⌘+U)">
+                        U
+                    </MarkToolbarButton>
 
-                <ToolbarSeparator className="w-0.5 h-4" />
+                    <ToolbarSeparator className="w-0.5 h-4" />
 
-                <ListToolbarButton nodeType={KEYS.olClassic} />
-                <ListToolbarButton nodeType={KEYS.ulClassic} />
-            </FixedToolbar>
+                    <ListToolbarButton nodeType={KEYS.olClassic} />
+                    <ListToolbarButton nodeType={KEYS.ulClassic} />
+                </FixedToolbar>
 
-            <EditorContainer  onBlur={onBlur}  >
-                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled}  />
-            </EditorContainer>
-        </Plate>      
-    </div>  
+                <EditorContainer onBlur={onBlur}>
+                    <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} />
+                </EditorContainer>
+            </Plate>
+        </div>
     );
 }

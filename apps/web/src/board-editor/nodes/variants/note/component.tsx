@@ -22,7 +22,7 @@ export function NoteNodeComponent({ node, handlers, uiSettings, children }: Prop
     const editorStyles: CSSProperties = {
         backgroundColor: node.styles.backgroundColor,
         borderColor: node.styles.borderColor
-    }
+    };
 
     return (
         <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>

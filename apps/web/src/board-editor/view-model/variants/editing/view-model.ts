@@ -5,11 +5,14 @@ import type { ViewModelParams } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToSelection } from "../selection/switcher";
 import { EditingNodesMapper } from "./lib/nodes-mapper";
+import { useNodeEditing } from "./lib/use-node-editing.hook";
 import type { EditingViewState } from "./view-state";
 
 export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
+
+    const editingHandlers = useNodeEditing(nodesModel);
 
     return (viewState: EditingViewState): DecoratableViewModel => {
         nodesMediator.setHandlers({
@@ -22,7 +25,10 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
 
         overlayMediator.setHandlers({
             left: {
-                onClick: () => setViewState(switchToIdle())
+                onClick: () => {
+                    editingHandlers.end();
+                    setViewState(switchToIdle());
+                }
             }
         });
 
@@ -31,7 +37,7 @@ export function useEditingViewModel({ nodesModel, setViewState }: ViewModelParam
                 .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
                 .setSelectedNodeId(viewState.selectedNodeId)
-                .setEndEditingHandler(nodesModel.service.updateOne)
+                .setEditingHandlers(editingHandlers)
                 .map(),
             overlay: overlayMediator.handlers
         };
