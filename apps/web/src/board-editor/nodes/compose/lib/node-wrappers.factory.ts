@@ -1,8 +1,9 @@
-import type { ArrowNode, MediaNode, NodeBase, NodeTypes, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { NodeWrapper } from "@/board-editor/core";
 import { resolveArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution";
 import { ArrowNodeWrapper } from "../../variants/arrow/wrapper";
 import { MediaNodeWrapper } from "../../variants/media/wrapper";
+import { NoteNodeWrapper } from "../../variants/note/wrapper";
 import { ShapeNodeWrapper } from "../../variants/shape/wrapper";
 import { StickerNodeWrapper } from "../../variants/sticker/wrapper";
 import { TextNodeWrapper } from "../../variants/text/wrapper";
@@ -13,6 +14,7 @@ type WrappersMap = {
     text: TextNodeWrapper;
     shape: ShapeNodeWrapper;
     media: MediaNodeWrapper;
+    note: NoteNodeWrapper;
 };
 
 export class NodeWrappersFactory {
@@ -32,8 +34,10 @@ export class NodeWrappersFactory {
                 return new ShapeNodeWrapper(node as ShapeNode);
             case "media":
                 return new MediaNodeWrapper(node as MediaNode);
+            case "note":
+                return new NoteNodeWrapper(node as NoteNode);
             default:
-                throw new Error(`Unknown node type: ${node}`);
+                throw new Error(`Unknown node type: ${node.type satisfies never}`);
         }
     }
 }

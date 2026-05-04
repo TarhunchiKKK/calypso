@@ -89,7 +89,7 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
             </FixedToolbar>
 
             <EditorContainer onBlur={onBlur} className={clsx("w-full h-max", className ?? className)}>
-                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled}/>
+                <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} />
             </EditorContainer>
         </Plate>
     );
