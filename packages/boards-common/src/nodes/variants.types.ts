@@ -55,7 +55,11 @@ export const ShapeNodeZodSchema = RectNodeZodSchema.extend({
 
 export const MediaNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("media"),
-    url: z.string()
+    url: z.string(),
+    styles: NodeStylesZodSchema.pick({
+        borderColor: true,
+        borderRadius: true
+    })
 });
 
 export const NoteNodeZodSchema = RectNodeZodSchema.extend({
