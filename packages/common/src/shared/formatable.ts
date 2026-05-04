@@ -4,8 +4,7 @@ export const FormattableTextZodSchema = z.object({
     text: z.string(),
     bold: z.boolean().optional(),
     italic: z.boolean().optional(),
-    underline: z.boolean().optional(),
-    lineThrough: z.boolean().optional()
+    underline: z.boolean().optional()
 });
 
 export const FormattableElementZodSchema = z.object({

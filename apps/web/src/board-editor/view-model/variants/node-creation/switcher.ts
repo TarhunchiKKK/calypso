@@ -53,6 +53,12 @@ const HandlersRecord: Record<NodeTypes, OmitFields<NodeCreationViewState, "type"
         afterCreate: (_, params) => {
             params.setViewState(switchToIdle());
         }
+    },
+    note: {
+        createNode: clickPoint => NodesFactory.note({ point: clickPoint }),
+        afterCreate: (_, params) => {
+            params.setViewState(switchToIdle());
+        }
     }
 };
 

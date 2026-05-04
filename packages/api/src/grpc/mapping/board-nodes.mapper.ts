@@ -1,4 +1,4 @@
-import type { AnyNode, ArrowNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
     AnyBoardNodeGrpc,
@@ -119,7 +119,7 @@ export class BoardNodesGrpcMapper {
             const media = node.media as NoNullableFields<MediaBoardNodeGrpc>;
 
             return {
-                ...(media.base as NodeBase & Pick<ShapeNode, "styles">),
+                ...(media.base as NodeBase & Pick<MediaNode, "styles">),
                 type: "media",
                 rect: media.rect,
                 url: media.url

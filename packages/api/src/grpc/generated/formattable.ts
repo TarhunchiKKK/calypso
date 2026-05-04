@@ -14,7 +14,6 @@ export interface FormattableTextGrpc {
   bold?: boolean | undefined;
   italic?: boolean | undefined;
   underline?: boolean | undefined;
-  lineThrough?: boolean | undefined;
 }
 
 export interface FormattableElementGrpc {

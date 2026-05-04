@@ -5,7 +5,7 @@ export function Leaf({ attributes, leaf, children }: RenderLeafProps) {
     const style: CSSProperties = {
         fontWeight: leaf.bold ? "bold" : "normal",
         fontStyle: leaf.italic ? "italic" : "normal",
-        textDecoration: leaf.underline ? "underline" : leaf.lineThrough ? "line-through" : "none"
+        textDecoration: leaf.underline ? "underline" :  "none"
     };
 
     return (

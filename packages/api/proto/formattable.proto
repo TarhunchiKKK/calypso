@@ -12,8 +12,6 @@ message FormattableTextGrpc {
     optional bool italic = 3;
 
     optional bool underline = 4;
-
-    optional bool lineThrough = 5;
 }
 
 message FormattableElementGrpc { 
