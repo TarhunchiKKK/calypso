@@ -7,7 +7,8 @@ export type NodeCreationPayload =
     | { type: "arrow" }
     | { type: "text" }
     | { type: "shape"; variant: ShapeVariants }
-    | { type: "media"; url: string };
+    | { type: "media"; url: string }
+    | { type: "note" };
 
 export type NodeCreationViewState = {
     type: "node-creation";

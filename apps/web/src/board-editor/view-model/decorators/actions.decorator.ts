@@ -2,62 +2,63 @@ import { Geometry } from "@/shared/lib/geometry";
 import type { ViewState } from "../types";
 import type { ViewModel } from "../types/view-model.types";
 import { switchToIdle } from "../variants/idle/switcher";
+import { switchToMediaSelection } from "../variants/media-selection/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import { switchToShapeSelection } from "../variants/shape-selection/switcher";
 import type { ViewModelDecorator } from "./types";
 
 const idleViewStates: ViewState["type"][] = ["idle", "selection", "selection-window", "dragging"];
 
-function determineState(viewState: ViewState) {
+function determineStateFlags(viewState: ViewState) {
     return {
-        isIdle: idleViewStates.includes(viewState.type),
-        isStickers: viewState.type === "node-creation" && viewState.payload.type === "sticker",
-        isArrows: (viewState.type === "node-creation" && viewState.payload.type === "arrow") || viewState.type === "arrow-binding",
-        isText: viewState.type === "node-creation" && viewState.payload.type === "text",
-        isShapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
-        isMedia: false,
-        isNotes: false,
-        isDraw: false
+        idle: idleViewStates.includes(viewState.type),
+        stickers: viewState.type === "node-creation" && viewState.payload.type === "sticker",
+        arrows: (viewState.type === "node-creation" && viewState.payload.type === "arrow") || viewState.type === "arrow-binding",
+        text: viewState.type === "node-creation" && viewState.payload.type === "text",
+        shapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
+        media: (viewState.type === "node-creation" && viewState.payload.type === "media") || viewState.type === "media-selection",
+        notes: viewState.type === "node-creation" && viewState.payload.type === "note",
+        draw: false
     };
 }
 
 export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, viewState, { setViewState, nodesModel, layoutDimensionsModel }) => {
-    const state = determineState(viewState);
+    const stateFlags = determineStateFlags(viewState);
 
     return {
         ...viewModel,
         actions: {
             nodes: {
                 idle: {
-                    isActive: state.isIdle,
-                    onClick: !state.isIdle ? () => setViewState(switchToIdle()) : undefined
+                    isActive: stateFlags.idle,
+                    onClick: !stateFlags.idle ? () => setViewState(switchToIdle()) : undefined
                 },
                 stickers: {
-                    isActive: state.isStickers,
-                    onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
+                    isActive: stateFlags.stickers,
+                    onClick: !stateFlags.stickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
                 },
                 arrows: {
-                    isActive: state.isArrows,
-                    onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
+                    isActive: stateFlags.arrows,
+                    onClick: !stateFlags.arrows ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
                 },
                 text: {
-                    isActive: state.isText,
-                    onClick: !state.isStickers ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined
+                    isActive: stateFlags.text,
+                    onClick: !stateFlags.text ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined
                 },
                 shapes: {
-                    isActive: state.isShapes,
-                    onClick: e => (!state.isShapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+                    isActive: stateFlags.shapes,
+                    onClick: e => (!stateFlags.shapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
                 },
                 media: {
-                    isActive: state.isMedia,
-                    onClick: () => {}
+                    isActive: stateFlags.media,
+                    onClick: !stateFlags.media ? e => setViewState(switchToMediaSelection(Geometry.pointFromEvent(e))) : undefined
                 },
                 notes: {
-                    isActive: state.isMedia,
-                    onClick: () => {}
+                    isActive: stateFlags.notes,
+                    onClick: !stateFlags.notes ? () => setViewState(switchToNodeCreation({ type: "note" })) : undefined
                 },
                 draw: {
-                    isActive: state.isMedia,
+                    isActive: stateFlags.draw,
                     onClick: () => {}
                 }
             },
