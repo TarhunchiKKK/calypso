@@ -1,5 +1,5 @@
-import { FormatableDocument } from "@/features/formatting";
+import { FormattableDocument } from "@/features/formatting";
 
 export function CurrentUi() {
-    return <FormatableDocument />;
+    return <FormattableDocument />;
 }

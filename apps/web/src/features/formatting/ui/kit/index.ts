@@ -11,6 +11,7 @@ export * from "./hr-node";
 export * from "./hr-node-static";
 export * from "./kbd-node";
 export * from "./kbd-node-static";
+export * from "./list";
 export * from "./mark-toolbar-button";
 export * from "./paragraph-node";
 export * from "./paragraph-node-static";

@@ -31,5 +31,5 @@
             "#/*": ["./.storybook/*"]
         }
     },
-    "include": ["src", ".storybook/stories"]
+    "include": ["src", ".storybook/stories", "@/shared/ui/kit/list-classic-node.tsx", "@/shared/ui/kit/list-classic-toolbar-button.tsx", "@/shared/ui/autoformat-classic-kit.tsx", "@/shared/ui/list-classic-kit.tsx"]
 }
