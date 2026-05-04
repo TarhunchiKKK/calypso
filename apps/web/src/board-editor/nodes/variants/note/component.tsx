@@ -20,7 +20,7 @@ export function NoteNodeComponent({ node, handlers, uiSettings, children }: Prop
     };
 
     return (
-        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles}>
+        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles}  {...handlers}>
             <div className="relative w-full h-full">
                 {uiSettings.showContent && <FormattableDocument value={node.content} onChange={() => {}} className="pointer-events-none" />}
 

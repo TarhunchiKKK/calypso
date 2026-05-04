@@ -1,4 +1,4 @@
-import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
 
@@ -83,6 +83,26 @@ export class NodesFactory {
                 height: 100
             },
             styles: {}
+        };
+    }
+
+    public static note(data: { point: Point }): NoteNode {
+        return {
+            id: crypto.randomUUID(),
+            type: "note",
+            locked: false,
+            rect: {
+                ...data.point,
+                width: 300,
+                height: 700
+            },
+            styles: DefaultNodeStyles,
+            content: [
+                {
+                    type: "h1",
+                    children: [{ text: "Title" }]
+                }
+            ]
         };
     }
 }

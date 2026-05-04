@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, MediaNode, NodeBase, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Rect } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
 
@@ -14,9 +14,11 @@ export class NodeRectsFactory {
             case "shape":
                 return { ...(node as ShapeNode).rect };
             case "media":
-                return { ...(node as ShapeNode).rect };
+                return { ...(node as MediaNode).rect };
+            case "note":
+                return { ...(node as NoteNode).rect };
             default:
-                throw new Error(`Unknown node type: ${node}`);
+                throw new Error(`Unknown node type: ${node.type satisfies never}`);
         }
     }
 }

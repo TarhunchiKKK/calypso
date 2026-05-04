@@ -60,7 +60,11 @@ export const MediaNodeZodSchema = RectNodeZodSchema.extend({
 
 export const NoteNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("note"),
-    content: z.array(FormattableElementZodSchema)
+    content: z.array(FormattableElementZodSchema),
+    styles: NodeStylesZodSchema.pick({
+        backgroundColor: true,
+        borderColor: true
+    })
 });
 
 export type StickerNode = z.infer<typeof StickerNodeZodSchema>;
