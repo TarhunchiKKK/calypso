@@ -5,7 +5,7 @@ import type { FormattableElement } from "@repo/common";
 import clsx from "clsx";
 import { KEYS } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, KeyboardEventHandler } from "react";
 import {
     BlockquoteElement,
     BulletedListElement,
@@ -27,16 +27,16 @@ type Props = {
 
     onChange?: (value: FormattableElement[]) => void;
 
-    onBlur?: () => void;
-
     disabled?: boolean;
 
     className?: string;
 
     styles?: CSSProperties;
+
+    keyHandlers?: Record<string, () => void>;
 };
 
-export function FormattableDocument({ value, onChange, onBlur, className, disabled, styles }: Props) {
+export function FormattableDocument({ value, onChange, className, disabled, styles, keyHandlers }: Props) {
     const editor = usePlateEditor({
         value: value,
         plugins: [
@@ -65,6 +65,16 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
         ]
     });
 
+    const handleKeyDown: KeyboardEventHandler = e => {
+        if (keyHandlers && e.key in keyHandlers) {
+            e.preventDefault();
+           
+            keyHandlers[e.key]();
+           
+            return;
+        }
+    };
+
     return (
         <div style={styles} className={clsx("w-full h-full flex flex-col rounded-lg border", className ?? className)}>
             <Plate editor={editor} onChange={data => onChange?.(data.value)}>
@@ -92,8 +102,8 @@ export function FormattableDocument({ value, onChange, onBlur, className, disabl
                     <ListToolbarButton nodeType={KEYS.ulClassic} />
                 </FixedToolbar>
 
-                <EditorContainer onBlur={onBlur}>
-                    <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} />
+                <EditorContainer>
+                    <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} onKeyDown={handleKeyDown} />
                 </EditorContainer>
             </Plate>
         </div>
