@@ -10,7 +10,6 @@ import type {
     StickerBoardNodeGrpc,
     TextBoardNodeGrpc
 } from "../generated";
-import { FormatableMapper } from "./formatable.mapper";
 
 export class BoardNodesGrpcMapper {
     public static toGrpc(node: AnyNode): AnyBoardNodeGrpc {
@@ -63,7 +62,7 @@ export class BoardNodesGrpcMapper {
                     note: {
                         base: BoardNodesGrpcMapper.mapBase(node),
                         rect: node.rect,
-                        content: node.content.map(FormatableMapper.toGrpc)
+                        content: node.content
                     }
                 };
             }
@@ -101,10 +100,7 @@ export class BoardNodesGrpcMapper {
                 ...(text.base as NodeBase & Pick<TextNode, "styles">),
                 type: "text",
                 rect: text.rect,
-                content: text.content.map(element => ({
-                    children: element.children,
-                    type: "paragraph"
-                }))
+                content: text.content
             };
         }
 
@@ -137,7 +133,7 @@ export class BoardNodesGrpcMapper {
                 ...(note.base as NodeBase & Pick<NoteNode, "styles">),
                 type: "note",
                 rect: note.rect,
-                content: node.note.content.map(FormatableMapper.fromGrpc)
+                content: note.content
             };
         }
 

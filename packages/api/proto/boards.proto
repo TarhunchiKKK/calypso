@@ -121,7 +121,7 @@ message TextBoardNodeGrpc {
 
     geometry.RectGrpc rect = 2;
 
-    repeated formattable.FormattableElementGrpc content = 3;
+    repeated formattable.FormattableTextGrpc content = 3;
 }
 
 message ShapeBoardNodeGrpc {

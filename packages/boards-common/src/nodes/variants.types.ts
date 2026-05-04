@@ -1,4 +1,4 @@
-import { FormattableElementZodSchema, RelativePointZOdSchema } from "@repo/common";
+import { FormattableElementZodSchema, FormattableTextZodSchema, RelativePointZOdSchema } from "@repo/common";
 import z from "zod";
 import { NodeBaseZodSchema, RectNodeZodSchema } from "./core.types";
 import { NodeStylesZodSchema } from "./styles.types";
@@ -33,7 +33,7 @@ export const ArrowNodeZodSchema = NodeBaseZodSchema.extend({
 
 export const TextNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("text"),
-    content: z.array(FormattableElementZodSchema),
+    content: z.array(FormattableTextZodSchema),
     styles: NodeStylesZodSchema.pick({
         fontFamily: true,
         fontSize: true,

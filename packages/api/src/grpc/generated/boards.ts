@@ -9,7 +9,7 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
-import { AnyFormatableElementGrpc, FormatableParagraphGrpc } from "./formatable";
+import { FormattableElementGrpc, FormattableTextGrpc } from "./formattable";
 import { RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 import {
@@ -82,7 +82,7 @@ export interface ArrowBoardNodeGrpc {
 export interface TextBoardNodeGrpc {
   base: BoardNodeBaseGrpc | undefined;
   rect: RectGrpc | undefined;
-  content: FormatableParagraphGrpc[];
+  content: FormattableTextGrpc[];
 }
 
 export interface ShapeBoardNodeGrpc {
@@ -100,7 +100,7 @@ export interface MediaBoardNodeGrpc {
 export interface NoteBoardNodeGrc {
   base: BoardNodeBaseGrpc | undefined;
   rect: RectGrpc | undefined;
-  content: AnyFormatableElementGrpc[];
+  content: FormattableElementGrpc[];
 }
 
 export interface AnyBoardNodeGrpc {
