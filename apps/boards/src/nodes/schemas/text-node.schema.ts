@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { NodeBase, TextNode as TextNodeType } from "@repo/boards-common";
-import type { FormattableText, OmitFields, Rect } from "@repo/common";
+import type { FormattableElement, OmitFields, Rect } from "@repo/common";
 
 @Schema()
 export class TextNode implements OmitFields<TextNodeType, keyof NodeBase> {
@@ -8,7 +8,7 @@ export class TextNode implements OmitFields<TextNodeType, keyof NodeBase> {
     public rect: Rect;
 
     @Prop({ type: [Object], required: true })
-    public content: FormattableText[];
+    public content: FormattableElement[];
 }
 
 export const TextNodeSchema = SchemaFactory.createForClass(TextNode);
