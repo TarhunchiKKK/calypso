@@ -29,6 +29,7 @@ function useAutoFontSize(value: string) {
         let fontSize = 40;
         el.style.fontSize = `${fontSize}px`;
 
+        // OPTIMIZE: add binary search
         while (el.scrollHeight > el.offsetHeight && fontSize > 12) {
             fontSize--;
             el.style.fontSize = `${fontSize}px`;

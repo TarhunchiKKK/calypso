@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { TextareaAutoFontSize } from "@/shared/ui";
+import { BoardEditor } from "@/board-editor";
+import { MockNodes } from "./mocks/nodes.mock";
 
 // const initialValue: FormattableElement[] = [
 //     {
@@ -22,17 +22,5 @@ import { TextareaAutoFontSize } from "@/shared/ui";
 // ];
 
 export function CurrentUi() {
-    const [value, setValue] = useState("");
-
-    const handlers = {
-        Escape: () => console.log("Escape")
-    };
-
-    return (
-        <div className="w-80 h-80 border-2 border-red-400 p-2">
-            <TextareaAutoFontSize value={value} onChange={setValue} keyHandlers={handlers} />
-        </div>
-    );
-
-    // return <BoardEditor nodes={MockNodes} boardId="aaa" />;
+    return <BoardEditor nodes={MockNodes} boardId="aaa" />;
 }
