@@ -1,6 +1,7 @@
 import type { StickerNode } from "@repo/boards-common";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
+import { TextareaAutoFontSize } from "@/shared/ui";
 
 type Props = PropsWithChildren<{
     node: StickerNode;
@@ -23,7 +24,7 @@ export function StickerComponent({ node, handlers, uiSettings, children }: Props
         borderRadius: node.styles.borderRadius
     };
 
-    const contentStyles: CSSProperties = {
+    const textareaStyles: CSSProperties = {
         fontFamily: node.styles.fontFamily,
         fontSize: node.styles.fontSize,
         color: node.styles.textColor,
@@ -33,11 +34,7 @@ export function StickerComponent({ node, handlers, uiSettings, children }: Props
     return (
         <div data-id={node.id} className="absolute shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
             <div className="relative w-full h-full px-2 py-4">
-                {uiSettings.showContent && (
-                    <div style={contentStyles} className="whitespace-pre-wrap w-full h-full overflow-hidden wrap-break-word break-all">
-                        {node.text}
-                    </div>
-                )}
+                {uiSettings.showContent && <TextareaAutoFontSize value={node.text} styles={textareaStyles} className="pointer-events-none" />}
 
                 {children}
             </div>

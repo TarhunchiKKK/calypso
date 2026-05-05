@@ -21,16 +21,6 @@ import { TextareaAutoFontSize } from "@/shared/ui";
 //     }
 // ];
 
-function getValue() {
-    let value = "aaaaa";
-
-    for (let i = 0; i < 30; i++) {
-        value += "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
-    }
-
-    return value;
-}
-
 export function CurrentUi() {
     const [value, setValue] = useState("");
 

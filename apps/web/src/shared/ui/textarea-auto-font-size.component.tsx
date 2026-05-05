@@ -7,7 +7,7 @@ type Props = {
 
     onChange?: (value: string) => void;
 
-    style?: CSSProperties;
+    styles?: CSSProperties;
 
     className?: string;
 
@@ -38,7 +38,7 @@ function useAutoFontSize(value: string) {
     return ref;
 }
 
-export function TextareaAutoFontSize({ value, onChange, style, className, disabled, keyHandlers }: Props) {
+export function TextareaAutoFontSize({ value, onChange, styles, className, disabled, keyHandlers }: Props) {
     const ref = useAutoFontSize(value);
 
     const handleKeyDown: KeyboardEventHandler = e => {
@@ -60,7 +60,7 @@ export function TextareaAutoFontSize({ value, onChange, style, className, disabl
             onChange={e => onChange?.(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={disabled}
-            style={style}
+            style={styles}
             className={cn(
                 "w-full h-full p-0 bg-transparent border-none resize-none overflow-hidden",
                 "focus-visible:ring-0 focus-visible:ring-offset-0",
