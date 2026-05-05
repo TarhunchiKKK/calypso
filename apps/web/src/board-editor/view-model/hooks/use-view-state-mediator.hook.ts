@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
-import type { ViewState } from "../types";
 import type { NodesModel } from "@/board-editor/nodes";
+import type { ViewState } from "../types";
 
 export type ViewStateGuard = (nodesModel: NodesModel, next: ViewState, prev: ViewState) => boolean;
 
+// DOCS
 export function useViewStateMediator(nodesModel: NodesModel, initialState: ViewState | (() => ViewState)) {
     const [viewState, setViewState] = useState<ViewState>(initialState);
 

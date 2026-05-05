@@ -2,6 +2,7 @@ import type { NodeBase } from "@repo/boards-common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellationStore } from "./use-cancellation-store.hook";
 
+// DOCS
 export function useCancellationDecorator(nodes: NodeBase[], service: NodesService) {
     const store = useCancellationStore();
 

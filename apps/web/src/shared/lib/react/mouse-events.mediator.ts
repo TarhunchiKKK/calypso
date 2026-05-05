@@ -1,5 +1,6 @@
 import type { MouseEventHandlers, MouseEventsMediatorOptions } from "./types";
 
+// DOCS
 /**
  * The MouseEventsMediator class is a utility designed to manage and distinguish between single-clicks, double-clicks, and long-press mouse events.
  * It is useful in scenarios where different actions need to be triggered based on these distinct user interactions on the same UI element.

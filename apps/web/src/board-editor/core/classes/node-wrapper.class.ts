@@ -18,6 +18,7 @@ export type NodeUiSettings = {
     noPointerEvents: boolean;
 };
 
+// DOCS
 export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     protected handlers: NodeHandlers = {};
 

@@ -6,6 +6,7 @@ export type NodesServiceMiddlewarePayload = { operation: "create" | "update"; no
 
 export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
 
+// DOCS
 export function useNodesServiceMiddleware() {
     const middlewaresRef = useRef<Map<unknown, NodesServiceMiddleware>>(new Map());
 

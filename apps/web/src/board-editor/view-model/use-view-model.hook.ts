@@ -19,6 +19,7 @@ import { useSelectionWindowViewModel } from "./variants/selection-window/view-mo
 import { useShapeSelectionViewModel } from "./variants/shape-selection/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
 
+// DOCS: `State` pattern
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 

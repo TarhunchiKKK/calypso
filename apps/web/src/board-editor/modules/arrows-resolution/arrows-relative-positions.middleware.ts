@@ -14,6 +14,7 @@ function getArrows(nodes: NodeBase[]): ArrowNode[] {
     return arrows;
 }
 
+// DOCS: How arrow relative positions works
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     switch (payload.operation) {
         case "remove": {

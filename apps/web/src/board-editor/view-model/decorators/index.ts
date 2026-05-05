@@ -7,6 +7,7 @@ import type { ViewModelDecorator } from "./types";
 
 export type { DecoratableViewModel } from "./types";
 
+// DOCS
 export const useViewModelDecorators: ViewModelDecorator<ViewModel> = (viewModel, viewState, params) => {
     const viewModelWithLastClick = useLastClickDecorator(viewModel, viewState, params);
 

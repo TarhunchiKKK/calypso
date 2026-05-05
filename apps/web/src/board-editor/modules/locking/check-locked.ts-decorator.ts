@@ -1,5 +1,6 @@
 import type { Decoratable } from "../../core";
 
+// DOCS
 export function CheckLocked() {
     return (_: unknown, __: string, descriptor: PropertyDescriptor) => {
         const originalMethod = descriptor.value;
