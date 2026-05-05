@@ -2,6 +2,11 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 
+/**
+ * This class represents contract for all node decorator classes.
+ *
+ * @template T Type of the decorated node.
+ */
 export abstract class NodeDecorator<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
     public constructor(protected readonly entry: Decoratable<T>) {}
 

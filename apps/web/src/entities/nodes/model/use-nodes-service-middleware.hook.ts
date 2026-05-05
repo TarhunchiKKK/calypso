@@ -6,6 +6,11 @@ export type NodesServiceMiddlewarePayload = { operation: "create" | "update"; no
 
 export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
 
+/**
+ * This hook store middleware functions that will be executed before all "writing" operations performed by the nodes service.
+ *
+ * @returns Object containing middleware management methods and method for applying middleware functions
+ */
 export function useNodesServiceMiddleware() {
     const middlewaresRef = useRef<Map<unknown, NodesServiceMiddleware>>(new Map());
 

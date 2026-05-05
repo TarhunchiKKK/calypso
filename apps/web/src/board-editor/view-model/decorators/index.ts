@@ -7,6 +7,14 @@ import type { ViewModelDecorator } from "./types";
 
 export type { DecoratableViewModel } from "./types";
 
+/**
+ * This hook composes all common view models functionality and applies it to view model instance.
+ *
+ * @param viewModel View model instance.
+ * @param viewState View state object.
+ * @param params Params view model was create with.
+ * @returns View model with all decorators
+ */
 export const useViewModelDecorators: ViewModelDecorator<ViewModel> = (viewModel, viewState, params) => {
     const viewModelWithLastClick = useLastClickDecorator(viewModel, viewState, params);
 

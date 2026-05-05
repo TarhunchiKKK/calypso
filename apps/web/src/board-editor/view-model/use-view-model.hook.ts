@@ -19,6 +19,12 @@ import { useSelectionWindowViewModel } from "./variants/selection-window/view-mo
 import { useShapeSelectionViewModel } from "./variants/shape-selection/view-model";
 import { useStylingViewModel } from "./variants/styling/view-model";
 
+/**
+ * This hook builds different view model instances and returns appropriate instance.
+ *
+ * @param params Params for view model building.
+ * @returns View model instance.
+ */
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 

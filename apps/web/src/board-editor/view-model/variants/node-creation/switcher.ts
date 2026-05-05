@@ -6,6 +6,9 @@ import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
 import type { NodeCreationPayload, NodeCreationViewState } from "./view-state";
 
+/**
+ * This object contains actions different for particular node type instance creation.
+ */
 const HandlersRecord: Record<NodeTypes, OmitFields<NodeCreationViewState, "type" | "payload">> = {
     sticker: {
         createNode: clickPoint => NodesFactory.sticker({ point: clickPoint })

@@ -16,6 +16,13 @@ const directionsMap: Record<ResizeDirection, ArrowBindingViewState["side"]> = {
     sw: "end",
     nw: "end"
 };
+
+/**
+ * This function determines what view state will be next: binding (for arrows) or resizing (for other node types).
+ *
+ * @param param0 Params view model was created with.
+ * @returns View state switching function.
+ */
 export function getResizeHandler({ nodesModel, setViewState }: ViewModelParams) {
     return (nodeId: Id, direction: ResizeDirection) => {
         const node = nodesModel.service.findOne(nodeId);
