@@ -1,20 +1,28 @@
 import type { StickerNode } from "@repo/boards-common";
+import type { CSSProperties } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { TextareaAutoSize } from "@/shared/ui";
+import { TextareaAutoFontSize } from "@/shared/ui";
 
 export class StickerEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<StickerNode>, handlers: NodeEditingHandlers) {
-        const handleEditingEnd = (text: string) => {
+        const handleChange = (value: string) => {
             const newNode = {
                 ...node.data,
-                text: text
-            };
+                text: value
+            } satisfies StickerNode;
 
             handlers.change(newNode);
-            handlers.end();
         };
 
-        return <TextareaAutoSize value={node.data.text} onEditingEnd={handleEditingEnd} />;
+        const textareaStyles: CSSProperties = {
+            fontFamily: node.data.styles.fontFamily,
+            color: node.data.styles.textColor,
+            textAlign: node.data.styles.textAlign
+        };
+
+        return (
+            <TextareaAutoFontSize value={node.data.text} onChange={handleChange} styles={textareaStyles} keyHandlers={this.getDefaultKeyHandlers(handlers)} />
+        );
     }
 }

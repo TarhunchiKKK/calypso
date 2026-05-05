@@ -68,9 +68,9 @@ export function FormattableDocument({ value, onChange, className, disabled, styl
     const handleKeyDown: KeyboardEventHandler = e => {
         if (keyHandlers && e.key in keyHandlers) {
             e.preventDefault();
-           
+
             keyHandlers[e.key]();
-           
+
             return;
         }
     };

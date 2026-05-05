@@ -12,7 +12,6 @@ export const StickerNodeZodSchema = RectNodeZodSchema.extend({
         borderColor: true,
         borderRadius: true,
         fontFamily: true,
-        fontSize: true,
         textColor: true,
         textAlign: true
     })

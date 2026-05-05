@@ -21,10 +21,6 @@ export class NoteNodeEditingStrategy extends NodeEditingStrategy {
             borderColor: node.data.styles.borderColor
         };
 
-        const keyHandlers = {
-            Escape: handlers.end
-        };
-
-        return <FormattableDocument value={node.data.content} onChange={handleChange} styles={styles} keyHandlers={keyHandlers} />;
+        return <FormattableDocument value={node.data.content} onChange={handleChange} styles={styles} keyHandlers={this.getDefaultKeyHandlers(handlers)} />;
     }
 }

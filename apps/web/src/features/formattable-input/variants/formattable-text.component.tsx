@@ -28,7 +28,7 @@ export function FormattableText({ value, onChange, disabled, className, keyHandl
             e.preventDefault();
 
             keyHandlers[e.key]();
-            
+
             return;
         }
     };
