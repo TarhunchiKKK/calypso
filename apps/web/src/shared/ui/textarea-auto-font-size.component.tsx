@@ -1,4 +1,4 @@
-import { type CSSProperties, useLayoutEffect, useRef } from "react";
+import { type CSSProperties, type KeyboardEventHandler, useLayoutEffect, useRef } from "react";
 import { cn } from "../lib/shadcn";
 import { Textarea } from "./kit";
 
@@ -12,6 +12,8 @@ type Props = {
     className?: string;
 
     disabled?: boolean;
+
+    keyHandlers?: Record<string, () => void>;
 };
 
 function useAutoFontSize(value: string) {
@@ -31,20 +33,32 @@ function useAutoFontSize(value: string) {
             fontSize--;
             el.style.fontSize = `${fontSize}px`;
         }
-        console.log(fontSize);
     }, [value]);
 
     return ref;
 }
 
-export function TextareaAutoFontSize({ value, onChange, style, className, disabled }: Props) {
+export function TextareaAutoFontSize({ value, onChange, style, className, disabled, keyHandlers }: Props) {
     const ref = useAutoFontSize(value);
+
+    const handleKeyDown: KeyboardEventHandler = e => {
+        if (!keyHandlers) {
+            return;
+        }
+
+        if (e.key in keyHandlers) {
+            e.preventDefault();
+            keyHandlers[e.key]();
+            return;
+        }
+    };
 
     return (
         <Textarea
             ref={ref}
             value={value}
             onChange={e => onChange?.(e.target.value)}
+            onKeyDown={handleKeyDown}
             disabled={disabled}
             style={style}
             className={cn(

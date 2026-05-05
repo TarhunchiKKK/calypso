@@ -34,9 +34,13 @@ function getValue() {
 export function CurrentUi() {
     const [value, setValue] = useState("");
 
+    const handlers = {
+        Escape: () => console.log("Escape")
+    };
+
     return (
         <div className="w-80 h-80 border-2 border-red-400 p-2">
-            <TextareaAutoFontSize value={value} onChange={setValue} disabled className="pointer-events-none" />
+            <TextareaAutoFontSize value={value} onChange={setValue} keyHandlers={handlers} />
         </div>
     );
 
