@@ -190,8 +190,8 @@ In browser open the https://localhost:5173 to access the app.
     <thead>
         <tr>
             <th>Scope</th>
-            <th>Key</th>
             <th>Action</th>
+            <th>Key</th>
         </tr>
     </thead>
     <tbody>
