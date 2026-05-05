@@ -26,7 +26,6 @@ export function StickerComponent({ node, handlers, uiSettings, children }: Props
 
     const textareaStyles: CSSProperties = {
         fontFamily: node.styles.fontFamily,
-        fontSize: node.styles.fontSize,
         color: node.styles.textColor,
         textAlign: node.styles.textAlign
     };
