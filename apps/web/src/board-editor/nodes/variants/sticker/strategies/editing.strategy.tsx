@@ -14,10 +14,6 @@ export class StickerEditingStrategy extends NodeEditingStrategy {
             handlers.change(newNode);
         };
 
-        const keyHandlers = {
-            Escape: handlers.end
-        };
-
-        return <TextareaAutoFontSize value={node.data.text} onChange={handleChange} keyHandlers={keyHandlers} />;
+        return <TextareaAutoFontSize value={node.data.text} onChange={handleChange} keyHandlers={this.getDefaultKeyHandlers(handlers)} />;
     }
 }

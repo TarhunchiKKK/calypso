@@ -15,10 +15,6 @@ export class TextNodeEditingStrategy extends NodeEditingStrategy {
             handlers.change(newNode);
         };
 
-        const keyHandlers = {
-            "Escape": handlers.end
-        }
-
-        return <FormattableText value={node.data.content} onChange={handleChange} keyHandlers={keyHandlers} />;
+        return <FormattableText value={node.data.content} onChange={handleChange} keyHandlers={this.getDefaultKeyHandlers(handlers)} />;
     }
 }
