@@ -18,8 +18,12 @@ export type NodeUiSettings = {
     noPointerEvents: boolean;
 };
 
-// DOCS
-export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Renderable, Decoratable<T> {
+/**
+ * This class is used to perform features common for all types of nodes.
+ *
+ * @template T Type of the node.
+ */
+export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Decoratable<T>, Renderable {
     protected handlers: NodeHandlers = {};
 
     protected uiSettings: NodeUiSettings = {

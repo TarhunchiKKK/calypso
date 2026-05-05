@@ -6,7 +6,7 @@ import type React from "react";
  * It first checks the event's target element and then traverses up the DOM tree
  * to find the closest ancestor with the `data-id` attribute.
  *
- * @param e - The React mouse event from which to extract the node ID.
+ * @param e The React mouse event from which to extract the node ID.
  * @returns The node ID if found, otherwise `null`.
  */
 export function getNodeId(e: React.MouseEvent) {
@@ -30,7 +30,7 @@ export function getNodeId(e: React.MouseEvent) {
  * that was interacted with. It simplifies event handling by abstracting away the logic
  * of finding the node ID from the DOM.
  *
- * @param callback - A function to be called with the node ID and the original event.
+ * @param callback A function to be called with the node ID and the original event.
  * @returns An event handler that extracts the node ID before invoking the callback.
  */
 export function withNodeId(callback: (nodeId: Id, e: React.MouseEvent) => void) {

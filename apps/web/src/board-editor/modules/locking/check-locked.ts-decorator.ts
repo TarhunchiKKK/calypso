@@ -1,6 +1,8 @@
 import type { Decoratable } from "../../core";
 
-// DOCS
+/**
+ * This TypeScript decorator applies to `NodeDecoratorsFactory` methods and check if node is locked. If so - prevents method execution.
+ */
 export function CheckLocked() {
     return (_: unknown, __: string, descriptor: PropertyDescriptor) => {
         const originalMethod = descriptor.value;

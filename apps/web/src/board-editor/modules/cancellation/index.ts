@@ -2,7 +2,13 @@ import type { NodeBase } from "@repo/boards-common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellationStore } from "./use-cancellation-store.hook";
 
-// DOCS
+/**
+ * This hook decorates `NodesService` instance with cancellation functionality.
+ *
+ * @param nodes Board nodes.
+ * @param service Nodes service object.
+ * @returns Decorated nodes service object.
+ */
 export function useCancellationDecorator(nodes: NodeBase[], service: NodesService) {
     const store = useCancellationStore();
 

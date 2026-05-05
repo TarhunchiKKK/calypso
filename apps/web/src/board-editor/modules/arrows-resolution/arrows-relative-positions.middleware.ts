@@ -14,7 +14,13 @@ function getArrows(nodes: NodeBase[]): ArrowNode[] {
     return arrows;
 }
 
-// DOCS: How arrow relative positions works
+/**
+ * This middleware ensures that arrows will be always binded to existing node.
+ *
+ * @param nodes All board nodes.
+ * @param payload Middleware payload.
+ * @returns Nodes array with applied changes.
+ */
 export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
     switch (payload.operation) {
         case "remove": {

@@ -11,7 +11,7 @@ type WindowEvents = {
  * It's designed to handle events that need to be captured regardless of where the mouse is on the page,
  * such as during a drag operation that might go outside the component's bounds.
  *
- * @param events - An object containing the event handlers to be attached.
+ * @param events An object containing the event handlers to be attached.
  *   These handlers are stored in a `ref` to ensure that the latest versions are always used
  *   without needing to re-attach the event listeners on every render.
  */

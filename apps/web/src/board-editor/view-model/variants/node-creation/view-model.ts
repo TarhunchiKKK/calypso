@@ -5,7 +5,6 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModelParams } from "../../types";
 import type { NodeCreationViewState } from "./view-state";
 
-// DOCS: How creation works
 export function useNodeCreationViewModel(params: ViewModelParams) {
     const { nodesModel, layoutDimensionsModel } = params;
 

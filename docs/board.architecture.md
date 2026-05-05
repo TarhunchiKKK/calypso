@@ -104,7 +104,7 @@ View models:
 * **resizing** - used to resize single node
 * **editing** - used to edit node text (some nodes not support it)
 * **shape selection** - used before node creation view model to choose shape variant (circler, stars, diamonds, etc.) to create
-* **media selection** - used before node creation view model to choose where to locate media (locally or presets)
+* **media selection** - used before node creation view model to choose from where to load media (locally or presets)
 * **arrow binding** - used to bind arrow head/tail to any node
 * **styling** - used to style multiple nodes with `StylingPanel` component (like styling panel in Miro) 
 * **nodes context menu** - used to perform common operations with nodes (Copy/Paste, locking, etc.)
@@ -168,7 +168,7 @@ In `apps/web/src/entities/nodes/model/use-nodes-service.hook.ts` you can see `us
 
 ### How is nodes api integrated ❓
 
-<!--TODO-->
+<!--DOCS-->
 
 ### How are node CRUD-operations cancellation implemented ❓
 
