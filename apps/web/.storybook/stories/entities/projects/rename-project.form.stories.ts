@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { centered } from "#/lib/decorators";
-import { ProjectThumbnailSelector } from "@/entities/projects";
+import { RenameProjectForm } from "@/entities/projects";
 import { MockBoards } from "%/entities";
 
 const meta = {
-    title: "Entities/Boards/Project Thumbnail Selector",
-    component: ProjectThumbnailSelector
-} satisfies Meta<typeof ProjectThumbnailSelector>;
+    title: "Entities/Boards/Rename Project Form",
+    component: RenameProjectForm
+} satisfies Meta<typeof RenameProjectForm>;
 
 export default meta;
 

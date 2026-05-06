@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ActionsBar } from "@/board-editor/ui/actions-bar.component";
 
 const meta = {

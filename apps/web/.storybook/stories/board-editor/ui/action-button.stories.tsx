@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StickerIcon } from "lucide-react";
 import { centered } from "#/lib/decorators";
 import { ActionButton } from "@/board-editor/ui/action-button.component";

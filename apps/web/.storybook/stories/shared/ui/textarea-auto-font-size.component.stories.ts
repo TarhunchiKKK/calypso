@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { centered } from "#/lib/decorators";
 import { TextareaAutoFontSize } from "@/shared/ui";
 

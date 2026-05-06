@@ -1,12 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { JSX } from "react";
 import { centered } from "#/lib/decorators";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
-import { StickerComponent } from "@/board-editor/nodes/variants/sticker/component";
+import { ArrowNodeComponent } from "@/board-editor/nodes/variants/arrow/component";
 import { NodesFactory } from "@/entities/nodes";
 
-const node = NodesFactory.sticker({ point: { x: 0, y: 0 } });
+// TODO: variants for arrow (angle type, line type)
+
+const absolutePosition = {
+    start: { x: 0, y: 0 },
+    end: { x: 100, y: 0 }
+};
+
+const node = NodesFactory.arrow(absolutePosition);
 const wrapper = NodeWrappersFactory.wrap([], node);
 
 const defaultArgs = {
@@ -15,13 +22,14 @@ const defaultArgs = {
     uiSettings: {
         noPointerEvents: false,
         showContent: true
-    }
+    },
+    absolutePosition: absolutePosition
 };
 
 const meta = {
-    title: "Board Editor/Nodes/Variants/Sticker",
-    component: StickerComponent
-} satisfies Meta<typeof StickerComponent>;
+    title: "Board Editor/Nodes/Variants/Arrow",
+    component: ArrowNodeComponent
+} satisfies Meta<typeof ArrowNodeComponent>;
 
 export default meta;
 
@@ -47,17 +55,6 @@ export const Locked: Story = {
     render: () => DecoratableNodeBuilder.from(lockedNodeWrapper).selection().build().render() as JSX.Element
 };
 
-export const Editing: Story = {
-    decorators: centered,
-    args: defaultArgs,
-    render: () =>
-        DecoratableNodeBuilder.from(wrapper)
-            .selection()
-            .editing({ change: () => {}, end: () => {} })
-            .build()
-            .render() as JSX.Element
-};
-
 export const Resizable: Story = {
     decorators: centered,
     args: defaultArgs,
@@ -67,16 +64,4 @@ export const Resizable: Story = {
             .resizable(() => {})
             .build()
             .render() as JSX.Element
-};
-
-export const Bindable: Story = {
-    decorators: centered,
-    args: defaultArgs,
-    render: () => DecoratableNodeBuilder.from(wrapper).bindable({}, false).build().render() as JSX.Element
-};
-
-export const BindableActive: Story = {
-    decorators: centered,
-    args: defaultArgs,
-    render: () => DecoratableNodeBuilder.from(wrapper).bindable({}, true).build().render() as JSX.Element
 };
