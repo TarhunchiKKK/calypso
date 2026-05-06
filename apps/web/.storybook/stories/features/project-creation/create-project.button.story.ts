@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/lib";
+import { centered } from "#/lib/decorators";
 import { CreateProjectButton } from "@/features/project-creation";
 
 const meta = {
-    title: "Features/Project Creation/CreateProjectButton",
+    title: "Features/Project Creation/Create Project Button",
     component: CreateProjectButton
 } satisfies Meta<typeof CreateProjectButton>;
 

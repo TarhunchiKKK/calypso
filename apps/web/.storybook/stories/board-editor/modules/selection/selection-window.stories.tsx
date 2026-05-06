@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { applyDecorators, centered, relative } from "#/common/lib";
+import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { SelectionWindow } from "@/board-editor/modules/selection";
 
 const meta = {
-    title: "Board Editor/Modules/Selection/SelectionWindow",
+    title: "Board Editor/Modules/Selection/Selection Window",
     component: SelectionWindow
 } satisfies Meta<typeof SelectionWindow>;
 
@@ -12,6 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+    decorators: applyDecorators(relative, centered),
     args: {
         rect: {
             x: 0,
@@ -20,5 +21,4 @@ export const Default: Story = {
             height: 200
         }
     },
-    decorators: applyDecorators(relative, centered)
 };

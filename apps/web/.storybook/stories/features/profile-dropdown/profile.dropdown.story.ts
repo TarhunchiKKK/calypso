@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/lib";
+import { centered } from "#/lib/decorators";
 import { ProfileDropdown } from "@/features/profile-dropdown";
 
 const meta = {

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/lib";
+import { centered } from "#/lib/decorators";
 import { RenameProjectForm } from "@/entities/projects";
 import { MockBoards } from "%/entities";
 
 const meta = {
-    title: "Entities/Boards/RenameProjectForm",
+    title: "Entities/Boards/Rename Project Form",
     component: RenameProjectForm
 } satisfies Meta<typeof RenameProjectForm>;
 

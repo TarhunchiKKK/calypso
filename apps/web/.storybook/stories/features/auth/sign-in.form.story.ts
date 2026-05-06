@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/lib";
+import { centered } from "#/lib/decorators";
 import { SignInForm } from "@/features/auth";
 
 const meta = {
-    title: "Features/Auth/SignInForm",
+    title: "Features/Auth/Sign In Form",
     component: SignInForm
 } satisfies Meta<typeof SignInForm>;
 
