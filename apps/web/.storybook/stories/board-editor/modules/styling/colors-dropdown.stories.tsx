@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Square, Type } from "lucide-react";
-import { centered } from "#/common/decorators";
+import { centered } from "#/common/lib";
 import { BorderColorPlaceholder } from "@/board-editor/modules/styling/elements/border/constants";
 import { BackgroundColorPlaceholder, TextColorPlaceholder } from "@/board-editor/modules/styling/elements/color/constants";
 import { ColorsDropdown } from "@/board-editor/modules/styling/lib/colors-dropdown.component";

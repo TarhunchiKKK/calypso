@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/decorators";
+import { centered } from "#/common/lib";
 import { FormattableDocument } from "@/features/formattable-input";
 
 const meta = {

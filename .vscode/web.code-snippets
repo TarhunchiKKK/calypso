@@ -6,7 +6,7 @@
         "prefix": "w-story",
         "body": [
             "import type { Meta, StoryObj } from \"@storybook/nextjs-vite\";",
-            "import { centered } from \"#/common/decorators\";",
+            "import { centered } from \"#/lib/decorators\";",
             "",
             "const meta = {",
             "    title: \"TYPE_PATH_HERE/$1\",",

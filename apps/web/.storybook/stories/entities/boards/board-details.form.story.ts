@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/decorators";
+import { centered } from "#/common/lib";
 import { BoardDetailsForm } from "@/entities/boards";
 import { MockBoards } from "%/entities";
 

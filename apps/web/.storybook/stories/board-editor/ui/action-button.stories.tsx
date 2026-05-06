@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { StickerIcon } from "lucide-react";
-import { centered } from "#/common/decorators";
+import { centered } from "#/common/lib";
 import { ActionButton } from "@/board-editor/ui/action-button.component";
 
 const meta = {

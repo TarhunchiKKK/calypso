@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { applyDecorators, centered, relative } from "#/common/decorators";
+import { applyDecorators, centered, relative } from "#/common/lib";
 import { SelectionWindow } from "@/board-editor/modules/selection";
 
 const meta = {

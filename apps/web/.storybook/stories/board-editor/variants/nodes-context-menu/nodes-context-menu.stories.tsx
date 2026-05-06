@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/decorators";
+import { centered } from "#/common/lib";
 import { NodesContextMenu } from "@/board-editor/view-model/variants/nodes-context-menu/lib/nodes-context-menu.component";
 
 const meta = {

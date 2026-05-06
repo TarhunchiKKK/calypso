@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/decorators/centered.decorator";
+import { centered } from "#/common/lib/centered.decorator";
 import { Wrapper } from "@/shared/ui";
 
 const meta = {
