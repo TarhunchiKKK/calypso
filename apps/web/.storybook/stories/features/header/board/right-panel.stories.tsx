@@ -4,7 +4,7 @@ import { ThemeSwitch } from "@/features/dark-mode";
 import { BoardHeader } from "@/features/header";
 
 const meta = {
-    title: "Features/Board Header/Left Panel",
+    title: "Features/Header/Board/Right Panel",
     component: BoardHeader.RightPanel
 } satisfies Meta<typeof BoardHeader.RightPanel>;
 

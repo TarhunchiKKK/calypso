@@ -31,5 +31,5 @@
             "%/*": ["./mocks/*"]
         }
     },
-    "include": ["vite.config.ts", "tests", ".storybook/stories",         "mocks"]
+    "include": ["vite.config.ts", "tests", ".storybook/stories", "mocks"]
 }

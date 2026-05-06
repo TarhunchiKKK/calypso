@@ -1,4 +1,6 @@
 {
+    // * Storybook
+
     "Create story": {
         "scope": "typescript",
         "prefix": "w-story",
@@ -7,7 +9,7 @@
             "import { centered } from \"#/common/decorators\";",
             "",
             "const meta = {",
-            "    title: \"Entities/Boards/$1\",",
+            "    title: \"TYPE_HERE/TYPE_HERE/$1\",",
             "    component: $1",
             "} satisfies Meta<typeof $1>;",
             "",
@@ -17,7 +19,7 @@
             "",
             "export const Default: Story = {",
             "    decorators: centered",
-            "};",
+            "};"
         ]
     }
 }
