@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { centered } from "#/common/decorators";
-import { RenameProjectForm } from "@/entities/projects";
+import { ProjectActions } from "@/features/project-actions";
 import { MockBoards } from "%/entities";
 
 const meta = {
-    title: "Entities/Boards/RenameProjectForm",
-    component: RenameProjectForm
-} satisfies Meta<typeof RenameProjectForm>;
+    title: "Features/Project Actions",
+    component: ProjectActions
+} satisfies Meta<typeof ProjectActions>;
 
 export default meta;
 
@@ -15,7 +15,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     decorators: centered,
     args: {
-        project: MockBoards.withType,
-        afterSubmit: () => {}
+        project: {
+            ...MockBoards.withCreator,
+            type: "board"
+        }
     }
 };

@@ -12,7 +12,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Board: Story = {
+export const Default: Story = {
     decorators: centered,
     args: {
         project: MockBoards.withType,

@@ -9,7 +9,7 @@
             "import { centered } from \"#/common/decorators\";",
             "",
             "const meta = {",
-            "    title: \"TYPE_HERE/TYPE_HERE/$1\",",
+            "    title: \"TYPE_PATH_HERE/$1\",",
             "    component: $1",
             "} satisfies Meta<typeof $1>;",
             "",
