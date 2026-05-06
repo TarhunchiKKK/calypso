@@ -3,7 +3,7 @@ import { centered } from "#/lib/decorators";
 import { NodesContextMenu } from "@/board-editor/view-model/variants/nodes-context-menu/lib/nodes-context-menu.component";
 
 const meta = {
-    title: "Board Editor/View Model/Variants/Nodes Context Menu/Nodes Context Menu",
+    title: "Board Editor/View Models/Nodes Context Menu/Nodes Context Menu",
     component: NodesContextMenu
 } satisfies Meta<typeof NodesContextMenu>;
 

@@ -3,7 +3,7 @@ import { centered } from "#/lib/decorators";
 import { ShapeSelector } from "@/board-editor/view-model/variants/shape-selection/ui/shape-selector.component";
 
 const meta = {
-    title: "Board Editor/View Model/Variants/Shape Selection/Shape Selector",
+    title: "Board Editor/View Models/Shape Selection/Shape Selector",
     component: ShapeSelector
 } satisfies Meta<typeof ShapeSelector>;
 
