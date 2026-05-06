@@ -27,8 +27,9 @@
 
         "paths": {
             "@/*": ["./src/*"],
-            "#/*": ["./.storybook/*"]
+            "#/*": ["./.storybook/*"],
+            "%/*": ["./mocks/*"]
         }
     },
-    "include": ["vite.config.ts", "tests", ".storybook/stories"]
+    "include": ["vite.config.ts", "tests", ".storybook/stories",         "mocks"]
 }

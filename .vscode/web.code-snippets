@@ -1,0 +1,23 @@
+{
+    "Create story": {
+        "scope": "typescript",
+        "prefix": "w-story",
+        "body": [
+            "import type { Meta, StoryObj } from \"@storybook/nextjs-vite\";",
+            "import { centered } from \"#/common/decorators\";",
+            "",
+            "const meta = {",
+            "    title: \"Entities/Boards/$1\",",
+            "    component: $1",
+            "} satisfies Meta<typeof $1>;",
+            "",
+            "export default meta;",
+            "",
+            "type Story = StoryObj<typeof meta>;",
+            "",
+            "export const Default: Story = {",
+            "    decorators: centered",
+            "};",
+        ]
+    }
+}
