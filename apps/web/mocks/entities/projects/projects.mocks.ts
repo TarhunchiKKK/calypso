@@ -1,4 +1,5 @@
 import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import { MockProjectThumbnails } from "./thumbnails.mocks";
 
 const arrayLength = 12;
 
@@ -8,7 +9,7 @@ export const MockProjects: ProjectWithCreator<ProjectWithType>[] = Array.from({ 
         type: "board",
         title: `Board ${index}`,
         description: "My favorite board",
-        thumbnail: `https://github.com/TarhunchiKKK/calypso/blob/main/assets/project-thumbnails/${index}.svg`,
+        thumbnail: MockProjectThumbnails[index],
         createdAt: new Date(),
         updatedAt: new Date(),
         creatorId: "creator-id",

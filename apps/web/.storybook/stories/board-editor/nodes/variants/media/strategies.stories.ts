@@ -5,10 +5,11 @@ import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decorat
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { MediaNodeComponent } from "@/board-editor/nodes/variants/media/component";
 import { NodesFactory } from "@/entities/nodes";
+import { MockBoardNodesMedia } from "%/entities/boards";
 
 const node = NodesFactory.media({
     point: { x: 0, y: 0 },
-    url: "https://github.com/TarhunchiKKK/calypso/blob/main/assets/board-node-media/animals/1.jfif"
+    url: MockBoardNodesMedia.animals[0]
 });
 const wrapper = NodeWrappersFactory.wrap([], node);
 

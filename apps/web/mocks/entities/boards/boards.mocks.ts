@@ -1,12 +1,13 @@
 import type { Board } from "@repo/boards-common";
 import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import { MockProjectThumbnails } from "../projects";
 
 const mockBoard: Board = {
     id: "mock-board",
     title: "Mock Board",
     description: "My favorite mock board.",
     creatorId: "mock-board-creator-id",
-    thumbnail: "https://github.com/TarhunchiKKK/calypso/blob/main/assets/project-thumbnails/1.svg",
+    thumbnail: MockProjectThumbnails[0],
     createdAt: new Date(),
     updatedAt: new Date()
 };

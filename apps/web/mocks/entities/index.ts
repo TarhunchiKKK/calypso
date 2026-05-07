@@ -1,2 +1,2 @@
-export { MockBoards } from "./boards.mocks.js";
-export { MockProjects } from "./projects.mocks.js";
+export { MockBoards } from "./boards";
+export { MockProjects } from "./projects";
