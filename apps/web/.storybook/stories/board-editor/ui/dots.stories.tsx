@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Dots } from "../../../../src/board-editor/ui/dots.component";
 
 const meta = {
-    title: "Board Editor/ui/Dots",
+    title: "Board Editor/UI/Dots",
     component: Dots
 } satisfies Meta<typeof Dots>;
 

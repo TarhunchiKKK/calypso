@@ -18,7 +18,7 @@ export function MediaGrid({ groupId, onSelect }: Props) {
 
     if (!media) {
         return (
-            <div className="grid grid-cols-2 gap-0">
+            <div className="grid grid-cols-2 gap-2">
                 {Array.from({ length: skeletonsCount }).map((_, index) => (
                     <Skeleton key={index} className="w-full h-full" />
                 ))}

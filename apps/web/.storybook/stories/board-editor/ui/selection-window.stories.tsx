@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SelectionWindow } from "../../../../src/board-editor/modules/selection";
 
 const meta = {
-    title: "Board Editor/ui/Selection Window",
+    title: "Board Editor/UI/Selection Window",
     component: SelectionWindow
 } satisfies Meta<typeof SelectionWindow>;
 

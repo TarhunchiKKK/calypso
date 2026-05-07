@@ -1,8 +1,8 @@
 import type { Preview } from "@storybook/react-vite";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeSwitch } from "../src/features/dark-mode";
 import "../src/app/index.css";
-
 
 const preview: Preview = {
     parameters: {
@@ -14,10 +14,14 @@ const preview: Preview = {
         }
     },
     decorators: [
-        (Story) => (
+        Story => (
             <QueryClientProvider client={new QueryClient()}>
                 <BrowserRouter>
-                    <Story/>
+                    <Story />
+
+                    <div className="fixed top-4 right-4">
+                        <ThemeSwitch />
+                    </div>
                 </BrowserRouter>
             </QueryClientProvider>
         )

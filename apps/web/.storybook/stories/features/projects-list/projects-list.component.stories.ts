@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { centered } from "#/lib/decorators";
+import { applyDecorators, centered, wrapper } from "#/lib/decorators";
 import { MockProjects } from "@/dev";
 import { ProjectsList } from "@/features/projects-list";
 
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    decorators: centered,
+    decorators: applyDecorators(centered, wrapper({ width: 900 })),
     args: {
         projects: MockProjects
     }

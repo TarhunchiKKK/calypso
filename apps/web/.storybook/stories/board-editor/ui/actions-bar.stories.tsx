@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ActionsBar } from "@/board-editor/ui/actions-bar.component";
 
 const meta = {
-    title: "Board Editor/ui/Actions Bar",
+    title: "Board Editor/UI/Actions Bar",
     component: ActionsBar
 } satisfies Meta<typeof ActionsBar>;
 
