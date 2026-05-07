@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { JSX } from "react";
-import { centered } from "#/lib/decorators";
+import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { ArrowNodeComponent } from "@/board-editor/nodes/variants/arrow/component";
@@ -16,6 +16,7 @@ const absolutePosition = {
 const node = NodesFactory.arrow(absolutePosition);
 const wrapper = NodeWrappersFactory.wrap([], node);
 
+const decorators = applyDecorators(centered, relative);
 const defaultArgs = {
     node: node,
     handlers: {},
@@ -27,7 +28,7 @@ const defaultArgs = {
 };
 
 const meta = {
-    title: "Board Editor/Nodes/Variants/Arrow",
+    title: "Board Editor/Nodes/Variants/Arrow/Strategies",
     component: ArrowNodeComponent
 } satisfies Meta<typeof ArrowNodeComponent>;
 
@@ -36,13 +37,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    decorators: centered,
+    decorators: decorators,
     args: defaultArgs,
     render: () => wrapper.render()
 };
 
 export const Selected: Story = {
-    decorators: centered,
+    decorators: decorators,
     args: defaultArgs,
     render: () => DecoratableNodeBuilder.from(wrapper).selection().build().render() as JSX.Element
 };
@@ -50,13 +51,13 @@ export const Selected: Story = {
 const lockedNodeWrapper = NodeWrappersFactory.wrap([], { ...node, locked: true });
 
 export const Locked: Story = {
-    decorators: centered,
+    decorators: decorators,
     args: defaultArgs,
     render: () => DecoratableNodeBuilder.from(lockedNodeWrapper).selection().build().render() as JSX.Element
 };
 
 export const Resizable: Story = {
-    decorators: centered,
+    decorators: decorators,
     args: defaultArgs,
     render: () =>
         DecoratableNodeBuilder.from(wrapper)

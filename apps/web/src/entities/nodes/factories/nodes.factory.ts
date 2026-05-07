@@ -23,16 +23,7 @@ export class NodesFactory {
                 width: 100,
                 height: 100
             },
-            styles: pickFields(DefaultNodeStyles, [
-                "backgroundColor",
-                "fontFamily",
-                "fontSize",
-                "textColor",
-                "borderColor",
-                "borderRadius",
-                "borderStyle",
-                "textAlign"
-            ])
+            styles: pickFields(DefaultNodeStyles, ["backgroundColor", "fontFamily", "textColor", "borderColor", "borderRadius", "borderStyle", "textAlign"])
         };
     }
 
