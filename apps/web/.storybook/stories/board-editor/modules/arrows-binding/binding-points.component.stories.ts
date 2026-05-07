@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { centered } from "#/lib/decorators";
+import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { BindingPoints } from "@/board-editor/modules/arrows-binding/ui/binding-points.component";
 
 const meta = {
@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    decorators: centered,
+    decorators: applyDecorators(centered, relative),
     args: {
         referencePoints: [
             { x: 0, y: 0 },
@@ -27,8 +27,8 @@ export const Default: Story = {
         rect: {
             x: 0,
             y: 0,
-            width: 200,
-            height: 200
+            width: 100,
+            height: 100
         },
         onMouseUp: () => {}
     }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { ActionsBar } from "@/board-editor/ui/actions-bar.component";
 
 const meta = {
@@ -16,6 +17,7 @@ const emptyAction = {
 };
 
 export const Default: Story = {
+    decorators: applyDecorators(centered, relative),
     args: {
         actions: {
             nodes: {

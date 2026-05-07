@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    decorators: applyDecorators(relative, centered),
+    decorators: applyDecorators(centered, relative),
     args: {
         rect: {
             x: 0,
@@ -20,5 +20,5 @@ export const Default: Story = {
             width: 300,
             height: 200
         }
-    },
+    }
 };
