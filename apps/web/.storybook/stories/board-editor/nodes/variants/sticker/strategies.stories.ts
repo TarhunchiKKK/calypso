@@ -20,7 +20,7 @@ const defaultArgs = {
 };
 
 const meta = {
-    title: "Board Editor/Nodes/Variants/Sticker",
+    title: "Board Editor/Nodes/Variants/Sticker/Strategies",
     component: StickerComponent
 } satisfies Meta<typeof StickerComponent>;
 

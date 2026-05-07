@@ -3,7 +3,7 @@ import { centered } from "#/lib/decorators";
 import { ResizeBorders } from "@/board-editor/nodes/shared/ui";
 
 const meta = {
-    title: "Board Editor/Modules/Resizing/Resize Borders",
+    title: "Board Editor/Nodes/Shared/UI/Resize Borders",
     component: ResizeBorders
 } satisfies Meta<typeof ResizeBorders>;
 
