@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { ActionsBar } from "@/board-editor/ui/actions-bar.component";
 
 const meta = {
-    title: "Board Editor/ui/Actions Bar",
+    title: "Board Editor/UI/Actions Bar",
     component: ActionsBar
 } satisfies Meta<typeof ActionsBar>;
 
@@ -16,6 +17,7 @@ const emptyAction = {
 };
 
 export const Default: Story = {
+    decorators: applyDecorators(centered, relative),
     args: {
         actions: {
             nodes: {

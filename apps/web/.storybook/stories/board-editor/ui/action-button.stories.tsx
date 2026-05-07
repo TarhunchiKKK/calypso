@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StickerIcon } from "lucide-react";
-import { centered } from "#/common/decorators";
+import { centered } from "#/lib/decorators";
 import { ActionButton } from "@/board-editor/ui/action-button.component";
 
 const meta = {
-    title: "Board Editor/ui/Action Button",
+    title: "Board Editor/UI/Action Button",
     component: ActionButton
 } satisfies Meta<typeof ActionButton>;
 

@@ -32,13 +32,13 @@ export function ResizeBorders({ main, cross, diagonal, onResizeStart }: Props) {
 
             {diagonal && (
                 <>
-                    <div className="absolute -left-1 -top-1 w-2 h-2 rounded-full cursor-nw-resize bg-blue-700" onMouseDown={e => onResizeStart("nw", e)} />
+                    <div className="absolute -left-1 -top-1 w-2 h-2 rounded-full cursor-nw-resize bg-resizing" onMouseDown={e => onResizeStart("nw", e)} />
 
-                    <div className="absolute -right-1 -top-1 w-2 h-2 rounded-full cursor-ne-resize bg-blue-700" onMouseDown={e => onResizeStart("ne", e)} />
+                    <div className="absolute -right-1 -top-1 w-2 h-2 rounded-full cursor-ne-resize bg-resizing" onMouseDown={e => onResizeStart("ne", e)} />
 
-                    <div className="absolute -right-1 -bottom-1 w-2 h-2 rounded-full cursor-se-resize bg-blue-700" onMouseDown={e => onResizeStart("se", e)} />
+                    <div className="absolute -right-1 -bottom-1 w-2 h-2 rounded-full cursor-se-resize bg-resizing" onMouseDown={e => onResizeStart("se", e)} />
 
-                    <div className="absolute -left-1 -bottom-1 w-2 h-2 rounded-full cursor-sw-resize bg-blue-700" onMouseDown={e => onResizeStart("sw", e)} />
+                    <div className="absolute -left-1 -bottom-1 w-2 h-2 rounded-full cursor-sw-resize bg-resizing" onMouseDown={e => onResizeStart("sw", e)} />
                 </>
             )}
         </>

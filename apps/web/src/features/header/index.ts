@@ -1,2 +1,2 @@
-export { BoardHeader } from "./board-header.component";
-export { DashboardHeader } from "./dashboard-header.component";
+export { BoardHeader } from "./board.header";
+export { DashboardHeader } from "./dashboard.header";

@@ -1,6 +1,6 @@
 import { ProjectsApi } from "@/entities/projects";
 import { DashboardHeader } from "@/features/header";
-import { CreateProjectButton } from "@/features/project-creating";
+import { CreateProjectButton } from "@/features/project-creation";
 import { ProjectsList, ProjectsListSkeleton } from "@/features/projects-list";
 
 function DashBoardPage() {

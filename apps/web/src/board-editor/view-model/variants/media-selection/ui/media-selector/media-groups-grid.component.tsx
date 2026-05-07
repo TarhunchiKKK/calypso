@@ -13,7 +13,7 @@ export function MediaGroupsGrid({ onSelect }: Props) {
 
     if (!groups) {
         return (
-            <div className="grid grid-cols-2 gap-0">
+            <div className="grid grid-cols-2 gap-2">
                 {Array.from({ length: skeletonsCount }).map((_, index) => (
                     <Card key={index}>
                         <CardHeader>

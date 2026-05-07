@@ -11,7 +11,7 @@ export const DefaultNodeStyles: NodeStyles = {
     borderRadius: AvailableBorderRadiuses[0],
     textAlign: "left",
     angleType: "corner",
-    lineColor: "blue",
+    lineColor: "black",
     lineType: "solid",
     lineWidth: 1
 };

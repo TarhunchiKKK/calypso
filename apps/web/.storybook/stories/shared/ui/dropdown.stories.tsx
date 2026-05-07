@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { centered } from "#/common/decorators/centered.decorator";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { MenuIcon } from "lucide-react";
+import { centered } from "#/lib/decorators";
 import { Dropdown } from "@/shared/ui";
 
 const meta = {
@@ -14,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         title: "Title",
-        placeholder: "Placeholder",
+        placeholder: <MenuIcon />,
         items: [
             {
                 label: "Item 1",
