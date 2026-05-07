@@ -8,7 +8,7 @@ export const MockProjects: ProjectWithCreator<ProjectWithType>[] = Array.from({ 
         type: "board",
         title: `Board ${index}`,
         description: "My favorite board",
-        thumbnail: "board-thumbnail",
+        thumbnail: `https://github.com/TarhunchiKKK/calypso/blob/main/assets/project-thumbnails/${index}.svg`,
         createdAt: new Date(),
         updatedAt: new Date(),
         creatorId: "creator-id",

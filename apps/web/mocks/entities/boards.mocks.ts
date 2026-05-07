@@ -6,7 +6,7 @@ const mockBoard: Board = {
     title: "Mock Board",
     description: "My favorite mock board.",
     creatorId: "mock-board-creator-id",
-    thumbnail: "mock-board-thumbnail-url",
+    thumbnail: "https://github.com/TarhunchiKKK/calypso/blob/main/assets/project-thumbnails/1.svg",
     createdAt: new Date(),
     updatedAt: new Date()
 };
