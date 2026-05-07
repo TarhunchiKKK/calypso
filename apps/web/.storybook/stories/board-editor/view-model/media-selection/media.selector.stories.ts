@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { centered } from "#/lib/decorators";
 import { MediaSelector } from "@/board-editor/view-model/variants/media-selection/ui/media-selector";
+import { MswHandlers } from "%/api";
 
 const meta = {
     title: "Board Editor/View Models/Media Selection/Media Selector",
@@ -13,8 +14,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     decorators: centered,
+
     args: {
         style: { x: 0, y: 0 },
         onSelect: () => {}
+    },
+    parameters: {
+        msw: {
+            handlers: [MswHandlers.media.findPresetsGroups, MswHandlers.media.findPresets]
+        }
     }
 };

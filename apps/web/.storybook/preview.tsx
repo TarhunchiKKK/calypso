@@ -1,8 +1,11 @@
 import type { Preview } from "@storybook/react-vite";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { initialize, mswLoader } from "msw-storybook-addon";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeSwitch } from "../src/features/dark-mode";
 import "../src/app/index.css";
+
+initialize();
 
 const preview: Preview = {
     parameters: {
@@ -13,6 +16,7 @@ const preview: Preview = {
             }
         }
     },
+    loaders: [mswLoader],
     decorators: [
         Story => (
             <QueryClientProvider client={new QueryClient()}>
