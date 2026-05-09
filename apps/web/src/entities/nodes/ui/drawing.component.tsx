@@ -4,7 +4,7 @@ import { type SVGProps, useMemo } from "react";
 import { Geometry } from "@/shared/lib/geometry";
 
 type Props = {
-    node: DrawingNode;
+    node: Pick<DrawingNode, "points" | "styles">;
 
     svgProps?: SVGProps<SVGSVGElement>;
 

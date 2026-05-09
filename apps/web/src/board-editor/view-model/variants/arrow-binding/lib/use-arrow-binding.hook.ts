@@ -6,7 +6,6 @@ import { switchToSelection } from "../../selection/switcher";
 import type { ArrowBindingViewState } from "../view-state";
 
 // FIX: remove `onMouseUp`
-// REFACTOR: create new arrow
 export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
     const [arrow, setArrow] = useState<ArrowNode>();
 
