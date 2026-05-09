@@ -117,7 +117,7 @@ export class NodesFactory {
                 width: 0,
                 height: 0
             },
-            styles: pickFields(DefaultNodeStyles, ["lineColor"]),
+            styles: pickFields(DefaultNodeStyles, ["lineColor", "lineWidth"]),
             points: [data.point]
         };
     }

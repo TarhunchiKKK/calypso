@@ -3,7 +3,19 @@ import type { ResizeDirection, ResizeHandler } from "@/board-editor/modules/resi
 import { ResizableNodeStrategy } from "@/board-editor/modules/resizing/strategies/resizable-node.strategy";
 import { ResizeBorders } from "../ui";
 
+type Sides = {
+    main?: boolean;
+
+    cross?: boolean;
+
+    diagonal?: boolean;
+};
+
 export class ResizableRectNodeStrategy extends ResizableNodeStrategy {
+    public constructor(protected readonly sides: Sides) {
+        super();
+    }
+
     public override ui(_: Decoratable, handler: ResizeHandler) {
         const onResizeStart = (direction: ResizeDirection, e: React.MouseEvent) => {
             e.stopPropagation();
@@ -17,6 +29,6 @@ export class ResizableRectNodeStrategy extends ResizableNodeStrategy {
             handler(nodeId, direction);
         };
 
-        return <ResizeBorders main cross diagonal onResizeStart={onResizeStart} />;
+        return <ResizeBorders {...this.sides} onResizeStart={onResizeStart} />;
     }
 }
