@@ -1,4 +1,4 @@
-import type { ArrowNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
 import type { Point } from "@repo/common";
 import { pickFields } from "@/shared/lib/object";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
@@ -104,6 +104,21 @@ export class NodesFactory {
                     children: [{ text: "Title" }]
                 }
             ]
+        };
+    }
+
+    public static drawing(data: { point: Point }): DrawingNode {
+        return {
+            id: crypto.randomUUID(),
+            type: "drawing",
+            locked: false,
+            rect: {
+                ...data.point,
+                width: 0,
+                height: 0
+            },
+            styles: pickFields(DefaultNodeStyles, ["lineColor"]),
+            points: [data.point]
         };
     }
 }

@@ -30,6 +30,10 @@ export class Geometry {
         return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2);
     }
 
+    public static pointToTuple(point: Point): [number, number] {
+        return [point.x, point.y];
+    }
+
     public static rectFromPoints(a: Point, b: Point): Rect {
         const x = Math.min(a.x, b.x);
         const y = Math.min(a.y, b.y);

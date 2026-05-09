@@ -72,7 +72,11 @@ export const NoteNodeZodSchema = RectNodeZodSchema.extend({
 
 export const DrawingNodeZodSchema = RectNodeZodSchema.extend({
     type: z.literal("drawing"),
-    points: z.array(PointZodSchema)
+    points: z.array(PointZodSchema),
+    styles: NodeStylesZodSchema.pick({
+        lineColor: true,
+        lineWidth: true
+    })
 });
 
 export type StickerNode = z.infer<typeof StickerNodeZodSchema>;

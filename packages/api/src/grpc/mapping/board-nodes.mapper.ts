@@ -1,4 +1,4 @@
-import type { AnyNode, ArrowNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, DrawingNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
     AnyBoardNodeGrpc,
@@ -151,7 +151,7 @@ export class BoardNodesGrpcMapper {
             const drawing = node.drawing as NoNullableFields<DrawingBoardNodeGrpc>;
 
             return {
-                ...(drawing.base as NodeBase),
+                ...(drawing.base as NodeBase & Pick<DrawingNode, "styles">),
                 type: "drawing",
                 rect: drawing.rect,
                 points: drawing.points
