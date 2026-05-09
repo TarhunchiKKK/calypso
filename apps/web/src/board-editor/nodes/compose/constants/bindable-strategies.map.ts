@@ -11,5 +11,6 @@ export const BindableStrategiesMap: StrategiesMap<BindableNodeStrategy> = {
     text: BindableRectNodeStrategyInstance,
     shape: new BindableShapeStrategy(),
     media: BindableRectNodeStrategyInstance,
-    note: BindableRectNodeStrategyInstance
+    note: BindableRectNodeStrategyInstance,
+    drawing: null
 };
