@@ -14,7 +14,7 @@ export function useArrowBindingViewModel(params: ViewModelParams) {
         return {
             nodes: ArrowBindingNodesMapper.create()
                 .setNodes(params.nodesModel.nodes)
-                .setArrowId(viewState.arrowId)
+                .setArrow(arrowBinding.arrow)
                 .setBindingNodeId(bindingNode.nodeId)
                 .setBindingHandlers({
                     onMouseEnter: bindingNode.onMouseEnter,
