@@ -6,8 +6,6 @@ import { useBindingNode } from "./lib/use-binding-node.hook";
 import type { ArrowBindingViewState } from "./view-state";
 
 export function useArrowBindingViewModel(params: ViewModelParams) {
-    const { nodesModel } = params;
-
     const arrowBinding = useArrowBinding(params);
 
     const bindingNode = useBindingNode(params);
@@ -15,8 +13,8 @@ export function useArrowBindingViewModel(params: ViewModelParams) {
     return (viewState: ArrowBindingViewState): DecoratableViewModel => {
         return {
             nodes: ArrowBindingNodesMapper.create()
-                .setNodes(nodesModel.nodes)
-                .setArrowId(viewState.arrowId)
+                .setNodes(params.nodesModel.nodes)
+                .setArrow(arrowBinding.arrow)
                 .setBindingNodeId(bindingNode.nodeId)
                 .setBindingHandlers({
                     onMouseEnter: bindingNode.onMouseEnter,

@@ -6,3 +6,4 @@ export { NodeRectsFactory } from "./factories/node-rects.factory";
 export { NodesFactory } from "./factories/nodes.factory";
 export { type NodesService, useNodesService } from "./model/use-nodes-service.hook";
 export type { NodesServiceMiddleware } from "./model/use-nodes-service-middleware.hook";
+export { Drawing } from "./ui/drawing.component";

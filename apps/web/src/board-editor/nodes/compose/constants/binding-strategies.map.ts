@@ -8,5 +8,6 @@ export const BindingStrategiesMap: StrategiesMap<NodeBindingStrategy> = {
     text: null,
     shape: null,
     media: null,
-    note: null
+    note: null,
+    drawing: null
 };

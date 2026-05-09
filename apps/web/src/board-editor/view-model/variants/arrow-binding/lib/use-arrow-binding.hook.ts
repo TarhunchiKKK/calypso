@@ -1,38 +1,38 @@
+import type { ArrowNode } from "@repo/boards-common";
+import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { Geometry } from "@/shared/lib/geometry";
 import { switchToSelection } from "../../selection/switcher";
 import type { ArrowBindingViewState } from "../view-state";
-import type { ArrowNode } from "@repo/boards-common";
 
 // FIX: remove `onMouseUp`
 export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewState }: ViewModelParams) {
+    const [arrow, setArrow] = useState<ArrowNode>();
+
     const onMouseMove = (viewState: ArrowBindingViewState, e: MouseEvent) => {
         const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
         const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
 
-        const newNode = {
+        const newArrow = {
             ...arrow,
             [viewState.side]: currentPoint
         };
 
-        nodesModel.service.updateOne(newNode);
+        setArrow(newArrow);
     };
 
-    const onMouseUp = (viewState: ArrowBindingViewState, e: MouseEvent) => {
-        const point = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
+    const onMouseUp = () => {
+        if (!arrow) {
+            throw new Error("Arrow is not defined");
+        }
 
-        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
+        nodesModel.service.updateOne(arrow);
 
-        const newNode = {
-            ...arrow,
-            [viewState.side]: point
-        };
-
-        nodesModel.service.updateOne(newNode);
+        setArrow(undefined);
 
         setViewState(switchToSelection({ selectedIds: new Set(arrow.id) }));
     };
 
-    return { onMouseMove, onMouseUp };
+    return { arrow, onMouseMove, onMouseUp };
 }

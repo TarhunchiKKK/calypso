@@ -1,207 +1,217 @@
 syntax = "proto3";
 
-import "common.proto";
-import "geometry.proto";
-import "projects.proto";
-import "formattable.proto";
-import "google/protobuf/struct.proto";
-
 package boards;
 
+import "common.proto";
+import "formattable.proto";
+import "geometry.proto";
+import "google/protobuf/struct.proto";
+import "projects.proto";
+
 service BoardsService {
-    rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
+  rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
 
-    rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {} 
+  rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
-    rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
-    rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
+  rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
-    rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+  rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
+  rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
 message BoardGrpc {
-    string id = 1;
+  string id = 1;
 
-    string title = 2;
+  string title = 2;
 
-    optional string description = 3;
+  optional string description = 3;
 
-    string thumbnail = 4;
+  string thumbnail = 4;
 
-    string creatorId = 5;
+  string creatorId = 5;
 
-    string createdAt = 6;
+  string createdAt = 6;
 
-    optional string updatedAt = 7;
+  optional string updatedAt = 7;
 }
 
 message BoardGrpcResponse {
-    oneof response {
-        BoardGrpc data = 1;
+  oneof response {
+    BoardGrpc data = 1;
 
-        common.GrpcError error = 2;
-    }
+    common.GrpcError error = 2;
+  }
 }
 
 message CreateBoardGrpcRequest {
-    string title = 1;
+  string title = 1;
 
-    string thumbnail = 2;
+  string thumbnail = 2;
 
-    string creatorId = 3; 
+  string creatorId = 3;
 }
 
 message BoardsList {
-    repeated BoardGrpc boards = 1;
+  repeated BoardGrpc boards = 1;
 }
 
 message FindAllBoardsGrpcResponse {
-    oneof response {
-        BoardsList data = 1;
+  oneof response {
+    BoardsList data = 1;
 
-        common.GrpcError error = 2;
-    }
+    common.GrpcError error = 2;
+  }
 }
 
 message UpdateBoardGrpcRequest {
-    string id = 1;
+  string id = 1;
 
-    string userId = 2;
+  string userId = 2;
 
-    optional string title = 3;
+  optional string title = 3;
 
-    optional string description = 4;
+  optional string description = 4;
 
-    optional string thumbnail = 5;
+  optional string thumbnail = 5;
 }
 
 service BoardNodesService {
-    rpc CreateMany(CreateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+  rpc CreateMany(CreateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc FindAll(FindAllBoardNodesGrpcRequest) returns (FindAllBoardNodesGrpcResponse) {}
+  rpc FindAll(FindAllBoardNodesGrpcRequest) returns (FindAllBoardNodesGrpcResponse) {}
 
-    rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+  rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
-    rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
+  rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
 message BoardNodeBaseGrpc {
-    string id = 1;
+  string id = 1;
 
-    string type = 2;
+  string type = 2;
 
-    bool locked = 3;
+  bool locked = 3;
 
-    google.protobuf.Struct styles  = 4;
+  google.protobuf.Struct styles = 4;
 }
 
 message StickerBoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
+  BoardNodeBaseGrpc base = 1;
 
-    geometry.RectGrpc rect = 2;
+  geometry.RectGrpc rect = 2;
 
-    string text = 3;
+  string text = 3;
 }
 
 message ArrowBoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
+  BoardNodeBaseGrpc base = 1;
 
-    geometry.RelativePointGrpc start = 2;
+  geometry.RelativePointGrpc start = 2;
 
-    geometry.RelativePointGrpc end = 3;
+  geometry.RelativePointGrpc end = 3;
 
-    optional string text = 4;
+  optional string text = 4;
 }
 
 message TextBoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
+  BoardNodeBaseGrpc base = 1;
 
-    geometry.RectGrpc rect = 2;
+  geometry.RectGrpc rect = 2;
 
-    repeated formattable.FormattableElementGrpc content = 3;
+  repeated formattable.FormattableElementGrpc content = 3;
 }
 
 message ShapeBoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
-    
-    geometry.RectGrpc rect = 2;
+  BoardNodeBaseGrpc base = 1;
 
-    string variant = 3;
+  geometry.RectGrpc rect = 2;
+
+  string variant = 3;
 }
 
 message MediaBoardNodeGrpc {
-    BoardNodeBaseGrpc base = 1;
-    
-    geometry.RectGrpc rect = 2;
+  BoardNodeBaseGrpc base = 1;
 
-    string url = 3;
+  geometry.RectGrpc rect = 2;
+
+  string url = 3;
 }
 
 message NoteBoardNodeGrc {
-    BoardNodeBaseGrpc base = 1;
+  BoardNodeBaseGrpc base = 1;
 
-    geometry.RectGrpc rect = 2;
+  geometry.RectGrpc rect = 2;
 
-    repeated formattable.FormattableElementGrpc content = 3;
+  repeated formattable.FormattableElementGrpc content = 3;
+}
+
+message DrawingBoardNodeGrpc {
+  BoardNodeBaseGrpc base = 1;
+
+  geometry.RectGrpc rect = 2;
+
+  repeated geometry.PointGrpc points = 3;
 }
 
 message AnyBoardNodeGrpc {
-    oneof specific {
-        StickerBoardNodeGrpc sticker = 1;
+  oneof specific {
+    StickerBoardNodeGrpc sticker = 1;
 
-        ArrowBoardNodeGrpc arrow = 2;
+    ArrowBoardNodeGrpc arrow = 2;
 
-        TextBoardNodeGrpc text = 3;
+    TextBoardNodeGrpc text = 3;
 
-        ShapeBoardNodeGrpc shape = 4;
+    ShapeBoardNodeGrpc shape = 4;
 
-        MediaBoardNodeGrpc media = 5;
+    MediaBoardNodeGrpc media = 5;
 
-        NoteBoardNodeGrc note = 6;
-    }
+    NoteBoardNodeGrc note = 6;
+
+    DrawingBoardNodeGrpc drawing = 7;
+  }
 }
 
 message CreateManyBoardNodesGrpcRequest {
-    repeated AnyBoardNodeGrpc nodes = 1;
+  repeated AnyBoardNodeGrpc nodes = 1;
 
-    string boardId = 2;
+  string boardId = 2;
 
-    string userId = 3;
+  string userId = 3;
 }
 
 message FindAllBoardNodesGrpcRequest {
-    string boardId = 1;
+  string boardId = 1;
 
-    string userId = 2;
+  string userId = 2;
 }
 
 message BoardNodesListGrpc {
-    repeated AnyBoardNodeGrpc nodes = 1;
+  repeated AnyBoardNodeGrpc nodes = 1;
 }
 
 message FindAllBoardNodesGrpcResponse {
-    oneof response {
-        BoardNodesListGrpc data = 1;
+  oneof response {
+    BoardNodesListGrpc data = 1;
 
-        common.GrpcError error = 2;
-    }
+    common.GrpcError error = 2;
+  }
 }
 
 message UpdateManyBoardNodesGrpcRequest {
-    repeated AnyBoardNodeGrpc nodes = 1;
+  repeated AnyBoardNodeGrpc nodes = 1;
 
-    string boardId = 2;
+  string boardId = 2;
 
-    string userId = 3;
+  string userId = 3;
 }
 
 message RemoveManyBoardNodesGrpcRequest {
-    repeated string ids = 1;
+  repeated string ids = 1;
 
-    string boardId = 2;
+  string boardId = 2;
 
-    string userId = 3;
+  string userId = 3;
 }

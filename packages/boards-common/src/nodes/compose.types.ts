@@ -2,6 +2,8 @@ import z from "zod";
 import {
     type ArrowNode,
     ArrowNodeZodSchema,
+    type DrawingNode,
+    DrawingNodeZodSchema,
     type MediaNode,
     MediaNodeZodSchema,
     type NoteNode,
@@ -20,7 +22,8 @@ export const AnyNodeZodSchema = z.discriminatedUnion("type", [
     TextNodeZodSchema,
     ShapeNodeZodSchema,
     MediaNodeZodSchema,
-    NoteNodeZodSchema
+    NoteNodeZodSchema,
+    DrawingNodeZodSchema
 ]);
 
 export type AnyNode = z.infer<typeof AnyNodeZodSchema>;
@@ -32,4 +35,5 @@ export type NodeTypesMap = {
     shape: ShapeNode;
     media: MediaNode;
     note: NoteNode;
+    drawing: DrawingNode;
 };

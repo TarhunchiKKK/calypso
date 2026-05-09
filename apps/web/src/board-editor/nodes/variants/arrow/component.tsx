@@ -26,6 +26,7 @@ export function ArrowNodeComponent({ node, absolutePosition, handlers, uiSetting
 
     return (
         <>
+            {/*REFACTOR: move to separate component*/}
             <svg data-id={node.id} className="absolute left-0 top-0 overflow-visible pointer-events-none" {...handlers}>
                 {renderLine(withAbsolutePosition, handlers, dimensions, uiSettings)}
 

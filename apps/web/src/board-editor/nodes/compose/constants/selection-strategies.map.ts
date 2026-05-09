@@ -11,5 +11,6 @@ export const SelectionStrategiesMap: StrategiesMap<NodeSelectionStrategy> = {
     text: RectNodeSelectionStrategyInstance,
     shape: RectNodeSelectionStrategyInstance,
     media: RectNodeSelectionStrategyInstance,
-    note: RectNodeSelectionStrategyInstance
+    note: RectNodeSelectionStrategyInstance,
+    drawing: RectNodeSelectionStrategyInstance
 };

@@ -1,6 +1,7 @@
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewState } from "../types";
 import type { ViewModel } from "../types/view-model.types";
+import { switchToDrawing } from "../variants/drawing/switcher";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToMediaSelection } from "../variants/media-selection/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
@@ -59,7 +60,7 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                 },
                 draw: {
                     isActive: stateFlags.draw,
-                    onClick: () => {}
+                    onClick: !stateFlags.draw ? () => setViewState(switchToDrawing()) : undefined
                 }
             },
             exchangeBuffer: {

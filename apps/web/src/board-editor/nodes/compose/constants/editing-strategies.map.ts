@@ -11,5 +11,6 @@ export const EditingStrategiesMap: StrategiesMap<NodeEditingStrategy> = {
     text: new TextNodeEditingStrategy(),
     shape: null,
     media: null,
-    note: new NoteNodeEditingStrategy()
+    note: new NoteNodeEditingStrategy(),
+    drawing: null
 };

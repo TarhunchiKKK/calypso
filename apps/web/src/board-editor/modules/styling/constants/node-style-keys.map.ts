@@ -6,5 +6,6 @@ export const NodeStyleKeysMap: Record<NodeTypes, (keyof NodeStyles)[][]> = {
     text: [["fontFamily", "fontSize"], ["textColor"], ["textAlign"]],
     shape: [["backgroundColor", "borderColor"]],
     media: [],
-    note: [["backgroundColor", "textColor"], ["borderColor"]]
+    note: [["backgroundColor", "textColor"], ["borderColor"]],
+    drawing: [["lineColor", "lineWidth"]]
 };

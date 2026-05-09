@@ -1,10 +1,12 @@
+import type { ArrowNode } from "@repo/boards-common";
 import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
+import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 
 export class ArrowBindingNodesMapper extends NodesMapper {
-    private arrowId!: Id;
+    private arrow?: ArrowNode;
 
     private bindingNodeId?: Id;
 
@@ -14,8 +16,8 @@ export class ArrowBindingNodesMapper extends NodesMapper {
         return new ArrowBindingNodesMapper();
     }
 
-    public setArrowId(arrowId: Id) {
-        this.arrowId = arrowId;
+    public setArrow(arrow?: ArrowNode) {
+        this.arrow = arrow;
         return this;
     }
 
@@ -30,18 +32,26 @@ export class ArrowBindingNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.wrapNodes().map(node => {
-            const builder = DecoratableNodeBuilder.from(node);
+        return this.wrapNodes()
+            .map(wrapper => {
+                if (this.arrow && this.arrow.id === wrapper.id) {
+                    return NodeWrappersFactory.wrap(this.nodes, this.arrow);
+                }
 
-            if (node.id === this.arrowId) {
-                builder.selection().binding();
-            } else {
-                const isActive = node.id === this.bindingNodeId;
+                return wrapper;
+            })
+            .map(wrapper => {
+                const builder = DecoratableNodeBuilder.from(wrapper);
 
-                builder.bindable(this.bindingHandlers, isActive);
-            }
+                if (this.arrow?.id === wrapper.id) {
+                    builder.selection().binding();
+                } else {
+                    const isActive = wrapper.id === this.bindingNodeId;
 
-            return builder.build();
-        });
+                    builder.bindable(this.bindingHandlers, isActive);
+                }
+
+                return builder.build();
+            });
     }
 }

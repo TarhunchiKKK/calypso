@@ -3,15 +3,10 @@ import type { JSX } from "react";
 import { applyDecorators, centered, relative } from "#/lib/decorators";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
-import { ArrowNodeComponent } from "@/board-editor/nodes/variants/arrow/component";
+import { DrawingNodeComponent } from "@/board-editor/nodes/variants/drawing/component";
 import { NodesFactory } from "@/entities/nodes";
 
-const absolutePosition = {
-    start: { x: 0, y: 0 },
-    end: { x: 100, y: 0 }
-};
-
-const node = NodesFactory.arrow(absolutePosition);
+const node = NodesFactory.drawing({ point: { x: 0, y: 0 } });
 const wrapper = NodeWrappersFactory.wrap([], node);
 
 const decorators = applyDecorators(centered, relative);
@@ -21,14 +16,13 @@ const defaultArgs = {
     uiSettings: {
         noPointerEvents: false,
         showContent: true
-    },
-    absolutePosition: absolutePosition
+    }
 };
 
 const meta = {
-    title: "Board Editor/Nodes/Variants/Arrow/Strategies",
-    component: ArrowNodeComponent
-} satisfies Meta<typeof ArrowNodeComponent>;
+    title: "Board Editor/Nodes/Variants/Drawing/Strategies",
+    component: DrawingNodeComponent
+} satisfies Meta<typeof DrawingNodeComponent>;
 
 export default meta;
 
@@ -59,8 +53,8 @@ export const Resizable: Story = {
     args: defaultArgs,
     render: () =>
         DecoratableNodeBuilder.from(wrapper)
-            .selection()
             .resizable(() => {})
+            .selection()
             .build()
             .render() as JSX.Element
 };

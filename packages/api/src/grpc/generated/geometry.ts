@@ -15,6 +15,11 @@ export interface RectGrpc {
   height: number;
 }
 
+export interface PointGrpc {
+  x: number;
+  y: number;
+}
+
 export interface RelativePointGrpc {
   x: number;
   y: number;

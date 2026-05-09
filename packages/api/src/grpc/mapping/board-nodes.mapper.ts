@@ -1,9 +1,10 @@
-import type { AnyNode, ArrowNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
+import type { AnyNode, ArrowNode, DrawingNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
 import { DebugException, type NoNullableFields } from "@repo/common";
 import type {
     AnyBoardNodeGrpc,
     ArrowBoardNodeGrpc,
     BoardNodeBaseGrpc,
+    DrawingBoardNodeGrpc,
     MediaBoardNodeGrpc,
     NoteBoardNodeGrc,
     ShapeBoardNodeGrpc,
@@ -66,8 +67,17 @@ export class BoardNodesGrpcMapper {
                     }
                 };
             }
+            case "drawing": {
+                return {
+                    drawing: {
+                        base: BoardNodesGrpcMapper.mapBase(node),
+                        rect: node.rect,
+                        points: node.points
+                    }
+                };
+            }
             default:
-                throw new DebugException("NodesGrpcMapper: Unknown node type");
+                throw new DebugException(`Unknown node type: ${node satisfies { type: never }}`);
         }
     }
 
@@ -134,6 +144,17 @@ export class BoardNodesGrpcMapper {
                 type: "note",
                 rect: note.rect,
                 content: note.content
+            };
+        }
+
+        if (node.drawing) {
+            const drawing = node.drawing as NoNullableFields<DrawingBoardNodeGrpc>;
+
+            return {
+                ...(drawing.base as NodeBase & Pick<DrawingNode, "styles">),
+                type: "drawing",
+                rect: drawing.rect,
+                points: drawing.points
             };
         }
 

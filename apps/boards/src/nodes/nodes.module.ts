@@ -9,6 +9,7 @@ import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-boa
 import { UpdateManyNodesCommandHandler } from "./handlers/update-many-nodes.handler";
 import { NodesService } from "./nodes.service";
 import { ArrowNode, ArrowNodeSchema } from "./schemas/arrow-node.schema";
+import { DrawingNode, DrawingNodeSchema } from "./schemas/drawing-node.schema";
 import { MediaNode, MediaNodeSchema } from "./schemas/media-node.schema";
 import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
 import { NoteNode, NoteNodeSchema } from "./schemas/note-node.schema";
@@ -28,6 +29,7 @@ export const NodesMongooseModule = MongooseModule.forFeatureAsync([
             schema.discriminator(ShapeNode.name, ShapeNodeSchema);
             schema.discriminator(MediaNode.name, MediaNodeSchema);
             schema.discriminator(NoteNode.name, NoteNodeSchema);
+            schema.discriminator(DrawingNode.name, DrawingNodeSchema);
             return schema;
         }
     }
