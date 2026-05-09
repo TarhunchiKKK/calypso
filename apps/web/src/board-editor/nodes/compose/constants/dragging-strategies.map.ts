@@ -11,5 +11,6 @@ export const DraggingStrategiesMap: StrategiesMap<NodeDraggingStrategy> = {
     text: RectNodeDraggingStrategyInstance,
     shape: RectNodeDraggingStrategyInstance,
     media: RectNodeDraggingStrategyInstance,
-    note: RectNodeDraggingStrategyInstance
+    note: RectNodeDraggingStrategyInstance,
+    drawing: RectNodeDraggingStrategyInstance
 };
