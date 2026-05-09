@@ -7,6 +7,7 @@ import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-no
 import type { ViewModel, ViewModelParams } from "./types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
+import { useDrawingViewModel } from "./variants/drawing/view-model";
 import { useEditingViewModel } from "./variants/editing/view-model";
 import { switchToIdle } from "./variants/idle/switcher";
 import { useIdleViewModel } from "./variants/idle/view-model";
@@ -44,6 +45,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
     const arrowBindingViewModel = useArrowBindingViewModel(newParams);
+    const drawingViewModel = useDrawingViewModel(newParams);
     const shapeSelectionViewModel = useShapeSelectionViewModel(newParams);
     const mediaSelectionViewModel = useMediaSelectionViewModel(newParams);
     const selectionViewModel = useSelectionViewModel(newParams);
@@ -64,6 +66,9 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             break;
         case "arrow-binding":
             viewModel = arrowBindingViewModel(viewState);
+            break;
+        case "drawing":
+            viewModel = drawingViewModel();
             break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);
@@ -93,7 +98,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = nodesContextMenuViewModel(viewState);
             break;
         default:
-            throw new Error(`useViewModel: Unknown view state - ${viewState}`);
+            throw new Error(`Unknown view state: ${viewState satisfies { type: never }}`);
     }
 
     // console.log(viewState.type);

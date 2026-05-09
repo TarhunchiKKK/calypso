@@ -1,5 +1,6 @@
 import type { ArrowBindingViewState } from "../variants/arrow-binding/view-state";
 import type { DraggingViewState } from "../variants/dragging/view-state";
+import type { DrawingViewState } from "../variants/drawing/view-state";
 import type { EditingViewState } from "../variants/editing/view-state";
 import type { IdleViewState } from "../variants/idle/view-state";
 import type { MediaSelectionViewState } from "../variants/media-selection/view-state";
@@ -15,6 +16,7 @@ export type ViewState =
     | IdleViewState
     | NodeCreationViewState
     | ArrowBindingViewState
+    | DrawingViewState
     | ShapeSelectionViewState
     | MediaSelectionViewState
     | SelectionViewState
