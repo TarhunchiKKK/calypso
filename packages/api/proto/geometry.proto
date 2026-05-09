@@ -3,19 +3,25 @@ syntax = "proto3";
 package geometry;
 
 message RectGrpc {
-    float x = 1;
+  float x = 1;
 
-    float y = 2;
+  float y = 2;
 
-    float width = 3;
+  float width = 3;
 
-    float height = 4;
+  float height = 4;
+}
+
+message PointGrpc {
+  float x = 1;
+
+  float y = 2;
 }
 
 message RelativePointGrpc {
-    float x = 1;
+  float x = 1;
 
-    float y = 2;
+  float y = 2;
 
-    optional string relativeTo = 3;
+  optional string relativeTo = 3;
 }

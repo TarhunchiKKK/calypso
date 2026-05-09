@@ -4,6 +4,7 @@ import type {
     AnyBoardNodeGrpc,
     ArrowBoardNodeGrpc,
     BoardNodeBaseGrpc,
+    DrawingBoardNodeGrpc,
     MediaBoardNodeGrpc,
     NoteBoardNodeGrc,
     ShapeBoardNodeGrpc,
@@ -66,8 +67,17 @@ export class BoardNodesGrpcMapper {
                     }
                 };
             }
+            case "drawing": {
+                return {
+                    drawing: {
+                        base: BoardNodesGrpcMapper.mapBase(node),
+                        rect: node.rect,
+                        points: node.points
+                    }
+                };
+            }
             default:
-                throw new DebugException("NodesGrpcMapper: Unknown node type");
+                throw new DebugException(`Unknown node type: ${node satisfies { type: never }}`);
         }
     }
 
@@ -134,6 +144,17 @@ export class BoardNodesGrpcMapper {
                 type: "note",
                 rect: note.rect,
                 content: note.content
+            };
+        }
+
+        if (node.drawing) {
+            const drawing = node.drawing as NoNullableFields<DrawingBoardNodeGrpc>;
+
+            return {
+                ...(drawing.base as NodeBase),
+                type: "drawing",
+                rect: drawing.rect,
+                points: drawing.points
             };
         }
 

@@ -1,7 +1,7 @@
 import { IdZodSchema, RectZodSchema } from "@repo/common";
 import z from "zod";
 
-export const NodeTypesZodSchema = z.enum(["sticker", "text", "shape", "arrow", "media", "note"]);
+export const NodeTypesZodSchema = z.enum(["sticker", "text", "shape", "arrow", "media", "note", "drawing"]);
 
 export const NodeBaseZodSchema = z.object({
     id: IdZodSchema,

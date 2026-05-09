@@ -10,7 +10,7 @@ import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
 import { FormattableElementGrpc } from "./formattable";
-import { RectGrpc, RelativePointGrpc } from "./geometry";
+import { PointGrpc, RectGrpc, RelativePointGrpc } from "./geometry";
 import { Struct } from "./google/protobuf/struct";
 import {
   DuplicateProjectGrpcRequest,
@@ -103,6 +103,12 @@ export interface NoteBoardNodeGrc {
   content: FormattableElementGrpc[];
 }
 
+export interface DrawingBoardNodeGrpc {
+  base: BoardNodeBaseGrpc | undefined;
+  rect: RectGrpc | undefined;
+  points: PointGrpc[];
+}
+
 export interface AnyBoardNodeGrpc {
   sticker?: StickerBoardNodeGrpc | undefined;
   arrow?: ArrowBoardNodeGrpc | undefined;
@@ -110,6 +116,7 @@ export interface AnyBoardNodeGrpc {
   shape?: ShapeBoardNodeGrpc | undefined;
   media?: MediaBoardNodeGrpc | undefined;
   note?: NoteBoardNodeGrc | undefined;
+  drawing?: DrawingBoardNodeGrpc | undefined;
 }
 
 export interface CreateManyBoardNodesGrpcRequest {
