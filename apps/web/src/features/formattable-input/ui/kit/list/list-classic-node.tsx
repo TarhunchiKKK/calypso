@@ -19,6 +19,7 @@ const listVariants = cva("m-0 py-1 ps-6", {
 
 export function ListElement({ variant, ...props }: PlateElementProps & VariantProps<typeof listVariants>) {
     return (
+        // biome-ignore lint/style/noNonNullAssertion: This is library code.
         <PlateElement as={variant!} className={listVariants({ variant })} {...props}>
             {props.children}
         </PlateElement>
