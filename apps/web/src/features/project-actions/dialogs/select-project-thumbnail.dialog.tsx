@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ProjectThumbnailSelector } from "@/entities/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
- type Props = {
+type Props = {
     project: ProjectWithType;
 
     trigger: React.ReactNode;
