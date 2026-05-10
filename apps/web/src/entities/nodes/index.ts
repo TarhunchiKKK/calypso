@@ -1,4 +1,3 @@
-export { NodesMongoApi } from "./api/nodes-mongo-api.constants";
 export * from "./constants/available-node-styles.constants";
 export { DefaultNodeStyles } from "./constants/default-node-styles.constants";
 export { NodeRectsFactory } from "./factories/node-rects.factory";

@@ -6,7 +6,7 @@ const queryKeys = {
     profile: ["profile"]
 };
 
-export function useSignUp() {
+function useSignUp() {
     const queryClient = useQueryClient();
 
     return useMutation({
