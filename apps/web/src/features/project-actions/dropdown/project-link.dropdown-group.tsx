@@ -3,7 +3,7 @@ import { LinkIcon, SquareArrowOutUpRightIcon } from "lucide-react";
 import { Routes } from "@/shared/config";
 import { DropdownMenuGroup, DropdownMenuItem } from "@/shared/ui/kit";
 
-export type Props = {
+ type Props = {
     project: ProjectWithType;
 };
 

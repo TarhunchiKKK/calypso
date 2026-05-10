@@ -6,12 +6,3 @@ export const AccessRightsRecord: Record<ProjectRoles, ProjectOperations[]> = {
     editor: ["view", "duplicate", "edit"],
     viewer: ["view", "duplicate"]
 };
-
-export const Operations = {
-    view: "view",
-    edit: "edit",
-    remove: "remove",
-    manageAccess: "manage-access",
-    duplicate: "duplicate",
-    editMetadata: "edit-metadata"
-} satisfies Record<string, ProjectOperations>;

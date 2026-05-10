@@ -6,8 +6,6 @@ export enum OwnerFilters {
     NOT_ME
 }
 
-export type TypeFilter = ProjectTypes | null;
-
 export enum SortOrders {
     ALPHABETIC,
     LAST_CREATED,

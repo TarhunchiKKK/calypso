@@ -3,7 +3,7 @@ import { CopyIcon, TrashIcon } from "lucide-react";
 import { ProjectsApi } from "@/entities/projects";
 import { DropdownMenuItem } from "@/shared/ui/kit";
 
-export type Props = {
+ type Props = {
     project: ProjectWithType;
 };
 
