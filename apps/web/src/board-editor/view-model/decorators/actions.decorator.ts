@@ -19,7 +19,7 @@ function determineStateFlags(viewState: ViewState) {
         shapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
         media: (viewState.type === "node-creation" && viewState.payload.type === "media") || viewState.type === "media-selection",
         notes: viewState.type === "node-creation" && viewState.payload.type === "note",
-        draw: false
+        draw: viewState.type === "drawing"
     };
 }
 
