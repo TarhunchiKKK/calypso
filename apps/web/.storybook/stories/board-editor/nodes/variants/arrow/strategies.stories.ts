@@ -11,7 +11,10 @@ const absolutePosition = {
     end: { x: 100, y: 0 }
 };
 
-const node = NodesFactory.arrow(absolutePosition);
+const node = {
+    ...NodesFactory.arrow({ point: { x: 50, y: 0 } }),
+    ...absolutePosition
+};
 const wrapper = NodeWrappersFactory.wrap([], node);
 
 const decorators = applyDecorators(centered, relative);

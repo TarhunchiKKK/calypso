@@ -1,6 +1,5 @@
 import type { OmitFields } from "@repo/common";
 import { NodesFactory } from "@/entities/nodes";
-import { switchToArrowBinding } from "../arrow-binding/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
 import type { NodeCreationPayload, NodeCreationViewState } from "./view-state";
@@ -13,15 +12,7 @@ const HandlersRecord: Record<NodeCreationViewState["payload"]["type"], OmitField
         createNode: clickPoint => NodesFactory.sticker({ point: clickPoint })
     },
     arrow: {
-        createNode: clickPoint => NodesFactory.arrow({ start: clickPoint, end: clickPoint }),
-        afterCreate: (arrow, params) => {
-            params.setViewState(
-                switchToArrowBinding({
-                    nodeId: arrow.id,
-                    side: "end"
-                })
-            );
-        }
+        createNode: clickPoint => NodesFactory.arrow({ point: clickPoint })
     },
     text: {
         createNode: clickPoint => NodesFactory.text({ point: clickPoint }),

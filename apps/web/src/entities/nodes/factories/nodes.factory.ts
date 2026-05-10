@@ -28,13 +28,20 @@ export class NodesFactory {
         };
     }
 
-    public static arrow(data: Pick<ArrowNode, "start" | "end">): ArrowNode {
+    public static arrow(data: { point: Point }): ArrowNode {
         return {
             id: crypto.randomUUID(),
             type: "arrow",
             locked: false,
             styles: pickFields(DefaultNodeStyles, ["lineColor", "lineType", "lineWidth", "angleType"]),
-            ...data
+            start: {
+                x: data.point.x - 50,
+                y: data.point.y - 50
+            },
+            end: {
+                x: data.point.x + 50,
+                y: data.point.y + 50
+            }
         };
     }
 
