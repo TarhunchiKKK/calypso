@@ -19,7 +19,8 @@ export class NodesFactory {
             locked: false,
             text: "Hello",
             rect: {
-                ...data.point,
+                x: data.point.x - 50,
+                y: data.point.y - 50,
                 width: 100,
                 height: 100
             },
@@ -49,7 +50,8 @@ export class NodesFactory {
                 }
             ],
             rect: {
-                ...data.point,
+                x: data.point.x - 50,
+                y: data.point.y - 50,
                 width: 100,
                 height: 100
             },
@@ -64,7 +66,8 @@ export class NodesFactory {
             locked: false,
             variant: data.variant,
             rect: {
-                ...data.point,
+                x: data.point.x - 50,
+                y: data.point.y - 50,
                 width: 100,
                 height: 100
             },
@@ -79,9 +82,10 @@ export class NodesFactory {
             locked: false,
             url: data.url,
             rect: {
-                ...data.point,
-                width: 100,
-                height: 100
+                x: data.point.x - 150,
+                y: data.point.y - 150,
+                width: 300,
+                height: 300
             },
             styles: pickFields(DefaultNodeStyles, ["borderColor", "borderRadius"])
         };
@@ -93,7 +97,8 @@ export class NodesFactory {
             type: "note",
             locked: false,
             rect: {
-                ...data.point,
+                x: data.point.x - 150,
+                y: data.point.y - 350,
                 width: 300,
                 height: 700
             },
