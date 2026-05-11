@@ -8,7 +8,6 @@
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",
-        "@repo/typescript-config": "*",
         "knip": "^5.86.0",
         "turbo": "^2.8.17"
     },

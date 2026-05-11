@@ -1,5 +1,5 @@
 import type { ResizableNodeStrategy } from "@/board-editor/modules/resizing";
-import { ResizableRectNodeStrategy } from "../../shared/strategies/resizable-rect-node.strategy";
+import { ResizableRectNodeStrategy } from "../../shared/strategies";
 import { ResizableArrowStrategy } from "../../variants/arrow/strategies/resizable.strategy";
 import type { StrategiesMap } from "./types";
 

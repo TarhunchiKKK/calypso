@@ -19,6 +19,7 @@ const headingVariants = cva("relative mb-1 data-[nav-target=true]:rounded-md dat
 
 export function HeadingElement({ variant = "h1", ...props }: PlateElementProps & VariantProps<typeof headingVariants>) {
     return (
+        // biome-ignore lint/style/noNonNullAssertion: This is library code.
         <PlateElement as={variant!} className={headingVariants({ variant })} {...props}>
             {props.children}
         </PlateElement>

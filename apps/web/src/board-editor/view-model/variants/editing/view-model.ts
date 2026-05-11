@@ -19,7 +19,7 @@ export function useEditingViewModel(params: ViewModelParams) {
         nodesMediator.setHandlers({
             left: {
                 onClick: withNodeId(nodeId => {
-                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]), skipNextClick: true }));
+                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
                 })
             }
         });

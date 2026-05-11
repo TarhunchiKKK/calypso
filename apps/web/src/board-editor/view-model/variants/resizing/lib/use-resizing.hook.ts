@@ -37,7 +37,7 @@ export function useResizing({ nodesModel, layoutDimensionsModel, setViewState }:
             nodesModel.service.updateOne(NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(nodesModel.nodes, node), newSize).data);
         }
 
-        setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId), skipNextClick: true }));
+        setViewState(switchToSelection({ selectedIds: new Set(viewState.nodeId) }));
 
         setNewSize(undefined);
     };

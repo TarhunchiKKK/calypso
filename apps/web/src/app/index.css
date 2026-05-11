@@ -1,7 +1,6 @@
 @import "tailwindcss";
-
-@plugin "tailwind-scrollbar-hide";
 @import "tw-animate-css";
+@plugin "tailwind-scrollbar-hide";
 
 @layer utilities {
     .scrollbar-none::-webkit-scrollbar {

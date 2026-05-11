@@ -6,6 +6,4 @@ export type SelectionViewState = {
     selectedIds: Set<Id>;
 
     selectionWindow?: Rect;
-
-    skipNextClick?: boolean;
 };

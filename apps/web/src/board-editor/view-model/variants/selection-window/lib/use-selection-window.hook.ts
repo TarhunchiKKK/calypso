@@ -28,7 +28,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
         if (selection.size === 0) {
             setViewState(switchToIdle());
         } else {
-            setViewState(switchToSelection({ selectedIds: selection, skipNextClick: true }));
+            setViewState(switchToSelection({ selectedIds: selection }));
         }
 
         setSelectionWindowRect(undefined);

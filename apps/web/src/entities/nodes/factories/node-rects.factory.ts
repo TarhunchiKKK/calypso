@@ -1,4 +1,4 @@
-import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, NodeBase, RectNode } from "@repo/boards-common";
 import type { Rect } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
 
@@ -6,19 +6,14 @@ export class NodeRectsFactory {
     public static rect(node: NodeBase): Rect {
         switch (node.type) {
             case "sticker":
-                return { ...(node as StickerNode).rect };
+            case "text":
+            case "shape":
+            case "media":
+            case "note":
+            case "drawing":
+                return { ...(node as RectNode).rect };
             case "arrow":
                 return Geometry.rectFromPoints((node as ArrowNode).start, (node as ArrowNode).end);
-            case "text":
-                return { ...(node as TextNode).rect };
-            case "shape":
-                return { ...(node as ShapeNode).rect };
-            case "media":
-                return { ...(node as MediaNode).rect };
-            case "note":
-                return { ...(node as NoteNode).rect };
-            case "drawing":
-                return { ...(node as DrawingNode).rect };
             default:
                 throw new Error(`Unknown node type: ${node.type satisfies never}`);
         }

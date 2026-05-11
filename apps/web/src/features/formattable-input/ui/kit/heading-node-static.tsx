@@ -20,6 +20,7 @@ export function HeadingElementStatic({ variant = "h1", ...props }: SlateElementP
     const id = props.element.id as string | undefined;
 
     return (
+        // biome-ignore lint/style/noNonNullAssertion: This is library code.
         <SlateElement as={variant!} className={headingVariants({ variant })} {...props}>
             {/* Bookmark anchor for DOCX TOC internal links */}
             {id && <span id={id} />}

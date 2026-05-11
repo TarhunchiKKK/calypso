@@ -9,8 +9,10 @@ const absolutePosition = {
     end: { x: 100, y: 0 }
 };
 
-const node = NodesFactory.arrow(absolutePosition);
-
+const node = {
+    ...NodesFactory.arrow({ point: { x: 50, y: 0 } }),
+    ...absolutePosition
+};
 const decorators = applyDecorators(centered, relative);
 
 function getArgs(lineType: NodeStyles["lineType"]) {
