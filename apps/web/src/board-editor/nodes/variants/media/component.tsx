@@ -13,7 +13,7 @@ export function MediaNodeComponent({ node, handlers, children }: Props) {
         width: node.rect.width,
         height: node.rect.height,
         left: node.rect.x,
-        right: node.rect.y,
+        top: node.rect.y,
 
         borderRadius: node.styles.borderRadius,
         borderColor: node.styles.borderColor
