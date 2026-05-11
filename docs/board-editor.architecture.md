@@ -86,7 +86,7 @@ In `apps/web/src/board-editor/ui` you can see core board editor components.
 
 ### View models
 
-The working modes are implemented using the **State** pattern.
+> The working modes are implemented using the **State** pattern.
 
 Every working mode (nodes creation, dragging, editing, etc.) represents have appropriate view model and have appropriate view state object. 
 
@@ -132,7 +132,7 @@ Decorators:
 
 ### View model switching
 
-Before view model switching some middleware functions are performed. It is necessary to handle some "incorrect" view model switches.
+> Before view model switching some middleware functions are performed. It is necessary to handle some "incorrect" view model switches.
 
 Examples:
 
@@ -172,7 +172,7 @@ In `apps/web/src/entities/nodes/model/use-nodes-service.hook.ts` you can see `us
 
 ### How are node CRUD-operations cancellation implemented ❓
 
-CRUD-operations cancellation is implemented like nodes api. 
+> CRUD-operations cancellation is implemented like nodes api. 
 
 In `apps/web/src/board-editor/modules/cancellation` folder you can see `useCancellationDecorator` hook. This hook stores changes in form of undo/redo functions.
 
@@ -213,7 +213,7 @@ So `useNodeCreationViewModel` hook performs this specific actions and process of
 
 ### How is nodes locking works ❓
 
-Nodes locking is implemented several ways:
+Nodes locking is implemented in several ways:
 
 1. Using `CheckLocked` [TypeScript](https://www.typescriptlang.org/) decorator on `NodeDecoratorsFactory` methods. This prevents from creating node decorators for locked nodes.
 2. Using `LockedNodesGuard` as view state middleware. This prevents from switching to some view models (like **editing**) for locked node.
@@ -262,4 +262,5 @@ This class is used for:
 
 This class uses timers and delays to determine what event occurred: mouse down, click and double click.
 
-> **Note:** For determining click and double click you should also use `onMouseUp` handler from `MouseEventsMediator` class. Otherwise you could not determine mouse up that is flag of click.
+> [!Note] 
+> For determining click and double click you should also use `onMouseUp` handler from `MouseEventsMediator` class. Otherwise you could not determine mouse up that is flag of click.
