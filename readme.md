@@ -59,7 +59,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **🎨 Styling**: [TailwindCSS](https://tailwindcss.com/?ref=yon.fun), [Shadcn](https://ui.shadcn.com/)
 - **📡 Queries**: [Tanstack Query](https://tanstack.com/query/latest)
 - **📝 Forms**: [React Hook Form](https://react-hook-form.com/)
-- **✍️ Text Formatting**: [Slate.js](https://docs.slatejs.org/)
+- **✍️ Text Formatting**: [Plate.js](https://platejs.org/)
 - **📚 Docs**: [Storybook](https://storybook.js.org/)
 - **🧪 Testing**: [Vitest](https://vitest.dev/)
 
@@ -186,104 +186,106 @@ In browser open the https://localhost:5173 to access the app.
 
 ### Hot Keys
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Scope</th>
-            <th>Action</th>
-            <th>Key</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan="2"></td>
-            <td rowspan="2">Switch to idle mode</td>
-            <td><code>I</code></td>
-        </tr>
-        <tr>
-            <td><code>Escape</code></td>
-        </tr>
-        <tr>
-            <td rowspan="6">Switch to node creation</td> 
-            <td>To sticker creation</td>
-            <td><code>S</code></td>
-        </tr>
-        <tr>
-            <td>To arrow creation</td>
-            <td><code>A</code></td>
-        </tr>
-        <tr>
-            <td>To text creation</td>
-            <td><code>T</code></td>
-        </tr>
-        <tr>
-            <td>To rectangle shape selection</td>
-            <td><code>R</code></td>
-        </tr>
-        <tr>
-            <td>To circle shape creation</td>
-            <td><code>O</code></td>
-        </tr>
-        <tr>
-            <td>To hexagon shape creation</td>
-            <td><code>H</code></td>
-        </tr>
-        <tr>
-            <td rowspan="3">Selection</td>
-            <td>Select all</td>
-            <td><code>Ctrl</code> + <code>A</code></td>
-        </tr>
-        <tr>
-            <td rowspan="2">Remove</td>
-            <td><code>Backspace</code></td>
-        </tr>
-        <tr>
-            <td><code>Delete</code></td>
-        </tr>
-        <tr>
-            <td rowspan="2">Locking</td>
-            <td>Lock</td>
-            <td><code>Ctrl</code> + <code>L</code></td>
-        </tr>
-        <tr>
-            <td>Unlock</td>
-            <td><code>Ctrl</code> + <code>Shift</code> + <code>L</code></td>
-        </tr>
-        <tr>
-            <td rowspan="2">Styling</td>
-            <td>Open styling bar</td>
-            <td><code>Shift</code> + <code>S</code></td>
-        </tr>
-        <tr>
-            <td>Open nodes context menu</td>
-            <td><code>Shift</code> + <code>C</code></td>
-        </tr>
-        <tr>
-            <td>Api</td>
-            <td>Save</td>
-            <td><code>Ctrl</code> + <code>S</code></td>
-        </tr>
-        <tr>
-            <td rowspan="3">Exchange buffer</td>
-            <td>Copy</td>
-            <td><code>Ctrl</code> + <code>C</code></td>
-        </tr>
-        <tr>
-            <td>Paste</td>
-            <td><code>Ctrl</code> + <code>V</code></td>
-        </tr>
-        <tr>
-            <td>Cut</td>
-            <td><code>Ctrl</code> + <code>X</code></td>
-        </tr>
-        <tr>
-            <td rowspan="2">Cancellation</td>
-            <td>Undo</td>
-            <td><code>Ctrl</code> + <code>Z</code></td>
-        </tr>
-        <tr>
-            <td>Redo</td>
-            <td><code>Ctrl</code> + <code>Y</code></td>
-        </tr>
-    </tbody>
-</table>
+<div align="center">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Action</th>
+                <th>Key</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2"></td>
+                <td rowspan="2">Switch to idle mode</td>
+                <td><code>I</code></td>
+            </tr>
+            <tr>
+                <td><code>Escape</code></td>
+            </tr>
+            <tr>
+                <td rowspan="6">Switch to node creation</td> 
+                <td>To sticker creation</td>
+                <td><code>S</code></td>
+            </tr>
+            <tr>
+                <td>To arrow creation</td>
+                <td><code>A</code></td>
+            </tr>
+            <tr>
+                <td>To text creation</td>
+                <td><code>T</code></td>
+            </tr>
+            <tr>
+                <td>To rectangle shape selection</td>
+                <td><code>R</code></td>
+            </tr>
+            <tr>
+                <td>To circle shape creation</td>
+                <td><code>O</code></td>
+            </tr>
+            <tr>
+                <td>To hexagon shape creation</td>
+                <td><code>H</code></td>
+            </tr>
+            <tr>
+                <td rowspan="3">Selection</td>
+                <td>Select all</td>
+                <td><code>Ctrl</code> + <code>A</code></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Remove</td>
+                <td><code>Backspace</code></td>
+            </tr>
+            <tr>
+                <td><code>Delete</code></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Locking</td>
+                <td>Lock</td>
+                <td><code>Ctrl</code> + <code>L</code></td>
+            </tr>
+            <tr>
+                <td>Unlock</td>
+                <td><code>Ctrl</code> + <code>Shift</code> + <code>L</code></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Styling</td>
+                <td>Open styling bar</td>
+                <td><code>Shift</code> + <code>S</code></td>
+            </tr>
+            <tr>
+                <td>Open nodes context menu</td>
+                <td><code>Shift</code> + <code>C</code></td>
+            </tr>
+            <tr>
+                <td>Api</td>
+                <td>Save</td>
+                <td><code>Ctrl</code> + <code>S</code></td>
+            </tr>
+            <tr>
+                <td rowspan="3">Exchange buffer</td>
+                <td>Copy</td>
+                <td><code>Ctrl</code> + <code>C</code></td>
+            </tr>
+            <tr>
+                <td>Paste</td>
+                <td><code>Ctrl</code> + <code>V</code></td>
+            </tr>
+            <tr>
+                <td>Cut</td>
+                <td><code>Ctrl</code> + <code>X</code></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Cancellation</td>
+                <td>Undo</td>
+                <td><code>Ctrl</code> + <code>Z</code></td>
+            </tr>
+            <tr>
+                <td>Redo</td>
+                <td><code>Ctrl</code> + <code>Y</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

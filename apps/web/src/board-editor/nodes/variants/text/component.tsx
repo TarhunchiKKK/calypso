@@ -19,7 +19,7 @@ export function TextNodeComponent({ node, handlers, uiSettings, children }: Prop
     };
 
     return (
-        <div data-id={node.id} className="absolute rounded-xs shadow-md cursor-pointer" style={wrapperStyles} {...handlers}>
+        <div data-id={node.id} className="absolute rounded-xs cursor-pointer" style={wrapperStyles} {...handlers}>
             <div className="relative w-full h-full px-2 py-4">
                 {uiSettings.showContent && <FormattableText value={node.content} disabled={node.locked} className="pointer-events-none" />}
 

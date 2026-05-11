@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Dots } from "../../../../src/board-editor/ui/dots.component";
+import { Dots } from "@/board-editor/ui/dots.component";
 
 const meta = {
     title: "Board Editor/UI/Dots",
