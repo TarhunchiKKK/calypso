@@ -6,13 +6,13 @@ import { switchToIdle } from "../variants/idle/switcher";
 import { switchToNodeCreation } from "../variants/node-creation/switcher";
 import type { NodeCreationViewState } from "../variants/node-creation/view-state";
 import { switchToSelection } from "../variants/selection/switcher";
+import { switchToStyling } from "../variants/styling/switcher";
 import type { ViewModelDecorator } from "./types";
 
 function isValidCreation(viewState: ViewState, payloadType: NodeCreationViewState["payload"]["type"]) {
     return viewState.type === "node-creation" && viewState.payload.type !== payloadType;
 }
 
-// TODO: add missing hot keys
 // OPTIMIZE:
 // 1. `e.preventDefault()` and `e.stopPropagation()` are called everywhere. If they will before all handlers, they will prevent `Ctrl+R` and other hotkeys.
 // 2. If hot key was found - next handlers should not be called
@@ -115,6 +115,24 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
         }
     };
 
+    const handleStylingHotKeys = (e: React.KeyboardEvent) => {
+        if (!(viewState.type === "selection" && layoutDimensionsModel.lastClick.point)) {
+            return;
+        }
+
+        if (HotKeyUtils.is(BoardHotKeys.styling.bar, e)) {
+            e.preventDefault();
+            switchToStyling({ position: layoutDimensionsModel.lastClick.point, selectedIds: viewState.selectedIds });
+            return;
+        }
+
+        if (HotKeyUtils.is(BoardHotKeys.styling.contextMenu, e)) {
+            e.preventDefault();
+            switchToStyling({ position: layoutDimensionsModel.lastClick.point, selectedIds: viewState.selectedIds });
+            return;
+        }
+    };
+
     const handleHotKeys = (e: React.KeyboardEvent) => {
         handleSwitchViewModelHotKeys(e);
         handleNodeCreationHotKeys(e);
@@ -122,6 +140,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
         handleGlobalHotKeys(e);
         handleExchangeBufferHotKeys(e);
         handleCancellationHotKeys(e);
+        handleStylingHotKeys(e);
     };
 
     return {
