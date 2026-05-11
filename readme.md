@@ -24,7 +24,7 @@
     - [Sticker](#sticker)
     - [Arrows](#arrows)
     - [Text nodes](#text-nodes)
-    - [Shape nodes](#shape-nodes)
+    - [Shapes](#shapes)
     - [Media nodes](#media-nodes)
     - [Notes](#notes)
     - [Drawings](#drawings)
@@ -219,7 +219,7 @@ In browser open the https://localhost:5173 to access the app.
 
 <img src="./docs/screens/board-editor/nodes/03-text.png" />
 
-#### Shape nodes
+#### Shapes
 
 Shape nodes have different variants:
 
