@@ -30,8 +30,7 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
 
         setViewState(
             switchToSelection({
-                selectedIds: viewState.selectedIds,
-                skipNextClick: true
+                selectedIds: viewState.selectedIds
             })
         );
 
