@@ -316,9 +316,104 @@ Shape nodes have different variants:
 
 <img src="./docs/screens/board-editor/actions/09-styling.png" />
 
+**Node styles**
+
+<table>
+    <thead>
+        <tr>
+            <th>Node type</th>
+            <th>Styles</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="7">Sticker</td>
+            <td>Background color</td>
+        </tr>
+        <tr>
+            <td>Border style (solid, dotted, dashed)</td>
+        </tr>
+        <tr>
+            <td>Border color</td>
+        </tr>
+        <tr>
+            <td>Border radius</td>
+        </tr>
+        <tr>
+            <td>Font family</td>
+        </tr>
+        <tr>
+            <td>Text color</td>
+        </tr>
+        <tr>
+            <td>Text align (left, center, right, justify)</td>
+        </tr>
+        <tr>
+            <td rowspan="4">Arrow</td>
+            <td>Angle type (corner, triangle, kite and filled variants)</td>
+        </tr>
+        <tr>
+            <td>Line color</td>
+        </tr>
+        <tr>
+            <td>Line type (solid, dotted, dashed)</td>
+        </tr>
+        <tr>
+            <td>Line width</td>
+        </tr>
+        <tr>
+            <td rowspan="4">Text node</td>
+            <td>Font family</td>
+        </tr>
+        <tr>
+            <td>Font size</td>
+        </tr>
+        <tr>
+            <td>Text color</td>
+        </tr>
+        <tr>
+            <td>Text align (left, center, right, justify)</td>
+        </tr>
+        <tr>
+            <td  rowspan="2">Shape</td>
+            <td>Background color</td>
+        </tr>
+        <tr>
+            <td>Border color</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Media node</td>
+            <td>Border color</td>
+        </tr>
+        <tr>
+            <td>Border radius</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Note</td>
+            <td>Background color</td>
+        </tr>
+        <tr>
+            <td>Border color</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Drawing</td>
+            <td>Line color</td>
+        </tr>
+        <tr>
+            <td>Line width</td>
+        </tr>
+    <tbody>
+</table>
+
 #### Nodes context menu
 
 > In [Miro](https://miro.com/ru/) there is context menu element for common node actions. This is clone feature of this component.
+
+Actions:
+
+* exchange buffer actions (copy and cut)
+* nodes locking/unlocking
+* nodes deletion
 
 <img src="./docs/screens/board-editor/actions/10-context-menu.png" />
 
