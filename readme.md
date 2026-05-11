@@ -6,7 +6,6 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
-
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
@@ -20,15 +19,31 @@
   - [📋 Requirements](#-requirements)
   - [⚙️ Setup Steps](#️-setup-steps)
 - [✨ Features](#-features)
-  - [Node Types](#node-types)
-  - [Editor Features](#editor-features)
-  - [Complications](#complications)
-  - [Hot Keys](#hot-keys)
-
+  - [🧪 Challenge](#-challenge)
+  - [🎨 Node Types](#-node-types)
+    - [Sticker](#sticker)
+    - [Arrows](#arrows)
+    - [Text nodes](#text-nodes)
+    - [Shape nodes](#shape-nodes)
+    - [Media nodes](#media-nodes)
+    - [Notes](#notes)
+    - [Drawings](#drawings)
+  - [🍓 Editor Features](#-editor-features)
+    - [Nodes selection](#nodes-selection)
+    - [Selection window](#selection-window)
+    - [Nodes editing](#nodes-editing)
+    - [Nodes dragging](#nodes-dragging)
+    - [Nodes resizing](#nodes-resizing)
+    - [Nodes locking](#nodes-locking)
+    - [Exchange buffer and cancellation](#exchange-buffer-and-cancellation)
+    - [Nodes styling](#nodes-styling)
+    - [Nodes context menu](#nodes-context-menu)
+    - [Window shifting and zooming](#window-shifting-and-zooming)
+  - [✌ Hot Keys](#-hot-keys)
 
 ## About 
 
-This project is a high-performance real-time collaborative whiteboard application, inspired by Miro. It allows multiple users to visualize ideas, map out workflows, and collaborate on a shared infinite canvas in real-time.
+This project is a high-performance real-time collaborative whiteboard application, inspired by [Miro](https://miro.com/ru/). It allows multiple users to visualize ideas, map out workflows, and collaborate on a shared infinite canvas in real-time.
 
 Built as a full-stack solution, it focuses on seamless synchronization, low-latency interactions, and a robust scalable architecture.
 
@@ -146,45 +161,172 @@ bun run dev
 
 Wait for all apps to start.
 
-
 9. Open application: 
 
 Now you application is still running.
 
 In browser open the https://localhost:5173 to access the app.
 
-
 ## ✨ Features
 
-### Node Types
+<img src="./docs/screens/board-editor/board-editor.png" />
 
-- Stickers
-- Arrows
-- Text
-- Shapes (circles, diamonds, etc.)
-- Media (images and videos)
-- Formattable documents
-- Drawings
+### 🧪 Challenge 
 
-### Editor Features
+- ❌ No state manager
+- ❌ No drag-n-drop libraries
 
-- Nodes selection
-- Selection window
-- Node text editing
-- Nodes dragging
-- Nodes resizing
-- Nodes blocking
-- Exchange buffer (Copy/Paste/Cut)
-- Cancellation (Undo/Redo)
-- Multiple nodes styling (Text formatting, text/background color, etc.)
-- Window shifting & zooming
+### 🎨 Node Types
 
-### Complications 
+#### Sticker
 
-- No state manager
-- No Drag-N-Drop libraries
+**Basic**
 
-### Hot Keys
+<img src="./docs/screens/board-editor/nodes/01-sticker.png" />
+
+**Auto font size**
+
+> Stickers are able to automatically calculate font size depends on text length.
+
+<img src="./docs/screens/board-editor/nodes/01-sticker-auto-font-size.png" />
+
+#### Arrows
+
+> 🔥 Arrows are automatically binded to related nodes (even when related nodes are moving or resizing).
+
+<div align="left">
+    <table>
+        <thead>
+            <tr>
+                <th>Angle types</th>
+                <th>Line types</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="./docs/screens/board-editor/nodes/02-arrow-angle-types.png" />
+                </td>
+                <td>
+                    <img src="./docs/screens/board-editor/nodes/02-arrow-line-types.png" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+#### Text nodes
+
+<img src="./docs/screens/board-editor/nodes/03-text.png" />
+
+#### Shape nodes
+
+Shape nodes have different variants:
+
+* rectangles
+* circles
+* triangles
+* diamonds
+* stars
+* hexagons
+
+<img src="./docs/screens/board-editor/nodes/04-shape-variants.png" />
+
+#### Media nodes
+
+> Media nodes are nodes that stores media resources (pictures).
+
+**Basic**
+
+<img src="./docs/screens/board-editor/nodes/05-media.png" />
+
+**Rounded**
+
+<img src="./docs/screens/board-editor/nodes/05-media-rounded.png" />
+
+#### Notes
+
+> Notes are nodes represents formattable documents.
+
+<img src="./docs/screens/board-editor/nodes/06-note.png" />
+
+#### Drawings
+
+<img src="./docs/screens/board-editor/nodes/07-drawing.png" />
+
+### 🍓 Editor Features
+
+#### Nodes selection
+
+<img src="./docs/screens/board-editor/actions/01-selection.png" />
+
+#### Selection window
+
+> This is not native browser selection window.
+
+<img src="./docs/screens/board-editor/actions/02-selection-window.png" />
+
+#### Nodes editing
+
+> Some of nodes (stickers, text nodes and notes) have text content. 
+> This content can be edited.
+
+#### Nodes dragging
+
+> All nodes can be moved to another positions.
+
+#### Nodes resizing
+
+> All nodes can be resized to new sizes.
+
+#### Nodes locking
+
+> Locked nodes cannot be changed (text content, position, sizes, etc.).
+
+<img src="./docs/screens/board-editor/actions/06-locking.png" />
+
+#### Exchange buffer and cancellation
+
+> This feature represents custom exchange buffer (copy/paste/cut) and  cancellation functionality (undo/redo) like in [Google Docs](https://docs.google.com/document/u/0/).
+
+<div align="left">
+    <table>
+        <thead>
+            <tr>
+                <th>Exchange buffer</th>
+                <th>Cancellation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="./docs/screens/board-editor/actions/07-exchange-buffer.png" />
+                </td>
+                <td>
+                    <img src="./docs/screens/board-editor/actions/08-cancellation.png" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+#### Nodes styling
+
+> In [Miro](https://miro.com/ru/) there is styling bar element for styling nodes depends on their types. This is clone feature of this component.
+
+<img src="./docs/screens/board-editor/actions/09-styling.png" />
+
+#### Nodes context menu
+
+> In [Miro](https://miro.com/ru/) there is context menu element for common node actions. This is clone feature of this component.
+
+<img src="./docs/screens/board-editor/actions/10-context-menu.png" />
+
+#### Window shifting and zooming
+
+> In [Miro](https://miro.com/ru/) you can move and zoom board. This make an effect of endless board. This app also can do this. 
+
+### ✌ Hot Keys
 
 <div align="center">
     <table border="1">
