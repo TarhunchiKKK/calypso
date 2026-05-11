@@ -14,13 +14,16 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Copy",
                         hotKey: BoardHotKeys.exchangeBuffer.copy,
                         onClick: () => {
-                            // TODO
+                            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
                         }
                     },
                     {
                         label: "Cut",
                         hotKey: BoardHotKeys.exchangeBuffer.cut,
-                        onClick: () => setViewState(switchToIdle())
+                        onClick: () => {
+                            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+                            setViewState(switchToIdle());
+                        }
                     }
                 ]
             },
