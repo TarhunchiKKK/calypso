@@ -168,7 +168,11 @@ In `apps/web/src/entities/nodes/model/use-nodes-service.hook.ts` you can see `us
 
 ### How is nodes api integrated ❓
 
-<!--DOCS-->
+In `apps/web/sr/entities/nodes/model` folder you can see `useNodesApiDecorator` hook. 
+
+> This hook implements **Decorator** pattern.
+
+It applies corresponding api call to every "writing" method of `NodesService` type (`createOne`, `createMany`, `removeOne`, etc.).
 
 ### How are node CRUD-operations cancellation implemented ❓
 
