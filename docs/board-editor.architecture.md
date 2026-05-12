@@ -273,4 +273,4 @@ This class uses timers and delays to determine what event occurred: mouse down, 
 
 All "writing" operations with nodes (methods of `NodesService` type) are called without nodes refetching.
 
-Nodes are fetched once and can be refetched only on board editor page unmount;
+Nodes are fetched once and can be refetched only on board editor page unmount.
