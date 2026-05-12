@@ -1,5 +1,5 @@
 import type { CreateManyNodesDto, NodeBase, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards-common";
-import type { Id } from "@repo/common";
+import type { Id, OmitFields } from "@repo/common";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 
@@ -9,7 +9,7 @@ const queryKeys = {
 
 function useCreateMany() {
     return useMutation({
-        mutationFn: async (dto: CreateManyNodesDto) => {
+        mutationFn: async (dto: OmitFields<CreateManyNodesDto, "nodes"> & { nodes: NodeBase[] }) => {
             return await ApiInstance.post("/boards/nodes", dto);
         }
     });
@@ -26,7 +26,8 @@ function useFindAll(boardId: Id) {
 
 function useUpdateMany() {
     return useMutation({
-        mutationFn: async (dto: UpdateManyNodesDto) => {
+        mutationFn: async (dto: OmitFields<UpdateManyNodesDto, "nodes"> & { nodes: NodeBase[] }) => {
+            dto.nodes;
             return await ApiInstance.patch("/boards/nodes", dto);
         }
     });

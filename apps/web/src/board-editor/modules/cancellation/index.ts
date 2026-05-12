@@ -1,4 +1,3 @@
-import type { NodeBase } from "@repo/boards-common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellationStore } from "./use-cancellation-store.hook";
 
@@ -9,7 +8,7 @@ import { useCancellationStore } from "./use-cancellation-store.hook";
  * @param service Nodes service object.
  * @returns Decorated nodes service object.
  */
-export function useCancellationDecorator(nodes: NodeBase[], service: NodesService) {
+export function useCancellationDecorator(service: NodesService) {
     const store = useCancellationStore();
 
     const createOne: NodesService["createOne"] = node => {
@@ -45,7 +44,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
     const updateManyWithFn: NodesService["updateManyWithFn"] = (ids, fn) => {
         store.push({
-            undo: () => service.replaceAll(nodes),
+            undo: () => service.replaceAll(service.nodes),
             redo: () => updateManyWithFn(ids, fn)
         });
 
@@ -64,7 +63,7 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
     };
 
     const removeMany: NodesService["removeMany"] = ids => {
-        const oldNodes = nodes.filter(node => ids.has(node.id));
+        const oldNodes = service.nodes.filter(node => ids.has(node.id));
 
         store.push({
             undo: () => service.createMany(oldNodes),
@@ -76,16 +75,25 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
     const removeAll: NodesService["removeAll"] = () => {
         store.push({
-            undo: () => service.replaceAll(nodes),
+            undo: () => service.replaceAll(service.nodes),
             redo: () => removeAll()
         });
 
         service.removeAll();
     };
 
+    const updateMany: NodesService["updateMany"] = newNodes => {
+        store.push({
+            undo: () => service.replaceAll(service.nodes),
+            redo: () => updateMany(newNodes)
+        });
+
+        service.updateMany(newNodes);
+    };
+
     const replaceAll: NodesService["replaceAll"] = param => {
         store.push({
-            undo: () => service.replaceAll(nodes),
+            undo: () => service.replaceAll(service.nodes),
             redo: () => replaceAll(param)
         });
 
@@ -94,11 +102,13 @@ export function useCancellationDecorator(nodes: NodeBase[], service: NodesServic
 
     return {
         service: {
+            nodes: service.nodes,
             middleware: service.middleware,
             createOne,
             createMany,
             findOne: service.findOne,
             updateOne,
+            updateMany,
             updateManyWithFn,
             removeOne,
             removeMany,
