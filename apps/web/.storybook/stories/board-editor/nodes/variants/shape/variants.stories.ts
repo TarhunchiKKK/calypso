@@ -1,6 +1,6 @@
 import type { ShapeNode } from "@repo/boards-common";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { applyDecorators, centered, relative } from "#/lib/decorators";
+import { applyDecorators, centered, relative, withDots } from "#/lib/decorators";
 import { ShapeNodeComponent } from "@/board-editor/nodes/variants/shape/component";
 import { NodesFactory } from "@/entities/nodes";
 
@@ -9,7 +9,7 @@ const point = {
     y: 0
 };
 
-const decorators = applyDecorators(centered, relative);
+const decorators = applyDecorators(withDots, centered, relative);
 
 function getArgs(variant: ShapeNode["variant"]) {
     return {

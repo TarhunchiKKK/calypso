@@ -168,7 +168,11 @@ In `apps/web/src/entities/nodes/model/use-nodes-service.hook.ts` you can see `us
 
 ### How is nodes api integrated ❓
 
-<!--DOCS-->
+In `apps/web/sr/entities/nodes/model` folder you can see `useNodesApiDecorator` hook. 
+
+> This hook implements **Decorator** pattern.
+
+It applies corresponding api call to every "writing" method of `NodesService` type (`createOne`, `createMany`, `removeOne`, etc.).
 
 ### How are node CRUD-operations cancellation implemented ❓
 
@@ -264,3 +268,9 @@ This class uses timers and delays to determine what event occurred: mouse down, 
 
 > [!Note] 
 > For determining click and double click you should also use `onMouseUp` handler from `MouseEventsMediator` class. Otherwise you could not determine mouse up that is flag of click.
+
+### Nodes optimistic updates
+
+All "writing" operations with nodes (methods of `NodesService` type) are called without nodes refetching.
+
+Nodes are fetched once and can be refetched only on board editor page unmount.

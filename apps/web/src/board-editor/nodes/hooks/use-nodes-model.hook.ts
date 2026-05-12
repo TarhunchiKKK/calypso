@@ -1,21 +1,24 @@
 import type { NodeBase } from "@repo/boards-common";
-import { useState } from "react";
+import type { Id, OmitFields } from "@repo/common";
 import { useCancellationDecorator } from "@/board-editor/modules/cancellation";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";
-import { useNodesService } from "@/entities/nodes";
+import { type NodesService, useNodesApiDecorator, useNodesService } from "@/entities/nodes";
 
-export function useNodesModel(inputNodes: NodeBase[]) {
-    const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
+export function useNodesModel(inputNodes: NodeBase[], boardId: Id) {
+    const nodesService = useNodesService(inputNodes);
 
-    const nodesService = useNodesService(nodes, setNodes);
+    // TODO: implement
+    const _ = useNodesApiDecorator(nodesService, boardId);
 
-    const withCancellation = useCancellationDecorator(nodes, nodesService);
+    const withCancellation = useCancellationDecorator(nodesService);
 
-    const exchangeBuffer = useExchangeBuffer(nodes, withCancellation.service);
+    const exchangeBuffer = useExchangeBuffer(withCancellation.service);
 
     return {
-        nodes,
-        service: withCancellation.service,
+        nodes: withCancellation.service.nodes,
+
+        // WARN: `replaceAll` method should not be used in view model (this method is not handled by nodes api and cancellation decorators)
+        service: withCancellation.service as OmitFields<NodesService, "replaceAll">,
         exchangeBuffer: exchangeBuffer,
         cancellation: withCancellation.cancellation
     };

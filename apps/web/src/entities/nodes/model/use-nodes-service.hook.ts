@@ -1,9 +1,11 @@
 import type { NodeBase } from "@repo/boards-common";
 import type { Id } from "@repo/common";
-import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
-export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAction<NodeBase[]>>) {
+export function useNodesService(inputNodes: NodeBase[]) {
+    const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
+
     const middleware = useNodesServiceMiddleware();
 
     const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
@@ -55,6 +57,24 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
         );
     };
 
+    const updateMany = (newNodes: NodeBase[]) => {
+        setWithMiddleware(
+            {
+                operation: "update",
+                nodes: newNodes
+            },
+            nodes => nodes.map(node => {
+                const replacementNode = newNodes.find(newNode => newNode.id === node.id);
+
+                if (!replacementNode) {
+                    return node;
+                }
+
+                return replacementNode
+            })
+        )
+    };
+
     const updateManyWithFn = (ids: Set<Id>, fn: (node: NodeBase) => NodeBase) => {
         setNodes(nodes => nodes.map(node => (ids.has(node.id) ? fn(node) : node)));
     };
@@ -84,15 +104,17 @@ export function useNodesService(nodes: NodeBase[], setNodes: Dispatch<SetStateAc
     };
 
     return {
+        nodes: nodes,
         createOne,
         createMany,
         findOne,
         updateOne,
-        replaceAll: setNodes,
+        updateMany,
         removeOne,
         updateManyWithFn,
         removeMany,
         removeAll,
+        replaceAll: setNodes,
         middleware
     };
 }

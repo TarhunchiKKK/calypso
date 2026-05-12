@@ -1,6 +1,6 @@
 import type { NodeStyles } from "@repo/boards-common";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { applyDecorators, centered, relative } from "#/lib/decorators";
+import { applyDecorators, centered, relative, withDots } from "#/lib/decorators";
 import { ArrowNodeComponent } from "@/board-editor/nodes/variants/arrow/component";
 import { NodesFactory } from "@/entities/nodes";
 
@@ -13,7 +13,7 @@ const node = {
     ...NodesFactory.arrow({ point: { x: 50, y: 0 } }),
     ...absolutePosition
 };
-const decorators = applyDecorators(centered, relative);
+const decorators = applyDecorators(withDots, centered, relative);
 
 function getArgs(angleType: NodeStyles["angleType"]) {
     return {

@@ -8,18 +8,18 @@ import { Geometry } from "@/shared/lib/geometry";
 import { calculateMiddlePoint } from "./geometry.lib";
 import { NodeClonesFactory } from "./node-clones.factory";
 
-export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
+export function useExchangeBuffer(service: NodesService) {
     const [selectedNodes, setSelectedNodes] = useState<NodeBase[]>();
 
     const copy = (nodeIds: Set<Id>) => {
-        if (nodes.length === 0) {
+        if (service.nodes.length === 0) {
             toast.warning("No nodes selected");
             return;
         }
 
-        const nodesWithResolvedPositions = nodes
+        const nodesWithResolvedPositions = service.nodes
             .filter(node => nodeIds.has(node.id))
-            .map(node => NodeWrappersFactory.wrap(nodes, node))
+            .map(node => NodeWrappersFactory.wrap(service.nodes, node))
             .map(wrapper => wrapper.data);
 
         setSelectedNodes(nodesWithResolvedPositions);
@@ -44,7 +44,7 @@ export function useExchangeBuffer(nodes: NodeBase[], service: NodesService) {
     const cut = (nodeIds: Set<Id>) => {
         copy(nodeIds);
 
-        service.removeMany(new Set(nodes.map(node => node.id)));
+        service.removeMany(new Set(service.nodes.map(node => node.id)));
     };
 
     return {

@@ -24,9 +24,10 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
             .setNodes(nodesModel.nodes)
             .setSelectedIds(viewState.selectedIds)
             .setOffset(offset)
-            .getNodesWithOffset();
+            .getNodesWithOffset()
+            .filter(node => viewState.selectedIds.has(node.id));
 
-        nodesModel.service.replaceAll(shiftedNodes);
+        nodesModel.service.updateMany(shiftedNodes);
 
         setViewState(
             switchToSelection({
