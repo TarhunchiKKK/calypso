@@ -268,3 +268,9 @@ This class uses timers and delays to determine what event occurred: mouse down, 
 
 > [!Note] 
 > For determining click and double click you should also use `onMouseUp` handler from `MouseEventsMediator` class. Otherwise you could not determine mouse up that is flag of click.
+
+### Nodes optimistic updates
+
+All "writing" operations with nodes (methods of `NodesService` type) are called without nodes refetching.
+
+Nodes are fetched once and can be refetched only on board editor page unmount;
