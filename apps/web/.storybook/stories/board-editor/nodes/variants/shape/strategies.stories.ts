@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { JSX } from "react";
-import { applyDecorators, centered, relative } from "#/lib/decorators";
+import { applyDecorators, centered, relative, withDots } from "#/lib/decorators";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { ShapeNodeComponent } from "@/board-editor/nodes/variants/shape/component";
@@ -9,7 +9,7 @@ import { NodesFactory } from "@/entities/nodes";
 const node = NodesFactory.shape({ point: { x: 0, y: 0 }, variant: "star" });
 const wrapper = NodeWrappersFactory.wrap([], node);
 
-const decorators = applyDecorators(centered, relative);
+const decorators = applyDecorators(withDots, centered, relative);
 const defaultArgs = {
     node: node,
     handlers: {},
