@@ -64,7 +64,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **📦 Package Manager**: [Bun](https://bun.sh/)
 - **🏗️ Project Structure**: [Turborepo](https://turborepo.dev/)
 - **✨ Linting & Formatting**: [BiomeJS](https://biomejs.dev/)
-- **🔍 Code quality**: [Knip](https://knip.dev/)
+- **🔍 Code Quality**: [Knip](https://knip.dev/)
 - **🔄 CI**: [Docker](https://www.docker.com/), [Github Actions](https://docs.github.com/en/actions)
 
 ### 🍓 Frontend
