@@ -43,10 +43,10 @@ function useRemoveMany() {
     });
 }
 
-function useInvalidateCache(boardId: Id) {
+function useInvalidateCache() {
     const queryClient = useQueryClient();
 
-    return () => {
+    return (boardId: Id) => {
         queryClient.invalidateQueries({ queryKey: queryKeys.findAll(boardId) });
     };
 }

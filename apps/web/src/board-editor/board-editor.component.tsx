@@ -4,6 +4,7 @@ import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../shared/lib/window";
 import { useLayoutDimensionsModel } from "./modules/layout-dimensions";
 import { useNodesModel } from "./nodes";
+import { useBoardEditorUnmount } from "./nodes/hooks/use-board-editor-unmount.hook";
 import { ActionsBar } from "./ui/actions-bar.component";
 import { Canvas } from "./ui/canvas.component";
 import { Dots } from "./ui/dots.component";
@@ -18,7 +19,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export function BoardEditor({ nodes, boardId, children }: Props) {
-    const nodesModel = useNodesModel(nodes);
+    const nodesModel = useNodesModel(nodes, boardId);
 
     const layoutDimensionsModel = useLayoutDimensionsModel();
 
@@ -29,6 +30,8 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
     });
 
     useWindowEvents(viewModel.window || {});
+
+    useBoardEditorUnmount({ boardId: boardId });
 
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
