@@ -25,6 +25,7 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
             .setSelectedIds(viewState.selectedIds)
             .setOffset(offset)
             .getNodesWithOffset()
+            .map(wrapper => wrapper.data)
             .filter(node => viewState.selectedIds.has(node.id));
 
         nodesModel.service.updateMany(shiftedNodes);

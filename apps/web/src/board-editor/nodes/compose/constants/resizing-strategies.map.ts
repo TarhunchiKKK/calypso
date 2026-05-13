@@ -1,7 +1,7 @@
 import type { NodeResizingStrategy } from "@/board-editor/modules/resizing";
 import { RectNodeResizingStrategy } from "../../shared/strategies";
-import type { StrategiesMap } from "./types";
 import { DrawingNodeResizingStrategy } from "../../variants/drawing/strategies/resizing.strategy";
+import type { StrategiesMap } from "./types";
 
 const RectNodeResizingStrategyInstance = new RectNodeResizingStrategy();
 
