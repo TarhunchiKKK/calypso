@@ -13,15 +13,17 @@ export function MediaNodeComponent({ node, handlers, children }: Props) {
         width: node.rect.width,
         height: node.rect.height,
         left: node.rect.x,
-        top: node.rect.y,
+        top: node.rect.y
+    };
 
+    const imageStyles: CSSProperties = {
         borderRadius: node.styles.borderRadius,
         borderColor: node.styles.borderColor
     };
 
     return (
-        <div data-id={node.id} className="absolute shadow-md cursor-pointer overflow-hidden border" style={wrapperStyles} {...handlers}>
-            <img src={node.url} alt="" className="w-full h-full" />
+        <div data-id={node.id} className="absolute shadow-md cursor-pointer border" style={wrapperStyles} {...handlers}>
+            <img src={node.url} alt="" className="w-full h-full overflow-hidden" style={imageStyles} />
 
             {children}
         </div>
