@@ -49,12 +49,15 @@ export function useLayoutDimensionsModel() {
 
     const handleZoom = (e: WheelEvent) => {
         const delta = e.deltaY > 0 ? ZoomDown : ZoomUp;
-
         const newZoom = zoom * delta;
 
         const currentMousePoint = applyForPoint(Geometry.pointFromEvent(e));
 
-        const newMousePoint = applyForPoint(Geometry.pointFromEvent(e));
+        let newMousePoint = Geometry.pointFromEvent(e);
+        newMousePoint = {
+            x: newMousePoint.x / newZoom + offset.dx,
+            y: newMousePoint.y / newZoom + offset.dy
+        };
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
