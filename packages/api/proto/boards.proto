@@ -5,7 +5,6 @@ package boards;
 import "common.proto";
 import "formattable.proto";
 import "geometry.proto";
-import "google/protobuf/struct.proto";
 import "projects.proto";
 
 service BoardsService {
@@ -88,6 +87,32 @@ service BoardNodesService {
   rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 }
 
+message NodeStylesGrpc {
+  optional string fontFamily = 1;
+
+  optional int32 fontSize = 2;
+
+  optional string backgroundColor = 3;
+
+  optional string textColor = 4;
+
+  optional string borderStyle = 5;
+
+  optional string borderColor = 6;
+
+  optional int32 borderRadius = 7;
+
+  optional string textAlign = 8;
+
+  optional int32 lineWidth = 9;
+
+  optional string lineColor = 10;
+
+  optional string lineType = 11;
+
+  optional string angleType = 12;
+}
+
 message BoardNodeBaseGrpc {
   string id = 1;
 
@@ -95,7 +120,7 @@ message BoardNodeBaseGrpc {
 
   bool locked = 3;
 
-  google.protobuf.Struct styles = 4;
+  NodeStylesGrpc styles = 4;
 }
 
 message StickerBoardNodeGrpc {

@@ -9,14 +9,14 @@ import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.hand
 import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommandHandler } from "./handlers/update-many-nodes.handler";
 import { NodesService } from "./nodes.service";
-import { ArrowNode, ArrowNodeSchema } from "./schemas/arrow-node.schema";
-import { DrawingNode, DrawingNodeSchema } from "./schemas/drawing-node.schema";
-import { MediaNode, MediaNodeSchema } from "./schemas/media-node.schema";
+import { ArrowNodeSchema } from "./schemas/arrow-node.schema";
+import { DrawingNodeSchema } from "./schemas/drawing-node.schema";
+import { MediaNodeSchema } from "./schemas/media-node.schema";
 import { NodeBase, NodeBaseSchema } from "./schemas/node-base.schema";
-import { NoteNode, NoteNodeSchema } from "./schemas/note-node.schema";
-import { ShapeNode, ShapeNodeSchema } from "./schemas/shape-node.schema";
-import { StickerNode, StickerNodeSchema } from "./schemas/sticker-node.schema";
-import { TextNode, TextNodeSchema } from "./schemas/text-node.schema";
+import { NoteNodeSchema } from "./schemas/note-node.schema";
+import { ShapeNodeSchema } from "./schemas/shape-node.schema";
+import { StickerNodeSchema } from "./schemas/sticker-node.schema";
+import { TextNodeSchema } from "./schemas/text-node.schema";
 
 export const NodesMongooseModule = MongooseModule.forFeatureAsync([
     {

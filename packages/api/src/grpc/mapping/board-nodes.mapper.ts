@@ -1,16 +1,15 @@
-import type { AnyNode, ArrowNode, DrawingNode, MediaNode, NodeBase, NoteNode, ShapeNode, ShapeVariants, StickerNode, TextNode } from "@repo/boards-common";
-import { DebugException, type NoNullableFields } from "@repo/common";
-import type {
-    AnyBoardNodeGrpc,
-    ArrowBoardNodeGrpc,
-    BoardNodeBaseGrpc,
-    DrawingBoardNodeGrpc,
-    MediaBoardNodeGrpc,
-    NoteBoardNodeGrc,
-    ShapeBoardNodeGrpc,
-    StickerBoardNodeGrpc,
-    TextBoardNodeGrpc
-} from "../generated";
+import {
+    type AnyNode,
+    ArrowNodeZodSchema,
+    DrawingNodeZodSchema,
+    MediaNodeZodSchema,
+    NoteNodeZodSchema,
+    ShapeNodeZodSchema,
+    StickerNodeZodSchema,
+    TextNodeZodSchema
+} from "@repo/boards-common";
+import { DebugException } from "@repo/common";
+import type { AnyBoardNodeGrpc, BoardNodeBaseGrpc } from "../generated";
 
 export class BoardNodesGrpcMapper {
     public static toGrpc(node: AnyNode): AnyBoardNodeGrpc {
@@ -81,81 +80,55 @@ export class BoardNodesGrpcMapper {
         }
     }
 
+    // REFACTOR: code for all node types is common
     public static fromGrpc(node: AnyBoardNodeGrpc): AnyNode {
         if (node.sticker) {
-            const sticker = node.sticker as NoNullableFields<StickerBoardNodeGrpc>;
-
-            return {
-                ...(sticker.base as NodeBase & Pick<StickerNode, "styles">),
-                type: "sticker",
-                rect: sticker.rect,
-                text: sticker.text
-            };
+            return StickerNodeZodSchema.parse({
+                ...node.sticker,
+                ...node.sticker.base
+            });
         }
 
         if (node.arrow) {
-            const { base, ...specific } = node.arrow as NoNullableFields<ArrowBoardNodeGrpc>;
-
-            return {
-                ...(base as NodeBase & Pick<ArrowNode, "styles">),
-                ...specific,
-                type: "arrow"
-            };
+            return ArrowNodeZodSchema.parse({
+                ...node.arrow,
+                ...node.arrow.base
+            });
         }
 
         if (node.text) {
-            const text = node.text as NoNullableFields<TextBoardNodeGrpc>;
-
-            return {
-                ...(text.base as NodeBase & Pick<TextNode, "styles">),
-                type: "text",
-                rect: text.rect,
-                content: text.content
-            };
+            return TextNodeZodSchema.parse({
+                ...node.text,
+                ...node.text.base
+            });
         }
 
         if (node.shape) {
-            const shape = node.shape as NoNullableFields<ShapeBoardNodeGrpc>;
-
-            return {
-                ...(shape.base as NodeBase & Pick<ShapeNode, "styles">),
-                type: "shape",
-                rect: shape.rect,
-                variant: shape.variant as ShapeVariants
-            };
+            return ShapeNodeZodSchema.parse({
+                ...node.shape,
+                ...node.shape.base
+            });
         }
 
         if (node.media) {
-            const media = node.media as NoNullableFields<MediaBoardNodeGrpc>;
-
-            return {
-                ...(media.base as NodeBase & Pick<MediaNode, "styles">),
-                type: "media",
-                rect: media.rect,
-                url: media.url
-            };
+            return MediaNodeZodSchema.parse({
+                ...node.media,
+                ...node.media.base
+            });
         }
 
         if (node.note) {
-            const note = node.note as NoNullableFields<NoteBoardNodeGrc>;
-
-            return {
-                ...(note.base as NodeBase & Pick<NoteNode, "styles">),
-                type: "note",
-                rect: note.rect,
-                content: note.content
-            };
+            return NoteNodeZodSchema.parse({
+                ...node.note,
+                ...node.note.base
+            });
         }
 
         if (node.drawing) {
-            const drawing = node.drawing as NoNullableFields<DrawingBoardNodeGrpc>;
-
-            return {
-                ...(drawing.base as NodeBase & Pick<DrawingNode, "styles">),
-                type: "drawing",
-                rect: drawing.rect,
-                points: drawing.points
-            };
+            return DrawingNodeZodSchema.parse({
+                ...node.drawing,
+                ...node.drawing.base
+            });
         }
 
         throw new DebugException(`NodesGrpcMapper: Unknown node type: ${node} `);

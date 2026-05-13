@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
@@ -16,11 +17,14 @@ export class UpdateManyNodesCommandHandler implements ICommandHandler<UpdateMany
 
     public async execute({ dto }: UpdateManyNodesCommand) {
         const writes = dto.nodes.map(node => ({
-            updateOne: {
-                filter: { id: node.id },
-                update: {
+            replaceOne: {
+                filter: {
+                    id: node.id
+                },
+                replacement: {
                     ...node,
-                    boardId: dto.boardId
+                    boardId: dto.boardId,
+                    styles: node.styles as NodeBase["styles"]
                 }
             }
         }));
