@@ -24,7 +24,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const overlayMediator = useMouseEventsMediator();
 
     return (viewState: SelectionViewState): DecoratableViewModel => {
-        console.log(viewState.selectedIds);
+        console.log("View state: ", viewState.selectedIds);
 
         nodesMediator.setHandlers({
             left: {

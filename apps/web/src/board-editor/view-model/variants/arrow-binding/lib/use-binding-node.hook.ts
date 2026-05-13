@@ -26,7 +26,7 @@ export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
 
         nodesModel.service.updateOne(newNode);
 
-        setViewState(switchToSelection({ selectedIds: new Set(arrow.id) }));
+        setViewState(switchToSelection({ selectedIds: new Set([arrow.id]) }));
     };
 
     return {

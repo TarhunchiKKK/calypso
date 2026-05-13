@@ -57,10 +57,10 @@ export class NodesFactory {
                 }
             ],
             rect: {
-                x: data.point.x - 50,
-                y: data.point.y - 50,
-                width: 100,
-                height: 100
+                x: data.point.x - 100,
+                y: data.point.y - 20,
+                width: 200,
+                height: 40
             },
             styles: pickFields(DefaultNodeStyles, ["fontFamily", "fontSize", "textColor", "textAlign"])
         };

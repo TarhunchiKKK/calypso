@@ -1,55 +1,54 @@
-import { NodesFactory } from "@/entities/nodes";
+import type { StickerNode } from "@repo/boards-common";
 
 export const MockNodes = [
-    NodesFactory.text({ point: { x: 200, y: 200 } })
-    // {
-    //     id: "sticker-1",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 150, y: 150, width: 100, height: 100 },
-    //     text: "Hello",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "center",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
-    // {
-    //     id: "sticker-2",
-    //     locked: false,
-    //     type: "sticker",
-    //     rect: { x: 520, y: 520, width: 150, height: 150 },
-    //     text: "Hello",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "center",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
-    // {
-    //     id: "sticker-3",
-    //     type: "sticker",
-    //     locked: false,
-    //     rect: { x: 960, y: 180, width: 100, height: 100 },
-    //     text: "Hello",
-    //     styles: {
-    //         fontFamily: "sans-serif",
-    //         backgroundColor: "orange",
-    //         borderColor: "black",
-    //         borderStyle: "dashed",
-    //         borderRadius: 4,
-    //         textAlign: "center",
-    //         textColor: "black"
-    //     }
-    // } satisfies StickerNode,
+    {
+        id: "sticker-1",
+        locked: false,
+        type: "sticker",
+        rect: { x: 150, y: 150, width: 100, height: 100 },
+        text: "Hello",
+        styles: {
+            fontFamily: "sans-serif",
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "center",
+            textColor: "black"
+        }
+    } satisfies StickerNode,
+    {
+        id: "sticker-2",
+        locked: false,
+        type: "sticker",
+        rect: { x: 520, y: 520, width: 150, height: 150 },
+        text: "Hello",
+        styles: {
+            fontFamily: "sans-serif",
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "center",
+            textColor: "black"
+        }
+    } satisfies StickerNode,
+    {
+        id: "sticker-3",
+        type: "sticker",
+        locked: false,
+        rect: { x: 960, y: 180, width: 100, height: 100 },
+        text: "Hello",
+        styles: {
+            fontFamily: "sans-serif",
+            backgroundColor: "orange",
+            borderColor: "black",
+            borderStyle: "dashed",
+            borderRadius: 4,
+            textAlign: "center",
+            textColor: "black"
+        }
+    } satisfies StickerNode
     // {
     //     id: "arrow-1",
     //     type: "arrow",
