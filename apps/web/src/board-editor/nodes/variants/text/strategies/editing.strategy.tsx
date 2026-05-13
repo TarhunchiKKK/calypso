@@ -6,9 +6,13 @@ import { FormattableText } from "@/features/formattable-input";
 
 export class TextNodeEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<TextNode>, handlers: NodeEditingHandlers) {
-        const handleChange = (value: FormattableElement[]) => {
+        const handleChange = (value: FormattableElement[], height?: number) => {
             const newNode = {
                 ...node.data,
+                rect: {
+                    ...node.data.rect,
+                    height: height ?? node.data.rect.height
+                },
                 content: value
             } satisfies TextNode;
 

@@ -15,6 +15,7 @@ function getArrows(nodes: NodeBase[]): ArrowNode[] {
 
 /**
  * This middleware ensures that arrows will be always binded to existing node.
+ * If related node deleted - this middleware unbinds arrow to corresponding position.
  *
  * @param nodes All board nodes.
  * @param payload Middleware payload.
