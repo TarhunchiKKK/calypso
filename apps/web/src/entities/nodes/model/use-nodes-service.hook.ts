@@ -63,16 +63,17 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "update",
                 nodes: newNodes
             },
-            nodes => nodes.map(node => {
-                const replacementNode = newNodes.find(newNode => newNode.id === node.id);
+            nodes =>
+                nodes.map(node => {
+                    const replacementNode = newNodes.find(newNode => newNode.id === node.id);
 
-                if (!replacementNode) {
-                    return node;
-                }
+                    if (!replacementNode) {
+                        return node;
+                    }
 
-                return replacementNode
-            })
-        )
+                    return replacementNode;
+                })
+        );
     };
 
     const updateManyWithFn = (ids: Set<Id>, fn: (node: NodeBase) => NodeBase) => {

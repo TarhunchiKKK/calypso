@@ -19,7 +19,7 @@
     "packageManager": "bun@1.3.4",
     "private": true,
     "scripts": {
-        "dev": "turbo run dev",
+        "dev": "turbo run dev --filter=gateway --filter=boards --filter=web ",
         "seed:media": "turbo run seed --filter=media",
         "build": "turbo run build",
         "build:packages": "turbo run build --filter=@repo/common --filter=@repo/boards-common --filter=@repo/api",

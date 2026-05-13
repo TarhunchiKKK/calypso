@@ -2,7 +2,7 @@
     <img src="./docs/logo.svg" width="270" alt="Logo" />
 </p>
 
-<h1 align="center"><span style="color: oklch(74.6% 0.16 232.661);">Calypso</span> Board Editor✨</h1>
+<h1 align="center"><span color="#00bcff">Calypso</span> Board Editor✨</h1>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=1111152433&ref=main&geo=EuropeWest)
 
