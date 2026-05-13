@@ -1,7 +1,7 @@
-import type { Decoratable } from "@/board-editor/core";
-import { NodeResizingStrategy } from "@/board-editor/modules/resizing";
 import type { DrawingNode } from "@repo/boards-common";
 import type { Point, Rect } from "@repo/common";
+import type { Decoratable } from "@/board-editor/core";
+import { NodeResizingStrategy } from "@/board-editor/modules/resizing";
 
 export class DrawingNodeResizingStrategy extends NodeResizingStrategy {
     public override updateNodeSizes(node: Decoratable<DrawingNode>, size: Rect) {

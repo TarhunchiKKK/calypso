@@ -21,10 +21,9 @@ const renderFn = (args: Story["args"]) => {
     );
 };
 
-export const Default: Story = {
+export const FullyResizable: Story = {
     args: {
-        main: true,
-        cross: true,
+        rect: true,
         diagonal: true,
         onResizeStart: () => {}
     },
@@ -32,18 +31,9 @@ export const Default: Story = {
     render: renderFn
 };
 
-export const OnlyMain: Story = {
+export const OnlyRect: Story = {
     args: {
-        main: true,
-        onResizeStart: () => {}
-    },
-    decorators: centered,
-    render: renderFn
-};
-
-export const OnlyCross: Story = {
-    args: {
-        cross: true,
+        rect: true,
         onResizeStart: () => {}
     },
     decorators: centered,

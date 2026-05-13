@@ -2,31 +2,25 @@ import type React from "react";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 
 type Props = {
-    main?: boolean;
-
-    cross?: boolean;
+    rect?: boolean;
 
     diagonal?: boolean;
 
     onResizeStart: (direction: ResizeDirection, e: React.MouseEvent) => void;
 };
 
-export function ResizeBorders({ main, cross, diagonal, onResizeStart }: Props) {
+export function ResizeBorders({ rect, diagonal, onResizeStart }: Props) {
     return (
         <>
-            {main && (
+            {rect && (
                 <>
-                    <div className="absolute -top-2 w-full h-4 cursor-n-resize" onMouseDown={e => onResizeStart("n", e)} />
+                    <div className="absolute -top-2 left-0 w-full h-4 cursor-n-resize" onMouseDown={e => onResizeStart("n", e)} />
 
-                    <div className="absolute -bottom-2 w-full h-4 cursor-n-resize" onMouseDown={e => onResizeStart("s", e)} />
-                </>
-            )}
+                    <div className="absolute -bottom-2 left-0  w-full h-4 cursor-n-resize" onMouseDown={e => onResizeStart("s", e)} />
 
-            {cross && (
-                <>
-                    <div className="absolute -left-2 w-4 h-full cursor-w-resize" onMouseDown={e => onResizeStart("w", e)} />
+                    <div className="absolute top-0 -left-2 w-4 h-full cursor-w-resize" onMouseDown={e => onResizeStart("w", e)} />
 
-                    <div className="absolute -right-2  w-4 h-full cursor-w-resize z-20" onMouseDown={e => onResizeStart("e", e)} />
+                    <div className="absolute top-0 -right-2 w-4 h-full cursor-w-resize" onMouseDown={e => onResizeStart("e", e)} />
                 </>
             )}
 
