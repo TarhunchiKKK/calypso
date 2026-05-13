@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
+import type { NodeTypes } from "@repo/boards-common";
 import { NodesGrpcController } from "./controllers/nodes.grpc.controller";
 import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
@@ -23,13 +24,13 @@ export const NodesMongooseModule = MongooseModule.forFeatureAsync([
         name: NodeBase.name,
         useFactory: () => {
             const schema = NodeBaseSchema;
-            schema.discriminator(StickerNode.name, StickerNodeSchema);
-            schema.discriminator(ArrowNode.name, ArrowNodeSchema);
-            schema.discriminator(TextNode.name, TextNodeSchema);
-            schema.discriminator(ShapeNode.name, ShapeNodeSchema);
-            schema.discriminator(MediaNode.name, MediaNodeSchema);
-            schema.discriminator(NoteNode.name, NoteNodeSchema);
-            schema.discriminator(DrawingNode.name, DrawingNodeSchema);
+            schema.discriminator("sticker" satisfies NodeTypes, StickerNodeSchema);
+            schema.discriminator("arrow" satisfies NodeTypes, ArrowNodeSchema);
+            schema.discriminator("text" satisfies NodeTypes, TextNodeSchema);
+            schema.discriminator("shape" satisfies NodeTypes, ShapeNodeSchema);
+            schema.discriminator("media" satisfies NodeTypes, MediaNodeSchema);
+            schema.discriminator("note" satisfies NodeTypes, NoteNodeSchema);
+            schema.discriminator("drawing" satisfies NodeTypes, DrawingNodeSchema);
             return schema;
         }
     }
