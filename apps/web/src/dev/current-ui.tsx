@@ -5,7 +5,6 @@ const boardId = "aaassssssfsdjkcfmrygfyxrhur";
 const point = { x: 100, y: 200 };
 
 export function CurrentUi() {
-    // return <BoardEditor nodes={MockNodes} boardId="aaa" />;
     const { data: nodes } = NodesApi.useFindAll(boardId);
     const { mutateAsync: createMany } = NodesApi.useCreateMany();
     const { mutateAsync: updateMany } = NodesApi.useUpdateMany();

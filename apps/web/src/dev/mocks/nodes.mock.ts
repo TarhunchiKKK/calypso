@@ -1,4 +1,4 @@
-import type { StickerNode } from "@repo/boards-common";
+import type { ArrowNode, StickerNode } from "@repo/boards-common";
 
 export const MockNodes = [
     {
@@ -48,37 +48,37 @@ export const MockNodes = [
             textAlign: "center",
             textColor: "black"
         }
-    } satisfies StickerNode
-    // {
-    //     id: "arrow-1",
-    //     type: "arrow",
-    //     locked: false,
-    //     styles: {
-    //         angleType: "triangle-filled",
-    //         lineColor: "blue",
-    //         lineType: "dotted",
-    //         lineWidth: 2
-    //     },
-    //     start: { x: 1, y: 0.5, relativeTo: "sticker-1" },
-    //     end: { x: 0, y: 0.5, relativeTo: "sticker-3" }
-    //     // start: { x: 400, y: 400 },
-    //     // end: { x: 300, y: 300 }
-    // } satisfies ArrowNode,
-    // {
-    //     id: "arrow-2",
-    //     type: "arrow",
-    //     locked: false,
-    //     styles: {
-    //         angleType: "kite",
-    //         lineColor: "black",
-    //         lineType: "dashed",
-    //         lineWidth: 2
-    //     },
-    //     start: { x: 0.5, y: 1, relativeTo: "sticker-3" },
-    //     end: { x: 1, y: 0.5, relativeTo: "sticker-2" }
-    //     // start: { x: 300, y: 400 },
-    //     // end: { x: 500, y: 400 }
-    // } satisfies ArrowNode,
+    } satisfies StickerNode,
+    {
+        id: "arrow-1",
+        type: "arrow",
+        locked: false,
+        styles: {
+            angleType: "triangle-filled",
+            lineColor: "black",
+            lineType: "dotted",
+            lineWidth: 2
+        },
+        // start: { x: 1, y: 0.5, relativeTo: "sticker-1" },
+        // end: { x: 0, y: 0.5, relativeTo: "sticker-3" }
+        start: { x: 400, y: 400 },
+        end: { x: 300, y: 300 }
+    } satisfies ArrowNode,
+    {
+        id: "arrow-2",
+        type: "arrow",
+        locked: false,
+        styles: {
+            angleType: "kite",
+            lineColor: "black",
+            lineType: "dashed",
+            lineWidth: 2
+        },
+        start: { x: 0.5, y: 1, relativeTo: "sticker-3" },
+        end: { x: 1, y: 0.5, relativeTo: "sticker-2" }
+        // start: { x: 300, y: 400 },
+        // end: { x: 500, y: 400 }
+    } satisfies ArrowNode
     // {
     //     id: "media-1",
     //     type: "media",
