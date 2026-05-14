@@ -1,4 +1,3 @@
-import { Logger } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";

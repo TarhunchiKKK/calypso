@@ -1,4 +1,4 @@
-import { Inject, Logger } from "@nestjs/common";
+import { Inject } from "@nestjs/common";
 import {
     BoardNodesGrpcMapper,
     type BoardNodesServiceController,

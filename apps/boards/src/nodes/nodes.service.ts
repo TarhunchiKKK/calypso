@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { BrokerRoutingKeys } from "@repo/api";
@@ -25,7 +25,7 @@ export class NodesService {
         await this.commandBus.execute(new CreateManyNodesCommand(dto));
 
         if (dto.nodes.length !== 0) {
-            //this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
         }
     }
 
@@ -37,14 +37,14 @@ export class NodesService {
         await this.commandBus.execute(new UpdateManyNodesCommand(dto));
 
         if (dto.nodes.length !== 0) {
-            //this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
         }
     }
 
     public async removeMany(dto: RemoveManyNodesDto) {
         await this.commandBus.execute(new RemoveManyNodesCommand(dto));
 
-        //this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+        this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
     }
 
     public async removeNodesByBoard(boardId: Id) {

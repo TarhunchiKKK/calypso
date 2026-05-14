@@ -5,7 +5,7 @@ const CommonBrokerOptions = {
     queueOptions: {
         durable: true
     },
-    noAck: false,
+    noAck: true,
     prefetchCount: 1,
     persistent: true
 };
