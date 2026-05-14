@@ -32,8 +32,7 @@ import { NodesModule } from "./nodes/nodes.module";
                     name: RMQ_CLIENT_INJECTION_TOKEN,
                     imports: [ConfigModule],
                     inject: [ConfigService],
-                    // biome-ignore lint/suspicious/noExplicitAny: different project have different `@nestjs/microservices` hash
-                    useFactory: rmqClientConfigFactory as any
+                    useFactory: rmqClientConfigFactory
                 }
             ]
         }),
