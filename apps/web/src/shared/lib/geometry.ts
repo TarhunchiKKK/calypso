@@ -34,6 +34,10 @@ export class Geometry {
         return [point.x, point.y];
     }
 
+    public static pointInRect(point: Point, rect: Rect): boolean {
+        return point.x >= rect.x && point.x <= rect.x + rect.width && point.y >= rect.y && point.y <= rect.y + rect.height;
+    }
+
     public static rectFromPoints(a: Point, b: Point): Rect {
         const x = Math.min(a.x, b.x);
         const y = Math.min(a.y, b.y);
