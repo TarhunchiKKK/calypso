@@ -1,5 +1,5 @@
 import type React from "react";
-import { type Decoratable, NodeDecorator } from "../../core";
+import { type Decoratable, NodeDecorator } from "@/board-editor/core";
 import type { NodeSelectionStrategy } from "./node-selection.strategy";
 
 export class NodeSelectionDecorator extends NodeDecorator {

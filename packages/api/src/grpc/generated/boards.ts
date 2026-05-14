@@ -6,12 +6,10 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse, GrpcError } from "./common";
 import { FormattableElementGrpc } from "./formattable";
 import { PointGrpc, RectGrpc, RelativePointGrpc } from "./geometry";
-import { Struct } from "./google/protobuf/struct";
 import {
   DuplicateProjectGrpcRequest,
   FindAllProjectsGrpcRequest,
@@ -59,11 +57,26 @@ export interface UpdateBoardGrpcRequest {
   thumbnail?: string | undefined;
 }
 
+export interface NodeStylesGrpc {
+  fontFamily?: string | undefined;
+  fontSize?: number | undefined;
+  backgroundColor?: string | undefined;
+  textColor?: string | undefined;
+  borderStyle?: string | undefined;
+  borderColor?: string | undefined;
+  borderRadius?: number | undefined;
+  textAlign?: string | undefined;
+  lineWidth?: number | undefined;
+  lineColor?: string | undefined;
+  lineType?: string | undefined;
+  angleType?: string | undefined;
+}
+
 export interface BoardNodeBaseGrpc {
   id: string;
   type: string;
   locked: boolean;
-  styles: { [key: string]: any } | undefined;
+  styles: NodeStylesGrpc | undefined;
 }
 
 export interface StickerBoardNodeGrpc {
@@ -152,8 +165,6 @@ export interface RemoveManyBoardNodesGrpcRequest {
 }
 
 export const BOARDS_PACKAGE_NAME = "boards";
-
-wrappers[".google.protobuf.Struct"] = { fromObject: Struct.wrap, toObject: Struct.unwrap } as any;
 
 export interface BoardsServiceClient {
   create(request: CreateBoardGrpcRequest): Observable<BoardGrpcResponse>;

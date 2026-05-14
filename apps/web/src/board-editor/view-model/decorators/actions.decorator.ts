@@ -84,6 +84,7 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                     isActive: false,
                     onClick: () => {
                         if (viewState.type === "selection") {
+                            console.log("Actions: ", viewState.selectedIds);
                             nodesModel.exchangeBuffer.cut(viewState.selectedIds);
                         }
                     }

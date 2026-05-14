@@ -37,6 +37,7 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Deco
         return this.node.id;
     }
 
+    // DELETE
     public get type() {
         return this.node.type;
     }

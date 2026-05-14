@@ -30,18 +30,17 @@ export class DraggingNodesMapper extends NodesMapper {
 
         const otherNodes = this.nodes.filter(node => !this.selectedIds.has(node.id));
 
-        return [...nodesToDrag, ...otherNodes];
+        const nodes = [...nodesToDrag, ...otherNodes];
+        return nodes.map(node => NodeWrappersFactory.wrap(nodes, node));
     }
 
     public map() {
-        return this.getNodesWithOffset()
-            .map(node => NodeWrappersFactory.wrap(this.nodes, node))
-            .map(node => {
-                if (this.selectedIds.has(node.id)) {
-                    return DecoratableNodeBuilder.from(node).selection().dragging().build();
-                }
+        return this.getNodesWithOffset().map(wrapper => {
+            if (this.selectedIds.has(wrapper.id)) {
+                return DecoratableNodeBuilder.from(wrapper).selection().dragging().build();
+            }
 
-                return node;
-            });
+            return wrapper;
+        });
     }
 }

@@ -2,13 +2,13 @@ import { BoldPlugin, ItalicPlugin, UnderlinePlugin } from "@platejs/basic-nodes/
 import type { FormattableElement } from "@repo/common";
 import clsx from "clsx";
 import { Plate, usePlateEditor } from "platejs/react";
-import type { KeyboardEventHandler } from "react";
+import { type KeyboardEventHandler, useRef } from "react";
 import { Editor, EditorContainer } from "@/features/formattable-input/ui";
 
 type Props = {
     value: FormattableElement[];
 
-    onChange?: (value: FormattableElement[]) => void;
+    onChange?: (value: FormattableElement[], height?: number) => void;
 
     disabled?: boolean;
 
@@ -23,6 +23,8 @@ export function FormattableText({ value, onChange, disabled, className, keyHandl
         plugins: [BoldPlugin, ItalicPlugin, UnderlinePlugin]
     });
 
+    const ref = useRef<HTMLDivElement>(null);
+
     const handleKeyDown: KeyboardEventHandler = e => {
         if (keyHandlers && e.key in keyHandlers) {
             e.preventDefault();
@@ -34,8 +36,8 @@ export function FormattableText({ value, onChange, disabled, className, keyHandl
     };
 
     return (
-        <Plate editor={editor} onChange={data => onChange?.(data.value)}>
-            <EditorContainer className={clsx("w-full h-max", className ?? className)}>
+        <Plate editor={editor} onChange={data => onChange?.(data.value, ref.current?.offsetHeight)}>
+            <EditorContainer ref={ref} className={clsx("w-full h-max", className ?? className)}>
                 <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} onKeyDown={handleKeyDown} />
             </EditorContainer>
         </Plate>

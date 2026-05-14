@@ -4,9 +4,7 @@ import { ResizableNodeStrategy } from "@/board-editor/modules/resizing/strategie
 import { ResizeBorders } from "../ui";
 
 type Sides = {
-    main?: boolean;
-
-    cross?: boolean;
+    rect?: boolean;
 
     diagonal?: boolean;
 };

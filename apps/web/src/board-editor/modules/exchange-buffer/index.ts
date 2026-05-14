@@ -44,7 +44,7 @@ export function useExchangeBuffer(service: NodesService) {
     const cut = (nodeIds: Set<Id>) => {
         copy(nodeIds);
 
-        service.removeMany(new Set(service.nodes.map(node => node.id)));
+        service.removeMany(nodeIds);
     };
 
     return {

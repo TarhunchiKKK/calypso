@@ -1,6 +1,5 @@
 import type { ArrowNode, NodeBase } from "@repo/boards-common";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
-import { Geometry } from "@/shared/lib/geometry";
 
 export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();
 
@@ -16,6 +15,7 @@ function getArrows(nodes: NodeBase[]): ArrowNode[] {
 
 /**
  * This middleware ensures that arrows will be always binded to existing node.
+ * If related node deleted - this middleware unbinds arrow to corresponding position.
  *
  * @param nodes All board nodes.
  * @param payload Middleware payload.
@@ -44,7 +44,10 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
                 for (const arrow of relatedArrows) {
                     for (const side of ["start", "end"] as const) {
                         if (arrow[side].relativeTo === nodeId) {
-                            arrow[side] = Geometry.addPoints(arrow[side], removingNodeRect);
+                            arrow[side] = {
+                                x: removingNodeRect.x + removingNodeRect.width * arrow[side].x,
+                                y: removingNodeRect.y + removingNodeRect.height * arrow[side].y
+                            };
                         }
                     }
                 }

@@ -49,12 +49,11 @@ export function useLayoutDimensionsModel() {
 
     const handleZoom = (e: WheelEvent) => {
         const delta = e.deltaY > 0 ? ZoomDown : ZoomUp;
-
         const newZoom = zoom * delta;
 
-        const currentMousePoint = applyForPoint(Geometry.pointFromEvent(e));
+        const currentMousePoint = applyForPoint(zoom, Geometry.pointFromEvent(e));
 
-        const newMousePoint = applyForPoint(Geometry.pointFromEvent(e));
+        const newMousePoint = applyForPoint(newZoom, Geometry.pointFromEvent(e));
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
@@ -66,7 +65,7 @@ export function useLayoutDimensionsModel() {
         setZoom(newZoom);
     };
 
-    const applyForPoint = (point: Point) => {
+    const applyForPoint = (zoom: number, point: Point) => {
         return {
             x: point.x / zoom + offset.dx,
             y: point.y / zoom + offset.dy
@@ -76,9 +75,9 @@ export function useLayoutDimensionsModel() {
     return {
         layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
         layoutZoom: { zoom, handleZoom },
-        applyForPoint,
+        applyForPoint: applyForPoint.bind(null, zoom),
         lastClick: {
-            point: lastClick.point ? applyForPoint(lastClick.point) : undefined,
+            point: lastClick.point ? applyForPoint(zoom, lastClick.point) : undefined,
             handle: lastClick.handle
         }
     };

@@ -1,7 +1,6 @@
 import type { Rect } from "@repo/common";
 import { useState } from "react";
-import { selectNodes } from "@/board-editor/modules/selection";
-import { NodeRectsFactory } from "@/entities/nodes";
+import { nodeInSelectionWindow, selectNodes } from "@/board-editor/modules/selection";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";
 import { switchToIdle } from "../../idle/switcher";
@@ -13,7 +12,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
 
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
-        selectedNodesIds = nodesModel.nodes.filter(node => Geometry.rectsIntersecting(selectionWindowRect, NodeRectsFactory.rect(node))).map(node => node.id);
+        selectedNodesIds = nodesModel.nodes.filter(node => nodeInSelectionWindow(node, selectionWindowRect)).map(node => node.id);
     }
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {

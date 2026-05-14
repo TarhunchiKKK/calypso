@@ -1,4 +1,4 @@
-import type { ArrowNode, MediaNode, StickerNode } from "@repo/boards-common";
+import type { ArrowNode, StickerNode } from "@repo/boards-common";
 
 export const MockNodes = [
     {
@@ -55,14 +55,14 @@ export const MockNodes = [
         locked: false,
         styles: {
             angleType: "triangle-filled",
-            lineColor: "blue",
+            lineColor: "black",
             lineType: "dotted",
             lineWidth: 2
         },
-        start: { x: 1, y: 0.5, relativeTo: "sticker-1" },
-        end: { x: 0, y: 0.5, relativeTo: "sticker-3" }
-        // start: { x: 400, y: 400 },
-        // end: { x: 300, y: 300 }
+        // start: { x: 1, y: 0.5, relativeTo: "sticker-1" },
+        // end: { x: 0, y: 0.5, relativeTo: "sticker-3" }
+        start: { x: 400, y: 400 },
+        end: { x: 300, y: 300 }
     } satisfies ArrowNode,
     {
         id: "arrow-2",
@@ -78,23 +78,23 @@ export const MockNodes = [
         end: { x: 1, y: 0.5, relativeTo: "sticker-2" }
         // start: { x: 300, y: 400 },
         // end: { x: 500, y: 400 }
-    } satisfies ArrowNode,
-    {
-        id: "media-1",
-        type: "media",
-        locked: false,
-        rect: {
-            x: 1270,
-            y: 410,
-            width: 300,
-            height: 300
-        },
-        styles: {
-            borderColor: "transparent",
-            borderRadius: 9999
-        },
-        url: "https://github.com/shadcn.png"
-    } satisfies MediaNode
+    } satisfies ArrowNode
+    // {
+    //     id: "media-1",
+    //     type: "media",
+    //     locked: false,
+    //     rect: {
+    //         x: 1270,
+    //         y: 410,
+    //         width: 300,
+    //         height: 300
+    //     },
+    //     styles: {
+    //         borderColor: "transparent",
+    //         borderRadius: 9999
+    //     },
+    //     url: "https://github.com/shadcn.png"
+    // } satisfies MediaNode
     // {
     //     id: "arrow-3",
     //     type: "arrow",

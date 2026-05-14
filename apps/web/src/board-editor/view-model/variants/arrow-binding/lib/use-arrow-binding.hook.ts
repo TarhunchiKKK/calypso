@@ -31,7 +31,7 @@ export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewStat
 
         setArrow(undefined);
 
-        setViewState(switchToSelection({ selectedIds: new Set(arrow.id) }));
+        setViewState(switchToSelection({ selectedIds: new Set([arrow.id]) }));
     };
 
     return { arrow, onMouseMove, onMouseUp };

@@ -37,6 +37,8 @@ export class MouseEventsMediator {
     }
 
     public onMouseDown(e: React.MouseEvent) {
+        e.persist();
+
         const now = Date.now();
 
         this.mouseDownTime = now;
@@ -65,13 +67,15 @@ export class MouseEventsMediator {
     }
 
     public onMouseUp(e: React.MouseEvent) {
+        e.persist();
+        this.mouseDownProcessed = false;
+
         const now = Date.now();
         const timeFromMouseDown = now - this.mouseDownTime;
 
         if (this.mouseDownTimeout && timeFromMouseDown < this.options.mouseDownDelay) {
             clearTimeout(this.mouseDownTimeout);
             this.mouseDownTimeout = null;
-            this.mouseDownProcessed = false;
         }
 
         this.handlers.onMouseUp?.(e);

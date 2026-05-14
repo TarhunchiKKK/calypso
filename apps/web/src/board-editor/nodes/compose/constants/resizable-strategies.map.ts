@@ -3,23 +3,27 @@ import { ResizableRectNodeStrategy } from "../../shared/strategies";
 import { ResizableArrowStrategy } from "../../variants/arrow/strategies/resizable.strategy";
 import type { StrategiesMap } from "./types";
 
-const ResizableRectNodeStrategyInstance = new ResizableRectNodeStrategy({
-    main: true,
-    cross: true
-});
-
-const FullyResizableNodeStrategyInstance = new ResizableRectNodeStrategy({
-    main: true,
-    cross: true,
-    diagonal: true
-});
-
 export const ResizableStrategiesMap: StrategiesMap<ResizableNodeStrategy> = {
-    sticker: FullyResizableNodeStrategyInstance,
+    sticker: new ResizableRectNodeStrategy({
+        rect: true,
+        diagonal: true
+    }),
     arrow: new ResizableArrowStrategy(),
-    text: FullyResizableNodeStrategyInstance,
-    shape: ResizableRectNodeStrategyInstance,
-    media: ResizableRectNodeStrategyInstance,
-    note: FullyResizableNodeStrategyInstance,
-    drawing: FullyResizableNodeStrategyInstance
+    text: new ResizableRectNodeStrategy({
+        rect: true,
+        diagonal: true
+    }),
+    shape: new ResizableRectNodeStrategy({
+        rect: true
+    }),
+    media: new ResizableRectNodeStrategy({
+        rect: true
+    }),
+    note: new ResizableRectNodeStrategy({
+        rect: true,
+        diagonal: true
+    }),
+    drawing: new ResizableRectNodeStrategy({
+        diagonal: true
+    })
 };
