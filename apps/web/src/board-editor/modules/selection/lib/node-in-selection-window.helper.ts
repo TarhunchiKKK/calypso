@@ -34,6 +34,7 @@ function lineInRect(line: { start: Point; end: Point }, rect: Rect): boolean {
     );
 }
 
+// TEST
 export function nodeInSelectionWindow(node: NodeBase, selectionWindow: Rect): boolean {
     const nodeRect = NodeRectsFactory.rect(node);
 

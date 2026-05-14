@@ -25,12 +25,15 @@ export function useIdleViewModel(params: ViewModelParams) {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: withNodeId((nodeId, e) => {
+                    // console.log("mouse down");
                     dragging.onMouseDown(new Set([nodeId]), e);
                 }),
                 onClick: withNodeId(nodeId => {
+                    // console.log("click");
                     setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
                 }),
                 onDoubleClick: withNodeId(nodeId => {
+                    // console.log("double click");
                     setViewState(switchToEditing({ selectedNodeId: nodeId }));
                 })
             },
