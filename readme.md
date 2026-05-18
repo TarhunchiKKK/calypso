@@ -15,7 +15,7 @@
   - [🍓 Frontend](#-frontend)
   - [⚡ Backend](#-backend)
   - [🏗️ Infrastructure](#️-infrastructure)
-- [🚀 Run app Locally](#-run-app-locally)
+- [🚀 Run App Locally](#-run-app-locally)
   - [📋 Requirements](#-requirements)
   - [⚠️ Constraints](#️-constraints)
   - [⚙️ Setup Steps](#️-setup-steps)
@@ -95,7 +95,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **📨 Message Broker**: [RabbitMQ](https://www.rabbitmq.com/docs)
 - **🗄️ S3 Storage**: [Minio](https://www.min.io/)
 
-## 🚀 Run app Locally
+## 🚀 Run App Locally
  
 ### 📋 Requirements
 
