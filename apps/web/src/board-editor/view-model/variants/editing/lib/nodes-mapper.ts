@@ -4,7 +4,7 @@ import type { NodeEditingHandlers } from "@/board-editor/modules/editing";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 
 export class EditingNodesMapper extends NodesMapper {
-    private selectedNodeId!: Id;
+    private nodeId!: Id;
 
     private editingHandlers!: NodeEditingHandlers;
 
@@ -12,8 +12,8 @@ export class EditingNodesMapper extends NodesMapper {
         return new EditingNodesMapper();
     }
 
-    public setSelectedNodeId(selectedNodeId: Id) {
-        this.selectedNodeId = selectedNodeId;
+    public setSelectedNodeId(nodeId: Id) {
+        this.nodeId = nodeId;
         return this;
     }
 
@@ -24,7 +24,7 @@ export class EditingNodesMapper extends NodesMapper {
 
     public override map() {
         return this.wrapNodes().map((wrapper) => {
-            if (this.selectedNodeId === wrapper.id) {
+            if (this.nodeId === wrapper.id) {
                 return DecoratableNodeBuilder.from(wrapper).selection().editing(this.editingHandlers).build();
             }
 

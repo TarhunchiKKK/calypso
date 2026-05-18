@@ -14,7 +14,7 @@ function StylesPanelWrapper({ point, children }: PropsWithChildren & { point: Po
 
 export function useStylesPanel(nodesModel: NodesModel) {
     return (viewState: StylingViewState) => {
-        const nodeTypes = nodesModel.nodes.filter((node) => viewState.selectedIds.has(node.id)).map((node) => node.type);
+        const nodeTypes = nodesModel.nodes.filter((node) => viewState.nodeIds.has(node.id)).map((node) => node.type);
 
         const uniqueNodeTypes = new Set(nodeTypes);
 
@@ -31,14 +31,14 @@ export function useStylesPanel(nodesModel: NodesModel) {
 
                 return (
                     <StylesPanelWrapper point={viewState.position}>
-                        <StylesPanel type={nodeType} update={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
+                        <StylesPanel type={nodeType} update={nodesModel.service.updateManyWithFn.bind(null, viewState.nodeIds)} />
                     </StylesPanelWrapper>
                 );
             }
             default: {
                 return (
                     <StylesPanelWrapper point={viewState.position}>
-                        <StylesPanel type={null} update={nodesModel.service.updateManyWithFn.bind(null, viewState.selectedIds)} />
+                        <StylesPanel type={null} update={nodesModel.service.updateManyWithFn.bind(null, viewState.nodeIds)} />
                     </StylesPanelWrapper>
                 );
             }

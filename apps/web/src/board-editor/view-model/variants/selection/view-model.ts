@@ -25,24 +25,24 @@ export const useSelectionViewModel: ViewModelHook<SelectionViewState> = (params)
     return (viewState) => {
         nodesMediator.setHandlers({
             left: {
-                onMouseDown: (e) => dragging.onMouseDown(viewState.selectedIds, e),
+                onMouseDown: (e) => dragging.onMouseDown(viewState.nodeIds, e),
                 onClick: withNodeId((nodeId, e) => {
                     const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
                     setViewState({
                         ...viewState,
-                        selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
+                        nodeIds: selectNodes([nodeId], selectionMode, viewState.nodeIds)
                     });
                 }),
                 onDoubleClick: withNodeId((nodeId) => {
-                    setViewState(switchToEditing({ selectedNodeId: nodeId }));
+                    setViewState(switchToEditing({ nodeId: nodeId }));
                 })
             },
             right: {
                 onClick: withNodeId((id, e) => {
                     setViewState(
                         switchToNodesContextMenu({
-                            selectedIds: new Set([id]),
+                            nodeIds: new Set([id]),
                             position: Geometry.pointFromEvent(e)
                         })
                     );
@@ -63,7 +63,7 @@ export const useSelectionViewModel: ViewModelHook<SelectionViewState> = (params)
             nodes: SelectionNodesMapper.create()
                 .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
-                .setSelectedIds(viewState.selectedIds)
+                .setSelectedIds(viewState.nodeIds)
                 .setResizeHandler(handleResize)
                 .map(),
             overlay: overlayMediator.handlers

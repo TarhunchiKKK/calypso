@@ -68,7 +68,7 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                     isActive: false,
                     onClick: () => {
                         if (viewState.type === "selection") {
-                            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
+                            nodesModel.exchangeBuffer.copy(viewState.nodeIds);
                         }
                     }
                 },
@@ -84,8 +84,8 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                     isActive: false,
                     onClick: () => {
                         if (viewState.type === "selection") {
-                            console.log("Actions: ", viewState.selectedIds);
-                            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+                            console.log("Actions: ", viewState.nodeIds);
+                            nodesModel.exchangeBuffer.cut(viewState.nodeIds);
                         }
                     }
                 }

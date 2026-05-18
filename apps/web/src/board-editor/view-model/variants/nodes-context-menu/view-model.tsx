@@ -18,19 +18,19 @@ export const useNodesContextMenuViewModel: ViewModelHook<NodesContextMenuViewSta
     return (viewState) => {
         overlayMediator.setHandlers({
             left: {
-                onClick: () => setViewState(switchToSelection({ selectedIds: viewState.selectedIds }))
+                onClick: () => setViewState(switchToSelection({ nodeIds: viewState.nodeIds }))
             },
             right: {
                 onClick: (e) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-                    setViewState(switchToStyling({ selectedIds: viewState.selectedIds, position: clickPoint }));
+                    setViewState(switchToStyling({ nodeIds: viewState.nodeIds, position: clickPoint }));
                 }
             }
         });
 
         return {
-            nodes: NodesContextMenuNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.selectedIds).map(),
+            nodes: NodesContextMenuNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.nodeIds).map(),
             overlay: overlayMediator.handlers,
             additionalElements: {
                 layout: (

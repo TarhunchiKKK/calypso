@@ -17,7 +17,7 @@ const HandlersRecord: Record<NodeCreationViewState["payload"]["type"], OmitField
     text: {
         createNode: (clickPoint) => NodesFactory.text({ point: clickPoint }),
         afterCreate: (textNode, params) => {
-            params.setViewState(switchToEditing({ selectedNodeId: textNode.id }));
+            params.setViewState(switchToEditing({ nodeId: textNode.id }));
         }
     },
     shape: {

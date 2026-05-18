@@ -10,7 +10,7 @@ type Params = {
 export function switchToArrowBinding({ nodeId, side }: Params): ArrowBindingViewState {
     return {
         type: "arrow-binding",
-        arrowId: nodeId,
+        nodeId: nodeId,
         side: side
     };
 }

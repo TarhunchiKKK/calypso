@@ -27,17 +27,17 @@ export const useIdleViewModel: ViewModelHook<IdleViewState> = (params) => {
                     dragging.onMouseDown(new Set([nodeId]), e);
                 }),
                 onClick: withNodeId((nodeId) => {
-                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+                    setViewState(switchToSelection({ nodeIds: new Set([nodeId]) }));
                 }),
                 onDoubleClick: withNodeId((nodeId) => {
-                    setViewState(switchToEditing({ selectedNodeId: nodeId }));
+                    setViewState(switchToEditing({ nodeId: nodeId }));
                 })
             },
             right: {
                 onClick: withNodeId((id, e) => {
                     setViewState(
                         switchToNodesContextMenu({
-                            selectedIds: new Set([id]),
+                            nodeIds: new Set([id]),
                             position: Geometry.pointFromEvent(e)
                         })
                     );
@@ -53,7 +53,7 @@ export const useIdleViewModel: ViewModelHook<IdleViewState> = (params) => {
                 onClick: withNodeId((id, e) => {
                     setViewState(
                         switchToStyling({
-                            selectedIds: new Set([id]),
+                            nodeIds: new Set([id]),
                             position: Geometry.pointFromEvent(e)
                         })
                     );

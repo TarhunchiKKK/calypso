@@ -3,7 +3,7 @@ import type { Id, Point } from "@repo/common";
 export type StylingViewState = {
     type: "styling";
 
-    selectedIds: Set<Id>;
+    nodeIds: Set<Id>;
 
     position: Point;
 };

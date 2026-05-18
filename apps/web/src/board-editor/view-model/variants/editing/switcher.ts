@@ -2,12 +2,12 @@ import type { Id } from "@repo/common";
 import type { EditingViewState } from "./view-state";
 
 type Params = {
-    selectedNodeId: Id;
+    nodeId: Id;
 };
 
-export function switchToEditing({ selectedNodeId }: Params): EditingViewState {
+export function switchToEditing({ nodeId }: Params): EditingViewState {
     return {
         type: "editing",
-        selectedNodeId: selectedNodeId
+        nodeId: nodeId
     };
 }

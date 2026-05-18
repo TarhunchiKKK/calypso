@@ -10,7 +10,7 @@ export const useDraggingViewModel: ViewModelHook<DraggingViewState> = (params) =
 
     return (viewState) => {
         return {
-            nodes: DraggingNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.selectedIds).setOffset(dragging.offset).map(),
+            nodes: DraggingNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.nodeIds).setOffset(dragging.offset).map(),
             window: {
                 onMouseMove: (e) => dragging.onWindowMouseMove(viewState, e),
                 onMouseUp: () => dragging.onWindowMouseUp(viewState)

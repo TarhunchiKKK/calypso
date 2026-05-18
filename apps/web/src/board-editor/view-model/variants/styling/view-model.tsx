@@ -13,12 +13,12 @@ export const useStylingViewModel: ViewModelHook<StylingViewState> = ({ nodesMode
     return (viewState) => {
         canvasMediator.setHandlers({
             left: {
-                onClick: () => switchToSelection({ selectedIds: viewState.selectedIds })
+                onClick: () => switchToSelection({ nodeIds: viewState.nodeIds })
             }
         });
 
         return {
-            nodes: StylingNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.selectedIds).map(),
+            nodes: StylingNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.nodeIds).map(),
             canvas: canvasMediator.handlers,
             additionalElements: {
                 layout: renderStylesPanel(viewState)

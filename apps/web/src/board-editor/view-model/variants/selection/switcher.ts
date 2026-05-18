@@ -2,12 +2,12 @@ import type { Id } from "@repo/common";
 import type { SelectionViewState } from "./view-state";
 
 type Params = {
-    selectedIds?: Set<Id>;
+    nodeIds?: Set<Id>;
 };
 
-export function switchToSelection({ selectedIds }: Params): SelectionViewState {
+export function switchToSelection({ nodeIds }: Params): SelectionViewState {
     return {
         type: "selection",
-        selectedIds: selectedIds ?? new Set()
+        nodeIds: nodeIds ?? new Set()
     };
 }

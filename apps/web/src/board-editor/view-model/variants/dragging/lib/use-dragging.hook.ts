@@ -22,17 +22,17 @@ export function useDragging({ nodesModel, layoutDimensionsModel, setViewState }:
 
         const shiftedNodes = DraggingNodesMapper.create()
             .setNodes(nodesModel.nodes)
-            .setSelectedIds(viewState.selectedIds)
+            .setSelectedIds(viewState.nodeIds)
             .setOffset(offset)
             .getNodesWithOffset()
             .map((wrapper) => wrapper.data)
-            .filter((node) => viewState.selectedIds.has(node.id));
+            .filter((node) => viewState.nodeIds.has(node.id));
 
         nodesModel.service.updateMany(shiftedNodes);
 
         setViewState(
             switchToSelection({
-                selectedIds: viewState.selectedIds
+                nodeIds: viewState.nodeIds
             })
         );
 

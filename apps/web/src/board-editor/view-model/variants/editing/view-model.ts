@@ -18,7 +18,7 @@ export const useEditingViewModel: ViewModelHook<EditingViewState> = (params) => 
         nodesMediator.setHandlers({
             left: {
                 onClick: withNodeId((nodeId) => {
-                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+                    setViewState(switchToSelection({ nodeIds: new Set([nodeId]) }));
                 })
             }
         });
@@ -33,7 +33,7 @@ export const useEditingViewModel: ViewModelHook<EditingViewState> = (params) => 
             nodes: EditingNodesMapper.create()
                 .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
-                .setSelectedNodeId(viewState.selectedNodeId)
+                .setSelectedNodeId(viewState.nodeId)
                 .setEditingHandlers(editingHandlers)
                 .map(),
             overlay: overlayMediator.handlers

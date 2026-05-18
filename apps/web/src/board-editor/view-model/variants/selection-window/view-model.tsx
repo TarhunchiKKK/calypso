@@ -13,7 +13,7 @@ export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState
         return {
             nodes: SelectionWindowNodesMapper.create()
                 .setNodes(nodesModel.nodes)
-                .setSelectedIds(viewState.selectedIds)
+                .setSelectedIds(viewState.nodeIds)
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .map(),
             window: {

@@ -2,7 +2,7 @@ import type { Id, Point } from "@repo/common";
 import type { StylingViewState } from "./view-state";
 
 type Params = {
-    selectedIds: Set<Id>;
+    nodeIds: Set<Id>;
 
     position: Point;
 };

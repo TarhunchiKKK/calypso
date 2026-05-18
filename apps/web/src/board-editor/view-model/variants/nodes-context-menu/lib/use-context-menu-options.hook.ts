@@ -14,14 +14,14 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Copy",
                         hotKey: BoardHotKeys.exchangeBuffer.copy,
                         onClick: () => {
-                            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
+                            nodesModel.exchangeBuffer.copy(viewState.nodeIds);
                         }
                     },
                     {
                         label: "Cut",
                         hotKey: BoardHotKeys.exchangeBuffer.cut,
                         onClick: () => {
-                            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+                            nodesModel.exchangeBuffer.cut(viewState.nodeIds);
                             setViewState(switchToIdle());
                         }
                     }
@@ -34,7 +34,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Lock",
                         hotKey: BoardHotKeys.locking.lock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, (node) => ({
+                            nodesModel.service.updateManyWithFn(viewState.nodeIds, (node) => ({
                                 ...node,
                                 locked: true
                             }));
@@ -44,7 +44,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Unlock",
                         hotKey: BoardHotKeys.locking.unlock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, (node) => ({
+                            nodesModel.service.updateManyWithFn(viewState.nodeIds, (node) => ({
                                 ...node,
                                 locked: false
                             }));
@@ -58,7 +58,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Delete",
                         hotKey: BoardHotKeys.selection.remove[0],
                         onClick: () => {
-                            nodesModel.service.removeMany(viewState.selectedIds);
+                            nodesModel.service.removeMany(viewState.nodeIds);
 
                             setViewState(switchToIdle());
                         }

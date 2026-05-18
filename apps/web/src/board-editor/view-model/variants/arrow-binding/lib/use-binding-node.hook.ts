@@ -17,7 +17,7 @@ export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
     };
 
     const onMouseUp = (viewState: ArrowBindingViewState, point: RelativePoint) => {
-        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
+        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.nodeId);
 
         const newNode = {
             ...arrow,
@@ -26,7 +26,7 @@ export function useBindingNode({ nodesModel, setViewState }: ViewModelParams) {
 
         nodesModel.service.updateOne(newNode);
 
-        setViewState(switchToSelection({ selectedIds: new Set([arrow.id]) }));
+        setViewState(switchToSelection({ nodeIds: new Set([arrow.id]) }));
     };
 
     return {

@@ -56,7 +56,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
         }
 
         if (HotKeyUtils.is(BoardHotKeys.selection.remove, e)) {
-            nodesModel.service.removeMany(viewState.selectedIds);
+            nodesModel.service.removeMany(viewState.nodeIds);
             setViewState(switchToIdle());
         }
     };
@@ -68,7 +68,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
 
         if (HotKeyUtils.is(BoardHotKeys.selection.all, e)) {
             e.preventDefault();
-            setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map((node) => node.id)) }));
+            setViewState(switchToSelection({ nodeIds: new Set(nodesModel.nodes.map((node) => node.id)) }));
         }
     };
 
@@ -76,7 +76,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
         if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.copy, e)) {
             e.preventDefault();
             e.stopPropagation();
-            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
+            nodesModel.exchangeBuffer.copy(viewState.nodeIds);
             return;
         }
 
@@ -96,7 +96,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
         if (viewState.type === "selection" && HotKeyUtils.is(BoardHotKeys.exchangeBuffer.cut, e)) {
             e.preventDefault();
             e.stopPropagation();
-            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+            nodesModel.exchangeBuffer.cut(viewState.nodeIds);
             return;
         }
     };
@@ -122,13 +122,13 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
 
         if (HotKeyUtils.is(BoardHotKeys.styling.bar, e)) {
             e.preventDefault();
-            switchToStyling({ position: layoutDimensionsModel.lastClick.point, selectedIds: viewState.selectedIds });
+            switchToStyling({ position: layoutDimensionsModel.lastClick.point, nodeIds: viewState.nodeIds });
             return;
         }
 
         if (HotKeyUtils.is(BoardHotKeys.styling.contextMenu, e)) {
             e.preventDefault();
-            switchToStyling({ position: layoutDimensionsModel.lastClick.point, selectedIds: viewState.selectedIds });
+            switchToStyling({ position: layoutDimensionsModel.lastClick.point, nodeIds: viewState.nodeIds });
             return;
         }
     };
