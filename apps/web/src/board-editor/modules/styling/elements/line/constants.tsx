@@ -11,7 +11,7 @@ export const LineTypePlaceholder = <Minus />;
 
 export const renderLineColorItem = (color: string) => <Minus style={{ color: color, width: "100%" }} />;
 
-export const LineWidths: DropdownItem<NodeStyles["lineWidth"]>[] = AvailableLineWidths.map(lineWidth => ({
+export const LineWidths: DropdownItem<NodeStyles["lineWidth"]>[] = AvailableLineWidths.map((lineWidth) => ({
     label: <div style={{ width: "100%", height: lineWidth }} className="bg-primary" />,
     value: lineWidth
 }));

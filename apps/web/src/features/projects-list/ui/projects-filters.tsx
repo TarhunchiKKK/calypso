@@ -39,9 +39,9 @@ export function ProjectsFilters({ filters, onChange }: Props) {
         });
     };
 
-    const currentTypeFilter = TypeDropdownItems.find(item => item.value === filters.typeFilter);
-    const currentOwnerFilter = OwnerDropdownItems.find(item => item.value === filters.ownerFilter);
-    const currentSortOrder = SortOrdersDropdownItems.find(item => item.value === filters.sortOrder);
+    const currentTypeFilter = TypeDropdownItems.find((item) => item.value === filters.typeFilter);
+    const currentOwnerFilter = OwnerDropdownItems.find((item) => item.value === filters.ownerFilter);
+    const currentSortOrder = SortOrdersDropdownItems.find((item) => item.value === filters.sortOrder);
 
     return (
         <div className="flex flex-row justify-between items-center gap-4">

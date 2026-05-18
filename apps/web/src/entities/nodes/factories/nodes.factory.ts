@@ -9,7 +9,7 @@ export class NodesFactory {
     }
 
     public static are<T extends NodeTypes>(nodes: NodeBase[], type: T): nodes is NodeTypesMap[T][] {
-        return nodes.every(node => node.type === type);
+        return nodes.every((node) => node.type === type);
     }
 
     public static sticker(data: { point: Point }): StickerNode {

@@ -24,7 +24,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         if (!media) {
             throw new ErrorEvent("CreateBoardForm: Random media is not defined");
         }

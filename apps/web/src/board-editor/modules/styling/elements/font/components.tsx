@@ -5,7 +5,7 @@ import { FontFamilies, FontFamilyPlaceholder, FontSizePlaceholder, FontSizes } f
 
 export function FontFamily({ update }: ElementProps) {
     const handleSelect = (fontFamily: NodeStyles["fontFamily"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -19,7 +19,7 @@ export function FontFamily({ update }: ElementProps) {
 
 export function FontSize({ update }: ElementProps) {
     const handleSelect = (fontSize: NodeStyles["fontSize"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

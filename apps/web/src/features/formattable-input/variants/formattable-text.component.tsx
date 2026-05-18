@@ -25,7 +25,7 @@ export function FormattableText({ value, onChange, disabled, className, keyHandl
 
     const ref = useRef<HTMLDivElement>(null);
 
-    const handleKeyDown: KeyboardEventHandler = e => {
+    const handleKeyDown: KeyboardEventHandler = (e) => {
         if (keyHandlers && e.key in keyHandlers) {
             e.preventDefault();
 
@@ -36,7 +36,7 @@ export function FormattableText({ value, onChange, disabled, className, keyHandl
     };
 
     return (
-        <Plate editor={editor} onChange={data => onChange?.(data.value, ref.current?.offsetHeight)}>
+        <Plate editor={editor} onChange={(data) => onChange?.(data.value, ref.current?.offsetHeight)}>
             <EditorContainer ref={ref} className={clsx("w-full h-max", className ?? className)}>
                 <Editor placeholder="Type your amazing content here..." className="p-0!" disabled={disabled} onKeyDown={handleKeyDown} />
             </EditorContainer>

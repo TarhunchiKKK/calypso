@@ -10,7 +10,7 @@ function isNodeLocked(nodesModel: NodesModel, nodeId: Id) {
 }
 
 function areNodesLocked(nodesModel: NodesModel, nodeIds: Set<Id>) {
-    return nodesModel.nodes.filter(n => nodeIds.has(n.id)).every(node => node.locked);
+    return nodesModel.nodes.filter((n) => nodeIds.has(n.id)).every((node) => node.locked);
 }
 
 export const LockedNodesGuard: ViewStateGuard = (nodesModel, next) => {

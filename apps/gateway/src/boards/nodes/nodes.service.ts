@@ -33,7 +33,7 @@ export class NodesService implements OnModuleInit {
             .findAll({ boardId, userId })
             .pipe(extractGrpcResponsePipe())
             .pipe(
-                map(res => {
+                map((res) => {
                     if (res.nodes) {
                         return res.nodes.map(BoardNodesGrpcMapper.fromGrpc);
                     }

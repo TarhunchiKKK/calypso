@@ -4,15 +4,15 @@ import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.ho
 import type { ViewModelHook } from "../../types";
 import type { NodeCreationViewState } from "./view-state";
 
-export const useNodeCreationViewModel: ViewModelHook<NodeCreationViewState> = params => {
+export const useNodeCreationViewModel: ViewModelHook<NodeCreationViewState> = (params) => {
     const { nodesModel, layoutDimensionsModel } = params;
 
     const canvasMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         canvasMediator.setHandlers({
             left: {
-                onClick: e => {
+                onClick: (e) => {
                     const clickPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
                     const node = viewState.createNode(clickPoint, viewState);

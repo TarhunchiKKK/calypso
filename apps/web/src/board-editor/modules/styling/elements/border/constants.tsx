@@ -51,7 +51,7 @@ export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] =
     }
 ];
 
-export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = AvailableBorderRadiuses.map(borderRadius => ({
+export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = AvailableBorderRadiuses.map((borderRadius) => ({
     label: borderRadius > 1000 ? "Full" : `${borderRadius}px`,
     value: borderRadius
 }));

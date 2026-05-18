@@ -18,7 +18,7 @@ const preview: Preview = {
     },
     loaders: [mswLoader],
     decorators: [
-        Story => (
+        (Story) => (
             <QueryClientProvider client={new QueryClient()}>
                 <BrowserRouter>
                     <Story />

@@ -10,7 +10,7 @@ import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { switchToStyling } from "../styling/switcher";
 import type { IdleViewState } from "./view-state";
 
-export const useIdleViewModel: ViewModelHook<IdleViewState> = params => {
+export const useIdleViewModel: ViewModelHook<IdleViewState> = (params) => {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
@@ -20,16 +20,16 @@ export const useIdleViewModel: ViewModelHook<IdleViewState> = params => {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: withNodeId((nodeId, e) => {
                     dragging.onMouseDown(new Set([nodeId]), e);
                 }),
-                onClick: withNodeId(nodeId => {
+                onClick: withNodeId((nodeId) => {
                     setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
                 }),
-                onDoubleClick: withNodeId(nodeId => {
+                onDoubleClick: withNodeId((nodeId) => {
                     setViewState(switchToEditing({ selectedNodeId: nodeId }));
                 })
             },
@@ -47,7 +47,7 @@ export const useIdleViewModel: ViewModelHook<IdleViewState> = params => {
 
         overlayMediator.setHandlers({
             left: {
-                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e)
+                onMouseDown: (e) => selectionWindow.onOverlayMouseDown(viewState, e)
             },
             right: {
                 onClick: withNodeId((id, e) => {

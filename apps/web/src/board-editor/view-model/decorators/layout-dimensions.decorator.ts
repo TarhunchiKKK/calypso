@@ -5,18 +5,18 @@ export const useLayoutDimensionsDecorator: ViewModelDecorator = (viewModel, _, {
         ...viewModel,
         overlay: {
             ...viewModel.overlay,
-            onMouseDown: e => {
+            onMouseDown: (e) => {
                 viewModel.overlay?.onMouseDown?.(e);
                 layoutDimensionsModel.layoutOffset.startShifting(e);
             }
         },
         window: {
             ...viewModel.window,
-            onMouseMove: e => {
+            onMouseMove: (e) => {
                 viewModel.window?.onMouseMove?.(e);
                 layoutDimensionsModel.layoutOffset.shift(e);
             },
-            onMouseUp: e => {
+            onMouseUp: (e) => {
                 viewModel.window?.onMouseUp?.(e);
                 layoutDimensionsModel.layoutOffset.endShifting();
             },

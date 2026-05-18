@@ -19,14 +19,14 @@ export class MediaService implements OnModuleInit {
         return this.mediaClient
             .findPresets(dto)
             .pipe(extractGrpcResponsePipe())
-            .pipe(map(res => res.media));
+            .pipe(map((res) => res.media));
     }
 
     public findGroups(domain: MediaDomains) {
         return this.mediaClient
             .findGroups({ domain: domain })
             .pipe(extractGrpcResponsePipe())
-            .pipe(map(res => res.groups));
+            .pipe(map((res) => res.groups));
     }
 
     public getPresignedUrl(dto: GetPresignedUrlDto) {

@@ -11,7 +11,7 @@ import type { MediaSelectionViewState } from "./view-state";
 export const useMediaSelectionViewModel: ViewModelHook<MediaSelectionViewState> = ({ nodesModel, setViewState }) => {
     const canvasMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToIdle())
@@ -30,7 +30,7 @@ export const useMediaSelectionViewModel: ViewModelHook<MediaSelectionViewState> 
                 layout: (
                     <MediaSelector
                         style={{ left: selectorPosition.x, top: selectorPosition.y }}
-                        onSelect={url => setViewState(switchToNodeCreation({ type: "media", url: url }))}
+                        onSelect={(url) => setViewState(switchToNodeCreation({ type: "media", url: url }))}
                     />
                 )
             }

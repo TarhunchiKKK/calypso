@@ -52,7 +52,7 @@ export class BoardNodeMediaSeeder {
     }
 
     private getDirnames() {
-        return fs.readdirSync(this.seedDir).filter(file => fs.statSync(path.join(this.seedDir, file)).isDirectory());
+        return fs.readdirSync(this.seedDir).filter((file) => fs.statSync(path.join(this.seedDir, file)).isDirectory());
     }
 
     public async processDir(dirName: string) {
@@ -107,7 +107,7 @@ export class BoardNodeMediaSeeder {
             thumbnail: mediaDtos[0]?.url
         });
 
-        const mediaToSave = mediaDtos.map(dto => ({
+        const mediaToSave = mediaDtos.map((dto) => ({
             ...dto,
             group: {
                 id: group.id

@@ -5,7 +5,7 @@ import { firstValueFrom, map, Observable } from "rxjs";
 export class ExtractGrpcInterceptor implements NestInterceptor {
     public intercept(_: ExecutionContext, next: CallHandler) {
         return next.handle().pipe(
-            map(async data => {
+            map(async (data) => {
                 if (data instanceof Observable) {
                     return await firstValueFrom(data);
                 }

@@ -9,13 +9,13 @@ import type { NodeCreationPayload, NodeCreationViewState } from "./view-state";
  */
 const HandlersRecord: Record<NodeCreationViewState["payload"]["type"], OmitFields<NodeCreationViewState, "type" | "payload">> = {
     sticker: {
-        createNode: clickPoint => NodesFactory.sticker({ point: clickPoint })
+        createNode: (clickPoint) => NodesFactory.sticker({ point: clickPoint })
     },
     arrow: {
-        createNode: clickPoint => NodesFactory.arrow({ point: clickPoint })
+        createNode: (clickPoint) => NodesFactory.arrow({ point: clickPoint })
     },
     text: {
-        createNode: clickPoint => NodesFactory.text({ point: clickPoint }),
+        createNode: (clickPoint) => NodesFactory.text({ point: clickPoint }),
         afterCreate: (textNode, params) => {
             params.setViewState(switchToEditing({ selectedNodeId: textNode.id }));
         }
@@ -48,7 +48,7 @@ const HandlersRecord: Record<NodeCreationViewState["payload"]["type"], OmitField
         }
     },
     note: {
-        createNode: clickPoint => NodesFactory.note({ point: clickPoint }),
+        createNode: (clickPoint) => NodesFactory.note({ point: clickPoint }),
         afterCreate: (_, params) => {
             params.setViewState(switchToIdle());
         }

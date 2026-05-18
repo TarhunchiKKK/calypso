@@ -12,7 +12,7 @@ import { getResizeHandler } from "./lib/get-resize-handler.lib";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
 
-export const useSelectionViewModel: ViewModelHook<SelectionViewState> = params => {
+export const useSelectionViewModel: ViewModelHook<SelectionViewState> = (params) => {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
@@ -22,10 +22,10 @@ export const useSelectionViewModel: ViewModelHook<SelectionViewState> = params =
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         nodesMediator.setHandlers({
             left: {
-                onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
+                onMouseDown: (e) => dragging.onMouseDown(viewState.selectedIds, e),
                 onClick: withNodeId((nodeId, e) => {
                     const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
@@ -34,7 +34,7 @@ export const useSelectionViewModel: ViewModelHook<SelectionViewState> = params =
                         selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
                     });
                 }),
-                onDoubleClick: withNodeId(nodeId => {
+                onDoubleClick: withNodeId((nodeId) => {
                     setViewState(switchToEditing({ selectedNodeId: nodeId }));
                 })
             },
@@ -52,7 +52,7 @@ export const useSelectionViewModel: ViewModelHook<SelectionViewState> = params =
 
         overlayMediator.setHandlers({
             left: {
-                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
+                onMouseDown: (e) => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => setViewState(switchToIdle())
             }
         });

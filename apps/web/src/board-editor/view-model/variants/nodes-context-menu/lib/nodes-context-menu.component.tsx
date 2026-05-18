@@ -26,7 +26,7 @@ export function NodesContextMenu({ groups }: NodesContextMenuProps) {
                         <DropdownMenuGroup>
                             {group.label && <DropdownMenuLabel>{group.label}</DropdownMenuLabel>}
 
-                            {group.options.map(option => (
+                            {group.options.map((option) => (
                                 <DropdownMenuItem key={option.label} onClick={option.onClick}>
                                     {option.label}
 

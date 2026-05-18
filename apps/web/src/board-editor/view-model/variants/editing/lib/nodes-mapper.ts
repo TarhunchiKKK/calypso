@@ -23,7 +23,7 @@ export class EditingNodesMapper extends NodesMapper {
     }
 
     public override map() {
-        return this.wrapNodes().map(wrapper => {
+        return this.wrapNodes().map((wrapper) => {
             if (this.selectedNodeId === wrapper.id) {
                 return DecoratableNodeBuilder.from(wrapper).selection().editing(this.editingHandlers).build();
             }

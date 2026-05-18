@@ -7,7 +7,7 @@ type Props = ElementProps & {
 
 export function Lock({ value, update }: Props) {
     const handleClick = () => {
-        update(node => ({ ...node, locked: value }));
+        update((node) => ({ ...node, locked: value }));
     };
 
     return (

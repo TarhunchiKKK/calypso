@@ -50,7 +50,7 @@ export class ProjectsService {
 
         const creators = await this.getProjectsCreatorsMap(boards);
 
-        return boards.map(board => {
+        return boards.map((board) => {
             const creator = creators.get(board.creatorId);
 
             if (!creator) {
@@ -62,7 +62,7 @@ export class ProjectsService {
     }
 
     private async getProjectsCreatorsMap(projects: Project[]) {
-        const uniqueCreatorIds = new Set(projects.map(projects => projects.creatorId));
+        const uniqueCreatorIds = new Set(projects.map((projects) => projects.creatorId));
 
         const creators = await this.usersService.findManyByIds(Array.from(uniqueCreatorIds));
 

@@ -18,9 +18,9 @@ export function useExchangeBuffer(service: NodesService) {
         }
 
         const nodesWithResolvedPositions = service.nodes
-            .filter(node => nodeIds.has(node.id))
-            .map(node => NodeWrappersFactory.wrap(service.nodes, node))
-            .map(wrapper => wrapper.data);
+            .filter((node) => nodeIds.has(node.id))
+            .map((node) => NodeWrappersFactory.wrap(service.nodes, node))
+            .map((wrapper) => wrapper.data);
 
         setSelectedNodes(nodesWithResolvedPositions);
 
@@ -36,7 +36,7 @@ export function useExchangeBuffer(service: NodesService) {
         const middlePoint = calculateMiddlePoint(selectedNodes);
         const offset = Geometry.calculateOffset(middlePoint, pastePoint);
 
-        const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));
+        const shiftedNodes = selectedNodes.map((node) => NodeClonesFactory.clone(node, offset));
 
         service.createMany(shiftedNodes);
     };

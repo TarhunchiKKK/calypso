@@ -26,7 +26,7 @@ export function CreateProjectButton() {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                {options.map(option => (
+                {options.map((option) => (
                     <DropdownMenuItem key={option.value} onSelect={preventDefaultHandler}>
                         <CreateProjectDialog type={option.value}>{option.label}</CreateProjectDialog>
                     </DropdownMenuItem>

@@ -16,9 +16,9 @@ export function useProjectsFilters(projects: ProjectWithCreator<ProjectWithType>
     const { data: profile } = AuthApi.useProfile();
 
     const filteredProjects = projects
-        .filter(project => (filters.title ? project.title.toLowerCase().includes(filters.title.toLowerCase()) : true))
-        .filter(project => (filters.typeFilter ? project.type === filters.typeFilter : true))
-        .filter(project => (profile?.id ? OwnerFilteringFunctions[filters.ownerFilter](project, profile.id) : true))
+        .filter((project) => (filters.title ? project.title.toLowerCase().includes(filters.title.toLowerCase()) : true))
+        .filter((project) => (filters.typeFilter ? project.type === filters.typeFilter : true))
+        .filter((project) => (profile?.id ? OwnerFilteringFunctions[filters.ownerFilter](project, profile.id) : true))
         .sort(SortingFunctions[filters.sortOrder]);
 
     return { filters, setFilters, filteredProjects };

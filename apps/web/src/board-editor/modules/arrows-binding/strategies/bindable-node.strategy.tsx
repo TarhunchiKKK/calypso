@@ -10,7 +10,7 @@ export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
 
     public updateNode(entry: Decoratable, handlers: BindingNodeHandlers, active: boolean) {
         entry.wrapper.setHandlers({
-            onMouseEnter: withNodeId(nodeId => {
+            onMouseEnter: withNodeId((nodeId) => {
                 handlers.onMouseEnter?.(nodeId);
             }),
             onMouseLeave: active ? handlers.onMouseLeave : undefined

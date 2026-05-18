@@ -11,7 +11,7 @@ const ROWS_COUNT = 4;
 const THUMBNAILS_IN_ROW = 5;
 
 function splitThumbnails(media: Media[]) {
-    const thumbnails = media.map(m => m.url);
+    const thumbnails = media.map((m) => m.url);
 
     const result: string[][] = [];
 

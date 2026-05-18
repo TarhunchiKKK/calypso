@@ -9,7 +9,7 @@ const dotsProps = {
     zoom: 1.0
 };
 
-export const withDots: DecoratorFunction = Story => {
+export const withDots: DecoratorFunction = (Story) => {
     return (
         <>
             <Dots {...dotsProps} />

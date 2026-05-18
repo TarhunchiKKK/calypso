@@ -11,7 +11,7 @@ export function extractAvatarFallback(profile: Profile) {
 
     return parts
         .slice(0, 2)
-        .map(word => word[0].toUpperCase())
+        .map((word) => word[0].toUpperCase())
         .join("");
 }
 

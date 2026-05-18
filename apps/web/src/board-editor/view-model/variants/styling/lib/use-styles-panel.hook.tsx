@@ -14,7 +14,7 @@ function StylesPanelWrapper({ point, children }: PropsWithChildren & { point: Po
 
 export function useStylesPanel(nodesModel: NodesModel) {
     return (viewState: StylingViewState) => {
-        const nodeTypes = nodesModel.nodes.filter(node => viewState.selectedIds.has(node.id)).map(node => node.type);
+        const nodeTypes = nodesModel.nodes.filter((node) => viewState.selectedIds.has(node.id)).map((node) => node.type);
 
         const uniqueNodeTypes = new Set(nodeTypes);
 

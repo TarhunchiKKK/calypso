@@ -10,7 +10,7 @@ export const useStylingViewModel: ViewModelHook<StylingViewState> = ({ nodesMode
 
     const canvasMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => switchToSelection({ selectedIds: viewState.selectedIds })

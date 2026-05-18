@@ -13,7 +13,7 @@ const className = "absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounde
 
 export function BindingPoints({ referencePoints, rect, onMouseUp }: Props) {
     const computedPoints = useMemo(() => {
-        return referencePoints.map(point => ({
+        return referencePoints.map((point) => ({
             x: rect.width * point.x,
             y: rect.height * point.y
         }));

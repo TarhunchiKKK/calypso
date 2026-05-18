@@ -15,7 +15,7 @@ export class Media implements MediaType {
 
     @ManyToOne(
         () => MediaGroup,
-        group => group.media
+        (group) => group.media
     )
     public group: MediaGroup;
 }

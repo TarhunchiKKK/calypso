@@ -8,12 +8,12 @@ export function selectNodes(nodeIds: Id[], mode: NodesSelectionMode, currentSele
         }
         case "add": {
             const newSelection = new Set(currentSelection);
-            nodeIds.forEach(id => void newSelection.add(id));
+            nodeIds.forEach((id) => void newSelection.add(id));
             return newSelection;
         }
         case "toggle": {
             const newSelection = new Set(currentSelection);
-            nodeIds.forEach(id => {
+            nodeIds.forEach((id) => {
                 if (newSelection.has(id)) {
                     newSelection.delete(id);
                 } else {

@@ -23,7 +23,7 @@ export class ArrowEditingStrategy extends NodeEditingStrategy {
             handlers.change(newNode);
         };
 
-        const handleKeyDown: KeyboardEventHandler = e => {
+        const handleKeyDown: KeyboardEventHandler = (e) => {
             const keyHandlers = this.getDefaultKeyHandlers(handlers);
 
             if (e.key in keyHandlers) {

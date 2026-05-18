@@ -6,7 +6,7 @@ import { EditingNodesMapper } from "./lib/nodes-mapper";
 import { useNodeEditing } from "./lib/use-node-editing.hook";
 import type { EditingViewState } from "./view-state";
 
-export const useEditingViewModel: ViewModelHook<EditingViewState> = params => {
+export const useEditingViewModel: ViewModelHook<EditingViewState> = (params) => {
     const { nodesModel, setViewState } = params;
 
     const nodesMediator = useMouseEventsMediator();
@@ -14,10 +14,10 @@ export const useEditingViewModel: ViewModelHook<EditingViewState> = params => {
 
     const editingHandlers = useNodeEditing(params);
 
-    return viewState => {
+    return (viewState) => {
         nodesMediator.setHandlers({
             left: {
-                onClick: withNodeId(nodeId => {
+                onClick: withNodeId((nodeId) => {
                     setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
                 })
             }

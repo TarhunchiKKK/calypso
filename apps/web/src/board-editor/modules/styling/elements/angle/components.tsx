@@ -5,7 +5,7 @@ import { AngleTypePlaceholder, AngleTypes } from "./constants";
 
 export function AngleType({ update }: ElementProps) {
     const handleSelect = (angletype: NodeStyles["angleType"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

@@ -24,7 +24,7 @@ export function ProjectsTable({ projects }: Props) {
             </TableHeader>
 
             <TableBody>
-                {projects.map(project => (
+                {projects.map((project) => (
                     <TableRow key={project.id}>
                         <TableCell>
                             <img src={S3Service.getFullUrl(project.thumbnail)} alt={project.title} className="w-10 h-10" />

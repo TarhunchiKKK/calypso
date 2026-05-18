@@ -37,7 +37,7 @@ export function useLayoutDimensionsModel() {
 
         startPointRef.current = currentPoint;
 
-        setOffset(prev => ({
+        setOffset((prev) => ({
             dx: prev.dx - newOffset.dx,
             dy: prev.dy - newOffset.dy
         }));
@@ -57,7 +57,7 @@ export function useLayoutDimensionsModel() {
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
-        setOffset(prev => ({
+        setOffset((prev) => ({
             dx: prev.dx - mouseDiff.dx,
             dy: prev.dy - mouseDiff.dy
         }));

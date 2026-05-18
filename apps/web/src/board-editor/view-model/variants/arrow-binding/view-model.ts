@@ -4,12 +4,12 @@ import { useArrowBinding } from "./lib/use-arrow-binding.hook";
 import { useBindingNode } from "./lib/use-binding-node.hook";
 import type { ArrowBindingViewState } from "./view-state";
 
-export const useArrowBindingViewModel: ViewModelHook<ArrowBindingViewState> = params => {
+export const useArrowBindingViewModel: ViewModelHook<ArrowBindingViewState> = (params) => {
     const arrowBinding = useArrowBinding(params);
 
     const bindingNode = useBindingNode(params);
 
-    return viewState => {
+    return (viewState) => {
         return {
             nodes: ArrowBindingNodesMapper.create()
                 .setNodes(params.nodesModel.nodes)
@@ -18,7 +18,7 @@ export const useArrowBindingViewModel: ViewModelHook<ArrowBindingViewState> = pa
                 .setBindingHandlers({
                     onMouseEnter: bindingNode.onMouseEnter,
                     onMouseLeave: bindingNode.onMouseLeave,
-                    onMouseUp: point => bindingNode.onMouseUp(viewState, point)
+                    onMouseUp: (point) => bindingNode.onMouseUp(viewState, point)
                 })
                 .map(),
             window: {

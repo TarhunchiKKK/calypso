@@ -48,11 +48,11 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                 },
                 shapes: {
                     isActive: stateFlags.shapes,
-                    onClick: e => (!stateFlags.shapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+                    onClick: (e) => (!stateFlags.shapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
                 },
                 media: {
                     isActive: stateFlags.media,
-                    onClick: !stateFlags.media ? e => setViewState(switchToMediaSelection(Geometry.pointFromEvent(e))) : undefined
+                    onClick: !stateFlags.media ? (e) => setViewState(switchToMediaSelection(Geometry.pointFromEvent(e))) : undefined
                 },
                 notes: {
                     isActive: stateFlags.notes,

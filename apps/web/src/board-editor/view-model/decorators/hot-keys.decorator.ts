@@ -68,7 +68,7 @@ export const useHotKeysDecorator: ViewModelDecorator = (viewModel, viewState, { 
 
         if (HotKeyUtils.is(BoardHotKeys.selection.all, e)) {
             e.preventDefault();
-            setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map(node => node.id)) }));
+            setViewState(switchToSelection({ selectedIds: new Set(nodesModel.nodes.map((node) => node.id)) }));
         }
     };
 

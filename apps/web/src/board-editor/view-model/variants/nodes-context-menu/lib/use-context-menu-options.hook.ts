@@ -34,7 +34,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Lock",
                         hotKey: BoardHotKeys.locking.lock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
+                            nodesModel.service.updateManyWithFn(viewState.selectedIds, (node) => ({
                                 ...node,
                                 locked: true
                             }));
@@ -44,7 +44,7 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                         label: "Unlock",
                         hotKey: BoardHotKeys.locking.unlock,
                         onClick: () => {
-                            nodesModel.service.updateManyWithFn(viewState.selectedIds, node => ({
+                            nodesModel.service.updateManyWithFn(viewState.selectedIds, (node) => ({
                                 ...node,
                                 locked: false
                             }));

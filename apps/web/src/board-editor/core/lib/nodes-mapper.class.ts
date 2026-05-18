@@ -19,7 +19,7 @@ export abstract class NodesMapper {
     }
 
     public wrapNodes() {
-        return this.nodes.map(node => NodeWrappersFactory.wrap(this.nodes, node)).map(wrapper => wrapper.setHandlers(this.handlers));
+        return this.nodes.map((node) => NodeWrappersFactory.wrap(this.nodes, node)).map((wrapper) => wrapper.setHandlers(this.handlers));
     }
 
     public abstract map(): Decoratable[];

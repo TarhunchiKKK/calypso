@@ -4,12 +4,12 @@ import { SelectionWindowNodesMapper } from "./lib/nodes-mapper";
 import { useSelectionWindow } from "./lib/use-selection-window.hook";
 import type { SelectionWindowViewState } from "./view-state";
 
-export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState> = params => {
+export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState> = (params) => {
     const { nodesModel } = params;
 
     const selectionWindow = useSelectionWindow(params);
 
-    return viewState => {
+    return (viewState) => {
         return {
             nodes: SelectionWindowNodesMapper.create()
                 .setNodes(nodesModel.nodes)
@@ -17,7 +17,7 @@ export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .map(),
             window: {
-                onMouseMove: e => {
+                onMouseMove: (e) => {
                     selectionWindow.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {

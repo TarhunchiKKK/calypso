@@ -12,12 +12,12 @@ export const FontFamilyPlaceholder = <CaseSensitive className="dark:text-white" 
 
 export const FontSizePlaceholder = <ALargeSmall className="dark:text-white" />;
 
-export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = AvailableFontFamilies.map(fontFamily => ({
+export const FontFamilies: DropdownItem<NodeStyles["fontFamily"]>[] = AvailableFontFamilies.map((fontFamily) => ({
     label: <span style={{ fontFamily }}>{formatFontFamilyName(fontFamily)}</span>,
     value: fontFamily
 }));
 
-export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = AvailableFontSizes.map(fontSize => ({
+export const FontSizes: DropdownItem<NodeStyles["fontSize"]>[] = AvailableFontSizes.map((fontSize) => ({
     label: <span style={{ fontSize }}>{`${fontSize}px`}</span>,
     value: fontSize
 }));

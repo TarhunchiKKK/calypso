@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     decorators: centered,
-    render: args => (
+    render: (args) => (
         <div className="w-screen h-screen flex flex-col">
             <BoardEditorSkeleton {...args} />
         </div>

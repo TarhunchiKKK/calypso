@@ -24,7 +24,7 @@ export class ResizingNodesMapper extends NodesMapper {
     }
 
     private getNodesWithUpdatedSizes(nodes: NodeBase[], nodeId: Id, newSize: Rect) {
-        const resizingNode = nodes.find(node => node.id === nodeId);
+        const resizingNode = nodes.find((node) => node.id === nodeId);
 
         if (!resizingNode) {
             throw new Error(`Resizing node not found (id='${nodeId})'`);
@@ -32,17 +32,17 @@ export class ResizingNodesMapper extends NodesMapper {
 
         const resizedNode = NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(nodes, resizingNode), newSize).data;
 
-        const newNodes = [...nodes.filter(node => node.id !== nodeId), resizedNode];
+        const newNodes = [...nodes.filter((node) => node.id !== nodeId), resizedNode];
 
-        return newNodes.map(node => NodeWrappersFactory.wrap(newNodes, node)).map(wrapper => wrapper.data);
+        return newNodes.map((node) => NodeWrappersFactory.wrap(newNodes, node)).map((wrapper) => wrapper.data);
     }
 
     public override map() {
         const nodes = this.newSize ? this.getNodesWithUpdatedSizes(this.nodes, this.nodeId, this.newSize) : this.nodes;
 
         return nodes
-            .map(node => NodeWrappersFactory.wrap(nodes, node))
-            .map(wrapper => {
+            .map((node) => NodeWrappersFactory.wrap(nodes, node))
+            .map((wrapper) => {
                 if (this.nodeId === wrapper.id) {
                     const selectedNode = NodeDecoratorsFactory.selection(wrapper);
 

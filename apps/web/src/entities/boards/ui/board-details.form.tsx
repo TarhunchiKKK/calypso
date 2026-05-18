@@ -37,7 +37,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
 
     const update = BoardsApi.useUpdate();
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await update.mutateAsync({
             id: board.id,
             ...data
@@ -84,7 +84,7 @@ export function BoardDetailsForm({ board, afterSubmit }: Props) {
             </FieldGroup>
 
             <div className="grid grid-cols-2 mt-8">
-                {commonFields.map(field => (
+                {commonFields.map((field) => (
                     <>
                         <div className="text-gray-600 dark:text-gray-400">{field.label}</div>
                         <div>{field.value(board)}</div>

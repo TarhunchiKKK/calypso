@@ -21,7 +21,7 @@ export function SignUpForm({ afterSubmit }: Props) {
 
     const signUp = AuthApi.useSignUp();
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await signUp.mutateAsync(data);
 
         if (signUp.isError) {

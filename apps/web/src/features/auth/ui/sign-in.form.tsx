@@ -20,7 +20,7 @@ export function SignInForm({ afterSubmit }: Props) {
 
     const signIn = AuthApi.useSignIn();
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await signIn.mutateAsync(data);
 
         if (signIn.isError) {

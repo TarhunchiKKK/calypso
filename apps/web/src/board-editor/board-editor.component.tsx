@@ -43,7 +43,7 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                 overlay={<Overlay {...viewModel.overlay} />}
                 {...viewModel.canvas}
             >
-                {viewModel.nodes.map(node => node.render())}
+                {viewModel.nodes.map((node) => node.render())}
 
                 {viewModel.additionalElements?.canvas}
             </Canvas>

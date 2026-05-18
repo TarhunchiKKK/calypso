@@ -4,7 +4,7 @@ import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/e
 export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();
 
 function getArrows(nodes: NodeBase[]): ArrowNode[] {
-    const arrows = nodes.filter(node => node.type === "arrow");
+    const arrows = nodes.filter((node) => node.type === "arrow");
 
     if (!NodesFactory.are(arrows, "arrow")) {
         return [];
@@ -27,13 +27,13 @@ export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes,
             const arrows = getArrows(nodes);
 
             for (const nodeId of payload.nodes) {
-                const relatedArrows = arrows.filter(arrow => arrow.start.relativeTo === nodeId || arrow.end.relativeTo === nodeId);
+                const relatedArrows = arrows.filter((arrow) => arrow.start.relativeTo === nodeId || arrow.end.relativeTo === nodeId);
 
                 if (relatedArrows.length === 0) {
                     return nodes;
                 }
 
-                const removingNode = nodes.find(node => node.id === nodeId);
+                const removingNode = nodes.find((node) => node.id === nodeId);
 
                 if (!removingNode) {
                     throw Error(`Node with id ${nodeId} not found`);

@@ -15,7 +15,7 @@ export class UpdateManyNodesCommandHandler implements ICommandHandler<UpdateMany
     public constructor(@InjectModel(NodeBase.name) private readonly nodeModel: Model<NodeBase>) {}
 
     public async execute({ dto }: UpdateManyNodesCommand) {
-        const writes = dto.nodes.map(node => ({
+        const writes = dto.nodes.map((node) => ({
             replaceOne: {
                 filter: {
                     id: node.id

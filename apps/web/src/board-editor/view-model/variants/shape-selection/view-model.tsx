@@ -11,7 +11,7 @@ import type { ShapeSelectionViewState } from "./view-state";
 export const useShapeSelectionViewModel: ViewModelHook<ShapeSelectionViewState> = ({ nodesModel, setViewState }) => {
     const canvasMediator = useMouseEventsMediator();
 
-    return viewState => {
+    return (viewState) => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToIdle())
@@ -30,7 +30,7 @@ export const useShapeSelectionViewModel: ViewModelHook<ShapeSelectionViewState> 
                 layout: (
                     <ShapeSelector
                         style={{ left: selectorPosition.x, top: selectorPosition.y }}
-                        onSelect={variant => setViewState(switchToNodeCreation({ type: "shape", variant }))}
+                        onSelect={(variant) => setViewState(switchToNodeCreation({ type: "shape", variant }))}
                     />
                 )
             }

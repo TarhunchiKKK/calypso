@@ -4,7 +4,7 @@ import { DrawingNodesMapper } from "./lib/nodes.mapper";
 import { useDrawing } from "./lib/use-drawing.hook";
 import type { DrawingViewState } from "./view-state";
 
-export const useDrawingViewModel: ViewModelHook<DrawingViewState> = params => {
+export const useDrawingViewModel: ViewModelHook<DrawingViewState> = (params) => {
     const drawing = useDrawing(params);
 
     const canvasMediator = useMouseEventsMediator();

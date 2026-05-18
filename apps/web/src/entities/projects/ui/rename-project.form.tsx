@@ -23,7 +23,7 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
         resolver: zodResolver(UpdateProjectDtoZodSchema)
     });
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await update.mutateAsync({
             ...data,
             id: project.id

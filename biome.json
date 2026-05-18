@@ -51,7 +51,7 @@
             "quoteProperties": "asNeeded",
             "trailingCommas": "none",
             "semicolons": "always",
-            "arrowParentheses": "asNeeded",
+            "arrowParentheses": "always",
             "bracketSameLine": false,
             "quoteStyle": "double",
             "attributePosition": "auto",

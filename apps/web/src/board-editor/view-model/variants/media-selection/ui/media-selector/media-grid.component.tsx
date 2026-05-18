@@ -33,7 +33,7 @@ export function MediaGrid({ groupId, onSelect }: Props) {
         <>
             {[firstPart, secondPart].map((part, index) => (
                 <div key={index} className="flex flex-col gap-0">
-                    {part.map(media => (
+                    {part.map((media) => (
                         <img key={media.id} src={media.url} alt={media.url} onClick={onSelect.bind(null, media.url)} />
                     ))}
                 </div>

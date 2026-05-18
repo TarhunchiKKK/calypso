@@ -10,8 +10,8 @@ function getDrawingRect(points: Point[]): Rect {
         return { x: 0, y: 0, width: 0, height: 0 };
     }
 
-    const xs = points.map(p => p.x);
-    const ys = points.map(p => p.y);
+    const xs = points.map((p) => p.x);
+    const ys = points.map((p) => p.y);
 
     const minX = Math.min(...xs);
     const minY = Math.min(...ys);

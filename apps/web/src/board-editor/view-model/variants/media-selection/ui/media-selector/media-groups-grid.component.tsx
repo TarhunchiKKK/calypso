@@ -33,7 +33,7 @@ export function MediaGroupsGrid({ onSelect }: Props) {
 
     return (
         <div className="grid grid-cols-2 gap-0">
-            {groups.map(group => (
+            {groups.map((group) => (
                 <Card key={group.id} onClick={onSelect.bind(null, group.id)}>
                     <CardHeader>
                         <CardTitle>{group.title}</CardTitle>

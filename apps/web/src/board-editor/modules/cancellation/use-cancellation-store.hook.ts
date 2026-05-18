@@ -15,7 +15,7 @@ export function useCancellationStore() {
     const [redoQueue, setRedoQueue] = useState<RedoItem[]>([]);
 
     const push = (item: UndoItem) => {
-        setUndoQueue(prev => [...prev, item]);
+        setUndoQueue((prev) => [...prev, item]);
     };
 
     const undo = () => {
@@ -25,8 +25,8 @@ export function useCancellationStore() {
 
         const lastUndoItem = undoQueue[undoQueue.length - 1];
 
-        setUndoQueue(prev => prev.slice(0, prev.length - 1));
-        setRedoQueue(prev => [...prev, lastUndoItem.redo]);
+        setUndoQueue((prev) => prev.slice(0, prev.length - 1));
+        setRedoQueue((prev) => [...prev, lastUndoItem.redo]);
 
         lastUndoItem.undo();
     };
@@ -38,7 +38,7 @@ export function useCancellationStore() {
 
         const lastRedoItem = redoQueue[redoQueue.length - 1];
 
-        setRedoQueue(prev => prev.slice(0, redoQueue.length - 1));
+        setRedoQueue((prev) => prev.slice(0, redoQueue.length - 1));
 
         lastRedoItem();
     };
