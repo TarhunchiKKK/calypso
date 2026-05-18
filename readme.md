@@ -17,6 +17,7 @@
   - [🏗️ Infrastructure](#️-infrastructure)
 - [🚀 Run app Locally](#-run-app-locally)
   - [📋 Requirements](#-requirements)
+  - [⚠️ Constraints](#️-constraints)
   - [⚙️ Setup Steps](#️-setup-steps)
 - [✨ Features](#-features)
   - [🧪 Challenge](#-challenge)
@@ -40,6 +41,7 @@
     - [Nodes context menu](#nodes-context-menu)
     - [Window shifting and zooming](#window-shifting-and-zooming)
   - [✌ Hot Keys](#-hot-keys)
+- [🧐 What's next?](#-whats-next)
 
 ## About 
 
@@ -102,6 +104,12 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **Git**: ([download](https://git-scm.com/))
 - **Docker**: ([download](https://docker.com))
 - **OS**: any (Linux, macOS, Windows). Developed on [Kali Linux](https://www.kali.org/)
+
+### ⚠️ Constraints 
+
+> 📌 **Important Note**
+> 
+> Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed шт агегкую 
 
 ### ⚙️ Setup Steps
 
@@ -175,6 +183,7 @@ In browser open the https://localhost:5173 to access the app.
 
 - ❌ No state manager
 - ❌ No drag-n-drop libraries
+- ❌ No mouse events handling libraries
 
 ### 🎨 Node Types
 
@@ -526,3 +535,15 @@ Actions:
         </tbody>
     </table>
 </div>
+
+
+## 🧐 What's next?
+
+* Multi-users Realtime Functionality
+* Nodes Commenting (like in [Google Docs](https://docs.google.com/document/u/0/))
+* Video Calls
+* Payments & Premium Functionality
+* OAuth 2.0
+* Project Type: Spreadsheets (like [Google Spreadsheets](https://docs.google.com/spreadsheets/u/0/))
+* Project Type: Calendar (like [Google Calendar](https://calendar.google.com/calendar/u/0/r))
+* Localization
