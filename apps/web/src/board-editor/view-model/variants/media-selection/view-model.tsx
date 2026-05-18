@@ -1,18 +1,17 @@
 import { DefaultNodesMapper } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { switchToIdle } from "../idle/switcher";
 import { switchToNodeCreation } from "../node-creation/switcher";
 import { MediaSelector } from "./ui/media-selector";
 import { MediaSelectorOffset } from "./ui/ui.constants";
 import type { MediaSelectionViewState } from "./view-state";
 
-export function useMediaSelectionViewModel({ nodesModel, setViewState }: ViewModelParams) {
+export const useMediaSelectionViewModel: ViewModelHook<MediaSelectionViewState> = ({ nodesModel, setViewState }) => {
     const canvasMediator = useMouseEventsMediator();
 
-    return (viewState: MediaSelectionViewState): DecoratableViewModel => {
+    return viewState => {
         canvasMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToIdle())
@@ -37,4 +36,4 @@ export function useMediaSelectionViewModel({ nodesModel, setViewState }: ViewMod
             }
         };
     };
-}
+};

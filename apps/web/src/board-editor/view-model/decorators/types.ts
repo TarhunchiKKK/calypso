@@ -1,7 +1,6 @@
 import type { OmitFields } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
-import type { ViewState } from "../types";
-import type { ViewModel, ViewModelParams } from "../types/view-model.types";
+import type { ViewModel, ViewModelParams, ViewState } from "../types";
 
 export type DecoratableViewModel = OmitFields<ViewModel, "nodes" | "actions"> & { nodes: Decoratable[] };
 

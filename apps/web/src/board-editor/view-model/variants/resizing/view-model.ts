@@ -1,13 +1,12 @@
-import type { DecoratableViewModel } from "../../decorators";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { ResizingNodesMapper } from "./lib/nodes-mapper";
 import { useResizing } from "./lib/use-resizing.hook";
 import type { ResizingViewState } from "./view-state";
 
-export function useResizingViewModel(params: ViewModelParams) {
+export const useResizingViewModel: ViewModelHook<ResizingViewState> = params => {
     const resizing = useResizing(params);
 
-    return (viewState: ResizingViewState): DecoratableViewModel => {
+    return viewState => {
         const { nodesModel } = params;
 
         return {
@@ -21,4 +20,4 @@ export function useResizingViewModel(params: ViewModelParams) {
             }
         };
     };
-}
+};

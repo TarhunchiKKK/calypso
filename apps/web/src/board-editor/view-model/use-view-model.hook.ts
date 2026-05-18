@@ -68,7 +68,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = arrowBindingViewModel(viewState);
             break;
         case "drawing":
-            viewModel = drawingViewModel();
+            viewModel = drawingViewModel(viewState);
             break;
         case "shape-selection":
             viewModel = shapeSelectionViewModel(viewState);

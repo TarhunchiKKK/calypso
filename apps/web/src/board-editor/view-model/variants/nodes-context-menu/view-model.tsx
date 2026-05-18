@@ -1,7 +1,6 @@
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { switchToSelection } from "../selection/switcher";
 import { switchToStyling } from "../styling/switcher";
 import { NodesContextMenu } from "./lib/nodes-context-menu.component";
@@ -9,14 +8,14 @@ import { NodesContextMenuNodesMapper } from "./lib/nodes-mapper";
 import { useContextMenuOptions } from "./lib/use-context-menu-options.hook";
 import type { NodesContextMenuViewState } from "./view-state";
 
-export function useNodesContextMenuViewModel(params: ViewModelParams) {
+export const useNodesContextMenuViewModel: ViewModelHook<NodesContextMenuViewState> = params => {
     const { nodesModel, layoutDimensionsModel, setViewState } = params;
 
     const contextMenuOptions = useContextMenuOptions(params);
 
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: NodesContextMenuViewState): DecoratableViewModel => {
+    return viewState => {
         overlayMediator.setHandlers({
             left: {
                 onClick: () => setViewState(switchToSelection({ selectedIds: viewState.selectedIds }))
@@ -42,4 +41,4 @@ export function useNodesContextMenuViewModel(params: ViewModelParams) {
             }
         };
     };
-}
+};

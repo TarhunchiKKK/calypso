@@ -1,16 +1,15 @@
 import { DefaultNodesMapper } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import type { NodeCreationViewState } from "./view-state";
 
-export function useNodeCreationViewModel(params: ViewModelParams) {
+export const useNodeCreationViewModel: ViewModelHook<NodeCreationViewState> = params => {
     const { nodesModel, layoutDimensionsModel } = params;
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (viewState: NodeCreationViewState): DecoratableViewModel => {
+    return viewState => {
         canvasMediator.setHandlers({
             left: {
                 onClick: e => {
@@ -30,4 +29,4 @@ export function useNodeCreationViewModel(params: ViewModelParams) {
             canvas: canvasMediator.handlers
         };
     };
-}
+};

@@ -2,13 +2,13 @@ import type { NodeBase } from "@repo/boards-common";
 import type { Id, OmitFields } from "@repo/common";
 import { useCancellationDecorator } from "@/board-editor/modules/cancellation";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";
-import { type NodesService, useNodesApiDecorator, useNodesService } from "@/entities/nodes";
+import { type NodesService, useNodesService } from "@/entities/nodes";
 
-export function useNodesModel(inputNodes: NodeBase[], boardId: Id) {
+export function useNodesModel(inputNodes: NodeBase[], _: Id) {
     const nodesService = useNodesService(inputNodes);
 
     // TODO: implement
-    const _ = useNodesApiDecorator(nodesService, boardId);
+    // const _ = useNodesApiDecorator(nodesService, boardId);
 
     const withCancellation = useCancellationDecorator(nodesService);
 

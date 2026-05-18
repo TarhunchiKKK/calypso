@@ -1,8 +1,7 @@
 import { DefaultNodesMapper, withNodeId } from "@/board-editor/core";
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToNodesContextMenu } from "../nodes-context-menu/switcher";
@@ -11,7 +10,7 @@ import { useSwitchToSelectionWindow } from "../selection-window/switcher";
 import { switchToStyling } from "../styling/switcher";
 import type { IdleViewState } from "./view-state";
 
-export function useIdleViewModel(params: ViewModelParams) {
+export const useIdleViewModel: ViewModelHook<IdleViewState> = params => {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
@@ -21,19 +20,16 @@ export function useIdleViewModel(params: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: IdleViewState): DecoratableViewModel => {
+    return viewState => {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: withNodeId((nodeId, e) => {
-                    // console.log("mouse down");
                     dragging.onMouseDown(new Set([nodeId]), e);
                 }),
                 onClick: withNodeId(nodeId => {
-                    // console.log("click");
                     setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
                 }),
                 onDoubleClick: withNodeId(nodeId => {
-                    // console.log("double click");
                     setViewState(switchToEditing({ selectedNodeId: nodeId }));
                 })
             },
@@ -70,4 +66,4 @@ export function useIdleViewModel(params: ViewModelParams) {
             overlay: overlayMediator.handlers
         };
     };
-}
+};

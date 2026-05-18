@@ -26,3 +26,10 @@ export type ViewState =
     | EditingViewState
     | StylingViewState
     | NodesContextMenuViewState;
+
+export type SingleNodeViewStates = Extract<ViewState, ResizingViewState | EditingViewState>;
+
+export type MultipleNodesViewStates = Extract<
+    ViewState,
+    SelectionViewState | SelectionWindowViewState | DraggingViewState | StylingViewState | NodesContextMenuViewState
+>;

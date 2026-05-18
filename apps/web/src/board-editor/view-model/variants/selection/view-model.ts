@@ -1,9 +1,8 @@
 import { withNodeId } from "@/board-editor/core";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
@@ -13,7 +12,7 @@ import { getResizeHandler } from "./lib/get-resize-handler.lib";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
 
-export function useSelectionViewModel(params: ViewModelParams) {
+export const useSelectionViewModel: ViewModelHook<SelectionViewState> = params => {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
@@ -23,7 +22,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: SelectionViewState): DecoratableViewModel => {
+    return viewState => {
         nodesMediator.setHandlers({
             left: {
                 onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
@@ -70,4 +69,4 @@ export function useSelectionViewModel(params: ViewModelParams) {
             overlay: overlayMediator.handlers
         };
     };
-}
+};
