@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import { ExtractGrpc, Validation } from "@repo/api";
-import { type Id } from "@repo/common";
+import type { Id } from "@repo/common";
 import {
     type DuplicateProjectDto,
     DuplicateProjectDtoZodSchema,

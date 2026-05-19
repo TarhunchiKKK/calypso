@@ -1,4 +1,4 @@
-import { Profile } from "@repo/auth";
+import type { Profile } from "@repo/auth";
 import type { Id } from "@repo/common";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 

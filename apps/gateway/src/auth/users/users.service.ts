@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import type { Profile } from "@repo/auth";
 import type { Id } from "@repo/common";
 import { In, type Repository } from "typeorm";
 import type { CreateUserDto } from "./dto/create-user.dto";
 import { User } from "./entities/user.entity";
-import { Profile } from "@repo/auth";
 
 @Injectable()
 export class UsersService {
