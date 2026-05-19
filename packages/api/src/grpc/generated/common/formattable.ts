@@ -2,10 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: formattable.proto
+// source: common/formattable.proto
 
 /* eslint-disable */
-import { Any } from "./google/protobuf/any";
+import { Any } from "../google/protobuf/any";
 
 const protobufPackage = "formattable";
 

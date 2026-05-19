@@ -4,6 +4,7 @@ import "google/protobuf/any.proto";
 
 package formattable;
 
+
 message FormattableTextGrpc {
     string text = 1;
 

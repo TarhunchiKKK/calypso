@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-import "common.proto";
+import "common/util.proto";
+import "media/media.models.proto";
 
 package media;
+
 
 service MediaService {
     rpc FindPresets(FindMediaPresetsGrpcRequest) returns (FindMediaPresetsGrpcResponse) {}
@@ -11,28 +13,6 @@ service MediaService {
 
     rpc GetPresignedUrl(GetPresignedMediaUrlGrpcRequest) returns (GetPresignedMediaUrlGrpcResponse) {}
 } 
-
-message MediaGrpc {
-    string id = 1;
-
-    string url = 2;
-}
-
-message MediaGroupGrpc {
-    string id = 1;
-
-    string title = 2;
-
-    string thumbnail = 3;
-}
-
-message MediaListGrpc {
-    repeated MediaGrpc media = 1;
-}
-
-message MediaGroupsListGrpc {
-    repeated MediaGroupGrpc groups = 1;
-}
 
 message FindMediaPresetsGrpcRequest {
     string domain = 1;
@@ -64,12 +44,6 @@ message GetPresignedMediaUrlGrpcRequest {
     string fileName = 1;
 
     string contentType = 2;
-}
-
-message PresignUrlPairGrpc {
-    string key = 1;
-
-    string url = 2; 
 }
 
 message GetPresignedMediaUrlGrpcResponse {

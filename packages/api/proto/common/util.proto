@@ -12,7 +12,6 @@ message GrpcError {
     int32 statusCode = 3;
 }
 
-
 message EmptyGrpcResponse {
     oneof response {
         google.protobuf.Empty data = 1;

@@ -2,33 +2,15 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: media.proto
+// source: core/media.service.proto
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { GrpcError } from "./common";
+import { GrpcError } from "../common/util";
+import { MediaGroupsListGrpc, MediaListGrpc, PresignUrlPairGrpc } from "./media.models";
 
 const protobufPackage = "media";
-
-export interface MediaGrpc {
-  id: string;
-  url: string;
-}
-
-export interface MediaGroupGrpc {
-  id: string;
-  title: string;
-  thumbnail: string;
-}
-
-export interface MediaListGrpc {
-  media: MediaGrpc[];
-}
-
-export interface MediaGroupsListGrpc {
-  groups: MediaGroupGrpc[];
-}
 
 export interface FindMediaPresetsGrpcRequest {
   domain: string;
@@ -52,11 +34,6 @@ export interface FindMediaPresetsGroupsGrpcResponse {
 export interface GetPresignedMediaUrlGrpcRequest {
   fileName: string;
   contentType: string;
-}
-
-export interface PresignUrlPairGrpc {
-  key: string;
-  url: string;
 }
 
 export interface GetPresignedMediaUrlGrpcResponse {

@@ -2,10 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: common.proto
+// source: common/util.proto
 
 /* eslint-disable */
-import { Empty } from "./google/protobuf/empty";
+import { Empty } from "../google/protobuf/empty";
 
 const protobufPackage = "common";
 

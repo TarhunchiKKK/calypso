@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: geometry.proto
+// source: common/geometry.proto
 
 /* eslint-disable */
 

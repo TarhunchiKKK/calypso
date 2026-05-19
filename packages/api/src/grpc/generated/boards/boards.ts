@@ -2,20 +2,20 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: boards.proto
+// source: boards/boards.proto
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { EmptyGrpcResponse, GrpcError } from "./common";
-import { FormattableElementGrpc } from "./formattable";
-import { PointGrpc, RectGrpc, RelativePointGrpc } from "./geometry";
+import { FormattableElementGrpc } from "../common/formattable";
+import { PointGrpc, RectGrpc, RelativePointGrpc } from "../common/geometry";
+import { EmptyGrpcResponse, GrpcError } from "../common/util";
 import {
   DuplicateProjectGrpcRequest,
   FindAllProjectsGrpcRequest,
   FindOneProjectGrpcRequest,
   RemoveProjectGrpcRequest,
-} from "./projects";
+} from "../core/projects";
 
 const protobufPackage = "boards";
 

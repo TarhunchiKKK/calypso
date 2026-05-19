@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.11.6
 //   protoc               v3.21.12
-// source: auth.proto
+// source: core/auth.proto
 
 /* eslint-disable */
 
