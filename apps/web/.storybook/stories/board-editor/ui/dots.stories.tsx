@@ -12,10 +12,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        offset: {
-            dx: 0,
-            dy: 0
-        },
-        zoom: 1.0
+        dimensions: {
+            offset: {
+                dx: 0,
+                dy: 0
+            },
+            zoom: 1.0
+        }
     }
 };

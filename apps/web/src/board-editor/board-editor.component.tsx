@@ -35,14 +35,9 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
 
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
-            <Dots offset={layoutDimensionsModel.layoutOffset.offset} zoom={layoutDimensionsModel.layoutZoom.zoom} />
+            <Dots dimensions={layoutDimensionsModel.dimensions} />
 
-            <Canvas
-                offset={layoutDimensionsModel.layoutOffset.offset}
-                zoom={layoutDimensionsModel.layoutZoom.zoom}
-                overlay={<Overlay {...viewModel.overlay} />}
-                {...viewModel.canvas}
-            >
+            <Canvas dimensions={layoutDimensionsModel.dimensions} overlay={<Overlay {...viewModel.overlay} />} {...viewModel.canvas}>
                 {viewModel.nodes.map((node) => node.render())}
 
                 {viewModel.additionalElements?.canvas}

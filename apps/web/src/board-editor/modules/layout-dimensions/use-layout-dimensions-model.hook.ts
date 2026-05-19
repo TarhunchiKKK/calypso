@@ -73,8 +73,15 @@ export function useLayoutDimensionsModel() {
     };
 
     return {
-        layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
-        layoutZoom: { zoom, handleZoom },
+        dimensions: { offset, zoom },
+        handlers: {
+            setOffset,
+            isShifting,
+            startShifting,
+            shift,
+            endShifting,
+            zoom: handleZoom
+        },
         applyForPoint: applyForPoint.bind(null, zoom),
         lastClick: {
             point: lastClick.point ? applyForPoint(zoom, lastClick.point) : undefined,
@@ -84,3 +91,4 @@ export function useLayoutDimensionsModel() {
 }
 
 export type LayoutDimensionsModel = ReturnType<typeof useLayoutDimensionsModel>;
+export type LayoutDimensions = LayoutDimensionsModel["dimensions"];

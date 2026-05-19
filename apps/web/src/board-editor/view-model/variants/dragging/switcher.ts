@@ -5,7 +5,7 @@ import type { ViewModelParams } from "../../types";
 
 export function useSwitchToDragging({ layoutDimensionsModel, setViewState }: ViewModelParams) {
     const onMouseDown = (nodeIds: Set<Id>, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
+        if (layoutDimensionsModel.handlers.isShifting(e)) {
             return;
         }
 

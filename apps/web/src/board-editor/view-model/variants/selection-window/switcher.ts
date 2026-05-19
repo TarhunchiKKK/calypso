@@ -7,7 +7,7 @@ import type { SelectionViewState } from "../selection/view-state";
 
 export function useSwitchToSelectionWindow({ layoutDimensionsModel, setViewState }: ViewModelParams) {
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
+        if (layoutDimensionsModel.handlers.isShifting(e)) {
             return;
         }
 

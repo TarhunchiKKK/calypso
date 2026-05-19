@@ -102,9 +102,9 @@ const elements = [
 export function BoardEditorSkeleton({ children }: PropsWithChildren) {
     return (
         <Layout>
-            <Dots {...layoutDimensions} />
+            <Dots dimensions={layoutDimensions} />
 
-            <Canvas {...layoutDimensions} overlay={<Overlay />}>
+            <Canvas dimensions={layoutDimensions} overlay={<Overlay />}>
                 {elements.map((element, index) => (
                     <Skeleton key={index} style={{ position: "absolute", left: element.x, top: element.y, width: element.width, height: element.height }} />
                 ))}

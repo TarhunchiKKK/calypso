@@ -1,9 +1,9 @@
-import type { Offset } from "@repo/common";
+import type { LayoutDimensions } from "./use-layout-dimensions-model.hook";
 
-export function createLayoutDimensionsStyles(offset: Offset, zoom: number) {
+export function createLayoutDimensionsStyles(dimensions: LayoutDimensions) {
     return {
-        "--x": `${-offset.dx * zoom}px`,
-        "--y": `${-offset.dy * zoom}px`,
-        "--zoom": zoom
+        "--x": `${-dimensions.offset.dx * dimensions.zoom}px`,
+        "--y": `${-dimensions.offset.dy * dimensions.zoom}px`,
+        "--zoom": dimensions.zoom
     } as React.CSSProperties;
 }

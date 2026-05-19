@@ -7,20 +7,20 @@ export const useLayoutDimensionsDecorator: ViewModelDecorator = (viewModel, _, {
             ...viewModel.overlay,
             onMouseDown: (e) => {
                 viewModel.overlay?.onMouseDown?.(e);
-                layoutDimensionsModel.layoutOffset.startShifting(e);
+                layoutDimensionsModel.handlers.startShifting(e);
             }
         },
         window: {
             ...viewModel.window,
             onMouseMove: (e) => {
                 viewModel.window?.onMouseMove?.(e);
-                layoutDimensionsModel.layoutOffset.shift(e);
+                layoutDimensionsModel.handlers.shift(e);
             },
             onMouseUp: (e) => {
                 viewModel.window?.onMouseUp?.(e);
-                layoutDimensionsModel.layoutOffset.endShifting();
+                layoutDimensionsModel.handlers.endShifting();
             },
-            onWheel: layoutDimensionsModel.layoutZoom.handleZoom
+            onWheel: layoutDimensionsModel.handlers.zoom
         }
     };
 };
