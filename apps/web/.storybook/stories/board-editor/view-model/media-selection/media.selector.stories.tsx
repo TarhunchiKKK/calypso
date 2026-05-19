@@ -16,7 +16,6 @@ export const Default: Story = {
     decorators: centered,
 
     args: {
-        style: { x: 0, y: 0 },
         onSelect: () => {}
     },
     parameters: {

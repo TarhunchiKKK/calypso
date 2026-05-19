@@ -43,7 +43,7 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
                 {viewModel.additionalElements?.canvas}
             </Canvas>
 
-            <ActionsBar actions={viewModel.actions} />
+            <ActionsBar actions={viewModel.actions} additionalElement={viewModel.additionalElements?.actionsBar} />
 
             {children}
 

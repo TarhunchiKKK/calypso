@@ -20,6 +20,8 @@ import { ActionButton } from "./action-button.component";
 
 type Props = {
     actions: ViewModel["actions"];
+
+    additionalElement?: React.ReactNode;
 };
 
 const ButtonsMap = {
@@ -44,30 +46,34 @@ const ButtonsMap = {
     ] satisfies { key: keyof ViewModel["actions"]["cancellation"]; element: React.ReactNode }[]
 };
 
-export function ActionsBar({ actions }: Props) {
+export function ActionsBar({ actions, additionalElement }: Props) {
     return (
-        <Wrapper className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 dark:bg-gray-900!">
-            {ButtonsMap.nodes.map(({ key, element }) => (
-                <ActionButton key={key} active={actions.nodes[key].active} onClick={actions.nodes[key].onClick}>
-                    {element}
-                </ActionButton>
-            ))}
+        <div className="h-4/5 absolute left-4 top-1/2 -translate-y-1/2 flex flex-row justify-left items-center gap-8">
+            <Wrapper className="flex flex-col gap-2 dark:bg-gray-900!">
+                {ButtonsMap.nodes.map(({ key, element }) => (
+                    <ActionButton key={key} active={actions.nodes[key].active} onClick={actions.nodes[key].onClick}>
+                        {element}
+                    </ActionButton>
+                ))}
 
-            <Separator orientation="horizontal" />
+                <Separator orientation="horizontal" />
 
-            {ButtonsMap.exchangeBuffer.map(({ key, element }) => (
-                <ActionButton key={key} active={actions.exchangeBuffer[key].active} onClick={actions.exchangeBuffer[key].onClick}>
-                    {element}
-                </ActionButton>
-            ))}
+                {ButtonsMap.exchangeBuffer.map(({ key, element }) => (
+                    <ActionButton key={key} active={actions.exchangeBuffer[key].active} onClick={actions.exchangeBuffer[key].onClick}>
+                        {element}
+                    </ActionButton>
+                ))}
 
-            <Separator orientation="horizontal" />
+                <Separator orientation="horizontal" />
 
-            {ButtonsMap.cancellation.map(({ key, element }) => (
-                <ActionButton key={key} active={actions.cancellation[key].active} onClick={actions.cancellation[key].onClick}>
-                    {element}
-                </ActionButton>
-            ))}
-        </Wrapper>
+                {ButtonsMap.cancellation.map(({ key, element }) => (
+                    <ActionButton key={key} active={actions.cancellation[key].active} onClick={actions.cancellation[key].onClick}>
+                        {element}
+                    </ActionButton>
+                ))}
+            </Wrapper>
+
+            {additionalElement && <div className="max-w-100 h-full flex flex-col justify-center items-center">{additionalElement}</div>}
+        </div>
     );
 }

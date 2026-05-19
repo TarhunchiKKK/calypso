@@ -37,6 +37,7 @@ export type ViewModel = {
     additionalElements?: {
         canvas?: React.ReactNode;
         layout?: React.ReactNode;
+        actionsBar?: React.ReactNode;
     };
 
     actions: {
