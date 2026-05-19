@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { type DecoratableViewModel, useViewModelDecorators } from "./decorators";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
+import { EMPTY_IDS_GUARD_KEY, EmptyIdsGuard } from "./middleware/empty-ids.guard";
 import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
 import type { ViewModel, ViewModelParams } from "./types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
@@ -35,6 +36,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     };
 
     useEffect(() => {
+        viewStateMiddleware.guards.set(EMPTY_IDS_GUARD_KEY, EmptyIdsGuard);
         viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
     }, [viewStateMiddleware.guards.set]);
 
