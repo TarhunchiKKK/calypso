@@ -43,5 +43,13 @@ export function useCancellationStore() {
         lastRedoItem();
     };
 
-    return { push, undo, redo };
+    return {
+        push,
+        undo,
+        redo,
+        sizes: {
+            undo: undoQueue.length,
+            redo: redoQueue.length
+        }
+    };
 }

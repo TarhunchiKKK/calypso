@@ -8,7 +8,7 @@ import { Overlay } from "./ui/overlay.component";
 import type { ViewModel } from "./view-model/types";
 
 const emptyAction = {
-    isActive: false,
+    active: false,
     onClick: () => {}
 };
 

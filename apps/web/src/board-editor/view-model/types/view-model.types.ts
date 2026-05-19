@@ -2,9 +2,11 @@ import type React from "react";
 import type { Renderable } from "../../core";
 
 type Action = {
-    isActive: boolean;
+    active: boolean;
 
     onClick?: React.MouseEventHandler;
+
+    disabled?: boolean;
 };
 
 export type ViewModel = {

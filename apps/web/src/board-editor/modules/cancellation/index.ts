@@ -1,3 +1,4 @@
+import type { OmitFields } from "@repo/common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellationStore } from "./use-cancellation-store.hook";
 
@@ -115,9 +116,6 @@ export function useCancellationDecorator(service: NodesService) {
             removeAll,
             replaceAll
         } satisfies NodesService,
-        cancellation: {
-            undo: store.undo,
-            redo: store.redo
-        }
+        cancellation: store as OmitFields<typeof store, "push">
     };
 }

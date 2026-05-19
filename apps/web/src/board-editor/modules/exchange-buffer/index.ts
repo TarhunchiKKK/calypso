@@ -50,6 +50,7 @@ export function useExchangeBuffer(service: NodesService) {
     return {
         copy,
         paste,
-        cut
+        cut,
+        empty: !selectedNodes || selectedNodes.length === 0
     };
 }

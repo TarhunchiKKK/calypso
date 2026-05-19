@@ -7,7 +7,7 @@ import { type NodesService, useNodesService } from "@/entities/nodes";
 export function useNodesModel(inputNodes: NodeBase[], _: Id) {
     const nodesService = useNodesService(inputNodes);
 
-    // TODO: implement
+    // TEMP: implement
     // const _ = useNodesApiDecorator(nodesService, boardId);
 
     const withCancellation = useCancellationDecorator(nodesService);

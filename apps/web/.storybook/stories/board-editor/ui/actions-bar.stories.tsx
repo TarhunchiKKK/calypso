@@ -12,8 +12,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const emptyAction = {
-    isActive: false,
+    active: false,
     onClick: () => {}
+};
+
+const disabledAction = {
+    active: false,
+    disabled: true,
+    onclick: () => {}
 };
 
 export const Default: Story = {
@@ -22,7 +28,7 @@ export const Default: Story = {
         actions: {
             nodes: {
                 idle: {
-                    isActive: true,
+                    active: true,
                     onClick: () => {}
                 },
                 stickers: emptyAction,
@@ -35,12 +41,12 @@ export const Default: Story = {
             },
             exchangeBuffer: {
                 copy: emptyAction,
-                paste: emptyAction,
+                paste: disabledAction,
                 cut: emptyAction
             },
             cancellation: {
-                undo: emptyAction,
-                redo: emptyAction
+                undo: disabledAction,
+                redo: disabledAction
             }
         }
     }
