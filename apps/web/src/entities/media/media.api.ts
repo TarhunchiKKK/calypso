@@ -1,5 +1,5 @@
 import type { FindPresetsDto, GetPresignedUrlDto, GetPresignedUrlResponse, Media, MediaDomains, MediaGroup } from "@repo/media";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { toast } from "sonner";
 import { ApiInstance } from "@/shared/model";
@@ -9,8 +9,8 @@ const queryKeys = {
     groups: (domain: MediaDomains) => ["presets-groups", domain]
 };
 
-function useFindPresets(dto: FindPresetsDto) {
-    return useQuery({
+function findPresetsOptions(dto: FindPresetsDto) {
+    return queryOptions({
         queryKey: queryKeys.presets(dto),
         queryFn: async () => {
             return await ApiInstance.get<Media[]>("/media/presets", {
@@ -20,13 +20,23 @@ function useFindPresets(dto: FindPresetsDto) {
     });
 }
 
-function useFindPresetsGroups(domain: MediaDomains) {
-    return useQuery({
+function useFindPresets(dto: FindPresetsDto) {
+    return useQuery(findPresetsOptions(dto));
+}
+
+function findPresetsGroupsOptions(domain: MediaDomains) {
+    return queryOptions({
         queryKey: queryKeys.groups(domain),
         queryFn: async () => {
             return await ApiInstance.get<MediaGroup[]>(`/media/presets/${domain}`);
-        }
+        },
+        enabled: !!domain,
+        staleTime: "static"
     });
+}
+
+function useFindPresetsGroups(domain: MediaDomains) {
+    return useQuery(findPresetsGroupsOptions(domain));
 }
 
 function useGetPresignedUrl() {
@@ -57,6 +67,10 @@ function useRandomMedia(dto: FindPresetsDto) {
 }
 
 export const MediaApi = {
+    options: {
+        findPresets: findPresetsOptions,
+        findPresetsGroups: findPresetsGroupsOptions
+    },
     useFindPresets,
     useFindPresetsGroups,
     useGetPresignedUrl,

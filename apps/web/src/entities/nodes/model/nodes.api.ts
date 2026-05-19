@@ -1,6 +1,6 @@
 import type { CreateManyNodesDto, NodeBase, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards";
 import type { Id, OmitFields } from "@repo/common";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 
 const queryKeys = {
@@ -15,13 +15,18 @@ function useCreateMany() {
     });
 }
 
-function useFindAll(boardId: Id) {
-    return useQuery({
+function findAllOptions(boardId: Id) {
+    return queryOptions({
         queryKey: queryKeys.findAll(boardId),
         queryFn: async () => {
             return await ApiInstance.get<NodeBase[]>("/boards/nodes");
-        }
+        },
+        enabled: !!boardId
     });
+}
+
+function useFindAll(boardId: Id) {
+    return useQuery(findAllOptions(boardId));
 }
 
 function useUpdateMany() {
@@ -52,6 +57,9 @@ function useInvalidateCache() {
 }
 
 export const NodesApi = {
+    options: {
+        findAll: findAllOptions
+    },
     useCreateMany,
     useFindAll,
     useUpdateMany,
