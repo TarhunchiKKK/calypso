@@ -16,6 +16,10 @@ export const EmptyIdsGuard: ViewStateGuard = (_, next, prev) => {
         case "selection-window":
             return true;
         case "selection":
+            if (next.nodeIds.size !== 0) {
+                return true;
+            }
+
             return prev.type === "selection-window";
         default:
             throw new Error(`Unknown view state: ${next satisfies { type: never }} `);

@@ -27,7 +27,7 @@ export const Router = createBrowserRouter([
                     {
                         path: Routes.apps.board.pattern,
                         lazy: () => import("@/pages/apps/board-editor.page"),
-                        loader: async ({ params }) => {
+                        loader: ({ params }) => {
                             if (params.id) {
                                 QueryClientInstance.prefetchQuery(NodesApi.options.findAll(params.id));
                             } else {
