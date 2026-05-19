@@ -1,9 +1,7 @@
-import type { Point } from "@repo/common";
 import type { ShapeSelectionViewState } from "./view-state";
 
-export function switchToShapeSelection(clickPoint: Point): ShapeSelectionViewState {
+export function switchToShapeSelection(): ShapeSelectionViewState {
     return {
-        type: "shape-selection",
-        clickPoint: clickPoint
+        type: "shape-selection"
     };
 }

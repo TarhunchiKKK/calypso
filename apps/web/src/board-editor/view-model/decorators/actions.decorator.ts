@@ -1,4 +1,3 @@
-import { Geometry } from "@/shared/lib/geometry";
 import type { ViewState } from "../types";
 import type { ViewModel } from "../types/view-model.types";
 import { switchToDrawing } from "../variants/drawing/switcher";
@@ -48,11 +47,11 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                 },
                 shapes: {
                     active: stateFlags.shapes,
-                    onClick: (e) => (!stateFlags.shapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+                    onClick: () => (!stateFlags.shapes ? setViewState(switchToShapeSelection()) : undefined)
                 },
                 media: {
                     active: stateFlags.media,
-                    onClick: !stateFlags.media ? (e) => setViewState(switchToMediaSelection(Geometry.pointFromEvent(e))) : undefined
+                    onClick: !stateFlags.media ? () => setViewState(switchToMediaSelection()) : undefined
                 },
                 notes: {
                     active: stateFlags.notes,
