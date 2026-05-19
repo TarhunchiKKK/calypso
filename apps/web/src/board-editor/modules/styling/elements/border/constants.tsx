@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { Square, SquareDashed, SquareDot, SquareRoundCorner } from "lucide-react";
 import { AvailableBorderRadiuses, DefaultNodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";

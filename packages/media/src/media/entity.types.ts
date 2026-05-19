@@ -1,4 +1,4 @@
-import type { Id } from "../shared/db.types";
+import type { Id } from "@repo/common";
 
 export type Media = {
     id: Id;

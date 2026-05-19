@@ -28,6 +28,7 @@
         "@nestjs/typeorm": "^11.0.0",
         "@repo/api": "*",
         "@repo/common": "*",
+        "@repo/media": "*",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^1.0.3",
         "class-transformer": "^0.5.1",

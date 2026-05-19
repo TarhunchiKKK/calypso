@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { FoldHorizontal, Minus } from "lucide-react";
 import { AvailableLineWidths, DefaultNodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";

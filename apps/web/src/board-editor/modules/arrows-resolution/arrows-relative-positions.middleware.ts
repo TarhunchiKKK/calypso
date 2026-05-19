@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase } from "@repo/boards-common";
+import type { ArrowNode, NodeBase } from "@repo/boards";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
 
 export const ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY = Symbol();

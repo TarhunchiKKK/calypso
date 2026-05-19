@@ -1,13 +1,5 @@
-import type {
-    DuplicateProjectDto,
-    FindOneProjectDto,
-    Id,
-    Project,
-    ProjectWithCreator,
-    ProjectWithType,
-    RemoveProjectDto,
-    UpdateProjectDto
-} from "@repo/common";
+import type { Id } from "@repo/common";
+import type { DuplicateProjectDto, FindOneProjectDto, Project, ProjectWithCreator, ProjectWithType, RemoveProjectDto, UpdateProjectDto } from "@repo/projects";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 

@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../shared/lib/window";

@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/common";
+import type { ProjectTypes } from "@repo/projects";
 import { Dropdown } from "@/shared/ui";
 import { Input } from "@/shared/ui/kit";
 import { OwnerDropdownItems, SortOrdersDropdownItems, TypeDropdownItems } from "../constants/filtering-dropdowns.constants";

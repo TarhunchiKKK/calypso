@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import { useState } from "react";
 import type { NodeEditingHandlers } from "@/board-editor/modules/editing";
 import type { ViewModelParams } from "@/board-editor/view-model/types";

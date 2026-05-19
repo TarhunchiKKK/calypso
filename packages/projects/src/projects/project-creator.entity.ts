@@ -1,5 +1,5 @@
 import type z from "zod";
-import { type Profile, ProfileZodSchema } from "../auth";
+import { type Profile, ProfileZodSchema } from "@repo/auth";
 import type { Project } from "./project.entity";
 
 export const ProjectCreatorZodSchema = ProfileZodSchema.extend({});

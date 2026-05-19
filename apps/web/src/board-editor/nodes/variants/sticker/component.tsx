@@ -1,4 +1,4 @@
-import type { StickerNode } from "@repo/boards-common";
+import type { StickerNode } from "@repo/boards";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import { TextareaAutoFontSize } from "@/shared/ui";

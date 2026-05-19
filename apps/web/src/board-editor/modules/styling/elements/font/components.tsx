@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { Dropdown } from "@/shared/ui";
 import type { ElementProps } from "../../lib/types";
 import { FontFamilies, FontFamilyPlaceholder, FontSizePlaceholder, FontSizes } from "./constants";

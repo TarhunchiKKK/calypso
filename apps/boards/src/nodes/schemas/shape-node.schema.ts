@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { NodeBase, ShapeNode as ShapeNodeType, ShapeVariants } from "@repo/boards-common";
+import type { NodeBase, ShapeNode as ShapeNodeType, ShapeVariants } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()

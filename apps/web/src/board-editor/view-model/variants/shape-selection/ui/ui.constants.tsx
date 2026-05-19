@@ -1,4 +1,4 @@
-import type { ShapeVariants } from "@repo/boards-common";
+import type { ShapeVariants } from "@repo/boards";
 import type { Offset } from "@repo/common";
 import { CircleIcon, Diamond, HexagonIcon, SquareIcon, StarIcon, TriangleIcon } from "lucide-react";
 import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";

@@ -1,4 +1,5 @@
-import type { Id, ProjectWithCreator, ProjectWithType } from "@repo/common";
+import type { Id } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { OwnerFilters, SortOrders } from "../types/filtering.types";
 
 export const OwnerFilteringFunctions: Record<OwnerFilters, (project: ProjectWithCreator<ProjectWithType>, userId: Id) => boolean> = {

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/common";
+import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { stopPropagationHandler } from "@/shared/lib/events";

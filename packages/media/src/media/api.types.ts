@@ -1,5 +1,5 @@
 import z from "zod";
-import { IdZodSchema } from "../shared/db.types";
+import { IdZodSchema } from "@repo/common";
 import { MediaDomainsZodSchema } from "./types";
 
 export const FindPresetsDtoZodSchema = z.object({

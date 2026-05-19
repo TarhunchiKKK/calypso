@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/common";
+import type { ProjectTypes } from "@repo/projects";
 
 export enum OwnerFilters {
     ANYONE,

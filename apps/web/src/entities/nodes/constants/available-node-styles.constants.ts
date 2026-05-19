@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 
 export const AvailableFontFamilies: NodeStyles["fontFamily"][] = ["sans-serif", "fantasy", "math", "monospace"] as const;
 

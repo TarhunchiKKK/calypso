@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithType } from "@repo/projects";
 import { CopyIcon, TrashIcon } from "lucide-react";
 import { ProjectsApi } from "@/entities/projects";
 import { DropdownMenuItem } from "@/shared/ui/kit";

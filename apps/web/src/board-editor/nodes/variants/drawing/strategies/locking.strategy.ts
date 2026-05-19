@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards-common";
+import type { DrawingNode } from "@repo/boards";
 import type { Decoratable } from "@/board-editor/core";
 import { LOCKED_COLOR, NodeLockingStrategy } from "@/board-editor/modules/locking";
 

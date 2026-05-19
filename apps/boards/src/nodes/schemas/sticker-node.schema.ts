@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { NodeBase, StickerNode as StickerNodeType } from "@repo/boards-common";
+import type { NodeBase, StickerNode as StickerNodeType } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()

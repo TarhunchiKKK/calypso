@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { EllipsisVertical } from "lucide-react";
 import { ProjectActions } from "@/features/project-actions";
 import { formatDate } from "@/shared/lib/date";

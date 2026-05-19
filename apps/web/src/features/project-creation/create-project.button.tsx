@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/common";
+import type { ProjectTypes } from "@repo/projects";
 import { PlusIcon } from "lucide-react";
 import { preventDefaultHandler } from "@/shared/lib/events";
 import type { DropdownItem } from "@/shared/ui";

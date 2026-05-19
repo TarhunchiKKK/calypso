@@ -7,7 +7,7 @@ import {
     RemoveManyNodesDtoZodSchema,
     type UpdateManyNodesDto,
     UpdateManyNodesDtoZodSchema
-} from "@repo/boards-common";
+} from "@repo/boards";
 import type { Id } from "@repo/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";

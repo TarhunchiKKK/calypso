@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithType } from "@repo/projects";
 import type { ChangeEvent } from "react";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
@@ -73,9 +73,9 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
                     placeholder="Choose"
                     onChange={handleUpload}
                     className="
-                        max-w-60 
+                        max-w-60
                         relative
-                        text-transparent 
+                        text-transparent
                         file:text-transparent
                         before:content-['Import_file']
                         before:absolute

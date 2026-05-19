@@ -1,4 +1,4 @@
-import type { Profile } from "@repo/common";
+import type { Profile } from "@repo/auth";
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from "@/shared/ui/kit";
 import { AuthApi } from "../auth";
 

@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { useProjectsFilters } from "./hooks/use-projects-filters.hook";
 import { ProjectsFilters } from "./ui/projects-filters";
 import { ProjectsTable, ProjectsTableSkeleton } from "./ui/projects-table.component";

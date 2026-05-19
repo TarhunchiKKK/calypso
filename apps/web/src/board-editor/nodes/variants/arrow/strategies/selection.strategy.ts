@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeSelectionStrategy, SELECTION_COLOR } from "@/board-editor/modules/selection";
 

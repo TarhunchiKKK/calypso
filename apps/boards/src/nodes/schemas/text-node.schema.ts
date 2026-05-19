@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { NodeBase, TextNode as TextNodeType } from "@repo/boards-common";
+import type { NodeBase, TextNode as TextNodeType } from "@repo/boards";
 import type { FormattableElement, OmitFields, Rect } from "@repo/common";
 
 @Schema()

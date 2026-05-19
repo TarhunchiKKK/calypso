@@ -1,4 +1,4 @@
-import type { Board, CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
+import type { Board, CreateBoardDto, UpdateBoardDto } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ProjectsQueryKeys } from "@/entities/projects";

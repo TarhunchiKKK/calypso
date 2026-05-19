@@ -1,18 +1,17 @@
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
 import { extractGrpcResponsePipe } from "@repo/api";
+import { DebugException, type Id } from "@repo/common";
+import { type Profile } from "@repo/auth";
 import {
-    DebugException,
     type DuplicateProjectDto,
     type FindOneProjectDto,
-    type Id,
-    type Profile,
     type Project,
     type ProjectTypes,
     type ProjectWithCreator,
     type ProjectWithType,
     type RemoveProjectDto,
     type UpdateProjectDto
-} from "@repo/common";
+} from "@repo/projects";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";

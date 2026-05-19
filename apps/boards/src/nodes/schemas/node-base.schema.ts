@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { NodeBase as NodeBaseType, NodeStyles, NodeTypes } from "@repo/boards-common";
+import type { NodeBase as NodeBaseType, NodeStyles, NodeTypes } from "@repo/boards";
 import { Types } from "mongoose";
 
 @Schema({ discriminatorKey: "type" })

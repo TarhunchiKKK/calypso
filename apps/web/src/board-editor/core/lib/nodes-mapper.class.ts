@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import type { NodeHandlers } from "../classes/node-wrapper.class";
 import type { Decoratable } from "../types/decorators.types";

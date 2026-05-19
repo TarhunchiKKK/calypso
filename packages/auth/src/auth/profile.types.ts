@@ -1,5 +1,5 @@
 import z from "zod";
-import { IdZodSchema } from "../shared/db.types";
+import { IdZodSchema } from "@repo/common";
 
 export const ProfileZodSchema = z.object({
     id: IdZodSchema,

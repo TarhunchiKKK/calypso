@@ -15,26 +15,6 @@
             "types": "./dist/cjs/entry.d.ts",
             "import": "./dist/esm/entry.js",
             "require": "./dist/cjs/entry.js"
-        },
-        "./auth": {
-            "types": "./dist/cjs/auth/index.d.ts",
-            "import": "./dist/esm/auth/index.js",
-            "require": "./dist/cjs/auth/index.js"
-        },
-        "./media": {
-            "types": "./dist/cjs/media/index.d.ts",
-            "import": "./dist/esm/media/index.js",
-            "require": "./dist/cjs/media/index.js"
-        },
-        "./projects": {
-            "types": "./dist/cjs/projects/index.d.ts",
-            "import": "./dist/esm/projects/index.js",
-            "require": "./dist/cjs/projects/index.js"
-        },
-        "./shared": {
-            "types": "./dist/cjs/shared/index.d.ts",
-            "import": "./dist/esm/shared/index.js",
-            "require": "./dist/cjs/shared/index.js"
         }
     },
     "scripts": {

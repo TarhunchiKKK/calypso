@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id, OmitFields } from "@repo/common";
 import { useCancellationDecorator } from "@/board-editor/modules/cancellation";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";

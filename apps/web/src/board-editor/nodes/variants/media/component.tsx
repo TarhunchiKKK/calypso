@@ -1,4 +1,4 @@
-import type { MediaNode } from "@repo/boards-common";
+import type { MediaNode } from "@repo/boards";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 

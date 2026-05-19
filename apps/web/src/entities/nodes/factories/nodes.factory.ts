@@ -1,4 +1,4 @@
-import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards-common";
+import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
 import type { Point } from "@repo/common";
 import { pickFields } from "@/shared/lib/object";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";

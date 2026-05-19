@@ -1,4 +1,4 @@
-import type { NodeStyles, NodeTypes } from "@repo/boards-common";
+import type { NodeStyles, NodeTypes } from "@repo/boards";
 
 export const NodeStyleKeysMap: Record<NodeTypes, (keyof NodeStyles)[][]> = {
     sticker: [["fontFamily"], ["backgroundColor", "textColor"], ["borderStyle", "borderColor", "borderRadius"], ["textAlign"]],

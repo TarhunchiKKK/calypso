@@ -24,8 +24,9 @@
         "@nestjs/platform-express": "^11.1.11",
         "@nestjs/typeorm": "^11.0.0",
         "@repo/api": "*",
-        "@repo/boards-common": "*",
+        "@repo/boards": "*",
         "@repo/common": "*",
+        "@repo/projects": "*",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^0.10.9",
         "class-transformer": "^0.5.1",
@@ -63,8 +64,11 @@
         "@nestjs/platform-express": "^11.1.11",
         "@nestjs/typeorm": "^11.0.1",
         "@repo/api": "*",
-        "@repo/boards-common": "*",
+        "@repo/auth": "*",
+        "@repo/boards": "*",
         "@repo/common": "*",
+        "@repo/media": "*",
+        "@repo/projects": "*",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^0.10.9",
         "argon2": "^0.44.0",
@@ -111,6 +115,7 @@
         "@nestjs/typeorm": "^11.0.0",
         "@repo/api": "*",
         "@repo/common": "*",
+        "@repo/media": "*",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^1.0.3",
         "class-transformer": "^0.5.1",
@@ -148,8 +153,11 @@
         "@radix-ui/react-toggle-group": "^1.1.11",
         "@radix-ui/react-toolbar": "^1.1.11",
         "@radix-ui/react-tooltip": "^1.2.8",
-        "@repo/boards-common": "*",
+        "@repo/auth": "*",
+        "@repo/boards": "*",
         "@repo/common": "*",
+        "@repo/media": "*",
+        "@repo/projects": "*",
         "@storybook/react-vite": "^10.3.6",
         "@tailwindcss/vite": "^4.2.0",
         "@tanstack/react-query": "^5.96.2",
@@ -200,8 +208,11 @@
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/boards-common": "*",
+        "@repo/auth": "*",
+        "@repo/boards": "*",
         "@repo/common": "*",
+        "@repo/media": "*",
+        "@repo/projects": "*",
         "google-proto-files": "^5.0.1",
         "protobufjs": "^8.0.0",
         "rxjs": "^7.8.2",
@@ -216,14 +227,29 @@
         "typescript": "5.5.4",
       },
     },
-    "packages/boards-common": {
-      "name": "@repo/boards-common",
+    "packages/auth": {
+      "name": "@repo/auth",
       "version": "0.0.0",
       "dependencies": {
         "zod": "^4.3.6",
       },
       "devDependencies": {
         "@repo/common": "*",
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "tsup": "^8.5.1",
+        "typescript": "5.5.4",
+      },
+    },
+    "packages/boards": {
+      "name": "@repo/boards",
+      "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
+      "devDependencies": {
+        "@repo/common": "*",
+        "@repo/projects": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
@@ -237,6 +263,35 @@
         "zod": "^4.3.6",
       },
       "devDependencies": {
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "tsup": "^8.5.1",
+        "typescript": "5.5.4",
+      },
+    },
+    "packages/media": {
+      "name": "@repo/media",
+      "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
+      "devDependencies": {
+        "@repo/common": "*",
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "tsup": "^8.5.1",
+        "typescript": "5.5.4",
+      },
+    },
+    "packages/projects": {
+      "name": "@repo/projects",
+      "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
+      "devDependencies": {
+        "@repo/auth": "*",
+        "@repo/common": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
@@ -861,9 +916,15 @@
 
     "@repo/api": ["@repo/api@workspace:packages/api"],
 
-    "@repo/boards-common": ["@repo/boards-common@workspace:packages/boards-common"],
+    "@repo/auth": ["@repo/auth@workspace:packages/auth"],
+
+    "@repo/boards": ["@repo/boards@workspace:packages/boards"],
 
     "@repo/common": ["@repo/common@workspace:packages/common"],
+
+    "@repo/media": ["@repo/media@workspace:packages/media"],
+
+    "@repo/projects": ["@repo/projects@workspace:packages/projects"],
 
     "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/typescript-config"],
 
@@ -2803,8 +2864,6 @@
 
     "bl/buffer": ["buffer@5.7.1", "", { "dependencies": { "base64-js": "^1.3.1", "ieee754": "^1.1.13" } }, "sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ=="],
 
-    "boards/@nestjs/typeorm": ["@nestjs/typeorm@11.0.0", "", { "peerDependencies": { "@nestjs/common": "^10.0.0 || ^11.0.0", "@nestjs/core": "^10.0.0 || ^11.0.0", "reflect-metadata": "^0.1.13 || ^0.2.0", "rxjs": "^7.2.0", "typeorm": "^0.3.0" } }, "sha512-SOeUQl70Lb2OfhGkvnh4KXWlsd+zA08RuuQgT7kKbzivngxzSo1Oc7Usu5VxCxACQC9wc2l9esOHILSJeK7rJA=="],
-
     "bun-types/@types/node": ["@types/node@24.12.0", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ=="],
 
     "cliui/strip-ansi": ["strip-ansi@6.0.1", "", { "dependencies": { "ansi-regex": "^5.0.1" } }, "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="],
@@ -2840,8 +2899,6 @@
     "jest-runtime/strip-bom": ["strip-bom@4.0.0", "", {}, "sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w=="],
 
     "jest-worker/supports-color": ["supports-color@8.1.1", "", { "dependencies": { "has-flag": "^4.0.0" } }, "sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q=="],
-
-    "media/@nestjs/typeorm": ["@nestjs/typeorm@11.0.0", "", { "peerDependencies": { "@nestjs/common": "^10.0.0 || ^11.0.0", "@nestjs/core": "^10.0.0 || ^11.0.0", "reflect-metadata": "^0.1.13 || ^0.2.0", "rxjs": "^7.2.0", "typeorm": "^0.3.0" } }, "sha512-SOeUQl70Lb2OfhGkvnh4KXWlsd+zA08RuuQgT7kKbzivngxzSo1Oc7Usu5VxCxACQC9wc2l9esOHILSJeK7rJA=="],
 
     "media/amqplib": ["amqplib@1.0.3", "", { "dependencies": { "buffer-more-ints": "~1.0.0" } }, "sha512-nsrXa59tvX4HPjPPW8JJGuBb/Db0MOq3DOhGdSbIY7bTsQDMV2fmF9c3i74g/8Gt9+QWyrxfEPppOOoV9lK1uQ=="],
 

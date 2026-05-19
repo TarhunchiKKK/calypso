@@ -1,4 +1,4 @@
-import type { ShapeVariants } from "@repo/boards-common";
+import type { ShapeVariants } from "@repo/boards";
 import type { CSSProperties } from "react";
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuTrigger } from "@/shared/ui/kit";

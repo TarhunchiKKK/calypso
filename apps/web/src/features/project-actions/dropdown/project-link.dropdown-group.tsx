@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithType } from "@repo/projects";
 import { LinkIcon, SquareArrowOutUpRightIcon } from "lucide-react";
 import { Routes } from "@/shared/config";
 import { DropdownMenuGroup, DropdownMenuItem } from "@/shared/ui/kit";

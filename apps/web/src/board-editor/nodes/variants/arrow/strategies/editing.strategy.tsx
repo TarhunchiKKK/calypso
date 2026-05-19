@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { KeyboardEventHandler } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";

@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import type { ArrowPosition } from "./lib/arrow.types";

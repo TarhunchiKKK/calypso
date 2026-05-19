@@ -7,7 +7,7 @@ import {
     ShapeNodeZodSchema,
     StickerNodeZodSchema,
     TextNodeZodSchema
-} from "@repo/boards-common";
+} from "@repo/boards";
 import { DebugException } from "@repo/common";
 import type { AnyBoardNodeGrpc, BoardNodeBaseGrpc } from "../generated";
 

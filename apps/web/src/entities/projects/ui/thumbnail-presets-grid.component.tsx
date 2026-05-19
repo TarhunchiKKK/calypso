@@ -1,4 +1,4 @@
-import type { Media } from "@repo/common";
+import type { Media } from "@repo/media";
 import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
 import { Skeleton } from "@/shared/ui/kit";

@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeStyles } from "@repo/boards-common";
+import type { ArrowNode, NodeStyles } from "@repo/boards";
 import clsx from "clsx";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";

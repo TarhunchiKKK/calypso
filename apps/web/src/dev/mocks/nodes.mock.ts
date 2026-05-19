@@ -1,4 +1,4 @@
-import type { ArrowNode, StickerNode } from "@repo/boards-common";
+import type { ArrowNode, StickerNode } from "@repo/boards";
 
 export const MockNodes = [
     {

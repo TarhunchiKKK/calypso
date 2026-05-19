@@ -1,3 +1,3 @@
-import type { Board } from "@repo/boards-common";
+import type { Board } from "@repo/boards";
 
 export type UpdateBoardDto = Partial<Pick<Board, "title" | "description" | "thumbnail">>;

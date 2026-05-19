@@ -1,4 +1,4 @@
-import type { ProjectOperations, ProjectRoles } from "@repo/common";
+import type { ProjectOperations, ProjectRoles } from "@repo/projects";
 
 export const AccessRightsRecord: Record<ProjectRoles, ProjectOperations[]> = {
     creator: ["view", "duplicate", "edit", "edit-metadata", "remove", "manage-access"],

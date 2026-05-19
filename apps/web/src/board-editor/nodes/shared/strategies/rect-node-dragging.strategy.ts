@@ -1,4 +1,4 @@
-import type { RectNode } from "@repo/boards-common";
+import type { RectNode } from "@repo/boards";
 import type { Offset } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";

@@ -1,4 +1,4 @@
-import type { NoteNode } from "@repo/boards-common";
+import type { NoteNode } from "@repo/boards";
 import type { FormattableElement } from "@repo/common";
 import type { CSSProperties } from "react";
 import type { Decoratable } from "@/board-editor/core";

@@ -10,7 +10,7 @@ import {
     type UnwrapGrpcResponse,
     type UpdateManyBoardNodesGrpcRequest
 } from "@repo/api";
-import type { AnyNode } from "@repo/boards-common";
+import type { AnyNode } from "@repo/boards";
 import { NodesService } from "../nodes.service";
 
 @GrpcController()

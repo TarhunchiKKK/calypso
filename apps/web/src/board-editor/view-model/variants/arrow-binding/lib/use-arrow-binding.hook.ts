@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { Geometry } from "@/shared/lib/geometry";

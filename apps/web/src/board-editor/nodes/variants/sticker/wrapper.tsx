@@ -1,4 +1,4 @@
-import type { StickerNode } from "@repo/boards-common";
+import type { StickerNode } from "@repo/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import { StickerComponent } from "./component";
 

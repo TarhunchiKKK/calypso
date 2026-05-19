@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { useState } from "react";
 import { AuthApi } from "@/features/auth";
 import { OwnerFilteringFunctions, SortingFunctions } from "../constants/filtering-maps.constants";

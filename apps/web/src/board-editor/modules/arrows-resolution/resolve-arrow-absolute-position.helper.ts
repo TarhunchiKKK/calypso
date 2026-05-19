@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase } from "@repo/boards-common";
+import type { ArrowNode, NodeBase } from "@repo/boards";
 import { NodeRectsFactory } from "@/entities/nodes";
 import type { ArrowAbsolutePosition } from "./types";
 

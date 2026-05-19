@@ -1,6 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import { Validation } from "@repo/api";
-import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
+import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@repo/auth";
 import type { Request, Response } from "express";
 import { CookieService } from "../lib/cookie/cookie.service";
 import { Authorization } from "../lib/tokens/security/authorization.decorator";

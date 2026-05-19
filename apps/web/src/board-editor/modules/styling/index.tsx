@@ -1,4 +1,4 @@
-import type { NodeTypes } from "@repo/boards-common";
+import type { NodeTypes } from "@repo/boards";
 import { Wrapper } from "@/shared/ui";
 import { Separator } from "@/shared/ui/kit";
 import { NodeStyleKeysMap } from "./constants/node-style-keys.map";

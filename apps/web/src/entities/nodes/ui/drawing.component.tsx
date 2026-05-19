@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards-common";
+import type { DrawingNode } from "@repo/boards";
 import { getStroke, type StrokeOptions, type Vec2 } from "perfect-freehand";
 import { type SVGProps, useMemo } from "react";
 import { Geometry } from "@/shared/lib/geometry";
