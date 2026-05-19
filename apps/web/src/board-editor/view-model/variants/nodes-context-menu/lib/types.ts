@@ -6,6 +6,8 @@ export type ContextMenuOption = {
     hotKey?: HotKey;
 
     onClick: () => void;
+
+    destructive?: boolean;
 };
 
 export type ContextMenuOptionsGroup = {

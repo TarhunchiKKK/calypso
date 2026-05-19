@@ -27,7 +27,7 @@ export function NodesContextMenu({ groups }: NodesContextMenuProps) {
                             {group.label && <DropdownMenuLabel>{group.label}</DropdownMenuLabel>}
 
                             {group.options.map((option) => (
-                                <DropdownMenuItem key={option.label} onClick={option.onClick}>
+                                <DropdownMenuItem key={option.label} onClick={option.onClick} variant={option.destructive ? "destructive" : "default"}>
                                     {option.label}
 
                                     {option.hotKey && <DropdownMenuShortcut>{HotKeyUtils.stringify(option.hotKey)}</DropdownMenuShortcut>}

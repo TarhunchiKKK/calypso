@@ -61,7 +61,8 @@ export function useContextMenuOptions({ nodesModel, setViewState }: ViewModelPar
                             nodesModel.service.removeMany(viewState.nodeIds);
 
                             setViewState(switchToIdle());
-                        }
+                        },
+                        destructive: true
                     }
                 ]
             }
