@@ -2,7 +2,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-const generatedDir = path.resolve(__dirname, "../src/grpc/generated");
+const generatedDir = path.resolve(__dirname, "../src/generated");
 
 function fixProtobufPackage(filePath: string): void {
     try {

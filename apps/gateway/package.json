@@ -30,6 +30,7 @@
         "@repo/auth": "*",
         "@repo/boards": "*",
         "@repo/common": "*",
+        "@repo/contracts": "*",
         "@repo/media": "*",
         "@repo/projects": "*",
         "amqp-connection-manager": "^5.0.0",

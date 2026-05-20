@@ -1,6 +1,6 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { extractGrpcResponsePipe, MEDIA_SERVICE_NAME, type MediaServiceClient } from "@repo/api";
+import { extractGrpcResponsePipe, MEDIA_SERVICE_NAME, type MediaServiceClient } from "@repo/contracts";
 import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@repo/media";
 import { map } from "rxjs";
 import { MEDIA_GRPC_CLIENT_INJECTION_TOKEN } from "./lib/grpc.constants";

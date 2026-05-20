@@ -1,4 +1,5 @@
 import { Inject } from "@nestjs/common";
+import type { AnyNode } from "@repo/boards";
 import {
     BoardNodesGrpcMapper,
     type BoardNodesServiceController,
@@ -9,8 +10,7 @@ import {
     type RemoveManyBoardNodesGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateManyBoardNodesGrpcRequest
-} from "@repo/api";
-import type { AnyNode } from "@repo/boards";
+} from "@repo/contracts";
 import { NodesService } from "../nodes.service";
 
 @GrpcController()

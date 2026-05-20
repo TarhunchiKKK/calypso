@@ -1,15 +1,17 @@
 import { Inject } from "@nestjs/common";
+import type { NoNullableFieldsDeep } from "@repo/common";
 import {
     type BoardsServiceController,
     BoardsServiceControllerMethods,
     type CreateBoardGrpcRequest,
+    type DuplicateProjectGrpcRequest,
+    type FindAllProjectsGrpcRequest,
     type FindOneProjectGrpcRequest,
     GrpcController,
+    type RemoveProjectGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
-} from "@repo/api";
-import type { DuplicateProjectGrpcRequest, FindAllProjectsGrpcRequest, RemoveProjectGrpcRequest } from "@repo/api/dist/grpc/generated/projects";
-import type { NoNullableFieldsDeep } from "@repo/common";
+} from "@repo/contracts";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";

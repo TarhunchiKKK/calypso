@@ -1,8 +1,9 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { BoardsGrpcMapper, BrokerRoutingKeys } from "@repo/api";
+import { BrokerRoutingKeys } from "@repo/api";
 import type { Id } from "@repo/common";
+import { BoardsGrpcMapper } from "@repo/contracts";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";

@@ -1,7 +1,7 @@
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import { extractGrpcResponsePipe } from "@repo/api";
 import type { Profile } from "@repo/auth";
 import { DebugException, type Id } from "@repo/common";
+import { extractGrpcResponsePipe } from "@repo/contracts";
 import type {
     DuplicateProjectDto,
     FindOneProjectDto,
