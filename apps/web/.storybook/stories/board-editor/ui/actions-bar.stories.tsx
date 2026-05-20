@@ -13,13 +13,17 @@ type Story = StoryObj<typeof meta>;
 
 const emptyAction = {
     active: false,
-    onClick: () => {}
+    onClick: () => {},
+    title: "Action",
+    shortcut: "A"
 };
 
 const disabledAction = {
     active: false,
     disabled: true,
-    onclick: () => {}
+    onclick: () => {},
+    title: "Action",
+    shortcut: "A"
 };
 
 export const Default: Story = {
@@ -29,7 +33,9 @@ export const Default: Story = {
             nodes: {
                 idle: {
                     active: true,
-                    onClick: () => {}
+                    onClick: () => {},
+                    title: "Idle",
+                    shortcut: "I"
                 },
                 stickers: emptyAction,
                 text: emptyAction,

@@ -49,7 +49,7 @@ export function ActionsBar({ actions, additionalElement }: Props) {
         <div className="h-4/5 absolute left-4 top-1/2 -translate-y-1/2 flex flex-row justify-left items-center gap-8">
             <Wrapper className="flex flex-col gap-2 dark:bg-gray-900!">
                 {ButtonsMap.nodes.map(({ key, element }) => (
-                    <ActionButton key={key} active={actions.nodes[key].active} onClick={actions.nodes[key].onClick}>
+                    <ActionButton key={key} {...actions.nodes[key]}>
                         {element}
                     </ActionButton>
                 ))}
@@ -57,7 +57,7 @@ export function ActionsBar({ actions, additionalElement }: Props) {
                 <Separator orientation="horizontal" />
 
                 {ButtonsMap.exchangeBuffer.map(({ key, element }) => (
-                    <ActionButton key={key} active={actions.exchangeBuffer[key].active} onClick={actions.exchangeBuffer[key].onClick}>
+                    <ActionButton key={key} {...actions.exchangeBuffer[key]}>
                         {element}
                     </ActionButton>
                 ))}
@@ -65,7 +65,7 @@ export function ActionsBar({ actions, additionalElement }: Props) {
                 <Separator orientation="horizontal" />
 
                 {ButtonsMap.cancellation.map(({ key, element }) => (
-                    <ActionButton key={key} active={actions.cancellation[key].active} onClick={actions.cancellation[key].onClick}>
+                    <ActionButton key={key} {...actions.cancellation[key]}>
                         {element}
                     </ActionButton>
                 ))}

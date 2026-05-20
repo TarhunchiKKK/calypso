@@ -7,6 +7,7 @@ export * from "./dialog";
 export * from "./dropdown-menu";
 export * from "./field";
 export * from "./input";
+export * from "./kbd";
 export * from "./popover";
 export * from "./scroll-area";
 export * from "./separator";

@@ -7,6 +7,10 @@ type Action = {
     onClick?: React.MouseEventHandler;
 
     disabled?: boolean;
+
+    title: string;
+
+    shortcut?: string;
 };
 
 export type ViewModel = {
