@@ -108,8 +108,25 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 ### ⚠️ Constraints 
 
 > 📌 **Important Note**
+>
+> This project was fully developed on [Kali Linux](https://www.kali.org/), so some CLI commands will not work on other operating systems.
+> ```bash
+> cd packages/contracts
+> bun protoc  # ❌ Linux-only command
+> ```
+>
+> ```bash
+> bun build:packages  # Don't work on Windows
+> ```
+
+> ⚠️ **Warning**
 > 
-> Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed шт агегкую 
+> Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed in future. 
+
+
+> ⚠️ **Warning**
+> 
+> Do not use text nodes now. They are currently not work correctly.
 
 ### ⚙️ Setup Steps
 
