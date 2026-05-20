@@ -7,6 +7,10 @@ type Action = {
     onClick?: React.MouseEventHandler;
 
     disabled?: boolean;
+
+    title: string;
+
+    shortcut?: string;
 };
 
 export type ViewModel = {
@@ -44,7 +48,6 @@ export type ViewModel = {
         nodes: {
             idle: Action;
             stickers: Action;
-            arrows: Action;
             text: Action;
             shapes: Action;
             media: Action;

@@ -16,7 +16,9 @@ export const Default: Story = {
     args: {
         active: false,
         onClick: () => {},
-        children: <StickerIcon />
+        children: <StickerIcon />,
+        title: "Action",
+        shortcut: "A"
     },
     decorators: centered
 };
@@ -25,7 +27,9 @@ export const Active: Story = {
     args: {
         active: true,
         onClick: () => {},
-        children: <StickerIcon />
+        children: <StickerIcon />,
+        title: "Action",
+        shortcut: "A"
     },
     decorators: centered
 };
@@ -35,7 +39,9 @@ export const Disabled: Story = {
         active: false,
         disabled: true,
         onClick: () => {},
-        children: <StickerIcon />
+        children: <StickerIcon />,
+        title: "Action",
+        shortcut: "A"
     },
     decorators: centered
 };

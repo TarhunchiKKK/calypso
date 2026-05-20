@@ -4,12 +4,12 @@ export const BoardHotKeys = {
     switch: {
         toIdle: [
             {
-                key: "Escape",
+                key: "i",
                 shiftKey: false,
                 ctrlKey: false
             },
             {
-                key: "i",
+                key: "Escape",
                 shiftKey: false,
                 ctrlKey: false
             }

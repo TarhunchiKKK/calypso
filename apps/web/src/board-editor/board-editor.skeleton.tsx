@@ -9,14 +9,14 @@ import type { ViewModel } from "./view-model/types";
 
 const emptyAction = {
     active: false,
-    onClick: () => {}
+    onClick: () => {},
+    title: ""
 };
 
 const actions: ViewModel["actions"] = {
     nodes: {
         idle: emptyAction,
         stickers: emptyAction,
-        arrows: emptyAction,
         text: emptyAction,
         shapes: emptyAction,
         media: emptyAction,

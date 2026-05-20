@@ -1,3 +1,5 @@
+import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";
+import { HotKeyUtils } from "@/shared/lib/hot-keys";
 import type { ViewState } from "../types";
 import type { ViewModel } from "../types/view-model.types";
 import { switchToDrawing } from "../variants/drawing/switcher";
@@ -13,7 +15,6 @@ function determineStateFlags(viewState: ViewState) {
     return {
         idle: idleViewStates.includes(viewState.type),
         stickers: viewState.type === "node-creation" && viewState.payload.type === "sticker",
-        arrows: (viewState.type === "node-creation" && viewState.payload.type === "arrow") || viewState.type === "arrow-binding",
         text: viewState.type === "node-creation" && viewState.payload.type === "text",
         shapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
         media: (viewState.type === "node-creation" && viewState.payload.type === "media") || viewState.type === "media-selection",
@@ -31,35 +32,41 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
             nodes: {
                 idle: {
                     active: stateFlags.idle,
-                    onClick: !stateFlags.idle ? () => setViewState(switchToIdle()) : undefined
+                    onClick: !stateFlags.idle ? () => setViewState(switchToIdle()) : undefined,
+                    title: "Idle",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.switch.toIdle[0])
                 },
                 stickers: {
                     active: stateFlags.stickers,
-                    onClick: !stateFlags.stickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
-                },
-                arrows: {
-                    active: stateFlags.arrows,
-                    onClick: !stateFlags.arrows ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
+                    onClick: !stateFlags.stickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined,
+                    title: "Sticker",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.switch.toCreation.sticker)
                 },
                 text: {
                     active: stateFlags.text,
-                    onClick: !stateFlags.text ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined
+                    onClick: !stateFlags.text ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined,
+                    title: "Text",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.switch.toCreation.text)
                 },
                 shapes: {
                     active: stateFlags.shapes,
-                    onClick: () => (!stateFlags.shapes ? setViewState(switchToShapeSelection()) : undefined)
+                    onClick: () => (!stateFlags.shapes ? setViewState(switchToShapeSelection()) : undefined),
+                    title: "Shapes"
                 },
                 media: {
                     active: stateFlags.media,
-                    onClick: !stateFlags.media ? () => setViewState(switchToMediaSelection()) : undefined
+                    onClick: !stateFlags.media ? () => setViewState(switchToMediaSelection()) : undefined,
+                    title: "Media"
                 },
                 notes: {
                     active: stateFlags.notes,
-                    onClick: !stateFlags.notes ? () => setViewState(switchToNodeCreation({ type: "note" })) : undefined
+                    onClick: !stateFlags.notes ? () => setViewState(switchToNodeCreation({ type: "note" })) : undefined,
+                    title: "Notes"
                 },
                 draw: {
                     active: stateFlags.draw,
-                    onClick: !stateFlags.draw ? () => setViewState(switchToDrawing()) : undefined
+                    onClick: !stateFlags.draw ? () => setViewState(switchToDrawing()) : undefined,
+                    title: "Pen"
                 }
             },
             exchangeBuffer: {
@@ -70,7 +77,9 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                         if (viewState.type === "selection") {
                             nodesModel.exchangeBuffer.copy(viewState.nodeIds);
                         }
-                    }
+                    },
+                    title: "Copy",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.exchangeBuffer.copy)
                 },
                 paste: {
                     active: false,
@@ -79,7 +88,10 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                         if (layoutDimensionsModel.lastClick.point) {
                             nodesModel.exchangeBuffer.paste(layoutDimensionsModel.lastClick.point);
                         }
-                    }
+                    },
+
+                    title: "Paste",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.exchangeBuffer.paste)
                 },
                 cut: {
                     active: false,
@@ -89,21 +101,27 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                             console.log("Actions: ", viewState.nodeIds);
                             nodesModel.exchangeBuffer.cut(viewState.nodeIds);
                         }
-                    }
+                    },
+                    title: "Cut",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.exchangeBuffer.cut)
                 }
             },
             cancellation: {
                 undo: {
                     active: false,
                     disabled: nodesModel.cancellation.sizes.undo === 0,
-                    onClick: nodesModel.cancellation.undo
+                    onClick: nodesModel.cancellation.undo,
+                    title: "Undo",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.cancellation.undo)
                 },
                 redo: {
                     active: false,
                     disabled: nodesModel.cancellation.sizes.redo === 0,
-                    onClick: nodesModel.cancellation.redo
+                    onClick: nodesModel.cancellation.redo,
+                    title: "Redo",
+                    shortcut: HotKeyUtils.stringify(BoardHotKeys.cancellation.redo)
                 }
             }
-        } satisfies ViewModel["actions"]
+        }
     };
 };
