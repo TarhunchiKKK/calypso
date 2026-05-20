@@ -123,7 +123,6 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 > 
 > Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed in future. 
 
-
 > ⚠️ **Warning**
 > 
 > Do not use text nodes now. They are currently not work correctly.
