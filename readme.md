@@ -116,7 +116,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 > ```
 >
 > ```bash
-> bun build:packages  # Don't work on Windows
+> bun build:packages  # ❌ Don't work on Windows
 > ```
 
 > ⚠️ **Warning**
