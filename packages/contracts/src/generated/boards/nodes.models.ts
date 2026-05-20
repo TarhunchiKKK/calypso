@@ -11,78 +11,78 @@ import { PointGrpc, RectGrpc, RelativePointGrpc } from "../common/geometry";
 const protobufPackage = "boards";
 
 export interface NodeStylesGrpc {
-  fontFamily?: string | undefined;
-  fontSize?: number | undefined;
-  backgroundColor?: string | undefined;
-  textColor?: string | undefined;
-  borderStyle?: string | undefined;
-  borderColor?: string | undefined;
-  borderRadius?: number | undefined;
-  textAlign?: string | undefined;
-  lineWidth?: number | undefined;
-  lineColor?: string | undefined;
-  lineType?: string | undefined;
-  angleType?: string | undefined;
+    fontFamily?: string | undefined;
+    fontSize?: number | undefined;
+    backgroundColor?: string | undefined;
+    textColor?: string | undefined;
+    borderStyle?: string | undefined;
+    borderColor?: string | undefined;
+    borderRadius?: number | undefined;
+    textAlign?: string | undefined;
+    lineWidth?: number | undefined;
+    lineColor?: string | undefined;
+    lineType?: string | undefined;
+    angleType?: string | undefined;
 }
 
 export interface BoardNodeBaseGrpc {
-  id: string;
-  type: string;
-  locked: boolean;
-  styles: NodeStylesGrpc | undefined;
+    id: string;
+    type: string;
+    locked: boolean;
+    styles: NodeStylesGrpc | undefined;
 }
 
 export interface StickerBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  text: string;
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    text: string;
 }
 
 export interface ArrowBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  start: RelativePointGrpc | undefined;
-  end: RelativePointGrpc | undefined;
-  text?: string | undefined;
+    base: BoardNodeBaseGrpc | undefined;
+    start: RelativePointGrpc | undefined;
+    end: RelativePointGrpc | undefined;
+    text?: string | undefined;
 }
 
 export interface TextBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  content: FormattableElementGrpc[];
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    content: FormattableElementGrpc[];
 }
 
 export interface ShapeBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  variant: string;
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    variant: string;
 }
 
 export interface MediaBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  url: string;
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    url: string;
 }
 
 export interface NoteBoardNodeGrc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  content: FormattableElementGrpc[];
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    content: FormattableElementGrpc[];
 }
 
 export interface DrawingBoardNodeGrpc {
-  base: BoardNodeBaseGrpc | undefined;
-  rect: RectGrpc | undefined;
-  points: PointGrpc[];
+    base: BoardNodeBaseGrpc | undefined;
+    rect: RectGrpc | undefined;
+    points: PointGrpc[];
 }
 
 export interface AnyBoardNodeGrpc {
-  sticker?: StickerBoardNodeGrpc | undefined;
-  arrow?: ArrowBoardNodeGrpc | undefined;
-  text?: TextBoardNodeGrpc | undefined;
-  shape?: ShapeBoardNodeGrpc | undefined;
-  media?: MediaBoardNodeGrpc | undefined;
-  note?: NoteBoardNodeGrc | undefined;
-  drawing?: DrawingBoardNodeGrpc | undefined;
+    sticker?: StickerBoardNodeGrpc | undefined;
+    arrow?: ArrowBoardNodeGrpc | undefined;
+    text?: TextBoardNodeGrpc | undefined;
+    shape?: ShapeBoardNodeGrpc | undefined;
+    media?: MediaBoardNodeGrpc | undefined;
+    note?: NoteBoardNodeGrc | undefined;
+    drawing?: DrawingBoardNodeGrpc | undefined;
 }
 
 export const BOARDS_PACKAGE_NAME = "boards";

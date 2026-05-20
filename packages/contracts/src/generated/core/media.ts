@@ -12,101 +12,95 @@ import { GrpcError } from "../common/util";
 const protobufPackage = "media";
 
 export interface MediaGrpc {
-  id: string;
-  url: string;
+    id: string;
+    url: string;
 }
 
 export interface MediaGroupGrpc {
-  id: string;
-  title: string;
-  thumbnail: string;
+    id: string;
+    title: string;
+    thumbnail: string;
 }
 
 export interface MediaListGrpc {
-  media: MediaGrpc[];
+    media: MediaGrpc[];
 }
 
 export interface MediaGroupsListGrpc {
-  groups: MediaGroupGrpc[];
+    groups: MediaGroupGrpc[];
 }
 
 export interface FindMediaPresetsGrpcRequest {
-  domain: string;
-  groupId?: string | undefined;
+    domain: string;
+    groupId?: string | undefined;
 }
 
 export interface FindMediaPresetsGrpcResponse {
-  data?: MediaListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: MediaListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface FindMediaPresetsGroupsGrpcRequest {
-  domain: string;
+    domain: string;
 }
 
 export interface FindMediaPresetsGroupsGrpcResponse {
-  data?: MediaGroupsListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: MediaGroupsListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface GetPresignedMediaUrlGrpcRequest {
-  fileName: string;
-  contentType: string;
+    fileName: string;
+    contentType: string;
 }
 
 export interface PresignUrlPairGrpc {
-  key: string;
-  url: string;
+    key: string;
+    url: string;
 }
 
 export interface GetPresignedMediaUrlGrpcResponse {
-  data?: PresignUrlPairGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: PresignUrlPairGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export const MEDIA_PACKAGE_NAME = "media";
 
 export interface MediaServiceClient {
-  findPresets(request: FindMediaPresetsGrpcRequest): Observable<FindMediaPresetsGrpcResponse>;
+    findPresets(request: FindMediaPresetsGrpcRequest): Observable<FindMediaPresetsGrpcResponse>;
 
-  findGroups(request: FindMediaPresetsGroupsGrpcRequest): Observable<FindMediaPresetsGroupsGrpcResponse>;
+    findGroups(request: FindMediaPresetsGroupsGrpcRequest): Observable<FindMediaPresetsGroupsGrpcResponse>;
 
-  getPresignedUrl(request: GetPresignedMediaUrlGrpcRequest): Observable<GetPresignedMediaUrlGrpcResponse>;
+    getPresignedUrl(request: GetPresignedMediaUrlGrpcRequest): Observable<GetPresignedMediaUrlGrpcResponse>;
 }
 
 export interface MediaServiceController {
-  findPresets(
-    request: FindMediaPresetsGrpcRequest,
-  ): Promise<FindMediaPresetsGrpcResponse> | Observable<FindMediaPresetsGrpcResponse> | FindMediaPresetsGrpcResponse;
+    findPresets(
+        request: FindMediaPresetsGrpcRequest
+    ): Promise<FindMediaPresetsGrpcResponse> | Observable<FindMediaPresetsGrpcResponse> | FindMediaPresetsGrpcResponse;
 
-  findGroups(
-    request: FindMediaPresetsGroupsGrpcRequest,
-  ):
-    | Promise<FindMediaPresetsGroupsGrpcResponse>
-    | Observable<FindMediaPresetsGroupsGrpcResponse>
-    | FindMediaPresetsGroupsGrpcResponse;
+    findGroups(
+        request: FindMediaPresetsGroupsGrpcRequest
+    ): Promise<FindMediaPresetsGroupsGrpcResponse> | Observable<FindMediaPresetsGroupsGrpcResponse> | FindMediaPresetsGroupsGrpcResponse;
 
-  getPresignedUrl(
-    request: GetPresignedMediaUrlGrpcRequest,
-  ):
-    | Promise<GetPresignedMediaUrlGrpcResponse>
-    | Observable<GetPresignedMediaUrlGrpcResponse>
-    | GetPresignedMediaUrlGrpcResponse;
+    getPresignedUrl(
+        request: GetPresignedMediaUrlGrpcRequest
+    ): Promise<GetPresignedMediaUrlGrpcResponse> | Observable<GetPresignedMediaUrlGrpcResponse> | GetPresignedMediaUrlGrpcResponse;
 }
 
 export function MediaServiceControllerMethods() {
-  return function (constructor: Function) {
-    const grpcMethods: string[] = ["findPresets", "findGroups", "getPresignedUrl"];
-    for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
-    }
-    const grpcStreamMethods: string[] = [];
-    for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
-    }
-  };
+    return function (constructor: Function) {
+        const grpcMethods: string[] = ["findPresets", "findGroups", "getPresignedUrl"];
+        for (const method of grpcMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
+        }
+        const grpcStreamMethods: string[] = [];
+        for (const method of grpcStreamMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcStreamMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
+        }
+    };
 }
 
 export const MEDIA_SERVICE_NAME = "MediaService";
