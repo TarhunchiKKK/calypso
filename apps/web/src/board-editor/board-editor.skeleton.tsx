@@ -16,7 +16,6 @@ const actions: ViewModel["actions"] = {
     nodes: {
         idle: emptyAction,
         stickers: emptyAction,
-        arrows: emptyAction,
         text: emptyAction,
         shapes: emptyAction,
         media: emptyAction,

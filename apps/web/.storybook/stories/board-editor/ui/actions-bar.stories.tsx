@@ -32,7 +32,6 @@ export const Default: Story = {
                     onClick: () => {}
                 },
                 stickers: emptyAction,
-                arrows: emptyAction,
                 text: emptyAction,
                 shapes: emptyAction,
                 media: emptyAction,

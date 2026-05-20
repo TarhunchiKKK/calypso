@@ -44,7 +44,6 @@ export type ViewModel = {
         nodes: {
             idle: Action;
             stickers: Action;
-            arrows: Action;
             text: Action;
             shapes: Action;
             media: Action;

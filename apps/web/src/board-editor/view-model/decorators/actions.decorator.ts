@@ -13,7 +13,6 @@ function determineStateFlags(viewState: ViewState) {
     return {
         idle: idleViewStates.includes(viewState.type),
         stickers: viewState.type === "node-creation" && viewState.payload.type === "sticker",
-        arrows: (viewState.type === "node-creation" && viewState.payload.type === "arrow") || viewState.type === "arrow-binding",
         text: viewState.type === "node-creation" && viewState.payload.type === "text",
         shapes: (viewState.type === "node-creation" && viewState.payload.type === "shape") || viewState.type === "shape-selection",
         media: (viewState.type === "node-creation" && viewState.payload.type === "media") || viewState.type === "media-selection",
@@ -36,10 +35,6 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                 stickers: {
                     active: stateFlags.stickers,
                     onClick: !stateFlags.stickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
-                },
-                arrows: {
-                    active: stateFlags.arrows,
-                    onClick: !stateFlags.arrows ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
                 },
                 text: {
                     active: stateFlags.text,

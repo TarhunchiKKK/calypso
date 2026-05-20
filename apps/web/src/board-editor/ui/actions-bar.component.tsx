@@ -6,7 +6,6 @@ import {
     DiamondIcon,
     FileTextIcon,
     MousePointer2,
-    MoveUpRightIcon,
     RedoIcon,
     ScissorsIcon,
     StickyNoteIcon,
@@ -28,7 +27,6 @@ const ButtonsMap = {
     nodes: [
         { key: "idle", element: <MousePointer2 /> },
         { key: "stickers", element: <StickyNoteIcon /> },
-        { key: "arrows", element: <MoveUpRightIcon /> },
         { key: "text", element: <TypeIcon /> },
         { key: "shapes", element: <DiamondIcon /> },
         { key: "media", element: <CirclePlayIcon /> },
