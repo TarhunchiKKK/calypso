@@ -37,7 +37,7 @@ export function useLayoutDimensionsModel() {
 
         startPointRef.current = currentPoint;
 
-        setOffset(prev => ({
+        setOffset((prev) => ({
             dx: prev.dx - newOffset.dx,
             dy: prev.dy - newOffset.dy
         }));
@@ -57,7 +57,7 @@ export function useLayoutDimensionsModel() {
 
         const mouseDiff = Geometry.calculateOffset(currentMousePoint, newMousePoint);
 
-        setOffset(prev => ({
+        setOffset((prev) => ({
             dx: prev.dx - mouseDiff.dx,
             dy: prev.dy - mouseDiff.dy
         }));
@@ -73,8 +73,15 @@ export function useLayoutDimensionsModel() {
     };
 
     return {
-        layoutOffset: { offset, setOffset, isShifting, startShifting, shift, endShifting },
-        layoutZoom: { zoom, handleZoom },
+        dimensions: { offset, zoom },
+        handlers: {
+            setOffset,
+            isShifting,
+            startShifting,
+            shift,
+            endShifting,
+            zoom: handleZoom
+        },
         applyForPoint: applyForPoint.bind(null, zoom),
         lastClick: {
             point: lastClick.point ? applyForPoint(zoom, lastClick.point) : undefined,
@@ -84,3 +91,4 @@ export function useLayoutDimensionsModel() {
 }
 
 export type LayoutDimensionsModel = ReturnType<typeof useLayoutDimensionsModel>;
+export type LayoutDimensions = LayoutDimensionsModel["dimensions"];

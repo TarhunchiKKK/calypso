@@ -7,8 +7,8 @@ import {
     type MediaServiceController,
     MediaServiceControllerMethods,
     type UnwrapGrpcResponse
-} from "@repo/api";
-import type { FindPresetsDto, MediaDomains } from "@repo/common";
+} from "@repo/contracts";
+import type { FindPresetsDto, MediaDomains } from "@repo/media";
 import { MediaService } from "./media.service";
 
 @GrpcController()

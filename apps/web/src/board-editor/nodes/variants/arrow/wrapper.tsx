@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import type { ArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution/types";
 import { ArrowNodeComponent } from "./component";

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package boards;
+
+
+message BoardGrpc {
+  string id = 1;
+
+  string title = 2;
+
+  optional string description = 3;
+
+  string thumbnail = 4;
+
+  string creatorId = 5;
+
+  string createdAt = 6;
+
+  optional string updatedAt = 7;
+}
+
+
+message BoardsList {
+  repeated BoardGrpc boards = 1;
+}
+
+

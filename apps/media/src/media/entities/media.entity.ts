@@ -1,4 +1,4 @@
-import type { MediaDomains, Media as MediaType } from "@repo/common";
+import type { MediaDomains, Media as MediaType } from "@repo/media";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { MediaGroup } from "./media-group.entity";
 
@@ -15,7 +15,7 @@ export class Media implements MediaType {
 
     @ManyToOne(
         () => MediaGroup,
-        group => group.media
+        (group) => group.media
     )
     public group: MediaGroup;
 }

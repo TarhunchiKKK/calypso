@@ -1,0 +1,46 @@
+{
+    "name": "@repo/boards",
+    "version": "0.0.0",
+    "main": "./dist/cjs/entry.js",
+    "module": "./dist/esm/entry.js",
+    "license": "MIT",
+    "private": true,
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": ["./dist/**"],
+    "types": "./dist/cjs/entry.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/cjs/entry.d.ts",
+            "import": "./dist/esm/entry.js",
+            "require": "./dist/cjs/entry.js"
+        },
+        "./boards": {
+            "types": "./dist/cjs/boards/index.d.ts",
+            "import": "./dist/esm/boards/index.js",
+            "require": "./dist/cjs/boards/index.js"
+        },
+        "./nodes": {
+            "types": "./dist/cjs/nodes/index.d.ts",
+            "import": "./dist/esm/nodes/index.js",
+            "require": "./dist/cjs/nodes/index.js"
+        }
+    },
+    "scripts": {
+        "dev": "tsup --config tsup.config.ts --watch",
+        "build": "tsup --config tsup.config.ts",
+        "type-check": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@repo/common": "*",
+        "@repo/projects": "*",
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "tsup": "^8.5.1",
+        "typescript": "5.5.4"
+    },
+    "dependencies": {
+        "zod": "^4.3.6"
+    }
+}

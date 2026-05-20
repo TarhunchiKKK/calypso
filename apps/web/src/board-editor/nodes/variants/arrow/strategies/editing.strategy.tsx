@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { KeyboardEventHandler } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
@@ -23,7 +23,7 @@ export class ArrowEditingStrategy extends NodeEditingStrategy {
             handlers.change(newNode);
         };
 
-        const handleKeyDown: KeyboardEventHandler = e => {
+        const handleKeyDown: KeyboardEventHandler = (e) => {
             const keyHandlers = this.getDefaultKeyHandlers(handlers);
 
             if (e.key in keyHandlers) {

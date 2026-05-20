@@ -1,4 +1,4 @@
-import type { ShapeNode, ShapeVariants } from "@repo/boards-common";
+import type { ShapeNode, ShapeVariants } from "@repo/boards";
 import type { Point } from "@repo/common";
 
 export const ShapeVariantsReferencePointsMap: Record<ShapeVariants, Point[]> = {
@@ -50,7 +50,7 @@ export const ShapeVariantsReferencePointsMap: Record<ShapeVariants, Point[]> = {
 export function computeShapeReferencePoints(shape: ShapeNode) {
     const referencePoints = ShapeVariantsReferencePointsMap[shape.variant];
 
-    return referencePoints.map(point => ({
+    return referencePoints.map((point) => ({
         x: shape.rect.width * point.x,
         y: shape.rect.height * point.y
     }));

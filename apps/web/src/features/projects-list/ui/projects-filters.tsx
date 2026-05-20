@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/common";
+import type { ProjectTypes } from "@repo/projects";
 import { Dropdown } from "@/shared/ui";
 import { Input } from "@/shared/ui/kit";
 import { OwnerDropdownItems, SortOrdersDropdownItems, TypeDropdownItems } from "../constants/filtering-dropdowns.constants";
@@ -39,9 +39,9 @@ export function ProjectsFilters({ filters, onChange }: Props) {
         });
     };
 
-    const currentTypeFilter = TypeDropdownItems.find(item => item.value === filters.typeFilter);
-    const currentOwnerFilter = OwnerDropdownItems.find(item => item.value === filters.ownerFilter);
-    const currentSortOrder = SortOrdersDropdownItems.find(item => item.value === filters.sortOrder);
+    const currentTypeFilter = TypeDropdownItems.find((item) => item.value === filters.typeFilter);
+    const currentOwnerFilter = OwnerDropdownItems.find((item) => item.value === filters.ownerFilter);
+    const currentSortOrder = SortOrdersDropdownItems.find((item) => item.value === filters.sortOrder);
 
     return (
         <div className="flex flex-row justify-between items-center gap-4">

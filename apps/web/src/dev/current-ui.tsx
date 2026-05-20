@@ -45,7 +45,7 @@ export function CurrentUi() {
 
         await removeMany({
             boardId: boardId,
-            ids: nodes.slice(0, 3).map(node => node.id)
+            ids: nodes.slice(0, 3).map((node) => node.id)
         });
     };
 
@@ -60,7 +60,7 @@ export function CurrentUi() {
             </div>
 
             <div className="bg-blue-100">
-                {(nodes ?? []).map(node => (
+                {(nodes ?? []).map((node) => (
                     <div key={node.id}>{`${node.type}  ---  ${node.id} `}</div>
                 ))}
             </div>

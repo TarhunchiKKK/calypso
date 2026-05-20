@@ -1,15 +1,15 @@
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { DrawingNodesMapper } from "./lib/nodes.mapper";
 import { useDrawing } from "./lib/use-drawing.hook";
+import type { DrawingViewState } from "./view-state";
 
-export function useDrawingViewModel(params: ViewModelParams) {
+export const useDrawingViewModel: ViewModelHook<DrawingViewState> = (params) => {
     const drawing = useDrawing(params);
 
     const canvasMediator = useMouseEventsMediator();
 
-    return (): DecoratableViewModel => {
+    return () => {
         canvasMediator.setHandlers({
             left: {
                 onMouseDown: drawing.onMouseDown
@@ -25,4 +25,4 @@ export function useDrawingViewModel(params: ViewModelParams) {
             }
         };
     };
-}
+};

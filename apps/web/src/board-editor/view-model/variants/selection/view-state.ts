@@ -3,7 +3,7 @@ import type { Id, Rect } from "@repo/common";
 export type SelectionViewState = {
     type: "selection";
 
-    selectedIds: Set<Id>;
+    nodeIds: Set<Id>;
 
     selectionWindow?: Rect;
 };

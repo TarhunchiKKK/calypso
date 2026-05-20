@@ -1,4 +1,4 @@
-import type { Media } from "@repo/common";
+import type { Media } from "@repo/media";
 import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
 import { Skeleton } from "@/shared/ui/kit";
@@ -11,7 +11,7 @@ const ROWS_COUNT = 4;
 const THUMBNAILS_IN_ROW = 5;
 
 function splitThumbnails(media: Media[]) {
-    const thumbnails = media.map(m => m.url);
+    const thumbnails = media.map((m) => m.url);
 
     const result: string[][] = [];
 

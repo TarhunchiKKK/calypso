@@ -1,12 +1,6 @@
-import type { ShapeVariants } from "@repo/boards-common";
-import type { Offset } from "@repo/common";
+import type { ShapeVariants } from "@repo/boards";
 import { CircleIcon, Diamond, HexagonIcon, SquareIcon, StarIcon, TriangleIcon } from "lucide-react";
 import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";
-
-export const ShapeSelectorOffset: Offset = {
-    dx: 100,
-    dy: 0
-};
 
 export const ShapeSelectorItems = [
     {

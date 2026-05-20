@@ -7,7 +7,7 @@ import type { SelectionViewState } from "../selection/view-state";
 
 export function useSwitchToSelectionWindow({ layoutDimensionsModel, setViewState }: ViewModelParams) {
     const onOverlayMouseDown = (viewState: IdleViewState | SelectionViewState, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
+        if (layoutDimensionsModel.handlers.isShifting(e)) {
             return;
         }
 
@@ -15,13 +15,13 @@ export function useSwitchToSelectionWindow({ layoutDimensionsModel, setViewState
 
         const selectionMode = e.shiftKey || e.ctrlKey ? "add" : "replace";
 
-        const viewStateSelectedIds = viewState.type === "selection" ? viewState.selectedIds : new Set<Id>();
+        const viewStateSelectedIds = viewState.type === "selection" ? viewState.nodeIds : new Set<Id>();
 
         setViewState({
             type: "selection-window",
             startPoint: currentPoint,
-            selectionMode: selectionMode,
-            selectedIds: selectionMode === "replace" ? new Set() : viewStateSelectedIds
+            mode: selectionMode,
+            nodeIds: selectionMode === "replace" ? new Set() : viewStateSelectedIds
         });
     };
 

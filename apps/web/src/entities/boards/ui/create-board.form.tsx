@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards-common";
+import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
@@ -24,7 +24,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         if (!media) {
             throw new ErrorEvent("CreateBoardForm: Random media is not defined");
         }

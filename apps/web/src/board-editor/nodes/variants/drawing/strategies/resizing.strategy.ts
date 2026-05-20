@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards-common";
+import type { DrawingNode } from "@repo/boards";
 import type { Point, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeResizingStrategy } from "@/board-editor/modules/resizing";
@@ -18,7 +18,7 @@ export class DrawingNodeResizingStrategy extends NodeResizingStrategy {
             y: oldRect.height === 0 ? newRect.height / oldRect.height : 1
         };
 
-        return points.map(point => ({
+        return points.map((point) => ({
             x: newRect.x + (point.x - oldRect.x) * scale.x,
             y: newRect.y + (point.y - oldRect.y) * scale.y
         }));

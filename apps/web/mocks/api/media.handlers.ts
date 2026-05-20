@@ -1,4 +1,4 @@
-import type { Media, MediaDomains, MediaGroup } from "@repo/common";
+import type { Media, MediaDomains, MediaGroup } from "@repo/media";
 import { HttpResponse, http } from "msw";
 import { Env } from "@/shared/config";
 import { MockBoardNodesMedia } from "%/entities/boards";
@@ -41,7 +41,7 @@ export const mswMediaHandlers = {
             return new HttpResponse<MediaGroup[]>([]);
         }
         return HttpResponse.json<MediaGroup[]>(
-            (Object.keys(MockBoardNodesMedia) as (keyof typeof MockBoardNodesMedia)[]).map(key => ({
+            (Object.keys(MockBoardNodesMedia) as (keyof typeof MockBoardNodesMedia)[]).map((key) => ({
                 id: key,
                 thumbnail: MockBoardNodesMedia[key][0],
                 title: key

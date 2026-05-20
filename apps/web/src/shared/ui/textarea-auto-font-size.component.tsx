@@ -42,7 +42,7 @@ function useAutoFontSize(value: string) {
 export function TextareaAutoFontSize({ value, onChange, styles, className, disabled, keyHandlers }: Props) {
     const ref = useAutoFontSize(value);
 
-    const handleKeyDown: KeyboardEventHandler = e => {
+    const handleKeyDown: KeyboardEventHandler = (e) => {
         if (!keyHandlers) {
             return;
         }
@@ -58,7 +58,7 @@ export function TextareaAutoFontSize({ value, onChange, styles, className, disab
         <Textarea
             ref={ref}
             value={value}
-            onChange={e => onChange?.(e.target.value)}
+            onChange={(e) => onChange?.(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={disabled}
             style={styles}

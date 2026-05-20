@@ -1,24 +1,23 @@
 import { SelectionWindow } from "@/board-editor/modules/selection";
-import type { DecoratableViewModel } from "../../decorators";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { SelectionWindowNodesMapper } from "./lib/nodes-mapper";
 import { useSelectionWindow } from "./lib/use-selection-window.hook";
 import type { SelectionWindowViewState } from "./view-state";
 
-export function useSelectionWindowViewModel(params: ViewModelParams) {
+export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState> = (params) => {
     const { nodesModel } = params;
 
     const selectionWindow = useSelectionWindow(params);
 
-    return (viewState: SelectionWindowViewState): DecoratableViewModel => {
+    return (viewState) => {
         return {
             nodes: SelectionWindowNodesMapper.create()
                 .setNodes(nodesModel.nodes)
-                .setSelectedIds(viewState.selectedIds)
+                .setSelectedIds(viewState.nodeIds)
                 .setSelectionWindowIds(selectionWindow.selectedNodesIds)
                 .map(),
             window: {
-                onMouseMove: e => {
+                onMouseMove: (e) => {
                     selectionWindow.onWindowMouseMove(viewState, e);
                 },
                 onMouseUp: () => {
@@ -30,4 +29,4 @@ export function useSelectionWindowViewModel(params: ViewModelParams) {
             }
         };
     };
-}
+};

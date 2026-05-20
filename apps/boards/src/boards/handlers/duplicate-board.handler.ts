@@ -55,7 +55,7 @@ export class DuplicateBoardCommandHandler implements ICommandHandler<DuplicateBo
             }
         });
 
-        const newNodes = nodes.map(node => ({
+        const newNodes = nodes.map((node) => ({
             ...node,
             boardId: newBoardId
         }));

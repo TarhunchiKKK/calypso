@@ -26,3 +26,30 @@ export type ViewState =
     | EditingViewState
     | StylingViewState
     | NodesContextMenuViewState;
+
+export type SingleNodeViewStates = Extract<ViewState, ArrowBindingViewState | ResizingViewState | EditingViewState>;
+
+export type MultipleNodesViewStates = Extract<
+    ViewState,
+    SelectionViewState | SelectionWindowViewState | DraggingViewState | StylingViewState | NodesContextMenuViewState
+>;
+
+export type ViewStatesWithStartPoint = Extract<ViewState, SelectionWindowViewState | DraggingViewState>;
+
+export const ViewStateTypeGuards = {
+    singleNode: (viewState: ViewState): viewState is SingleNodeViewStates => {
+        const key: keyof SingleNodeViewStates = "nodeId";
+
+        return key in viewState;
+    },
+    multipleNodes: (viewState: ViewState): viewState is MultipleNodesViewStates => {
+        const key: keyof MultipleNodesViewStates = "nodeIds";
+
+        return key in viewState;
+    },
+    withStartPoint: (viewState: ViewState): viewState is ViewStatesWithStartPoint => {
+        const key: keyof ViewStatesWithStartPoint = "startPoint";
+
+        return key in viewState;
+    }
+};

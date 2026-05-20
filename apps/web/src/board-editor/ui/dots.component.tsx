@@ -1,22 +1,19 @@
-import type { Offset } from "@repo/common";
-import { createLayoutDimensionsStyles } from "../modules/layout-dimensions";
+import { createLayoutDimensionsStyles, type LayoutDimensions } from "../modules/layout-dimensions";
 
 type Props = {
-    offset: Offset;
-
-    zoom: number;
+    dimensions: LayoutDimensions;
 };
 
-export function Dots({ offset, zoom }: Props) {
-    const style = createLayoutDimensionsStyles(offset, zoom);
+export function Dots({ dimensions }: Props) {
+    const styles = createLayoutDimensionsStyles(dimensions);
 
     return (
         <div
             data-testid="dots"
-            style={style}
+            style={styles}
             className="
-            absolute inset-0 
-            bg-[radial-gradient(#e5e7eb_calc(1px*var(--zoom)),transparent_calc(1px*var(--zoom)))] 
+            absolute inset-0
+            bg-[radial-gradient(#e5e7eb_calc(1px*var(--zoom)),transparent_calc(1px*var(--zoom)))]
             [background-position:var(--x)_var(--y)]
             [background-size:calc(16px*var(--zoom))_calc(16px*var(--zoom))]
           "

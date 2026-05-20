@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { AvailableColors } from "@/entities/nodes";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
@@ -6,7 +6,7 @@ import { BackgroundColorPlaceholder, renderBackgroundColorItem, renderTextColorI
 
 export function BackgroundColor({ update }: ElementProps) {
     const handleSelect = (backgroundColor: NodeStyles["backgroundColor"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -28,7 +28,7 @@ export function BackgroundColor({ update }: ElementProps) {
 
 export function TextColor({ update }: ElementProps) {
     const handleSelect = (color: NodeStyles["textColor"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

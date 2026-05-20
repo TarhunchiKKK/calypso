@@ -1,8 +1,8 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@repo/api";
-import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards-common";
+import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from "@repo/boards";
 import type { Id } from "@repo/common";
+import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
 import { map } from "rxjs";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 
@@ -33,7 +33,7 @@ export class NodesService implements OnModuleInit {
             .findAll({ boardId, userId })
             .pipe(extractGrpcResponsePipe())
             .pipe(
-                map(res => {
+                map((res) => {
                     if (res.nodes) {
                         return res.nodes.map(BoardNodesGrpcMapper.fromGrpc);
                     }

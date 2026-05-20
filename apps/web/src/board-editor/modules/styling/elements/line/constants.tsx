@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { FoldHorizontal, Minus } from "lucide-react";
 import { AvailableLineWidths, DefaultNodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";
@@ -11,7 +11,7 @@ export const LineTypePlaceholder = <Minus />;
 
 export const renderLineColorItem = (color: string) => <Minus style={{ color: color, width: "100%" }} />;
 
-export const LineWidths: DropdownItem<NodeStyles["lineWidth"]>[] = AvailableLineWidths.map(lineWidth => ({
+export const LineWidths: DropdownItem<NodeStyles["lineWidth"]>[] = AvailableLineWidths.map((lineWidth) => ({
     label: <div style={{ width: "100%", height: lineWidth }} className="bg-primary" />,
     value: lineWidth
 }));

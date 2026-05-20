@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { MediaNode as MediaNodeType, NodeBase } from "@repo/boards-common";
+import type { MediaNode as MediaNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()

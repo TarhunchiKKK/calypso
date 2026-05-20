@@ -6,7 +6,7 @@
         "useIgnoreFile": true
     },
     "files": {
-        "includes": ["**", "!packages/api/src/grpc/generated"],
+        "includes": ["**", "!packages/contracts/src/generated"],
         "ignoreUnknown": false
     },
     "linter": {
@@ -51,7 +51,7 @@
             "quoteProperties": "asNeeded",
             "trailingCommas": "none",
             "semicolons": "always",
-            "arrowParentheses": "asNeeded",
+            "arrowParentheses": "always",
             "bracketSameLine": false,
             "quoteStyle": "double",
             "attributePosition": "auto",

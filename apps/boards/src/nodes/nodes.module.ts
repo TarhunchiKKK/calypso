@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import type { NodeTypes } from "@repo/boards-common";
+import type { NodeTypes } from "@repo/boards";
 import { NodesGrpcController } from "./controllers/nodes.grpc.controller";
 import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";

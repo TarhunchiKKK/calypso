@@ -4,7 +4,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { MediaDomains } from "@repo/common";
+import type { MediaDomains } from "@repo/media";
 import * as mime from "mime-types";
 import type { Repository } from "typeorm";
 import { Media } from "../entities/media.entity";
@@ -52,7 +52,7 @@ export class BoardNodeMediaSeeder {
     }
 
     private getDirnames() {
-        return fs.readdirSync(this.seedDir).filter(file => fs.statSync(path.join(this.seedDir, file)).isDirectory());
+        return fs.readdirSync(this.seedDir).filter((file) => fs.statSync(path.join(this.seedDir, file)).isDirectory());
     }
 
     public async processDir(dirName: string) {
@@ -107,7 +107,7 @@ export class BoardNodeMediaSeeder {
             thumbnail: mediaDtos[0]?.url
         });
 
-        const mediaToSave = mediaDtos.map(dto => ({
+        const mediaToSave = mediaDtos.map((dto) => ({
             ...dto,
             group: {
                 id: group.id

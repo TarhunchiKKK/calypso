@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/common";
+import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { stopPropagationHandler } from "@/shared/lib/events";
@@ -23,7 +23,7 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
         resolver: zodResolver(UpdateProjectDtoZodSchema)
     });
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await update.mutateAsync({
             ...data,
             id: project.id

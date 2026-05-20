@@ -1,4 +1,4 @@
-import type { MediaGroup as MediaGroupType } from "@repo/common";
+import type { MediaGroup as MediaGroupType } from "@repo/media";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Media } from "./media.entity";
 
@@ -15,7 +15,7 @@ export class MediaGroup implements MediaGroupType {
 
     @OneToMany(
         () => Media,
-        media => media.group,
+        (media) => media.group,
         { onDelete: "CASCADE" }
     )
     public media: Media[];

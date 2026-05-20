@@ -7,7 +7,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
     const { mutate: updateNodes } = NodesApi.useUpdateMany();
     const { mutate: removeNodes } = NodesApi.useRemoveMany();
 
-    const createOne: NodesService["createOne"] = node => {
+    const createOne: NodesService["createOne"] = (node) => {
         service.createOne(node);
 
         createNodes({
@@ -16,7 +16,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
         });
     };
 
-    const createMany: NodesService["createMany"] = nodes => {
+    const createMany: NodesService["createMany"] = (nodes) => {
         service.createMany(nodes);
 
         createNodes({
@@ -25,7 +25,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
         });
     };
 
-    const updateOne: NodesService["updateOne"] = node => {
+    const updateOne: NodesService["updateOne"] = (node) => {
         service.updateOne(node);
 
         updateNodes({
@@ -34,7 +34,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
         });
     };
 
-    const updateMany: NodesService["updateMany"] = newNodes => {
+    const updateMany: NodesService["updateMany"] = (newNodes) => {
         service.updateMany(newNodes);
 
         updateNodes({
@@ -46,14 +46,14 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
     const updateManyWithFn: NodesService["updateManyWithFn"] = (nodeIds, fn) => {
         service.updateManyWithFn(nodeIds, fn);
 
-        const updatedNodes = service.nodes.filter(node => nodeIds.has(node.id)).map(fn);
+        const updatedNodes = service.nodes.filter((node) => nodeIds.has(node.id)).map(fn);
         updateNodes({
             nodes: updatedNodes,
             boardId: boardId
         });
     };
 
-    const removeOne: NodesService["removeOne"] = nodeId => {
+    const removeOne: NodesService["removeOne"] = (nodeId) => {
         service.removeOne(nodeId);
 
         removeNodes({
@@ -62,7 +62,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
         });
     };
 
-    const removeMany: NodesService["removeMany"] = nodeIds => {
+    const removeMany: NodesService["removeMany"] = (nodeIds) => {
         service.removeMany(nodeIds);
 
         removeNodes({
@@ -76,7 +76,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
 
         // TODO: create `clearBoard` endpoint
         removeNodes({
-            ids: service.nodes.map(node => node.id),
+            ids: service.nodes.map((node) => node.id),
             boardId: boardId
         });
     };

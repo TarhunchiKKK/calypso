@@ -15,7 +15,7 @@
   - [🍓 Frontend](#-frontend)
   - [⚡ Backend](#-backend)
   - [🏗️ Infrastructure](#️-infrastructure)
-- [🚀 Run app Locally](#-run-app-locally)
+- [🚀 Run App Locally](#-run-app-locally)
   - [📋 Requirements](#-requirements)
   - [⚠️ Constraints](#️-constraints)
   - [⚙️ Setup Steps](#️-setup-steps)
@@ -95,7 +95,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 - **📨 Message Broker**: [RabbitMQ](https://www.rabbitmq.com/docs)
 - **🗄️ S3 Storage**: [Minio](https://www.min.io/)
 
-## 🚀 Run app Locally
+## 🚀 Run App Locally
  
 ### 📋 Requirements
 
@@ -108,8 +108,24 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 ### ⚠️ Constraints 
 
 > 📌 **Important Note**
+>
+> This project was fully developed on [Kali Linux](https://www.kali.org/), so some CLI commands will not work on other operating systems.
+> ```bash
+> cd packages/contracts
+> bun protoc  # ❌ Linux-only command
+> ```
+>
+> ```bash
+> bun build:packages  # ❌ Don't work on Windows
+> ```
+
+> ⚠️ **Warning**
 > 
-> Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed шт агегкую 
+> Do not interact with board editor using touchpad. Board editor currently works right only with mouse. This behavior will be fixed in future. 
+
+> ⚠️ **Warning**
+> 
+> Do not use text nodes now. They are currently not work correctly.
 
 ### ⚙️ Setup Steps
 
@@ -177,7 +193,7 @@ In browser open the https://localhost:5173 to access the app.
 
 ## ✨ Features
 
-<img src="./docs/screens/board-editor/board-editor.png" />
+<img src="./docs/board-editor/screens/index.png" />
 
 ### 🧪 Challenge 
 
@@ -191,13 +207,13 @@ In browser open the https://localhost:5173 to access the app.
 
 **Basic**
 
-<img src="./docs/screens/board-editor/nodes/01-sticker.png" />
+<img src="./docs/board-editor/screens/nodes/01-sticker.png" />
 
 **Auto font size**
 
 > Stickers are able to automatically calculate font size depends on text length.
 
-<img src="./docs/screens/board-editor/nodes/01-sticker-auto-font-size.png" />
+<img src="./docs/board-editor/screens/nodes/01-sticker-auto-font-size.png" />
 
 #### Arrows
 
@@ -214,10 +230,10 @@ In browser open the https://localhost:5173 to access the app.
         <tbody>
             <tr>
                 <td>
-                    <img src="./docs/screens/board-editor/nodes/02-arrow-angle-types.png" />
+                    <img src="./docs/board-editor/screens/nodes/02-arrow-angle-types.png" />
                 </td>
                 <td>
-                    <img src="./docs/screens/board-editor/nodes/02-arrow-line-types.png" />
+                    <img src="./docs/board-editor/screens/nodes/02-arrow-line-types.png" />
                 </td>
             </tr>
         </tbody>
@@ -226,7 +242,7 @@ In browser open the https://localhost:5173 to access the app.
 
 #### Text nodes
 
-<img src="./docs/screens/board-editor/nodes/03-text.png" />
+<img src="./docs/board-editor/screens/nodes/03-text.png" />
 
 #### Shapes
 
@@ -239,7 +255,7 @@ Shape nodes have different variants:
 * stars
 * hexagons
 
-<img src="./docs/screens/board-editor/nodes/04-shape-variants.png" />
+<img src="./docs/board-editor/screens/nodes/04-shape-variants.png" />
 
 #### Media nodes
 
@@ -247,33 +263,33 @@ Shape nodes have different variants:
 
 **Basic**
 
-<img src="./docs/screens/board-editor/nodes/05-media.png" />
+<img src="./docs/board-editor/screens/nodes/05-media.png" />
 
 **Rounded**
 
-<img src="./docs/screens/board-editor/nodes/05-media-rounded.png" />
+<img src="./docs/board-editor/screens/nodes/05-media-rounded.png" />
 
 #### Notes
 
 > Notes are nodes represents formattable documents.
 
-<img src="./docs/screens/board-editor/nodes/06-note.png" />
+<img src="./docs/board-editor/screens/nodes/06-note.png" />
 
 #### Drawings
 
-<img src="./docs/screens/board-editor/nodes/07-drawing.png" />
+<img src="./docs/board-editor/screens/nodes/07-drawing.png" />
 
 ### 🍓 Editor Features
 
 #### Nodes selection
 
-<img src="./docs/screens/board-editor/actions/01-selection.png" />
+<img src="./docs/board-editor/screens/actions/01-selection.png" />
 
 #### Selection window
 
 > This is not native browser selection window.
 
-<img src="./docs/screens/board-editor/actions/02-selection-window.png" />
+<img src="./docs/board-editor/screens/actions/02-selection-window.png" />
 
 #### Nodes editing
 
@@ -292,7 +308,7 @@ Shape nodes have different variants:
 
 > Locked nodes cannot be changed (text content, position, sizes, etc.).
 
-<img src="./docs/screens/board-editor/actions/06-locking.png" />
+<img src="./docs/board-editor/screens/actions/06-locking.png" />
 
 #### Exchange buffer and cancellation
 
@@ -309,10 +325,10 @@ Shape nodes have different variants:
         <tbody>
             <tr>
                 <td>
-                    <img src="./docs/screens/board-editor/actions/07-exchange-buffer.png" />
+                    <img src="./docs/board-editor/screens/actions/07-exchange-buffer.png" />
                 </td>
                 <td>
-                    <img src="./docs/screens/board-editor/actions/08-cancellation.png" />
+                    <img src="./docs/board-editor/screens/actions/08-cancellation.png" />
                 </td>
             </tr>
         </tbody>
@@ -323,7 +339,7 @@ Shape nodes have different variants:
 
 > In [Miro](https://miro.com/ru/) there is styling bar element for styling nodes depends on their types. This is clone feature of this component.
 
-<img src="./docs/screens/board-editor/actions/09-styling.png" />
+<img src="./docs/board-editor/screens/actions/09-styling.png" />
 
 **Node styles**
 
@@ -424,7 +440,7 @@ Actions:
 * nodes locking/unlocking
 * nodes deletion
 
-<img src="./docs/screens/board-editor/actions/10-context-menu.png" />
+<img src="./docs/board-editor/screens/actions/10-context-menu.png" />
 
 #### Window shifting and zooming
 

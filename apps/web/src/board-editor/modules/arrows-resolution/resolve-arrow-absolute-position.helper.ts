@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase } from "@repo/boards-common";
+import type { ArrowNode, NodeBase } from "@repo/boards";
 import { NodeRectsFactory } from "@/entities/nodes";
 import type { ArrowAbsolutePosition } from "./types";
 
@@ -10,7 +10,7 @@ export function resolveArrowAbsolutePosition(nodes: NodeBase[], arrow: ArrowNode
 
     for (const side of ["start", "end"] as const) {
         if (arrow[side].relativeTo) {
-            const relativeNode = nodes.find(node => node.id === arrow[side].relativeTo);
+            const relativeNode = nodes.find((node) => node.id === arrow[side].relativeTo);
 
             if (!relativeNode) {
                 throw new Error(`Relative ${side} node with id="${arrow[side].relativeTo}" to arrow with id="${arrow.id}" not found`);

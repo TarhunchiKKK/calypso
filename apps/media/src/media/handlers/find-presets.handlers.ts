@@ -1,6 +1,6 @@
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { FindPresetsDto } from "@repo/common";
+import type { FindPresetsDto } from "@repo/media";
 import type { Repository } from "typeorm";
 import { Media } from "../entities/media.entity";
 

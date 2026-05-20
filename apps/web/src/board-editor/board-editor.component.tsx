@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import type { PropsWithChildren } from "react";
 import { useWindowEvents } from "../shared/lib/window";
@@ -35,20 +35,15 @@ export function BoardEditor({ nodes, boardId, children }: Props) {
 
     return (
         <Layout onKeyDown={viewModel.layout?.onKeyDown}>
-            <Dots offset={layoutDimensionsModel.layoutOffset.offset} zoom={layoutDimensionsModel.layoutZoom.zoom} />
+            <Dots dimensions={layoutDimensionsModel.dimensions} />
 
-            <Canvas
-                offset={layoutDimensionsModel.layoutOffset.offset}
-                zoom={layoutDimensionsModel.layoutZoom.zoom}
-                overlay={<Overlay {...viewModel.overlay} />}
-                {...viewModel.canvas}
-            >
-                {viewModel.nodes.map(node => node.render())}
+            <Canvas dimensions={layoutDimensionsModel.dimensions} overlay={<Overlay {...viewModel.overlay} />} {...viewModel.canvas}>
+                {viewModel.nodes.map((node) => node.render())}
 
                 {viewModel.additionalElements?.canvas}
             </Canvas>
 
-            <ActionsBar actions={viewModel.actions} />
+            <ActionsBar actions={viewModel.actions} additionalElement={viewModel.additionalElements?.actionsBar} />
 
             {children}
 

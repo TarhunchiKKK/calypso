@@ -27,11 +27,11 @@ export class SelectionNodesMapper extends NodesMapper {
         if (this.selectedIds.size === 1) {
             const nodeId = this.selectedIds.values().next().value as string;
 
-            withResizing = this.wrapNodes().map(node => (node.id === nodeId ? NodeDecoratorsFactory.resizable(node, this.resizeHandler) : node));
+            withResizing = this.wrapNodes().map((node) => (node.id === nodeId ? NodeDecoratorsFactory.resizable(node, this.resizeHandler) : node));
         } else {
             withResizing = this.wrapNodes();
         }
 
-        return withResizing.map(node => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
+        return withResizing.map((node) => (this.selectedIds.has(node.id) ? NodeDecoratorsFactory.selection(node) : node));
     }
 }

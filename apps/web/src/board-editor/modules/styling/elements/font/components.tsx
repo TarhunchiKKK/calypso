@@ -1,11 +1,11 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { Dropdown } from "@/shared/ui";
 import type { ElementProps } from "../../lib/types";
 import { FontFamilies, FontFamilyPlaceholder, FontSizePlaceholder, FontSizes } from "./constants";
 
 export function FontFamily({ update }: ElementProps) {
     const handleSelect = (fontFamily: NodeStyles["fontFamily"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -19,7 +19,7 @@ export function FontFamily({ update }: ElementProps) {
 
 export function FontSize({ update }: ElementProps) {
     const handleSelect = (fontSize: NodeStyles["fontSize"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

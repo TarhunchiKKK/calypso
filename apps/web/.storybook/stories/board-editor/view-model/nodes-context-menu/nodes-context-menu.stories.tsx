@@ -45,7 +45,8 @@ export const Default: Story = {
                 options: [
                     {
                         label: "Delete",
-                        onClick: () => {}
+                        onClick: () => {},
+                        destructive: true
                     }
                 ]
             }

@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        isActive: false,
+        active: false,
         onClick: () => {},
         children: <StickerIcon />
     },
@@ -23,7 +23,17 @@ export const Default: Story = {
 
 export const Active: Story = {
     args: {
-        isActive: true,
+        active: true,
+        onClick: () => {},
+        children: <StickerIcon />
+    },
+    decorators: centered
+};
+
+export const Disabled: Story = {
+    args: {
+        active: false,
+        disabled: true,
         onClick: () => {},
         children: <StickerIcon />
     },

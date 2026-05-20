@@ -1,16 +1,17 @@
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import { ExtractGrpc, Validation } from "@repo/api";
+import { Validation } from "@repo/api";
+import type { Id } from "@repo/common";
+import { ExtractGrpc } from "@repo/contracts";
 import {
     type DuplicateProjectDto,
     DuplicateProjectDtoZodSchema,
     type FindOneProjectDto,
     FindOneProjectDtoZodSchema,
-    type Id,
     type RemoveProjectDto,
     RemoveProjectDtoZodSchema,
     type UpdateProjectDto,
     UpdateProjectDtoZodSchema
-} from "@repo/common";
+} from "@repo/projects";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";

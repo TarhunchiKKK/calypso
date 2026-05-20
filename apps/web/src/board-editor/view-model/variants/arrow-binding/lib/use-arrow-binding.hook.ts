@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { Geometry } from "@/shared/lib/geometry";
@@ -12,7 +12,7 @@ export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewStat
     const onMouseMove = (viewState: ArrowBindingViewState, e: MouseEvent) => {
         const currentPoint = layoutDimensionsModel.applyForPoint(Geometry.pointFromEvent(e));
 
-        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.arrowId);
+        const arrow = nodesModel.service.findOne<ArrowNode>(viewState.nodeId);
 
         const newArrow = {
             ...arrow,
@@ -31,7 +31,7 @@ export function useArrowBinding({ nodesModel, layoutDimensionsModel, setViewStat
 
         setArrow(undefined);
 
-        setViewState(switchToSelection({ selectedIds: new Set([arrow.id]) }));
+        setViewState(switchToSelection({ nodeIds: new Set([arrow.id]) }));
     };
 
     return { arrow, onMouseMove, onMouseUp };

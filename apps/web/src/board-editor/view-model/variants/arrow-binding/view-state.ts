@@ -3,7 +3,7 @@ import type { Id } from "@repo/common";
 export type ArrowBindingViewState = {
     type: "arrow-binding";
 
-    arrowId: Id;
+    nodeId: Id;
 
     side: "start" | "end";
 };

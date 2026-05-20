@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { Decoratable } from "@/board-editor/core";
 import { ResizableNodeStrategy, type ResizeHandler } from "@/board-editor/modules/resizing";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";

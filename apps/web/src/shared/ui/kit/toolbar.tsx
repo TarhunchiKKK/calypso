@@ -173,7 +173,7 @@ export function ToolbarSplitButtonSecondary({
                 "group-data-[pressed=true]:bg-accent group-data-[pressed=true]:text-accent-foreground",
                 className
             )}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             role="button"
             {...props}
         >

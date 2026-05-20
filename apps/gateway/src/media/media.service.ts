@@ -1,7 +1,7 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { extractGrpcResponsePipe, MEDIA_SERVICE_NAME, type MediaServiceClient } from "@repo/api";
-import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@repo/common";
+import { extractGrpcResponsePipe, MEDIA_SERVICE_NAME, type MediaServiceClient } from "@repo/contracts";
+import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@repo/media";
 import { map } from "rxjs";
 import { MEDIA_GRPC_CLIENT_INJECTION_TOKEN } from "./lib/grpc.constants";
 
@@ -19,14 +19,14 @@ export class MediaService implements OnModuleInit {
         return this.mediaClient
             .findPresets(dto)
             .pipe(extractGrpcResponsePipe())
-            .pipe(map(res => res.media));
+            .pipe(map((res) => res.media));
     }
 
     public findGroups(domain: MediaDomains) {
         return this.mediaClient
             .findGroups({ domain: domain })
             .pipe(extractGrpcResponsePipe())
-            .pipe(map(res => res.groups));
+            .pipe(map((res) => res.groups));
     }
 
     public getPresignedUrl(dto: GetPresignedUrlDto) {

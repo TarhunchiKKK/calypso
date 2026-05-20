@@ -1,24 +1,12 @@
-import type { Id } from "@repo/common";
 import type React from "react";
 import type { Renderable } from "../../core";
-import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
-import type { NodesModel } from "../../nodes";
-import type { ViewState } from "./view-state.type";
-
-export type ViewModelParams = {
-    boardId: Id;
-
-    nodesModel: NodesModel;
-
-    layoutDimensionsModel: LayoutDimensionsModel;
-
-    setViewState: (viewState: ViewState) => void;
-};
 
 type Action = {
-    isActive: boolean;
+    active: boolean;
 
     onClick?: React.MouseEventHandler;
+
+    disabled?: boolean;
 };
 
 export type ViewModel = {
@@ -49,6 +37,7 @@ export type ViewModel = {
     additionalElements?: {
         canvas?: React.ReactNode;
         layout?: React.ReactNode;
+        actionsBar?: React.ReactNode;
     };
 
     actions: {

@@ -1,19 +1,17 @@
-import type { Offset } from "@repo/common";
 import type { PropsWithChildren } from "react";
+import type { LayoutDimensions } from "./use-layout-dimensions-model.hook";
 
 type Props = PropsWithChildren<{
-    offset: Offset;
-
-    zoom: number;
+    dimensions: LayoutDimensions;
 }>;
 
-export function LayoutDimensionsWrapper({ offset, zoom, children }: Props) {
+export function LayoutDimensionsWrapper({ dimensions, children }: Props) {
     return (
         <div
             data-testid="layout-dimensions-wrapper"
             style={{
                 transformOrigin: "left top",
-                transform: `scale(${zoom}) translate(${-offset.dx}px, ${-offset.dy}px)`
+                transform: `scale(${dimensions.zoom}) translate(${-dimensions.offset.dx}px, ${-dimensions.offset.dy}px)`
             }}
         >
             {children}

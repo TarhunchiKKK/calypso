@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { Square, SquareDashed, SquareDot, SquareRoundCorner } from "lucide-react";
 import { AvailableBorderRadiuses, DefaultNodeStyles } from "@/entities/nodes";
 import type { DropdownItem } from "@/shared/ui";
@@ -51,7 +51,7 @@ export const BorderStyles: DropdownItem<Required<NodeStyles>["borderStyle"]>[] =
     }
 ];
 
-export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = AvailableBorderRadiuses.map(borderRadius => ({
+export const BorderRadiuses: DropdownItem<NodeStyles["borderRadius"]>[] = AvailableBorderRadiuses.map((borderRadius) => ({
     label: borderRadius > 1000 ? "Full" : `${borderRadius}px`,
     value: borderRadius
 }));

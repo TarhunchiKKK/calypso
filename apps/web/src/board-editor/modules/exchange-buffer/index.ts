@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id, Point } from "@repo/common";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -18,9 +18,9 @@ export function useExchangeBuffer(service: NodesService) {
         }
 
         const nodesWithResolvedPositions = service.nodes
-            .filter(node => nodeIds.has(node.id))
-            .map(node => NodeWrappersFactory.wrap(service.nodes, node))
-            .map(wrapper => wrapper.data);
+            .filter((node) => nodeIds.has(node.id))
+            .map((node) => NodeWrappersFactory.wrap(service.nodes, node))
+            .map((wrapper) => wrapper.data);
 
         setSelectedNodes(nodesWithResolvedPositions);
 
@@ -36,7 +36,7 @@ export function useExchangeBuffer(service: NodesService) {
         const middlePoint = calculateMiddlePoint(selectedNodes);
         const offset = Geometry.calculateOffset(middlePoint, pastePoint);
 
-        const shiftedNodes = selectedNodes.map(node => NodeClonesFactory.clone(node, offset));
+        const shiftedNodes = selectedNodes.map((node) => NodeClonesFactory.clone(node, offset));
 
         service.createMany(shiftedNodes);
     };
@@ -50,6 +50,7 @@ export function useExchangeBuffer(service: NodesService) {
     return {
         copy,
         paste,
-        cut
+        cut,
+        empty: !selectedNodes || selectedNodes.length === 0
     };
 }

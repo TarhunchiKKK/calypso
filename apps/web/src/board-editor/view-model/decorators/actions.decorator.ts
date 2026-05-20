@@ -1,4 +1,3 @@
-import { Geometry } from "@/shared/lib/geometry";
 import type { ViewState } from "../types";
 import type { ViewModel } from "../types/view-model.types";
 import { switchToDrawing } from "../variants/drawing/switcher";
@@ -31,49 +30,51 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
         actions: {
             nodes: {
                 idle: {
-                    isActive: stateFlags.idle,
+                    active: stateFlags.idle,
                     onClick: !stateFlags.idle ? () => setViewState(switchToIdle()) : undefined
                 },
                 stickers: {
-                    isActive: stateFlags.stickers,
+                    active: stateFlags.stickers,
                     onClick: !stateFlags.stickers ? () => setViewState(switchToNodeCreation({ type: "sticker" })) : undefined
                 },
                 arrows: {
-                    isActive: stateFlags.arrows,
+                    active: stateFlags.arrows,
                     onClick: !stateFlags.arrows ? () => setViewState(switchToNodeCreation({ type: "arrow" })) : undefined
                 },
                 text: {
-                    isActive: stateFlags.text,
+                    active: stateFlags.text,
                     onClick: !stateFlags.text ? () => setViewState(switchToNodeCreation({ type: "text" })) : undefined
                 },
                 shapes: {
-                    isActive: stateFlags.shapes,
-                    onClick: e => (!stateFlags.shapes ? setViewState(switchToShapeSelection(Geometry.pointFromEvent(e))) : undefined)
+                    active: stateFlags.shapes,
+                    onClick: () => (!stateFlags.shapes ? setViewState(switchToShapeSelection()) : undefined)
                 },
                 media: {
-                    isActive: stateFlags.media,
-                    onClick: !stateFlags.media ? e => setViewState(switchToMediaSelection(Geometry.pointFromEvent(e))) : undefined
+                    active: stateFlags.media,
+                    onClick: !stateFlags.media ? () => setViewState(switchToMediaSelection()) : undefined
                 },
                 notes: {
-                    isActive: stateFlags.notes,
+                    active: stateFlags.notes,
                     onClick: !stateFlags.notes ? () => setViewState(switchToNodeCreation({ type: "note" })) : undefined
                 },
                 draw: {
-                    isActive: stateFlags.draw,
+                    active: stateFlags.draw,
                     onClick: !stateFlags.draw ? () => setViewState(switchToDrawing()) : undefined
                 }
             },
             exchangeBuffer: {
                 copy: {
-                    isActive: false,
+                    active: false,
+                    disabled: viewState.type !== "selection",
                     onClick: () => {
                         if (viewState.type === "selection") {
-                            nodesModel.exchangeBuffer.copy(viewState.selectedIds);
+                            nodesModel.exchangeBuffer.copy(viewState.nodeIds);
                         }
                     }
                 },
                 paste: {
-                    isActive: false,
+                    active: false,
+                    disabled: nodesModel.exchangeBuffer.empty,
                     onClick: () => {
                         if (layoutDimensionsModel.lastClick.point) {
                             nodesModel.exchangeBuffer.paste(layoutDimensionsModel.lastClick.point);
@@ -81,22 +82,25 @@ export const useActionsDecorator: ViewModelDecorator<ViewModel> = (viewModel, vi
                     }
                 },
                 cut: {
-                    isActive: false,
+                    active: false,
+                    disabled: viewState.type !== "selection",
                     onClick: () => {
                         if (viewState.type === "selection") {
-                            console.log("Actions: ", viewState.selectedIds);
-                            nodesModel.exchangeBuffer.cut(viewState.selectedIds);
+                            console.log("Actions: ", viewState.nodeIds);
+                            nodesModel.exchangeBuffer.cut(viewState.nodeIds);
                         }
                     }
                 }
             },
             cancellation: {
                 undo: {
-                    isActive: false,
+                    active: false,
+                    disabled: nodesModel.cancellation.sizes.undo === 0,
                     onClick: nodesModel.cancellation.undo
                 },
                 redo: {
-                    isActive: false,
+                    active: false,
+                    disabled: nodesModel.cancellation.sizes.redo === 0,
                     onClick: nodesModel.cancellation.redo
                 }
             }

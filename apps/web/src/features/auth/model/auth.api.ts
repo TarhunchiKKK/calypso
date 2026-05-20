@@ -1,4 +1,4 @@
-import type { Profile, SignInDto, SignUpDto } from "@repo/common";
+import type { Profile, SignInDto, SignUpDto } from "@repo/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 
@@ -13,7 +13,7 @@ function useSignUp() {
         mutationFn: async (dto: SignUpDto) => {
             return await ApiInstance.post<Profile>("/auth/basic/sign-up", dto);
         },
-        onSuccess: data => {
+        onSuccess: (data) => {
             queryClient.setQueryData(queryKeys.profile, () => data);
         }
     });
@@ -26,7 +26,7 @@ function useSignIn() {
         mutationFn: async (dto: SignInDto) => {
             return await ApiInstance.post<Profile>("/auth/basic/sign-in", dto);
         },
-        onSuccess: data => {
+        onSuccess: (data) => {
             queryClient.setQueryData(queryKeys.profile, () => data);
         }
     });

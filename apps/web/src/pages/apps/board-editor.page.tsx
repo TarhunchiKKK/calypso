@@ -1,19 +1,12 @@
 import { BoardEditor } from "@/board-editor";
 import { MockNodes } from "@/dev";
-import { ThemeSwitch } from "@/features/dark-mode";
 import { BoardHeader } from "@/features/header";
 
 function BoardEditorPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <BoardEditor nodes={MockNodes} boardId="1">
-                <div className="absolute w-full px-6 top-4 left-0 flex flex-row justify-between items-center">
-                    <BoardHeader.LeftPanel boardName="Your board" />
-
-                    <BoardHeader.RightPanel>
-                        <ThemeSwitch />
-                    </BoardHeader.RightPanel>
-                </div>
+                <BoardHeader boardTitle="Your board" />
             </BoardEditor>
         </div>
     );

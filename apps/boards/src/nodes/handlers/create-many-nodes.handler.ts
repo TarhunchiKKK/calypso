@@ -15,7 +15,7 @@ export class CreateManyNodesCommandHandler implements ICommandHandler<CreateMany
     public constructor(@InjectModel(NodeBase.name) private readonly nodeModel: Model<NodeBase>) {}
 
     public async execute({ dto }: CreateManyNodesCommand) {
-        const items = dto.nodes.map(node => ({ ...node, boardId: dto.boardId }));
+        const items = dto.nodes.map((node) => ({ ...node, boardId: dto.boardId }));
 
         await this.nodeModel.insertMany(items);
     }

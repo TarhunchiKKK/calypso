@@ -12,7 +12,7 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
 
     let selectedNodesIds: string[] = [];
     if (selectionWindowRect) {
-        selectedNodesIds = nodesModel.nodes.filter(node => nodeInSelectionWindow(node, selectionWindowRect)).map(node => node.id);
+        selectedNodesIds = nodesModel.nodes.filter((node) => nodeInSelectionWindow(node, selectionWindowRect)).map((node) => node.id);
     }
 
     const onWindowMouseMove = (viewState: SelectionWindowViewState, e: MouseEvent) => {
@@ -22,12 +22,12 @@ export function useSelectionWindow({ nodesModel, layoutDimensionsModel, setViewS
     };
 
     const onWindowMouseUp = (viewState: SelectionWindowViewState) => {
-        const selection = selectNodes(selectedNodesIds, viewState.selectionMode, viewState.selectedIds);
+        const selection = selectNodes(selectedNodesIds, viewState.mode, viewState.nodeIds);
 
         if (selection.size === 0) {
             setViewState(switchToIdle());
         } else {
-            setViewState(switchToSelection({ selectedIds: selection }));
+            setViewState(switchToSelection({ nodeIds: selection }));
         }
 
         setSelectionWindowRect(undefined);

@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/common";
+import type { ProjectTypes } from "@repo/projects";
 import { PlusIcon } from "lucide-react";
 import { preventDefaultHandler } from "@/shared/lib/events";
 import type { DropdownItem } from "@/shared/ui";
@@ -26,7 +26,7 @@ export function CreateProjectButton() {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                {options.map(option => (
+                {options.map((option) => (
                     <DropdownMenuItem key={option.value} onSelect={preventDefaultHandler}>
                         <CreateProjectDialog type={option.value}>{option.label}</CreateProjectDialog>
                     </DropdownMenuItem>

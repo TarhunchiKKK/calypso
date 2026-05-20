@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import type { NodeHandlers } from "../classes/node-wrapper.class";
 import type { Decoratable } from "../types/decorators.types";
@@ -19,7 +19,7 @@ export abstract class NodesMapper {
     }
 
     public wrapNodes() {
-        return this.nodes.map(node => NodeWrappersFactory.wrap(this.nodes, node)).map(wrapper => wrapper.setHandlers(this.handlers));
+        return this.nodes.map((node) => NodeWrappersFactory.wrap(this.nodes, node)).map((wrapper) => wrapper.setHandlers(this.handlers));
     }
 
     public abstract map(): Decoratable[];

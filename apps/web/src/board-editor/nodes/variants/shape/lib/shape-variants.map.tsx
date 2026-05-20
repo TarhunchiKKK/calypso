@@ -1,4 +1,4 @@
-import type { ShapeNode, ShapeVariants } from "@repo/boards-common";
+import type { ShapeNode, ShapeVariants } from "@repo/boards";
 import type React from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { computeShapeReferencePoints } from "./shape-variants-reference-points.map";
@@ -34,7 +34,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
 
         return (
             <polygon
-                points={referencePoints.map(point => `${point.x},${point.y}`).join(" ")}
+                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
                 fill={node.styles.backgroundColor}
                 stroke={node.styles.borderColor}
                 {...handlers}
@@ -46,7 +46,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
 
         return (
             <polygon
-                points={referencePoints.map(point => `${point.x},${point.y}`).join(" ")}
+                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
                 fill={node.styles.backgroundColor}
                 stroke={node.styles.borderColor}
                 {...handlers}
@@ -58,7 +58,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
 
         return (
             <polygon
-                points={referencePoints.map(point => `${point.x},${point.y}`).join(" ")}
+                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
                 fill={node.styles.backgroundColor}
                 stroke={node.styles.borderColor}
                 {...handlers}
@@ -70,7 +70,7 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
 
         return (
             <polygon
-                points={referencePoints.map(point => `${point.x},${point.y}`).join(" ")}
+                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
                 fill={node.styles.backgroundColor}
                 stroke={node.styles.borderColor}
                 {...handlers}

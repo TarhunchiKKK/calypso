@@ -65,7 +65,7 @@ export function FormattableDocument({ value, onChange, className, disabled, styl
         ]
     });
 
-    const handleKeyDown: KeyboardEventHandler = e => {
+    const handleKeyDown: KeyboardEventHandler = (e) => {
         if (keyHandlers && e.key in keyHandlers) {
             e.preventDefault();
 
@@ -77,7 +77,7 @@ export function FormattableDocument({ value, onChange, className, disabled, styl
 
     return (
         <div style={styles} className={clsx("w-full h-full flex flex-col rounded-lg border", className ?? className)}>
-            <Plate editor={editor} onChange={data => onChange?.(data.value)}>
+            <Plate editor={editor} onChange={(data) => onChange?.(data.value)}>
                 <FixedToolbar className="justify-start bg-transparent">
                     <ToolbarButton onClick={() => editor.tf.h1.toggle()}>H1</ToolbarButton>
                     <ToolbarButton onClick={() => editor.tf.h2.toggle()}>H2</ToolbarButton>

@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useCallback, useRef } from "react";
 

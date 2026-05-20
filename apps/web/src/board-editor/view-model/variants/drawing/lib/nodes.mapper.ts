@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards-common";
+import type { DrawingNode } from "@repo/boards";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 

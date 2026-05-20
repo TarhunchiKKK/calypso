@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/common";
+import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { EllipsisVertical } from "lucide-react";
 import { ProjectActions } from "@/features/project-actions";
 import { formatDate } from "@/shared/lib/date";
@@ -24,7 +24,7 @@ export function ProjectsTable({ projects }: Props) {
             </TableHeader>
 
             <TableBody>
-                {projects.map(project => (
+                {projects.map((project) => (
                     <TableRow key={project.id}>
                         <TableCell>
                             <img src={S3Service.getFullUrl(project.thumbnail)} alt={project.title} className="w-10 h-10" />

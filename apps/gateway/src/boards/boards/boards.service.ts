@@ -1,8 +1,8 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/api";
-import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards-common";
+import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards";
 import type { Id } from "@repo/common";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
 import { map } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
@@ -36,7 +36,7 @@ export class BoardsService implements OnModuleInit {
             .findAll({ userId })
             .pipe(extractGrpcResponsePipe())
             .pipe(
-                map(res => {
+                map((res) => {
                     if (res?.boards) {
                         return res.boards.map(BoardsGrpcMapper.fromGrpc);
                     }

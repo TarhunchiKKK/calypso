@@ -1,5 +1,5 @@
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import { ExtractGrpc, Validation } from "@repo/api";
+import { Validation } from "@repo/api";
 import {
     type CreateManyNodesDto,
     CreateManyNodesDtoZodSchema,
@@ -7,8 +7,9 @@ import {
     RemoveManyNodesDtoZodSchema,
     type UpdateManyNodesDto,
     UpdateManyNodesDtoZodSchema
-} from "@repo/boards-common";
+} from "@repo/boards";
 import type { Id } from "@repo/common";
+import { ExtractGrpc } from "@repo/contracts";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";

@@ -1,4 +1,4 @@
-import type { StickerNode } from "@repo/boards-common";
+import type { StickerNode } from "@repo/boards";
 import type { CSSProperties } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";

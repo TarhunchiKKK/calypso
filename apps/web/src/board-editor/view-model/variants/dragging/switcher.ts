@@ -4,8 +4,8 @@ import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../types";
 
 export function useSwitchToDragging({ layoutDimensionsModel, setViewState }: ViewModelParams) {
-    const onMouseDown = (selectedIds: Set<Id>, e: React.MouseEvent) => {
-        if (layoutDimensionsModel.layoutOffset.isShifting(e)) {
+    const onMouseDown = (nodeIds: Set<Id>, e: React.MouseEvent) => {
+        if (layoutDimensionsModel.handlers.isShifting(e)) {
             return;
         }
 
@@ -14,7 +14,7 @@ export function useSwitchToDragging({ layoutDimensionsModel, setViewState }: Vie
         setViewState({
             type: "dragging",
             startPoint: currentPoint,
-            selectedIds: selectedIds
+            nodeIds: nodeIds
         });
     };
 

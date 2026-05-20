@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
+import type { NodesSelectionMode } from "@/board-editor/modules/selection";
 import { selectNodes } from "@/board-editor/modules/selection";
-import type { NodesSelectionMode } from "@/board-editor/modules/selection/types";
 
 describe("`selectNodes` function", () => {
     test("selects nodes", () => {

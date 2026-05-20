@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards-common";
+import type { DrawingNode } from "@repo/boards";
 import { getStroke, type StrokeOptions, type Vec2 } from "perfect-freehand";
 import { type SVGProps, useMemo } from "react";
 import { Geometry } from "@/shared/lib/geometry";
@@ -15,15 +15,15 @@ const defaultOptions: StrokeOptions = {
     thinning: 0.5,
     smoothing: 0.9,
     streamline: 0.3,
-    easing: t => t,
+    easing: (t) => t,
     start: {
         taper: 0,
-        easing: t => t,
+        easing: (t) => t,
         cap: true
     },
     end: {
         taper: 100,
-        easing: t => t,
+        easing: (t) => t,
         cap: true
     }
 };

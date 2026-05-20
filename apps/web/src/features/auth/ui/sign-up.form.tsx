@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type SignUpDto, SignUpDtoZodSchema } from "@repo/common";
+import { type SignUpDto, SignUpDtoZodSchema } from "@repo/auth";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
@@ -21,7 +21,7 @@ export function SignUpForm({ afterSubmit }: Props) {
 
     const signUp = AuthApi.useSignUp();
 
-    const onSubmit = form.handleSubmit(async data => {
+    const onSubmit = form.handleSubmit(async (data) => {
         await signUp.mutateAsync(data);
 
         if (signUp.isError) {

@@ -1,9 +1,8 @@
 import { withNodeId } from "@/board-editor/core";
 import { selectNodes } from "@/board-editor/modules/selection";
 import { Geometry } from "@/shared/lib/geometry";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { useSwitchToDragging } from "../dragging/switcher";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";
@@ -13,7 +12,7 @@ import { getResizeHandler } from "./lib/get-resize-handler.lib";
 import { SelectionNodesMapper } from "./lib/nodes-mapper";
 import type { SelectionViewState } from "./view-state";
 
-export function useSelectionViewModel(params: ViewModelParams) {
+export const useSelectionViewModel: ViewModelHook<SelectionViewState> = (params) => {
     const { nodesModel, setViewState } = params;
 
     const selectionWindow = useSwitchToSelectionWindow(params);
@@ -23,27 +22,27 @@ export function useSelectionViewModel(params: ViewModelParams) {
     const nodesMediator = useMouseEventsMediator();
     const overlayMediator = useMouseEventsMediator();
 
-    return (viewState: SelectionViewState): DecoratableViewModel => {
+    return (viewState) => {
         nodesMediator.setHandlers({
             left: {
-                onMouseDown: e => dragging.onMouseDown(viewState.selectedIds, e),
+                onMouseDown: (e) => dragging.onMouseDown(viewState.nodeIds, e),
                 onClick: withNodeId((nodeId, e) => {
                     const selectionMode = e.shiftKey || e.ctrlKey ? "toggle" : "replace";
 
                     setViewState({
                         ...viewState,
-                        selectedIds: selectNodes([nodeId], selectionMode, viewState.selectedIds)
+                        nodeIds: selectNodes([nodeId], selectionMode, viewState.nodeIds)
                     });
                 }),
-                onDoubleClick: withNodeId(nodeId => {
-                    setViewState(switchToEditing({ selectedNodeId: nodeId }));
+                onDoubleClick: withNodeId((nodeId) => {
+                    setViewState(switchToEditing({ nodeId: nodeId }));
                 })
             },
             right: {
                 onClick: withNodeId((id, e) => {
                     setViewState(
                         switchToNodesContextMenu({
-                            selectedIds: new Set([id]),
+                            nodeIds: new Set([id]),
                             position: Geometry.pointFromEvent(e)
                         })
                     );
@@ -53,7 +52,7 @@ export function useSelectionViewModel(params: ViewModelParams) {
 
         overlayMediator.setHandlers({
             left: {
-                onMouseDown: e => selectionWindow.onOverlayMouseDown(viewState, e),
+                onMouseDown: (e) => selectionWindow.onOverlayMouseDown(viewState, e),
                 onClick: () => setViewState(switchToIdle())
             }
         });
@@ -64,10 +63,10 @@ export function useSelectionViewModel(params: ViewModelParams) {
             nodes: SelectionNodesMapper.create()
                 .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
-                .setSelectedIds(viewState.selectedIds)
+                .setSelectedIds(viewState.nodeIds)
                 .setResizeHandler(handleResize)
                 .map(),
             overlay: overlayMediator.handlers
         };
     };
-}
+};

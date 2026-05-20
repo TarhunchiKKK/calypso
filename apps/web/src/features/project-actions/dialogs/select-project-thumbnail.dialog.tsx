@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/common";
+import type { ProjectWithType } from "@repo/projects";
 import { useState } from "react";
 import { ProjectThumbnailSelector } from "@/entities/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";

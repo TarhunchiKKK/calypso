@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Point } from "@repo/common";
 import { type Decoratable, withNodeId } from "@/board-editor/core";
 import { NodeRectsFactory } from "@/entities/nodes";
@@ -10,7 +10,7 @@ export abstract class BindableNodeStrategy<T extends NodeBase = NodeBase> {
 
     public updateNode(entry: Decoratable, handlers: BindingNodeHandlers, active: boolean) {
         entry.wrapper.setHandlers({
-            onMouseEnter: withNodeId(nodeId => {
+            onMouseEnter: withNodeId((nodeId) => {
                 handlers.onMouseEnter?.(nodeId);
             }),
             onMouseLeave: active ? handlers.onMouseLeave : undefined

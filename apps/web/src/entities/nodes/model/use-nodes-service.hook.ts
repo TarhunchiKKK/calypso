@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useState } from "react";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
@@ -9,7 +9,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
     const middleware = useNodesServiceMiddleware();
 
     const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
-        setNodes(nodes => {
+        setNodes((nodes) => {
             const result = middleware.apply(nodes, payload);
 
             return updateFn(result);
@@ -22,7 +22,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "create",
                 nodes: [node]
             },
-            nodes => [...nodes, node]
+            (nodes) => [...nodes, node]
         );
     };
 
@@ -32,13 +32,13 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "create",
                 nodes: newNodes
             },
-            nodes => [...nodes, ...newNodes]
+            (nodes) => [...nodes, ...newNodes]
         );
     };
 
     // OPTIMIZE: add map (`Record<Id, NodeBase>`) for less complexity
     const findOne = <T extends NodeBase = NodeBase>(nodeId: Id) => {
-        const node = nodes.find(node => node.id === nodeId);
+        const node = nodes.find((node) => node.id === nodeId);
 
         if (!node) {
             throw new Error(`Node with id=${nodeId} not found`);
@@ -53,7 +53,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "update",
                 nodes: [newNode]
             },
-            nodes => nodes.map(node => (node.id === newNode.id ? newNode : node))
+            (nodes) => nodes.map((node) => (node.id === newNode.id ? newNode : node))
         );
     };
 
@@ -63,9 +63,9 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "update",
                 nodes: newNodes
             },
-            nodes =>
-                nodes.map(node => {
-                    const replacementNode = newNodes.find(newNode => newNode.id === node.id);
+            (nodes) =>
+                nodes.map((node) => {
+                    const replacementNode = newNodes.find((newNode) => newNode.id === node.id);
 
                     if (!replacementNode) {
                         return node;
@@ -77,7 +77,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
     };
 
     const updateManyWithFn = (ids: Set<Id>, fn: (node: NodeBase) => NodeBase) => {
-        setNodes(nodes => nodes.map(node => (ids.has(node.id) ? fn(node) : node)));
+        setNodes((nodes) => nodes.map((node) => (ids.has(node.id) ? fn(node) : node)));
     };
 
     const removeOne = (id: Id) => {
@@ -86,7 +86,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "remove",
                 nodes: [id]
             },
-            nodes => nodes.filter(node => node.id !== id)
+            (nodes) => nodes.filter((node) => node.id !== id)
         );
     };
 
@@ -96,7 +96,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
                 operation: "remove",
                 nodes: Array.from(ids)
             },
-            nodes => nodes.filter(node => !ids.has(node.id))
+            (nodes) => nodes.filter((node) => !ids.has(node.id))
         );
     };
 

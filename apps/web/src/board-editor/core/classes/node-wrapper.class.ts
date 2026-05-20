@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards-common";
+import type { NodeBase } from "@repo/boards";
 import type { Decoratable } from "../types/decorators.types";
 import type { Renderable } from "../types/ui.types";
 

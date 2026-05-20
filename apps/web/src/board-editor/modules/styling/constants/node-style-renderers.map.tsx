@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { AngleType } from "../elements/angle/components";
 import { BorderColor, BorderRadius, BorderStyle } from "../elements/border/components";
 import { BackgroundColor, TextColor } from "../elements/color/components";

@@ -1,4 +1,4 @@
-import type { NodeBase, NodeTypes } from "@repo/boards-common";
+import type { NodeBase, NodeTypes } from "@repo/boards";
 import type { Id } from "@repo/common";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
 

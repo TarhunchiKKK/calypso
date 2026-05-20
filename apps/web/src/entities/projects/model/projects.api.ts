@@ -1,14 +1,6 @@
-import type {
-    DuplicateProjectDto,
-    FindOneProjectDto,
-    Id,
-    Project,
-    ProjectWithCreator,
-    ProjectWithType,
-    RemoveProjectDto,
-    UpdateProjectDto
-} from "@repo/common";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { Id } from "@repo/common";
+import type { DuplicateProjectDto, FindOneProjectDto, Project, ProjectWithCreator, ProjectWithType, RemoveProjectDto, UpdateProjectDto } from "@repo/projects";
+import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 
 export const ProjectsQueryKeys = {
@@ -29,19 +21,23 @@ function useDuplicate() {
     });
 }
 
-function useFindAll() {
-    return useQuery({
+function findAllOptions() {
+    return queryOptions({
         queryKey: ProjectsQueryKeys.projects,
         queryFn: async () => {
             return await ApiInstance.get<ProjectWithCreator<ProjectWithType>[]>("/projects/all");
         },
-        select: projects =>
-            projects.map(project => ({
+        select: (projects) =>
+            projects.map((project) => ({
                 ...project,
                 createdAt: new Date(project.createdAt),
                 updatedAt: project.updatedAt ? new Date(project.updatedAt) : undefined
             }))
     });
+}
+
+function useFindAll() {
+    return useQuery(findAllOptions());
 }
 
 function useFindOne<T extends Project = Project>(dto: FindOneProjectDto) {
@@ -86,6 +82,9 @@ function useRemove() {
 }
 
 export const ProjectsApi = {
+    options: {
+        findAll: findAllOptions
+    },
     useDuplicate,
     useFindAll,
     useFindOne,

@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package boards;
+
+import "common/util.proto";
+import "core/projects.proto";
+import "boards/boards.models.proto";
+
+
+service BoardsService {
+  rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
+
+  rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {}
+
+  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+
+  rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
+
+  rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
+
+  rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
+}
+
+message BoardGrpcResponse {
+  oneof response {
+    BoardGrpc data = 1;
+
+    common.GrpcError error = 2;
+  }
+}
+
+message CreateBoardGrpcRequest {
+  string title = 1;
+
+  string thumbnail = 2;
+
+  string creatorId = 3;
+}
+
+message FindAllBoardsGrpcResponse {
+  oneof response {
+    BoardsList data = 1;
+
+    common.GrpcError error = 2;
+  }
+}
+
+message UpdateBoardGrpcRequest {
+  string id = 1;
+
+  string userId = 2;
+
+  optional string title = 3;
+
+  optional string description = 4;
+
+  optional string thumbnail = 5;
+}
+

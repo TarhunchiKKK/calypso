@@ -1,13 +1,12 @@
 import { withNodeId } from "@/board-editor/core";
-import type { DecoratableViewModel } from "../../decorators";
 import { useMouseEventsMediator } from "../../hooks/use-mouse-events-mediator.hook";
-import type { ViewModelParams } from "../../types";
+import type { ViewModelHook } from "../../types";
 import { switchToSelection } from "../selection/switcher";
 import { EditingNodesMapper } from "./lib/nodes-mapper";
 import { useNodeEditing } from "./lib/use-node-editing.hook";
 import type { EditingViewState } from "./view-state";
 
-export function useEditingViewModel(params: ViewModelParams) {
+export const useEditingViewModel: ViewModelHook<EditingViewState> = (params) => {
     const { nodesModel, setViewState } = params;
 
     const nodesMediator = useMouseEventsMediator();
@@ -15,11 +14,11 @@ export function useEditingViewModel(params: ViewModelParams) {
 
     const editingHandlers = useNodeEditing(params);
 
-    return (viewState: EditingViewState): DecoratableViewModel => {
+    return (viewState) => {
         nodesMediator.setHandlers({
             left: {
-                onClick: withNodeId(nodeId => {
-                    setViewState(switchToSelection({ selectedIds: new Set([nodeId]) }));
+                onClick: withNodeId((nodeId) => {
+                    setViewState(switchToSelection({ nodeIds: new Set([nodeId]) }));
                 })
             }
         });
@@ -34,10 +33,10 @@ export function useEditingViewModel(params: ViewModelParams) {
             nodes: EditingNodesMapper.create()
                 .setNodes(nodesModel.nodes)
                 .setHandlers(nodesMediator.handlers)
-                .setSelectedNodeId(viewState.selectedNodeId)
+                .setSelectedNodeId(viewState.nodeId)
                 .setEditingHandlers(editingHandlers)
                 .map(),
             overlay: overlayMediator.handlers
         };
     };
-}
+};

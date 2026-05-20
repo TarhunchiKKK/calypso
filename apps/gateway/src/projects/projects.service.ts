@@ -1,18 +1,17 @@
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import { extractGrpcResponsePipe } from "@repo/api";
-import {
-    DebugException,
-    type DuplicateProjectDto,
-    type FindOneProjectDto,
-    type Id,
-    type Profile,
-    type Project,
-    type ProjectTypes,
-    type ProjectWithCreator,
-    type ProjectWithType,
-    type RemoveProjectDto,
-    type UpdateProjectDto
-} from "@repo/common";
+import type { Profile } from "@repo/auth";
+import { DebugException, type Id } from "@repo/common";
+import { extractGrpcResponsePipe } from "@repo/contracts";
+import type {
+    DuplicateProjectDto,
+    FindOneProjectDto,
+    Project,
+    ProjectTypes,
+    ProjectWithCreator,
+    ProjectWithType,
+    RemoveProjectDto,
+    UpdateProjectDto
+} from "@repo/projects";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";
@@ -50,7 +49,7 @@ export class ProjectsService {
 
         const creators = await this.getProjectsCreatorsMap(boards);
 
-        return boards.map(board => {
+        return boards.map((board) => {
             const creator = creators.get(board.creatorId);
 
             if (!creator) {
@@ -62,7 +61,7 @@ export class ProjectsService {
     }
 
     private async getProjectsCreatorsMap(projects: Project[]) {
-        const uniqueCreatorIds = new Set(projects.map(projects => projects.creatorId));
+        const uniqueCreatorIds = new Set(projects.map((projects) => projects.creatorId));
 
         const creators = await this.usersService.findManyByIds(Array.from(uniqueCreatorIds));
 

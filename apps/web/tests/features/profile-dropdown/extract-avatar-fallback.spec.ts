@@ -1,4 +1,4 @@
-import type { Profile } from "@repo/common";
+import type { Profile } from "@repo/auth";
 import { describe, expect, test } from "vitest";
 import { extractAvatarFallback } from "@/features/profile-dropdown/profile-avatar.component";
 

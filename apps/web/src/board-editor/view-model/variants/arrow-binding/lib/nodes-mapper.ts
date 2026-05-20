@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards-common";
+import type { ArrowNode } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
@@ -33,14 +33,14 @@ export class ArrowBindingNodesMapper extends NodesMapper {
 
     public override map() {
         return this.wrapNodes()
-            .map(wrapper => {
+            .map((wrapper) => {
                 if (this.arrow && this.arrow.id === wrapper.id) {
                     return NodeWrappersFactory.wrap(this.nodes, this.arrow);
                 }
 
                 return wrapper;
             })
-            .map(wrapper => {
+            .map((wrapper) => {
                 const builder = DecoratableNodeBuilder.from(wrapper);
 
                 if (this.arrow?.id === wrapper.id) {

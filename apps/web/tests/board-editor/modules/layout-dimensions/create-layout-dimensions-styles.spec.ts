@@ -6,7 +6,10 @@ describe("`createLayoutDimensionsStyles` function", () => {
         const dataset = [
             {
                 input: {
-                    offset: { dx: 10, dy: 20 },
+                    offset: {
+                        dx: 10,
+                        dy: 20
+                    },
                     zoom: 0.5
                 },
                 output: {
@@ -18,7 +21,7 @@ describe("`createLayoutDimensionsStyles` function", () => {
         ];
 
         for (const data of dataset) {
-            const result = createLayoutDimensionsStyles(data.input.offset, data.input.zoom);
+            const result = createLayoutDimensionsStyles(data.input);
 
             expect(result).toStrictEqual(data.output);
         }

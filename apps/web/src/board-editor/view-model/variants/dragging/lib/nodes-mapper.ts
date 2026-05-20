@@ -24,18 +24,18 @@ export class DraggingNodesMapper extends NodesMapper {
 
     public getNodesWithOffset() {
         const nodesToDrag = this.nodes
-            .filter(node => this.selectedIds.has(node.id))
-            .map(node => NodeWrappersFactory.wrap(this.nodes, node))
-            .map(wrapper => DecoratableNodeBuilder.from(wrapper).dragging(this.offset).build().data);
+            .filter((node) => this.selectedIds.has(node.id))
+            .map((node) => NodeWrappersFactory.wrap(this.nodes, node))
+            .map((wrapper) => DecoratableNodeBuilder.from(wrapper).dragging(this.offset).build().data);
 
-        const otherNodes = this.nodes.filter(node => !this.selectedIds.has(node.id));
+        const otherNodes = this.nodes.filter((node) => !this.selectedIds.has(node.id));
 
         const nodes = [...nodesToDrag, ...otherNodes];
-        return nodes.map(node => NodeWrappersFactory.wrap(nodes, node));
+        return nodes.map((node) => NodeWrappersFactory.wrap(nodes, node));
     }
 
     public map() {
-        return this.getNodesWithOffset().map(wrapper => {
+        return this.getNodesWithOffset().map((wrapper) => {
             if (this.selectedIds.has(wrapper.id)) {
                 return DecoratableNodeBuilder.from(wrapper).selection().dragging().build();
             }

@@ -14,11 +14,11 @@ export const useLastClickDecorator: ViewModelDecorator = (viewModel, _, { layout
         ...viewModel,
         canvas: {
             ...viewModel.canvas,
-            onMouseDown: e => {
+            onMouseDown: (e) => {
                 viewModel.canvas?.onMouseDown?.(e);
                 canvasMediator.handlers.onMouseDown(e);
             },
-            onMouseUp: e => {
+            onMouseUp: (e) => {
                 viewModel.canvas?.onMouseUp(e);
                 canvasMediator.handlers.onMouseUp(e);
             }

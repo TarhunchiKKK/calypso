@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { AvailableColors } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
@@ -7,7 +7,7 @@ import { LineColorPlaceholder, LineTypePlaceholder, LineTypes, LineWidthPlacehol
 
 export function LineWidth({ update }: ElementProps) {
     const handleSelect = (lineWidth: NodeStyles["lineWidth"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -21,7 +21,7 @@ export function LineWidth({ update }: ElementProps) {
 
 export function LineColor({ update }: ElementProps) {
     const handleSelect = (lineColor: NodeStyles["lineColor"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -43,7 +43,7 @@ export function LineColor({ update }: ElementProps) {
 
 export function LineType({ update }: ElementProps) {
     const handleSelect = (lineType: NodeStyles["lineType"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

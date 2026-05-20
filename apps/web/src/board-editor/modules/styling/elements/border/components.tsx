@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards-common";
+import type { NodeStyles } from "@repo/boards";
 import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { Dropdown } from "@/shared/ui";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
@@ -7,7 +7,7 @@ import { BoarderRadiusPlaceholder, BorderColorPlaceholder, BorderRadiuses, Borde
 
 export function BorderStyle({ update }: ElementProps) {
     const handleSelect = (borderStyle: NodeStyles["borderStyle"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -21,7 +21,7 @@ export function BorderStyle({ update }: ElementProps) {
 
 export function BorderColor({ update }: ElementProps) {
     const handleSelect = (borderColor: NodeStyles["borderColor"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
@@ -43,7 +43,7 @@ export function BorderColor({ update }: ElementProps) {
 
 export function BorderRadius({ update }: ElementProps) {
     const handleSelect = (borderRadius: NodeStyles["borderRadius"]) => {
-        update(node => ({
+        update((node) => ({
             ...node,
             styles: {
                 ...node.styles,

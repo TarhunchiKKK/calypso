@@ -1,7 +1,7 @@
 import type { DecoratorFunction } from "storybook/internal/types";
 import { Dots } from "../../../src/board-editor/ui/dots.component";
 
-const dotsProps = {
+const dimensions = {
     offset: {
         dx: 0,
         dy: 0
@@ -9,10 +9,10 @@ const dotsProps = {
     zoom: 1.0
 };
 
-export const withDots: DecoratorFunction = Story => {
+export const withDots: DecoratorFunction = (Story) => {
     return (
         <>
-            <Dots {...dotsProps} />
+            <Dots dimensions={dimensions} />
 
             <Story />
         </>
