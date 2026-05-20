@@ -8,6 +8,7 @@ import {
     MousePointer2,
     RedoIcon,
     ScissorsIcon,
+    ShapesIcon,
     StickyNoteIcon,
     TypeIcon,
     UndoIcon
@@ -28,7 +29,7 @@ const ButtonsMap = {
         { key: "idle", element: <MousePointer2 /> },
         { key: "stickers", element: <StickyNoteIcon /> },
         { key: "text", element: <TypeIcon /> },
-        { key: "shapes", element: <DiamondIcon /> },
+        { key: "shapes", element: <ShapesIcon /> },
         { key: "media", element: <CirclePlayIcon /> },
         { key: "notes", element: <FileTextIcon /> },
         { key: "draw", element: <BrushIcon /> }
