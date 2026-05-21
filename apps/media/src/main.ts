@@ -14,8 +14,8 @@ async function bootstrap() {
         transport: Transport.GRPC,
         options: {
             package: MEDIA_PACKAGE_NAME,
-            protoPath: "node_modules/@repo/contracts/proto/media.proto",
-            url: configService.getOrThrow<string>("GRPC_URL"),
+            protoPath: "node_modules/@repo/contracts/proto/media.service.proto",
+            url: configService.getOrThrow<string>("MEDIA_GRPC_URL"),
             loader: GrpcLoaderOptions
         }
     });

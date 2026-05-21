@@ -8,3 +8,5 @@ export * from "./common/geometry";
 export * from "./common/util";
 export * from "./core/auth";
 export * from "./google/protobuf/any";
+export * from "./media/media.models"
+export * from "./media/media.service"

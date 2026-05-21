@@ -17,7 +17,7 @@ import { MediaService } from "./media.service";
                     transport: Transport.GRPC,
                     options: {
                         package: MEDIA_PACKAGE_NAME,
-                        protoPath: "node_modules/@repo/contracts/proto/media.proto",
+                        protoPath: "node_modules/@repo/contracts/proto/media.service.proto",
                         url: configService.getOrThrow<string>("MEDIA_SERVICE_GRPC_URL"),
                         loader: GrpcLoaderOptions
                     }
