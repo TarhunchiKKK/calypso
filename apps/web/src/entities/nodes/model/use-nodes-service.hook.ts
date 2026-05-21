@@ -1,12 +1,15 @@
 import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useState } from "react";
+import { useEntitiesMap } from "@/shared/lib/entities-management";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
 export function useNodesService(inputNodes: NodeBase[]) {
     const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
 
     const middleware = useNodesServiceMiddleware();
+
+    const nodesMap = useEntitiesMap(nodes);
 
     const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
         setNodes((nodes) => {
@@ -36,9 +39,8 @@ export function useNodesService(inputNodes: NodeBase[]) {
         );
     };
 
-    // OPTIMIZE: add map (`Record<Id, NodeBase>`) for less complexity
     const findOne = <T extends NodeBase = NodeBase>(nodeId: Id) => {
-        const node = nodes.find((node) => node.id === nodeId);
+        const node = nodesMap.findOne(nodeId);
 
         if (!node) {
             throw new Error(`Node with id=${nodeId} not found`);
