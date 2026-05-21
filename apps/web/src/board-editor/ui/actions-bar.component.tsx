@@ -3,7 +3,6 @@ import {
     CirclePlayIcon,
     ClipboardPasteIcon,
     CopyIcon,
-    DiamondIcon,
     FileTextIcon,
     MousePointer2,
     RedoIcon,

@@ -1,6 +1,6 @@
 import type { OmitFields } from "@repo/common";
 import type { NodesService } from "@/entities/nodes";
-import { useCancellationStore } from "./use-cancellation-store.hook";
+import { useCancellation } from "@/shared/lib/entities-management";
 
 /**
  * This hook decorates `NodesService` instance with cancellation functionality.
@@ -10,7 +10,7 @@ import { useCancellationStore } from "./use-cancellation-store.hook";
  * @returns Decorated nodes service object.
  */
 export function useCancellationDecorator(service: NodesService) {
-    const store = useCancellationStore();
+    const store = useCancellation();
 
     const createOne: NodesService["createOne"] = (node) => {
         store.push({
