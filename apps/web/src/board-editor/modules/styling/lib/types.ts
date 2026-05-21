@@ -1,7 +1,9 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase, NodeStyles } from "@repo/boards";
 
 export type UpdateFn = (node: NodeBase) => NodeBase;
 
-export type ElementProps = {
+export type ElementProps<Key extends keyof NodeStyles> = {
     update: (fn: UpdateFn) => void;
+
+    values: NodeStyles[Key][];
 };

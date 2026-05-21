@@ -1,11 +1,12 @@
 import type { NodeStyles } from "@repo/boards";
-import { AvailableColors } from "@/entities/nodes";
 import { Dropdown } from "@/shared/ui";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
-import { LineColorPlaceholder, LineTypePlaceholder, LineTypes, LineWidthPlaceholder, LineWidths, renderLineColorItem } from "./constants";
+import { getLineTypes, getLineWidths, LineColorPlaceholder, LineTypePlaceholder, LineWidthPlaceholder, renderLineColorItem } from "./constants";
 
-export function LineWidth({ update }: ElementProps) {
+export function LineWidth({ values, update }: ElementProps<"lineWidth">) {
+    const lineWidths = getLineWidths(values);
+
     const handleSelect = (lineWidth: NodeStyles["lineWidth"]) => {
         update((node) => ({
             ...node,
@@ -16,10 +17,10 @@ export function LineWidth({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Line Width" placeholder={LineWidthPlaceholder} items={LineWidths} onSelect={handleSelect} />;
+    return <Dropdown title="Line Width" placeholder={LineWidthPlaceholder} items={lineWidths} onSelect={handleSelect} />;
 }
 
-export function LineColor({ update }: ElementProps) {
+export function LineColor({ values: colors, update }: ElementProps<"lineColor">) {
     const handleSelect = (lineColor: NodeStyles["lineColor"]) => {
         update((node) => ({
             ...node,
@@ -30,18 +31,12 @@ export function LineColor({ update }: ElementProps) {
         }));
     };
 
-    return (
-        <ColorsDropdown
-            title="Line Color"
-            placeholder={LineColorPlaceholder}
-            colors={AvailableColors}
-            renderItem={renderLineColorItem}
-            onSelect={handleSelect}
-        />
-    );
+    return <ColorsDropdown title="Line Color" placeholder={LineColorPlaceholder} colors={colors} renderItem={renderLineColorItem} onSelect={handleSelect} />;
 }
 
-export function LineType({ update }: ElementProps) {
+export function LineType({ values, update }: ElementProps<"lineType">) {
+    const lineTypes = getLineTypes(values);
+
     const handleSelect = (lineType: NodeStyles["lineType"]) => {
         update((node) => ({
             ...node,
@@ -52,5 +47,5 @@ export function LineType({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Line Type" items={LineTypes} placeholder={LineTypePlaceholder} onSelect={handleSelect} />;
+    return <Dropdown title="Line Type" items={lineTypes} placeholder={LineTypePlaceholder} onSelect={handleSelect} />;
 }

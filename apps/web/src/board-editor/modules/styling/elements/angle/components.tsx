@@ -1,18 +1,20 @@
 import type { NodeStyles } from "@repo/boards";
 import { Dropdown } from "@/shared/ui";
 import type { ElementProps } from "../../lib/types";
-import { AngleTypePlaceholder, AngleTypes } from "./constants";
+import { AngleTypePlaceholder, getAngleTypes } from "./constants";
 
-export function AngleType({ update }: ElementProps) {
-    const handleSelect = (angletype: NodeStyles["angleType"]) => {
+export function AngleType({ values, update }: ElementProps<"angleType">) {
+    const angleTypes = getAngleTypes(values);
+
+    const handleSelect = (angleType: NodeStyles["angleType"]) => {
         update((node) => ({
             ...node,
             styles: {
                 ...node.styles,
-                angletype
+                angleType
             }
         }));
     };
 
-    return <Dropdown title="Angle Style" items={AngleTypes} placeholder={AngleTypePlaceholder} onSelect={handleSelect} />;
+    return <Dropdown title="Angle Type" items={angleTypes} placeholder={AngleTypePlaceholder} onSelect={handleSelect} />;
 }

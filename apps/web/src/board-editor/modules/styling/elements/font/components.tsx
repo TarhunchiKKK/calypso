@@ -1,9 +1,11 @@
 import type { NodeStyles } from "@repo/boards";
 import { Dropdown } from "@/shared/ui";
 import type { ElementProps } from "../../lib/types";
-import { FontFamilies, FontFamilyPlaceholder, FontSizePlaceholder, FontSizes } from "./constants";
+import { FontFamilyPlaceholder, FontSizePlaceholder, getFontFamilies, getFontSizes } from "./constants";
 
-export function FontFamily({ update }: ElementProps) {
+export function FontFamily({ values, update }: ElementProps<"fontFamily">) {
+    const fontFamilies = getFontFamilies(values);
+
     const handleSelect = (fontFamily: NodeStyles["fontFamily"]) => {
         update((node) => ({
             ...node,
@@ -14,10 +16,12 @@ export function FontFamily({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Font Family" placeholder={FontFamilyPlaceholder} items={FontFamilies} onSelect={handleSelect} />;
+    return <Dropdown title="Font Family" placeholder={FontFamilyPlaceholder} items={fontFamilies} onSelect={handleSelect} />;
 }
 
-export function FontSize({ update }: ElementProps) {
+export function FontSize({ values, update }: ElementProps<"fontSize">) {
+    const fontSizes = getFontSizes(values);
+
     const handleSelect = (fontSize: NodeStyles["fontSize"]) => {
         update((node) => ({
             ...node,
@@ -28,5 +32,5 @@ export function FontSize({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Font Size" placeholder={FontSizePlaceholder} items={FontSizes} onSelect={handleSelect} />;
+    return <Dropdown title="Font Size" placeholder={FontSizePlaceholder} items={fontSizes} onSelect={handleSelect} />;
 }

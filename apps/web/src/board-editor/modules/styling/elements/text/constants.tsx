@@ -4,7 +4,7 @@ import type { DropdownItem } from "@/shared/ui";
 
 export const TextAlignPlaceholder = <TextAlignStart className="dark:text-white" />;
 
-export const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
+const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
     {
         label: (
             <>
@@ -42,3 +42,7 @@ export const TextAligns: DropdownItem<NodeStyles["textAlign"]>[] = [
         )
     }
 ];
+
+export function getTextAligns(values: NodeStyles["textAlign"][]): DropdownItem<NodeStyles["textAlign"]>[] {
+    return TextAligns.filter((texftAlign) => values.includes(texftAlign.value));
+}
