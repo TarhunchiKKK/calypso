@@ -1,4 +1,5 @@
-export * from "./constants/available-node-styles.constants";
+export { AvailableNodeStyles } from "./constants/available-node-styles.constants";
+export { CommonNodeStyles } from "./constants/common-node-styles.constants";
 export { DefaultNodeStyles } from "./constants/default-node-styles.constants";
 export { NodeRectsFactory } from "./factories/node-rects.factory";
 export { NodesFactory } from "./factories/nodes.factory";
