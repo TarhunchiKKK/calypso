@@ -38,7 +38,6 @@ export class ProjectsController {
         const filters: ProjectFilters = {
             creatorId: query.creatorId,
             type: query.type,
-            title: query.title,
             sortOrder: query.sortOrder
         };
 

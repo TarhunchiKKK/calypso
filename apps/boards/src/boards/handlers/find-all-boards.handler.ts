@@ -22,7 +22,7 @@ export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQue
     public async execute({ userId, filters, pagination }: FindAllBoardsQuery) {
         return await this.boardsRepository.find({
             where: {
-                // TODO: add search by title
+                // TODO: add search by creatorId (userId - access for me, creatorId - board creator)
                 creatorId: userId
             },
             skip: pagination.page * pagination.count,

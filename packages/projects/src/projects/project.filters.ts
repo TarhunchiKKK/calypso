@@ -5,7 +5,6 @@ import { ProjectTypesZodSchema } from "./project.entity";
 export const ProjectsSortOrdersZodSchema = z.enum(["alphabetic", "last-created", "last-modified"]);
 
 export const ProjectFiltersZodSchema = z.object({
-    title: z.string().optional(),
     type: ProjectTypesZodSchema,
     creatorId: IdZodSchema,
     sortOrder: ProjectsSortOrdersZodSchema

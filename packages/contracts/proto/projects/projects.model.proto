@@ -2,15 +2,14 @@ syntax = "proto3";
 
 package projects;
 
-
 message ProjectCreatorGrpc {
-    string id = 1;
+  string id = 1;
 
-    string username = 2;
+  string username = 2;
 
-    string email = 3;
+  string email = 3;
 
-    optional string avatar = 4;
+  optional string avatar = 4;
 }
 
 message ProjectGrpc {
@@ -30,11 +29,9 @@ message ProjectGrpc {
 }
 
 message FindProjectsFiltersGrpc {
-   optional string type = 1;
+  optional string type = 1;
 
-   optional string title = 2;
+  optional string creatorId = 2;
 
-   optional string creatorId = 3;
-
-   optional string sortOrder = 4;
+  optional string sortOrder = 3;
 }

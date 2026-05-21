@@ -13,5 +13,4 @@ export * from "./google/protobuf/empty";
 export * from "./media/media.dto";
 export * from "./media/media.models";
 export * from "./media/media.service";
-export * from "./projects/projects.dto";
-export * from "./projects/projects.model";
+export * from "./projects/projects.dto";
