@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { applyDecorators, centered, wrapper } from "#/lib/decorators";
-import { ProjectThumbnailSelector } from "@/entities/projects";
+import { ProjectIconSelector } from "@/entities/projects";
 import { MswHandlers } from "%/api";
 import { MockBoards } from "%/entities";
 
 const meta = {
-    title: "Entities/Projects/Project Thumbnail Selector",
-    component: ProjectThumbnailSelector
-} satisfies Meta<typeof ProjectThumbnailSelector>;
+    title: "Entities/Projects/Project Icon Selector",
+    component: ProjectIconSelector
+} satisfies Meta<typeof ProjectIconSelector>;
 
 export default meta;
 

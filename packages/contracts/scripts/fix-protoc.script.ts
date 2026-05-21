@@ -36,7 +36,7 @@ function processDirectory(dir: string): void {
 
         if (stat.isDirectory()) {
             processDirectory(filePath);
-        } else if (file.endsWith(".ts") && !file.endsWith(".d.ts")) {
+        } else if (file.endsWith(".ts") && !file.endsWith(".d.ts") && file !== "index.ts") {
             fixProtobufPackage(filePath);
         }
     }

@@ -3,7 +3,7 @@ syntax = "proto3";
 package boardNodes;
 
 import "common/util.proto";
-import "boards/nodes/nodes.models.proto";
+import "boards/nodes.models.proto";
 
 
 message CreateManyBoardNodesGrpcRequest {

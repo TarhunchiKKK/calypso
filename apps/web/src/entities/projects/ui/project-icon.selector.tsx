@@ -5,7 +5,7 @@ import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
 import { Field, FieldLabel, Input } from "@/shared/ui/kit";
 import { ProjectsApi } from "../model/projects.api";
-import { ThumbnailPresetsGrid } from "./thumbnail-presets-grid.component";
+import { IconPresetsGrid } from "./icon-presets-grid.component";
 
 type Props = {
     project: ProjectWithType;
@@ -13,15 +13,15 @@ type Props = {
     afterSubmit?: () => void;
 };
 
-export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
+export function ProjectIconSelector({ project, afterSubmit }: Props) {
     const update = ProjectsApi.useUpdate();
     const getPresignedUrl = MediaApi.useGetPresignedUrl();
 
-    const handleSelect = async (thumbnail: string) => {
+    const handleSelect = async (icon: string) => {
         await update.mutateAsync({
             id: project.id,
             type: project.type,
-            thumbnail: thumbnail
+            icon: icon
         });
 
         if (update.isError) {
@@ -49,7 +49,7 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
                 update.mutateAsync({
                     id: project.id,
                     type: project.type,
-                    thumbnail: presignedUrl.key
+                    icon: presignedUrl.key
                 }),
                 S3Service.upload(file, presignedUrl.url)
             ]).then(() => {
@@ -63,7 +63,7 @@ export function ProjectThumbnailSelector({ project, afterSubmit }: Props) {
 
     return (
         <div className="space-y-8">
-            <ThumbnailPresetsGrid onSelect={handleSelect} />
+            <IconPresetsGrid onSelect={handleSelect} />
 
             <Field className="flex flex-col justify-center items-center">
                 <FieldLabel className="text-base">Or select from your device:</FieldLabel>

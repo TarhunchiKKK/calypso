@@ -10,7 +10,7 @@ message BoardGrpc {
 
   optional string description = 3;
 
-  string thumbnail = 4;
+  string icon = 4;
 
   string creatorId = 5;
 

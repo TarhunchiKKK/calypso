@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "common/util.proto";
 import "projects/projects.dto.proto";
-import "boards/boards/boards.dto.proto";
+import "boards/boards.dto.proto";
 
 package boards;
 

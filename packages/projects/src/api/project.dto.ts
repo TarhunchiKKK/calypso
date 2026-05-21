@@ -15,8 +15,8 @@ export const FindOneProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
 export const UpdateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     type: true,
     title: true,
-    thumbnail: true
-}).partial({ title: true, thumbnail: true });
+    icon: true
+}).partial({ title: true, icon: true });
 
 export const RemoveProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     id: true,

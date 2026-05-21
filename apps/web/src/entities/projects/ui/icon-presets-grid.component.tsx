@@ -4,7 +4,7 @@ import { S3Service } from "@/shared/lib/s3";
 import { Skeleton } from "@/shared/ui/kit";
 
 type Props = {
-    onSelect: (thumbnail: string) => void;
+    onSelect: (icon: string) => void;
 };
 
 const ROWS_COUNT = 4;
@@ -22,7 +22,7 @@ function splitThumbnails(media: Media[]) {
     return result;
 }
 
-export function ThumbnailPresetsGrid({ onSelect }: Props) {
+export function IconPresetsGrid({ onSelect }: Props) {
     const thumbnails = MediaApi.useFindPresets({
         domain: "project-thumbnails"
     });
@@ -47,9 +47,9 @@ export function ThumbnailPresetsGrid({ onSelect }: Props) {
         <div>
             {groupedThumbnails.map((group, index) => (
                 <div key={index} className="w-full flex flex-row justify-between items-center">
-                    {group.map((thumbnail, index) => (
-                        <div key={index} className="p-2 rounded-md hover:bg-secondary cursor-pointer" onClick={onSelect.bind(null, thumbnail)}>
-                            <img src={S3Service.getFullUrl(thumbnail)} alt="Icon" className="w-12 h-12" />
+                    {group.map((icon, index) => (
+                        <div key={index} className="p-2 rounded-md hover:bg-secondary cursor-pointer" onClick={onSelect.bind(null, icon)}>
+                            <img src={S3Service.getFullUrl(icon)} alt="Icon" className="w-12 h-12" />
                         </div>
                     ))}
                 </div>

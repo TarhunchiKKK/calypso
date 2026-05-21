@@ -27,7 +27,7 @@ export function ProjectsTable({ projects }: Props) {
                 {projects.map((project) => (
                     <TableRow key={project.id}>
                         <TableCell>
-                            <img src={S3Service.getFullUrl(project.thumbnail)} alt={project.title} className="w-10 h-10" />
+                            <img src={S3Service.getFullUrl(project.icon)} alt={project.title} className="w-10 h-10" />
                         </TableCell>
 
                         <TableCell className="font-medium">{project.title}</TableCell>

@@ -19,7 +19,7 @@ message ProjectGrpc {
 
   optional string description = 3;
 
-  string thumbnail = 4;
+  string icon = 4;
 
   ProjectCreatorGrpc creator = 5;
 

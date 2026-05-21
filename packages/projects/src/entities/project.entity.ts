@@ -1,11 +1,11 @@
-import z from "zod";
 import { IdZodSchema } from "@repo/common";
+import z from "zod";
 
 export const ProjectZodSchema = z.object({
     id: IdZodSchema,
     title: z.string(),
     description: z.string().optional(),
-    thumbnail: z.string(),
+    icon: z.string(),
     creatorId: IdZodSchema,
     createdAt: z.date(),
     updatedAt: z.date().optional()

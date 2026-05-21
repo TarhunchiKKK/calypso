@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "common/util.proto";
-import "boards/boards/boards.models.proto";
+import "boards/boards.models.proto";
 
 package boards;
 
@@ -17,7 +17,7 @@ message BoardGrpcResponse {
 message CreateBoardGrpcRequest {
   string title = 1;
 
-  string thumbnail = 2;
+  string icon = 2;
 
   string creatorId = 3;
 }
@@ -31,7 +31,7 @@ message UpdateBoardGrpcRequest {
 
   optional string description = 4;
 
-  optional string thumbnail = 5;
+  optional string icon = 5;
 }
 
 message FindAllBoardsGrpcResponse {
