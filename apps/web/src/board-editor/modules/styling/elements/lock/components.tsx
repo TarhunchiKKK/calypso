@@ -1,9 +1,10 @@
-import type { NodeStyles } from "@repo/boards";
 import { LockKeyhole, LockKeyholeOpen } from "lucide-react";
-import type { ElementProps } from "../../lib/types";
+import type { UpdateFn } from "../../lib/types";
 
-type Props = Pick<ElementProps<keyof NodeStyles>, "update"> & {
+type Props = {
     value: boolean;
+
+    update: (fn: UpdateFn) => void;
 };
 
 export function Lock({ value, update }: Props) {
