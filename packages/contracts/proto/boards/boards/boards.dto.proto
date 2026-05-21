@@ -1,25 +1,10 @@
 syntax = "proto3";
 
 import "common/util.proto";
-import "projects/projects.dto.proto";
-import "boards/boards.models.proto";
+import "boards/boards/boards.models.proto";
 
 package boards;
 
-
-service BoardsService {
-  rpc Create(CreateBoardGrpcRequest) returns (BoardGrpcResponse) {}
-
-  rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {}
-
-  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
-
-  rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
-
-  rpc Update(UpdateBoardGrpcRequest) returns (common.EmptyGrpcResponse) {}
-
-  rpc Remove(projects.RemoveProjectGrpcRequest) returns (common.EmptyGrpcResponse) {}
-}
 
 message BoardGrpcResponse {
   oneof response {

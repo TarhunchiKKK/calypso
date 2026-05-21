@@ -3,18 +3,8 @@ syntax = "proto3";
 package boardNodes;
 
 import "common/util.proto";
-import "boards/nodes.models.proto";
+import "boards/nodes/nodes.models.proto";
 
-
-service BoardNodesService {
-  rpc CreateMany(CreateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
-
-  rpc FindAll(FindAllBoardNodesGrpcRequest) returns (FindAllBoardNodesGrpcResponse) {}
-
-  rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
-
-  rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
-}
 
 message CreateManyBoardNodesGrpcRequest {
   repeated AnyBoardNodeGrpc nodes = 1;
