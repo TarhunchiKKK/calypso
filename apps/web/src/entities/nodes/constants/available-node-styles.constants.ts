@@ -1,28 +1,46 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles, NodeTypes } from "@repo/boards";
+import { CommonNodeStyles } from "./common-node-styles.constants";
 
-export const AvailableFontFamilies: NodeStyles["fontFamily"][] = ["sans-serif", "fantasy", "math", "monospace"] as const;
+type ArrayFields<T extends Record<string, unknown>> = {
+    [Key in keyof T]: T[Key][];
+};
 
-export const AvailableFontSizes: NodeStyles["fontSize"][] = [4, 8, 12, 18, 24, 32, 48] as const;
-
-export const AvailableColors = [
-    "#FF3B30",
-    "#FF8904",
-    "#FFDF20",
-    "#00A63E",
-    "#51A2FF",
-    "#5856D6",
-    "#C800DE",
-    "#FFA2A2",
-    "#D1D5DC",
-    "#A2845E",
-    "#62748E",
-    "#5EE9B5",
-    "#F0B100",
-    "#C27AFF",
-    "#000000",
-    "#005F78"
-];
-
-export const AvailableBorderRadiuses: NodeStyles["borderRadius"][] = [0, 4, 8, 16, 24, 9999];
-
-export const AvailableLineWidths: NodeStyles["lineWidth"][] = [2, 4, 8, 12, 16, 20];
+export const AvailableNodeStyles: Record<NodeTypes, Partial<ArrayFields<NodeStyles>>> = {
+    sticker: {
+        backgroundColor: CommonNodeStyles.backgroundColor,
+        borderColor: CommonNodeStyles.textColor,
+        borderRadius: [0, 4, 8, 16, 24],
+        borderStyle: CommonNodeStyles.borderStyle,
+        fontFamily: CommonNodeStyles.fontFamily,
+        textAlign: CommonNodeStyles.textAlign,
+        textColor: CommonNodeStyles.textColor
+    },
+    arrow: {
+        angleType: CommonNodeStyles.angleType,
+        lineColor: CommonNodeStyles.lineColor,
+        lineWidth: [1, 2, 3, 4, 5],
+        lineType: CommonNodeStyles.lineType
+    },
+    text: {
+        fontFamily: CommonNodeStyles.fontFamily,
+        fontSize: [4, 8, 12, 18, 24, 32, 48],
+        textAlign: CommonNodeStyles.textAlign,
+        textColor: CommonNodeStyles.textColor
+    },
+    shape: {
+        backgroundColor: CommonNodeStyles.backgroundColor,
+        borderColor: CommonNodeStyles.borderColor
+    },
+    media: {
+        borderColor: CommonNodeStyles.borderColor,
+        borderRadius: [0, 4, 8, 16, 24, 9999]
+    },
+    note: {
+        backgroundColor: CommonNodeStyles.backgroundColor,
+        borderColor: CommonNodeStyles.borderColor
+    },
+    drawing: {
+        lineColor: CommonNodeStyles.lineColor,
+        lineWidth: [2, 4, 8, 12, 16, 20]
+    }
+};

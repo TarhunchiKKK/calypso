@@ -1,11 +1,19 @@
 import type { NodeStyles } from "@repo/boards";
-import { AvailableColors } from "@/entities/nodes/constants/available-node-styles.constants";
 import { Dropdown } from "@/shared/ui";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
-import { BoarderRadiusPlaceholder, BorderColorPlaceholder, BorderRadiuses, BorderStylePlaceholder, BorderStyles, renderBorderRadiusItem } from "./constants";
+import {
+    BoarderRadiusPlaceholder,
+    BorderColorPlaceholder,
+    BorderStylePlaceholder,
+    getBoarderRadiuses,
+    getBorderStyles,
+    renderBorderRadiusItem
+} from "./constants";
 
-export function BorderStyle({ update }: ElementProps) {
+export function BorderStyle({ values, update }: ElementProps<"borderStyle">) {
+    const borderStyles = getBorderStyles(values);
+
     const handleSelect = (borderStyle: NodeStyles["borderStyle"]) => {
         update((node) => ({
             ...node,
@@ -16,10 +24,10 @@ export function BorderStyle({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Border Style" items={BorderStyles} placeholder={BorderStylePlaceholder} onSelect={handleSelect} />;
+    return <Dropdown title="Border Style" items={borderStyles} placeholder={BorderStylePlaceholder} onSelect={handleSelect} />;
 }
 
-export function BorderColor({ update }: ElementProps) {
+export function BorderColor({ values: colors, update }: ElementProps<"borderColor">) {
     const handleSelect = (borderColor: NodeStyles["borderColor"]) => {
         update((node) => ({
             ...node,
@@ -31,17 +39,13 @@ export function BorderColor({ update }: ElementProps) {
     };
 
     return (
-        <ColorsDropdown
-            title="Border Color"
-            placeholder={BorderColorPlaceholder}
-            colors={AvailableColors}
-            renderItem={renderBorderRadiusItem}
-            onSelect={handleSelect}
-        />
+        <ColorsDropdown title="Border Color" placeholder={BorderColorPlaceholder} colors={colors} renderItem={renderBorderRadiusItem} onSelect={handleSelect} />
     );
 }
 
-export function BorderRadius({ update }: ElementProps) {
+export function BorderRadius({ values, update }: ElementProps<"borderRadius">) {
+    const borderRadiuses = getBoarderRadiuses(values);
+
     const handleSelect = (borderRadius: NodeStyles["borderRadius"]) => {
         update((node) => ({
             ...node,
@@ -52,5 +56,5 @@ export function BorderRadius({ update }: ElementProps) {
         }));
     };
 
-    return <Dropdown title="Border Radius" placeholder={BoarderRadiusPlaceholder} items={BorderRadiuses} onSelect={handleSelect} />;
+    return <Dropdown title="Border Radius" placeholder={BoarderRadiusPlaceholder} items={borderRadiuses} onSelect={handleSelect} />;
 }

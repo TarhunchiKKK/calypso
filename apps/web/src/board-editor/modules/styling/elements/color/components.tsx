@@ -1,10 +1,9 @@
 import type { NodeStyles } from "@repo/boards";
-import { AvailableColors } from "@/entities/nodes";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
 import { BackgroundColorPlaceholder, renderBackgroundColorItem, renderTextColorItem, TextColorPlaceholder } from "./constants";
 
-export function BackgroundColor({ update }: ElementProps) {
+export function BackgroundColor({ values: colors, update }: ElementProps<"backgroundColor">) {
     const handleSelect = (backgroundColor: NodeStyles["backgroundColor"]) => {
         update((node) => ({
             ...node,
@@ -19,14 +18,14 @@ export function BackgroundColor({ update }: ElementProps) {
         <ColorsDropdown
             title="Background"
             placeholder={BackgroundColorPlaceholder}
-            colors={AvailableColors}
+            colors={colors}
             renderItem={renderBackgroundColorItem}
             onSelect={handleSelect}
         />
     );
 }
 
-export function TextColor({ update }: ElementProps) {
+export function TextColor({ values: colors, update }: ElementProps<"textColor">) {
     const handleSelect = (color: NodeStyles["textColor"]) => {
         update((node) => ({
             ...node,
@@ -37,13 +36,5 @@ export function TextColor({ update }: ElementProps) {
         }));
     };
 
-    return (
-        <ColorsDropdown
-            title="Text Color"
-            placeholder={TextColorPlaceholder}
-            colors={AvailableColors}
-            renderItem={renderTextColorItem}
-            onSelect={handleSelect}
-        />
-    );
+    return <ColorsDropdown title="Text Color" placeholder={TextColorPlaceholder} colors={colors} renderItem={renderTextColorItem} onSelect={handleSelect} />;
 }

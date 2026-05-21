@@ -5,10 +5,12 @@ import { NodeStyleKeysMap } from "./constants/node-style-keys.map";
 import { NodeStyleRenderersMap } from "./constants/node-style-renderers.map";
 import { Lock } from "./elements/lock/components";
 import { StylesGroupWrapper } from "./lib/styles-group-wrapper.component";
-import type { ElementProps } from "./lib/types";
+import type { UpdateFn } from "./lib/types";
 
-type Props = ElementProps & {
+type Props = {
     type: NodeTypes | null;
+
+    update: (fn: UpdateFn) => void;
 };
 
 export function StylesPanel({ type, update }: Props) {
@@ -17,7 +19,7 @@ export function StylesPanel({ type, update }: Props) {
             {type &&
                 NodeStyleKeysMap[type].map((group) => (
                     <>
-                        <StylesGroupWrapper>{group.map((key) => NodeStyleRenderersMap[key](update, key))}</StylesGroupWrapper>
+                        <StylesGroupWrapper>{group.map((key) => NodeStyleRenderersMap[key](type, update, key))}</StylesGroupWrapper>
 
                         <Separator orientation="vertical" className="h-5!" />
                     </>
