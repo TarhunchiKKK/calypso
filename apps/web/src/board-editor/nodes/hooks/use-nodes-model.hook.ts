@@ -1,8 +1,8 @@
 import type { NodeBase } from "@repo/boards";
 import type { Id, OmitFields } from "@repo/common";
-import { useCancellationDecorator } from "@/board-editor/modules/cancellation";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";
 import { type NodesService, useNodesService } from "@/entities/nodes";
+import { useCancellationDecorator } from "./use-cancellation-decorator.hook";
 
 export function useNodesModel(inputNodes: NodeBase[], _: Id) {
     const nodesService = useNodesService(inputNodes);

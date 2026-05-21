@@ -10,7 +10,7 @@ type UndoItem = {
 
 type RedoItem = Callback;
 
-export function useCancellationStore() {
+export function useCancellation() {
     const [undoQueue, setUndoQueue] = useState<UndoItem[]>([]);
     const [redoQueue, setRedoQueue] = useState<RedoItem[]>([]);
 
