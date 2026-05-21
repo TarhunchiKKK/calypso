@@ -14,6 +14,7 @@ export class ArrowSelectionStrategy extends NodeSelectionStrategy {
             ...node.data,
             styles: {
                 ...node.data.styles,
+                // REFACTOR: vai `useSettings.className`
                 lineColor: SELECTION_COLOR
             }
         };
