@@ -22,14 +22,6 @@ message FindAllProjectsGrpcRequest {
     common.PaginationRequestGrpc pagination = 3;
 }
 
-message FindAllProjectsGrpcResponse {
-  oneof response {
-    ProjectsList data = 1;
-
-    common.GrpcError error = 2;
-  }
-}
-
 message FindOneProjectGrpcRequest {
     string id = 1;
 

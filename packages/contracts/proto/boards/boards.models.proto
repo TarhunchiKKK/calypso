@@ -18,3 +18,7 @@ message BoardGrpc {
 
   optional string updatedAt = 7;
 }
+
+message BoardsListGrpc {
+    repeated BoardGrpc boards = 1;
+}

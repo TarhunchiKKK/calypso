@@ -31,8 +31,3 @@ export interface FindProjectsFiltersGrpc {
   creatorId?: string | undefined;
   sortOrder?: string | undefined;
 }
-
-export interface ProjectsList {
-  projects: ProjectGrpc[];
-  total: number;
-}

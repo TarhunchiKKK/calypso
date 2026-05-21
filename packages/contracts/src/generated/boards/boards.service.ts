@@ -11,11 +11,10 @@ import { EmptyGrpcResponse, GrpcError } from "../common/util";
 import {
   DuplicateProjectGrpcRequest,
   FindAllProjectsGrpcRequest,
-  FindAllProjectsGrpcResponse,
   FindOneProjectGrpcRequest,
   RemoveProjectGrpcRequest,
 } from "../projects/projects.dto";
-import { BoardGrpc } from "./boards.models";
+import { BoardGrpc, BoardsListGrpc } from "./boards.models";
 
 const protobufPackage = "boards";
 
@@ -38,6 +37,11 @@ export interface UpdateBoardGrpcRequest {
   thumbnail?: string | undefined;
 }
 
+export interface FindAllBoardsGrpcResponse {
+  data?: BoardsListGrpc | undefined;
+  error?: GrpcError | undefined;
+}
+
 export const BOARDS_PACKAGE_NAME = "boards";
 
 export interface BoardsServiceClient {
@@ -45,7 +49,7 @@ export interface BoardsServiceClient {
 
   duplicate(request: DuplicateProjectGrpcRequest): Observable<BoardGrpcResponse>;
 
-  findAll(request: FindAllProjectsGrpcRequest): Observable<FindAllProjectsGrpcResponse>;
+  findAll(request: FindAllProjectsGrpcRequest): Observable<FindAllBoardsGrpcResponse>;
 
   findOne(request: FindOneProjectGrpcRequest): Observable<BoardGrpcResponse>;
 
@@ -65,7 +69,7 @@ export interface BoardsServiceController {
 
   findAll(
     request: FindAllProjectsGrpcRequest,
-  ): Promise<FindAllProjectsGrpcResponse> | Observable<FindAllProjectsGrpcResponse> | FindAllProjectsGrpcResponse;
+  ): Promise<FindAllBoardsGrpcResponse> | Observable<FindAllBoardsGrpcResponse> | FindAllBoardsGrpcResponse;
 
   findOne(
     request: FindOneProjectGrpcRequest,

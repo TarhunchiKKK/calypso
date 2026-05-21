@@ -9,6 +9,7 @@ export * from "./common/util";
 export * from "./core/auth";
 export * from "./google/protobuf/any";
 export * from "./media/media.models"
-export * from "./media/media.service"
 export * from "./projects/projects.dto"
 export * from "./projects/projects.model"
+export * from "./media/media.models"
+export * from "./media/media.service"

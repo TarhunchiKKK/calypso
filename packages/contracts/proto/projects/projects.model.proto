@@ -38,9 +38,3 @@ message FindProjectsFiltersGrpc {
 
    optional string sortOrder = 4;
 }
-
-message ProjectsList {
-    repeated ProjectGrpc projects = 1;
-
-    int32 total = 2;
-}

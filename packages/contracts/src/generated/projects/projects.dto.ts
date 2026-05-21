@@ -5,8 +5,8 @@
 // source: projects/projects.dto.proto
 
 /* eslint-disable */
-import { GrpcError, PaginationRequestGrpc } from "../common/util";
-import { FindProjectsFiltersGrpc, ProjectsList } from "./projects.model";
+import { PaginationRequestGrpc } from "../common/util";
+import { FindProjectsFiltersGrpc } from "./projects.model";
 
 const protobufPackage = "projects";
 
@@ -20,11 +20,6 @@ export interface FindAllProjectsGrpcRequest {
   userId: string;
   filters: FindProjectsFiltersGrpc | undefined;
   pagination: PaginationRequestGrpc | undefined;
-}
-
-export interface FindAllProjectsGrpcResponse {
-  data?: ProjectsList | undefined;
-  error?: GrpcError | undefined;
 }
 
 export interface FindOneProjectGrpcRequest {

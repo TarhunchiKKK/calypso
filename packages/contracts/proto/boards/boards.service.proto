@@ -12,7 +12,7 @@ service BoardsService {
 
   rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
-  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (projects.FindAllProjectsGrpcResponse) {}
+  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
 
   rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
@@ -47,4 +47,12 @@ message UpdateBoardGrpcRequest {
   optional string description = 4;
 
   optional string thumbnail = 5;
+}
+
+message FindAllBoardsGrpcResponse {
+    oneof response {
+        BoardsListGrpc data = 1;
+
+        common.GrpcError error = 2;
+    }
 }

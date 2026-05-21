@@ -17,3 +17,7 @@ export interface BoardGrpc {
   createdAt: string;
   updatedAt?: string | undefined;
 }
+
+export interface BoardsListGrpc {
+  boards: BoardGrpc[];
+}

@@ -38,9 +38,8 @@ export class BoardsService implements OnModuleInit {
             .pipe(extractGrpcResponsePipe())
             .pipe(
                 map((res) => {
-                    if (res?.projects) {
-                        // REFACTOR: `res.boards`
-                        return (res.projects as unknown as BoardGrpc[]).map(BoardsGrpcMapper.fromGrpc);
+                    if (res?.boards) {
+                        return res.boards.map(BoardsGrpcMapper.fromGrpc);
                     }
 
                     return [];
