@@ -1,6 +1,6 @@
-import z from "zod";
 import { IdZodSchema } from "@repo/common";
-import { MediaDomainsZodSchema } from "./types";
+import z from "zod";
+import { MediaDomainsZodSchema } from "../types/media-domains.type";
 
 export const FindPresetsDtoZodSchema = z.object({
     domain: MediaDomainsZodSchema,

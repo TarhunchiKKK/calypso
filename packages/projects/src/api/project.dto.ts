@@ -1,5 +1,5 @@
 import type z from "zod";
-import { ProjectWithTypeZodSchema } from "./project.entity";
+import { ProjectWithTypeZodSchema } from "../entities/project.entity";
 
 export const DuplicateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
     id: true,

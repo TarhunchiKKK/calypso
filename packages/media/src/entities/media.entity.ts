@@ -5,11 +5,3 @@ export type Media = {
 
     url: string;
 };
-
-export type MediaGroup = {
-    id: Id;
-
-    title: string;
-
-    thumbnail: string;
-};
