@@ -1,14 +1,14 @@
 import type { NodeStyles } from "@repo/boards";
-import { AvailableBorderRadiuses, AvailableColors, AvailableFontFamilies, AvailableFontSizes } from "./available-node-styles.constants";
+import { CommonNodeStyles } from "./common-node-styles.constants";
 
 export const DefaultNodeStyles: NodeStyles = {
-    fontFamily: AvailableFontFamilies[0],
-    fontSize: AvailableFontSizes[2],
-    backgroundColor: AvailableColors[3],
-    textColor: AvailableColors[14],
+    fontFamily: CommonNodeStyles.fontFamily[0],
+    fontSize: 8,
+    backgroundColor: CommonNodeStyles.backgroundColor[3],
+    textColor: CommonNodeStyles.textColor[14],
     borderStyle: "none",
-    borderColor: AvailableColors[0],
-    borderRadius: AvailableBorderRadiuses[0],
+    borderColor: CommonNodeStyles.borderColor[0],
+    borderRadius: 0,
     textAlign: "left",
     angleType: "corner",
     lineColor: "black",
