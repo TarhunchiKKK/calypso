@@ -1,12 +1,12 @@
-import { IdZodSchema, PaginationOptionsZodSchema } from "@repo/common";
+import { PaginationOptionsZodSchema } from "@repo/common";
 import z from "zod";
 import { ProjectTypesZodSchema } from "../entities/project.entity";
 
 export const ProjectsSortOrdersZodSchema = z.enum(["alphabetic", "last-created", "last-modified"]);
 
 export const ProjectFiltersZodSchema = z.object({
-    type: ProjectTypesZodSchema,
-    creatorId: IdZodSchema,
+    type: ProjectTypesZodSchema.optional(),
+    own: z.boolean().optional(),
     sortOrder: ProjectsSortOrdersZodSchema
 });
 

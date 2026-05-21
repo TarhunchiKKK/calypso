@@ -36,8 +36,8 @@ export class ProjectsController {
     @HttpCode(HttpStatus.OK)
     public findAll(@Authorized() payload: TokenPayload, @QueryValidation(FindAllProjectsQueryZodSchema) query: FindAllProjectsQuery) {
         const filters: ProjectFilters = {
-            creatorId: query.creatorId,
             type: query.type,
+            own: query.own,
             sortOrder: query.sortOrder
         };
 

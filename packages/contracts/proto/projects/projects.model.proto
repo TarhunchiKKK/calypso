@@ -31,7 +31,7 @@ message ProjectGrpc {
 message FindProjectsFiltersGrpc {
   optional string type = 1;
 
-  optional string creatorId = 2;
+  optional bool own = 2;
 
-  optional string sortOrder = 3;
+  string sortOrder = 3;
 }

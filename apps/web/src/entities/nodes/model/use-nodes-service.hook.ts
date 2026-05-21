@@ -1,7 +1,7 @@
 import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useState } from "react";
-import { useEntitiesMap } from "@/shared/lib/entities-management";
+import { useEntitiesMap } from "@/shared/model";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
 export function useNodesService(inputNodes: NodeBase[]) {

@@ -2,7 +2,7 @@ import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards";
 import type { Id, PaginationOptions } from "@repo/common";
-import { BOARDS_SERVICE_NAME, type BoardGrpc, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
 import type { ProjectFilters } from "@repo/projects";
 import { map } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
