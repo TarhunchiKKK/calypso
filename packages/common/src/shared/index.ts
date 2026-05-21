@@ -1,3 +1,4 @@
+export * from "./api.types";
 export * from "./db.types";
 export * from "./exceptions.classes";
 export * from "./formatable";
