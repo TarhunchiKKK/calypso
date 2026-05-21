@@ -1,6 +1,6 @@
 import { IdZodSchema, PaginationOptionsZodSchema } from "@repo/common";
-import { ProjectTypesZodSchema } from "entry";
 import z from "zod";
+import { ProjectTypesZodSchema } from "./project.entity";
 
 export const ProjectsSortOrdersZodSchema = z.enum(["alphabetic", "last-created", "last-modified"]);
 
@@ -11,12 +11,8 @@ export const ProjectFiltersZodSchema = z.object({
     sortOrder: ProjectsSortOrdersZodSchema
 });
 
-export const FindAllProjectsDtoZodSchema = z.object({
-    userId: IdZodSchema,
-    filters: ProjectFiltersZodSchema,
-    pagination: PaginationOptionsZodSchema
-});
+export const FindAllProjectsQueryZodSchema = ProjectFiltersZodSchema.merge(PaginationOptionsZodSchema);
 
 export type ProjectsSortOrders = z.infer<typeof ProjectsSortOrdersZodSchema>;
 export type ProjectFilters = z.infer<typeof ProjectFiltersZodSchema>;
-export type FindAllProjectsDto = z.infer<typeof FindAllProjectsDtoZodSchema>;
+export type FindAllProjectsQuery = z.infer<typeof FindAllProjectsQueryZodSchema>;

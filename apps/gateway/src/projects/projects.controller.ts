@@ -1,12 +1,15 @@
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import { Validation } from "@repo/api";
-import type { Id } from "@repo/common";
+import { QueryValidation, Validation } from "@repo/api";
+import type { Id, PaginationOptions } from "@repo/common";
 import { ExtractGrpc } from "@repo/contracts";
 import {
     type DuplicateProjectDto,
     DuplicateProjectDtoZodSchema,
+    type FindAllProjectsQuery,
+    FindAllProjectsQueryZodSchema,
     type FindOneProjectDto,
     FindOneProjectDtoZodSchema,
+    type ProjectFilters,
     type RemoveProjectDto,
     RemoveProjectDtoZodSchema,
     type UpdateProjectDto,
@@ -31,8 +34,20 @@ export class ProjectsController {
 
     @Get("/all")
     @HttpCode(HttpStatus.OK)
-    public findAll(@Authorized() payload: TokenPayload) {
-        return this.projectsService.findAll(payload.id);
+    public findAll(@Authorized() payload: TokenPayload, @QueryValidation(FindAllProjectsQueryZodSchema) query: FindAllProjectsQuery) {
+        const filters: ProjectFilters = {
+            creatorId: query.creatorId,
+            type: query.type,
+            title: query.title,
+            sortOrder: query.sortOrder
+        };
+
+        const pagination: PaginationOptions = {
+            count: query.count,
+            page: query.page
+        };
+
+        return this.projectsService.findAll(payload.id, filters, pagination);
     }
 
     @Get("/one")

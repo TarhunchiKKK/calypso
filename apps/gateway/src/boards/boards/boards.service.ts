@@ -1,8 +1,9 @@
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
 import type { CreateBoardDto, UpdateBoardDto } from "@repo/boards";
-import type { Id } from "@repo/common";
-import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
+import type { Id, PaginationOptions } from "@repo/common";
+import { BOARDS_SERVICE_NAME, type BoardGrpc, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
+import type { ProjectFilters } from "@repo/projects";
 import { map } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
@@ -31,14 +32,15 @@ export class BoardsService implements OnModuleInit {
             .pipe(map(BoardsGrpcMapper.fromGrpc));
     }
 
-    public findAll(userId: Id) {
+    public findAll(userId: Id, filters: ProjectFilters, pagination: PaginationOptions) {
         return this.boardsClient
-            .findAll({ userId })
+            .findAll({ userId, filters, pagination })
             .pipe(extractGrpcResponsePipe())
             .pipe(
                 map((res) => {
-                    if (res?.boards) {
-                        return res.boards.map(BoardsGrpcMapper.fromGrpc);
+                    if (res?.projects) {
+                        // REFACTOR: `res.boards`
+                        return (res.projects as unknown as BoardGrpc[]).map(BoardsGrpcMapper.fromGrpc);
                     }
 
                     return [];
