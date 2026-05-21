@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package boards;
+package boardNodes;
 
 import "common/util.proto";
 import "boards/nodes.models.proto";

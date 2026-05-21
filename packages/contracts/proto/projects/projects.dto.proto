@@ -1,27 +1,33 @@
 syntax = "proto3";
 
+import "common/util.proto";
+import "projects/projects.model.proto";
+
 package projects;
 
-message ProjectCreatorGrpc {
-    string id = 1;
-
-    string username = 2;
-
-    string email = 3;
-
-    optional string avatar = 4;
-}
 
 message DuplicateProjectGrpcRequest {
     string id = 1;
 
     string title = 2;
 
-    string creatorId = 3; 
+    string creatorId = 3;
 }
 
 message FindAllProjectsGrpcRequest {
     string userId = 1;
+
+    FindProjectsFiltersGrpc filters = 2;
+
+    common.PaginationRequestGrpc pagination = 3;
+}
+
+message FindAllProjectsGrpcResponse {
+  oneof response {
+    ProjectsList data = 1;
+
+    common.GrpcError error = 2;
+  }
 }
 
 message FindOneProjectGrpcRequest {

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package boards;
-
 import "common/util.proto";
-import "core/projects.proto";
+import "projects/projects.dto.proto";
 import "boards/boards.models.proto";
+
+package boards;
 
 
 service BoardsService {
@@ -12,7 +12,7 @@ service BoardsService {
 
   rpc Duplicate(projects.DuplicateProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
-  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (FindAllBoardsGrpcResponse) {}
+  rpc FindAll(projects.FindAllProjectsGrpcRequest) returns (projects.FindAllProjectsGrpcResponse) {}
 
   rpc FindOne(projects.FindOneProjectGrpcRequest) returns (BoardGrpcResponse) {}
 
@@ -37,14 +37,6 @@ message CreateBoardGrpcRequest {
   string creatorId = 3;
 }
 
-message FindAllBoardsGrpcResponse {
-  oneof response {
-    BoardsList data = 1;
-
-    common.GrpcError error = 2;
-  }
-}
-
 message UpdateBoardGrpcRequest {
   string id = 1;
 
@@ -56,4 +48,3 @@ message UpdateBoardGrpcRequest {
 
   optional string thumbnail = 5;
 }
-
