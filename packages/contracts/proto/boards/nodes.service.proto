@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package boards;
+package boardNodes;
 
 import "common/util.proto";
-import "boards/nodes.models.proto";
+import "boards/nodes.dto.proto";
 
 
 service BoardNodesService {
@@ -14,46 +14,4 @@ service BoardNodesService {
   rpc UpdateMany(UpdateManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
 
   rpc RemoveMany(RemoveManyBoardNodesGrpcRequest) returns (common.EmptyGrpcResponse) {}
-}
-
-message CreateManyBoardNodesGrpcRequest {
-  repeated AnyBoardNodeGrpc nodes = 1;
-
-  string boardId = 2;
-
-  string userId = 3;
-}
-
-message FindAllBoardNodesGrpcRequest {
-  string boardId = 1;
-
-  string userId = 2;
-}
-
-message BoardNodesListGrpc {
-  repeated AnyBoardNodeGrpc nodes = 1;
-}
-
-message FindAllBoardNodesGrpcResponse {
-  oneof response {
-    BoardNodesListGrpc data = 1;
-
-    common.GrpcError error = 2;
-  }
-}
-
-message UpdateManyBoardNodesGrpcRequest {
-  repeated AnyBoardNodeGrpc nodes = 1;
-
-  string boardId = 2;
-
-  string userId = 3;
-}
-
-message RemoveManyBoardNodesGrpcRequest {
-  repeated string ids = 1;
-
-  string boardId = 2;
-
-  string userId = 3;
 }

@@ -9,17 +9,15 @@
 const protobufPackage = "boards";
 
 export interface BoardGrpc {
-    id: string;
-    title: string;
-    description?: string | undefined;
-    thumbnail: string;
-    creatorId: string;
-    createdAt: string;
-    updatedAt?: string | undefined;
+  id: string;
+  title: string;
+  description?: string | undefined;
+  icon: string;
+  creatorId: string;
+  createdAt: string;
+  updatedAt?: string | undefined;
 }
 
-export interface BoardsList {
-    boards: BoardGrpc[];
+export interface BoardsListGrpc {
+  boards: BoardGrpc[];
 }
-
-export const BOARDS_PACKAGE_NAME = "boards";

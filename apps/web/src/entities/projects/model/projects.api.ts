@@ -1,11 +1,21 @@
-import type { Id } from "@repo/common";
-import type { DuplicateProjectDto, FindOneProjectDto, Project, ProjectWithCreator, ProjectWithType, RemoveProjectDto, UpdateProjectDto } from "@repo/projects";
-import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { Id, OmitFields } from "@repo/common";
+import type {
+    DuplicateProjectDto,
+    FindAllProjectsQuery,
+    FindOneProjectDto,
+    Project,
+    ProjectWithCreator,
+    ProjectWithType,
+    RemoveProjectDto,
+    UpdateProjectDto
+} from "@repo/projects";
+import { infiniteQueryOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 
 export const ProjectsQueryKeys = {
-    projects: ["projects"],
-    singleProject: (projectId: Id) => ["projects", projectId]
+    base: ["projects"],
+    projectsList: (params: OmitFields<FindAllProjectsQuery, "page">) => [...ProjectsQueryKeys.base, "list", params],
+    singleProject: (projectId: Id) => [...ProjectsQueryKeys.base, projectId]
 };
 
 function useDuplicate() {
@@ -16,19 +26,26 @@ function useDuplicate() {
             return await ApiInstance.post<void>("/projects/duplicate", dto);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
+            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
         }
     });
 }
 
-function findAllOptions() {
-    return queryOptions({
-        queryKey: ProjectsQueryKeys.projects,
-        queryFn: async () => {
-            return await ApiInstance.get<ProjectWithCreator<ProjectWithType>[]>("/projects/all");
+function findAllOptions(params: OmitFields<FindAllProjectsQuery, "page">) {
+    return infiniteQueryOptions({
+        queryKey: ProjectsQueryKeys.projectsList(params),
+        queryFn: async (meta) => {
+            return await ApiInstance.get<ProjectWithCreator<ProjectWithType>[]>("/projects/all", {
+                params: {
+                    ...params,
+                    page: meta.pageParam
+                }
+            });
         },
-        select: (projects) =>
-            projects.map((project) => ({
+        initialPageParam: 0,
+        getNextPageParam: (result, _, prevPage) => (result.length === 0 ? null : prevPage + 1),
+        select: ({ pages }) =>
+            pages.flat().map((project) => ({
                 ...project,
                 createdAt: new Date(project.createdAt),
                 updatedAt: project.updatedAt ? new Date(project.updatedAt) : undefined
@@ -36,8 +53,8 @@ function findAllOptions() {
     });
 }
 
-function useFindAll() {
-    return useQuery(findAllOptions());
+function useFindAll(params: OmitFields<FindAllProjectsQuery, "page">) {
+    return useInfiniteQuery(findAllOptions(params));
 }
 
 function useFindOne<T extends Project = Project>(dto: FindOneProjectDto) {
@@ -61,7 +78,7 @@ function useUpdate() {
             return await ApiInstance.patch<void>(`/projects/${id}`, data);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
+            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
         }
     });
 }
@@ -76,7 +93,7 @@ function useRemove() {
             });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
+            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
         }
     });
 }

@@ -1,30 +1,52 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
-import { useProjectsFilters } from "./hooks/use-projects-filters.hook";
+import { useState } from "react";
+import { DEFAULT_PROJECTS_QUERY_COUNT, DefaultProjectFilters, ProjectsApi } from "@/entities/projects";
+import { useIntersection } from "@/shared/lib/dom";
+import { Spinner } from "@/shared/ui/kit";
 import { ProjectsFilters } from "./ui/projects-filters";
 import { ProjectsTable, ProjectsTableSkeleton } from "./ui/projects-table.component";
 
-type Props = {
-    projects: ProjectWithCreator<ProjectWithType>[];
-};
+export function ProjectsList() {
+    const [filters, setFilters] = useState(DefaultProjectFilters);
 
-export function ProjectsList({ projects }: Props) {
-    const { filteredProjects, filters, setFilters } = useProjectsFilters(projects);
+    const {
+        data: projects,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage
+    } = ProjectsApi.useFindAll({
+        ...filters,
+        count: DEFAULT_PROJECTS_QUERY_COUNT
+    });
+
+    const cursorRef = useIntersection(() => {
+        fetchNextPage();
+    });
 
     return (
-        <div className="flex flex-col justify-between gap-8">
-            <ProjectsFilters filters={filters} onChange={setFilters} />
+        <>
+            {projects && (
+                <div className="flex flex-col justify-between gap-8">
+                    <ProjectsFilters filters={filters} onChange={setFilters} />
 
-            <ProjectsTable projects={filteredProjects} />
-        </div>
+                    <ProjectsTable projects={projects} />
+
+                    {hasNextPage && (
+                        <div ref={cursorRef} className="flex flex-row justify-center items-center">
+                            {isFetchingNextPage && <Spinner />}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {!projects && <ProjectsListSkeleton />}
+        </>
     );
 }
 
 export function ProjectsListSkeleton() {
-    const { filters, setFilters } = useProjectsFilters([]);
-
     return (
         <div className="flex flex-col justify-between gap-8">
-            <ProjectsFilters filters={filters} onChange={setFilters} />
+            <ProjectsFilters filters={DefaultProjectFilters} onChange={() => {}} />
 
             <ProjectsTableSkeleton />
         </div>

@@ -19,7 +19,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
     const form = useForm<CreateBoardDto>({
         defaultValues: {
             title: "",
-            thumbnail: ""
+            icon: ""
         },
         resolver: zodResolver(CreateBoardDtoZodSchema)
     });
@@ -31,7 +31,7 @@ export function CreateBoardForm({ afterSubmit }: Props) {
 
         await create.mutateAsync({
             ...data,
-            thumbnail: media.url
+            icon: media.url
         });
 
         if (create.isError) {

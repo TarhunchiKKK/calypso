@@ -7,77 +7,60 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { GrpcError } from "../common/util";
-import { MediaGroupsListGrpc, MediaListGrpc, PresignUrlPairGrpc } from "./media.models";
+import {
+  FindMediaPresetsGroupsGrpcRequest,
+  FindMediaPresetsGroupsGrpcResponse,
+  FindMediaPresetsGrpcRequest,
+  FindMediaPresetsGrpcResponse,
+  GetPresignedMediaUrlGrpcRequest,
+  GetPresignedMediaUrlGrpcResponse,
+} from "./media.dto";
 
 const protobufPackage = "media";
-
-export interface FindMediaPresetsGrpcRequest {
-    domain: string;
-    groupId?: string | undefined;
-}
-
-export interface FindMediaPresetsGrpcResponse {
-    data?: MediaListGrpc | undefined;
-    error?: GrpcError | undefined;
-}
-
-export interface FindMediaPresetsGroupsGrpcRequest {
-    domain: string;
-}
-
-export interface FindMediaPresetsGroupsGrpcResponse {
-    data?: MediaGroupsListGrpc | undefined;
-    error?: GrpcError | undefined;
-}
-
-export interface GetPresignedMediaUrlGrpcRequest {
-    fileName: string;
-    contentType: string;
-}
-
-export interface GetPresignedMediaUrlGrpcResponse {
-    data?: PresignUrlPairGrpc | undefined;
-    error?: GrpcError | undefined;
-}
 
 export const MEDIA_PACKAGE_NAME = "media";
 
 export interface MediaServiceClient {
-    findPresets(request: FindMediaPresetsGrpcRequest): Observable<FindMediaPresetsGrpcResponse>;
+  findPresets(request: FindMediaPresetsGrpcRequest): Observable<FindMediaPresetsGrpcResponse>;
 
-    findGroups(request: FindMediaPresetsGroupsGrpcRequest): Observable<FindMediaPresetsGroupsGrpcResponse>;
+  findGroups(request: FindMediaPresetsGroupsGrpcRequest): Observable<FindMediaPresetsGroupsGrpcResponse>;
 
-    getPresignedUrl(request: GetPresignedMediaUrlGrpcRequest): Observable<GetPresignedMediaUrlGrpcResponse>;
+  getPresignedUrl(request: GetPresignedMediaUrlGrpcRequest): Observable<GetPresignedMediaUrlGrpcResponse>;
 }
 
 export interface MediaServiceController {
-    findPresets(
-        request: FindMediaPresetsGrpcRequest
-    ): Promise<FindMediaPresetsGrpcResponse> | Observable<FindMediaPresetsGrpcResponse> | FindMediaPresetsGrpcResponse;
+  findPresets(
+    request: FindMediaPresetsGrpcRequest,
+  ): Promise<FindMediaPresetsGrpcResponse> | Observable<FindMediaPresetsGrpcResponse> | FindMediaPresetsGrpcResponse;
 
-    findGroups(
-        request: FindMediaPresetsGroupsGrpcRequest
-    ): Promise<FindMediaPresetsGroupsGrpcResponse> | Observable<FindMediaPresetsGroupsGrpcResponse> | FindMediaPresetsGroupsGrpcResponse;
+  findGroups(
+    request: FindMediaPresetsGroupsGrpcRequest,
+  ):
+    | Promise<FindMediaPresetsGroupsGrpcResponse>
+    | Observable<FindMediaPresetsGroupsGrpcResponse>
+    | FindMediaPresetsGroupsGrpcResponse;
 
-    getPresignedUrl(
-        request: GetPresignedMediaUrlGrpcRequest
-    ): Promise<GetPresignedMediaUrlGrpcResponse> | Observable<GetPresignedMediaUrlGrpcResponse> | GetPresignedMediaUrlGrpcResponse;
+  getPresignedUrl(
+    request: GetPresignedMediaUrlGrpcRequest,
+  ):
+    | Promise<GetPresignedMediaUrlGrpcResponse>
+    | Observable<GetPresignedMediaUrlGrpcResponse>
+    | GetPresignedMediaUrlGrpcResponse;
 }
 
 export function MediaServiceControllerMethods() {
-    return function (constructor: Function) {
-        const grpcMethods: string[] = ["findPresets", "findGroups", "getPresignedUrl"];
-        for (const method of grpcMethods) {
-            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-            GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
-        }
-        const grpcStreamMethods: string[] = [];
-        for (const method of grpcStreamMethods) {
-            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-            GrpcStreamMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
-        }
-    };
+  return function (constructor: Function) {
+    const grpcMethods: string[] = ["findPresets", "findGroups", "getPresignedUrl"];
+    for (const method of grpcMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
+    }
+    const grpcStreamMethods: string[] = [];
+    for (const method of grpcStreamMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
+    }
+  };
 }
 
 export const MEDIA_SERVICE_NAME = "MediaService";

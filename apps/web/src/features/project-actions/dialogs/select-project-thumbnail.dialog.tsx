@@ -1,6 +1,6 @@
 import type { ProjectWithType } from "@repo/projects";
 import { useState } from "react";
-import { ProjectThumbnailSelector } from "@/entities/projects";
+import { ProjectIconSelector } from "@/entities/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";
 
 type Props = {
@@ -21,7 +21,7 @@ export function SelectProjectThumbnailModal({ project, trigger }: Props) {
                     <DialogTitle>Choose thumbnail</DialogTitle>
                 </DialogHeader>
 
-                <ProjectThumbnailSelector project={project} afterSubmit={setOpen.bind(null, false)} />
+                <ProjectIconSelector project={project} afterSubmit={setOpen.bind(null, false)} />
             </DialogContent>
         </Dialog>
     );

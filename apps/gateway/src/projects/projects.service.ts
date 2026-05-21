@@ -1,11 +1,12 @@
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
 import type { Profile } from "@repo/auth";
-import { DebugException, type Id } from "@repo/common";
+import { DebugException, type Id, type PaginationOptions } from "@repo/common";
 import { extractGrpcResponsePipe } from "@repo/contracts";
 import type {
     DuplicateProjectDto,
     FindOneProjectDto,
     Project,
+    ProjectFilters,
     ProjectTypes,
     ProjectWithCreator,
     ProjectWithType,
@@ -44,8 +45,8 @@ export class ProjectsService {
             .pipe(extractGrpcResponsePipe());
     }
 
-    public async findAll(userId: Id): Promise<ProjectWithCreator<ProjectWithType>[]> {
-        const boards = await firstValueFrom(this.boardsService.findAll(userId));
+    public async findAll(userId: Id, filters: ProjectFilters, pagination: PaginationOptions): Promise<ProjectWithCreator<ProjectWithType>[]> {
+        const boards = await firstValueFrom(this.boardsService.findAll(userId, filters, pagination));
 
         const creators = await this.getProjectsCreatorsMap(boards);
 

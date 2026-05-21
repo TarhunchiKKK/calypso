@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "common/util.proto";
+import "media/media.models.proto";
+
+package media;
+
+
+message FindMediaPresetsGrpcRequest {
+    string domain = 1;
+
+    optional string groupId = 2;
+}
+
+message FindMediaPresetsGrpcResponse {
+    oneof response {
+        MediaListGrpc data = 1;
+
+        common.GrpcError error = 2;
+    }
+}
+
+message FindMediaPresetsGroupsGrpcRequest {
+    string domain = 1;
+}
+
+message FindMediaPresetsGroupsGrpcResponse {
+    oneof response {
+        MediaGroupsListGrpc data = 1;
+
+        common.GrpcError error = 2;
+    }
+}
+
+message GetPresignedMediaUrlGrpcRequest {
+    string fileName = 1;
+
+    string contentType = 2;
+}
+
+message GetPresignedMediaUrlGrpcResponse {
+    oneof response {
+        PresignUrlPairGrpc data = 1;
+
+        common.GrpcError error = 2;
+    }
+}

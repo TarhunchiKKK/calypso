@@ -8,9 +8,16 @@ function fixProtobufPackage(filePath: string): void {
     try {
         let content = fs.readFileSync(filePath, "utf8");
 
-        // Удаляем export из строки protobufPackage
+        // remove `protobufPackage`
         content = content.replace(/^export const protobufPackage = /gm, "const protobufPackage = ");
         content = content.replace(/^export const GOOGLE_PROTOBUF_PACKAGE_NAME = /gm, "const GOOGLE_PROTOBUF_PACKAGE_NAME = ");
+
+        if (!filePath.endsWith(".service.ts")) {
+            const lines = content.split("\n");
+
+            // remove `*_SERVICE_NAME`
+            content = lines.slice(0, lines.length - 2).join("\n");
+        }
 
         // export const GOOGLE_PROTOBUF_PACKAGE_NAME
         fs.writeFileSync(filePath, content, "utf8");
@@ -29,7 +36,7 @@ function processDirectory(dir: string): void {
 
         if (stat.isDirectory()) {
             processDirectory(filePath);
-        } else if (file.endsWith(".ts") && !file.endsWith(".d.ts")) {
+        } else if (file.endsWith(".ts") && !file.endsWith(".d.ts") && file !== "index.ts") {
             fixProtobufPackage(filePath);
         }
     }

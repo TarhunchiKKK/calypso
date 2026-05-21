@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet, redirect } from "react-router-dom";
 import { MediaApi } from "@/entities/media";
 import { NodesApi } from "@/entities/nodes";
-import { ProjectsApi } from "@/entities/projects";
+import { DEFAULT_PROJECTS_QUERY_COUNT, DefaultProjectFilters, ProjectsApi } from "@/entities/projects";
 import { QueryClientInstance, Routes } from "@/shared/config";
 
 export const Router = createBrowserRouter([
@@ -20,7 +20,12 @@ export const Router = createBrowserRouter([
                         path: Routes.dashboard,
                         lazy: () => import("@/pages/dashboard.page"),
                         loader: () => {
-                            QueryClientInstance.prefetchQuery(ProjectsApi.options.findAll());
+                            QueryClientInstance.prefetchInfiniteQuery(
+                                ProjectsApi.options.findAll({
+                                    ...DefaultProjectFilters,
+                                    count: DEFAULT_PROJECTS_QUERY_COUNT
+                                })
+                            );
                             QueryClientInstance.prefetchQuery(MediaApi.options.findPresetsGroups("project-thumbnails"));
                         }
                     },

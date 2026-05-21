@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package boards;
+package boardNodes;
 
 import "common/formattable.proto";
 import "common/geometry.proto";

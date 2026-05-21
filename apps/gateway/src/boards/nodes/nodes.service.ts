@@ -4,13 +4,13 @@ import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from 
 import type { Id } from "@repo/common";
 import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@repo/contracts";
 import { map } from "rxjs";
-import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
+import { BOARD_NODES_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 
 @Injectable()
 export class NodesService implements OnModuleInit {
     private nodesClient: BoardNodesServiceClient;
 
-    public constructor(@Inject(BOARDS_GRPC_CLIENT_INJECTION_TOKEN) private readonly grpcClient: ClientGrpc) {}
+    public constructor(@Inject(BOARD_NODES_GRPC_CLIENT_INJECTION_TOKEN) private readonly grpcClient: ClientGrpc) {}
 
     public onModuleInit() {
         this.nodesClient = this.grpcClient.getService<BoardNodesServiceClient>(BOARD_NODES_SERVICE_NAME);

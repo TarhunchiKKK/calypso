@@ -1,11 +1,8 @@
-import { ProjectsApi } from "@/entities/projects";
 import { DashboardHeader } from "@/features/header";
 import { CreateProjectButton } from "@/features/project-creation";
-import { ProjectsList, ProjectsListSkeleton } from "@/features/projects-list";
+import { ProjectsList } from "@/features/projects-list";
 
 function DashBoardPage() {
-    const { data: projects } = ProjectsApi.useFindAll();
-
     return (
         <>
             <DashboardHeader />
@@ -17,9 +14,7 @@ function DashBoardPage() {
                     <CreateProjectButton />
                 </div>
 
-                {projects && <ProjectsList projects={projects} />}
-
-                {!projects && <ProjectsListSkeleton />}
+                <ProjectsList />
             </div>
         </>
     );

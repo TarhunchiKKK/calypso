@@ -14,7 +14,7 @@ export class Board implements BoardType {
     public description?: string;
 
     @Column()
-    public thumbnail: string;
+    public icon: string;
 
     @Column()
     public creatorId: Id;

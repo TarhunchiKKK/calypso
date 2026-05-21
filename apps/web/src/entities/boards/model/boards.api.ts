@@ -12,7 +12,7 @@ function useCreate() {
             return await ApiInstance.post<Board>("/boards/management", dto);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
+            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
         }
     });
 }
@@ -27,7 +27,7 @@ function useUpdate() {
             return await ApiInstance.patch<void>(`/boards/management/${id}`, data);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.projects });
+            queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
         }
     });
 }

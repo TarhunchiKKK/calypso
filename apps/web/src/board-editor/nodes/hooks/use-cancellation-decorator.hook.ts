@@ -1,6 +1,6 @@
 import type { OmitFields } from "@repo/common";
 import type { NodesService } from "@/entities/nodes";
-import { useCancellation } from "@/shared/lib/entities-management";
+import { useCancellation } from "@/shared/model";
 
 /**
  * This hook decorates `NodesService` instance with cancellation functionality.

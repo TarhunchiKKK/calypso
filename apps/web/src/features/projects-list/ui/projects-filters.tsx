@@ -1,59 +1,46 @@
-import type { ProjectTypes } from "@repo/projects";
+import type { ProjectFilters } from "@repo/projects";
 import { Dropdown } from "@/shared/ui";
-import { Input } from "@/shared/ui/kit";
-import { OwnerDropdownItems, SortOrdersDropdownItems, TypeDropdownItems } from "../constants/filtering-dropdowns.constants";
-import type { Filters, OwnerFilters, SortOrders } from "../types/filtering.types";
+import { OwnDropdownItems, SortOrdersDropdownItems, TypeDropdownItems } from "./ui.constants";
 
 type Props = {
-    filters: Filters;
+    filters: ProjectFilters;
 
-    onChange: (filters: Filters) => void;
+    onChange: (filters: ProjectFilters) => void;
 };
 
 export function ProjectsFilters({ filters, onChange }: Props) {
-    const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onTypeFilterChange = (typeFilter: ProjectFilters["type"]) => {
         onChange({
             ...filters,
-            title: e.target.value
+            type: typeFilter
         });
     };
 
-    const onTypeFilterChange = (typeFilter: ProjectTypes | null) => {
+    const onOwnFilterChange = (ownFilter: ProjectFilters["own"]) => {
         onChange({
             ...filters,
-            typeFilter
+            own: ownFilter
         });
     };
 
-    const onOwnerFilterChange = (ownerFilter: OwnerFilters) => {
-        onChange({
-            ...filters,
-            ownerFilter
-        });
-    };
-
-    const onSortOrderChange = (sortOrder: SortOrders) => {
+    const onSortOrderChange = (sortOrder: ProjectFilters["sortOrder"]) => {
         onChange({
             ...filters,
             sortOrder
         });
     };
 
-    const currentTypeFilter = TypeDropdownItems.find((item) => item.value === filters.typeFilter);
-    const currentOwnerFilter = OwnerDropdownItems.find((item) => item.value === filters.ownerFilter);
+    const currentTypeFilter = TypeDropdownItems.find((item) => item.value === filters.type);
+    const currentOwnerFilter = OwnDropdownItems.find((item) => item.value === filters.own);
     const currentSortOrder = SortOrdersDropdownItems.find((item) => item.value === filters.sortOrder);
 
     return (
-        <div className="flex flex-row justify-between items-center gap-4">
-            <Input value={filters.title} onChange={onTitleChange} placeholder="Type to filter..." className="grow max-w-3/5" />
+        <div className="flex flex-row justify-end items-center gap-2">
+            <Dropdown placeholder={currentTypeFilter ? currentTypeFilter.label : null} items={TypeDropdownItems} onSelect={onTypeFilterChange} />
 
-            <div className="flex flex-row justify-between items-center gap-2">
-                <Dropdown placeholder={currentTypeFilter ? currentTypeFilter.label : null} items={TypeDropdownItems} onSelect={onTypeFilterChange} />
+            <Dropdown placeholder={currentOwnerFilter ? currentOwnerFilter.label : null} items={OwnDropdownItems} onSelect={onOwnFilterChange} />
 
-                <Dropdown placeholder={currentOwnerFilter ? currentOwnerFilter.label : null} items={OwnerDropdownItems} onSelect={onOwnerFilterChange} />
-
-                <Dropdown placeholder={currentSortOrder ? currentSortOrder.label : null} items={SortOrdersDropdownItems} onSelect={onSortOrderChange} />
-            </div>
+            <Dropdown placeholder={currentSortOrder ? currentSortOrder.label : null} items={SortOrdersDropdownItems} onSelect={onSortOrderChange} />
         </div>
     );
 }

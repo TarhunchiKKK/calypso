@@ -7,7 +7,7 @@ const mockBoard: Board = {
     title: "Mock Board",
     description: "My favorite mock board.",
     creatorId: "mock-board-creator-id",
-    thumbnail: MockProjectThumbnails[0],
+    icon: MockProjectThumbnails[0],
     createdAt: new Date(),
     updatedAt: new Date()
 };

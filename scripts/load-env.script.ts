@@ -67,7 +67,12 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     // Boards Service
     BOARDS_SERVICE_GRPC_URL: {
         gateway: "BOARDS_SERVICE_GRPC_URL",
-        boards: "GRPC_URL"
+        boards: "BOARDS_GRPC_URL"
+    },
+
+    BOARD_NODES_SERVICE_GRPC_URL: {
+        gateway: "BOARD_NODES_SERVICE_GRPC_URL",
+        boards: "BOARD_NODES_GRPC_URL"
     },
 
     // // Postgres
@@ -107,7 +112,7 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     // Media Service
     MEDIA_SERVICE_GRPC_URL: {
         gateway: "MEDIA_SERVICE_GRPC_URL",
-        media: "GRPC_URL"
+        media: "MEDIA_GRPC_URL"
     },
 
     // // Assets

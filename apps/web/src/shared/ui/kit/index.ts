@@ -13,6 +13,7 @@ export * from "./scroll-area";
 export * from "./separator";
 export * from "./skeleton";
 export * from "./sonner";
+export * from "./spinner";
 export * from "./switch";
 export * from "./table";
 export * from "./textarea";

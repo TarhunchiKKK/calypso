@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package projects;
+
+import "common/util.proto";
+import "projects/projects.model.proto";
+
+message DuplicateProjectGrpcRequest {
+  string id = 1;
+
+  string title = 2;
+
+  string creatorId = 3;
+}
+
+message FindAllProjectsGrpcRequest {
+  string userId = 1;
+
+  FindProjectsFiltersGrpc filters = 2;
+
+  common.PaginationRequestGrpc pagination = 3;
+}
+
+message FindOneProjectGrpcRequest {
+  string id = 1;
+
+  string userId = 2;
+}
+
+message RemoveProjectGrpcRequest {
+  string id = 1;
+
+  string userId = 2;
+}
