@@ -12,6 +12,7 @@ import {
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
 } from "@repo/contracts";
+import type { ProjectFilters } from "@repo/projects";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";
@@ -30,7 +31,11 @@ export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceCon
     }
 
     public async findAll(dto: FindAllProjectsGrpcRequest) {
-        return await this.boardsService.findAll(dto.userId);
+        if (!dto.filters || !dto.pagination) {
+            throw Error("No 'filters' or 'pagination' field in dto");
+        }
+
+        return await this.boardsService.findAll(dto.userId, dto.filters as ProjectFilters, dto.pagination);
     }
 
     public async findOne(dto: FindOneProjectGrpcRequest) {

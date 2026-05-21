@@ -2,8 +2,9 @@ import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { BrokerRoutingKeys } from "@repo/api";
-import type { Id } from "@repo/common";
+import type { Id, PaginationOptions } from "@repo/common";
 import { BoardsGrpcMapper } from "@repo/contracts";
+import type { ProjectFilters } from "@repo/projects";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";
@@ -36,8 +37,8 @@ export class BoardsService {
         return BoardsGrpcMapper.toGrpc(board);
     }
 
-    public async findAll(userId: Id) {
-        const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId));
+    public async findAll(userId: Id, filters: ProjectFilters, pagination: PaginationOptions) {
+        const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId, filters, pagination));
 
         const mappedBoards = boards.map(BoardsGrpcMapper.toGrpc);
 
