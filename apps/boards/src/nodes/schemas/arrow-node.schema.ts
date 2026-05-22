@@ -3,7 +3,7 @@ import type { ArrowNode as ArrowNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, RelativePoint } from "@repo/common";
 
 @Schema()
-export class ArrowNode implements OmitFields<ArrowNodeType, keyof NodeBase> {
+class ArrowNode implements OmitFields<ArrowNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: false })
     public start: RelativePoint;
 

@@ -3,7 +3,7 @@ import type { NodeBase, NoteNode as NoteNodeType } from "@repo/boards";
 import type { FormattableElement, OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class NoteNode implements OmitFields<NoteNodeType, keyof NodeBase> {
+class NoteNode implements OmitFields<NoteNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: true })
     public rect: Rect;
 

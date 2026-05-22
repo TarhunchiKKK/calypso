@@ -3,7 +3,7 @@ import type { NodeBase, ShapeNode as ShapeNodeType, ShapeVariants } from "@repo/
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class ShapeNode implements OmitFields<ShapeNodeType, keyof NodeBase> {
+class ShapeNode implements OmitFields<ShapeNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: true })
     public rect: Rect;
 
