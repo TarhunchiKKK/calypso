@@ -4,19 +4,8 @@ import { NodeSelectionStrategy, SELECTION_COLOR } from "@/board-editor/modules/s
 
 export class ArrowSelectionStrategy extends NodeSelectionStrategy {
     public override ui(node: Decoratable<ArrowNode>) {
-        this.updateNodeStyles(node);
+        node.wrapper.setUiSetting("color", SELECTION_COLOR);
 
         return null;
-    }
-
-    private updateNodeStyles(node: Decoratable<ArrowNode>) {
-        node.data = {
-            ...node.data,
-            styles: {
-                ...node.data.styles,
-                // REFACTOR: vai `useSettings.className`
-                lineColor: SELECTION_COLOR
-            }
-        };
     }
 }

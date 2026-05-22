@@ -7,7 +7,7 @@ type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: Arro
 
 function getCommonStyles(node: ArrowNode, uiSettings: NodeUiSettings) {
     return {
-        stroke: node.styles.lineColor,
+        stroke: uiSettings.color ?? node.styles.lineColor,
         strokeWidth: node.styles.lineWidth,
         strokeLinecap: "round",
         strokeLinejoin: "round",

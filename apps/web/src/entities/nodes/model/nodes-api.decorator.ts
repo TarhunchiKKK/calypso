@@ -74,7 +74,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
     const removeAll: NodesService["removeAll"] = () => {
         service.removeAll();
 
-        // TODO: create `clearBoard` endpoint
+        // OPTIMIZE: create `clearBoard` endpoint
         removeNodes({
             ids: service.nodes.map((node) => node.id),
             boardId: boardId

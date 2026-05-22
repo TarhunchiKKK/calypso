@@ -16,6 +16,8 @@ export type NodeUiSettings = {
     showContent: boolean;
 
     noPointerEvents: boolean;
+
+    color?: string;
 };
 
 /**
@@ -35,11 +37,6 @@ export abstract class NodeWrapper<T extends NodeBase = NodeBase> implements Deco
 
     public get id() {
         return this.node.id;
-    }
-
-    // DELETE
-    public get type() {
-        return this.node.type;
     }
 
     public get data() {

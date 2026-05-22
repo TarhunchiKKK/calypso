@@ -6,9 +6,7 @@ import { Geometry } from "@/shared/lib/geometry";
 type Props = {
     node: Pick<DrawingNode, "points" | "styles">;
 
-    svgProps?: SVGProps<SVGSVGElement>;
-
-    pathProps?: SVGProps<SVGPathElement>;
+    path?: SVGProps<SVGPathElement>;
 };
 
 const defaultOptions: StrokeOptions = {
@@ -46,7 +44,7 @@ function getSvgPathFromStroke(stroke: Vec2[]) {
     return d.join(" ");
 }
 
-export function Drawing({ node }: Props) {
+export function Drawing({ node, path }: Props) {
     const pathData = useMemo(() => {
         const mappedPoints = node.points.map(Geometry.pointToTuple);
 
@@ -60,7 +58,7 @@ export function Drawing({ node }: Props) {
 
     return (
         <svg className="pointer-events-none" style={{ touchAction: "none" }}>
-            {<path d={pathData} stroke={node.styles.lineColor} fill={node.styles.lineColor} />}
+            {<path d={pathData} stroke={path?.stroke ?? node.styles.lineColor} fill={path?.fill ?? node.styles.lineColor} />}
         </svg>
     );
 }
