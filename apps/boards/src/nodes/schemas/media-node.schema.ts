@@ -3,7 +3,7 @@ import type { MediaNode as MediaNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class MediaNode implements OmitFields<MediaNodeType, keyof NodeBase> {
+class MediaNode implements OmitFields<MediaNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: true })
     public rect: Rect;
 

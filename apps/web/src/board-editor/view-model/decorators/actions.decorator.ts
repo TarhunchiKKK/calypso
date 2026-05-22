@@ -1,7 +1,6 @@
 import { BoardHotKeys } from "@/board-editor/lib/hot-keys.lib";
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
-import type { ViewState } from "../types";
-import type { ViewModel } from "../types/view-model.types";
+import type { ViewModel, ViewState } from "../types";
 import { switchToDrawing } from "../variants/drawing/switcher";
 import { switchToIdle } from "../variants/idle/switcher";
 import { switchToMediaSelection } from "../variants/media-selection/switcher";

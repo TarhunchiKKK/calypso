@@ -14,6 +14,6 @@ export type ViewModelParams = {
     setViewState: (viewState: ViewState) => void;
 };
 
-export type ViewModelFn<State extends ViewState> = (viewState: State) => DecoratableViewModel;
+type ViewModelFn<State extends ViewState> = (viewState: State) => DecoratableViewModel;
 
 export type ViewModelHook<State extends ViewState> = (params: ViewModelParams) => ViewModelFn<State>;

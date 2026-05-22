@@ -3,7 +3,7 @@ import type { DrawingNode as DrawingNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()
-export class DrawingNode implements OmitFields<DrawingNodeType, keyof NodeBase> {
+class DrawingNode implements OmitFields<DrawingNodeType, keyof NodeBase> {
     @Prop({ type: Object, required: false })
     public rect: Rect;
 

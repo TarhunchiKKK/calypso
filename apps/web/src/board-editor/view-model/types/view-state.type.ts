@@ -27,14 +27,14 @@ export type ViewState =
     | StylingViewState
     | NodesContextMenuViewState;
 
-export type SingleNodeViewStates = Extract<ViewState, ArrowBindingViewState | ResizingViewState | EditingViewState>;
+type SingleNodeViewStates = Extract<ViewState, ArrowBindingViewState | ResizingViewState | EditingViewState>;
 
-export type MultipleNodesViewStates = Extract<
+type MultipleNodesViewStates = Extract<
     ViewState,
     SelectionViewState | SelectionWindowViewState | DraggingViewState | StylingViewState | NodesContextMenuViewState
 >;
 
-export type ViewStatesWithStartPoint = Extract<ViewState, SelectionWindowViewState | DraggingViewState>;
+type ViewStatesWithStartPoint = Extract<ViewState, SelectionWindowViewState | DraggingViewState>;
 
 export const ViewStateTypeGuards = {
     singleNode: (viewState: ViewState): viewState is SingleNodeViewStates => {

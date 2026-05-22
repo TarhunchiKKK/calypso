@@ -1,6 +1,6 @@
 import type { NodeStyles } from "@repo/boards";
 
-export const AvailableColors = [
+const AvailableColors = [
     "#FF3B30",
     "#FF8904",
     "#FFDF20",
