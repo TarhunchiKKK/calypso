@@ -16,6 +16,8 @@ export type NodeUiSettings = {
     showContent: boolean;
 
     noPointerEvents: boolean;
+
+    color?: string;
 };
 
 /**

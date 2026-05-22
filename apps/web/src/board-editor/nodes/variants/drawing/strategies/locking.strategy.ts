@@ -4,18 +4,8 @@ import { LOCKED_COLOR, NodeLockingStrategy } from "@/board-editor/modules/lockin
 
 export class DrawingNodeLockingStrategy extends NodeLockingStrategy {
     public override ui(node: Decoratable<DrawingNode>) {
-        this.updateNodeStyles(node);
+        node.wrapper.setUiSetting("color", LOCKED_COLOR);
 
         return null;
-    }
-
-    private updateNodeStyles(node: Decoratable<DrawingNode>) {
-        node.data = {
-            ...node.data,
-            styles: {
-                ...node.data.styles,
-                lineColor: LOCKED_COLOR
-            }
-        };
     }
 }
