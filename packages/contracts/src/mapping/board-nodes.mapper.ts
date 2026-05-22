@@ -1,13 +1,4 @@
-import {
-    type AnyNode,
-    ArrowNodeZodSchema,
-    DrawingNodeZodSchema,
-    MediaNodeZodSchema,
-    NoteNodeZodSchema,
-    ShapeNodeZodSchema,
-    StickerNodeZodSchema,
-    TextNodeZodSchema
-} from "@repo/boards";
+import { type AnyNode, AnyNodeZodSchema, type NodeTypes, NodeTypesArray } from "@repo/boards";
 import { DebugException } from "@repo/common";
 import type { AnyBoardNodeGrpc, BoardNodeBaseGrpc } from "../generated";
 
@@ -80,58 +71,22 @@ export class BoardNodesGrpcMapper {
         }
     }
 
-    // REFACTOR: code for all node types is common
     public static fromGrpc(node: AnyBoardNodeGrpc): AnyNode {
-        if (node.sticker) {
-            return StickerNodeZodSchema.parse({
-                ...node.sticker,
-                ...node.sticker.base
-            });
+        let type: NodeTypes | undefined;
+        for (const key in node) {
+            if (NodeTypesArray.includes(key as NodeTypes)) {
+                type = node[key]?.base?.type;
+            }
         }
 
-        if (node.arrow) {
-            return ArrowNodeZodSchema.parse({
-                ...node.arrow,
-                ...node.arrow.base
-            });
+        if (!type) {
+            throw new Error("Node type not provided");
         }
 
-        if (node.text) {
-            return TextNodeZodSchema.parse({
-                ...node.text,
-                ...node.text.base
-            });
-        }
-
-        if (node.shape) {
-            return ShapeNodeZodSchema.parse({
-                ...node.shape,
-                ...node.shape.base
-            });
-        }
-
-        if (node.media) {
-            return MediaNodeZodSchema.parse({
-                ...node.media,
-                ...node.media.base
-            });
-        }
-
-        if (node.note) {
-            return NoteNodeZodSchema.parse({
-                ...node.note,
-                ...node.note.base
-            });
-        }
-
-        if (node.drawing) {
-            return DrawingNodeZodSchema.parse({
-                ...node.drawing,
-                ...node.drawing.base
-            });
-        }
-
-        throw new DebugException(`NodesGrpcMapper: Unknown node type: ${node} `);
+        return AnyNodeZodSchema.parse({
+            ...node[type],
+            ...node[type]?.base
+        });
     }
 
     private static mapBase(node: AnyNode): BoardNodeBaseGrpc {

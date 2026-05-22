@@ -17,3 +17,5 @@ export const RectNodeZodSchema = NodeBaseZodSchema.extend({
 export type NodeTypes = z.infer<typeof NodeTypesZodSchema>;
 export type NodeBase = z.infer<typeof NodeBaseZodSchema>;
 export type RectNode = z.infer<typeof RectNodeZodSchema>;
+
+export const NodeTypesArray: NodeTypes[] = NodeTypesZodSchema.options;
