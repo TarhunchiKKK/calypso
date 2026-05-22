@@ -1,7 +1,7 @@
 import type { NodeStyles } from "@repo/boards";
 import { FoldHorizontal, Minus } from "lucide-react";
 import { DefaultNodeStyles } from "@/entities/nodes";
-import { capitalize } from "@/shared/lib/string";
+import { capitalize } from "@/shared/lib/js";
 import type { DropdownItem } from "@/shared/ui";
 
 export const LineWidthPlaceholder = <FoldHorizontal className="dark:text-white" />;

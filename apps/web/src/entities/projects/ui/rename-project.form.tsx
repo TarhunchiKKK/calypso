@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@repo/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { stopPropagationHandler } from "@/shared/lib/events";
+import { stopPropagationHandler } from "@/shared/lib/js";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { ProjectsApi } from "../model/projects.api";
 

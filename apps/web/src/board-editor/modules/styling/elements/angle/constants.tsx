@@ -1,6 +1,6 @@
 import type { NodeStyles } from "@repo/boards";
 import { MousePointer2 } from "lucide-react";
-import { capitalize } from "@/shared/lib/string";
+import { capitalize } from "@/shared/lib/js";
 import type { DropdownItem } from "@/shared/ui";
 
 export const AngleTypePlaceholder = <MousePointer2 className="rotate-90" />;

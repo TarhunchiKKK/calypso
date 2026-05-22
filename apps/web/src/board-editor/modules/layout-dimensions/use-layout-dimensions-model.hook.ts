@@ -1,6 +1,6 @@
 import type { Point } from "@repo/common";
 import { useRef, useState } from "react";
-import { useLastClick } from "@/shared/lib/events";
+import { useLastClick } from "@/shared/lib/dom";
 import { Geometry } from "@/shared/lib/geometry";
 import { DefaultLayoutOffset, DefaultLayoutZoom, ZoomDown, ZoomUp } from "./layout-dimensions.constants";
 

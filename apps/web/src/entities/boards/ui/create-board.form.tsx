@@ -3,7 +3,7 @@ import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
-import { stopPropagationHandler } from "@/shared/lib/events";
+import { stopPropagationHandler } from "@/shared/lib/js";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
