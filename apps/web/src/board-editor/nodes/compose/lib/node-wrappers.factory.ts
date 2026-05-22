@@ -21,7 +21,7 @@ type WrappersMap = {
 
 export class NodeWrappersFactory {
     public static is<T extends NodeTypes>(wrapper: NodeWrapper, type: T): wrapper is WrappersMap[T] {
-        return wrapper.type === type;
+        return wrapper.data.type === type;
     }
 
     public static wrap(allNodes: NodeBase[], node: NodeBase) {

@@ -14,10 +14,6 @@ export abstract class NodeDecorator<T extends NodeBase = NodeBase> implements Re
         return this.entry.id;
     }
 
-    public get type() {
-        return this.entry.type;
-    }
-
     public get data() {
         return this.entry.data;
     }

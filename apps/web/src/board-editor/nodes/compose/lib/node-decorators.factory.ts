@@ -18,7 +18,7 @@ import { SelectionStrategiesMap } from "../constants/selection-strategies.map";
 export class NodeDecoratorsFactory {
     public static selection(node: Decoratable): Decoratable {
         if (node.data.locked) {
-            const strategy = LockingStrategiesMap[node.type];
+            const strategy = LockingStrategiesMap[node.data.type];
 
             if (!strategy) {
                 return node;
@@ -27,7 +27,7 @@ export class NodeDecoratorsFactory {
             return new NodeLockingDecorator(node, strategy);
         }
 
-        const strategy = SelectionStrategiesMap[node.type];
+        const strategy = SelectionStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -38,7 +38,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static dragging(node: Decoratable, offset?: Offset) {
-        const strategy = DraggingStrategiesMap[node.type];
+        const strategy = DraggingStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -49,7 +49,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static resizable(node: Decoratable, handler: ResizeHandler) {
-        const strategy = ResizableStrategiesMap[node.type];
+        const strategy = ResizableStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -60,7 +60,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static resizing(node: Decoratable, size?: Rect) {
-        const strategy = ResizingStrategiesMap[node.type];
+        const strategy = ResizingStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -71,7 +71,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static editing(node: Decoratable, handlers: NodeEditingHandlers) {
-        const strategy = EditingStrategiesMap[node.type];
+        const strategy = EditingStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -82,7 +82,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static bindable(node: Decoratable, handlers: BindingNodeHandlers, active: boolean) {
-        const strategy = BindableStrategiesMap[node.type];
+        const strategy = BindableStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
@@ -93,7 +93,7 @@ export class NodeDecoratorsFactory {
 
     @CheckLocked()
     public static binding(node: Decoratable) {
-        const strategy = BindingStrategiesMap[node.type];
+        const strategy = BindingStrategiesMap[node.data.type];
 
         if (!strategy) {
             return node;
