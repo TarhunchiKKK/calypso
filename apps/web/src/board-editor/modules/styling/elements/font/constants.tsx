@@ -1,6 +1,6 @@
 import type { NodeStyles } from "@repo/boards";
 import { ALargeSmall, CaseSensitive } from "lucide-react";
-import { capitalize } from "@/shared/lib/string";
+import { capitalize } from "@/shared/lib/js";
 import type { DropdownItem } from "@/shared/ui";
 
 export const FontFamilyPlaceholder = <CaseSensitive className="dark:text-white" />;

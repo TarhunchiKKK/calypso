@@ -1,14 +1,6 @@
 import type { Point } from "@repo/common";
 import { useState } from "react";
-import { Geometry } from "@/shared/lib/geometry";
-
-export function preventDefaultHandler(e: Pick<Event, "preventDefault">) {
-    e.preventDefault();
-}
-
-export function stopPropagationHandler(e: Pick<Event, "stopPropagation">) {
-    e.stopPropagation();
-}
+import { Geometry } from "../geometry";
 
 export function useLastClick() {
     const [point, setPoint] = useState<Point>();

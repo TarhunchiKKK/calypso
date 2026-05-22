@@ -3,8 +3,7 @@ import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/
 import type { ProjectWithCreator } from "@repo/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { formatDate } from "@/shared/lib/date";
-import { stopPropagationHandler } from "@/shared/lib/events";
+import { formatDate, stopPropagationHandler } from "@/shared/lib/js";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 

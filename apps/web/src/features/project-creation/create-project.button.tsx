@@ -1,6 +1,6 @@
 import type { ProjectTypes } from "@repo/projects";
 import { PlusIcon } from "lucide-react";
-import { preventDefaultHandler } from "@/shared/lib/events";
+import { preventDefaultHandler } from "@/shared/lib/js";
 import type { DropdownItem } from "@/shared/ui";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { CreateProjectDialog } from "./create-project.dialog";

@@ -1,6 +1,6 @@
 import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
 import type { Point } from "@repo/common";
-import { pickFields } from "@/shared/lib/object";
+import { pickFields } from "@/shared/lib/js";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
 
 export class NodesFactory {

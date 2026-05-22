@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { capitalize } from "@/shared/lib/string";
+import { capitalize } from "@/shared/lib/js";
 
 describe("`capitalize` function", () => {
     test("capitalizes string", () => {

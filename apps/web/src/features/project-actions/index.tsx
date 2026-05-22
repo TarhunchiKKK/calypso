@@ -1,6 +1,6 @@
 import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { EllipsisVertical, ImageIcon, InfoIcon, PencilIcon } from "lucide-react";
-import { preventDefaultHandler } from "@/shared/lib/events";
+import { preventDefaultHandler } from "@/shared/lib/js";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { ProjectDetailsDialog } from "./dialogs/project-details.dialog";
 import { RenameProjectDialog } from "./dialogs/rename-project.dialog";

@@ -1,6 +1,6 @@
 import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
 import { ProjectActions } from "@/features/project-actions";
-import { formatDate } from "@/shared/lib/date";
+import { formatDate } from "@/shared/lib/js";
 import { S3Service } from "@/shared/lib/s3";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/kit";
 
