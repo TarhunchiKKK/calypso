@@ -3,7 +3,8 @@ import { DEFAULT_PROJECTS_QUERY_COUNT, DefaultProjectFilters, ProjectsApi } from
 import { useIntersection } from "@/shared/lib/dom";
 import { Spinner } from "@/shared/ui/kit";
 import { ProjectsFilters } from "./ui/projects-filters";
-import { ProjectsTable, ProjectsTableSkeleton } from "./ui/projects-table.component";
+import { ProjectsTable } from "./ui/projects-table.component";
+import { ProjectsListSkeleton } from "./ui/skeleton";
 
 export function ProjectsList() {
     const [filters, setFilters] = useState(DefaultProjectFilters);
@@ -40,15 +41,5 @@ export function ProjectsList() {
 
             {!projects && <ProjectsListSkeleton />}
         </>
-    );
-}
-
-export function ProjectsListSkeleton() {
-    return (
-        <div className="flex flex-col justify-between gap-8">
-            <ProjectsFilters filters={DefaultProjectFilters} onChange={() => {}} />
-
-            <ProjectsTableSkeleton />
-        </div>
     );
 }
