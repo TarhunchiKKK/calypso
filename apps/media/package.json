@@ -27,7 +27,6 @@
         "@nestjs/platform-express": "^11.1.11",
         "@nestjs/typeorm": "^11.0.0",
         "@repo/api": "*",
-        "@repo/common": "*",
         "@repo/contracts": "*",
         "@repo/media": "*",
         "amqp-connection-manager": "^5.0.0",

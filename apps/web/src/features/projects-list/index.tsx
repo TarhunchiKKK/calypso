@@ -2,9 +2,9 @@ import { useState } from "react";
 import { DEFAULT_PROJECTS_QUERY_COUNT, DefaultProjectFilters, ProjectsApi } from "@/entities/projects";
 import { useIntersection } from "@/shared/lib/dom";
 import { Spinner } from "@/shared/ui/kit";
+import { ProjectsListSkeleton } from "./skeletons/projects-list.skeleton";
 import { ProjectsFilters } from "./ui/projects-filters";
 import { ProjectsTable } from "./ui/projects-table.component";
-import { ProjectsListSkeleton } from "./ui/skeleton";
 
 export function ProjectsList() {
     const [filters, setFilters] = useState(DefaultProjectFilters);
