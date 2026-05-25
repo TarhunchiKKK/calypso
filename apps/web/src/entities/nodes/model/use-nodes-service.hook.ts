@@ -11,9 +11,21 @@ export function useNodesService(inputNodes: NodeBase[]) {
 
     const nodesMap = useEntitiesMap(nodes);
 
+    const findOne = <T extends NodeBase = NodeBase>(nodeId: Id) => {
+        const node = nodesMap.findOne(nodeId);
+
+        if (!node) {
+            throw new Error(`Node with id=${nodeId} not found`);
+        }
+
+        return node as T;
+    };
+
     const setWithMiddleware = (payload: NodesServiceMiddlewarePayload, updateFn: (prev: NodeBase[]) => NodeBase[]) => {
         setNodes((nodes) => {
-            const result = middleware.apply(nodes, payload);
+            const result = middleware.apply(nodes, payload, {
+                findOne: findOne
+            });
 
             return updateFn(result);
         });
@@ -37,16 +49,6 @@ export function useNodesService(inputNodes: NodeBase[]) {
             },
             (nodes) => [...nodes, ...newNodes]
         );
-    };
-
-    const findOne = <T extends NodeBase = NodeBase>(nodeId: Id) => {
-        const node = nodesMap.findOne(nodeId);
-
-        if (!node) {
-            throw new Error(`Node with id=${nodeId} not found`);
-        }
-
-        return node as T;
     };
 
     const updateOne = (newNode: NodeBase) => {

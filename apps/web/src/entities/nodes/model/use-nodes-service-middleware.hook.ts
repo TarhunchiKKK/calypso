@@ -2,9 +2,13 @@ import type { NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { useCallback, useRef } from "react";
 
+type Util = {
+    findOne: (nodeId: Id) => NodeBase;
+};
+
 export type NodesServiceMiddlewarePayload = { operation: "create" | "update"; nodes: NodeBase[] } | { operation: "remove"; nodes: Id[] };
 
-export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload) => NodeBase[];
+export type NodesServiceMiddleware = (prev: NodeBase[], payload: NodesServiceMiddlewarePayload, util: Util) => NodeBase[];
 
 /**
  * This hook store middleware functions that will be executed before all "writing" operations performed by the nodes service.
@@ -22,10 +26,10 @@ export function useNodesServiceMiddleware() {
         middlewaresRef.current.delete(middleware);
     }, []);
 
-    const apply = useCallback((nodes: NodeBase[], payload: NodesServiceMiddlewarePayload) => {
+    const apply = useCallback((nodes: NodeBase[], payload: NodesServiceMiddlewarePayload, util: Util) => {
         const middlewares = Array.from(middlewaresRef.current.values());
 
-        return middlewares.reduce((copy, middleware) => middleware(copy, payload), [...nodes]);
+        return middlewares.reduce((copy, middleware) => middleware(copy, payload, util), [...nodes]);
     }, []);
 
     return {

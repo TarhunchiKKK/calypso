@@ -21,23 +21,20 @@ function getArrows(nodes: NodeBase[]): ArrowNode[] {
  * @param payload Middleware payload.
  * @returns Nodes array with applied changes.
  */
-export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload) => {
+export const ArrowsRelativePositionsMiddleware: NodesServiceMiddleware = (nodes, payload, util) => {
     switch (payload.operation) {
         case "remove": {
             const arrows = getArrows(nodes);
 
             for (const nodeId of payload.nodes) {
+                // TEMP: Add mapping
                 const relatedArrows = arrows.filter((arrow) => arrow.start.relativeTo === nodeId || arrow.end.relativeTo === nodeId);
 
                 if (relatedArrows.length === 0) {
                     return nodes;
                 }
 
-                const removingNode = nodes.find((node) => node.id === nodeId);
-
-                if (!removingNode) {
-                    throw Error(`Node with id ${nodeId} not found`);
-                }
+                const removingNode = util.findOne(nodeId);
 
                 const removingNodeRect = NodeRectsFactory.rect(removingNode);
 
