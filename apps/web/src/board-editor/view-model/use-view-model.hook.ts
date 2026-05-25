@@ -43,7 +43,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
-    const resizingVewModel = useResizingViewModel(newParams);
+    const resizingViewModel = useResizingViewModel(newParams);
     const editingViewModel = useEditingViewModel(newParams);
     const stylingViewModel = useStylingViewModel(newParams);
     const nodesContextMenuViewModel = useNodesContextMenuViewModel(newParams);
@@ -78,7 +78,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = draggingViewModel(viewState);
             break;
         case "resizing":
-            viewModel = resizingVewModel(viewState);
+            viewModel = resizingViewModel(viewState);
             break;
         case "editing":
             viewModel = editingViewModel(viewState);
