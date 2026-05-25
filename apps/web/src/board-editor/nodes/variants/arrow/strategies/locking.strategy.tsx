@@ -4,11 +4,8 @@ import { LOCKED_COLOR, NodeLockingStrategy } from "@/board-editor/modules/lockin
 
 export class ArrowNodeLockingStrategy extends NodeLockingStrategy {
     public override ui(node: Decoratable<ArrowNode>) {
- 
-        node.wrapper.setUiSetting("color", LOCKED_COLOR)
+        node.wrapper.setUiSetting("color", LOCKED_COLOR);
 
         return null;
     }
-
-  
 }

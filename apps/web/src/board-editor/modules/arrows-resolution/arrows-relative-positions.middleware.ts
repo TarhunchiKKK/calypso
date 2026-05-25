@@ -1,3 +1,5 @@
+// DELETE: this function is replaced by `useArrowResolutionMiddleware` hook
+
 import type { ArrowNode, NodeBase } from "@repo/boards";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
 

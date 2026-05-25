@@ -5,3 +5,5 @@ export type ArrowAbsolutePosition = {
 
     end: Point;
 };
+
+export const ArrowSides = ["start", "end"] as const;
