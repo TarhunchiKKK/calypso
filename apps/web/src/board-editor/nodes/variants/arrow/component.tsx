@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
-import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/types";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/lib";
 import { ArrowHeadsMap } from "./lib/arrow-heads.map";
 import { ArrowLinesMap } from "./lib/arrow-lines.map";
 import { calculateArrowHeadDimensions } from "./lib/calculate-arrow-dimensions.helper";

@@ -1,7 +1,7 @@
 import type { ArrowNode, NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
-import { NodeRectsFactory, NodesFactory } from "@/entities/nodes";
-import { ArrowSides, type ResolvedArrow } from "./types";
+import { NodeRectsFactory, NodesFactory, type NodesServiceMapper } from "@/entities/nodes";
+import { ArrowSides, type ResolvedArrow } from "./lib";
 
 function resolveArrow(arrow: ArrowNode, util: { findOne: (nodeId: Id) => NodeBase }): ResolvedArrow {
     const result: ResolvedArrow = {
@@ -28,7 +28,8 @@ function resolveArrow(arrow: ArrowNode, util: { findOne: (nodeId: Id) => NodeBas
     return result;
 }
 
-export function ArrowResolutionMapper(nodes: NodeBase[], util: { findOne: (nodeId: Id) => NodeBase }) {
+// OPTIMIZE: Add map for nodes
+export const ArrowResolutionMapper: NodesServiceMapper = (nodes, util) => {
     return nodes.map((node) => {
         if (NodesFactory.is(node, "arrow")) {
             return resolveArrow(node, util);
@@ -36,4 +37,4 @@ export function ArrowResolutionMapper(nodes: NodeBase[], util: { findOne: (nodeI
 
         return node;
     });
-}
+};

@@ -12,3 +12,9 @@ export type ArrowAbsolutePosition = {
 export type ResolvedArrow = ArrowNode & {
     absolutePosition: ArrowAbsolutePosition;
 };
+
+export function isResolvedArrow(arrow: ArrowNode): arrow is ResolvedArrow {
+    const key: keyof ResolvedArrow = "absolutePosition";
+
+    return key in arrow;
+}

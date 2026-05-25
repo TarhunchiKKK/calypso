@@ -1,6 +1,5 @@
-import type { DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
+import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
 import type { NodeWrapper } from "@/board-editor/core";
-import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/types";
 import { ArrowNodeWrapper } from "../../variants/arrow/wrapper";
 import { DrawingNodeWrapper } from "../../variants/drawing/wrapper";
 import { MediaNodeWrapper } from "../../variants/media/wrapper";
@@ -29,7 +28,7 @@ export class NodeWrappersFactory {
             case "sticker":
                 return new StickerNodeWrapper(node as StickerNode);
             case "arrow":
-                return new ArrowNodeWrapper(node as ResolvedArrow);
+                return new ArrowNodeWrapper(node as ArrowNode);
             case "text":
                 return new TextNodeWrapper(node as TextNode);
             case "shape":
