@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { ARROW_RESOLUTION_MIDDLEWARE_KEY, useArrowResolutionMiddleware } from "../modules/arrows-resolution";
 import { type DecoratableViewModel, useViewModelDecorators } from "./decorators";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
-import { EMPTY_IDS_GUARD_KEY, EmptyIdsGuard } from "./middleware/empty-ids.guard";
-import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
 import type { ViewModel, ViewModelParams } from "./types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
@@ -28,7 +26,7 @@ import { useStylingViewModel } from "./variants/styling/view-model";
  * @returns View model instance.
  */
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
+    const { viewState, setViewState } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 
     const newParams = {
         ...params,
@@ -36,11 +34,6 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     };
 
     const arrowResolutionMiddleware = useArrowResolutionMiddleware(params.nodesModel.nodes);
-
-    useEffect(() => {
-        viewStateMiddleware.guards.set(EMPTY_IDS_GUARD_KEY, EmptyIdsGuard);
-        viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
-    }, [viewStateMiddleware.guards.set]);
 
     useEffect(() => {
         params.nodesModel.service.middleware.set(ARROW_RESOLUTION_MIDDLEWARE_KEY, arrowResolutionMiddleware);
