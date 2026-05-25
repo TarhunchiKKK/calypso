@@ -1,7 +1,6 @@
 import type { OmitFields } from "@repo/common";
-import { useEffect } from "react";
-import { ARROW_RESOLUTION_MIDDLEWARE_KEY, useArrowResolutionMiddleware } from "../modules/arrows-resolution";
 import { type DecoratableViewModel, useViewModelDecorators } from "./decorators";
+import { useSetupNodesServiceMiddleware } from "./hooks/use-setup-nodes-service-middleware.hook";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
 import type { ViewModel, ViewModelParams } from "./types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
@@ -28,16 +27,12 @@ import { useStylingViewModel } from "./variants/styling/view-model";
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
     const { viewState, setViewState } = useViewStateMediator(params.nodesModel, () => switchToIdle());
 
+    useSetupNodesServiceMiddleware(params.nodesModel);
+
     const newParams = {
         ...params,
         setViewState
     };
-
-    const arrowResolutionMiddleware = useArrowResolutionMiddleware(params.nodesModel.nodes);
-
-    useEffect(() => {
-        params.nodesModel.service.middleware.set(ARROW_RESOLUTION_MIDDLEWARE_KEY, arrowResolutionMiddleware);
-    }, [params.nodesModel.service.middleware.set, arrowResolutionMiddleware]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
