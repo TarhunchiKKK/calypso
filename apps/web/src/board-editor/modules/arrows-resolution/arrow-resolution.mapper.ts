@@ -1,7 +1,7 @@
 import type { ArrowNode, NodeBase } from "@repo/boards";
 import type { Id } from "@repo/common";
 import { NodeRectsFactory, NodesFactory } from "@/entities/nodes";
-import { ArrowSides, type ResolvedArrow } from "./types";
+import { ArrowSides, type ResolvedArrow } from "./lib";
 
 function resolveArrow(arrow: ArrowNode, util: { findOne: (nodeId: Id) => NodeBase }): ResolvedArrow {
     const result: ResolvedArrow = {

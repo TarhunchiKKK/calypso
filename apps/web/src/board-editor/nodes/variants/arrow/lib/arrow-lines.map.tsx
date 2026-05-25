@@ -1,7 +1,7 @@
 import type { NodeStyles } from "@repo/boards";
 import clsx from "clsx";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
-import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/types";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/lib";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
 type CreateFunction = (node: ResolvedArrow, handlers: NodeHandlers, dimensions: ArrowHeadDimensions, uiSettings: NodeUiSettings) => React.ReactNode;

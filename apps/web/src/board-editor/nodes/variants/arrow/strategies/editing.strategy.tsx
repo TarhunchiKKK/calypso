@@ -1,22 +1,20 @@
 import type { ArrowNode } from "@repo/boards";
 import type { KeyboardEventHandler } from "react";
 import type { Decoratable } from "@/board-editor/core";
+import { isResolvedArrow } from "@/board-editor/modules/arrows-resolution";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
-import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { Geometry } from "@/shared/lib/geometry";
 import { Textarea } from "@/shared/ui/kit";
 
 export class ArrowEditingStrategy extends NodeEditingStrategy {
     public override ui(node: Decoratable<ArrowNode>, handlers: NodeEditingHandlers) {
-        const wrapper = node.wrapper;
-
-        if (!NodeWrappersFactory.is(wrapper, "arrow")) {
-            throw new Error(`Expected arrow node but got: ${node.data}`);
+        if (!isResolvedArrow(node.data)) {
+            throw new Error(`Arrow not resolved: ${node.data}`);
         }
 
         const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
             const newNode = {
-                ...wrapper.data,
+                ...node.data,
                 text: e.target.value
             };
 
@@ -32,11 +30,11 @@ export class ArrowEditingStrategy extends NodeEditingStrategy {
             }
         };
 
-        const position = Geometry.middlePoint(wrapper.data.absolutePosition.start, wrapper.data.absolutePosition.end);
+        const position = Geometry.middlePoint(node.data.absolutePosition.start, node.data.absolutePosition.end);
 
         return (
             <Textarea
-                value={wrapper.data.text}
+                value={node.data.text}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 style={{ left: position.x, top: position.y }}
