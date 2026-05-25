@@ -17,9 +17,10 @@ export function useExchangeBuffer(service: NodesService) {
             return;
         }
 
+        // BUG: arrows potentially will lose positions
         const nodesWithResolvedPositions = service.nodes
             .filter((node) => nodeIds.has(node.id))
-            .map((node) => NodeWrappersFactory.wrap(service.nodes, node))
+            .map((node) => NodeWrappersFactory.wrap(node))
             .map((wrapper) => wrapper.data);
 
         setSelectedNodes(nodesWithResolvedPositions);

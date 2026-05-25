@@ -84,6 +84,7 @@ export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesS
     return {
         nodes: service.nodes,
         middleware: service.middleware,
+        mappers: service.mappers,
         createOne: createOne,
         createMany: createMany,
         findOne: service.findOne,

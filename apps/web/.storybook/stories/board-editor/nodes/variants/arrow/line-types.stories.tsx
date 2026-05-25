@@ -22,14 +22,14 @@ function getArgs(lineType: NodeStyles["lineType"]) {
             styles: {
                 ...node.styles,
                 lineType: lineType
-            }
+            },
+            absolutePosition: absolutePosition
         },
         handlers: {},
         uiSettings: {
             noPointerEvents: false,
             showContent: true
-        },
-        absolutePosition: absolutePosition
+        }
     };
 }
 

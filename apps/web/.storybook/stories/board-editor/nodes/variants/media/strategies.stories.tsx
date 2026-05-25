@@ -11,7 +11,7 @@ const node = NodesFactory.media({
     point: { x: 0, y: 0 },
     url: MockBoardNodesMedia.animals[0]
 });
-const wrapper = NodeWrappersFactory.wrap([], node);
+const wrapper = NodeWrappersFactory.wrap(node);
 
 const decorators = applyDecorators(withDots, centered, relative);
 const defaultArgs = {
@@ -44,7 +44,7 @@ export const Selected: Story = {
     render: () => DecoratableNodeBuilder.from(wrapper).selection().build().render() as JSX.Element
 };
 
-const lockedNodeWrapper = NodeWrappersFactory.wrap([], { ...node, locked: true });
+const lockedNodeWrapper = NodeWrappersFactory.wrap({ ...node, locked: true });
 
 export const Locked: Story = {
     decorators: decorators,

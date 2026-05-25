@@ -4,8 +4,6 @@ import { useCallback, useEffect, useRef } from "react";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
 import { ArrowSides } from "./types";
 
-export const ARROW_RESOLUTION_MIDDLEWARE_KEY = Symbol();
-
 type RelationsMap = Record<Id, Id[]>;
 
 function getRelationsMap(nodes: NodeBase[]) {

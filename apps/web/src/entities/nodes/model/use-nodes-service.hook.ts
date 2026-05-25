@@ -1,13 +1,16 @@
 import type { NodeBase } from "@repo/boards";
-import type { Id } from "@repo/common";
+import type { Id, OmitFields } from "@repo/common";
 import { useState } from "react";
 import { useEntitiesMap } from "@/shared/model";
+import { type NodesServiceMapper, useNodesServiceMappers } from "./use-nodes-service-mappers.hook";
 import { type NodesServiceMiddlewarePayload, useNodesServiceMiddleware } from "./use-nodes-service-middleware.hook";
 
-export function useNodesService(inputNodes: NodeBase[]) {
+export function useNodesService(inputNodes: NodeBase[], defaultMappers: Map<string | symbol, NodesServiceMapper> = new Map()) {
     const [nodes, setNodes] = useState<NodeBase[]>(inputNodes);
 
     const middleware = useNodesServiceMiddleware();
+
+    const mappers = useNodesServiceMappers(defaultMappers);
 
     const nodesMap = useEntitiesMap(nodes);
 
@@ -109,7 +112,7 @@ export function useNodesService(inputNodes: NodeBase[]) {
     };
 
     return {
-        nodes: nodes,
+        nodes: mappers.apply(nodes, { findOne }),
         createOne,
         createMany,
         findOne,
@@ -120,7 +123,8 @@ export function useNodesService(inputNodes: NodeBase[]) {
         removeMany,
         removeAll,
         replaceAll: setNodes,
-        middleware
+        middleware: middleware as OmitFields<ReturnType<typeof useNodesServiceMiddleware>, "apply">,
+        mappers: mappers as OmitFields<ReturnType<typeof useNodesServiceMappers>, "apply">
     };
 }
 

@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
 import type { NodesModel } from "@/board-editor/nodes";
-import { EMPTY_IDS_GUARD_KEY, EmptyIdsGuard } from "../middleware/empty-ids.guard";
-import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "../middleware/locked-node.guard";
+import { EmptyIdsGuard } from "../middleware/empty-ids.guard";
+import { LockedNodesGuard } from "../middleware/locked-node.guard";
 import type { ViewState } from "../types";
 
 export type ViewStateGuard = (nodesModel: NodesModel, next: ViewState, prev: ViewState) => boolean;
+
+const EMPTY_IDS_GUARD_KEY = Symbol();
+const LOCKED_NODES_GUARD_KEY = Symbol();
 
 const DefaultGuards = new Map([
     [EMPTY_IDS_GUARD_KEY, EmptyIdsGuard],
