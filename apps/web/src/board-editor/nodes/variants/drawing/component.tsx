@@ -22,7 +22,7 @@ export function DrawingNodeComponent({ node, uiSettings, children }: Props) {
     const pathProps: SVGProps<SVGPathElement> = {
         stroke: uiSettings.color ?? node.styles.lineColor,
         fill: uiSettings.color ?? node.styles.lineColor
-    }
+    };
 
     return (
         <div data-id={node.id} className="absolute" style={wrapperStyles}>

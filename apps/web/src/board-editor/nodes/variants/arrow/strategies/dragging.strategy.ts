@@ -1,12 +1,12 @@
-import type { ArrowNode } from "@repo/boards";
 import type { Offset } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
 import { Geometry } from "@/shared/lib/geometry";
 
 export class ArrowDraggingStrategy extends NodeDraggingStrategy {
-    public override updateNodePosition(node: Decoratable<ArrowNode>, offset: Offset) {
+    public override updateNodePosition(node: Decoratable<ResolvedArrow>, offset: Offset) {
         if (node.data.start.relativeTo || node.data.end.relativeTo) {
             return;
         }
@@ -22,9 +22,7 @@ export class ArrowDraggingStrategy extends NodeDraggingStrategy {
 
         node.data = {
             ...node.data,
-            ...newPosition
+            absolutePosition: newPosition
         };
-
-        node.wrapper.absolutePosition = newPosition;
     }
 }

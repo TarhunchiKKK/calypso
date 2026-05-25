@@ -32,7 +32,7 @@ export class ArrowEditingStrategy extends NodeEditingStrategy {
             }
         };
 
-        const position = Geometry.middlePoint(wrapper.absolutePosition.start, wrapper.absolutePosition.end);
+        const position = Geometry.middlePoint(wrapper.data.absolutePosition.start, wrapper.data.absolutePosition.end);
 
         return (
             <Textarea

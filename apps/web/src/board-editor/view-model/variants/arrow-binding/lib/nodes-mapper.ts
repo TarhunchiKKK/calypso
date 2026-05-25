@@ -35,7 +35,7 @@ export class ArrowBindingNodesMapper extends NodesMapper {
         return this.wrapNodes()
             .map((wrapper) => {
                 if (this.arrow && this.arrow.id === wrapper.id) {
-                    return NodeWrappersFactory.wrap(this.nodes, this.arrow);
+                    return NodeWrappersFactory.wrap(this.arrow);
                 }
 
                 return wrapper;

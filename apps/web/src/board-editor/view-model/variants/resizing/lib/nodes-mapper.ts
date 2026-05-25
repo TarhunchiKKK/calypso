@@ -30,18 +30,16 @@ export class ResizingNodesMapper extends NodesMapper {
             throw new Error(`Resizing node not found (id='${nodeId})'`);
         }
 
-        const resizedNode = NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(nodes, resizingNode), newSize).data;
+        const resizedNode = NodeDecoratorsFactory.resizing(NodeWrappersFactory.wrap(resizingNode), newSize).data;
 
-        const newNodes = [...nodes.filter((node) => node.id !== nodeId), resizedNode];
-
-        return newNodes.map((node) => NodeWrappersFactory.wrap(newNodes, node)).map((wrapper) => wrapper.data);
+        return [...nodes.filter((node) => node.id !== nodeId), resizedNode];
     }
 
     public override map() {
         const nodes = this.newSize ? this.getNodesWithUpdatedSizes(this.nodes, this.nodeId, this.newSize) : this.nodes;
 
         return nodes
-            .map((node) => NodeWrappersFactory.wrap(nodes, node))
+            .map((node) => NodeWrappersFactory.wrap(node))
             .map((wrapper) => {
                 if (this.nodeId === wrapper.id) {
                     const selectedNode = NodeDecoratorsFactory.selection(wrapper);

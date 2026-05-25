@@ -1,11 +1,14 @@
 import type { NodeBase } from "@repo/boards";
 import type { Id, OmitFields } from "@repo/common";
+import { ArrowResolutionMapper } from "@/board-editor/modules/arrows-resolution";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";
 import { type NodesService, useNodesService } from "@/entities/nodes";
 import { useCancellationDecorator } from "./use-cancellation-decorator.hook";
 
+const mappers = new Map([[Symbol(), ArrowResolutionMapper]]);
+
 export function useNodesModel(inputNodes: NodeBase[], _: Id) {
-    const nodesService = useNodesService(inputNodes);
+    const nodesService = useNodesService(inputNodes, mappers);
 
     // TEMP: implement
     // const _ = useNodesApiDecorator(nodesService, boardId);

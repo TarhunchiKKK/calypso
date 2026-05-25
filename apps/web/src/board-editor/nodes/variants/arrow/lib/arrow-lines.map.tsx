@@ -1,11 +1,12 @@
-import type { ArrowNode, NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@repo/boards";
 import clsx from "clsx";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/types";
 import type { ArrowHeadDimensions } from "./calculate-arrow-dimensions.helper";
 
-type CreateFunction = (node: ArrowNode, handlers: NodeHandlers, dimensions: ArrowHeadDimensions, uiSettings: NodeUiSettings) => React.ReactNode;
+type CreateFunction = (node: ResolvedArrow, handlers: NodeHandlers, dimensions: ArrowHeadDimensions, uiSettings: NodeUiSettings) => React.ReactNode;
 
-function getCommonStyles(node: ArrowNode, uiSettings: NodeUiSettings) {
+function getCommonStyles(node: ResolvedArrow, uiSettings: NodeUiSettings) {
     return {
         stroke: uiSettings.color ?? node.styles.lineColor,
         strokeWidth: node.styles.lineWidth,
@@ -15,13 +16,22 @@ function getCommonStyles(node: ArrowNode, uiSettings: NodeUiSettings) {
 
 export const ArrowLinesMap: Record<NodeStyles["lineType"], CreateFunction> = {
     solid: (node, handlers, dimensions, uiSettings) => {
-        return <line x1={node.start.x} y1={node.start.y} x2={dimensions.base.x} y2={dimensions.base.y} {...getCommonStyles(node, uiSettings)} {...handlers} />;
+        return (
+            <line
+                x1={node.absolutePosition.start.x}
+                y1={node.absolutePosition.start.y}
+                x2={dimensions.base.x}
+                y2={dimensions.base.y}
+                {...getCommonStyles(node, uiSettings)}
+                {...handlers}
+            />
+        );
     },
     dashed: (node, handlers, dimensions, uiSettings) => {
         return (
             <line
-                x1={node.start.x}
-                y1={node.start.y}
+                x1={node.absolutePosition.start.x}
+                y1={node.absolutePosition.start.y}
                 x2={dimensions.base.x}
                 y2={dimensions.base.y}
                 strokeDasharray={`${node.styles.lineWidth * 4} ${node.styles.lineWidth * 2}`}
@@ -33,8 +43,8 @@ export const ArrowLinesMap: Record<NodeStyles["lineType"], CreateFunction> = {
     dotted: (node, handlers, dimensions, uiSettings) => {
         return (
             <line
-                x1={node.start.x}
-                y1={node.start.y}
+                x1={node.absolutePosition.start.x}
+                y1={node.absolutePosition.start.y}
                 x2={dimensions.base.x}
                 y2={dimensions.base.y}
                 strokeDasharray={`${node.styles.lineWidth} ${node.styles.lineWidth * 2}`}

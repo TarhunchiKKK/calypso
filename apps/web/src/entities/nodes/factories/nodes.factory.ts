@@ -1,14 +1,19 @@
 import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NodeTypesMap, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
 import type { Point } from "@repo/common";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution";
 import { pickFields } from "@/shared/lib/js";
 import { DefaultNodeStyles } from "../constants/default-node-styles.constants";
 
+type TypesMap = NodeTypesMap & {
+    arrow: ResolvedArrow;
+};
+
 export class NodesFactory {
-    public static is<T extends NodeTypes>(node: NodeBase, type: T): node is NodeTypesMap[T] {
+    public static is<T extends NodeTypes>(node: NodeBase, type: T): node is TypesMap[T] {
         return node.type === type;
     }
 
-    public static are<T extends NodeTypes>(nodes: NodeBase[], type: T): nodes is NodeTypesMap[T][] {
+    public static are<T extends NodeTypes>(nodes: NodeBase[], type: T): nodes is TypesMap[T][] {
         return nodes.every((node) => node.type === type);
     }
 

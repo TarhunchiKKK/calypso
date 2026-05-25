@@ -105,6 +105,7 @@ export function useCancellationDecorator(service: NodesService) {
         service: {
             nodes: service.nodes,
             middleware: service.middleware,
+            mappers: service.mappers,
             createOne,
             createMany,
             findOne: service.findOne,

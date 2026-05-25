@@ -7,7 +7,7 @@ import { ShapeNodeComponent } from "@/board-editor/nodes/variants/shape/componen
 import { NodesFactory } from "@/entities/nodes";
 
 const node = NodesFactory.shape({ point: { x: 0, y: 0 }, variant: "star" });
-const wrapper = NodeWrappersFactory.wrap([], node);
+const wrapper = NodeWrappersFactory.wrap(node);
 
 const decorators = applyDecorators(withDots, centered, relative);
 const defaultArgs = {
@@ -40,7 +40,7 @@ export const Selected: Story = {
     render: () => DecoratableNodeBuilder.from(wrapper).selection().build().render() as JSX.Element
 };
 
-const lockedNodeWrapper = NodeWrappersFactory.wrap([], { ...node, locked: true });
+const lockedNodeWrapper = NodeWrappersFactory.wrap({ ...node, locked: true });
 
 export const Locked: Story = {
     decorators: decorators,

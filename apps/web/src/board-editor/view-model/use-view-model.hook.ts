@@ -1,10 +1,7 @@
 import type { OmitFields } from "@repo/common";
-import { useEffect } from "react";
-import { ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware } from "../modules/arrows-resolution";
 import { type DecoratableViewModel, useViewModelDecorators } from "./decorators";
+import { useSetupNodesServiceMiddleware } from "./hooks/use-setup-nodes-service-middleware.hook";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";
-import { EMPTY_IDS_GUARD_KEY, EmptyIdsGuard } from "./middleware/empty-ids.guard";
-import { LOCKED_NODES_GUARD_KEY, LockedNodesGuard } from "./middleware/locked-node.guard";
 import type { ViewModel, ViewModelParams } from "./types";
 import { useArrowBindingViewModel } from "./variants/arrow-binding/view-model";
 import { useDraggingViewModel } from "./variants/dragging/view-model";
@@ -28,21 +25,14 @@ import { useStylingViewModel } from "./variants/styling/view-model";
  * @returns View model instance.
  */
 export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">): ViewModel {
-    const { viewState, setViewState, ...viewStateMiddleware } = useViewStateMediator(params.nodesModel, () => switchToIdle());
+    const { viewState, setViewState } = useViewStateMediator(params.nodesModel, () => switchToIdle());
+
+    useSetupNodesServiceMiddleware(params.nodesModel);
 
     const newParams = {
         ...params,
         setViewState
     };
-
-    useEffect(() => {
-        viewStateMiddleware.guards.set(EMPTY_IDS_GUARD_KEY, EmptyIdsGuard);
-        viewStateMiddleware.guards.set(LOCKED_NODES_GUARD_KEY, LockedNodesGuard);
-    }, [viewStateMiddleware.guards.set]);
-
-    useEffect(() => {
-        params.nodesModel.service.middleware.set(ARROW_RELATIVE_POSITIONS_MIDDLEWARE_KEY, ArrowsRelativePositionsMiddleware);
-    }, [params.nodesModel.service.middleware.set]);
 
     const idleViewModel = useIdleViewModel(newParams);
     const nodeCreation = useNodeCreationViewModel(newParams);
@@ -53,7 +43,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
     const selectionViewModel = useSelectionViewModel(newParams);
     const selectionWindowViewModel = useSelectionWindowViewModel(newParams);
     const draggingViewModel = useDraggingViewModel(newParams);
-    const resizingVewModel = useResizingViewModel(newParams);
+    const resizingViewModel = useResizingViewModel(newParams);
     const editingViewModel = useEditingViewModel(newParams);
     const stylingViewModel = useStylingViewModel(newParams);
     const nodesContextMenuViewModel = useNodesContextMenuViewModel(newParams);
@@ -88,7 +78,7 @@ export function useViewModel(params: OmitFields<ViewModelParams, "setViewState">
             viewModel = draggingViewModel(viewState);
             break;
         case "resizing":
-            viewModel = resizingVewModel(viewState);
+            viewModel = resizingViewModel(viewState);
             break;
         case "editing":
             viewModel = editingViewModel(viewState);

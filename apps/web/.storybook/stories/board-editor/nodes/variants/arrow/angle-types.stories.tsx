@@ -22,14 +22,14 @@ function getArgs(angleType: NodeStyles["angleType"]) {
             styles: {
                 ...node.styles,
                 angleType: angleType
-            }
+            },
+            absolutePosition: absolutePosition
         },
         handlers: {},
         uiSettings: {
             noPointerEvents: false,
             showContent: true
-        },
-        absolutePosition: absolutePosition
+        }
     };
 }
 

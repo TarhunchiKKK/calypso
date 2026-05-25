@@ -1,26 +1,13 @@
-import type { ArrowNode } from "@repo/boards";
 import { NodeWrapper } from "@/board-editor/core";
-import type { ArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution/types";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution";
 import { ArrowNodeComponent } from "./component";
 
-export class ArrowNodeWrapper extends NodeWrapper<ArrowNode> {
-    public constructor(
-        protected node: ArrowNode,
-        public absolutePosition: ArrowAbsolutePosition
-    ) {
+export class ArrowNodeWrapper extends NodeWrapper<ResolvedArrow> {
+    public constructor(protected node: ResolvedArrow) {
         super(node);
     }
 
     public override render(children?: React.ReactNode) {
-        return (
-            <ArrowNodeComponent
-                key={this.node.id}
-                node={this.node}
-                absolutePosition={this.absolutePosition}
-                uiSettings={this.uiSettings}
-                handlers={this.handlers}
-                children={children}
-            />
-        );
+        return <ArrowNodeComponent key={this.node.id} node={this.node} uiSettings={this.uiSettings} handlers={this.handlers} children={children} />;
     }
 }

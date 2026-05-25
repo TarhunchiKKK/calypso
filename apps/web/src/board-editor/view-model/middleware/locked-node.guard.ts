@@ -2,8 +2,6 @@ import type { Id } from "@repo/common";
 import type { NodesModel } from "@/board-editor/nodes";
 import type { ViewStateGuard } from "../hooks/use-view-state-mediator.hook";
 
-export const LOCKED_NODES_GUARD_KEY = Symbol();
-
 function isNodeLocked(nodesModel: NodesModel, nodeId: Id) {
     const node = nodesModel.service.findOne(nodeId);
     return !!node && node.locked;

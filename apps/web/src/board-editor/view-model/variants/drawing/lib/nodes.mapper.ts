@@ -18,7 +18,7 @@ export class DrawingNodesMapper extends NodesMapper {
         const wrappers = this.wrapNodes();
 
         if (this.drawingNode) {
-            const wrapper = NodeWrappersFactory.wrap([], this.drawingNode);
+            const wrapper = NodeWrappersFactory.wrap(this.drawingNode);
             wrappers.push(wrapper);
         }
 

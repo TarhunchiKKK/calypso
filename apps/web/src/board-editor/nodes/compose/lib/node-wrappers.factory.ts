@@ -1,6 +1,6 @@
-import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
+import type { DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
 import type { NodeWrapper } from "@/board-editor/core";
-import { resolveArrowAbsolutePosition } from "@/board-editor/modules/arrows-resolution";
+import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/types";
 import { ArrowNodeWrapper } from "../../variants/arrow/wrapper";
 import { DrawingNodeWrapper } from "../../variants/drawing/wrapper";
 import { MediaNodeWrapper } from "../../variants/media/wrapper";
@@ -24,12 +24,12 @@ export class NodeWrappersFactory {
         return wrapper.data.type === type;
     }
 
-    public static wrap(allNodes: NodeBase[], node: NodeBase) {
+    public static wrap(node: NodeBase) {
         switch (node.type) {
             case "sticker":
                 return new StickerNodeWrapper(node as StickerNode);
             case "arrow":
-                return new ArrowNodeWrapper(node as ArrowNode, resolveArrowAbsolutePosition(allNodes, node as ArrowNode));
+                return new ArrowNodeWrapper(node as ResolvedArrow);
             case "text":
                 return new TextNodeWrapper(node as TextNode);
             case "shape":

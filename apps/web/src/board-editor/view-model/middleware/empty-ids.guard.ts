@@ -1,8 +1,6 @@
 import type { ViewStateGuard } from "../hooks/use-view-state-mediator.hook";
 import { ViewStateTypeGuards } from "../types";
 
-export const EMPTY_IDS_GUARD_KEY = Symbol();
-
 export const EmptyIdsGuard: ViewStateGuard = (_, next, prev) => {
     if (!ViewStateTypeGuards.multipleNodes(next)) {
         return true;
