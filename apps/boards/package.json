@@ -26,6 +26,7 @@
         "@nestjs/typeorm": "^11.0.0",
         "@repo/api": "*",
         "@repo/boards": "*",
+        "@repo/cache": "*",
         "@repo/common": "*",
         "@repo/contracts": "*",
         "@repo/projects": "*",

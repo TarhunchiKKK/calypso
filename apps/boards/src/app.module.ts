@@ -5,6 +5,7 @@ import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
+import { CacheModule } from "@repo/cache";
 import { BoardsModule } from "./boards/boards.module";
 import { Board } from "./boards/entities/board.entity";
 import { AccessRightsRecord } from "./lib/auth.constants";
@@ -24,6 +25,15 @@ import { NodesModule } from "./nodes/nodes.module";
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: mongooseConfigFactory
+        }),
+        CacheModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => ({
+                host: configService.getOrThrow<string>("REDIS_HOST"),
+                port: +configService.getOrThrow<number>("REDIS_PORT"),
+                defaultTtl: +configService.getOrThrow("REDIS_DEFAULT_TTL")
+            })
         }),
         ClientsModule.registerAsync({
             isGlobal: true,
