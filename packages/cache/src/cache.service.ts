@@ -14,7 +14,7 @@ export class CacheService implements OnModuleDestroy {
             port: options.port,
             password: options.password
         });
-        this.defaultTtl = options.ttl;
+        this.defaultTtl = options.defautltTtl;
     }
 
     public get clientInstance() {

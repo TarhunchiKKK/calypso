@@ -32,6 +32,7 @@
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
         "@repo/common": "*",
+        "express": "^5.2.1",
         "ioredis": "^5.11.1",
         "rxjs": "^7.8.2",
         "typeorm": "^0.3.28",
