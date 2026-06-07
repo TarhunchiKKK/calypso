@@ -1,9 +1,9 @@
 import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestInterceptor } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { CacheService } from "cache.service";
-import { CacheKey } from "decorators/cache-key.decorator";
-import { CacheTtl } from "decorators/cache-ttl.decorator";
 import type { Request } from "express";
+import { CacheKey } from "metadata/cache-key.decorator";
+import { CacheTtl } from "metadata/cache-ttl.decorator";
 import { of, tap } from "rxjs";
 
 @Injectable()
