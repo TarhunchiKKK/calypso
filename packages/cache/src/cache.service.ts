@@ -1,12 +1,10 @@
-import { Inject, Injectable, OnModuleDestroy } from "@nestjs/common";
-import { CacheModuleOptions, MODULE_OPTIONS_TOKEN } from "cache.module-definition";
+import { Inject, Injectable, type OnModuleDestroy } from "@nestjs/common";
+import { type CacheModuleOptions, MODULE_OPTIONS_TOKEN } from "cache.module-definition";
 import Redis from "ioredis";
 
 @Injectable()
 export class CacheService implements OnModuleDestroy {
     private readonly client: Redis;
-
-    private readonly defaultTtl: number;
 
     public constructor(@Inject(MODULE_OPTIONS_TOKEN) private readonly options: CacheModuleOptions) {
         this.client = new Redis({
@@ -14,7 +12,6 @@ export class CacheService implements OnModuleDestroy {
             port: options.port,
             password: options.password
         });
-        this.defaultTtl = options.defautltTtl;
     }
 
     public get clientInstance() {
@@ -30,7 +27,7 @@ export class CacheService implements OnModuleDestroy {
     public async set(key: string, data: unknown, ttl?: number) {
         const parsedData = JSON.stringify(data);
 
-        const selectedTtl = ttl ?? this.defaultTtl;
+        const selectedTtl = ttl ?? this.options.defaultTtl;
 
         await this.client.set(key, parsedData, "EX", selectedTtl);
     }

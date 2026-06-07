@@ -1,5 +1,5 @@
 import { Reflector } from "@nestjs/core";
 
-export type CacheKeyDecoratorFn = (request: any) => string;
+type GetCacheKeyFn = (request: any) => string;
 
-export const CacheKey = Reflector.createDecorator<CacheKeyDecoratorFn>();
+export const CacheKey = Reflector.createDecorator<GetCacheKeyFn>();

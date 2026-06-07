@@ -7,7 +7,7 @@ export type CacheModuleOptions = {
 
     password?: string;
 
-    defautltTtl: number;
+    defaultTtl: number;
 };
 
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModuleBuilder<CacheModuleOptions>().setClassMethodName("forRoot").build();
