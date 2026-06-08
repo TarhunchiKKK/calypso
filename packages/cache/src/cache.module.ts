@@ -1,6 +1,6 @@
 import { type DynamicModule, Global, Module, type Provider } from "@nestjs/common";
 import { CacheService } from "cache.service";
-import { CACHE_OPTIONS_INJECTION_TOKEN, type CacheModuleAsyncOptions, type CacheModuleOptions } from "di.lib";
+import { CACHE_OPTIONS_INJECTION_TOKEN, type CacheModuleAsyncOptions, type CacheModuleOptions } from "config/di.lib";
 import { CacheInterceptor } from "middleware/cache.interceptor";
 import { InvalidateCacheInterceptor } from "middleware/invalidate-cache.interceptor";
 

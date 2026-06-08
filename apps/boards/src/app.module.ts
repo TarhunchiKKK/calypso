@@ -1,4 +1,4 @@
-import { CacheModule } from "@api/cache";
+import { CacheModule, cacheConfigFactory } from "@api/cache";
 import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@api/common";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
@@ -29,11 +29,7 @@ import { NodesModule } from "./nodes/nodes.module";
         CacheModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: (configService: ConfigService) => ({
-                host: configService.getOrThrow<string>("REDIS_HOST"),
-                port: +configService.getOrThrow<number>("REDIS_PORT"),
-                defaultTtl: +configService.getOrThrow("REDIS_DEFAULT_TTL")
-            })
+            useFactory: cacheConfigFactory
         }),
         ClientsModule.registerAsync({
             isGlobal: true,
