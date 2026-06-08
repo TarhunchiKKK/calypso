@@ -15,7 +15,6 @@
         "node": ">=18"
     },
     "scripts": {
-        "cache:clean": "bun pm cache rm && bun x rimraf node_modules apps/**/node_modules packages/**/node_modules apps/**/dist packages/**/dist .turbo apps/**/.turbo packages/**/.turbo",
         "dev": "turbo run dev --filter=gateway --filter=boards",
         "seed:media": "turbo run seed --filter=media",
         "build": "turbo run build",
@@ -30,8 +29,9 @@
         "lint:check": "bunx --bun biome lint",
         "lint:fix": "bunx --bun biome lint --write",
         "knip": "knip",
-        "env:load": "bun run scripts/load-env.script.ts",
+        "env:load": "bun run scripts/load-env/index.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
+        "cache:clean": "bun pm cache rm && bun x rimraf node_modules apps/**/node_modules packages/**/node_modules apps/**/dist packages/**/dist .turbo apps/**/.turbo packages/**/.turbo",
         "docker:up": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
         "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
         "dev:current": "turbo run dev --filter=web",
