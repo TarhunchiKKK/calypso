@@ -14,8 +14,7 @@ export const MediaControllerApiType = createControllerSwaggerDecorator({
                 summary: "Search for media"
             },
             query: {
-                type: FindPresentDtoApiType,
-                description: "Filters for media search"
+                type: FindPresentDtoApiType
             },
             response: [
                 {
@@ -34,6 +33,7 @@ export const MediaControllerApiType = createControllerSwaggerDecorator({
             params: [
                 {
                     name: "domain",
+                    type: String,
                     description: "Domain for media groups search",
                     enum: ["project-thumbnails", "board-node-media"] satisfies MediaDomains[]
                 }
@@ -53,8 +53,7 @@ export const MediaControllerApiType = createControllerSwaggerDecorator({
                 summary: "Get url for lazy media access"
             },
             query: {
-                type: GetPresignedUrlDtoApiType,
-                description: "Dto to generate presigned url"
+                type: GetPresignedUrlDtoApiType
             },
             response: [
                 {

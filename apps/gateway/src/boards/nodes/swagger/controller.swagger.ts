@@ -9,7 +9,6 @@ export const NodesControllerApiType = createControllerSwaggerDecorator({
     methods: [
         {
             name: "createMany",
-            auth: true,
             operation: { summary: "Create new nodes in board" },
             body: {
                 type: CreateManyNodesDtoApiType
@@ -24,7 +23,6 @@ export const NodesControllerApiType = createControllerSwaggerDecorator({
         },
         {
             name: "findAll",
-            auth: true,
             operation: {
                 summary: "Find all nodes from specific board"
             },
@@ -47,7 +45,6 @@ export const NodesControllerApiType = createControllerSwaggerDecorator({
         },
         {
             name: "updateMany",
-            auth: true,
             operation: { summary: "Update nodes in board" },
             body: {
                 type: UpdateManyNodesDtoApiType
@@ -62,7 +59,6 @@ export const NodesControllerApiType = createControllerSwaggerDecorator({
         },
         {
             name: "removeMany",
-            auth: true,
             operation: { summary: "Remove nodes in board" },
             body: {
                 type: RemoveManyNodesDtoApiType

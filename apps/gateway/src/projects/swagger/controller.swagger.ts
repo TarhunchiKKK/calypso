@@ -69,8 +69,9 @@ export const ProjectsControllerApiType = createControllerSwaggerDecorator({
             params: [
                 {
                     name: "id",
-                    description: "Project id to update",
-                    format: "uuid"
+                    type: String,
+                    format: "uuid",
+                    description: "Project id to update"
                 }
             ],
             body: {

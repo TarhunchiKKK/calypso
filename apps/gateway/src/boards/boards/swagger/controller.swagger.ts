@@ -1,6 +1,6 @@
 import { createControllerSwaggerDecorator } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { CreateBoardResponseApiType } from "./dtos.swagger";
+import { CreateBoardDtoApiType, CreateBoardResponseApiType, UpdateBoardDtoApiType } from "./dtos.swagger";
 
 export const BoardsControllerApiType = createControllerSwaggerDecorator({
     tags: { name: "Management", parent: "Boards" },
@@ -8,9 +8,11 @@ export const BoardsControllerApiType = createControllerSwaggerDecorator({
     methods: [
         {
             name: "create",
-            auth: true,
             operation: {
                 summary: "Create new board"
+            },
+            body: {
+                type: CreateBoardDtoApiType
             },
             response: [
                 {
@@ -22,7 +24,6 @@ export const BoardsControllerApiType = createControllerSwaggerDecorator({
         },
         {
             name: "update",
-            auth: true,
             operation: {
                 summary: "Update existing board"
             },
@@ -34,6 +35,9 @@ export const BoardsControllerApiType = createControllerSwaggerDecorator({
                     description: "Updated board id"
                 }
             ],
+            body: {
+                type: UpdateBoardDtoApiType
+            },
             response: [
                 {
                     status: HttpStatus.OK,

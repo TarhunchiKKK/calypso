@@ -12,8 +12,7 @@ export const BasicAuthControllerApiType = createControllerSwaggerDecorator({
                 summary: "Create new user"
             },
             body: {
-                type: SignUpDtoApiType,
-                description: "Dto for user creation"
+                type: SignUpDtoApiType
             },
             response: [
                 {
@@ -30,8 +29,7 @@ export const BasicAuthControllerApiType = createControllerSwaggerDecorator({
                 summary: "Login user"
             },
             body: {
-                type: SignInDtoApiType,
-                description: "Dto for user login"
+                type: SignInDtoApiType
             },
             response: [
                 {
