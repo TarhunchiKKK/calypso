@@ -28,6 +28,7 @@
         "@nestjs/typeorm": "^11.0.0",
         "@api/common": "*",
         "@api/contracts": "*",
+        "@api/cache": "*",
         "@lib/media": "*",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^1.0.3",

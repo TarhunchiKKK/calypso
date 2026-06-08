@@ -106,6 +106,7 @@
       "name": "media",
       "version": "0.0.0",
       "dependencies": {
+        "@api/cache": "*",
         "@api/common": "*",
         "@api/contracts": "*",
         "@aws-sdk/client-s3": "^3.1029.0",

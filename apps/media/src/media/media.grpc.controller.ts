@@ -1,4 +1,4 @@
-import { Inject } from "@nestjs/common";
+import { Cache } from "@api/cache";
 import {
     type FindMediaPresetsGroupsGrpcRequest,
     type FindMediaPresetsGrpcRequest,
@@ -9,6 +9,8 @@ import {
     type UnwrapGrpcResponse
 } from "@api/contracts";
 import type { FindPresetsDto, MediaDomains } from "@lib/media";
+import { Inject } from "@nestjs/common";
+import { MediaCacheKeys, MediaCacheTtls } from "./lib/cache.lib";
 import { MediaService } from "./media.service";
 
 @GrpcController()
@@ -16,13 +18,17 @@ import { MediaService } from "./media.service";
 export class MediaController implements UnwrapGrpcResponse<MediaServiceController> {
     public constructor(@Inject(MediaService) private readonly mediaService: MediaService) {}
 
-    public async findPresets(request: FindMediaPresetsGrpcRequest) {
-        return await this.mediaService.findPresets(request as FindPresetsDto);
+    @Cache((dto: FindMediaPresetsGrpcRequest) => MediaCacheKeys.media.byDomainAndGroupId(dto), MediaCacheTtls.media.byDomainAndGroupId)
+    public async findPresets(dto: FindMediaPresetsGrpcRequest) {
+        return await this.mediaService.findPresets(dto as FindPresetsDto);
     }
-    public async findGroups(request: FindMediaPresetsGroupsGrpcRequest) {
-        return await this.mediaService.findGroups(request.domain as MediaDomains);
+
+    @Cache((dto: FindMediaPresetsGroupsGrpcRequest) => MediaCacheKeys.groups.byDomain(dto.domain as MediaDomains), MediaCacheTtls.groups.byDomain)
+    public async findGroups(dto: FindMediaPresetsGroupsGrpcRequest) {
+        return await this.mediaService.findGroups(dto.domain as MediaDomains);
     }
-    public async getPresignedUrl(request: GetPresignedMediaUrlGrpcRequest) {
-        return await this.mediaService.getPresignedUrl(request);
+
+    public async getPresignedUrl(dto: GetPresignedMediaUrlGrpcRequest) {
+        return await this.mediaService.getPresignedUrl(dto);
     }
 }
