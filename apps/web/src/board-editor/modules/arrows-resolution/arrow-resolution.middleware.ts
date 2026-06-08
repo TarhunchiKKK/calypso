@@ -1,5 +1,5 @@
 import type { ArrowNode, NodeBase } from "@lib/boards";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { useCallback, useEffect, useRef } from "react";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMiddleware } from "@/entities/nodes";
 import { ArrowSides } from "./lib";

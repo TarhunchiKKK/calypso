@@ -1,4 +1,4 @@
-import type { Id, Offset } from "@repo/common";
+import type { Id, Offset } from "@lib/common";
 import { NodesMapper } from "@/board-editor/core";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";

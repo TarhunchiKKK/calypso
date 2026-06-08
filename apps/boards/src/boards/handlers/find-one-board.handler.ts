@@ -1,6 +1,6 @@
 import { Inject } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { Board } from "../entities/board.entity";
 import { BoardsHelper } from "../lib/boards.helper";
 

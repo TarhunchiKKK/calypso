@@ -1,5 +1,5 @@
 import type { ArrowNode, NodeBase, RectNode } from "@lib/boards";
-import type { Offset } from "@repo/common";
+import type { Offset } from "@lib/common";
 import { Geometry } from "@/shared/lib/geometry";
 
 export class NodeClonesFactory {

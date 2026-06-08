@@ -12,7 +12,7 @@ import {
 } from "@api/contracts";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject } from "@nestjs/common";
-import type { NoNullableFieldsDeep } from "@repo/common";
+import type { NoNullableFieldsDeep } from "@lib/common";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";

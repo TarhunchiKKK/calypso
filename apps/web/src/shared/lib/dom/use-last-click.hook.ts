@@ -1,4 +1,4 @@
-import type { Point } from "@repo/common";
+import type { Point } from "@lib/common";
 import { useState } from "react";
 import { Geometry } from "../geometry";
 

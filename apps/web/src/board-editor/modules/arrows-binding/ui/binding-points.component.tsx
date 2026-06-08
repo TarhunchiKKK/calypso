@@ -1,4 +1,4 @@
-import type { Point, Rect } from "@repo/common";
+import type { Point, Rect } from "@lib/common";
 import { useMemo } from "react";
 
 type Props = {

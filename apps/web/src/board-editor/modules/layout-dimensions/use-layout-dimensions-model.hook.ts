@@ -1,4 +1,4 @@
-import type { Point } from "@repo/common";
+import type { Point } from "@lib/common";
 import { useRef, useState } from "react";
 import { useLastClick } from "@/shared/lib/dom";
 import { Geometry } from "@/shared/lib/geometry";

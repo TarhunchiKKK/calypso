@@ -1,5 +1,5 @@
 import type { Board as BoardType } from "@lib/boards";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()

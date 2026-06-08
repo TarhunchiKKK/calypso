@@ -1,4 +1,4 @@
-import { IdZodSchema } from "@repo/common";
+import { IdZodSchema } from "@lib/common";
 import z from "zod";
 import { MediaDomainsZodSchema } from "../types/media-domains.type";
 

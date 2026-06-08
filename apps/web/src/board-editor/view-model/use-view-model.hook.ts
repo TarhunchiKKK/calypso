@@ -1,4 +1,4 @@
-import type { OmitFields } from "@repo/common";
+import type { OmitFields } from "@lib/common";
 import { type DecoratableViewModel, useViewModelDecorators } from "./decorators";
 import { useSetupNodesServiceMiddleware } from "./hooks/use-setup-nodes-service-middleware.hook";
 import { useViewStateMediator } from "./hooks/use-view-state-mediator.hook";

@@ -1,4 +1,4 @@
-import { IdZodSchema } from "@repo/common";
+import { IdZodSchema } from "@lib/common";
 import z from "zod";
 
 export const ProjectZodSchema = z.object({

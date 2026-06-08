@@ -1,5 +1,5 @@
 import type { ArrowNode, NodeBase, RectNode } from "@lib/boards";
-import type { Rect } from "@repo/common";
+import type { Rect } from "@lib/common";
 import { Geometry } from "@/shared/lib/geometry";
 
 export class NodeRectsFactory {

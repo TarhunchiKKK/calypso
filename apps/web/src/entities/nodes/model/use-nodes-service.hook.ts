@@ -1,5 +1,5 @@
 import type { NodeBase } from "@lib/boards";
-import type { Id, OmitFields } from "@repo/common";
+import type { Id, OmitFields } from "@lib/common";
 import { useState } from "react";
 import { useEntitiesMap } from "@/shared/model";
 import { type NodesServiceMapper, useNodesServiceMappers } from "./use-nodes-service-mappers.hook";

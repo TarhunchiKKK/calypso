@@ -1,6 +1,6 @@
 import type { DrawingNode as DrawingNodeType, NodeBase } from "@lib/boards";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { OmitFields, Rect } from "@repo/common";
+import type { OmitFields, Rect } from "@lib/common";
 
 @Schema()
 class DrawingNode implements OmitFields<DrawingNodeType, keyof NodeBase> {

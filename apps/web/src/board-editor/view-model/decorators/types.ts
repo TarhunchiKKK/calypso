@@ -1,4 +1,4 @@
-import type { OmitFields } from "@repo/common";
+import type { OmitFields } from "@lib/common";
 import type { Decoratable } from "@/board-editor/core";
 import type { ViewModel, ViewModelParams, ViewState } from "../types";
 

@@ -27,7 +27,7 @@
         "@api/common": "*",
         "@lib/boards": "*",
         "@api/cache": "*",
-        "@repo/common": "*",
+        "@lib/common": "*",
         "@api/contracts": "*",
         "@lib/projects": "*",
         "amqp-connection-manager": "^5.0.0",

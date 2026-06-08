@@ -12,7 +12,7 @@ import type {
     UpdateProjectDto
 } from "@lib/projects";
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import { DebugException, type Id, type PaginationOptions } from "@repo/common";
+import { DebugException, type Id, type PaginationOptions } from "@lib/common";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";

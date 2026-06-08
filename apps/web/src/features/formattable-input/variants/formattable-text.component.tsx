@@ -1,5 +1,5 @@
 import { BoldPlugin, ItalicPlugin, UnderlinePlugin } from "@platejs/basic-nodes/react";
-import type { FormattableElement } from "@repo/common";
+import type { FormattableElement } from "@lib/common";
 import clsx from "clsx";
 import { Plate, usePlateEditor } from "platejs/react";
 import { type KeyboardEventHandler, useRef } from "react";

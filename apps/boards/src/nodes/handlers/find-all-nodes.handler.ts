@@ -1,6 +1,6 @@
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { Model } from "mongoose";
 import { NodeBase } from "../schemas/node-base.schema";
 

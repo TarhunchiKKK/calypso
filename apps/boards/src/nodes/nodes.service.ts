@@ -2,7 +2,7 @@ import { BrokerRoutingKeys } from "@api/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "src/lib/rmq.constants";
 import type { CreateManyNodesDto } from "./dto/create-many-nodes.dto";
 import type { RemoveManyNodesDto } from "./dto/remove-many-nodes.dto";

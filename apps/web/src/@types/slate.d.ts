@@ -1,4 +1,4 @@
-import type { AnyFormatableElement, FormatableText } from "@repo/common";
+import type { AnyFormatableElement, FormatableText } from "@lib/common";
 import type { BaseEditor } from "slate";
 import type { ReactEditor } from "slate-react";
 

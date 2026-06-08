@@ -8,7 +8,7 @@ import {
     UpdateManyNodesDtoZodSchema
 } from "@lib/boards";
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { ExtractGrpc } from "@api/contracts";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";

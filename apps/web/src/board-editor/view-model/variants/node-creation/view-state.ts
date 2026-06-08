@@ -1,5 +1,5 @@
 import type { NodeBase, ShapeVariants } from "@lib/boards";
-import type { Point } from "@repo/common";
+import type { Point } from "@lib/common";
 import type { ViewModelParams } from "../../types";
 
 export type NodeCreationPayload =

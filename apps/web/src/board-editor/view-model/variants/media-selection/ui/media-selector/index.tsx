@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
 import { Wrapper } from "@/shared/ui";

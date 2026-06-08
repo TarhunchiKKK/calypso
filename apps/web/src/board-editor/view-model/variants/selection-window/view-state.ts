@@ -1,4 +1,4 @@
-import type { Id, Point } from "@repo/common";
+import type { Id, Point } from "@lib/common";
 import type { NodesSelectionMode } from "@/board-editor/modules/selection";
 
 export type SelectionWindowViewState = {

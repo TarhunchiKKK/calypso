@@ -1,4 +1,4 @@
-import type { Offset } from "@repo/common";
+import type { Offset } from "@lib/common";
 
 export const DefaultLayoutOffset: Offset = {
     dx: 0,

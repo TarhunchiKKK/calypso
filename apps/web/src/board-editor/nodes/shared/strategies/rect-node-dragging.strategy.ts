@@ -1,5 +1,5 @@
 import type { RectNode } from "@lib/boards";
-import type { Offset } from "@repo/common";
+import type { Offset } from "@lib/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";
 import { Geometry } from "@/shared/lib/geometry";

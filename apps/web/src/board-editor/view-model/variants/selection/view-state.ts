@@ -1,4 +1,4 @@
-import type { Id, Rect } from "@repo/common";
+import type { Id, Rect } from "@lib/common";
 
 export type SelectionViewState = {
     type: "selection";

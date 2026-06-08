@@ -4,7 +4,7 @@ import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import type { Id, PaginationOptions } from "@repo/common";
+import type { Id, PaginationOptions } from "@lib/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";

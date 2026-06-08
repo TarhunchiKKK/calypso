@@ -1,5 +1,5 @@
 import type { NodeBase } from "@lib/boards";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { NodeWrapper } from "../classes/node-wrapper.class";
 
 export type Decoratable<T extends NodeBase = NodeBase> = {

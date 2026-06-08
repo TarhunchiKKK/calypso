@@ -1,5 +1,5 @@
 import type { NodeBase } from "@lib/boards";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { useRef } from "react";
 
 type Util = {

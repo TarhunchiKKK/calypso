@@ -8,7 +8,7 @@ import type {
     RemoveProjectDto,
     UpdateProjectDto
 } from "@lib/projects";
-import type { Id, OmitFields } from "@repo/common";
+import type { Id, OmitFields } from "@lib/common";
 import { infiniteQueryOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 

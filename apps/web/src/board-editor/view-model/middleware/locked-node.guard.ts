@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { NodesModel } from "@/board-editor/nodes";
 import type { ViewStateGuard } from "../hooks/use-view-state-mediator.hook";
 

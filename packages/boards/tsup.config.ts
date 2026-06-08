@@ -11,7 +11,7 @@ export default defineConfig([
         dts: true,
         outDir: "dist/cjs",
         platform: "node",
-        external: ["zod", "@repo/common"],
+        external: ["zod", "@lib/common"],
         outExtension: () => ({ js: ".js" })
     },
     {
@@ -24,7 +24,7 @@ export default defineConfig([
         dts: true,
         outDir: "dist/esm",
         platform: "node",
-        external: ["zod", "@repo/common"],
+        external: ["zod", "@lib/common"],
         outExtension: () => ({ js: ".js" })
     }
 ]);

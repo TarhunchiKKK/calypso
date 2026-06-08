@@ -1,5 +1,5 @@
 import type { NodeBase } from "@lib/boards";
-import type { Point } from "@repo/common";
+import type { Point } from "@lib/common";
 import { NodeRectsFactory } from "@/entities/nodes";
 import { Geometry } from "@/shared/lib/geometry";
 

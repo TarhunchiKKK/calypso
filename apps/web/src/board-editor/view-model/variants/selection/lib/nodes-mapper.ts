@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { type Decoratable, NodesMapper } from "@/board-editor/core";
 import type { ResizeHandler } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";

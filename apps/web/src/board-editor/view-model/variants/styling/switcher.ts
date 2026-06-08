@@ -1,4 +1,4 @@
-import type { Id, Point } from "@repo/common";
+import type { Id, Point } from "@lib/common";
 import type { StylingViewState } from "./view-state";
 
 type Params = {

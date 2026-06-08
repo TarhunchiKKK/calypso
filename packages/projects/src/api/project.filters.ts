@@ -1,4 +1,4 @@
-import { PaginationOptionsZodSchema } from "@repo/common";
+import { PaginationOptionsZodSchema } from "@lib/common";
 import z from "zod";
 import { ProjectTypesZodSchema } from "../entities/project.entity";
 

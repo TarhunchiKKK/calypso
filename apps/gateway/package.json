@@ -29,7 +29,7 @@
         "@api/common": "*",
         "@lib/auth": "*",
         "@lib/boards": "*",
-        "@repo/common": "*",
+        "@lib/common": "*",
         "@api/contracts": "*",
         "@lib/media": "*",
         "@lib/projects": "*",

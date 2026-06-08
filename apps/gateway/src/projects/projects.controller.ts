@@ -14,7 +14,7 @@ import {
     UpdateProjectDtoZodSchema
 } from "@lib/projects";
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Id, PaginationOptions } from "@repo/common";
+import type { Id, PaginationOptions } from "@lib/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";

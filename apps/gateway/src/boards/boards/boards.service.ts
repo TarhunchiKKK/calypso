@@ -3,7 +3,7 @@ import type { CreateBoardDto, UpdateBoardDto } from "@lib/boards";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import type { Id, PaginationOptions } from "@repo/common";
+import type { Id, PaginationOptions } from "@lib/common";
 import { map } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BOARDS_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";

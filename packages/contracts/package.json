@@ -32,7 +32,7 @@
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
         "@lib/boards": "*",
-        "@repo/common": "*",
+        "@lib/common": "*",
         "google-proto-files": "^5.0.1",
         "rxjs": "^7.8.2"
     },

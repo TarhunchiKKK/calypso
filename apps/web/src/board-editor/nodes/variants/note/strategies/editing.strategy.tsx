@@ -1,5 +1,5 @@
 import type { NoteNode } from "@lib/boards";
-import type { FormattableElement } from "@repo/common";
+import type { FormattableElement } from "@lib/common";
 import type { CSSProperties } from "react";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";

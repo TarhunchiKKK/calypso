@@ -1,4 +1,4 @@
-import type { Offset, Rect } from "@repo/common";
+import type { Offset, Rect } from "@lib/common";
 import type { Decoratable } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import type { NodeEditingHandlers } from "@/board-editor/modules/editing";

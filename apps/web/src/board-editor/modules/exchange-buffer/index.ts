@@ -1,5 +1,5 @@
 import type { NodeBase } from "@lib/boards";
-import type { Id, Point } from "@repo/common";
+import type { Id, Point } from "@lib/common";
 import { useState } from "react";
 import { toast } from "sonner";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";
