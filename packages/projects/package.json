@@ -1,15 +1,8 @@
 {
     "name": "@lib/projects",
     "version": "0.0.0",
-    "license": "MIT",
     "private": true,
-    "main": "./dist/cjs/entry.js",
-    "module": "./dist/esm/entry.js",
-    "types": "./dist/cjs/entry.d.ts",
-    "files": ["./dist/**"],
-    "publishConfig": {
-        "access": "public"
-    },
+    "license": "MIT",
     "exports": {
         ".": {
             "import": {
@@ -22,6 +15,12 @@
             }
         }
     },
+    "main": "./dist/cjs/entry.js",
+    "module": "./dist/esm/entry.js",
+    "types": "./dist/cjs/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsup",
         "type-check": "tsc --noEmit"
@@ -37,5 +36,8 @@
     },
     "peerDependencies": {
         "zod": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

@@ -1,15 +1,8 @@
 {
     "name": "@lib/boards",
     "version": "0.0.0",
-    "main": "./dist/cjs/entry.js",
-    "module": "./dist/esm/entry.js",
-    "license": "MIT",
     "private": true,
-    "publishConfig": {
-        "access": "public"
-    },
-    "files": ["./dist/**"],
-    "types": "./dist/cjs/entry.d.ts",
+    "license": "MIT",
     "exports": {
         ".": {
             "import": {
@@ -22,6 +15,12 @@
             }
         }
     },
+    "main": "./dist/cjs/entry.js",
+    "module": "./dist/esm/entry.js",
+    "types": "./dist/cjs/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsup --config tsup.config.ts",
         "type-check": "tsc --noEmit"
@@ -37,5 +36,8 @@
     },
     "peerDependencies": {
         "zod": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
