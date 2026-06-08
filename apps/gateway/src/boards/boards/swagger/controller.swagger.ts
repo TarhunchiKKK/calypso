@@ -1,8 +1,8 @@
-import { type ControllerSwaggerOptions, createControllerSwaggerDecorator } from "@api/common";
+import { createControllerSwaggerDecorator } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
 import { CreateBoardResponseApiType } from "./dtos.swagger";
 
-const options: ControllerSwaggerOptions = {
+export const BoardsControllerApiType = createControllerSwaggerDecorator({
     tags: { name: "Boards" },
     auth: true,
     methods: [
@@ -43,6 +43,4 @@ const options: ControllerSwaggerOptions = {
             ]
         }
     ]
-};
-
-export const BoardsControllerApiType = createControllerSwaggerDecorator(options);
+});

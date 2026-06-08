@@ -1,9 +1,9 @@
-import { type ControllerSwaggerOptions, createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
+import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
 import { CreateManyNodesDtoApiType, RemoveManyNodesDtoApiType, UpdateManyNodesDtoApiType } from "./dtos.swagger";
 import { NodeApiType } from "./entities.swagger";
 
-const options: ControllerSwaggerOptions = {
+export const NodesControllerApiType = createControllerSwaggerDecorator({
     tags: { name: "Board Nodes" },
     auth: true,
     methods: [
@@ -76,6 +76,4 @@ const options: ControllerSwaggerOptions = {
             ]
         }
     ]
-};
-
-export const NodesControllerApiType = createControllerSwaggerDecorator(options);
+});
