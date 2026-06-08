@@ -3,7 +3,7 @@ import { HttpStatus } from "@nestjs/common";
 import { CreateBoardResponseApiType } from "./dtos.swagger";
 
 export const BoardsControllerApiType = createControllerSwaggerDecorator({
-    tags: { name: "Boards" },
+    tags: { name: "Management", parent: "Boards" },
     auth: true,
     methods: [
         {

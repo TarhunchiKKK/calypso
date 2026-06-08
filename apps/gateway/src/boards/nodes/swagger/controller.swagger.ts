@@ -4,7 +4,7 @@ import { CreateManyNodesDtoApiType, RemoveManyNodesDtoApiType, UpdateManyNodesDt
 import { NodeApiType } from "./entities.swagger";
 
 export const NodesControllerApiType = createControllerSwaggerDecorator({
-    tags: { name: "Board Nodes" },
+    tags: { name: "Nodes", parent: "Boards" },
     auth: true,
     methods: [
         {
