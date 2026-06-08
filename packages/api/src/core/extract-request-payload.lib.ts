@@ -1,4 +1,4 @@
-import { ExecutionContext } from "@nestjs/common";
+import type { ExecutionContext } from "@nestjs/common";
 
 export function extractContextPayload<T = any>(context: ExecutionContext): T {
     const type = context.getType();
