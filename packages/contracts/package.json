@@ -11,16 +11,12 @@
     },
     "exports": {
         ".": {
+            "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
         }
     },
     "scripts": {
-        "dev": "pnpm build --watch",
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit",
         "protoc:unix": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
@@ -28,18 +24,26 @@
         "fix": "bun run ./scripts/fix-protoc.script.ts"
     },
     "dependencies": {
-        "@nestjs/common": "^11.1.16",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/microservices": "^11.1.16",
-        "@lib/boards": "*",
-        "@lib/common": "*",
-        "google-proto-files": "^5.0.1",
-        "rxjs": "^7.8.2"
+        "google-proto-files": "^5.0.1"
     },
     "devDependencies": {
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "ts-proto": "^2.11.6",
-        "typescript": "5.5.4"
+        "typescript": "5.5.4",
+        "@nestjs/common": "^11.1.16",
+        "@nestjs/core": "^11.1.17",
+        "@nestjs/microservices": "^11.1.16",
+        "@lib/boards": "*",
+        "@lib/common": "*",
+        "rxjs": "^7.8.2"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "@lib/boards": "*",
+        "@lib/common": "*",
+        "rxjs": "^7.8.0"
     }
 }

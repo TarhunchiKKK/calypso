@@ -11,12 +11,9 @@
     },
     "exports": {
         ".": {
+            "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
         }
     },
     "scripts": {
@@ -40,15 +37,15 @@
         "zod": "^4.3.6"
     },
     "peerDependencies": {
-        "@nestjs/common": "^11.1.16",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/microservices": "^11.1.16",
-        "@nestjs/mongoose": "^11.0.4",
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/config": "^4.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "@nestjs/mongoose": "^11.0.0",
         "@nestjs/typeorm": "^11.0.0",
         "@lib/common": "*",
-        "rxjs": "^7.8.2",
-        "typeorm": "^0.3.28",
-        "zod": "^4.3.6"
+        "rxjs": "^7.8.0",
+        "typeorm": "^0.3.0",
+        "zod": "^4.0.0"
     }
 }

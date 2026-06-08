@@ -11,30 +11,33 @@
     },
     "exports": {
         ".": {
+            "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
         }
     },
     "scripts": {
-        "dev": "pnpm build --watch",
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@nestjs/common": "^11.1.16",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/microservices": "^11.1.16",
-        "express": "^5.2.1",
-        "ioredis": "^5.11.1",
-        "rxjs": "^7.8.2"
+        "ioredis": "^5.11.1"
     },
     "devDependencies": {
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
-        "typescript": "5.5.4"
+        "typescript": "5.5.4",
+        "@nestjs/common": "^11.1.16",
+        "@nestjs/core": "^11.1.17",
+        "@nestjs/microservices": "^11.1.16",
+        "express": "^5.2.1",
+        "rxjs": "^7.8.2"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "express": "^5.0.0",
+        "rxjs": "^7.8.0"
     }
 }
