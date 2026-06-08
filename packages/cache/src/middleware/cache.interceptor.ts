@@ -1,10 +1,10 @@
 import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestInterceptor } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { CacheService } from "cache.service";
-import type { Request } from "express";
 import { CacheKey } from "metadata/cache-key.decorator";
 import { CacheTtl } from "metadata/cache-ttl.decorator";
 import { of, tap } from "rxjs";
+import { extractContextPayload } from "@api/common";
 
 @Injectable()
 export class CacheInterceptor implements NestInterceptor {
@@ -40,8 +40,8 @@ export class CacheInterceptor implements NestInterceptor {
 
         const ttl = this.reflector.get(CacheTtl, handler);
 
-        const request = context.switchToHttp().getRequest() as Request;
+        const payload = extractContextPayload(context);
 
-        return { key: getCacheKey(request), ttl: ttl ?? undefined };
+        return { key: getCacheKey(payload), ttl: ttl ?? undefined };
     }
 }

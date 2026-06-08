@@ -1,7 +1,7 @@
+import { extractContextPayload } from "@api/common";
 import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestInterceptor } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { CacheService } from "cache.service";
-import type { Request } from "express";
 import { CacheKeysList } from "metadata/cache-keys-list.decorator";
 import { tap } from "rxjs";
 
@@ -29,7 +29,7 @@ export class InvalidateCacheInterceptor implements NestInterceptor {
             throw new Error(`"CacheKeysList" decorator for ${context.getHandler()} method was not provided.`);
         }
 
-        const request = context.switchToHttp().getRequest() as Request;
+        const request = extractContextPayload(context);
 
         const keys = getCacheKeys(request);
 
