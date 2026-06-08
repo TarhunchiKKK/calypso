@@ -35,7 +35,7 @@ import { NodesService } from "./nodes/nodes.service";
                     transport: Transport.GRPC,
                     options: {
                         package: BOARD_NODES_PACKAGE_NAME,
-                        protoPath: "node_modules/@api/contracts/proto/nodes.service.proto",
+                        protoPath: "node_modules/@api/contracts/proto/boards/nodes.service.proto",
                         url: configService.getOrThrow<string>("BOARD_NODES_SERVICE_GRPC_URL"),
                         loader: GrpcLoaderOptions
                     }
