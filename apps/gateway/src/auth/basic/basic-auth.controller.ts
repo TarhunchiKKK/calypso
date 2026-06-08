@@ -7,12 +7,13 @@ import { Authorization } from "../lib/tokens/security/authorization.decorator";
 import { Authorized } from "../lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "../lib/tokens/types";
 import { BasicAuthService } from "./basic-auth.service";
+import { BasicAuthControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("auth/basic")
+@BasicAuthControllerApiType()
 export class BasicAuthController {
     public constructor(
-        @Inject(BasicAuthService)
-        private readonly basicAuthService: BasicAuthService,
+        @Inject(BasicAuthService) private readonly basicAuthService: BasicAuthService,
         @Inject(CookieService) private readonly cookieService: CookieService
     ) {}
 
@@ -46,6 +47,7 @@ export class BasicAuthController {
     @HttpCode(HttpStatus.OK)
     public signOut(@Res() response: Response) {
         this.cookieService.clear(response);
+
         response.send();
     }
 
