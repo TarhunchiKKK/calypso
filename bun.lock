@@ -26,7 +26,7 @@
                 "@api/common": "*",
                 "@lib/boards": "*",
                 "@api/cache": "*",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@api/contracts": "*",
                 "@lib/projects": "*",
                 "amqp-connection-manager": "^5.0.0",
@@ -68,7 +68,7 @@
                 "@api/common": "*",
                 "@lib/auth": "*",
                 "@lib/boards": "*",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@api/contracts": "*",
                 "@lib/media": "*",
                 "@lib/projects": "*",
@@ -158,7 +158,7 @@
                 "@radix-ui/react-tooltip": "^1.2.8",
                 "@lib/auth": "*",
                 "@lib/boards": "*",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@lib/media": "*",
                 "@lib/projects": "*",
                 "@storybook/react-vite": "^10.3.6",
@@ -213,7 +213,7 @@
                 "@nestjs/microservices": "^11.1.16",
                 "@nestjs/mongoose": "^11.0.4",
                 "@nestjs/typeorm": "^11.0.0",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "rxjs": "^7.8.2",
                 "typeorm": "^0.3.28",
                 "zod": "^4.3.6"
@@ -232,7 +232,7 @@
                 "zod": "^4.3.6"
             },
             "devDependencies": {
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@repo/typescript-config": "*",
                 "@types/node": "^22.10.7",
                 "tsup": "^8.5.1",
@@ -246,7 +246,7 @@
                 "zod": "^4.3.6"
             },
             "devDependencies": {
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@lib/projects": "*",
                 "@repo/typescript-config": "*",
                 "@types/node": "^22.10.7",
@@ -272,7 +272,7 @@
             }
         },
         "packages/common": {
-            "name": "@repo/common",
+            "name": "@lib/common",
             "version": "0.0.0",
             "dependencies": {
                 "zod": "^4.3.6"
@@ -292,7 +292,7 @@
                 "@nestjs/core": "^11.1.17",
                 "@nestjs/microservices": "^11.1.16",
                 "@lib/boards": "*",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "google-proto-files": "^5.0.1",
                 "rxjs": "^7.8.2"
             },
@@ -310,7 +310,7 @@
                 "zod": "^4.3.6"
             },
             "devDependencies": {
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@repo/typescript-config": "*",
                 "@types/node": "^22.10.7",
                 "tsup": "^8.5.1",
@@ -325,7 +325,7 @@
             },
             "devDependencies": {
                 "@lib/auth": "*",
-                "@repo/common": "*",
+                "@lib/common": "*",
                 "@repo/typescript-config": "*",
                 "@types/node": "^22.10.7",
                 "tsup": "^8.5.1",
@@ -4002,7 +4002,7 @@
 
         "@api/cache": ["@api/cache@workspace:packages/cache"],
 
-        "@repo/common": ["@repo/common@workspace:packages/common"],
+        "@lib/common": ["@lib/common@workspace:packages/common"],
 
         "@api/contracts": ["@api/contracts@workspace:packages/contracts"],
 
