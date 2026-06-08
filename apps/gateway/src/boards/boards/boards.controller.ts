@@ -7,10 +7,12 @@ import { Authorization } from "src/auth/lib/tokens/security/authorization.decora
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { BoardsService } from "./boards.service";
+import { BoardsControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("boards/management")
 @ExtractGrpc()
 @Authorization()
+@BoardsControllerApiType()
 export class BoardsController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
