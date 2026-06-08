@@ -103,6 +103,17 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
         boards: "NOSQL_DB_PORT"
     },
 
+    // // Redis
+    BOARDS_SERVICE_REDIS_HOST: {
+        boards: "REDIS_HOST"
+    },
+    BOARDS_SERVICE_REDIS_PORT: {
+        boards: "REDIS_PORT"
+    },
+    BOARDS_SERVICE_REDIS_DEFAULT_TTL: {
+        boards: "REDIS_DEFAULT_TTL"
+    },
+
     // // RabbitMQ
     BOARDS_SERVICE_RMQ_QUEUE: {
         gateway: "BOARDS_SERVICE_RMQ_QUEUE",
@@ -135,6 +146,17 @@ const renamingMap: Record<string, Partial<Record<Apps, string>>> = {
     },
     MEDIA_SERVICE_SQL_DB_PASS: {
         media: "SQL_DB_PASS"
+    },
+
+    // // Redis
+    MEDIA_SERVICE_REDIS_HOST: {
+        media: "REDIS_HOST"
+    },
+    MEDIA_SERVICE_REDIS_PORT: {
+        media: "REDIS_PORT"
+    },
+    MEDIA_SERVICE_REDIS_DEFAULT_TTL: {
+        media: "REDIS_DEFAULT_TTL"
     },
 
     // Infrastructure
