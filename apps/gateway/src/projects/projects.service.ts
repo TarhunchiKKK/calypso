@@ -1,7 +1,5 @@
-import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import type { Profile } from "@repo/auth";
-import { DebugException, type Id, type PaginationOptions } from "@repo/common";
-import { extractGrpcResponsePipe } from "@repo/contracts";
+import { extractGrpcResponsePipe } from "@api/contracts";
+import type { Profile } from "@lib/auth";
 import type {
     DuplicateProjectDto,
     FindOneProjectDto,
@@ -12,7 +10,9 @@ import type {
     ProjectWithType,
     RemoveProjectDto,
     UpdateProjectDto
-} from "@repo/projects";
+} from "@lib/projects";
+import { ConflictException, Inject, Injectable } from "@nestjs/common";
+import { DebugException, type Id, type PaginationOptions } from "@lib/common";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";

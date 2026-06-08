@@ -1,45 +1,53 @@
 {
-    "name": "@repo/api",
+    "name": "@api/common",
     "version": "0.0.0",
     "private": true,
     "license": "MIT",
-    "main": "./dist/entry.js",
-    "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
-    "publishConfig": {
-        "access": "public"
-    },
     "exports": {
         ".": {
+            "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
         }
     },
+    "main": "./dist/entry.js",
+    "types": "./dist/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
-        "dev": "pnpm build --watch",
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit"
     },
-    "dependencies": {
+    "devDependencies": {
+        "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/common": "*",
-        "rxjs": "^7.8.2",
-        "typeorm": "^0.3.28",
-        "zod": "^4.3.6"
-    },
-    "devDependencies": {
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
+        "rxjs": "^7.8.2",
         "ts-node": "^10.9.2",
-        "typescript": "5.5.4"
+        "typeorm": "^0.3.28",
+        "typescript": "5.5.4",
+        "zod": "^4.3.6"
+    },
+    "peerDependencies": {
+        "@lib/common": "*",
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/config": "^4.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "@nestjs/mongoose": "^11.0.0",
+        "@nestjs/typeorm": "^11.0.0",
+        "rxjs": "^7.8.0",
+        "typeorm": "^0.3.0",
+        "zod": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

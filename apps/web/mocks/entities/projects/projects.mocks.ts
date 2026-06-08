@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { MockProjectThumbnails } from "./thumbnails.mocks";
 
 const arrayLength = 12;

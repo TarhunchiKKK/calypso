@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { LayoutDimensionsModel } from "../../modules/layout-dimensions";
 import type { NodesModel } from "../../nodes";
 import type { DecoratableViewModel } from "../decorators";

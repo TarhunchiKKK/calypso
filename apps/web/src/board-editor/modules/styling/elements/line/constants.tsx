@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import { FoldHorizontal, Minus } from "lucide-react";
 import { DefaultNodeStyles } from "@/entities/nodes";
 import { capitalize } from "@/shared/lib/js";

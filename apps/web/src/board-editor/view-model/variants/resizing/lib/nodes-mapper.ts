@@ -1,5 +1,5 @@
-import type { NodeBase } from "@repo/boards";
-import type { Id, Rect } from "@repo/common";
+import type { NodeBase } from "@lib/boards";
+import type { Id, Rect } from "@lib/common";
 import { NodesMapper } from "@/board-editor/core";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";
 import { NodeWrappersFactory } from "@/board-editor/nodes/compose/lib/node-wrappers.factory";

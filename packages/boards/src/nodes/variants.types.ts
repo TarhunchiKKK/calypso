@@ -1,4 +1,4 @@
-import { FormattableElementZodSchema, PointZodSchema, RelativePointZOdSchema } from "@repo/common";
+import { FormattableElementZodSchema, PointZodSchema, RelativePointZOdSchema } from "@lib/common";
 import z from "zod";
 import { NodeBaseZodSchema, RectNodeZodSchema } from "./core.types";
 import { NodeStylesZodSchema } from "./styles.types";

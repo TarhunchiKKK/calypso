@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { EllipsisVertical, ImageIcon, InfoIcon, PencilIcon } from "lucide-react";
 import { preventDefaultHandler } from "@/shared/lib/js";
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shared/ui/kit";

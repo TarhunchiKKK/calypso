@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 
 export type CreateAccessRightDto<Role> = {
     resourceId: Id;

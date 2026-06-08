@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import clsx from "clsx";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import type { ResolvedArrow } from "@/board-editor/modules/arrows-resolution/lib";

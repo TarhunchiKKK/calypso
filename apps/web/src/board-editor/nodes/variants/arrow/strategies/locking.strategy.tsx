@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards";
+import type { ArrowNode } from "@lib/boards";
 import type { Decoratable } from "@/board-editor/core";
 import { LOCKED_COLOR, NodeLockingStrategy } from "@/board-editor/modules/locking";
 

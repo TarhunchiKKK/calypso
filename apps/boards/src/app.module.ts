@@ -1,10 +1,11 @@
+import { CacheModule, cacheConfigFactory } from "@api/cache";
+import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@api/common";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@repo/api";
 import { BoardsModule } from "./boards/boards.module";
 import { Board } from "./boards/entities/board.entity";
 import { AccessRightsRecord } from "./lib/auth.constants";
@@ -24,6 +25,11 @@ import { NodesModule } from "./nodes/nodes.module";
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: mongooseConfigFactory
+        }),
+        CacheModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: cacheConfigFactory
         }),
         ClientsModule.registerAsync({
             isGlobal: true,

@@ -1,4 +1,4 @@
-import type { ShapeNode, ShapeVariants } from "@repo/boards";
+import type { ShapeNode, ShapeVariants } from "@lib/boards";
 import type React from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { computeShapeReferencePoints } from "./shape-variants-reference-points.map";

@@ -1,4 +1,4 @@
-import type { Offset } from "@repo/common";
+import type { Offset } from "@lib/common";
 import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeDraggingStrategy } from "./node-dragging.strategy";
 

@@ -4,7 +4,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { MediaDomains } from "@repo/media";
+import type { MediaDomains } from "@lib/media";
 import * as mime from "mime-types";
 import type { Repository } from "typeorm";
 import { Media } from "../entities/media.entity";

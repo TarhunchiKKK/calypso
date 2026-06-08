@@ -1,5 +1,5 @@
-import type { NodeBase } from "@repo/boards";
-import type { Id } from "@repo/common";
+import type { NodeBase } from "@lib/boards";
+import type { Id } from "@lib/common";
 
 export type UpdateManyNodesDto = {
     boardId: Id;

@@ -1,5 +1,5 @@
-import type { DrawingNode } from "@repo/boards";
-import type { Point, Rect } from "@repo/common";
+import type { DrawingNode } from "@lib/boards";
+import type { Point, Rect } from "@lib/common";
 import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { NodesFactory } from "@/entities/nodes";

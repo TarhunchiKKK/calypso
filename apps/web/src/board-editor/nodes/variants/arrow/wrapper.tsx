@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards";
+import type { ArrowNode } from "@lib/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import { isResolvedArrow } from "@/board-editor/modules/arrows-resolution";
 import { ArrowNodeComponent } from "./component";

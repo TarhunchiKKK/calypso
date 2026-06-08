@@ -1,4 +1,4 @@
-import type { ShapeNode } from "@repo/boards";
+import type { ShapeNode } from "@lib/boards";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers } from "@/board-editor/core";
 import { ShapeVariantsMap } from "./lib/shape-variants.map";

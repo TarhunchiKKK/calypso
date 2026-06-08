@@ -1,5 +1,5 @@
-import { type AnyNode, AnyNodeZodSchema, type NodeTypes, NodeTypesArray } from "@repo/boards";
-import { DebugException } from "@repo/common";
+import { type AnyNode, AnyNodeZodSchema, type NodeTypes, NodeTypesArray } from "@lib/boards";
+import { DebugException } from "@lib/common";
 import type { AnyBoardNodeGrpc, BoardNodeBaseGrpc } from "../generated";
 
 export class BoardNodesGrpcMapper {

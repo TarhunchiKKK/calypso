@@ -1,7 +1,7 @@
+import type { ProjectFilters } from "@lib/projects";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Id, PaginationOptions } from "@repo/common";
-import type { ProjectFilters } from "@repo/projects";
+import type { Id, PaginationOptions } from "@lib/common";
 import type { Repository } from "typeorm";
 import { Board } from "../entities/board.entity";
 

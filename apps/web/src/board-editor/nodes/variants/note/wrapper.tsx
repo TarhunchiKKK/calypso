@@ -1,4 +1,4 @@
-import type { NoteNode } from "@repo/boards";
+import type { NoteNode } from "@lib/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import { NoteNodeComponent } from "./component";
 

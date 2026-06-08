@@ -1,4 +1,4 @@
-import type { NodeStyles, NodeTypes } from "@repo/boards";
+import type { NodeStyles, NodeTypes } from "@lib/boards";
 import { CommonNodeStyles } from "./common-node-styles.constants";
 
 type ArrayFields<T extends Record<string, unknown>> = {

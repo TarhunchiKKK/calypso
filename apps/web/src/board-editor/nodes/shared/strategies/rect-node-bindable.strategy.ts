@@ -1,5 +1,5 @@
-import type { TextNode } from "@repo/boards";
-import type { Point } from "@repo/common";
+import type { TextNode } from "@lib/boards";
+import type { Point } from "@lib/common";
 import { BindableNodeStrategy } from "@/board-editor/modules/arrows-binding";
 
 const referencePoints: Point[] = [

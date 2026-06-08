@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { ProjectActions } from "@/features/project-actions";
 import { formatDate } from "@/shared/lib/js";
 import { S3Service } from "@/shared/lib/s3";

@@ -4,16 +4,21 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "bun run --bun vite",
         "build": "tsc -b && bun run --bun vite build",
+        "dev": "bun run --bun vite",
         "preview": "bun run --bun vite preview",
-        "type-check": "tsc --noEmit",
-        "storybook:dev": "storybook dev -p 6006",
         "storybook:build": "storybook build",
-        "test:unit": "bunx --bun vitest run"
+        "storybook:dev": "storybook dev -p 6006",
+        "test:unit": "bunx --bun vitest run",
+        "type-check": "tsc --noEmit"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.2.2",
+        "@lib/auth": "*",
+        "@lib/boards": "*",
+        "@lib/common": "*",
+        "@lib/media": "*",
+        "@lib/projects": "*",
         "@platejs/basic-nodes": "^53.0.0",
         "@platejs/list-classic": "^53.0.0",
         "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -24,11 +29,6 @@
         "@radix-ui/react-toggle-group": "^1.1.11",
         "@radix-ui/react-toolbar": "^1.1.11",
         "@radix-ui/react-tooltip": "^1.2.8",
-        "@repo/auth": "*",
-        "@repo/boards": "*",
-        "@repo/common": "*",
-        "@repo/media": "*",
-        "@repo/projects": "*",
         "@storybook/react-vite": "^10.3.6",
         "@tailwindcss/vite": "^4.2.0",
         "@tanstack/react-query": "^5.96.2",
@@ -71,6 +71,8 @@
         "vitest": "^4.0.18"
     },
     "msw": {
-        "workerDirectory": ["public"]
+        "workerDirectory": [
+            "public"
+        ]
     }
 }

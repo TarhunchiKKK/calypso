@@ -1,6 +1,6 @@
 import { ConflictException, Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { Repository } from "typeorm";
 import { MODULE_OPTIONS_INJECTION_TOKEN } from "./di/di.constants";
 import type { AccessRightsModuleOptions } from "./di/di.types";

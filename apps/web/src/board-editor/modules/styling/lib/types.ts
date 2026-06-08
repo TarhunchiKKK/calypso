@@ -1,4 +1,4 @@
-import type { NodeBase, NodeStyles } from "@repo/boards";
+import type { NodeBase, NodeStyles } from "@lib/boards";
 
 export type UpdateFn = (node: NodeBase) => NodeBase;
 

@@ -1,4 +1,4 @@
-import type { Board } from "@repo/boards";
+import type { Board } from "@lib/boards";
 import type { BoardGrpc } from "../generated";
 
 export class BoardsGrpcMapper {

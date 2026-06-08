@@ -1,7 +1,7 @@
+import { BrokerRoutingKeys } from "@api/common";
 import { Controller, Inject } from "@nestjs/common";
 import { EventPattern, Payload } from "@nestjs/microservices";
-import { BrokerRoutingKeys } from "@repo/api";
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { BoardsService } from "../boards.service";
 
 @Controller()

@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { MediaApi } from "@/entities/media";
 import { Card, CardContent, CardHeader, CardTitle, Skeleton } from "@/shared/ui/kit";
 

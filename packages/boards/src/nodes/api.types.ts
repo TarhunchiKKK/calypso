@@ -1,4 +1,4 @@
-import { IdZodSchema } from "@repo/common";
+import { IdZodSchema } from "@lib/common";
 import z from "zod";
 import { AnyNodeZodSchema } from "./compose.types";
 

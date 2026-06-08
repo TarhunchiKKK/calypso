@@ -1,4 +1,4 @@
-import type { Rect } from "@repo/common";
+import type { Rect } from "@lib/common";
 import { useState } from "react";
 import { nodeInSelectionWindow, selectNodes } from "@/board-editor/modules/selection";
 import { Geometry } from "@/shared/lib/geometry";

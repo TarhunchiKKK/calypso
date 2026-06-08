@@ -1,5 +1,5 @@
-import type { TextNode } from "@repo/boards";
-import type { FormattableElement } from "@repo/common";
+import type { TextNode } from "@lib/boards";
+import type { FormattableElement } from "@lib/common";
 import type { Decoratable } from "@/board-editor/core";
 import { type NodeEditingHandlers, NodeEditingStrategy } from "@/board-editor/modules/editing";
 import { FormattableText } from "@/features/formattable-input";

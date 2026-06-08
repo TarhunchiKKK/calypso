@@ -1,5 +1,5 @@
-import type { Profile } from "@repo/auth";
-import type { Id } from "@repo/common";
+import type { Profile } from "@lib/auth";
+import type { Id } from "@lib/common";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

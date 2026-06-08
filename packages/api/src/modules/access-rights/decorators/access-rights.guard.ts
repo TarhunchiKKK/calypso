@@ -1,6 +1,6 @@
 import { type CanActivate, type ExecutionContext, Inject, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { DebugException } from "@repo/common";
+import { DebugException } from "@lib/common";
 import { AccessRightsService } from "../access-rights.service";
 import { ExtractAccess } from "./extract-access.decorator";
 import { Operation } from "./operation.decorator";

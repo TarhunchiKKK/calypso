@@ -1,46 +1,43 @@
 {
-    "name": "@repo/boards",
+    "name": "@lib/boards",
     "version": "0.0.0",
-    "main": "./dist/cjs/entry.js",
-    "module": "./dist/esm/entry.js",
-    "license": "MIT",
     "private": true,
-    "publishConfig": {
-        "access": "public"
-    },
-    "files": ["./dist/**"],
-    "types": "./dist/cjs/entry.d.ts",
+    "license": "MIT",
     "exports": {
         ".": {
-            "types": "./dist/cjs/entry.d.ts",
-            "import": "./dist/esm/entry.js",
-            "require": "./dist/cjs/entry.js"
-        },
-        "./boards": {
-            "types": "./dist/cjs/boards/index.d.ts",
-            "import": "./dist/esm/boards/index.js",
-            "require": "./dist/cjs/boards/index.js"
-        },
-        "./nodes": {
-            "types": "./dist/cjs/nodes/index.d.ts",
-            "import": "./dist/esm/nodes/index.js",
-            "require": "./dist/cjs/nodes/index.js"
+            "import": {
+                "types": "./dist/esm/entry.d.ts",
+                "default": "./dist/esm/entry.js"
+            },
+            "require": {
+                "types": "./dist/cjs/entry.d.ts",
+                "default": "./dist/cjs/entry.js"
+            }
         }
     },
+    "main": "./dist/cjs/entry.js",
+    "module": "./dist/esm/entry.js",
+    "types": "./dist/cjs/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
-        "dev": "tsup --config tsup.config.ts --watch",
         "build": "tsup --config tsup.config.ts",
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
-        "@repo/common": "*",
-        "@repo/projects": "*",
+        "@lib/common": "*",
+        "@lib/projects": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
-        "typescript": "5.5.4"
-    },
-    "dependencies": {
+        "typescript": "5.5.4",
         "zod": "^4.3.6"
+    },
+    "peerDependencies": {
+        "zod": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

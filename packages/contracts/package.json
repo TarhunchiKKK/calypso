@@ -1,45 +1,51 @@
 {
-    "name": "@repo/contracts",
+    "name": "@api/contracts",
     "version": "0.0.0",
     "private": true,
     "license": "MIT",
-    "main": "./dist/entry.js",
-    "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
-    "publishConfig": {
-        "access": "public"
-    },
     "exports": {
         ".": {
+            "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
         }
     },
+    "main": "./dist/entry.js",
+    "types": "./dist/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
-        "dev": "pnpm build --watch",
         "build": "tsc -b -v",
-        "type-check": "tsc --noEmit",
+        "fix": "bun run ./scripts/fix-protoc.script.ts",
         "protoc:unix": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
         "protoc:win": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto.exe --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
-        "fix": "bun run ./scripts/fix-protoc.script.ts"
+        "type-check": "tsc --noEmit"
     },
     "dependencies": {
+        "google-proto-files": "^5.0.1"
+    },
+    "devDependencies": {
+        "@lib/boards": "*",
+        "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
-        "@repo/boards": "*",
-        "@repo/common": "*",
-        "google-proto-files": "^5.0.1",
-        "rxjs": "^7.8.2"
-    },
-    "devDependencies": {
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
+        "rxjs": "^7.8.2",
         "ts-proto": "^2.11.6",
         "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "@lib/boards": "*",
+        "@lib/common": "*",
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "rxjs": "^7.8.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

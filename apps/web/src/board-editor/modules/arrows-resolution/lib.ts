@@ -1,5 +1,5 @@
-import type { ArrowNode } from "@repo/boards";
-import type { Point } from "@repo/common";
+import type { ArrowNode } from "@lib/boards";
+import type { Point } from "@lib/common";
 
 export const ArrowSides = ["start", "end"] as const;
 

@@ -1,4 +1,4 @@
-import { ProjectZodSchema } from "@repo/projects";
+import { ProjectZodSchema } from "@lib/projects";
 import type z from "zod";
 
 export const BoardZodSchema = ProjectZodSchema.extend({});

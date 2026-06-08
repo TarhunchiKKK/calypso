@@ -1,5 +1,5 @@
-import type { ArrowNode } from "@repo/boards";
-import type { Id, RelativePoint } from "@repo/common";
+import type { ArrowNode } from "@lib/boards";
+import type { Id, RelativePoint } from "@lib/common";
 import { useState } from "react";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { switchToSelection } from "../../selection/switcher";

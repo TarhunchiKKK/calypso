@@ -1,4 +1,4 @@
-import type { TextNode } from "@repo/boards";
+import type { TextNode } from "@lib/boards";
 import type { CSSProperties, PropsWithChildren } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import { FormattableText } from "@/features/formattable-input";

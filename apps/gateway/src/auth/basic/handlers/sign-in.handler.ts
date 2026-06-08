@@ -1,6 +1,6 @@
+import type { AuthResponse, SignInDto } from "@lib/auth";
 import { BadRequestException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { AuthResponse, SignInDto } from "@repo/auth";
 import * as argon2 from "argon2";
 import { TokensService } from "src/auth/lib/tokens/tokens.service";
 import { UsersService } from "src/auth/users/users.service";

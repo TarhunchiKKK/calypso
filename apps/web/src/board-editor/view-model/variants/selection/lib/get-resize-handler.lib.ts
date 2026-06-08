@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { ResizeDirection } from "@/board-editor/modules/resizing";
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { NodesFactory } from "@/entities/nodes";

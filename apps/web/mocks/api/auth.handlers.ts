@@ -1,4 +1,4 @@
-import type { Profile } from "@repo/auth";
+import type { Profile } from "@lib/auth";
 import { delay, HttpResponse, http } from "msw";
 import { Env } from "@/shared/config";
 

@@ -1,5 +1,5 @@
-import type { ArrowNode, NodeBase } from "@repo/boards";
-import type { Id } from "@repo/common";
+import type { ArrowNode, NodeBase } from "@lib/boards";
+import type { Id } from "@lib/common";
 import { NodeRectsFactory, NodesFactory, type NodesServiceMapper } from "@/entities/nodes";
 import { ArrowSides, type ResolvedArrow } from "./lib";
 

@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { ResizeDirection } from "../../../modules/resizing";
 import type { ResizingViewState } from "./view-state";
 

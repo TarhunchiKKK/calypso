@@ -1,4 +1,4 @@
-import type { Rect } from "@repo/common";
+import type { Rect } from "@lib/common";
 
 type Props = {
     rect: Rect;

@@ -1,4 +1,4 @@
-import type { Id, Rect } from "@repo/common";
+import type { Id, Rect } from "@lib/common";
 import { useState } from "react";
 import { applyResizing } from "@/board-editor/modules/resizing";
 import { NodeDecoratorsFactory } from "@/board-editor/nodes";

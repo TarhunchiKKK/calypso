@@ -1,5 +1,5 @@
-import type { NodeBase } from "@repo/boards";
-import type { Id, OmitFields } from "@repo/common";
+import type { NodeBase } from "@lib/boards";
+import type { Id, OmitFields } from "@lib/common";
 import { ArrowResolutionMapper } from "@/board-editor/modules/arrows-resolution";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";
 import { type NodesService, useNodesService } from "@/entities/nodes";

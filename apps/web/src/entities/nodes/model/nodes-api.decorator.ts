@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { NodesApi } from "./nodes.api";
 import type { NodesService } from "./use-nodes-service.hook";
 

@@ -1,4 +1,4 @@
-import { IdZodSchema, RectZodSchema } from "@repo/common";
+import { IdZodSchema, RectZodSchema } from "@lib/common";
 import z from "zod";
 
 export const NodeTypesZodSchema = z.enum(["sticker", "text", "shape", "arrow", "media", "note", "drawing"]);

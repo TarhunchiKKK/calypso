@@ -1,4 +1,4 @@
-import type { Rect } from "@repo/common";
+import type { Rect } from "@lib/common";
 
 export const MockRect: Rect = {
     x: 100,

@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import type { NodesSelectionMode } from "./types";
 
 export function selectNodes(nodeIds: Id[], mode: NodesSelectionMode, currentSelection: Set<Id>): Set<Id> {

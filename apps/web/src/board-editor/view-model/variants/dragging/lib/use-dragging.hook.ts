@@ -1,4 +1,4 @@
-import type { Offset } from "@repo/common";
+import type { Offset } from "@lib/common";
 import { useState } from "react";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ViewModelParams } from "../../../types";

@@ -1,4 +1,4 @@
-import type { ProjectFilters } from "@repo/projects";
+import type { ProjectFilters } from "@lib/projects";
 
 export const DefaultProjectFilters: ProjectFilters = {
     type: undefined,

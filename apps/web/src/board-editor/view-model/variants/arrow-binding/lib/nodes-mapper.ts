@@ -1,5 +1,5 @@
-import type { ArrowNode } from "@repo/boards";
-import type { Id } from "@repo/common";
+import type { ArrowNode } from "@lib/boards";
+import type { Id } from "@lib/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";
 import { DecoratableNodeBuilder } from "@/board-editor/nodes/compose/lib/decoratable-node.builder";

@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import { type Decoratable, NodeDecorator } from "../../core";
 import type { NodeEditingStrategy } from "./node-editing.strategy";
 import type { NodeEditingHandlers } from "./types";

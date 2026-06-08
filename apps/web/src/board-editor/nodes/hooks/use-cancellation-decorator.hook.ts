@@ -1,4 +1,4 @@
-import type { OmitFields } from "@repo/common";
+import type { OmitFields } from "@lib/common";
 import type { NodesService } from "@/entities/nodes";
 import { useCancellation } from "@/shared/model";
 

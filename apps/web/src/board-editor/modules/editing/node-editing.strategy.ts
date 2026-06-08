@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import type { Decoratable } from "@/board-editor/core";
 import type { NodeEditingHandlers } from "./types";
 

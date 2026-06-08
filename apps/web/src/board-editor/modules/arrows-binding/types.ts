@@ -1,4 +1,4 @@
-import type { Id, RelativePoint } from "@repo/common";
+import type { Id, RelativePoint } from "@lib/common";
 
 export type BindingNodeHandlers = {
     onMouseEnter?: (nodeId: Id) => void;

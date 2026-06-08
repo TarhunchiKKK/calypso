@@ -1,5 +1,5 @@
-import type { Board } from "@repo/boards";
-import type { Project, ProjectTypes, ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { Board } from "@lib/boards";
+import type { Project, ProjectTypes, ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { useState } from "react";
 import { BoardDetailsForm } from "@/entities/boards";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";

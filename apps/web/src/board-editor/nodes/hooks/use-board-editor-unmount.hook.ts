@@ -1,4 +1,4 @@
-import type { Id } from "@repo/common";
+import type { Id } from "@lib/common";
 import { useEffect } from "react";
 import { NodesApi } from "@/entities/nodes";
 

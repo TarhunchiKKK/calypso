@@ -1,4 +1,4 @@
-import type { Point } from "@repo/common";
+import type { Point } from "@lib/common";
 import type { PropsWithChildren } from "react";
 import { StylesPanel } from "@/board-editor/modules/styling";
 import type { NodesModel } from "@/board-editor/nodes";

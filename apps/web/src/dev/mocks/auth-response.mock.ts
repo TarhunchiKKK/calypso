@@ -1,4 +1,4 @@
-import type { AuthResponse } from "@repo/auth";
+import type { AuthResponse } from "@lib/auth";
 
 export const MockAuthResponse: AuthResponse = {
     user: {

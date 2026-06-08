@@ -1,4 +1,4 @@
-import type { Profile, SignInDto, SignUpDto } from "@repo/auth";
+import type { Profile, SignInDto, SignUpDto } from "@lib/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiInstance } from "@/shared/model";
 

@@ -1,4 +1,4 @@
-import type { MediaDomains, Media as MediaType } from "@repo/media";
+import type { MediaDomains, Media as MediaType } from "@lib/media";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { MediaGroup } from "./media-group.entity";
 

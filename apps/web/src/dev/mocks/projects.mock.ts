@@ -1,4 +1,4 @@
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { ProjectWithCreator, ProjectWithType } from "@lib/projects";
 
 export const MockProjects: ProjectWithCreator<ProjectWithType>[] = [
     {

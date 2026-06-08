@@ -1,4 +1,4 @@
-import type { MediaNode } from "@repo/boards";
+import type { MediaNode } from "@lib/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import { MediaNodeComponent } from "./component";
 

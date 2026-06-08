@@ -1,4 +1,4 @@
-import type { OmitFields } from "@repo/common";
+import type { OmitFields } from "@lib/common";
 import { NodesFactory } from "@/entities/nodes";
 import { switchToEditing } from "../editing/switcher";
 import { switchToIdle } from "../idle/switcher";

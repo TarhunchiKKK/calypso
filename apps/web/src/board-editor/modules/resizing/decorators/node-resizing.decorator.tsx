@@ -1,4 +1,4 @@
-import type { Rect } from "@repo/common";
+import type { Rect } from "@lib/common";
 import { type Decoratable, NodeDecorator } from "../../../core";
 import type { NodeResizingStrategy } from "../strategies/node-resizing.strategy";
 

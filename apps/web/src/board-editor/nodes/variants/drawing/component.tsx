@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards";
+import type { DrawingNode } from "@lib/boards";
 import type { CSSProperties, PropsWithChildren, SVGProps } from "react";
 import type { NodeHandlers, NodeUiSettings } from "@/board-editor/core";
 import { Drawing } from "@/entities/nodes";
