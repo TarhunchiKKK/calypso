@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { BoardsServiceKeys } from "./boards.constants";
-import { GatewayKeys } from "./gateway.constants";
-import { MediaServiceKeys } from "./media.constants";
-import { WebKeys } from "./web.constants";
+import { BoardsServiceKeys } from "./boards.constants.js";
+import { GatewayKeys } from "./gateway.constants.js";
+import { MediaServiceKeys } from "./media.constants.js";
+import { WebKeys } from "./web.constants.js";
 
 const rootDir = process.cwd();
 const sourceEnvFile = path.join(rootDir, ".env");
@@ -59,14 +59,14 @@ function loadEnv(envRecord: Record<string, string>) {
     for (const { path, keys } of destinations) {
         let content = "";
 
-        for (const key in keys) {
+        for (const [key, newKey] of Object.entries(keys)) {
             const value = envRecord[key];
 
             if (!value) {
                 throw new Error(`Key ${key} not provided`);
             }
 
-            content += `${key}=${value}\n`;
+            content += `${newKey}=${value}\n`;
         }
 
         fs.writeFileSync(path, content);

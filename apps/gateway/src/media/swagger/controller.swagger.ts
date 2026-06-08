@@ -9,7 +9,7 @@ export const MediaControllerApiType = createControllerSwaggerDecorator({
     auth: true,
     methods: [
         {
-            name: "findPresents",
+            name: "findPresets",
             operation: {
                 summary: "Search for media"
             },
