@@ -233,6 +233,7 @@
         "@nestjs/core": "^11.0.0",
         "@nestjs/microservices": "^11.0.0",
         "@nestjs/mongoose": "^11.0.0",
+        "@nestjs/swagger": "^11.0.0",
         "@nestjs/typeorm": "^11.0.0",
         "rxjs": "^7.8.0",
         "typeorm": "^0.3.0",

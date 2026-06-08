@@ -1,21 +1,25 @@
-import type { ApiOperationOptions, ApiParamOptions, ApiResponseOptions, ApiTagOptions } from "@nestjs/swagger";
+import type { ApiBodyOptions, ApiOperationOptions, ApiParamOptions, ApiQueryOptions, ApiResponseOptions, ApiTagOptions } from "@nestjs/swagger";
 
-export type ControllerMethodSwaggerOptions<Controller extends Record<string, unknown>> = {
-    name: Exclude<keyof Controller, number | symbol>;
+export type ControllerMethodSwaggerOptions = {
+    name: string;
 
     operation?: ApiOperationOptions;
 
-    response?: ApiResponseOptions;
+    body?: ApiBodyOptions;
+
+    query?: ApiQueryOptions;
+
+    response?: ApiResponseOptions[];
 
     params?: ApiParamOptions[];
 
     auth?: boolean;
 };
 
-export type ControllerSwaggerOptions<Controller extends Record<string, unknown>> = {
+export type ControllerSwaggerOptions = {
     tags?: ApiTagOptions;
 
     auth?: boolean;
 
-    methods: ControllerMethodSwaggerOptions<Controller>[];
+    methods: ControllerMethodSwaggerOptions[];
 };

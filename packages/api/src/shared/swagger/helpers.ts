@@ -1,10 +1,7 @@
-import { ApiCookieAuth, ApiOperation, ApiParam, ApiTags } from "@nestjs/swagger";
+import { ApiCookieAuth, ApiOperation, ApiParam, ApiQuery, ApiTags } from "@nestjs/swagger";
 import type { ControllerMethodSwaggerOptions, ControllerSwaggerOptions } from "./types";
 
-export function applyMethodSwaggerInfo<Controller extends Record<string, unknown>>(
-    constructorFn: Function,
-    method: ControllerMethodSwaggerOptions<Controller>
-) {
+export function applyMethodSwaggerInfo(constructorFn: Function, method: ControllerMethodSwaggerOptions) {
     const descriptor = Reflect.getOwnPropertyDescriptor(constructorFn.prototype, method.name);
 
     if (!descriptor) {
@@ -15,8 +12,18 @@ export function applyMethodSwaggerInfo<Controller extends Record<string, unknown
         ApiOperation(method.operation)(constructorFn.prototype[method.name], method.name, descriptor);
     }
 
+    if (method.body) {
+        ApiQuery(method.body)(constructorFn.prototype[method.name], method.name, descriptor);
+    }
+
+    if (method.query) {
+        ApiQuery(method.query)(constructorFn.prototype[method.name], method.name, descriptor);
+    }
+
     if (method.response) {
-        ApiOperation(method.response)(constructorFn.prototype[method.name], method.name, descriptor);
+        method.response.forEach((response) => {
+            ApiOperation(response)(constructorFn.prototype[method.name], method.name, descriptor);
+        });
     }
 
     if (method.auth) {
@@ -30,18 +37,20 @@ export function applyMethodSwaggerInfo<Controller extends Record<string, unknown
     }
 }
 
-export function createControllerSwaggerDecorator<Controller extends Record<string, unknown>>(options: ControllerSwaggerOptions<Controller>) {
-    return (constructorFn: Function) => {
-        if (options.tags) {
-            ApiTags(options.tags)(constructorFn);
-        }
+export function createControllerSwaggerDecorator(options: ControllerSwaggerOptions) {
+    return () => {
+        return (constructorFn: Function) => {
+            if (options.tags) {
+                ApiTags(options.tags)(constructorFn);
+            }
 
-        if (options.auth) {
-            ApiCookieAuth()(constructorFn);
-        }
+            if (options.auth) {
+                ApiCookieAuth()(constructorFn);
+            }
 
-        options.methods.forEach((method) => {
-            applyMethodSwaggerInfo(constructorFn, method);
-        });
+            options.methods.forEach((method) => {
+                applyMethodSwaggerInfo(constructorFn, method);
+            });
+        };
     };
 }

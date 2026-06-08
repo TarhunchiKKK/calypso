@@ -1,4 +1,5 @@
 import { Validation } from "@api/common";
+import { ExtractGrpc } from "@api/contracts";
 import {
     type CreateManyNodesDto,
     CreateManyNodesDtoZodSchema,
@@ -7,17 +8,18 @@ import {
     type UpdateManyNodesDto,
     UpdateManyNodesDtoZodSchema
 } from "@lib/boards";
-import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { Id } from "@lib/common";
-import { ExtractGrpc } from "@api/contracts";
+import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { NodesService } from "./nodes.service";
+import { NodesControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("boards/nodes")
 @ExtractGrpc()
 @Authorization()
+@NodesControllerApiType()
 export class NodesController {
     public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
 

@@ -1,14 +1,8 @@
 import { type ControllerSwaggerOptions, createControllerSwaggerDecorator } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { CreateBoardResponseApiType } from "./dtos.swawgger";
+import { CreateBoardResponseApiType } from "./dtos.swagger";
 
-export type BoardsControllerMethods = {
-    create: (...args: any[]) => any;
-
-    update: (...args: any[]) => any[];
-};
-
-const options: ControllerSwaggerOptions<BoardsControllerMethods> = {
+const options: ControllerSwaggerOptions = {
     tags: { name: "Boards" },
     auth: true,
     methods: [
@@ -18,11 +12,13 @@ const options: ControllerSwaggerOptions<BoardsControllerMethods> = {
             operation: {
                 summary: "Create new board"
             },
-            response: {
-                status: HttpStatus.OK,
-                description: "Board created successfully",
-                type: CreateBoardResponseApiType
-            }
+            response: [
+                {
+                    status: HttpStatus.OK,
+                    description: "Board created successfully",
+                    type: CreateBoardResponseApiType
+                }
+            ]
         },
         {
             name: "update",
@@ -38,11 +34,13 @@ const options: ControllerSwaggerOptions<BoardsControllerMethods> = {
                     description: "Updated board id"
                 }
             ],
-            response: {
-                status: HttpStatus.OK,
-                description: "Board updated successfully",
-                nullable: true
-            }
+            response: [
+                {
+                    status: HttpStatus.OK,
+                    description: "Board updated successfully",
+                    nullable: true
+                }
+            ]
         }
     ]
 };
