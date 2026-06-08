@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import type { Id, OmitFields } from "@repo/common";
 import { ArrowResolutionMapper } from "@/board-editor/modules/arrows-resolution";
 import { useExchangeBuffer } from "@/board-editor/modules/exchange-buffer";

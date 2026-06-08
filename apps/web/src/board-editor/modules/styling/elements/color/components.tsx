@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
 import { BackgroundColorPlaceholder, renderBackgroundColorItem, renderTextColorItem, TextColorPlaceholder } from "./constants";

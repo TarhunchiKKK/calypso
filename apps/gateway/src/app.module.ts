@@ -1,9 +1,9 @@
+import { typeormConfigFactory } from "@api/common";
 import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { typeormConfigFactory } from "@repo/api";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { TokensModule } from "./auth/lib/tokens/tokens.module";

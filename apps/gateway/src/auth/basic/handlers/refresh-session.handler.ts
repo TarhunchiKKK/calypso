@@ -1,6 +1,6 @@
+import type { AuthResponse } from "@lib/auth";
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import type { AuthResponse } from "@repo/auth";
 import { TokensService } from "src/auth/lib/tokens/tokens.service";
 import { UsersService } from "src/auth/users/users.service";
 

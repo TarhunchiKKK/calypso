@@ -1,5 +1,5 @@
 {
-    "name": "@repo/projects",
+    "name": "@lib/projects",
     "version": "0.0.0",
     "license": "MIT",
     "private": true,
@@ -23,7 +23,7 @@
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
-        "@repo/auth": "*",
+        "@lib/auth": "*",
         "@repo/common": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",

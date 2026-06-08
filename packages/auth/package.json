@@ -1,5 +1,5 @@
 {
-    "name": "@repo/auth",
+    "name": "@lib/auth",
     "version": "0.0.0",
     "license": "MIT",
     "private": true,

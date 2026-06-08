@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 
 const AvailableColors = [
     "#FF3B30",

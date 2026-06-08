@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@repo/boards";
-import type { ProjectWithCreator } from "@repo/projects";
+import { type Board, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@lib/boards";
+import type { ProjectWithCreator } from "@lib/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { formatDate, stopPropagationHandler } from "@/shared/lib/js";

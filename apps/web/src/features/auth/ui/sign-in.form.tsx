@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type SignInDto, SignInDtoZodSchema } from "@repo/auth";
+import { type SignInDto, SignInDtoZodSchema } from "@lib/auth";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";

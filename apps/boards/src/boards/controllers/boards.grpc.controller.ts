@@ -1,5 +1,3 @@
-import { Inject } from "@nestjs/common";
-import type { NoNullableFieldsDeep } from "@repo/common";
 import {
     type BoardsServiceController,
     BoardsServiceControllerMethods,
@@ -11,8 +9,10 @@ import {
     type RemoveProjectGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
-} from "@repo/contracts";
-import type { ProjectFilters } from "@repo/projects";
+} from "@api/contracts";
+import type { ProjectFilters } from "@lib/projects";
+import { Inject } from "@nestjs/common";
+import type { NoNullableFieldsDeep } from "@repo/common";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";

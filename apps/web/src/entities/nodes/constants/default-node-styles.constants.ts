@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import { CommonNodeStyles } from "./common-node-styles.constants";
 
 export const DefaultNodeStyles: NodeStyles = {

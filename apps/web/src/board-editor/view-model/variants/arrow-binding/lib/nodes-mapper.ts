@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards";
+import type { ArrowNode } from "@lib/boards";
 import type { Id } from "@repo/common";
 import { NodesMapper } from "@/board-editor/core";
 import type { BindingNodeHandlers } from "@/board-editor/modules/arrows-binding";

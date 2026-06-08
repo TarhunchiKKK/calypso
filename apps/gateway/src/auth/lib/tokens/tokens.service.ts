@@ -1,7 +1,7 @@
+import type { Session } from "@lib/auth";
 import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
-import type { Session } from "@repo/auth";
 import type ms from "ms";
 import type { TokenPayload } from "./types";
 

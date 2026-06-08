@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import { Geometry } from "@/shared/lib/geometry";
 import type { ArrowPosition } from "./arrow.types";
 

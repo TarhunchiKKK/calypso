@@ -1,4 +1,4 @@
-import type { ArrowNode, NodeBase, RectNode } from "@repo/boards";
+import type { ArrowNode, NodeBase, RectNode } from "@lib/boards";
 import type { Offset } from "@repo/common";
 import { Geometry } from "@/shared/lib/geometry";
 

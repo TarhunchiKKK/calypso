@@ -1,4 +1,4 @@
-import type { ShapeNode, ShapeVariants } from "@repo/boards";
+import type { ShapeNode, ShapeVariants } from "@lib/boards";
 import type { Point } from "@repo/common";
 
 export const ShapeVariantsReferencePointsMap: Record<ShapeVariants, Point[]> = {

@@ -1,5 +1,5 @@
-import type { Board } from "@repo/boards";
-import type { ProjectWithCreator, ProjectWithType } from "@repo/projects";
+import type { Board } from "@lib/boards";
+import type { ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { MockProjectThumbnails } from "../projects";
 
 const mockBoard: Board = {

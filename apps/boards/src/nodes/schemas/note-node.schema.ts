@@ -1,5 +1,5 @@
+import type { NodeBase, NoteNode as NoteNodeType } from "@lib/boards";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { NodeBase, NoteNode as NoteNodeType } from "@repo/boards";
 import type { FormattableElement, OmitFields, Rect } from "@repo/common";
 
 @Schema()

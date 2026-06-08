@@ -1,4 +1,4 @@
-import type { NodeBase, ShapeVariants } from "@repo/boards";
+import type { NodeBase, ShapeVariants } from "@lib/boards";
 import type { Point } from "@repo/common";
 import type { ViewModelParams } from "../../types";
 

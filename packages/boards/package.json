@@ -1,5 +1,5 @@
 {
-    "name": "@repo/boards",
+    "name": "@lib/boards",
     "version": "0.0.0",
     "main": "./dist/cjs/entry.js",
     "module": "./dist/esm/entry.js",
@@ -34,7 +34,7 @@
     },
     "devDependencies": {
         "@repo/common": "*",
-        "@repo/projects": "*",
+        "@lib/projects": "*",
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",

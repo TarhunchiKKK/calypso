@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/projects";
+import type { ProjectWithType } from "@lib/projects";
 import { useState } from "react";
 import { ProjectIconSelector } from "@/entities/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";

@@ -1,4 +1,4 @@
-import type { DrawingNode } from "@repo/boards";
+import type { DrawingNode } from "@lib/boards";
 import type { Point, Rect } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeResizingStrategy } from "@/board-editor/modules/resizing";

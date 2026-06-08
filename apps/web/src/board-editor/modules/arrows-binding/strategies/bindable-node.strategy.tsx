@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import type { Point } from "@repo/common";
 import { type Decoratable, withNodeId } from "@/board-editor/core";
 import { NodeRectsFactory } from "@/entities/nodes";

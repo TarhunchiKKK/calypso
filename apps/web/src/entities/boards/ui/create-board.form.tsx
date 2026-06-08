@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@repo/boards";
+import { type CreateBoardDto, CreateBoardDtoZodSchema } from "@lib/boards";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";

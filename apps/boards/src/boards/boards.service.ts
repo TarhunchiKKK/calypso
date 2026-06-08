@@ -1,10 +1,10 @@
+import { BrokerRoutingKeys } from "@api/common";
+import { BoardsGrpcMapper } from "@api/contracts";
+import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { BrokerRoutingKeys } from "@repo/api";
 import type { Id, PaginationOptions } from "@repo/common";
-import { BoardsGrpcMapper } from "@repo/contracts";
-import type { ProjectFilters } from "@repo/projects";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";

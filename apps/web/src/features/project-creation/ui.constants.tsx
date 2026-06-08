@@ -1,4 +1,4 @@
-import type { ProjectTypes } from "@repo/projects";
+import type { ProjectTypes } from "@lib/projects";
 import { CreateBoardForm } from "@/entities/boards";
 
 export const ProjectFormsMap: Record<ProjectTypes, (afterSubmit: () => void) => React.ReactNode> = {

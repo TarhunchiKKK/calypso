@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/projects";
+import type { ProjectWithType } from "@lib/projects";
 import { useState } from "react";
 import { RenameProjectForm } from "@/entities/projects/ui/rename-project.form";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui/kit";

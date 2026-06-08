@@ -1,4 +1,4 @@
-import { type Profile, ProfileZodSchema } from "@repo/auth";
+import { type Profile, ProfileZodSchema } from "@lib/auth";
 import type z from "zod";
 import type { Project } from "./project.entity";
 

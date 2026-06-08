@@ -1,4 +1,4 @@
-import type { Board as BoardType } from "@repo/boards";
+import type { Board as BoardType } from "@lib/boards";
 import type { Id } from "@repo/common";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 

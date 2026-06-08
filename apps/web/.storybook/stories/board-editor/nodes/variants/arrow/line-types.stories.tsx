@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { applyDecorators, centered, relative, withDots } from "#/lib/decorators";
 import { ArrowNodeComponent } from "@/board-editor/nodes/variants/arrow/component";

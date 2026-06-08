@@ -1,4 +1,4 @@
-import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@repo/boards";
+import type { ArrowNode, DrawingNode, MediaNode, NodeBase, NodeTypes, NoteNode, ShapeNode, StickerNode, TextNode } from "@lib/boards";
 import type { NodeWrapper } from "@/board-editor/core";
 import { ArrowNodeWrapper } from "../../variants/arrow/wrapper";
 import { DrawingNodeWrapper } from "../../variants/drawing/wrapper";

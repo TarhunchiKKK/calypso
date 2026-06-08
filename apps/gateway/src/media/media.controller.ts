@@ -1,7 +1,7 @@
+import { QueryValidation } from "@api/common";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Param } from "@nestjs/common";
-import { QueryValidation } from "@repo/api";
-import { ExtractGrpc } from "@repo/contracts";
-import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@repo/media";
+import { ExtractGrpc } from "@api/contracts";
+import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@lib/media";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { MediaService } from "./media.service";
 

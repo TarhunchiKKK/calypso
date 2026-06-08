@@ -1,4 +1,4 @@
-import type { ProjectWithType } from "@repo/projects";
+import type { ProjectWithType } from "@lib/projects";
 import type { ChangeEvent } from "react";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";

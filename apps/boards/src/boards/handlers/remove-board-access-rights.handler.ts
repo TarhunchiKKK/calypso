@@ -1,6 +1,6 @@
+import { AccessRightsService } from "@api/common";
 import { Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { AccessRightsService } from "@repo/api";
 import type { Id } from "@repo/common";
 
 export class RemoveBoardAccessRightsCommand extends Command<void> {

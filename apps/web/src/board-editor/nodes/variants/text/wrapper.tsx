@@ -1,4 +1,4 @@
-import type { TextNode } from "@repo/boards";
+import type { TextNode } from "@lib/boards";
 import { NodeWrapper } from "@/board-editor/core";
 import { TextNodeComponent } from "./component";
 

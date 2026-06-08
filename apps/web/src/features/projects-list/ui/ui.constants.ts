@@ -1,4 +1,4 @@
-import type { ProjectsSortOrders, ProjectTypes } from "@repo/projects";
+import type { ProjectsSortOrders, ProjectTypes } from "@lib/projects";
 import type { DropdownItem } from "@/shared/ui";
 
 export const TypeDropdownItems: DropdownItem<ProjectTypes | undefined>[] = [

@@ -1,4 +1,4 @@
-import type { NodeStyles } from "@repo/boards";
+import type { NodeStyles } from "@lib/boards";
 import { ALargeSmall, CaseSensitive } from "lucide-react";
 import { capitalize } from "@/shared/lib/js";
 import type { DropdownItem } from "@/shared/ui";

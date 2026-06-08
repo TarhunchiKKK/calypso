@@ -1,5 +1,5 @@
+import type { ArrowNode as ArrowNodeType, NodeBase } from "@lib/boards";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { ArrowNode as ArrowNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, RelativePoint } from "@repo/common";
 
 @Schema()

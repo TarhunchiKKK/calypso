@@ -1,4 +1,4 @@
-import type { ProjectFilters } from "@repo/projects";
+import type { ProjectFilters } from "@lib/projects";
 import { Dropdown } from "@/shared/ui";
 import { OwnDropdownItems, SortOrdersDropdownItems, TypeDropdownItems } from "./ui.constants";
 

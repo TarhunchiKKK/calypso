@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import type { Id, OmitFields } from "@repo/common";
 import { useState } from "react";
 import { useEntitiesMap } from "@/shared/model";

@@ -1,5 +1,5 @@
+import type { DrawingNode as DrawingNodeType, NodeBase } from "@lib/boards";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import type { DrawingNode as DrawingNodeType, NodeBase } from "@repo/boards";
 import type { OmitFields, Rect } from "@repo/common";
 
 @Schema()

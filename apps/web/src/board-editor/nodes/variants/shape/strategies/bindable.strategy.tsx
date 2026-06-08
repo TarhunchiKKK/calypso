@@ -1,4 +1,4 @@
-import type { ShapeNode } from "@repo/boards";
+import type { ShapeNode } from "@lib/boards";
 import { BindableNodeStrategy } from "@/board-editor/modules/arrows-binding";
 import { ShapeVariantsReferencePointsMap } from "../lib/shape-variants-reference-points.map";
 

@@ -1,4 +1,4 @@
-import type { NodeBase } from "@repo/boards";
+import type { NodeBase } from "@lib/boards";
 import type { Id } from "@repo/common";
 
 export type CreateManyNodesDto = {

@@ -1,7 +1,5 @@
-import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import { QueryValidation, Validation } from "@repo/api";
-import type { Id, PaginationOptions } from "@repo/common";
-import { ExtractGrpc } from "@repo/contracts";
+import { QueryValidation, Validation } from "@api/common";
+import { ExtractGrpc } from "@api/contracts";
 import {
     type DuplicateProjectDto,
     DuplicateProjectDtoZodSchema,
@@ -14,7 +12,9 @@ import {
     RemoveProjectDtoZodSchema,
     type UpdateProjectDto,
     UpdateProjectDtoZodSchema
-} from "@repo/projects";
+} from "@lib/projects";
+import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import type { Id, PaginationOptions } from "@repo/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";

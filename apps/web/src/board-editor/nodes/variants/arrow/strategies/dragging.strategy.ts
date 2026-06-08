@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards";
+import type { ArrowNode } from "@lib/boards";
 import type { Offset } from "@repo/common";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeDraggingStrategy } from "@/board-editor/modules/dragging";

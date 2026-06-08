@@ -1,4 +1,4 @@
-import type { ShapeNode } from "@repo/boards";
+import type { ShapeNode } from "@lib/boards";
 import type React from "react";
 import { NodeWrapper } from "@/board-editor/core";
 import { ShapeNodeComponent } from "./component";

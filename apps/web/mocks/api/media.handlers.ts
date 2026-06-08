@@ -1,4 +1,4 @@
-import type { Media, MediaDomains, MediaGroup } from "@repo/media";
+import type { Media, MediaDomains, MediaGroup } from "@lib/media";
 import { HttpResponse, http } from "msw";
 import { Env } from "@/shared/config";
 import { MockBoardNodesMedia } from "%/entities/boards";

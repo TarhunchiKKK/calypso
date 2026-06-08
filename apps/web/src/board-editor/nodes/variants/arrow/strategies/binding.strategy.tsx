@@ -1,4 +1,4 @@
-import type { ArrowNode } from "@repo/boards";
+import type { ArrowNode } from "@lib/boards";
 import type { Decoratable } from "@/board-editor/core";
 import { NodeBindingStrategy } from "@/board-editor/modules/arrows-binding";
 import { isResolvedArrow } from "@/board-editor/modules/arrows-resolution";
