@@ -112,8 +112,8 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 > This project was fully developed on [Kali Linux](https://www.kali.org/), so some CLI commands will not work on other operating systems.
 > ```bash
 > cd packages/contracts
-> bun protoc:unix   # ❗ Linux-only command
-> bun protoc:win    # ❗ Windows-only command
+> bun generate:unix   # ❗ Linux-only command
+> bun generate:win    # ❗ Windows-only command
 > ```
 >
 > ```bash
