@@ -10,7 +10,17 @@ services:
         ports:
             - ${MEDIA_SERVICE_SQL_DB_PORT}:5432
         volumes:
-            - media-postgres_data:/var/lib/postgresql/data
+            - media-sql-db-data:/var/lib/postgresql/data
+        
+    media-cache:
+        container_name: redis
+        image: redis:5.0
+        restart: always
+        ports:
+            - ${MEDIA_SERVICE_REDIS_PORT}:6379
+        volumes:
+            - media-cache-data:/data
 
 volumes:
-    media-postgres_data:
+    media-sql-db-data:
+    media-cache-data:

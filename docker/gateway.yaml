@@ -10,7 +10,7 @@ services:
         ports:
             - ${GATEWAY_SERVICE_SQL_DB_PORT}:5432
         volumes:
-            - gateway-postgres_data:/var/lib/postgresql/data
+            - gateway-sql-db-data:/var/lib/postgresql/data
 
 volumes:
-    gateway-postgres_data:
+    gateway-sql-db-data:
