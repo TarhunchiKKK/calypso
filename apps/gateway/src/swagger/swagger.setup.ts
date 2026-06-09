@@ -23,5 +23,8 @@ export function setupSwagger(app: INestApplication) {
 
     const config = builder.build();
 
-    SwaggerModule.setup(configService.getOrThrow<string>("SWAGGER_PATH"), app, () => SwaggerModule.createDocument(app, config));
+    SwaggerModule.setup(configService.getOrThrow<string>("SWAGGER_PATH"), app, () => SwaggerModule.createDocument(app, config), {
+        jsonDocumentUrl: `${configService.getOrThrow<string>("SWAGGER_PATH")}/swagger.json`,
+        yamlDocumentUrl: `${configService.getOrThrow<string>("SWAGGER_PATH")}/swagger.yaml`
+    });
 }
