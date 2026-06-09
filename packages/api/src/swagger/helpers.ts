@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/complexity/noBannedTypes: `Function` type is necessary for class constructor typing */
 import { ApiCookieAuth, ApiOperation, ApiParam, ApiQuery, ApiTags } from "@nestjs/swagger";
 import type { ControllerMethodSwaggerOptions, ControllerSwaggerOptions } from "./types";
 

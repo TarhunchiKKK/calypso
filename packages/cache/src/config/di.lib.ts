@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: `any` type is necessary for inline type usage */
 import type { ModuleMetadata } from "@nestjs/common";
 
 export const CACHE_OPTIONS_INJECTION_TOKEN = Symbol();
