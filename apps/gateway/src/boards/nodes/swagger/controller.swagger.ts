@@ -1,10 +1,11 @@
 import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
+import { SwaggerTags } from "src/swagger/swagger.constants";
 import { CreateManyNodesDtoApiType, RemoveManyNodesDtoApiType, UpdateManyNodesDtoApiType } from "./dtos.swagger";
 import { NodeApiType } from "./entities.swagger";
 
 export const NodesControllerApiType = createControllerSwaggerDecorator({
-    tags: { name: "Nodes", parent: "Boards" },
+    tag: SwaggerTags.boards.children.nodes.name,
     auth: true,
     methods: [
         {

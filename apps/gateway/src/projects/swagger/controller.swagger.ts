@@ -1,5 +1,6 @@
 import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
+import { SwaggerTags } from "src/swagger/swagger.constants";
 import {
     DuplicateProjectDtoApiType,
     FindAllProjectsQueryApiType,
@@ -10,7 +11,7 @@ import {
 import { ProjectApiType } from "./entities.swagger";
 
 export const ProjectsControllerApiType = createControllerSwaggerDecorator({
-    tags: { name: "Projects" },
+    tag: SwaggerTags.projects.name,
     auth: true,
     methods: [
         {

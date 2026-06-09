@@ -40,9 +40,7 @@ export function applyMethodSwaggerInfo(constructorFn: Function, method: Controll
 export function createControllerSwaggerDecorator(options: ControllerSwaggerOptions) {
     return () => {
         return (constructorFn: Function) => {
-            if (options.tags) {
-                ApiTags(options.tags)(constructorFn);
-            }
+            ApiTags(options.tag)(constructorFn);
 
             if (options.auth) {
                 ApiCookieAuth()(constructorFn);

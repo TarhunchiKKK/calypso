@@ -1,9 +1,10 @@
 import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
+import { SwaggerTags } from "src/swagger/swagger.constants";
 import { ProfileApiType, SignInDtoApiType, SignUpDtoApiType } from "./dtos.swagger";
 
 export const BasicAuthControllerApiType = createControllerSwaggerDecorator({
-    tags: { name: "Basic", parent: "Auth" },
+    tag: SwaggerTags.auth.children.basic.name,
     methods: [
         {
             name: "signUp",

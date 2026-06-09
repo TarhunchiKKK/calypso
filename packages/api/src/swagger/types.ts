@@ -1,4 +1,4 @@
-import type { ApiBodyOptions, ApiOperationOptions, ApiParamOptions, ApiQueryOptions, ApiResponseOptions, ApiTagOptions } from "@nestjs/swagger";
+import type { ApiBodyOptions, ApiOperationOptions, ApiParamOptions, ApiQueryOptions, ApiResponseOptions } from "@nestjs/swagger";
 
 export type ControllerMethodSwaggerOptions = {
     name: string;
@@ -17,7 +17,7 @@ export type ControllerMethodSwaggerOptions = {
 };
 
 export type ControllerSwaggerOptions = {
-    tags?: ApiTagOptions;
+    tag: string;
 
     auth?: boolean;
 
