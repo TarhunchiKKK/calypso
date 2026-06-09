@@ -1,5 +1,6 @@
 import { QueryValidation, Validation } from "@api/common";
 import { ExtractGrpc } from "@api/contracts";
+import type { Id, PaginationOptions } from "@lib/common";
 import {
     type DuplicateProjectDto,
     DuplicateProjectDtoZodSchema,
@@ -14,15 +15,16 @@ import {
     UpdateProjectDtoZodSchema
 } from "@lib/projects";
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
-import type { Id, PaginationOptions } from "@lib/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
 import { Authorized } from "src/auth/lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { ProjectsService } from "./projects.service";
+import { ProjectsControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("projects")
 @ExtractGrpc()
 @Authorization()
+@ProjectsControllerApiType()
 export class ProjectsController {
     public constructor(@Inject(ProjectsService) private projectsService: ProjectsService) {}
 
@@ -32,7 +34,7 @@ export class ProjectsController {
         return await this.projectsService.duplicate(payload, dto);
     }
 
-    @Get("/all")
+    @Get("all")
     @HttpCode(HttpStatus.OK)
     public findAll(@Authorized() payload: TokenPayload, @QueryValidation(FindAllProjectsQueryZodSchema) query: FindAllProjectsQuery) {
         const filters: ProjectFilters = {
@@ -49,7 +51,7 @@ export class ProjectsController {
         return this.projectsService.findAll(payload.id, filters, pagination);
     }
 
-    @Get("/one")
+    @Get("one")
     @HttpCode(HttpStatus.OK)
     public findOne(@Authorized() payload: TokenPayload, @Validation(FindOneProjectDtoZodSchema) dto: FindOneProjectDto) {
         return this.projectsService.findOne(payload.id, dto);

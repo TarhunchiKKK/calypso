@@ -1,0 +1,35 @@
+{
+    "name": "@api/client",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "types": "./dist/entry.d.ts",
+            "import": "./dist/entry.js",
+            "require": "./dist/entry.js"
+        }
+    },
+    "main": "./dist/entry.js",
+    "types": "./dist/entry.d.ts",
+    "files": ["./dist/**"],
+    "scripts": {
+        "build": "tsc -b -v",
+        "type-check": "tsc --noEmit",
+        "generate:json": "openapi-typescript ./swagger/swagger.json -o ./src/client.ts",
+        "generate:yaml": "openapi-typescript ./swagger/swagger.yaml -o ./src/client.ts"
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "*",
+        "@types/node": "^22.10.7",
+        "openapi-typescript": "^7.13.0",
+        "rxjs": "^7.8.2",
+        "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "rxjs": "^7.8.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

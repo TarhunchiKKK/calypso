@@ -71,8 +71,6 @@
         "vitest": "^4.0.18"
     },
     "msw": {
-        "workerDirectory": [
-            "public"
-        ]
+        "workerDirectory": ["public"]
     }
 }

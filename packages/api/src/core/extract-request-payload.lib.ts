@@ -1,5 +1,6 @@
 import type { ExecutionContext } from "@nestjs/common";
 
+// biome-ignore lint/suspicious/noExplicitAny: `any` type is necessary for assignability to any type
 export function extractContextPayload<T = any>(context: ExecutionContext): T {
     const type = context.getType();
 

@@ -12,14 +12,12 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": [
-        "./dist/**"
-    ],
+    "files": ["./dist/**"],
     "scripts": {
         "build": "tsc -b -v",
         "fix": "bun run ./scripts/fix-protoc.script.ts",
-        "protoc:unix": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
-        "protoc:win": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto.exe --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
+        "generate:unix": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
+        "generate:win": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto.exe --ts_proto_out=./src/generated --proto_path=proto --proto_path=./node_modules/google-proto-files proto/**/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=outputJsonMethods=false --ts_proto_opt=useOptionals=none; bun run ./scripts/fix-protoc.script.ts",
         "type-check": "tsc --noEmit"
     },
     "dependencies": {

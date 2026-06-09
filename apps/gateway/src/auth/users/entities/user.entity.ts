@@ -17,5 +17,5 @@ export class User implements Profile {
     public password: string;
 
     @Column({ nullable: true, default: null })
-    public avatar: string;
+    public avatar?: string;
 }
