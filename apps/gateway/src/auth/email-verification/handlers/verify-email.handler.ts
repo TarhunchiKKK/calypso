@@ -6,10 +6,12 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/auth/users/entities/user.entity";
 import type { Repository } from "typeorm";
 import type { EmailVerificationTokenPayload } from "../dto/email-verification-token.payload";
-import type { VerifyEmailDto } from "../dto/verify-email.dto";
 
 export class VerifyEmailCommand extends Command<void> {
-    public constructor(public dto: VerifyEmailDto) {
+    public constructor(
+        public userId: Id,
+        public token: string
+    ) {
         super();
     }
 }
@@ -21,16 +23,16 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
         @Inject(JwtService) private readonly jwtService: JwtService
     ) {}
 
-    public async execute({ dto }: VerifyEmailCommand) {
-        this.verifyToken(dto);
+    public async execute({ userId, token }: VerifyEmailCommand) {
+        this.verifyToken(userId, token);
 
-        await this.updateUser(dto.userId);
+        await this.updateUser(userId);
     }
 
-    private verifyToken(dto: VerifyEmailDto) {
-        const { userId } = this.jwtService.verify<EmailVerificationTokenPayload>(dto.token);
+    private verifyToken(userId: Id, token: string) {
+        const payload = this.jwtService.verify<EmailVerificationTokenPayload>(token);
 
-        if (userId !== dto.userId) {
+        if (userId !== payload.userId) {
             throw new UnauthorizedException("Incorrect email verification token payload");
         }
     }

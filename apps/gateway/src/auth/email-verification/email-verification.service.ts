@@ -13,6 +13,6 @@ export class EmailVerificationService {
     }
 
     public async verify(userId: Id, token: string) {
-        await this.commandBus.execute(new VerifyEmailCommand({ userId, token }));
+        await this.commandBus.execute(new VerifyEmailCommand(userId, token));
     }
 }

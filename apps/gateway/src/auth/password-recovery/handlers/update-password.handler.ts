@@ -6,10 +6,13 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/auth/users/entities/user.entity";
 import type { Repository } from "typeorm";
 import type { PasswordRecoveryTokenPayload } from "../dto/password-recovery-token.payload";
-import type { UpdatePasswordDto } from "../dto/update-password.dto";
 
 export class UpdatePasswordCommand extends Command<void> {
-    public constructor(public dto: UpdatePasswordDto) {
+    public constructor(
+        public userId: Id,
+        public password: string,
+        public token: string
+    ) {
         super();
     }
 }
@@ -21,10 +24,10 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
         @Inject(JwtService) private readonly jwtService: JwtService
     ) {}
 
-    public async execute({ dto }: UpdatePasswordCommand) {
-        this.verifyToken(dto.userId, dto.token);
+    public async execute({ userId, password, token }: UpdatePasswordCommand) {
+        this.verifyToken(userId, token);
 
-        await this.updatePassword(dto.userId, dto.password);
+        await this.updatePassword(userId, password);
     }
 
     private verifyToken(userId: Id, token: string) {
