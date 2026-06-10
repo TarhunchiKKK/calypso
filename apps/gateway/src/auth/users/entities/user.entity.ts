@@ -13,6 +13,9 @@ export class User implements Profile {
     @Column()
     public email: string;
 
+    @Column({ default: false })
+    public emailVerified: boolean;
+
     @Column()
     public password: string;
 
