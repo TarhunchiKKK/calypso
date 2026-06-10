@@ -6,5 +6,6 @@ export const MailsWorkerKeys = {
     MAIL_PORT: "MAIL_PORT",
     MAIL_LOGIN: "MAIL_LOGIN",
     MAIL_PASSWORD: "MAIL_PASSWORD",
-    MAIL_FROM: "MAIL_FROM"
+    MAIL_FROM: "MAIL_FROM",
+    MAIL_KEY: "MAIL_KEY"
 };
