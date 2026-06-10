@@ -41,6 +41,8 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
         if (token !== storedToken) {
             throw new UnauthorizedException("Incorrect token");
         }
+
+        await this.cacheService.remove(key);
     }
 
     private async updateUser(userId: Id) {

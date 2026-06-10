@@ -42,6 +42,8 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
         if (token !== storedToken) {
             throw new UnauthorizedException("Incorrect token");
         }
+
+        await this.cacheService.remove(key);
     }
 
     private async updatePassword(userId: Id, password: string) {
