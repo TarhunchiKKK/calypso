@@ -12,6 +12,7 @@ import { UsersModule } from "./auth/users/users.module";
 import { BoardsModule } from "./boards/boards.module";
 import { MediaModule } from "./media/media.module";
 import { ProjectsModule } from "./projects/projects.module";
+import { EmailVerificationModule } from './auth/email-verification/email-verification.module';
 
 @Module({
     imports: [
@@ -29,7 +30,8 @@ import { ProjectsModule } from "./projects/projects.module";
         CookieModule,
         MediaModule,
         TokensModule,
-        UsersModule
+        UsersModule,
+        EmailVerificationModule
     ]
 })
 export class AppModule {}
