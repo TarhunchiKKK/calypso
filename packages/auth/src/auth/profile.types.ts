@@ -1,5 +1,5 @@
-import z from "zod";
 import { IdZodSchema } from "@lib/common";
+import z from "zod";
 
 export const ProfileZodSchema = z.object({
     id: IdZodSchema,
