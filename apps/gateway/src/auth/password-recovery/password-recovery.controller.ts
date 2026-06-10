@@ -5,9 +5,11 @@ import { Authorization } from "../lib/tokens/security/authorization.decorator";
 import { Authorized } from "../lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "../lib/tokens/types";
 import type { PasswordRecoveryService } from "./password-recovery.service";
+import { PasswordRecoveryControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("password-recovery")
 @Authorization()
+@PasswordRecoveryControllerApiType()
 export class PasswordRecoveryController {
     public constructor(private readonly passwordRecoveryService: PasswordRecoveryService) {}
 
