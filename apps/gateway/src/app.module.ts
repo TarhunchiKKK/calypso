@@ -1,3 +1,4 @@
+import { cacheConfigFactory } from "@api/cache";
 import { typeormConfigFactory } from "@api/common";
 import { CommonBrokerOptions } from "@contracts/broker";
 import { HttpModule } from "@nestjs/axios";
@@ -6,14 +7,13 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { CacheModule } from "../../../packages/cache/dist/cache.module";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { EmailVerificationModule } from "./auth/email-verification/email-verification.module";
-import { CookieModule } from "./auth/lib/cookie/cookie.module";
-import { TokensModule } from "./auth/lib/tokens/tokens.module";
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
 import { User } from "./auth/users/entities/user.entity";
 import { UsersModule } from "./auth/users/users.module";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/di/broker.constants";
+import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/di/broker.di";
 import { BoardsModule } from "./services/boards/boards.module";
 import { MediaModule } from "./services/media/media.module";
 import { ProjectsModule } from "./services/projects/projects.module";
@@ -26,6 +26,11 @@ import { ProjectsModule } from "./services/projects/projects.module";
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: typeormConfigFactory([User])
+        }),
+        CacheModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: cacheConfigFactory
         }),
         ClientsModule.registerAsync({
             isGlobal: true,
@@ -46,13 +51,12 @@ import { ProjectsModule } from "./services/projects/projects.module";
                 }
             ]
         }),
+        // REMOVE
         HttpModule,
         ProjectsModule,
         BoardsModule,
         BasicAuthModule,
-        CookieModule,
         MediaModule,
-        TokensModule,
         UsersModule,
         EmailVerificationModule,
         PasswordRecoveryModule
