@@ -15,9 +15,9 @@
     "files": ["./dist/**"],
     "scripts": {
         "build": "tsc -b -v",
-        "type-check": "tsc --noEmit",
         "generate:json": "openapi-typescript ./swagger/swagger.json -o ./src/client.ts",
-        "generate:yaml": "openapi-typescript ./swagger/swagger.yaml -o ./src/client.ts"
+        "generate:yaml": "openapi-typescript ./swagger/swagger.yaml -o ./src/client.ts",
+        "type-check": "tsc --noEmit"
     },
     "devDependencies": {
         "@repo/typescript-config": "*",
