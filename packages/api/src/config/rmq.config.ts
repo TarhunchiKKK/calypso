@@ -1,7 +1,7 @@
 import type { ConfigService } from "@nestjs/config";
 import { type ClientProvider, type MicroserviceOptions, Transport } from "@nestjs/microservices";
 
-const CommonBrokerOptions = {
+export const CommonBrokerOptions = {
     queueOptions: {
         durable: true
     },
