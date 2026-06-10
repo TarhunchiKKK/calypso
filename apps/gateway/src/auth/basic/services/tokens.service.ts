@@ -3,7 +3,7 @@ import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import type ms from "ms";
-import type { TokenPayload } from "./types";
+import type { TokenPayload } from "../lib/tokens.types";
 
 @Injectable()
 export class TokensService {

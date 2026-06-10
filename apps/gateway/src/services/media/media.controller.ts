@@ -2,7 +2,7 @@ import { QueryValidation } from "@api/common";
 import { ExtractGrpc } from "@contracts/grpc";
 import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@lib/media";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Param } from "@nestjs/common";
-import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";
+import { Authorization } from "src/auth/basic/security/authorization.decorator";
 import { MediaService } from "./media.service";
 import { MediaControllerApiType } from "./swagger/controller.swagger";
 

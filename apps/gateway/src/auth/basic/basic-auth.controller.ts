@@ -2,11 +2,11 @@ import { Validation } from "@api/common";
 import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@lib/auth";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import type { Request, Response } from "express";
-import { CookieService } from "../lib/cookie/cookie.service";
-import { Authorization } from "../lib/tokens/security/authorization.decorator";
-import { Authorized } from "../lib/tokens/security/authorized.decorator";
-import type { TokenPayload } from "../lib/tokens/types";
-import { BasicAuthService } from "./basic-auth.service";
+import type { TokenPayload } from "./lib/tokens.types";
+import { Authorization } from "./security/authorization.decorator";
+import { Authorized } from "./security/authorized.decorator";
+import { BasicAuthService } from "./services/basic-auth.service";
+import { CookieService } from "./services/cookie.service";
 import { BasicAuthControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("auth/basic")

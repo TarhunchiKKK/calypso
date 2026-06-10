@@ -2,7 +2,7 @@ import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import type { Request, Response } from "express";
 import ms, { type StringValue } from "ms";
-import type { CookieFields, TokenType } from "./cookie.types";
+import type { CookieFields, TokenType } from "../lib/cookie.types";
 
 @Injectable()
 export class CookieService {

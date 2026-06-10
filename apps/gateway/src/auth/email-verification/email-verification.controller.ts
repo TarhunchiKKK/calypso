@@ -1,7 +1,7 @@
 import { Controller, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
-import { Authorization } from "../lib/tokens/security/authorization.decorator";
-import { Authorized } from "../lib/tokens/security/authorized.decorator";
-import type { TokenPayload } from "../lib/tokens/types";
+import type { TokenPayload } from "../basic/lib/tokens.types";
+import { Authorization } from "../basic/security/authorization.decorator";
+import { Authorized } from "../basic/security/authorized.decorator";
 import type { EmailVerificationService } from "./email-verification.service";
 import { EmailVerificationControllerApiTypes } from "./swagger/controller.swagger";
 

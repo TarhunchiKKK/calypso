@@ -3,8 +3,8 @@ import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import type { Request } from "express";
 import { Strategy } from "passport-jwt";
-import type { CookieFields } from "../../cookie/cookie.types";
-import type { TokenPayload } from "../types";
+import type { CookieFields } from "../lib/cookie.types";
+import type { TokenPayload } from "../lib/tokens.types";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

@@ -1,9 +1,9 @@
 import type { SignInDto, SignUpDto } from "@lib/auth";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { RefreshSessionQuery } from "./handlers/refresh-session.handler";
-import { SignInCommand } from "./handlers/sign-in.handler";
-import { SignUpCommand } from "./handlers/sign-up.handler";
+import { RefreshSessionQuery } from "../handlers/refresh-session.handler";
+import { SignInCommand } from "../handlers/sign-in.handler";
+import { SignUpCommand } from "../handlers/sign-up.handler";
 
 @Injectable()
 export class BasicAuthService {
