@@ -10,6 +10,7 @@ import type ms from "ms";
 import { User } from "src/auth/users/entities/user.entity";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/broker/rmq.constants";
 import type { Repository } from "typeorm";
+import type { EmailVerificationTokenPayload } from "../dto/email-verification-token.payload";
 
 export class SendEmailVerificationCommand extends Command<void> {
     public constructor(public userId: Id) {
@@ -33,7 +34,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public async execute({ userId }: SendEmailVerificationCommand) {
         const user = await this.checkVerification(userId);
 
-        const token = this.jwtService.sign({ id: userId }, { expiresIn: this.tokenExpiration });
+        const token = this.jwtService.sign<EmailVerificationTokenPayload>({ userId }, { expiresIn: this.tokenExpiration });
 
         this.rmqClient.emit(AuthBrokerContracts.emailVerification.pattern, AuthBrokerContracts.emailVerification.payload({ user, token }));
     }

@@ -1,6 +1,6 @@
 import { createControllerSwaggerDecorator } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { SwaggerTags } from "src/swagger/swagger.constants";
+import { SwaggerTags } from "src/lib/swagger/swagger.constants";
 import { CreateBoardDtoApiType, CreateBoardResponseApiType, UpdateBoardDtoApiType } from "./dtos.swagger";
 
 export const BoardsControllerApiType = createControllerSwaggerDecorator({

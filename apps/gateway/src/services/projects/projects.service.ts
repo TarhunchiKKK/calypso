@@ -16,7 +16,7 @@ import { ConflictException, Inject, Injectable } from "@nestjs/common";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";
-import { BoardsService } from "src/boards/boards/boards.service";
+import { BoardsService } from "src/services/boards/boards/boards.service";
 
 @Injectable()
 export class ProjectsService {

@@ -1,7 +1,7 @@
 import { createControllerSwaggerDecorator } from "@api/common";
 import type { MediaDomains } from "@lib/media";
 import { HttpStatus } from "@nestjs/common";
-import { SwaggerTags } from "src/swagger/swagger.constants";
+import { SwaggerTags } from "src/lib/swagger/swagger.constants";
 import { FindPresentDtoApiType, GetPresignedUrlDtoApiType } from "./dtos.swagger";
 import { MediaApiType } from "./entities.swagger";
 

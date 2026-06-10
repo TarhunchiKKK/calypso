@@ -3,7 +3,7 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import cookieParser from "cookie-parser";
 import { AppModule } from "./app.module";
-import { setupSwagger } from "./swagger/swagger.setup";
+import { setupSwagger } from "./lib/swagger/swagger.setup";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);

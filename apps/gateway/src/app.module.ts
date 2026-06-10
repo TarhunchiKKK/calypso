@@ -12,10 +12,10 @@ import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { TokensModule } from "./auth/lib/tokens/tokens.module";
 import { User } from "./auth/users/entities/user.entity";
 import { UsersModule } from "./auth/users/users.module";
-import { BoardsModule } from "./boards/boards.module";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/broker/rmq.constants";
-import { MediaModule } from "./media/media.module";
-import { ProjectsModule } from "./projects/projects.module";
+import { BoardsModule } from "./services/boards/boards.module";
+import { MediaModule } from "./services/media/media.module";
+import { ProjectsModule } from "./services/projects/projects.module";
 
 @Module({
     imports: [
