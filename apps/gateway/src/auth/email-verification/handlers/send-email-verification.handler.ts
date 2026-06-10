@@ -1,16 +1,14 @@
+import { CacheService } from "@api/cache";
 import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
 import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { JwtService } from "@nestjs/jwt";
 import type { ClientProxy } from "@nestjs/microservices";
 import { InjectRepository } from "@nestjs/typeorm";
-import type ms from "ms";
 import { User } from "src/auth/users/entities/user.entity";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import type { Repository } from "typeorm";
-import type { EmailVerificationTokenPayload } from "../dto/email-verification-token.payload";
+import { EmailVerificationCacheKeys, EmailVerificationCacheTtls } from "../lib/cache.lib";
 
 export class SendEmailVerificationCommand extends Command<void> {
     public constructor(public userId: Id) {
@@ -20,21 +18,18 @@ export class SendEmailVerificationCommand extends Command<void> {
 
 @CommandHandler(SendEmailVerificationCommand)
 export class SendEmailVerificationCommandHandler implements ICommandHandler<SendEmailVerificationCommand> {
-    private readonly tokenExpiration: ms.StringValue;
-
     public constructor(
         @InjectRepository(User) private readonly usersRepository: Repository<User>,
-        @Inject(JwtService) private readonly jwtService: JwtService,
-        @Inject(ConfigService) private readonly configService: ConfigService,
+        @Inject(CacheService) private readonly cacheService: CacheService,
         @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
-    ) {
-        this.tokenExpiration = this.configService.getOrThrow<ms.StringValue>("EMAIL_VERIFICATION_TOKEN_EXPIRATION");
-    }
+    ) {}
 
     public async execute({ userId }: SendEmailVerificationCommand) {
         const user = await this.checkVerification(userId);
 
-        const token = this.jwtService.sign<EmailVerificationTokenPayload>({ userId }, { expiresIn: this.tokenExpiration });
+        const token = crypto.randomUUID();
+
+        this.cacheService.set(EmailVerificationCacheKeys.byUser(userId), token, EmailVerificationCacheTtls.byUser);
 
         this.rmqClient.emit(AuthBrokerContracts.emailVerification.pattern, AuthBrokerContracts.emailVerification.payload({ user, token }));
     }

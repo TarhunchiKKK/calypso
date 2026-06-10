@@ -12,7 +12,7 @@ import {
 } from "@contracts/grpc";
 import type { AnyNode } from "@lib/boards";
 import { Inject } from "@nestjs/common";
-import { NodesCacheKeys, NodesCacheTtls } from "src/lib/cache.lib";
+import { NodesCacheKeys, NodesCacheTtls } from "src/nodes/lib/cache.lib";
 import { NodesService } from "../nodes.service";
 
 @GrpcController()
