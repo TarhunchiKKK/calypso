@@ -1,0 +1,10 @@
+export const MailsWorkerKeys = {
+    MAILS_WORKER_RMQ_QUEUE: "RMQ_QUEUE",
+
+    // Mailer
+    MAIL_HOST: "MAIL_HOST",
+    MAIL_PORT: "MAIL_PORT",
+    MAIL_LOGIN: "MAIL_LOGIN",
+    MAIL_PASSWORD: "MAIL_PASSWORD",
+    MAIL_FROM: "MAIL_FROM"
+};

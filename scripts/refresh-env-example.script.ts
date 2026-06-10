@@ -5,7 +5,7 @@ const rootDir = process.cwd();
 const source = ".env";
 const destination = ".env.example";
 
-const exclude: string[] = [];
+const exclude: string[] = ["MAIL_HOST", "MAIL_PORT", "MAIL_LOGIN", "MAIL_PASSWORD"];
 
 const content = fs.readFileSync(path.join(rootDir, source), "utf-8");
 let result = "";
@@ -23,7 +23,7 @@ for (const line of content.split("\n")) {
     }
 
     if (exclude.includes(key)) {
-        result += `${key}\n`;
+        result += `${key}=\n`;
     } else {
         result += `${key}=${value}\n`;
     }

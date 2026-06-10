@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { BoardsServiceKeys } from "./boards.constants.js";
 import { GatewayKeys } from "./gateway.constants.js";
+import { MailsWorkerKeys } from "./mails.constants.js";
 import { MediaServiceKeys } from "./media.constants.js";
 import { WebKeys } from "./web.constants.js";
 
@@ -20,6 +21,10 @@ const destinations = [
     {
         path: path.join(rootDir, "apps/media/.env"),
         keys: MediaServiceKeys
+    },
+    {
+        path: path.join(rootDir, "apps/mails/.env"),
+        keys: MailsWorkerKeys
     },
     {
         path: path.join(rootDir, "apps/web/.env"),

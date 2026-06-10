@@ -16,11 +16,13 @@
     },
     "dependencies": {
         "@api/common": "*",
+        "@contracts/broker": "*",
         "@nestjs-modules/mailer": "^2.3.6",
         "@nestjs/common": "^11.1.18",
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.11",
         "@nestjs/cqrs": "^11.0.3",
+        "@nestjs/mapped-types": "*",
         "@nestjs/microservices": "^11.1.19",
         "@nestjs/platform-express": "^11.1.11",
         "@react-email/components": "^1.0.12",
