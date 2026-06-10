@@ -10,7 +10,7 @@ import {
     type RemoveProjectGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
-} from "@api/contracts";
+} from "@contracts/grpc";
 import type { NoNullableFieldsDeep } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject } from "@nestjs/common";

@@ -1,5 +1,5 @@
-import { BoardsGrpcMapper } from "@api/contracts";
 import { BoardsBrokerContracts } from "@contracts/broker";
+import { BoardsGrpcMapper } from "@contracts/grpc";
 import type { Id, PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";

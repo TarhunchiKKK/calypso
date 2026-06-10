@@ -1,4 +1,4 @@
-import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@api/contracts";
+import { BOARDS_SERVICE_NAME, BoardsGrpcMapper, type BoardsServiceClient, extractGrpcResponsePipe } from "@contracts/grpc";
 import type { CreateBoardDto, UpdateBoardDto } from "@lib/boards";
 import type { Id, PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";

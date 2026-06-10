@@ -8,6 +8,9 @@ export class UserApiType implements User {
     @ApiProperty({ type: String, format: "email", description: "User email" })
     public email: string;
 
+    @ApiProperty({ type: Boolean, description: "User email verified flag" })
+    public emailVerified: boolean;
+
     @ApiProperty({ type: String, description: "user display name" })
     public username: string;
 

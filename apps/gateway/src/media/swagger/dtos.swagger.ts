@@ -1,4 +1,4 @@
-import type { PresignUrlPairGrpc } from "@api/contracts";
+import type { PresignUrlPairGrpc } from "@contracts/grpc";
 import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@lib/media";
 import { ApiProperty } from "@nestjs/swagger";
 

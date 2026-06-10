@@ -1,9 +1,9 @@
-import { rmqMicroserviceConfigFactory } from "@api/common";
+import { rmqMicroserviceConfigFactory } from "@contracts/broker";
+import { BOARD_NODES_PACKAGE_NAME, BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@contracts/grpc";
 import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { BOARD_NODES_PACKAGE_NAME, BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@api/contracts";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -15,7 +15,7 @@ async function bootstrap() {
         transport: Transport.GRPC,
         options: {
             package: BOARDS_PACKAGE_NAME,
-            protoPath: "node_modules/@api/contracts/proto/boards/boards.service.proto",
+            protoPath: "node_modules/@contracts/grpc/proto/boards/boards.service.proto",
             url: configService.getOrThrow<string>("BOARDS_GRPC_URL"),
             loader: GrpcLoaderOptions
         }
@@ -25,7 +25,7 @@ async function bootstrap() {
         transport: Transport.GRPC,
         options: {
             package: BOARD_NODES_PACKAGE_NAME,
-            protoPath: "node_modules/@api/contracts/proto/boards/nodes.service.proto",
+            protoPath: "node_modules/@contracts/grpc/proto/boards/nodes.service.proto",
             url: configService.getOrThrow<string>("BOARD_NODES__GRPC_URL"),
             loader: GrpcLoaderOptions
         }

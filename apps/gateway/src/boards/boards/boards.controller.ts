@@ -1,5 +1,5 @@
 import { Validation } from "@api/common";
-import { ExtractGrpc } from "@api/contracts";
+import { ExtractGrpc } from "@contracts/grpc";
 import { type CreateBoardDto, CreateBoardDtoZodSchema, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@lib/boards";
 import type { Id } from "@lib/common";
 import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";

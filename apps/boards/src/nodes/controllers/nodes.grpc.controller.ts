@@ -9,7 +9,7 @@ import {
     type RemoveManyBoardNodesGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateManyBoardNodesGrpcRequest
-} from "@api/contracts";
+} from "@contracts/grpc";
 import type { AnyNode } from "@lib/boards";
 import { Inject } from "@nestjs/common";
 import { NodesCacheKeys, NodesCacheTtls } from "src/lib/cache.lib";

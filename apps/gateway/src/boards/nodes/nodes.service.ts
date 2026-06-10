@@ -1,8 +1,8 @@
+import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@contracts/grpc";
 import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from "@lib/boards";
+import type { Id } from "@lib/common";
 import { Inject, Injectable, type OnModuleInit } from "@nestjs/common";
 import type { ClientGrpc } from "@nestjs/microservices";
-import type { Id } from "@lib/common";
-import { BOARD_NODES_SERVICE_NAME, BoardNodesGrpcMapper, type BoardNodesServiceClient, extractGrpcResponsePipe } from "@api/contracts";
 import { map } from "rxjs";
 import { BOARD_NODES_GRPC_CLIENT_INJECTION_TOKEN } from "../lib/grpc.constants";
 

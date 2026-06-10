@@ -1,5 +1,6 @@
-import { extractGrpcResponsePipe } from "@api/contracts";
+import { extractGrpcResponsePipe } from "@contracts/grpc";
 import type { Profile } from "@lib/auth";
+import { DebugException, type Id, type PaginationOptions } from "@lib/common";
 import type {
     DuplicateProjectDto,
     FindOneProjectDto,
@@ -12,7 +13,6 @@ import type {
     UpdateProjectDto
 } from "@lib/projects";
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
-import { DebugException, type Id, type PaginationOptions } from "@lib/common";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/lib/tokens/types";
 import { UsersService } from "src/auth/users/users.service";

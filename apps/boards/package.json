@@ -17,7 +17,7 @@
     "dependencies": {
         "@api/cache": "*",
         "@api/common": "*",
-        "@api/contracts": "*",
+        "@contracts/grpc": "*",
         "@contracts/broker":"*",
         "@grpc/grpc-js": "^1.14.3",
         "@lib/boards": "*",

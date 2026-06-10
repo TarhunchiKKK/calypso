@@ -1,5 +1,5 @@
 import { QueryValidation } from "@api/common";
-import { ExtractGrpc } from "@api/contracts";
+import { ExtractGrpc } from "@contracts/grpc";
 import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@lib/media";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Param } from "@nestjs/common";
 import { Authorization } from "src/auth/lib/tokens/security/authorization.decorator";

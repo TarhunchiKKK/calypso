@@ -7,7 +7,7 @@ import {
     type MediaServiceController,
     MediaServiceControllerMethods,
     type UnwrapGrpcResponse
-} from "@api/contracts";
+} from "@contracts/grpc";
 import type { FindPresetsDto, MediaDomains } from "@lib/media";
 import { Inject } from "@nestjs/common";
 import { MediaCacheKeys, MediaCacheTtls } from "./lib/cache.lib";

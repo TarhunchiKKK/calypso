@@ -1,4 +1,4 @@
-import { BrokerRoutingKeys } from "@api/common";
+import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
 import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
@@ -35,7 +35,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
 
         const token = this.jwtService.sign({ id: userId }, { expiresIn: this.tokenExpiration });
 
-        this.rmqClient.emit(BrokerRoutingKeys.mails.emailVerification, { user, token });
+        this.rmqClient.emit(AuthBrokerContracts.emailVerification.pattern, AuthBrokerContracts.emailVerification.payload({ user, token }));
     }
 
     private async checkVerification(userId: Id) {

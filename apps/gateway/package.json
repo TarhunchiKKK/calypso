@@ -16,7 +16,8 @@
     },
     "dependencies": {
         "@api/common": "*",
-        "@api/contracts": "*",
+        "@contracts/broker": "*",
+        "@contracts/grpc": "*",
         "@grpc/grpc-js": "^1.14.3",
         "@lib/auth": "*",
         "@lib/boards": "*",

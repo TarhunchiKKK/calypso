@@ -1,5 +1,5 @@
 import { Validation } from "@api/common";
-import { ExtractGrpc } from "@api/contracts";
+import { ExtractGrpc } from "@contracts/grpc";
 import {
     type CreateManyNodesDto,
     CreateManyNodesDtoZodSchema,

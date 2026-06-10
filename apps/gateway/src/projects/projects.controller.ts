@@ -1,5 +1,5 @@
 import { QueryValidation, Validation } from "@api/common";
-import { ExtractGrpc } from "@api/contracts";
+import { ExtractGrpc } from "@contracts/grpc";
 import type { Id, PaginationOptions } from "@lib/common";
 import {
     type DuplicateProjectDto,

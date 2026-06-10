@@ -1,4 +1,4 @@
-export const GrpcProtoRoot = "node_modules/@api/contracts/proto";
+export const GrpcProtoRoot = "node_modules/@contracts/grpc/proto";
 
 export const GrpcLoaderOptions = {
     keepCase: false,

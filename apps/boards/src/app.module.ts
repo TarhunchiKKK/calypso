@@ -1,5 +1,6 @@
 import { CacheModule, cacheConfigFactory } from "@api/cache";
-import { AccessRightsModule, mongooseConfigFactory, rmqClientConfigFactory, typeormConfigFactory } from "@api/common";
+import { AccessRightsModule, mongooseConfigFactory, typeormConfigFactory } from "@api/common";
+import { rmqClientConfigFactory } from "@contracts/broker";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
