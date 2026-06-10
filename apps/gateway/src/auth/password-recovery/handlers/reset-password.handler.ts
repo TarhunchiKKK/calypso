@@ -1,16 +1,14 @@
 import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
 import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { JwtService } from "@nestjs/jwt";
 import type { ClientProxy } from "@nestjs/microservices";
 import { InjectRepository } from "@nestjs/typeorm";
-import type ms from "ms";
 import { User } from "src/auth/users/entities/user.entity";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import type { Repository } from "typeorm";
-import type { PasswordRecoveryTokenPayload } from "../dto/password-recovery-token.payload";
+import { CacheService } from "@api/cache";
+import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
 export class ResetPasswordCommand extends Command<void> {
     public constructor(public userId: Id) {
@@ -20,21 +18,16 @@ export class ResetPasswordCommand extends Command<void> {
 
 @CommandHandler(ResetPasswordCommand)
 export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswordCommand> {
-    private readonly tokenExpiration: ms.StringValue;
-
     public constructor(
         @InjectRepository(User) private readonly usersRepository: Repository<User>,
-        @Inject(JwtService) private readonly jwtService: JwtService,
-        @Inject(ConfigService) private readonly configService: ConfigService,
+        @Inject(CacheService) private readonly cacheService: CacheService,
         @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
-    ) {
-        this.tokenExpiration = this.configService.getOrThrow<ms.StringValue>("PASSWORD_RECOVERY_TOKEN_EXPIRATION");
-    }
+    ) {}
 
     public async execute({ userId }: ResetPasswordCommand) {
         const user = await this.findUser(userId);
 
-        const token = this.jwtService.sign<PasswordRecoveryTokenPayload>({ userId }, { expiresIn: this.tokenExpiration });
+        const token = await this.saveToken(userId);
 
         this.rmqClient.emit(AuthBrokerContracts.resetPassword.pattern, AuthBrokerContracts.resetPassword.payload({ user, token }));
     }
@@ -56,5 +49,16 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
         }
 
         return user;
+    }
+
+    private async saveToken(userId: Id) {
+        const token = crypto.randomUUID();
+
+        const key = PasswordRecoveryCacheKeys.byUser(userId);
+        const ttl = PasswordRecoveryCacheTtls.byUser;
+
+        await this.cacheService.set(key, ttl);
+
+        return token;
     }
 }

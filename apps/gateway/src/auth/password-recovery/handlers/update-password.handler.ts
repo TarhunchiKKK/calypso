@@ -1,11 +1,11 @@
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/auth/users/entities/user.entity";
 import type { Repository } from "typeorm";
-import type { PasswordRecoveryTokenPayload } from "../dto/password-recovery-token.payload";
+import { CacheService } from "@api/cache";
+import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
 export class UpdatePasswordCommand extends Command<void> {
     public constructor(
@@ -21,20 +21,26 @@ export class UpdatePasswordCommand extends Command<void> {
 export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePasswordCommand> {
     public constructor(
         @InjectRepository(User) private readonly usersRepository: Repository<User>,
-        @Inject(JwtService) private readonly jwtService: JwtService
+        @Inject(CacheService) private readonly cacheService: CacheService
     ) {}
 
     public async execute({ userId, password, token }: UpdatePasswordCommand) {
-        this.verifyToken(userId, token);
+        await this.verifyToken(userId, token);
 
         await this.updatePassword(userId, password);
     }
 
-    private verifyToken(userId: Id, token: string) {
-        const payload = this.jwtService.verify<PasswordRecoveryTokenPayload>(token);
+    private async verifyToken(userId: Id, token: string) {
+        const key = PasswordRecoveryCacheKeys.byUser(userId);
 
-        if (userId !== payload.userId) {
-            throw new UnauthorizedException("Incorrect email verification token payload");
+        const storedToken = await this.cacheService.get<string>(key);
+
+        if (!storedToken) {
+            throw new NotFoundException("Token not found");
+        }
+
+        if (token !== storedToken) {
+            throw new UnauthorizedException("Incorrect token");
         }
     }
 

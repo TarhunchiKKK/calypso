@@ -18,8 +18,8 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-      "@api/common": "*",
-      "@lib/auth": "*"
+        "@api/common": "*",
+        "@lib/auth": "*"
     },
     "devDependencies": {
         "@lib/common": "*",

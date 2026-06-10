@@ -27,9 +27,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public async execute({ userId }: SendEmailVerificationCommand) {
         const user = await this.checkVerification(userId);
 
-        const token = crypto.randomUUID();
-
-        this.cacheService.set(EmailVerificationCacheKeys.byUser(userId), token, EmailVerificationCacheTtls.byUser);
+        const token = await this.saveToken(userId);
 
         this.rmqClient.emit(AuthBrokerContracts.emailVerification.pattern, AuthBrokerContracts.emailVerification.payload({ user, token }));
     }
@@ -51,5 +49,16 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
         }
 
         return user;
+    }
+
+    private async saveToken(userId: Id) {
+        const token = crypto.randomUUID();
+
+        const key = EmailVerificationCacheKeys.byUser(userId);
+        const ttl = EmailVerificationCacheTtls.byUser;
+
+        await this.cacheService.set(key, token, ttl);
+
+        return token;
     }
 }

@@ -1,11 +1,11 @@
+import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/auth/users/entities/user.entity";
 import type { Repository } from "typeorm";
-import type { EmailVerificationTokenPayload } from "../dto/email-verification-token.payload";
+import { EmailVerificationCacheKeys } from "../lib/cache.lib";
 
 export class VerifyEmailCommand extends Command<void> {
     public constructor(
@@ -20,20 +20,26 @@ export class VerifyEmailCommand extends Command<void> {
 export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCommand> {
     public constructor(
         @InjectRepository(User) private readonly usersRepository: Repository<User>,
-        @Inject(JwtService) private readonly jwtService: JwtService
+        @Inject(CacheService) private readonly cacheService: CacheService
     ) {}
 
     public async execute({ userId, token }: VerifyEmailCommand) {
-        this.verifyToken(userId, token);
+        await this.verifyToken(userId, token);
 
         await this.updateUser(userId);
     }
 
-    private verifyToken(userId: Id, token: string) {
-        const payload = this.jwtService.verify<EmailVerificationTokenPayload>(token);
+    private async verifyToken(userId: Id, token: string) {
+        const key = EmailVerificationCacheKeys.byUser(userId);
 
-        if (userId !== payload.userId) {
-            throw new UnauthorizedException("Incorrect email verification token payload");
+        const storedToken = await this.cacheService.get<string>(key);
+
+        if (!storedToken) {
+            throw new NotFoundException("Token not found");
+        }
+
+        if (token !== storedToken) {
+            throw new UnauthorizedException("Incorrect token");
         }
     }
 

@@ -18,7 +18,7 @@
         "@api/cache": "*",
         "@api/common": "*",
         "@contracts/grpc": "*",
-        "@contracts/broker":"*",
+        "@contracts/broker": "*",
         "@grpc/grpc-js": "^1.14.3",
         "@lib/boards": "*",
         "@lib/common": "*",
