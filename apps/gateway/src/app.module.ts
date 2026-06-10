@@ -16,6 +16,7 @@ import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/broker/rmq.constants";
 import { BoardsModule } from "./services/boards/boards.module";
 import { MediaModule } from "./services/media/media.module";
 import { ProjectsModule } from "./services/projects/projects.module";
+import { PasswordRecoveryModule } from './auth/password-recovery/password-recovery.module';
 
 @Module({
     imports: [
@@ -53,7 +54,8 @@ import { ProjectsModule } from "./services/projects/projects.module";
         MediaModule,
         TokensModule,
         UsersModule,
-        EmailVerificationModule
+        EmailVerificationModule,
+        PasswordRecoveryModule
     ]
 })
 export class AppModule {}
