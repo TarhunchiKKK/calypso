@@ -1,5 +1,5 @@
-import { BrokerRoutingKeys } from "@api/common";
 import { BoardsGrpcMapper } from "@api/contracts";
+import { BoardsBrokerContracts } from "@contracts/broker";
 import type { Id, PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";
@@ -58,7 +58,7 @@ export class BoardsService {
     public async remove(id: Id) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
-        this.rmqClient.emit(BrokerRoutingKeys.boards.boardRemoved, id);
+        this.rmqClient.emit(BoardsBrokerContracts.boardRemoved.pattern, BoardsBrokerContracts.boardRemoved.payload({ id }));
 
         return result;
     }
