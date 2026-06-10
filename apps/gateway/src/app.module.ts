@@ -10,13 +10,13 @@ import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { EmailVerificationModule } from "./auth/email-verification/email-verification.module";
 import { CookieModule } from "./auth/lib/cookie/cookie.module";
 import { TokensModule } from "./auth/lib/tokens/tokens.module";
+import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
 import { User } from "./auth/users/entities/user.entity";
 import { UsersModule } from "./auth/users/users.module";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/broker/rmq.constants";
+import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/di/broker.constants";
 import { BoardsModule } from "./services/boards/boards.module";
 import { MediaModule } from "./services/media/media.module";
 import { ProjectsModule } from "./services/projects/projects.module";
-import { PasswordRecoveryModule } from './auth/password-recovery/password-recovery.module';
 
 @Module({
     imports: [

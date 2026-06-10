@@ -5,7 +5,17 @@ export const SwaggerTags = {
         children: {
             basic: {
                 name: "Basic",
-                description: "",
+                description: undefined,
+                children: []
+            },
+            emailVerification: {
+                name: "Email Verification",
+                description: undefined,
+                children: []
+            },
+            passwordRecovery: {
+                name: "Password Recovery",
+                description: undefined,
                 children: []
             }
         }

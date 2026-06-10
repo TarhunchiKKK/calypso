@@ -8,7 +8,7 @@ import type { ClientProxy } from "@nestjs/microservices";
 import { InjectRepository } from "@nestjs/typeorm";
 import type ms from "ms";
 import { User } from "src/auth/users/entities/user.entity";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/broker/rmq.constants";
+import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.constants";
 import type { Repository } from "typeorm";
 import type { EmailVerificationTokenPayload } from "../dto/email-verification-token.payload";
 

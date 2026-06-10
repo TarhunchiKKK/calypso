@@ -1,6 +1,6 @@
 import type { Profile, SignInDto, SignUpDto } from "@lib/auth";
 import { PickType } from "@nestjs/swagger";
-import { UserApiType } from "./entities.swagger";
+import { UserApiType } from "../../users/swagger/entities.swagger";
 
 export class SignUpDtoApiType extends PickType(UserApiType, ["username", "email", "password"]) implements SignUpDto {}
 

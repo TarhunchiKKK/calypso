@@ -3,9 +3,11 @@ import { Authorization } from "../lib/tokens/security/authorization.decorator";
 import { Authorized } from "../lib/tokens/security/authorized.decorator";
 import type { TokenPayload } from "../lib/tokens/types";
 import type { EmailVerificationService } from "./email-verification.service";
+import { EmailVerificationControllerApiTypes } from "./swagger/controller.swagger";
 
 @Controller("email-verification")
 @Authorization()
+@EmailVerificationControllerApiTypes()
 export class EmailVerificationController {
     public constructor(private readonly emailVerificationService: EmailVerificationService) {}
 
