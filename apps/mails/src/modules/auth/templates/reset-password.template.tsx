@@ -4,12 +4,12 @@ import { AppHeading, AppSection, AppText, LinkButton, Template } from "src/share
 type Props = {
     baseUrl: string;
 
-    token: string
-}
+    token: string;
+};
 
-export function ResetPasswordTemplate({baseUrl,token}: Props){
-    const href = `${baseUrl}/account/password-recovery?token=${token}`
-    
+export function ResetPasswordTemplate({ baseUrl, token }: Props) {
+    const href = `${baseUrl}/account/password-recovery?token=${token}`;
+
     return (
         <Template preview="Password reset">
             <AppSection>
@@ -19,10 +19,8 @@ export function ResetPasswordTemplate({baseUrl,token}: Props){
 
                 <AppText>For new password creation go to link below:</AppText>
 
-                <LinkButton href={href}>
-                    Reset Password
-                </LinkButton>
+                <LinkButton href={href}>Reset Password</LinkButton>
             </AppSection>
         </Template>
-    ) 
+    );
 }

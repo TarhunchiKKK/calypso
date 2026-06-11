@@ -6,7 +6,7 @@ import type { PropsWithClassName } from "../lib/types";
 
 type Props = PropsWithClassName<React.PropsWithChildren>;
 
-export function AppSection({  children, className }: Props) {
+export function AppSection({ children, className }: Props) {
     return (
         <Section
             className={clsx("text-center mb-8", {

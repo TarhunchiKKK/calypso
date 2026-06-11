@@ -17,9 +17,7 @@ export function EmailVerificationTemplate({ baseUrl, token }: Props) {
 
                 <AppText>Thanks for sign up! To verify your email please go to this link:</AppText>
 
-                <LinkButton href={href}>
-                    Verify
-                </LinkButton>
+                <LinkButton href={href}>Verify</LinkButton>
             </AppSection>
         </Template>
     );

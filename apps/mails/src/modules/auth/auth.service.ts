@@ -8,11 +8,11 @@ import { SendResetPasswordCommand } from "./handlers/send-reset-password.handler
 export class AuthService {
     public constructor(@Inject(CommandBus) private readonly commandBus: CommandBus) {}
 
-    public async emailVerification(dto: EmailVerificationBrokerMessage) {
+    public async sendEmailVerification(dto: EmailVerificationBrokerMessage) {
         return await this.commandBus.execute(new SendEmailVerificationCommand(dto));
     }
 
-    public async resetPassword(dto: ResetPasswordBrokerMessage) {
+    public async sendResetPassword(dto: ResetPasswordBrokerMessage) {
         return await this.commandBus.execute(new SendResetPasswordCommand(dto));
     }
 }

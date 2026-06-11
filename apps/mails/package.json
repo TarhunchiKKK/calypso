@@ -17,6 +17,7 @@
     "dependencies": {
         "@api/common": "*",
         "@contracts/broker": "*",
+        "@lib/auth": "*",
         "@nestjs-modules/mailer": "^2.3.6",
         "@nestjs/common": "^11.1.18",
         "@nestjs/config": "^4.0.3",
