@@ -1,7 +1,7 @@
 import type { Profile } from "@lib/auth";
+import type { Id } from "@lib/common";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Id } from "@lib/common";
 import { In, type Repository } from "typeorm";
 import type { CreateUserDto } from "./dto/create-user.dto";
 import { User } from "./entities/user.entity";
@@ -42,6 +42,12 @@ export class UsersService {
                 avatar: true
             }
         });
+    }
+
+    public async update(user: User, data: Partial<User>) {
+        Object.assign(user, data);
+
+        await this.usersRepository.save(user);
     }
 
     public userToProfile(user: User): Profile {

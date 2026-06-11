@@ -39,6 +39,9 @@ export const GatewayKeys = {
     // Media Service
     MEDIA_SERVICE_GRPC_URL: "MEDIA_SERVICE_GRPC_URL",
 
+    // Mails Worker
+    MAILS_WORKER_RMQ_QUEUE: "MAILS_WORKER_RMQ_QUEUE",
+
     // RabbitMQ
     RMQ_URLS: "RMQ_URLS",
 

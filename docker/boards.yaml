@@ -1,34 +1,34 @@
 services:
-    boards-slq-db:
-        container_name: boards-slq-db
-        image: postgres:15.2
-        restart: always
-        environment:
-            - POSTGRES_DB=${BOARDS_SERVICE_SQL_DB_NAME}
-            - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
-            - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
-        ports:
-            - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
-        volumes:
-            - boards-sql-db-data:/var/lib/postgresql/data
+  boards-slq-db:
+    container_name: boards-slq-db
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_DB=${BOARDS_SERVICE_SQL_DB_NAME}
+      - POSTGRES_USER=${BOARDS_SERVICE_SQL_DB_USER}
+      - POSTGRES_PASSWORD=${BOARDS_SERVICE_SQL_DB_PASS}
+    ports:
+      - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
+    volumes:
+      - boards-sql-db-data:/var/lib/postgresql/data
 
-    boards-nosql-db:
-        container_name: boards-nosql-db
-        image: mongo:7.0
-        environment:
-            - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
-        ports:
-            - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
-    
-    boards-cache:
-        container_name: redis
-        image: redis:5.0
-        restart: always
-        ports:
-            - ${BOARDS_SERVICE_REDIS_PORT}:6379
-        volumes:
-            - boards-cache-data:/data
+  boards-nosql-db:
+    container_name: boards-nosql-db
+    image: mongo:7.0
+    environment:
+      - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
+    ports:
+      - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
+
+  boards-cache:
+    container_name: boards-cache
+    image: redis:5.0
+    restart: always
+    ports:
+      - ${BOARDS_SERVICE_REDIS_PORT}:6379
+    volumes:
+      - boards-cache-data:/data
 
 volumes:
-    boards-sql-db-data:
-    boards-cache-data:
+  boards-sql-db-data:
+  boards-cache-data:

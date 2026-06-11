@@ -1,5 +1,5 @@
 import type { ConfigService } from "@nestjs/config";
-import type { CacheModuleOptions } from "entry";
+import type { CacheModuleOptions } from "./di.lib";
 
 export function cacheConfigFactory(configService: ConfigService): CacheModuleOptions {
     return {

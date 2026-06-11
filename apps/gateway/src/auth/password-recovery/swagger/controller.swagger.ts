@@ -10,7 +10,7 @@ export const PasswordRecoveryControllerApiType = createControllerSwaggerDecorato
         {
             name: "reset",
             operation: {
-                summary: "send email with password recovery link"
+                summary: "Send email with password recovery link"
             },
             response: [
                 {

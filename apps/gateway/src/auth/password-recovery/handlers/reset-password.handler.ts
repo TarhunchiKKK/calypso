@@ -1,13 +1,11 @@
+import { CacheService } from "@api/cache";
 import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
 import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/auth/users/entities/user.entity";
+import { UsersService } from "src/auth/users/users.service";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
-import type { Repository } from "typeorm";
-import { CacheService } from "@api/cache";
 import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
 export class ResetPasswordCommand extends Command<void> {
@@ -19,7 +17,7 @@ export class ResetPasswordCommand extends Command<void> {
 @CommandHandler(ResetPasswordCommand)
 export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswordCommand> {
     public constructor(
-        @InjectRepository(User) private readonly usersRepository: Repository<User>,
+        @Inject(UsersService) private readonly usersService: UsersService,
         @Inject(CacheService) private readonly cacheService: CacheService,
         @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
@@ -33,12 +31,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
     }
 
     private async findUser(userId: Id) {
-        const user = await this.usersRepository.findOne({
-            where: {
-                id: userId
-            },
-            select: ["id", "email", "username"]
-        });
+        const user = await this.usersService.findOneById(userId);
 
         if (!user) {
             throw new NotFoundException("User not found");
@@ -48,7 +41,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
             throw new ConflictException("Email not verified");
         }
 
-        return user;
+        return this.usersService.userToProfile(user);
     }
 
     private async saveToken(userId: Id) {

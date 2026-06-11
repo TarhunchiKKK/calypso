@@ -1,6 +1,6 @@
 import type { ConfigService } from "@nestjs/config";
 import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { CommonBrokerOptions } from "entry";
+import { CommonBrokerOptions } from "./config.constants";
 
 export function rmqMicroserviceConfigFactory(configService: ConfigService): MicroserviceOptions {
     const urls = configService.getOrThrow<string>("RMQ_URLS").split(",");

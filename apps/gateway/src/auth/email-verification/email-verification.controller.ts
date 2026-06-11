@@ -1,15 +1,15 @@
-import { Controller, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
+import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { TokenPayload } from "../basic/lib/tokens.types";
 import { Authorization } from "../basic/security/authorization.decorator";
 import { Authorized } from "../basic/security/authorized.decorator";
-import type { EmailVerificationService } from "./email-verification.service";
+import { EmailVerificationService } from "./email-verification.service";
 import { EmailVerificationControllerApiTypes } from "./swagger/controller.swagger";
 
 @Controller("email-verification")
 @Authorization()
 @EmailVerificationControllerApiTypes()
 export class EmailVerificationController {
-    public constructor(private readonly emailVerificationService: EmailVerificationService) {}
+    public constructor(@Inject(EmailVerificationService) private readonly emailVerificationService: EmailVerificationService) {}
 
     @Post("send")
     @HttpCode(HttpStatus.OK)

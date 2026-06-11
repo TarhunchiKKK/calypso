@@ -2,9 +2,7 @@ import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/auth/users/entities/user.entity";
-import type { Repository } from "typeorm";
+import { UsersService } from "src/auth/users/users.service";
 import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
 export class UpdatePasswordCommand extends Command<void> {
@@ -20,7 +18,7 @@ export class UpdatePasswordCommand extends Command<void> {
 @CommandHandler(UpdatePasswordCommand)
 export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePasswordCommand> {
     public constructor(
-        @InjectRepository(User) private readonly usersRepository: Repository<User>,
+        @Inject(UsersService) private readonly usersService: UsersService,
         @Inject(CacheService) private readonly cacheService: CacheService
     ) {}
 
@@ -47,18 +45,14 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
     }
 
     private async updatePassword(userId: Id, password: string) {
-        const user = await this.usersRepository.findOne({
-            where: {
-                id: userId
-            }
-        });
+        const user = await this.usersService.findOneById(userId);
 
         if (!user) {
             throw new NotFoundException("User not found");
         }
 
-        user.password = password;
-
-        await this.usersRepository.save(user);
+        await this.usersService.update(user, {
+            password: password
+        });
     }
 }

@@ -1,17 +1,17 @@
 import { Validation } from "@api/common";
 import { type UpdatePasswordDto, UpdatePasswordDtoZodSchema } from "@lib/auth";
-import { Controller, HttpCode, HttpStatus, Param, Patch, Post } from "@nestjs/common";
+import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { TokenPayload } from "../basic/lib/tokens.types";
 import { Authorization } from "../basic/security/authorization.decorator";
 import { Authorized } from "../basic/security/authorized.decorator";
-import type { PasswordRecoveryService } from "./password-recovery.service";
+import { PasswordRecoveryService } from "./password-recovery.service";
 import { PasswordRecoveryControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("password-recovery")
 @Authorization()
 @PasswordRecoveryControllerApiType()
 export class PasswordRecoveryController {
-    public constructor(private readonly passwordRecoveryService: PasswordRecoveryService) {}
+    public constructor(@Inject(PasswordRecoveryService) private readonly passwordRecoveryService: PasswordRecoveryService) {}
 
     @Post("reset")
     @HttpCode(HttpStatus.OK)

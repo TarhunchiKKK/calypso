@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/complexity/noBannedTypes: `Function` type is necessary for class constructor typing */
-import { ApiCookieAuth, ApiOperation, ApiParam, ApiQuery, ApiTags } from "@nestjs/swagger";
+import { ApiCookieAuth, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 import type { ControllerMethodSwaggerOptions, ControllerSwaggerOptions } from "./types";
 
 export function applyMethodSwaggerInfo(constructorFn: Function, method: ControllerMethodSwaggerOptions) {
@@ -23,7 +23,7 @@ export function applyMethodSwaggerInfo(constructorFn: Function, method: Controll
 
     if (method.response) {
         method.response.forEach((response) => {
-            ApiOperation(response)(constructorFn.prototype[method.name], method.name, descriptor);
+            ApiResponse(response)(constructorFn.prototype[method.name], method.name, descriptor);
         });
     }
 
