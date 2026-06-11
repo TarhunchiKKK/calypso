@@ -1,10 +1,10 @@
+import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/auth/users/entities/user.entity";
 import type { Repository } from "typeorm";
-import { CacheService } from "@api/cache";
 import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
 export class UpdatePasswordCommand extends Command<void> {
