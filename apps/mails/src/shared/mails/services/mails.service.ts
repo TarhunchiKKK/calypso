@@ -15,9 +15,9 @@ export class MailsService implements IMailsService {
         this.from = this.configService.getOrThrow<string>("MAIL_FROM");
     }
 
-    public sendMail(dto: SendMailDto) {
+    public async sendMail(dto: SendMailDto) {
         try {
-            this.mailerService.sendMail({
+            await this.mailerService.sendMail({
                 from: this.from,
                 to: dto.to,
                 subject: dto.subject,

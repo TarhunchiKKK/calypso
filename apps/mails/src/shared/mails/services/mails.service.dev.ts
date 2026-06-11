@@ -19,7 +19,7 @@ export class MailsServiceDev implements IMailsService {
 
     public async sendMail(dto: SendMailDto) {
         try {
-            this.resend.emails.send({
+            await this.resend.emails.send({
                 from: this.from,
                 to: dto.to,
                 subject: dto.subject,
