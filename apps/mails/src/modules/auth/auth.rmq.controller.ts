@@ -11,7 +11,7 @@ import { EventPattern } from "@nestjs/microservices";
 import { AuthService } from "./auth.service";
 
 @Controller("auth")
-export class AuthController {
+export class AuthRmqController {
     public constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
     @EventPattern(AuthBrokerContracts.emailVerification.pattern)

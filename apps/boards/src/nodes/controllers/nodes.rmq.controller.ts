@@ -1,7 +1,7 @@
-import type { OnlyIdDto } from "@api/common";
-import { BoardsBrokerContracts } from "@contracts/broker";
+import { type OnlyIdDto, OnlyIdDtoZodSchema } from "@api/common";
+import { BoardsBrokerContracts, BrokerValidation } from "@contracts/broker";
 import { Controller, Inject } from "@nestjs/common";
-import { EventPattern, Payload } from "@nestjs/microservices";
+import { EventPattern } from "@nestjs/microservices";
 import { NodesService } from "../nodes.service";
 
 @Controller()
@@ -10,7 +10,7 @@ export class NodesRmqController {
 
     @EventPattern(BoardsBrokerContracts.boardRemoved.pattern)
     // @BrokerAcknowledgement({ requeue: true, loggerContext: NodesRmqController.name })
-    public async handleBoardRemoved(@Payload() payload: OnlyIdDto) {
+    public async handleBoardRemoved(@BrokerValidation(OnlyIdDtoZodSchema) payload: OnlyIdDto) {
         await this.nodesService.removeNodesByBoard(payload.id);
     }
 }
