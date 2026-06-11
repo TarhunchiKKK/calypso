@@ -1,26 +1,26 @@
 services:
-    media-slq-db:
-        container_name: media-slq-db
-        image: postgres:15.2
-        restart: always
-        environment:
-            - POSTGRES_DB=${MEDIA_SERVICE_SQL_DB_NAME}
-            - POSTGRES_USER=${MEDIA_SERVICE_SQL_DB_USER}
-            - POSTGRES_PASSWORD=${MEDIA_SERVICE_SQL_DB_PASS}
-        ports:
-            - ${MEDIA_SERVICE_SQL_DB_PORT}:5432
-        volumes:
-            - media-sql-db-data:/var/lib/postgresql/data
-        
-    media-cache:
-        container_name: redis
-        image: redis:5.0
-        restart: always
-        ports:
-            - ${MEDIA_SERVICE_REDIS_PORT}:6379
-        volumes:
-            - media-cache-data:/data
+  media-slq-db:
+    container_name: media-slq-db
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_DB=${MEDIA_SERVICE_SQL_DB_NAME}
+      - POSTGRES_USER=${MEDIA_SERVICE_SQL_DB_USER}
+      - POSTGRES_PASSWORD=${MEDIA_SERVICE_SQL_DB_PASS}
+    ports:
+      - ${MEDIA_SERVICE_SQL_DB_PORT}:5432
+    volumes:
+      - media-sql-db-data:/var/lib/postgresql/data
+
+  media-cache:
+    container_name: media-cache
+    image: redis:5.0
+    restart: always
+    ports:
+      - ${MEDIA_SERVICE_REDIS_PORT}:6379
+    volumes:
+      - media-cache-data:/data
 
 volumes:
-    media-sql-db-data:
-    media-cache-data:
+  media-sql-db-data:
+  media-cache-data:

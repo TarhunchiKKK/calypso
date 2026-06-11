@@ -1,4 +1,4 @@
-import type { FindAllProjectsGrpcRequest } from "@api/contracts";
+import type { FindAllProjectsGrpcRequest } from "@contracts/grpc";
 import type { Id } from "@lib/common";
 
 export const BoardsCacheKeys = {

@@ -1,8 +1,8 @@
 import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestInterceptor } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { CacheService } from "cache.service";
-import { CacheKey } from "metadata/cache-key.decorator";
-import { CacheTtl } from "metadata/cache-ttl.decorator";
+import { CacheService } from "../cache.service";
+import { CacheKey } from "../metadata/cache-key.decorator";
+import { CacheTtl } from "../metadata/cache-ttl.decorator";
 import { of, tap } from "rxjs";
 import { extractContextPayload } from "@api/common";
 

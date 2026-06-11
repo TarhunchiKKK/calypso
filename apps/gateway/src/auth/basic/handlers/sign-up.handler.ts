@@ -2,8 +2,8 @@ import type { AuthResponse, SignUpDto } from "@lib/auth";
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import * as argon2 from "argon2";
-import { TokensService } from "src/auth/lib/tokens/tokens.service";
-import { UsersService } from "src/auth/users/users.service";
+import { TokensService } from "src/auth/basic/services/tokens.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 
 export class SignUpCommand extends Command<AuthResponse> {
     public constructor(public dto: SignUpDto) {
@@ -14,7 +14,7 @@ export class SignUpCommand extends Command<AuthResponse> {
 @CommandHandler(SignUpCommand)
 export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(TokensService) private readonly tokensService: TokensService
     ) {}
 
@@ -26,13 +26,13 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
         const session = this.tokensService.sign(user);
 
         return {
-            user: this.usersService.userToProfile(user),
+            user: this.usersHelper.userToProfile(user),
             session
         };
     }
 
     private async verifyExistingUser(email: string) {
-        const existingUser = await this.usersService.findOneByEmail(email);
+        const existingUser = await this.usersHelper.findOneByEmail(email);
 
         if (existingUser) {
             throw new ConflictException("User with such email already exists");
@@ -42,7 +42,7 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
     private async createUser(dto: SignUpDto) {
         const hashedPassword = await argon2.hash(dto.password);
 
-        return await this.usersService.create({
+        return await this.usersHelper.create({
             ...dto,
             password: hashedPassword
         });

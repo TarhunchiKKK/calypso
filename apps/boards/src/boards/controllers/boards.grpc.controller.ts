@@ -10,11 +10,11 @@ import {
     type RemoveProjectGrpcRequest,
     type UnwrapGrpcResponse,
     type UpdateBoardGrpcRequest
-} from "@api/contracts";
+} from "@contracts/grpc";
 import type { NoNullableFieldsDeep } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject } from "@nestjs/common";
-import { NodesCacheKeys } from "src/lib/cache.lib";
+import { NodesCacheKeys } from "src/nodes/lib/cache.lib";
 import { BoardsService } from "../boards.service";
 import type { CreateBoardDto } from "../dto/create-board.dto";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";

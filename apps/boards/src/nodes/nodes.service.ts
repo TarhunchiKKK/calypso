@@ -1,8 +1,8 @@
-import { BrokerRoutingKeys } from "@api/common";
+import { BoardsBrokerContracts } from "@contracts/broker";
+import type { Id } from "@lib/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import type { Id } from "@lib/common";
 import { RMQ_CLIENT_INJECTION_TOKEN } from "src/lib/rmq.constants";
 import type { CreateManyNodesDto } from "./dto/create-many-nodes.dto";
 import type { RemoveManyNodesDto } from "./dto/remove-many-nodes.dto";
@@ -22,10 +22,10 @@ export class NodesService {
     ) {}
 
     public async createMany(dto: CreateManyNodesDto) {
-        await this.commandBus.execute(new CreateManyNodesCommand(dto));
-
         if (dto.nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+            await this.commandBus.execute(new CreateManyNodesCommand(dto));
+
+            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
         }
     }
 
@@ -34,17 +34,19 @@ export class NodesService {
     }
 
     public async updateMany(dto: UpdateManyNodesDto) {
-        await this.commandBus.execute(new UpdateManyNodesCommand(dto));
-
         if (dto.nodes.length !== 0) {
-            this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+            await this.commandBus.execute(new UpdateManyNodesCommand(dto));
+
+            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
         }
     }
 
     public async removeMany(dto: RemoveManyNodesDto) {
-        await this.commandBus.execute(new RemoveManyNodesCommand(dto));
+        if (dto.ids.length !== 0) {
+            await this.commandBus.execute(new RemoveManyNodesCommand(dto));
 
-        this.rmqClient.emit(BrokerRoutingKeys.boards.nodesChanged, dto.boardId);
+            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
+        }
     }
 
     public async removeNodesByBoard(boardId: Id) {

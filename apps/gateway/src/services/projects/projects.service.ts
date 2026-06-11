@@ -1,0 +1,105 @@
+import { extractGrpcResponsePipe } from "@contracts/grpc";
+import type { Profile } from "@lib/auth";
+import { DebugException, type Id, type PaginationOptions } from "@lib/common";
+import type {
+    DuplicateProjectDto,
+    FindOneProjectDto,
+    Project,
+    ProjectFilters,
+    ProjectTypes,
+    ProjectWithCreator,
+    ProjectWithType,
+    RemoveProjectDto,
+    UpdateProjectDto
+} from "@lib/projects";
+import { ConflictException, Inject, Injectable } from "@nestjs/common";
+import { firstValueFrom } from "rxjs";
+import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
+import { UsersHelper } from "src/auth/users/users.helper";
+import { BoardsService } from "src/services/boards/boards/boards.service";
+
+@Injectable()
+export class ProjectsService {
+    public constructor(
+        @Inject(BoardsService) private readonly boardsService: BoardsService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper
+    ) {}
+
+    private getService(type: ProjectTypes) {
+        switch (type) {
+            case "board":
+                return this.boardsService;
+            default:
+                throw new DebugException("Unknown project type");
+        }
+    }
+
+    public async duplicate(payload: TokenPayload, dto: DuplicateProjectDto) {
+        const service = this.getService(dto.type);
+
+        return service.client
+            .duplicate({
+                ...dto,
+                creatorId: payload.id
+            })
+            .pipe(extractGrpcResponsePipe());
+    }
+
+    public async findAll(userId: Id, filters: ProjectFilters, pagination: PaginationOptions): Promise<ProjectWithCreator<ProjectWithType>[]> {
+        const boards = await firstValueFrom(this.boardsService.findAll(userId, filters, pagination));
+
+        const creators = await this.getProjectsCreatorsMap(boards);
+
+        return boards.map((board) => {
+            const creator = creators.get(board.creatorId);
+
+            if (!creator) {
+                throw new ConflictException(`Creator for project with id=${board.id} not found`);
+            }
+
+            return { ...board, type: "board", creator };
+        });
+    }
+
+    private async getProjectsCreatorsMap(projects: Project[]) {
+        const uniqueCreatorIds = new Set(projects.map((projects) => projects.creatorId));
+
+        const creators = await this.usersHelper.findManyByIds(Array.from(uniqueCreatorIds));
+
+        const creatorsMap = new Map<Id, Profile>();
+
+        for (const creator of creators) {
+            creatorsMap.set(creator.id, creator);
+        }
+
+        return creatorsMap;
+    }
+
+    public findOne(userId: Id, dto: FindOneProjectDto) {
+        const service = this.getService(dto.type);
+
+        return service.client
+            .findOne({
+                id: dto.id,
+                userId: userId
+            })
+            .pipe(extractGrpcResponsePipe());
+    }
+
+    public update(projectId: Id, userId: Id, dto: UpdateProjectDto) {
+        const service = this.getService(dto.type);
+
+        return service.update(projectId, userId, dto).pipe(extractGrpcResponsePipe());
+    }
+
+    public remove(userId: Id, dto: RemoveProjectDto) {
+        const service = this.getService(dto.type);
+
+        return service.client
+            .remove({
+                id: dto.id,
+                userId: userId
+            })
+            .pipe(extractGrpcResponsePipe());
+    }
+}

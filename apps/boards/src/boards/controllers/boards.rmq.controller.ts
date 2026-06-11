@@ -1,20 +1,20 @@
-import { BrokerRoutingKeys } from "@api/common";
+import { type OnlyIdDto, OnlyIdDtoZodSchema } from "@api/common";
+import { BoardsBrokerContracts, BrokerValidation } from "@contracts/broker";
 import { Controller, Inject } from "@nestjs/common";
-import { EventPattern, Payload } from "@nestjs/microservices";
-import type { Id } from "@lib/common";
+import { EventPattern } from "@nestjs/microservices";
 import { BoardsService } from "../boards.service";
 
 @Controller()
 export class BoardsRmqController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 
-    @EventPattern(BrokerRoutingKeys.boards.nodesChanged)
-    public async handleNodesChanged(@Payload() boardId: Id) {
-        await this.boardsService.changeBoardUpdateDate(boardId);
+    @EventPattern(BoardsBrokerContracts.nodesChanged.pattern)
+    public async handleNodesChanged(@BrokerValidation(OnlyIdDtoZodSchema) payload: OnlyIdDto) {
+        await this.boardsService.changeBoardUpdateDate(payload.id);
     }
 
-    @EventPattern(BrokerRoutingKeys.boards.boardRemoved)
-    public async handleBoardRemoved(@Payload() boardId: Id) {
-        await this.boardsService.removeBoardAccessRights(boardId);
+    @EventPattern(BoardsBrokerContracts.boardRemoved.pattern)
+    public async handleBoardRemoved(@BrokerValidation(OnlyIdDtoZodSchema) payload: OnlyIdDto) {
+        await this.boardsService.removeBoardAccessRights(payload.id);
     }
 }

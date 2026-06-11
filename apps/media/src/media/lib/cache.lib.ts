@@ -1,4 +1,4 @@
-import type { FindMediaPresetsGrpcRequest } from "@api/contracts";
+import type { FindMediaPresetsGrpcRequest } from "@contracts/grpc";
 import type { MediaDomains } from "@lib/media";
 
 export const MediaCacheKeys = {

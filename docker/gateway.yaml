@@ -1,16 +1,26 @@
 services:
-    gateway-slq-db:
-        container_name: gateway-slq-db
-        image: postgres:15.2
-        restart: always
-        environment:
-            - POSTGRES_DB=${GATEWAY_SERVICE_SQL_DB_NAME}
-            - POSTGRES_USER=${GATEWAY_SERVICE_SQL_DB_USER}
-            - POSTGRES_PASSWORD=${GATEWAY_SERVICE_SQL_DB_PASS}
-        ports:
-            - ${GATEWAY_SERVICE_SQL_DB_PORT}:5432
-        volumes:
-            - gateway-sql-db-data:/var/lib/postgresql/data
+  gateway-slq-db:
+    container_name: gateway-slq-db
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_DB=${GATEWAY_SERVICE_SQL_DB_NAME}
+      - POSTGRES_USER=${GATEWAY_SERVICE_SQL_DB_USER}
+      - POSTGRES_PASSWORD=${GATEWAY_SERVICE_SQL_DB_PASS}
+    ports:
+      - ${GATEWAY_SERVICE_SQL_DB_PORT}:5432
+    volumes:
+      - gateway-sql-db-data:/var/lib/postgresql/data
+
+  gateway-cache:
+    container_name: gateway-cache
+    image: redis:5.0
+    restart: always
+    ports:
+      - ${GATEWAY_SERVICE_REDIS_PORT}:6379
+    volumes:
+      - gateway-cache-data:/data
 
 volumes:
-    gateway-sql-db-data:
+  gateway-sql-db-data:
+  gateway-cache-data:
