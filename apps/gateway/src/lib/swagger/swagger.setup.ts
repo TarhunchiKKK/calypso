@@ -13,6 +13,7 @@ export function setupSwagger(app: INestApplication) {
     builder.setVersion(configService.getOrThrow<string>("SWAGGER_VERSION"));
 
     builder.addTag(SwaggerTags.auth.name, SwaggerTags.auth.description, undefined, { kind: "group" });
+    builder.addTag(SwaggerTags.auth.children.users.name, SwaggerTags.auth.children.users.description, undefined, { parent: SwaggerTags.auth.name });
     builder.addTag(SwaggerTags.auth.children.basic.name, SwaggerTags.auth.children.basic.description, undefined, { parent: SwaggerTags.auth.name });
     builder.addTag(SwaggerTags.auth.children.emailVerification.name, SwaggerTags.auth.children.emailVerification.description, undefined, {
         parent: SwaggerTags.auth.children.basic.name

@@ -3,6 +3,11 @@ export const SwaggerTags = {
         name: "Auth",
         description: undefined,
         children: {
+            users: {
+                name: "Users",
+                description: undefined,
+                children: []
+            },
             basic: {
                 name: "Basic",
                 description: undefined,
