@@ -1,5 +1,6 @@
-export { HelpSection } from "./help-section.component";
-export { LinkButton } from "./link-button.component";
-export { MainSection } from "./main-section.component";
-export { SectionTitle } from "./section-title.component";
-export { Colors } from "./styles.constants";
+export { Colors } from "./lib/styles.constants";
+export { AppHeading } from "./ui/heading.component";
+export { LinkButton } from "./ui/link-button.component";
+export { AppSection } from "./ui/section.component";
+export { Template } from "./ui/template.component";
+export { AppText } from "./ui/text.component";

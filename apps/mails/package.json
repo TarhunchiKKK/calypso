@@ -29,6 +29,7 @@
         "@react-email/html": "^0.0.12",
         "amqp-connection-manager": "^5.0.0",
         "amqplib": "^1.0.3",
+        "clsx": "^2.1.1",
         "mime-types": "^3.0.2",
         "react": "^19.2.7",
         "react-dom": "^19.2.7",

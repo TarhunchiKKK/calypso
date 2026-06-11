@@ -1,8 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import type { ConfigService } from "@nestjs/config";
 import { Resend } from "resend";
-import { SendMailDto } from "../dto/send-mail.dto";
-import { IMailsService } from "../interfaces/mails.service.interface";
+import type { SendMailDto } from "../dto/send-mail.dto";
+import type { IMailsService } from "../interfaces/mails.service.interface";
 
 @Injectable()
 export class MailsServiceDev implements IMailsService {
