@@ -25,7 +25,7 @@
         "test:unit:web": "turbo run test:unit --filter=web",
         "format:check": "bunx biome format",
         "format:fix": "bunx biome format --write",
-        "format:packages": "sort-package-json \"apps/**/package.json\" \"packages/**/package.json\"",
+        "format:packages": "sort-package-json \"apps/**/package.json\" \"packages/**/package.json\" \"!/**/node_modules/**/package.json\"",
         "lint:check": "bunx --bun biome lint",
         "lint:fix": "bunx --bun biome lint --write",
         "knip": "knip",
