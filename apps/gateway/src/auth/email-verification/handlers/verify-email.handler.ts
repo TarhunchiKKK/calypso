@@ -2,7 +2,7 @@ import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 import { EmailVerificationCacheKeys } from "../lib/cache.lib";
 
 export class VerifyEmailCommand extends Command<void> {
@@ -17,7 +17,7 @@ export class VerifyEmailCommand extends Command<void> {
 @CommandHandler(VerifyEmailCommand)
 export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCommand> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService
     ) {}
 
@@ -44,13 +44,13 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
     }
 
     private async updateUser(userId: Id) {
-        const user = await this.usersService.findOneById(userId);
+        const user = await this.usersHelper.findOneById(userId);
 
         if (!user) {
             throw new NotFoundException("User not found");
         }
 
-        await this.usersService.update(user, {
+        await this.usersHelper.update(user, {
             emailVerified: true
         });
     }

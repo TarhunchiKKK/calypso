@@ -15,14 +15,14 @@ import type {
 import { ConflictException, Inject, Injectable } from "@nestjs/common";
 import { firstValueFrom } from "rxjs";
 import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 import { BoardsService } from "src/services/boards/boards/boards.service";
 
 @Injectable()
 export class ProjectsService {
     public constructor(
         @Inject(BoardsService) private readonly boardsService: BoardsService,
-        @Inject(UsersService) private readonly usersService: UsersService
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper
     ) {}
 
     private getService(type: ProjectTypes) {
@@ -64,7 +64,7 @@ export class ProjectsService {
     private async getProjectsCreatorsMap(projects: Project[]) {
         const uniqueCreatorIds = new Set(projects.map((projects) => projects.creatorId));
 
-        const creators = await this.usersService.findManyByIds(Array.from(uniqueCreatorIds));
+        const creators = await this.usersHelper.findManyByIds(Array.from(uniqueCreatorIds));
 
         const creatorsMap = new Map<Id, Profile>();
 

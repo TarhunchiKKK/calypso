@@ -2,7 +2,7 @@ import type { AuthResponse } from "@lib/auth";
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 
 export class RefreshSessionQuery extends Query<AuthResponse> {
     public constructor(public refreshToken: string) {
@@ -13,14 +13,14 @@ export class RefreshSessionQuery extends Query<AuthResponse> {
 @QueryHandler(RefreshSessionQuery)
 export class RefreshSessionQueryHandler implements IQueryHandler<RefreshSessionQuery> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(TokensService) private readonly tokensService: TokensService
     ) {}
 
     public async execute({ refreshToken }: RefreshSessionQuery) {
         const payload = this.tokensService.verify(refreshToken);
 
-        const user = await this.usersService.findOneById(payload.id);
+        const user = await this.usersHelper.findOneById(payload.id);
 
         if (!user) {
             throw new UnauthorizedException("profile not found");
@@ -29,7 +29,7 @@ export class RefreshSessionQueryHandler implements IQueryHandler<RefreshSessionQ
         const session = this.tokensService.sign(user);
 
         return {
-            user: this.usersService.userToProfile(user),
+            user: this.usersHelper.userToProfile(user),
             session
         };
     }

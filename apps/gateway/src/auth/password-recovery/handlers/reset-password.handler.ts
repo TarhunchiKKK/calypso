@@ -4,7 +4,7 @@ import type { Id } from "@lib/common";
 import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
@@ -17,7 +17,7 @@ export class ResetPasswordCommand extends Command<void> {
 @CommandHandler(ResetPasswordCommand)
 export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswordCommand> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
         @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
@@ -31,7 +31,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
     }
 
     private async findUser(userId: Id) {
-        const user = await this.usersService.findOneById(userId);
+        const user = await this.usersHelper.findOneById(userId);
 
         if (!user) {
             throw new NotFoundException("User not found");
@@ -41,7 +41,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
             throw new ConflictException("Email not verified");
         }
 
-        return this.usersService.userToProfile(user);
+        return this.usersHelper.userToProfile(user);
     }
 
     private async saveToken(userId: Id) {

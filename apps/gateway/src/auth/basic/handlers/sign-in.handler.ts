@@ -3,7 +3,7 @@ import { BadRequestException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import * as argon2 from "argon2";
 import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 
 export class SignInCommand extends Command<AuthResponse> {
     public constructor(public dto: SignInDto) {
@@ -14,12 +14,12 @@ export class SignInCommand extends Command<AuthResponse> {
 @CommandHandler(SignInCommand)
 export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(TokensService) private readonly tokensService: TokensService
     ) {}
 
     public async execute({ dto }: SignInCommand) {
-        const user = await this.usersService.findOneByEmail(dto.email);
+        const user = await this.usersHelper.findOneByEmail(dto.email);
 
         if (!user) {
             throw new NotFoundException("User not found");
@@ -34,7 +34,7 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
         const session = this.tokensService.sign(user);
 
         return {
-            user: this.usersService.userToProfile(user),
+            user: this.usersHelper.userToProfile(user),
             session
         };
     }

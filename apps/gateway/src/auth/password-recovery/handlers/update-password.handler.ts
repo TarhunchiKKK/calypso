@@ -2,7 +2,7 @@ import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { UsersService } from "src/auth/users/users.service";
+import { UsersHelper } from "src/auth/users/users.helper";
 import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
 export class UpdatePasswordCommand extends Command<void> {
@@ -18,7 +18,7 @@ export class UpdatePasswordCommand extends Command<void> {
 @CommandHandler(UpdatePasswordCommand)
 export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePasswordCommand> {
     public constructor(
-        @Inject(UsersService) private readonly usersService: UsersService,
+        @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService
     ) {}
 
@@ -45,13 +45,13 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
     }
 
     private async updatePassword(userId: Id, password: string) {
-        const user = await this.usersService.findOneById(userId);
+        const user = await this.usersHelper.findOneById(userId);
 
         if (!user) {
             throw new NotFoundException("User not found");
         }
 
-        await this.usersService.update(user, {
+        await this.usersHelper.update(user, {
             password: password
         });
     }
