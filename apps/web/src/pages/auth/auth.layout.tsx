@@ -1,11 +1,4 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/shared/ui/kit";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shared/ui/kit";
 
 type Props = {
     card: {
@@ -29,9 +22,7 @@ export function AuthLayout({ card, form }: Props) {
                 <CardContent>{form}</CardContent>
 
                 <CardFooter id="footer" className="flex justify-center mb-2">
-                    <p className="text-sm text-muted-foreground [&_a]:underline [&_a]:text-primary">
-                        {card.footerContent}
-                    </p>
+                    <p className="text-sm text-muted-foreground [&_a]:underline [&_a]:text-primary">{card.footerContent}</p>
                 </CardFooter>
             </Card>
         </main>

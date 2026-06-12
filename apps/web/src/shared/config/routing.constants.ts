@@ -7,6 +7,10 @@ export const Routes = {
         signUp: "/auth/sign-up",
         signIn: "/auth/sign-in"
     },
+    account: {
+        emailVerification: "/account/email-verification/:token",
+        passwordRecovery: "/account/password-recovery/:token"
+    },
     apps: {
         board: {
             pattern: "/board/:id",

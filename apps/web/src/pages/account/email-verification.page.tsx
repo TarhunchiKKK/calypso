@@ -20,6 +20,8 @@ function EmailVerificationPage() {
 
         verifyEmail();
     }, [token, verify]);
+
+    return null;
 }
 
 export const Component = EmailVerificationPage;
