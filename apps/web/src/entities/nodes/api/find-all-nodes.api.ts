@@ -1,7 +1,7 @@
 import type { NodeBase } from "@lib/boards";
 import type { Id } from "@lib/common";
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { ApiInstance } from "@/shared/model";
+import { ApiInstance } from "@/shared/api";
 import { queryKeys } from "./api.lib";
 
 export function findAllNodesOptions(boardId: Id) {

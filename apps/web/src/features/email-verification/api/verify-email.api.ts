@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AuthApi } from "@/entities/auth";
 import type { CommonMutationOptions } from "@/shared/api";
-import { ApiInstance } from "@/shared/model";
+import { ApiInstance } from "@/shared/api";
 
 export function useVerifyEmail(options: CommonMutationOptions = {}) {
     const queryClient = useQueryClient();

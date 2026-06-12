@@ -1,6 +1,6 @@
 import type { FindPresetsDto, Media } from "@lib/media";
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { ApiInstance } from "@/shared/model";
+import { ApiInstance } from "@/shared/api";
 import { queryKeys } from "./api.lib";
 
 export function findPresetsOptions(dto: FindPresetsDto) {

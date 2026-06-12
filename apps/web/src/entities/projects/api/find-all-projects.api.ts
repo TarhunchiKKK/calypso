@@ -1,7 +1,7 @@
 import type { OmitFields } from "@lib/common";
 import type { FindAllProjectsQuery, ProjectWithCreator, ProjectWithType } from "@lib/projects";
 import { infiniteQueryOptions, useInfiniteQuery } from "@tanstack/react-query";
-import { ApiInstance } from "@/shared/model";
+import { ApiInstance } from "@/shared/api";
 import { queryKeys } from "./api.lib";
 
 export function findAllProjectsOptions(params: OmitFields<FindAllProjectsQuery, "page">) {
