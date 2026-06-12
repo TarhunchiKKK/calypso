@@ -2,7 +2,7 @@ import { LogOutIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "@/shared/config";
 import { DropdownMenuItem } from "@/shared/ui/kit";
-import { AuthApi } from "../auth";
+import { AuthApi } from "../../entities/auth";
 
 export function SignOutDropdownItem() {
     const signOut = AuthApi.useSignOut();

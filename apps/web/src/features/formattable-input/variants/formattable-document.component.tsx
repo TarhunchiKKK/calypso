@@ -1,7 +1,7 @@
+import type { FormattableElement } from "@lib/common";
 import { BlockquotePlugin, BoldPlugin, H1Plugin, H2Plugin, H3Plugin, ItalicPlugin, UnderlinePlugin } from "@platejs/basic-nodes/react";
 import { BulletedListRules, OrderedListRules } from "@platejs/list-classic";
 import { BulletedListPlugin, ListItemPlugin, ListPlugin, NumberedListPlugin } from "@platejs/list-classic/react";
-import type { FormattableElement } from "@lib/common";
 import clsx from "clsx";
 import { KEYS } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";

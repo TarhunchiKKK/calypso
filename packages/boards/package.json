@@ -5,9 +5,9 @@
     "license": "MIT",
     "exports": {
         ".": {
-                "types": "./dist/cjs/entry.d.ts",
-            "import":  "./dist/esm/entry.js",
-            "require":  "./dist/cjs/entry.js"
+            "types": "./dist/cjs/entry.d.ts",
+            "import": "./dist/esm/entry.js",
+            "require": "./dist/cjs/entry.js"
         }
     },
     "main": "./dist/cjs/entry.js",

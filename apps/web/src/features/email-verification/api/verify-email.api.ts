@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AuthApi } from "@/features/auth";
+import { AuthApi } from "@/entities/auth";
 import { ApiInstance } from "@/shared/model";
 
 export function useVerifyEmail() {
