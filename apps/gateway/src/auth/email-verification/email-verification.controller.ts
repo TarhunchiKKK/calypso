@@ -17,7 +17,7 @@ export class EmailVerificationController {
         return await this.emailVerificationService.send(payload.id);
     }
 
-    @Patch(":token")
+    @Patch("verify/:token")
     @HttpCode(HttpStatus.OK)
     public async verify(@Authorized() payload: TokenPayload, @Param("token") token: string) {
         return await this.emailVerificationService.verify(payload.id, token);

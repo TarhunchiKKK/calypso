@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function ResetPasswordTemplate({ baseUrl, token }: Props) {
-    const href = `${baseUrl}/account/password-recovery?token=${token}`;
+    const href = `${baseUrl}/account/password-recovery/${token}`;
 
     return (
         <Template preview="Password reset">

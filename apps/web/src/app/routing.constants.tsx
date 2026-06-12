@@ -41,6 +41,14 @@ export const Router = createBrowserRouter([
 
                             QueryClientInstance.prefetchQuery(MediaApi.options.findPresetsGroups("board-node-media"));
                         }
+                    },
+                    {
+                        path: Routes.account.emailVerification,
+                        lazy: () => import("@/pages/account/email-verification.page")
+                    },
+                    {
+                        path: Routes.account.passwordRecovery,
+                        lazy: () => import("@/pages/account/update-password.page")
                     }
                 ]
             },

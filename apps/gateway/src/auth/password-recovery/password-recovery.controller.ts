@@ -19,7 +19,7 @@ export class PasswordRecoveryController {
         return await this.passwordRecoveryService.reset(payload.id);
     }
 
-    @Patch(":token")
+    @Patch("update/:token")
     @HttpCode(HttpStatus.OK)
     public async update(@Authorized() payload: TokenPayload, @Param("token") token: string, @Validation(UpdatePasswordDtoZodSchema) dto: UpdatePasswordDto) {
         return await this.passwordRecoveryService.update(payload.id, dto.password, token);

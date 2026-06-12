@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { SignUpForm } from "@/features/auth";
+import { SignUpForm } from "@/entities/auth";
 import { Routes } from "@/shared/config";
 import { AuthLayout } from "./auth.layout";
 

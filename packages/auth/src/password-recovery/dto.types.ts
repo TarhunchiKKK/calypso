@@ -1,5 +1,5 @@
-import { SignUpDtoZodSchema } from "../auth/basic-auth.types";
 import type z from "zod";
+import { SignUpDtoZodSchema } from "../auth/dto.types";
 
 export const UpdatePasswordDtoZodSchema = SignUpDtoZodSchema.pick({
     password: true

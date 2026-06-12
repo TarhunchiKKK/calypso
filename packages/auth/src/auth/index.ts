@@ -1,3 +1,2 @@
-export * from "./basic-auth.types";
-export * from "./profile.types";
+export * from "./dto.types";
 export * from "./session.types";

@@ -1,6 +1,6 @@
 import type { Profile } from "@lib/auth";
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from "@/shared/ui/kit";
-import { AuthApi } from "../auth";
+import { AuthApi } from "../../entities/auth";
 
 export function extractAvatarFallback(profile: Profile) {
     const parts = profile.username.split(" ");

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { SignInForm } from "@/features/auth";
+import { SignInForm } from "@/entities/auth";
 import { Routes } from "@/shared/config";
 import { AuthLayout } from "./auth.layout";
 
