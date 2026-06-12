@@ -15,7 +15,7 @@ import {
     FieldLabel,
     Input,
 } from "@/shared/ui/kit";
-import { ProjectsApi } from "../model/projects.api";
+import { ProjectsApi } from "../api";
 
 type Props = {
     project: ProjectWithType;

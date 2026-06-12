@@ -1,1 +1,1 @@
-export { MediaApi } from "./media.api";
+export { MediaApi } from "./api";

@@ -17,7 +17,7 @@ import {
     Input,
     Textarea,
 } from "@/shared/ui/kit";
-import { BoardsApi } from "../model/boards.api";
+import { BoardsApi } from "../api";
 
 type Props = {
     board: ProjectWithCreator<Board>;

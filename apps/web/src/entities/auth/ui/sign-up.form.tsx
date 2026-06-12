@@ -10,7 +10,7 @@ import {
     FieldLabel,
     Input,
 } from "@/shared/ui/kit";
-import { AuthApi } from "../model/auth.api";
+import { AuthApi } from "../api";
 
 type Props = {
     afterSubmit?: () => void;

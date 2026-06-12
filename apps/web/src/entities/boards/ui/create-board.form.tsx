@@ -12,7 +12,7 @@ import {
     FieldLabel,
     Input,
 } from "@/shared/ui/kit";
-import { BoardsApi } from "../model/boards.api";
+import { BoardsApi } from "../api";
 
 type Props = {
     afterSubmit?: () => void;

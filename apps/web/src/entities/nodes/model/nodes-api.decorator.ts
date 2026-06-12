@@ -1,5 +1,5 @@
 import type { Id } from "@lib/common";
-import { NodesApi } from "./nodes.api";
+import { NodesApi } from "../api";
 import type { NodesService } from "./use-nodes-service.hook";
 
 export function useNodesApiDecorator(service: NodesService, boardId: Id): NodesService {

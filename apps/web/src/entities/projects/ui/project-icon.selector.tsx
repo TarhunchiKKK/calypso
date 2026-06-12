@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
 import { Field, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../model/projects.api";
+import { ProjectsApi } from "../api";
 import { IconPresetsGrid } from "./icon-presets-grid.component";
 
 type Props = {
