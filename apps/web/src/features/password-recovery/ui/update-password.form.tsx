@@ -2,7 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type UpdatePasswordDto, UpdatePasswordDtoZodSchema } from "@lib/auth";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+import {
+    Button,
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    Input,
+} from "@/shared/ui/kit";
 import { PasswordRecoveryApi } from "../api";
 
 type Props = {
@@ -12,24 +19,25 @@ type Props = {
 export function UpdatePasswordForm({ token }: Props) {
     const form = useForm<UpdatePasswordDto>({
         defaultValues: {
-            password: ""
+            password: "",
         },
-        resolver: zodResolver(UpdatePasswordDtoZodSchema)
+        resolver: zodResolver(UpdatePasswordDtoZodSchema),
     });
 
-    const updateProfile = PasswordRecoveryApi.useUpdate();
+    const updateProfile = PasswordRecoveryApi.useUpdate({
+        onSuccess: () => {
+            toast.success("Password updated");
+        },
+        onError: () => {
+            toast.error("Error via password updating");
+        },
+    });
 
     const onSubmit = form.handleSubmit(async (data) => {
         await updateProfile.mutateAsync({
             ...data,
-            token: token
+            token: token,
         });
-
-        if (updateProfile.isError) {
-            toast.error("Error via password updating");
-        } else {
-            toast.success("Password updated");
-        }
     });
 
     return (
@@ -42,9 +50,16 @@ export function UpdatePasswordForm({ token }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Username</FieldLabel>
 
-                            <Input {...field} type="password" aria-invalid={fieldState.invalid} placeholder="Nickname" />
+                            <Input
+                                {...field}
+                                type="password"
+                                aria-invalid={fieldState.invalid}
+                                placeholder="Nickname"
+                            />
 
-                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                            {fieldState.invalid && (
+                                <FieldError errors={[fieldState.error]} />
+                            )}
                         </Field>
                     )}
                 />

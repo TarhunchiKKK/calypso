@@ -44,7 +44,6 @@ function useSignOut(options: CommonMutationOptions = {}) {
 
     return useMutation({
         ...options,
-        // biome-ignore lint/suspicious/noConfusingVoidType: necessary for `onSuccess` method 
         mutationFn: async (_: void) => {
             return await ApiInstance.post("/auth/basic/sign-out");
         },

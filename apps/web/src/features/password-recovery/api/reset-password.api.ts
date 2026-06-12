@@ -1,9 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
+import type { CommonMutationOptions } from "@/shared/api";
 import { ApiInstance } from "@/shared/model";
 
-export function useResetPassword() {
+export function useResetPassword(options: CommonMutationOptions = {}) {
     return useMutation({
-        mutationFn: async () => {
+        ...options,
+        mutationFn: async (_: void) => {
             return await ApiInstance.post<void>("/password-recovery/reset");
         }
     });
