@@ -9,7 +9,8 @@ export const mswAuthHandlers = {
             id: "account-id",
             username: "john Doe",
             email: "johndoe@gmail.com",
-            avatar: "https://github.com/shadcn.png"
+            avatar: "https://github.com/shadcn.png",
+            emailVerified: true
         });
     })
 };
