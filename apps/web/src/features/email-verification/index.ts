@@ -1,2 +1,2 @@
-export { EmailVerificationApi } from "./api/email-verification.api";
+export { EmailVerificationApi } from "./api";
 export { EmailVerificationStatus } from "./ui/email-verification-status.component";

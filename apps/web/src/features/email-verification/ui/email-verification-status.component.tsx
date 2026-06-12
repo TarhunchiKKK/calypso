@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { AuthApi } from "@/features/auth";
 import { Button, Checkbox } from "@/shared/ui/kit";
-import { EmailVerificationApi } from "../api/email-verification.api";
+import { EmailVerificationApi } from "../api";
 
 export function EmailVerificationStatus() {
     const { data: profile } = AuthApi.useProfile();
@@ -15,7 +15,7 @@ export function EmailVerificationStatus() {
     const handleSend = async () => {
         await mutateAsync();
 
-        toast("Check you email");
+        toast("Check your email");
     };
 
     return (
@@ -28,7 +28,7 @@ export function EmailVerificationStatus() {
 
             {!profile.emailVerified && (
                 <Button disabled={isPending} onClick={handleSend}>
-                    Verify email
+                    Verify Email
                 </Button>
             )}
         </>

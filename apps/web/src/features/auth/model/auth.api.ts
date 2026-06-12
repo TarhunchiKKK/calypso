@@ -55,6 +55,7 @@ function useProfile() {
 }
 
 export const AuthApi = {
+    queryKeys,
     useSignUp,
     useSignIn,
     useSignOut,
