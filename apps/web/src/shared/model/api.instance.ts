@@ -2,7 +2,8 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { Env } from "../config";
 
-// REMOVE: this code will be replaced with `HttpClient`
+// DELETE: this code will be replaced with `HttpClient`
+// REFACTOR: move to shared/api folder
 type ApiType = {
     get: typeof axios.get;
     post: typeof axios.post;

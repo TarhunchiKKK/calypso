@@ -5,18 +5,24 @@ import { DropdownMenuItem } from "@/shared/ui/kit";
 import { AuthApi } from "../../entities/auth";
 
 export function SignOutDropdownItem() {
-    const signOut = AuthApi.useSignOut();
-
     const navigate = useNavigate();
+
+    const signOut = AuthApi.useSignOut({
+        onSuccess: () => {
+            navigate(Routes.auth.signIn);
+        },
+    });
 
     const onSelect = async () => {
         await signOut.mutateAsync();
-
-        navigate(Routes.auth.signIn);
     };
 
     return (
-        <DropdownMenuItem variant="destructive" disabled={signOut.isPending} onSelect={onSelect}>
+        <DropdownMenuItem
+            variant="destructive"
+            disabled={signOut.isPending}
+            onSelect={onSelect}
+        >
             <LogOutIcon />
             Sign Out
         </DropdownMenuItem>
