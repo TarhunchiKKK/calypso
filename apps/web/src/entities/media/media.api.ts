@@ -1,7 +1,7 @@
 import type { FindPresetsDto, GetPresignedUrlDto, GetPresignedUrlResponse, Media, MediaDomains, MediaGroup } from "@lib/media";
 import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { toast } from "sonner";
+import type { CommonMutationOptions } from "@/shared/api";
 import { ApiInstance } from "@/shared/model";
 
 const queryKeys = {
@@ -39,15 +39,13 @@ function useFindPresetsGroups(domain: MediaDomains) {
     return useQuery(findPresetsGroupsOptions(domain));
 }
 
-function useGetPresignedUrl() {
+function useGetPresignedUrl(options: CommonMutationOptions = {}) {
     return useMutation({
+        ...options,
         mutationFn: async (dto: GetPresignedUrlDto) => {
             return await ApiInstance.get<GetPresignedUrlResponse>("/media/presigned-url", {
                 params: dto
             });
-        },
-        onError: () => {
-            toast.error("Cannot get presigned url");
         }
     });
 }

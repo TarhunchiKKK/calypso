@@ -10,6 +10,7 @@ import type {
     UpdateProjectDto
 } from "@lib/projects";
 import { infiniteQueryOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { CommonMutationOptions } from "@/shared/api";
 import { ApiInstance } from "@/shared/model";
 
 export const ProjectsQueryKeys = {
@@ -18,15 +19,18 @@ export const ProjectsQueryKeys = {
     singleProject: (projectId: Id) => [...ProjectsQueryKeys.base, projectId]
 };
 
-function useDuplicate() {
+function useDuplicate(options: CommonMutationOptions = {}) {
     const queryClient = useQueryClient();
 
     return useMutation({
+        ...options,
         mutationFn: async (dto: DuplicateProjectDto) => {
             return await ApiInstance.post<void>("/projects/duplicate", dto);
         },
-        onSuccess: () => {
+        onSuccess: (data, variables, result, context) => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
+
+            options.onSuccess?.(data, variables, result, context);
         }
     });
 }
@@ -68,32 +72,38 @@ function useFindOne<T extends Project = Project>(dto: FindOneProjectDto) {
     });
 }
 
-function useUpdate() {
+function useUpdate(options: CommonMutationOptions = {}) {
     const queryClient = useQueryClient();
 
     return useMutation({
+        ...options,
         mutationFn: async (dto: UpdateProjectDto & { id: Id }) => {
             const { id, ...data } = dto;
 
             return await ApiInstance.patch<void>(`/projects/${id}`, data);
         },
-        onSuccess: () => {
+        onSuccess: (data, variables, result, context) => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
+
+            options.onSuccess?.(data, variables, result, context);
         }
     });
 }
 
-function useRemove() {
+function useRemove(options: CommonMutationOptions = {}) {
     const queryClient = useQueryClient();
 
     return useMutation({
+        ...options,
         mutationFn: async (dto: RemoveProjectDto) => {
             return await ApiInstance.delete("/projects", {
                 data: dto
             });
         },
-        onSuccess: () => {
+        onSuccess: (data, variables, result, context) => {
             queryClient.invalidateQueries({ queryKey: ProjectsQueryKeys.base });
+
+            options.onSuccess?.(data, variables, result, context);
         }
     });
 }
