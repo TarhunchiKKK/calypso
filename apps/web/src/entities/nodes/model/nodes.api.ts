@@ -1,14 +1,16 @@
 import type { CreateManyNodesDto, NodeBase, RemoveManyNodesDto, UpdateManyNodesDto } from "@lib/boards";
 import type { Id, OmitFields } from "@lib/common";
 import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { CommonMutationOptions } from "@/shared/api";
 import { ApiInstance } from "@/shared/model";
 
 const queryKeys = {
     findAll: (boardId: Id) => ["board-nodes", boardId]
 };
 
-function useCreateMany() {
+function useCreateMany(options: CommonMutationOptions = {}) {
     return useMutation({
+        ...options,
         mutationFn: async (dto: OmitFields<CreateManyNodesDto, "nodes"> & { nodes: NodeBase[] }) => {
             return await ApiInstance.post("/boards/nodes", dto);
         }
@@ -29,8 +31,9 @@ function useFindAll(boardId: Id) {
     return useQuery(findAllOptions(boardId));
 }
 
-function useUpdateMany() {
+function useUpdateMany(options: CommonMutationOptions = {}) {
     return useMutation({
+        ...options,
         mutationFn: async (dto: OmitFields<UpdateManyNodesDto, "nodes"> & { nodes: NodeBase[] }) => {
             dto.nodes;
             return await ApiInstance.patch("/boards/nodes", dto);
@@ -38,8 +41,9 @@ function useUpdateMany() {
     });
 }
 
-function useRemoveMany() {
+function useRemoveMany(options: CommonMutationOptions = {}) {
     return useMutation({
+        ...options,
         mutationFn: async (dto: RemoveManyNodesDto) => {
             return await ApiInstance.delete("/boards/nodes", {
                 data: dto
