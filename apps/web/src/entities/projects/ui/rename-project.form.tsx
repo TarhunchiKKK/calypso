@@ -1,10 +1,21 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type ProjectWithType, type UpdateProjectDto, UpdateProjectDtoZodSchema } from "@lib/projects";
+import {
+    type ProjectWithType,
+    type UpdateProjectDto,
+    UpdateProjectDtoZodSchema,
+} from "@lib/projects";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { stopPropagationHandler } from "@/shared/lib/js";
-import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../model/projects.api";
+import {
+    Button,
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    Input,
+} from "@/shared/ui/kit";
+import { ProjectsApi } from "../api";
 
 type Props = {
     project: ProjectWithType;
@@ -13,28 +24,29 @@ type Props = {
 };
 
 export function RenameProjectForm({ project, afterSubmit }: Props) {
-    const update = ProjectsApi.useUpdate();
+    const update = ProjectsApi.useUpdate({
+        onSuccess: () => {
+            toast.success("Project renamed");
+            afterSubmit?.();
+        },
+        onError: () => {
+            toast.error("Error renaming");
+        },
+    });
 
     const form = useForm<UpdateProjectDto>({
         defaultValues: {
             type: "board",
-            title: project.title
+            title: project.title,
         },
-        resolver: zodResolver(UpdateProjectDtoZodSchema)
+        resolver: zodResolver(UpdateProjectDtoZodSchema),
     });
 
     const onSubmit = form.handleSubmit(async (data) => {
         await update.mutateAsync({
             ...data,
-            id: project.id
+            id: project.id,
         });
-
-        if (update.isError) {
-            toast.error("Error renaming");
-        } else {
-            toast.success("Project renamed");
-            afterSubmit?.();
-        }
     });
 
     return (
@@ -54,7 +66,9 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
                                 onKeyDown={stopPropagationHandler}
                             />
 
-                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                            {fieldState.invalid && (
+                                <FieldError errors={[fieldState.error]} />
+                            )}
                         </Field>
                     )}
                 />

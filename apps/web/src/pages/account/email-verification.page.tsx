@@ -5,7 +5,14 @@ import { EmailVerificationApi } from "@/features/email-verification";
 
 function EmailVerificationPage() {
     const { token } = useParams();
-    const verify = EmailVerificationApi.useVerify();
+    const verify = EmailVerificationApi.useVerify({
+        onSuccess: () => {
+            toast.success("Email successfully verified");
+        },
+        onError: () => {
+            toast.error("Error via email verifying");
+        },
+    });
 
     useEffect(() => {
         async function verifyEmail() {
@@ -14,8 +21,6 @@ function EmailVerificationPage() {
             }
 
             await verify.mutateAsync(token);
-
-            toast.success("Email successfully verified");
         }
 
         verifyEmail();

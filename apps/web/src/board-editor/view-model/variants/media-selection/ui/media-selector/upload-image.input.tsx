@@ -9,7 +9,11 @@ type Props = {
 };
 
 export function UploadImageInput({ onSelect }: Props) {
-    const { mutateAsync: getPresignedUrl } = MediaApi.useGetPresignedUrl();
+    const { mutateAsync: getPresignedUrl } = MediaApi.useGetPresignedUrl({
+        onError: () => {
+            toast.error("Cannot get presigned url");
+        },
+    });
 
     const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -21,7 +25,7 @@ export function UploadImageInput({ onSelect }: Props) {
 
         const presignedUrl = await getPresignedUrl({
             fileName: file.name,
-            contentType: file.type
+            contentType: file.type,
         });
 
         await S3Service.upload(file, presignedUrl.url);

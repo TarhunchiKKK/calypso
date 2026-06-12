@@ -51,7 +51,7 @@ import { ProjectsModule } from "./services/projects/projects.module";
                 }
             ]
         }),
-        // REMOVE
+        // DELETE
         HttpModule,
         ProjectsModule,
         BoardsModule,

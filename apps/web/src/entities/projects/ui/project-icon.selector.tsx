@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
 import { S3Service } from "@/shared/lib/s3";
 import { Field, FieldLabel, Input } from "@/shared/ui/kit";
-import { ProjectsApi } from "../model/projects.api";
+import { ProjectsApi } from "../api";
 import { IconPresetsGrid } from "./icon-presets-grid.component";
 
 type Props = {
@@ -14,18 +14,34 @@ type Props = {
 };
 
 export function ProjectIconSelector({ project, afterSubmit }: Props) {
-    const update = ProjectsApi.useUpdate();
-    const getPresignedUrl = MediaApi.useGetPresignedUrl();
+    const update = ProjectsApi.useUpdate({
+        onSuccess: () => {
+            toast.success("Thumbnail changed");
+            afterSubmit?.();
+        },
+        onError: () => {
+            toast.error("Thumbnail changing error");
+        },
+    });
+
+    const getPresignedUrl = MediaApi.useGetPresignedUrl({
+        onSuccess: () => {
+            toast.success("Thumbnail changed");
+            afterSubmit?.();
+        },
+        onError: () => {
+            toast.error("Thumbnail changing error");
+        },
+    });
 
     const handleSelect = async (icon: string) => {
         await update.mutateAsync({
             id: project.id,
             type: project.type,
-            icon: icon
+            icon: icon,
         });
 
         if (update.isError) {
-            toast.error("Thumbnail changing error");
         } else {
             toast.success("Thumbnail changed");
             afterSubmit?.();
@@ -41,24 +57,17 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
 
         const presignedUrl = await getPresignedUrl.mutateAsync({
             fileName: file.name,
-            contentType: file.type
+            contentType: file.type,
         });
 
-        try {
-            await Promise.all([
-                update.mutateAsync({
-                    id: project.id,
-                    type: project.type,
-                    icon: presignedUrl.key
-                }),
-                S3Service.upload(file, presignedUrl.url)
-            ]).then(() => {
-                toast.success("Thumbnail changed");
-                afterSubmit?.();
-            });
-        } catch (_) {
-            toast.error("Thumbnail changing error");
-        }
+        await Promise.all([
+            update.mutateAsync({
+                id: project.id,
+                type: project.type,
+                icon: presignedUrl.key,
+            }),
+            S3Service.upload(file, presignedUrl.url),
+        ]);
     };
 
     return (
@@ -66,7 +75,9 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
             <IconPresetsGrid onSelect={handleSelect} />
 
             <Field className="flex flex-col justify-center items-center">
-                <FieldLabel className="text-base">Or select from your device:</FieldLabel>
+                <FieldLabel className="text-base">
+                    Or select from your device:
+                </FieldLabel>
 
                 <Input
                     type="file"

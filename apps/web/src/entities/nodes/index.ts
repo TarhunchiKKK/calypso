@@ -1,9 +1,9 @@
+export { NodesApi } from "./api";
 export { AvailableNodeStyles } from "./constants/available-node-styles.constants";
 export { CommonNodeStyles } from "./constants/common-node-styles.constants";
 export { DefaultNodeStyles } from "./constants/default-node-styles.constants";
 export { NodeRectsFactory } from "./factories/node-rects.factory";
 export { NodesFactory } from "./factories/nodes.factory";
-export { NodesApi } from "./model/nodes.api";
 export { type NodesService, useNodesService } from "./model/use-nodes-service.hook";
 export type { NodesServiceMapper } from "./model/use-nodes-service-mappers.hook";
 export type { NodesServiceMiddleware } from "./model/use-nodes-service-middleware.hook";

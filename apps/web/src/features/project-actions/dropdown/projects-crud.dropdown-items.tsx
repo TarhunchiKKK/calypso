@@ -1,5 +1,6 @@
 import type { ProjectWithType } from "@lib/projects";
 import { CopyIcon, TrashIcon } from "lucide-react";
+import { toast } from "sonner";
 import { ProjectsApi } from "@/entities/projects";
 import { DropdownMenuItem } from "@/shared/ui/kit";
 
@@ -8,13 +9,20 @@ type Props = {
 };
 
 export function DuplicateProjectDropdownItem({ project }: Props) {
-    const duplicate = ProjectsApi.useDuplicate();
+    const duplicate = ProjectsApi.useDuplicate({
+        onSuccess: () => {
+            toast.success("Project duplicated");
+        },
+        onError: () => {
+            toast.error("Cannot duplicate project");
+        },
+    });
 
     const onSelect = async () => {
         await duplicate.mutateAsync({
             id: project.id,
             type: project.type,
-            title: `${project.title} (Copy)`
+            title: `${project.title} (Copy)`,
         });
     };
 

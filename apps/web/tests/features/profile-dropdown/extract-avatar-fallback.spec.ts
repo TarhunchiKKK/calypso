@@ -5,7 +5,8 @@ import { extractAvatarFallback } from "@/features/profile-dropdown/profile-avata
 const profile: Profile = {
     id: "test-id",
     email: "test@gmail.com",
-    username: "john Doe"
+    username: "john Doe",
+    emailVerified: true
 };
 
 describe("`extractAvatarFallback` function", () => {
