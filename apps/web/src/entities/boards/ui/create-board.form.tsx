@@ -4,7 +4,14 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
 import { stopPropagationHandler } from "@/shared/lib/js";
-import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
+import {
+    Button,
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    Input,
+} from "@/shared/ui/kit";
 import { BoardsApi } from "../model/boards.api";
 
 type Props = {
@@ -14,32 +21,35 @@ type Props = {
 export function CreateBoardForm({ afterSubmit }: Props) {
     const media = MediaApi.useRandomMedia({ domain: "project-thumbnails" });
 
-    const create = BoardsApi.useCreate();
+    const create = BoardsApi.useCreate({
+        onSuccess: () => {
+            toast.success("Board created");
+            afterSubmit?.();
+        },
+        onError: () => {
+            toast.error("Error creating board");
+        },
+    });
 
     const form = useForm<CreateBoardDto>({
         defaultValues: {
             title: "",
-            icon: ""
+            icon: "",
         },
-        resolver: zodResolver(CreateBoardDtoZodSchema)
+        resolver: zodResolver(CreateBoardDtoZodSchema),
     });
 
     const onSubmit = form.handleSubmit(async (data) => {
         if (!media) {
-            throw new ErrorEvent("CreateBoardForm: Random media is not defined");
+            throw new ErrorEvent(
+                "CreateBoardForm: Random media is not defined",
+            );
         }
 
         await create.mutateAsync({
             ...data,
-            icon: media.url
+            icon: media.url,
         });
-
-        if (create.isError) {
-            toast.error("Error creating board");
-        } else {
-            toast.success("Board created");
-            afterSubmit?.();
-        }
     });
 
     return (
@@ -52,9 +62,16 @@ export function CreateBoardForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" onKeyDown={stopPropagationHandler} />
+                            <Input
+                                {...field}
+                                aria-invalid={fieldState.invalid}
+                                placeholder="Enter board title"
+                                onKeyDown={stopPropagationHandler}
+                            />
 
-                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                            {fieldState.invalid && (
+                                <FieldError errors={[fieldState.error]} />
+                            )}
                         </Field>
                     )}
                 />
