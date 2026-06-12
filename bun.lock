@@ -191,6 +191,7 @@
       "name": "web",
       "version": "0.0.0",
       "dependencies": {
+        "@contracts/http": "*",
         "@hookform/resolvers": "^5.2.2",
         "@lib/auth": "*",
         "@lib/boards": "*",
@@ -286,8 +287,10 @@
     "packages/auth": {
       "name": "@lib/auth",
       "version": "0.0.0",
-      "devDependencies": {
+      "dependencies": {
         "@lib/common": "*",
+      },
+      "devDependencies": {
         "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
@@ -3787,8 +3790,6 @@
     "vitest/tinyexec": ["tinyexec@1.0.4", "", {}, "sha512-u9r3uZC0bdpGOXtlxUIdwf9pkmvhqJdrVCH9fapQtgy/OeTTMZ1nqH7agtvEfmGui6e1XxjcdrlxvxJvc3sMqw=="],
 
     "web/@types/node": ["@types/node@24.12.0", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ=="],
-
-    "web/@types/react": ["@types/react@19.2.14", "", { "dependencies": { "csstype": "^3.2.2" } }, "sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w=="],
 
     "web/react": ["react@19.2.0", "", {}, "sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ=="],
 

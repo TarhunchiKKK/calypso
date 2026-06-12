@@ -6,4 +6,4 @@ export class SignUpDtoApiType extends PickType(UserApiType, ["username", "email"
 
 export class SignInDtoApiType extends PickType(UserApiType, ["email", "password"]) implements SignInDto {}
 
-export class ProfileApiType extends PickType(UserApiType, ["id", "username", "email", "avatar"]) implements Profile {}
+export class ProfileApiType extends PickType(UserApiType, ["id", "username", "email", "avatar", "emailVerified"]) implements Profile {}

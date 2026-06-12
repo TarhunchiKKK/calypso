@@ -13,6 +13,7 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
+      "@contracts/http": "*",
         "@hookform/resolvers": "^5.2.2",
         "@lib/auth": "*",
         "@lib/boards": "*",

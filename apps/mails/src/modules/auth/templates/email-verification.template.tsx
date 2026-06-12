@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function EmailVerificationTemplate({ baseUrl, token }: Props) {
-    const href = `${baseUrl}/account/verify?token=${token}`;
+    const href = `${baseUrl}/auth/email-verification?token=${token}`;
 
     return (
         <Template preview="Email Verification">
