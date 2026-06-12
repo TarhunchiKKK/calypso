@@ -1,2 +1,2 @@
-export {PasswordRecoveryApi } from './api'
-export {UpdatePasswordStatus } from "./ui/update-password-status.component"
+export { PasswordRecoveryApi } from "./api";
+export { UpdatePasswordButton } from "./ui/update-password.button";
