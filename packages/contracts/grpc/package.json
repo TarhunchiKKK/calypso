@@ -12,7 +12,9 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsc -b -v",
         "fix": "bun run ./scripts/fix-protoc.script.ts",
@@ -29,7 +31,7 @@
         "@nestjs/common": "^11.1.16",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "rxjs": "^7.8.2",
         "ts-proto": "^2.11.6",

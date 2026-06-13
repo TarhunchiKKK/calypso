@@ -12,7 +12,9 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit"
@@ -25,7 +27,7 @@
         "@nestjs/config": "^4.0.4",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "express": "^5.2.1",
         "rxjs": "^7.8.2",

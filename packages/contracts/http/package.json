@@ -12,7 +12,9 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsc -b -v",
         "generate:json": "openapi-typescript ./swagger/swagger.json -o ./src/generated.ts",
@@ -20,7 +22,7 @@
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "openapi-typescript": "^7.13.0",
         "rxjs": "^7.8.2",

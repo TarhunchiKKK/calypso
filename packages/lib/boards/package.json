@@ -13,7 +13,9 @@
     "main": "./dist/cjs/entry.js",
     "module": "./dist/esm/entry.js",
     "types": "./dist/cjs/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsup --config tsup.config.ts",
         "type-check": "tsc --noEmit"
@@ -21,7 +23,7 @@
     "devDependencies": {
         "@lib/common": "*",
         "@lib/projects": "*",
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",

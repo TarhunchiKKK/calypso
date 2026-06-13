@@ -42,9 +42,9 @@
         "typeorm": "^0.3.28",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/cli": "^11.0.14",
         "@nestjs/schematics": "^11.0.9",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.19.3",
         "jest": "^30.2.0",
         "ts-node": "^10.9.2",
@@ -93,9 +93,9 @@
         "typeorm": "^0.3.28",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/cli": "^11.0.14",
         "@nestjs/schematics": "^11.0.9",
-        "@repo/typescript-config": "*",
         "@types/bun": "^1.3.13",
         "@types/cookie-parser": "^1.4.10",
         "@types/express": "^4.17.25",
@@ -136,9 +136,9 @@
         "rxjs": "^7.8.2",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/cli": "^11.0.14",
         "@nestjs/schematics": "^11.0.9",
-        "@repo/typescript-config": "*",
         "@types/mime-types": "^3.0.1",
         "@types/node": "^22.19.3",
         "@types/react": "^19.2.17",
@@ -177,9 +177,9 @@
         "typeorm": "^0.3.28",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/cli": "^11.0.14",
         "@nestjs/schematics": "^11.0.9",
-        "@repo/typescript-config": "*",
         "@types/mime-types": "^3.0.1",
         "@types/node": "^22.19.3",
         "jest": "^30.2.0",
@@ -235,7 +235,7 @@
       },
       "devDependencies": {
         "@chromatic-com/storybook": "^4.1.3",
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@storybook/addon-a11y": "^10.1.10",
         "@storybook/addon-docs": "^10.1.10",
         "@types/node": "^24.10.1",
@@ -258,11 +258,11 @@
         "ioredis": "^5.11.1",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/config": "^4.0.4",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "express": "^5.2.1",
         "rxjs": "^7.8.2",
@@ -282,6 +282,7 @@
       "name": "@api/common",
       "version": "0.0.0",
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/config": "^4.0.3",
@@ -290,7 +291,6 @@
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/swagger": "^11.4.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "rxjs": "^7.8.2",
         "ts-node": "^10.9.2",
@@ -312,8 +312,8 @@
         "zod": "^4.0.0",
       },
     },
-    "packages/config/typescript-config": {
-      "name": "@repo/typescript-config",
+    "packages/config/typescript": {
+      "name": "@config/typescript",
       "version": "0.0.0",
     },
     "packages/contracts/broker": {
@@ -325,6 +325,7 @@
         "@lib/auth": "*",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/config": "^4.0.3",
@@ -333,7 +334,6 @@
         "@nestjs/mongoose": "^11.0.4",
         "@nestjs/swagger": "^11.4.4",
         "@nestjs/typeorm": "^11.0.0",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "rxjs": "^7.8.2",
         "ts-node": "^10.9.2",
@@ -362,12 +362,12 @@
         "google-proto-files": "^5.0.1",
       },
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/boards": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.16",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "rxjs": "^7.8.2",
         "ts-proto": "^2.11.6",
@@ -389,7 +389,7 @@
         "openapi-fetch": "^0.17.0",
       },
       "devDependencies": {
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "openapi-typescript": "^7.13.0",
         "rxjs": "^7.8.2",
@@ -406,7 +406,7 @@
         "@lib/common": "*",
       },
       "devDependencies": {
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",
@@ -420,9 +420,9 @@
       "name": "@lib/boards",
       "version": "0.0.0",
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/common": "*",
         "@lib/projects": "*",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",
@@ -436,7 +436,7 @@
       "name": "@lib/common",
       "version": "0.0.0",
       "devDependencies": {
-        "@repo/typescript-config": "*",
+        "@config/typescript": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",
@@ -450,8 +450,8 @@
       "name": "@lib/media",
       "version": "0.0.0",
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/common": "*",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",
@@ -465,9 +465,9 @@
       "name": "@lib/projects",
       "version": "0.0.0",
       "devDependencies": {
+        "@config/typescript": "*",
         "@lib/auth": "*",
         "@lib/common": "*",
-        "@repo/typescript-config": "*",
         "@types/node": "^22.10.7",
         "tsup": "^8.5.1",
         "typescript": "5.5.4",
@@ -678,6 +678,8 @@
     "@colordx/core": ["@colordx/core@5.4.3", "", {}, "sha512-kIxYSfA5T8HXjav55UaaH/o/cKivF6jCCGIb8eqtcsfI46wsvlSiT8jMDyrl779qLec3c2c2oHBZo4oAhvbjrQ=="],
 
     "@colors/colors": ["@colors/colors@1.5.0", "", {}, "sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ=="],
+
+    "@config/typescript": ["@config/typescript@workspace:packages/config/typescript"],
 
     "@contracts/broker": ["@contracts/broker@workspace:packages/contracts/broker"],
 
@@ -1194,8 +1196,6 @@
     "@redocly/config": ["@redocly/config@0.22.0", "", {}, "sha512-gAy93Ddo01Z3bHuVdPWfCwzgfaYgMdaZPcfL7JZ7hWJoK9V0lXDbigTWkhiPFAaLWzbOJ+kbUQG1+XwIm0KRGQ=="],
 
     "@redocly/openapi-core": ["@redocly/openapi-core@1.34.15", "", { "dependencies": { "@redocly/ajv": "8.11.2", "@redocly/config": "0.22.0", "colorette": "1.4.0", "https-proxy-agent": "7.0.6", "js-levenshtein": "1.1.6", "js-yaml": "4.1.1", "minimatch": "5.1.9", "pluralize": "8.0.0", "yaml-ast-parser": "0.0.43" } }, "sha512-HAwCnNyKcs5XGQqms+9t7OdAPM/5TDstmhF+0i7tdCFato2QKuYIlyWETwkXd8c5zbltr1oB+6y9NTeQLr2d6Q=="],
-
-    "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/config/typescript-config"],
 
     "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-rc.3", "", {}, "sha512-eybk3TjzzzV97Dlj5c+XrBFW57eTNhzod66y9HrBlzJ6NsCrWCp/2kaPS3K9wJmurBC0Tdw4yPjXKZqlznim3Q=="],
 
