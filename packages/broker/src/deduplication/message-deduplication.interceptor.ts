@@ -5,7 +5,7 @@ import { Reflector } from "@nestjs/core";
 import type { RmqContext } from "@nestjs/microservices";
 import { of } from "rxjs";
 import { DeduplicationTtl } from "./deduplication-ttl.decorator";
-import { DEDUPLICATION_CACHE_PREFIX, DEFAULT_DEDUPLICATION_CACHE_TTL, MESSAGE_ID_KEY } from "./lib";
+import { DEFAULT_DEDUPLICATION_CACHE_TTL, getDeduplicationCacheKey, MESSAGE_ID_KEY } from "./lib";
 
 @Injectable()
 export class DeduplicateMessageInterceptor implements NestInterceptor {
@@ -53,14 +53,13 @@ export class DeduplicateMessageInterceptor implements NestInterceptor {
     }
 
     private async verifyCache(context: ExecutionContext, messageId: Id, message: Record<string, unknown>) {
-        const cacheKey = `${DEDUPLICATION_CACHE_PREFIX}:${messageId}`;
+        const cacheKey = getDeduplicationCacheKey(context, messageId);
 
         const existingMessage = await this.cacheService.get(cacheKey);
 
         if (existingMessage) {
             this.logger.warn(`Message with id "${messageId}" already processed:`);
             this.logger.warn(message);
-
             return false;
         }
 
