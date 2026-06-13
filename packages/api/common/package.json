@@ -1,0 +1,55 @@
+{
+    "name": "@api/common",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "types": "./dist/entry.d.ts",
+            "import": "./dist/entry.js",
+            "require": "./dist/entry.js"
+        }
+    },
+    "main": "./dist/entry.js",
+    "types": "./dist/entry.d.ts",
+    "files": [
+        "./dist/**"
+    ],
+    "scripts": {
+        "build": "tsc -b -v",
+        "type-check": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@lib/common": "*",
+        "@nestjs/common": "^11.1.16",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.17",
+        "@nestjs/microservices": "^11.1.16",
+        "@nestjs/mongoose": "^11.0.4",
+        "@nestjs/swagger": "^11.4.4",
+        "@nestjs/typeorm": "^11.0.0",
+        "@config/typescript": "*",
+        "@types/node": "^22.10.7",
+        "rxjs": "^7.8.2",
+        "ts-node": "^10.9.2",
+        "typeorm": "^0.3.28",
+        "typescript": "5.5.4",
+        "zod": "^4.3.6"
+    },
+    "peerDependencies": {
+        "@lib/common": "*",
+        "@nestjs/common": "^11.0.0",
+        "@nestjs/config": "^4.0.0",
+        "@nestjs/core": "^11.0.0",
+        "@nestjs/microservices": "^11.0.0",
+        "@nestjs/mongoose": "^11.0.0",
+        "@nestjs/swagger": "^11.0.0",
+        "@nestjs/typeorm": "^11.0.0",
+        "rxjs": "^7.8.0",
+        "typeorm": "^0.3.0",
+        "zod": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

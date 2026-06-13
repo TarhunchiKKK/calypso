@@ -1,4 +1,4 @@
-import { cacheConfigFactory } from "@api/cache";
+import { CacheModule, cacheConfigFactory } from "@api/cache";
 import { typeormConfigFactory } from "@api/common";
 import { CommonBrokerOptions } from "@contracts/broker";
 import { HttpModule } from "@nestjs/axios";
@@ -7,7 +7,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { CacheModule } from "../../../packages/cache/dist/cache.module";
 import { BasicAuthModule } from "./auth/basic/basic-auth.module";
 import { EmailVerificationModule } from "./auth/email-verification/email-verification.module";
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";

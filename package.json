@@ -18,7 +18,7 @@
         "dev": "turbo run dev --filter=gateway --filter=boards",
         "seed:media": "turbo run seed --filter=media",
         "build": "turbo run build",
-        "build:packages": "turbo run build --filter=@repo/* --filter=@api/* --filter=@lib/* --filter=@contracts/*",
+        "build:packages": "turbo run build --filter=@config/* --filter=@api/* --filter=@lib/* --filter=@contracts/*",
         "type-check": "turbo run type-check",
         "type-check:packages": "turbo run type-check --filter=@repo/* --filter=@api/* --filter=@lib/*",
         "test:unit": "turbo run test:unit",
@@ -47,5 +47,11 @@
         "sort-package-json": "^4.0.0",
         "turbo": "^2.8.17"
     },
-    "workspaces": ["apps/*", "packages/*"]
+    "workspaces": [
+        "apps/*",
+        "packages/api/*",
+        "packages/config/*",
+        "packages/contracts/*",
+        "packages/lib/*"
+    ]
 }
