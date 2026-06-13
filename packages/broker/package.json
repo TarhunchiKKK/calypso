@@ -12,12 +12,15 @@
     },
     "main": "./dist/entry.js",
     "types": "./dist/entry.d.ts",
-    "files": ["./dist/**"],
+    "files": [
+        "./dist/**"
+    ],
     "scripts": {
         "build": "tsc -b -v",
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
+        "@api/cache": "*",
         "@api/common": "*",
         "@lib/auth": "*"
     },

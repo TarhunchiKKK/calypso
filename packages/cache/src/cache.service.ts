@@ -1,6 +1,6 @@
 import { Inject, Injectable, type OnModuleDestroy } from "@nestjs/common";
-import { CACHE_OPTIONS_INJECTION_TOKEN, type CacheModuleOptions } from "./config/di.lib";
 import Redis from "ioredis";
+import { CACHE_OPTIONS_INJECTION_TOKEN, type CacheModuleOptions } from "./config/di.lib";
 
 @Injectable()
 export class CacheService implements OnModuleDestroy {
