@@ -45,7 +45,7 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
 
         const result = await handler.execute(command);
 
-        expect(result).toEqual(MockBoard.id);
+        expect(result).toBe(MockBoard.id);
     });
 
     it("should update board without 'updateDate' field", async () => {
@@ -55,6 +55,6 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
 
         const result = await handler.execute(command);
 
-        expect(result).toEqual(MockBoard.id);
+        expect(result).toBe(MockBoard.id);
     });
 });

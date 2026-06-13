@@ -52,7 +52,7 @@ describe("UpdateBoardCommandHandler", () => {
 
         const result = await handler.execute(command);
 
-        expect(result).toEqual(MockBoard.id);
+        expect(result).toBe(MockBoard.id);
         expect(boardsHelperMock.findOneById).toHaveBeenCalledWith(MockBoard.id);
     });
 });

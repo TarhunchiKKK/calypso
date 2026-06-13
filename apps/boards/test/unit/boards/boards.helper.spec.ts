@@ -39,7 +39,7 @@ describe("BoardsHelper", () => {
     });
 
     it("should not found board", async () => {
-        boardsRepositoryMock.findOne.mockResolvedValue(null);
+        boardsRepositoryMock.findOne.mockResolvedValue(null as unknown as Board);
 
         expect(helper.findOneById(MockBoard.id)).rejects.toThrow();
     });
