@@ -6,7 +6,11 @@
         "useIgnoreFile": true
     },
     "files": {
-        "includes": ["**", "!packages/contracts/src/generated"],
+        "includes": [
+            "**",
+            "!packages/contracts/src/generated",
+            "!apps/**/*.spec.ts"
+        ],
         "ignoreUnknown": false
     },
     "linter": {
