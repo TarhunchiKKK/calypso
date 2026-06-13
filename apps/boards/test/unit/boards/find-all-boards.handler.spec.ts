@@ -6,6 +6,7 @@ import { Test, type TestingModule } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Board } from "src/boards/entities/board.entity";
 import { FindAllBoardsQuery, FindAllBoardsQueryHandler } from "src/boards/handlers/find-all-boards.handler";
+import { MockBoard } from "./mocks/board.mocks";
 
 describe("FindAllBoardsQueryHandler", () => {
     let handler: FindAllBoardsQueryHandler;
@@ -44,15 +45,7 @@ describe("FindAllBoardsQueryHandler", () => {
             count: 100
         };
 
-        const boards: Board[] = [
-            {
-                id: crypto.randomUUID(),
-                title: "Board",
-                icon: "",
-                creatorId: userId,
-                createdAt: new Date()
-            }
-        ];
+        const boards: Board[] = [MockBoard];
 
         boardsRepositoryMock.find.mockResolvedValue(boards);
 

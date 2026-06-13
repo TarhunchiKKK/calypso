@@ -7,6 +7,7 @@ import type { DuplicateBoardDto } from "src/boards/dto/duplicate-board.dto";
 import { Board } from "src/boards/entities/board.entity";
 import { DuplicateBoardCommand, DuplicateBoardCommandHandler } from "src/boards/handlers/duplicate-board.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { MockBoard } from "./mocks/board.mocks";
 
 describe("DuplicateBoardCommandHandler", () => {
     let handler: DuplicateBoardCommandHandler;
@@ -45,14 +46,6 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        const board: Board = {
-            id: dto.id,
-            creatorId: dto.creatorId,
-            title: "Board",
-            icon: "",
-            createdAt: new Date()
-        };
-
         const nodes: NodeBase[] = [
             {
                 id: crypto.randomUUID(),
@@ -63,7 +56,7 @@ describe("DuplicateBoardCommandHandler", () => {
             }
         ];
 
-        boardsRepositoryMock.findOne.mockResolvedValueOnce(board);
+        boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
 
         nodesModelMock.find.mockResolvedValueOnce(nodes);
 
@@ -71,7 +64,7 @@ describe("DuplicateBoardCommandHandler", () => {
 
         await handler.execute(command);
 
-        expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...board, title: dto.title, creatorId: dto.creatorId });
+        expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...MockBoard, title: dto.title, creatorId: dto.creatorId });
         expect(nodesModelMock.find).toHaveBeenCalled();
         expect(nodesModelMock.insertMany).toHaveBeenCalled();
     });
@@ -83,15 +76,7 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        const board: Board = {
-            id: dto.id,
-            creatorId: dto.creatorId,
-            title: "Board",
-            icon: "",
-            createdAt: new Date()
-        };
-
-        boardsRepositoryMock.findOne.mockResolvedValueOnce(board);
+        boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
 
         nodesModelMock.find.mockResolvedValueOnce([]);
 
@@ -99,7 +84,7 @@ describe("DuplicateBoardCommandHandler", () => {
 
         await handler.execute(command);
 
-        expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...board, title: dto.title, creatorId: dto.creatorId });
+        expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...MockBoard, title: dto.title, creatorId: dto.creatorId });
         expect(nodesModelMock.find).toHaveBeenCalled();
         expect(nodesModelMock.insertMany).toHaveBeenCalled();
     });

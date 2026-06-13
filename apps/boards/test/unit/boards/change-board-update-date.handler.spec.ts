@@ -6,6 +6,7 @@ import { Board } from "src/boards/entities/board.entity";
 import { ChangeBoardUpdateDateCommand, ChangeBoardUpdateDateCommandHandler } from "src/boards/handlers/change-board-update-date.handler";
 import { BoardsHelper } from "src/boards/lib/boards.helper";
 import { createBoardsHelperMock } from "./mocks";
+import { MockBoard } from "./mocks/board.mocks";
 
 describe("ChangeBoardUpdateDateCommandHandler", () => {
     let handler: ChangeBoardUpdateDateCommandHandler;
@@ -38,39 +39,22 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
     });
 
     it("should update board with 'updateDate' field", async () => {
-        const mockBoard: Board = {
-            id: crypto.randomUUID(),
-            title: "Board title",
-            icon: "",
-            creatorId: crypto.randomUUID(),
-            createdAt: new Date(),
-            updatedAt: new Date()
-        };
+        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
 
-        const command = new ChangeBoardUpdateDateCommand(mockBoard.id);
-
-        boardsHelperMock.findOneById.mockResolvedValue(mockBoard);
+        boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
         const result = await handler.execute(command);
 
-        expect(result).toEqual(mockBoard.id);
+        expect(result).toEqual(MockBoard.id);
     });
 
     it("should update board without 'updateDate' field", async () => {
-        const mockBoard: Board = {
-            id: crypto.randomUUID(),
-            title: "Board title",
-            icon: "",
-            creatorId: crypto.randomUUID(),
-            createdAt: new Date()
-        };
+        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
 
-        const command = new ChangeBoardUpdateDateCommand(mockBoard.id);
-
-        boardsHelperMock.findOneById.mockResolvedValue(mockBoard);
+        boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
         const result = await handler.execute(command);
 
-        expect(result).toEqual(mockBoard.id);
+        expect(result).toEqual(MockBoard.id);
     });
 });
