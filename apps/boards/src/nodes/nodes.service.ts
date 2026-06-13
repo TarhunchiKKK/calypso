@@ -25,7 +25,7 @@ export class NodesService {
         if (dto.nodes.length !== 0) {
             await this.commandBus.execute(new CreateManyNodesCommand(dto));
 
-            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
+            this.rmqClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
         }
     }
 
@@ -37,7 +37,7 @@ export class NodesService {
         if (dto.nodes.length !== 0) {
             await this.commandBus.execute(new UpdateManyNodesCommand(dto));
 
-            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
+            this.rmqClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
         }
     }
 
@@ -45,7 +45,7 @@ export class NodesService {
         if (dto.ids.length !== 0) {
             await this.commandBus.execute(new RemoveManyNodesCommand(dto));
 
-            this.rmqClient.emit(BoardsBrokerContracts.nodesChanged.pattern, BoardsBrokerContracts.nodesChanged.payload({ id: dto.boardId }));
+            this.rmqClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
         }
     }
 

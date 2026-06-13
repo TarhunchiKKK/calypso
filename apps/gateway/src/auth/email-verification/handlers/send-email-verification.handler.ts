@@ -27,7 +27,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
 
         const token = await this.saveToken(userId);
 
-        this.rmqClient.emit(AuthBrokerContracts.emailVerification.pattern, AuthBrokerContracts.emailVerification.payload({ user, token }));
+        this.rmqClient.emit(...AuthBrokerContracts.emailVerification.get({ user, token }));
     }
 
     private async checkVerification(userId: Id) {

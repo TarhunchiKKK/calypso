@@ -55,6 +55,7 @@ export class UsersHelper {
             id: user.id,
             username: user.username,
             email: user.email,
+            emailVerified: user.emailVerified,
             avatar: user.avatar
         };
     }

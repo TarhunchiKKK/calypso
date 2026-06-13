@@ -321,6 +321,7 @@
       "name": "@contracts/broker",
       "version": "0.0.0",
       "dependencies": {
+        "@api/cache": "*",
         "@api/common": "*",
         "@lib/auth": "*",
       },
