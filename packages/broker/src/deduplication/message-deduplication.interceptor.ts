@@ -35,7 +35,7 @@ export class DeduplicateMessageInterceptor implements NestInterceptor {
     private extractMessage(rmqContext: RmqContext) {
         const message = rmqContext.getMessage();
 
-        let messageId: Id | null = message?.properties?.headers?.[MESSAGE_ID_KEY];
+        let messageId: Id | null = message?.[MESSAGE_ID_KEY];
 
         if (!messageId) {
             this.logger.error("Message id not provided.");

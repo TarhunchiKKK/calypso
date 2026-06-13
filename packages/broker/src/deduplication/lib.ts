@@ -11,12 +11,11 @@ export function getDeduplicationCacheKey(context: ExecutionContext, messageId: I
 
 export const DEFAULT_DEDUPLICATION_CACHE_TTL = 600;
 
-export const MESSAGE_ID_KEY = "messageId";
+export const MESSAGE_ID_KEY = "broker_message_deduplication_id";
 
-export function createDeduplicationHeaders() {
+export function withMessageId<T extends Record<string, unknown>>(dto: T) {
     return {
-        headers: {
-            [MESSAGE_ID_KEY]: crypto.randomUUID()
-        }
+        ...dto,
+        [MESSAGE_ID_KEY]: crypto.randomUUID()
     };
 }

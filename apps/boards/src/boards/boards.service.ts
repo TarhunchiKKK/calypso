@@ -58,7 +58,7 @@ export class BoardsService {
     public async remove(id: Id) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
-        this.rmqClient.emit(BoardsBrokerContracts.boardRemoved.pattern, BoardsBrokerContracts.boardRemoved.payload({ id }));
+        this.rmqClient.emit(...BoardsBrokerContracts.boardRemoved.get({ id }));
 
         return result;
     }

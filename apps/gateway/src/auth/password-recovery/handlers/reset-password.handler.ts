@@ -27,7 +27,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
 
         const token = await this.saveToken(userId);
 
-        this.rmqClient.emit(AuthBrokerContracts.resetPassword.pattern, AuthBrokerContracts.resetPassword.payload({ user, token }));
+        this.rmqClient.emit(...AuthBrokerContracts.resetPassword.get({ user, token }));
     }
 
     private async findUser(userId: Id) {
