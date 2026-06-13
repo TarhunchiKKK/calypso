@@ -2,7 +2,7 @@
     "Add `private readonly` modifiers": {
         "scope": "typescript",
         "prefix": "p-r",
-        "body": "private readonly"
+        "body": "private readonly",
     },
 
     // * CQRS
@@ -10,7 +10,7 @@
     "Add buses to constructor": {
         "scope": "typescript",
         "prefix": "n-cqrs-buses",
-        "body": "@Inject(CommandBus) private readonly commandBus: CommandBus, @Inject(QueryBus) private readonly queryBus: QueryBus"
+        "body": "@Inject(CommandBus) private readonly commandBus: CommandBus, @Inject(QueryBus) private readonly queryBus: QueryBus",
     },
     "Create CQRS command": {
         "scope": "typescript",
@@ -31,8 +31,8 @@
             "    public async execute({ dto }: $1Command) {",
             "        ",
             "    }",
-            "}"
-        ]
+            "}",
+        ],
     },
     "Create query": {
         "scope": "typescript",
@@ -53,8 +53,8 @@
             "    public async execute({ dto }: $1Query) {",
             "        ",
             "    }",
-            "}"
-        ]
+            "}",
+        ],
     },
 
     //* TypeORM
@@ -62,17 +62,24 @@
     "Create typeorm entity": {
         "scope": "typescript",
         "prefix": "n-typeorm-entity",
-        "body": ["import { Entity, Column } from \"typeorm\"", "", "@Entity()", "export class $1 {", "    ", "}"]
+        "body": [
+            "import { Entity, Column } from \"typeorm\"",
+            "",
+            "@Entity()",
+            "export class $1 {",
+            "    ",
+            "}",
+        ],
     },
     "Inject TypeORM Repository": {
         "scope": "typescript",
         "prefix": "n-typeorm-dep",
-        "body": "@InjectRepository() private readonly $1Repository: Repository<$1>"
+        "body": "@InjectRepository() private readonly $1Repository: Repository<$1>",
     },
     "Add TypeORM feature module": {
         "scope": "typescript",
         "prefix": "n-typeorm-feature",
-        "body": "TypeOrmModule.forFeature([$1])"
+        "body": "TypeOrmModule.forFeature([$1])",
     },
 
     // * Mongoose
@@ -88,33 +95,56 @@
             "    ",
             "}",
             "",
-            "export const $1Schema = SchemaFactory.createForClass($1);"
-        ]
+            "export const $1Schema = SchemaFactory.createForClass($1);",
+        ],
     },
     "Inject Mongoose Model": {
         "scope": "typescript",
         "prefix": "n-mongoose-dep",
-        "body": "@InjectModel($1.name) private $1Model: Model<$1>"
+        "body": "@InjectModel($1.name) private $1Model: Model<$1>",
     },
     "Add Mongoose feature module": {
         "scope": "typescript",
         "prefix": "n-mongoose-feature",
-        "body": "MongooseModule.forFeature([{ name: $1.name, schema: $1Schema }])"
+        "body": "MongooseModule.forFeature([{ name: $1.name, schema: $1Schema }])",
     },
 
     // * Tests
 
-    "Create Test": {
+    "NestJS Bun Unit Test Handler": {
+        "prefix": "t-unit",
         "scope": "typescript",
-        "prefix": "pw-test",
         "body": [
-            "import { expect, test } from \"@playwright/test\";",
+            "import { afterEach, beforeEach, describe, it, expect, mock } from \"bun:test\";",
+            "import { Test, type TestingModule } from \"@nestjs/testing\";",
             "",
-            "test.describe(\"\", () => {",
-            "   test(\"\", async ({ request }) => {",
-            "       $1",
-            "   });",
-            "})"
-        ]
-    }
+            "describe(\"${1:ClassName}\", () => {",
+            "    let handler: ${1:ClassName};",
+            "",
+            "    beforeEach(async () => {",
+            "        const module: TestingModule = await Test.createTestingModule({",
+            "            providers: [",
+            "                ${1:ClassName},",
+            "                // { provide: getRepositoryToken(Entity), useValue: mockRepository }",
+            "            ]",
+            "        }).compile();",
+            "",
+            "        handler = module.get(${1:ClassName});",
+            "    });",
+            "",
+            "    afterEach(() => {",
+            "        // mock.clearAllMocks();",
+            "    });",
+            "",
+            "    it(\"\", async () => {",
+            "        $0",
+            "    });",
+            "});",
+        ],
+    },
+    "NestJS Bun Unit Test Mock": {
+        "prefix": "t-mock",
+        "scope": "typescript",
+        "body": ["mock(() => Promise.resolve({}))"],
+    },
 }
