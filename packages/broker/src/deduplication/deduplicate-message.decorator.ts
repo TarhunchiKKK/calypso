@@ -1,6 +1,6 @@
 import { applyDecorators, UseInterceptors } from "@nestjs/common";
 import { DeduplicateMessageInterceptor } from "./message-deduplication.interceptor";
 
-export function DeduplicateMessage() {
+export function DeduplicateMessages() {
     return applyDecorators(UseInterceptors(DeduplicateMessageInterceptor));
 }

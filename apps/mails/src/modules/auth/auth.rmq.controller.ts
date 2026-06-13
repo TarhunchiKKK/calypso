@@ -1,7 +1,7 @@
 import {
     AuthBrokerContracts,
     BrokerValidation,
-    DeduplicateMessage,
+    DeduplicateMessages,
     DeduplicationTtl,
     type EmailVerificationBrokerMessage,
     EmailVerificationBrokerMessageZodSchema,
@@ -14,7 +14,7 @@ import { AuthService } from "./auth.service";
 import { EMAIL_VERIFICATION_DEDUPLICATION_TTL, RESET_PASSWORD_DEDUPLICATION_TTL } from "./lib/broker.constants";
 
 @Controller()
-@DeduplicateMessage()
+@DeduplicateMessages()
 export class AuthRmqController {
     public constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
