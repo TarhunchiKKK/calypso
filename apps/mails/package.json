@@ -15,6 +15,7 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
+        "@api/cache": "*",
         "@api/common": "*",
         "@contracts/broker": "*",
         "@lib/auth": "*",

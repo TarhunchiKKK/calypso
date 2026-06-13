@@ -111,6 +111,7 @@
       "name": "mails",
       "version": "0.0.0",
       "dependencies": {
+        "@api/cache": "*",
         "@api/common": "*",
         "@contracts/broker": "*",
         "@lib/auth": "*",
