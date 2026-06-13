@@ -13,7 +13,7 @@ import { EventPattern } from "@nestjs/microservices";
 import { AuthService } from "./auth.service";
 import { EMAIL_VERIFICATION_DEDUPLICATION_TTL, RESET_PASSWORD_DEDUPLICATION_TTL } from "./lib/broker.constants";
 
-@Controller("auth")
+@Controller()
 @DeduplicateMessage()
 export class AuthRmqController {
     public constructor(@Inject(AuthService) private readonly authService: AuthService) {}
