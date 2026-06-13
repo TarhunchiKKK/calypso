@@ -7,6 +7,7 @@ import type { DuplicateBoardDto } from "src/boards/dto/duplicate-board.dto";
 import { Board } from "src/boards/entities/board.entity";
 import { DuplicateBoardCommand, DuplicateBoardCommandHandler } from "src/boards/handlers/duplicate-board.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { MockNodes } from "../nodes/mocks";
 import { MockBoard } from "./mocks/board.mocks";
 
 describe("DuplicateBoardCommandHandler", () => {
@@ -46,15 +47,7 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        const nodes: NodeBase[] = [
-            {
-                id: crypto.randomUUID(),
-                type: "sticker",
-                locked: true,
-                boardId: dto.id,
-                styles: {} as any
-            }
-        ];
+        const nodes: NodeBase[] = [MockNodes.sticker, MockNodes.arrow].map((node) => ({ ...node, boardId: dto.id })) as unknown as NodeBase[];
 
         boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
 
