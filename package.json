@@ -47,5 +47,11 @@
         "sort-package-json": "^4.0.0",
         "turbo": "^2.8.17"
     },
-    "workspaces": ["apps/*", "packages/*"]
+    "workspaces": [
+        "apps/*",
+        "packages/api/*",
+        "packages/config/*",
+        "packages/contracts/*",
+        "packages/lib/*"
+    ]
 }
