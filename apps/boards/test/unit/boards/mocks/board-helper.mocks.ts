@@ -1,6 +1,6 @@
 import { mock } from "bun:test";
+import type { WithMockedMethods } from "@api/common";
 import type { BoardsHelper } from "src/boards/lib/boards.helper";
-import type { WithMockedMethods } from "test/mocks";
 
 export function createBoardsHelperMock(): WithMockedMethods<BoardsHelper> {
     return {

@@ -10,9 +10,9 @@ import { createBoardsHelperMock } from "./mocks";
 describe("ChangeBoardUpdateDateCommandHandler", () => {
     let handler: ChangeBoardUpdateDateCommandHandler;
 
-    const mockBoardsRepository = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock();
 
-    const mockBoardsHelper = createBoardsHelperMock();
+    const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -20,11 +20,11 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
                 ChangeBoardUpdateDateCommandHandler,
                 {
                     provide: BoardsHelper,
-                    useValue: mockBoardsHelper
+                    useValue: boardsHelperMock
                 },
                 {
                     provide: getRepositoryToken(Board),
-                    useValue: mockBoardsRepository
+                    useValue: boardsRepositoryMock
                 }
             ]
         }).compile();
@@ -33,8 +33,8 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
     });
 
     afterEach(() => {
-        clearMock(mockBoardsHelper);
-        clearMock(mockBoardsRepository);
+        clearMock(boardsHelperMock);
+        clearMock(boardsRepositoryMock);
     });
 
     it("should update board with 'updateDate' field", async () => {
@@ -49,7 +49,7 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
 
         const command = new ChangeBoardUpdateDateCommand(mockBoard.id);
 
-        mockBoardsHelper.findOneById.mockResolvedValue(mockBoard);
+        boardsHelperMock.findOneById.mockResolvedValue(mockBoard);
 
         const result = await handler.execute(command);
 
@@ -67,7 +67,7 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
 
         const command = new ChangeBoardUpdateDateCommand(mockBoard.id);
 
-        mockBoardsHelper.findOneById.mockResolvedValue(mockBoard);
+        boardsHelperMock.findOneById.mockResolvedValue(mockBoard);
 
         const result = await handler.execute(command);
 
