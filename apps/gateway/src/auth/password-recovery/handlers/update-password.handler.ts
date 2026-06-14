@@ -2,6 +2,7 @@ import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
+import * as argon2 from "argon2";
 import { UsersHelper } from "src/auth/users/users.helper";
 import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
@@ -52,7 +53,7 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
         }
 
         await this.usersHelper.update(user, {
-            password: password
+            password: await argon2.hash(password)
         });
     }
 }
