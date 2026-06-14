@@ -9,11 +9,11 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { EmptyGrpcResponse } from "../common/util";
 import {
-  CreateManyBoardNodesGrpcRequest,
-  FindAllBoardNodesGrpcRequest,
-  FindAllBoardNodesGrpcResponse,
-  RemoveManyBoardNodesGrpcRequest,
-  UpdateManyBoardNodesGrpcRequest,
+    CreateManyBoardNodesGrpcRequest,
+    FindAllBoardNodesGrpcRequest,
+    FindAllBoardNodesGrpcResponse,
+    RemoveManyBoardNodesGrpcRequest,
+    UpdateManyBoardNodesGrpcRequest
 } from "./nodes.dto";
 
 const protobufPackage = "boardNodes";
@@ -21,46 +21,40 @@ const protobufPackage = "boardNodes";
 export const BOARD_NODES_PACKAGE_NAME = "boardNodes";
 
 export interface BoardNodesServiceClient {
-  createMany(request: CreateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    createMany(request: CreateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  findAll(request: FindAllBoardNodesGrpcRequest): Observable<FindAllBoardNodesGrpcResponse>;
+    findAll(request: FindAllBoardNodesGrpcRequest): Observable<FindAllBoardNodesGrpcResponse>;
 
-  updateMany(request: UpdateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    updateMany(request: UpdateManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 
-  removeMany(request: RemoveManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
+    removeMany(request: RemoveManyBoardNodesGrpcRequest): Observable<EmptyGrpcResponse>;
 }
 
 export interface BoardNodesServiceController {
-  createMany(
-    request: CreateManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    createMany(request: CreateManyBoardNodesGrpcRequest): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  findAll(
-    request: FindAllBoardNodesGrpcRequest,
-  ): Promise<FindAllBoardNodesGrpcResponse> | Observable<FindAllBoardNodesGrpcResponse> | FindAllBoardNodesGrpcResponse;
+    findAll(
+        request: FindAllBoardNodesGrpcRequest
+    ): Promise<FindAllBoardNodesGrpcResponse> | Observable<FindAllBoardNodesGrpcResponse> | FindAllBoardNodesGrpcResponse;
 
-  updateMany(
-    request: UpdateManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    updateMany(request: UpdateManyBoardNodesGrpcRequest): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 
-  removeMany(
-    request: RemoveManyBoardNodesGrpcRequest,
-  ): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
+    removeMany(request: RemoveManyBoardNodesGrpcRequest): Promise<EmptyGrpcResponse> | Observable<EmptyGrpcResponse> | EmptyGrpcResponse;
 }
 
 export function BoardNodesServiceControllerMethods() {
-  return function (constructor: Function) {
-    const grpcMethods: string[] = ["createMany", "findAll", "updateMany", "removeMany"];
-    for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
-    }
-    const grpcStreamMethods: string[] = [];
-    for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
-    }
-  };
+    return function (constructor: Function) {
+        const grpcMethods: string[] = ["createMany", "findAll", "updateMany", "removeMany"];
+        for (const method of grpcMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
+        }
+        const grpcStreamMethods: string[] = [];
+        for (const method of grpcStreamMethods) {
+            const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+            GrpcStreamMethod("BoardNodesService", method)(constructor.prototype[method], method, descriptor);
+        }
+    };
 }
 
 export const BOARD_NODES_SERVICE_NAME = "BoardNodesService";

@@ -11,25 +11,25 @@ import { BoardGrpc, BoardsListGrpc } from "./boards.models";
 const protobufPackage = "boards";
 
 export interface BoardGrpcResponse {
-  data?: BoardGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface CreateBoardGrpcRequest {
-  title: string;
-  icon: string;
-  creatorId: string;
+    title: string;
+    icon: string;
+    creatorId: string;
 }
 
 export interface UpdateBoardGrpcRequest {
-  id: string;
-  userId: string;
-  title?: string | undefined;
-  description?: string | undefined;
-  icon?: string | undefined;
+    id: string;
+    userId: string;
+    title?: string | undefined;
+    description?: string | undefined;
+    icon?: string | undefined;
 }
 
 export interface FindAllBoardsGrpcResponse {
-  data?: BoardsListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardsListGrpc | undefined;
+    error?: GrpcError | undefined;
 }

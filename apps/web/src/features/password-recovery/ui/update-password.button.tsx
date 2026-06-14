@@ -9,7 +9,7 @@ const INTERVAL = 60;
 export function UpdatePasswordButton() {
     const timer = useTimer({
         key: LOCAL_STORAGE_KEY,
-        seconds: INTERVAL,
+        seconds: INTERVAL
     });
 
     const { mutateAsync, isPending } = PasswordRecoveryApi.useReset({
@@ -20,7 +20,7 @@ export function UpdatePasswordButton() {
         },
         onError: () => {
             toast.error("Could not send email");
-        },
+        }
     });
 
     const handleReset = async () => {
@@ -33,11 +33,7 @@ export function UpdatePasswordButton() {
                 Reset Password
             </Button>
 
-            {timer.isPending && (
-                <p className="text-secondary">
-                    You can retry after {timer.timeLeft} seconds
-                </p>
-            )}
+            {timer.isPending && <p className="text-secondary">You can retry after {timer.timeLeft} seconds</p>}
         </div>
     );
 }

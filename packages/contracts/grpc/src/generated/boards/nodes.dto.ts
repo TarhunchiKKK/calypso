@@ -11,33 +11,33 @@ import { AnyBoardNodeGrpc } from "./nodes.models";
 const protobufPackage = "boardNodes";
 
 export interface CreateManyBoardNodesGrpcRequest {
-  nodes: AnyBoardNodeGrpc[];
-  boardId: string;
-  userId: string;
+    nodes: AnyBoardNodeGrpc[];
+    boardId: string;
+    userId: string;
 }
 
 export interface FindAllBoardNodesGrpcRequest {
-  boardId: string;
-  userId: string;
+    boardId: string;
+    userId: string;
 }
 
 export interface BoardNodesListGrpc {
-  nodes: AnyBoardNodeGrpc[];
+    nodes: AnyBoardNodeGrpc[];
 }
 
 export interface FindAllBoardNodesGrpcResponse {
-  data?: BoardNodesListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: BoardNodesListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface UpdateManyBoardNodesGrpcRequest {
-  nodes: AnyBoardNodeGrpc[];
-  boardId: string;
-  userId: string;
+    nodes: AnyBoardNodeGrpc[];
+    boardId: string;
+    userId: string;
 }
 
 export interface RemoveManyBoardNodesGrpcRequest {
-  ids: string[];
-  boardId: string;
-  userId: string;
+    ids: string[];
+    boardId: string;
+    userId: string;
 }

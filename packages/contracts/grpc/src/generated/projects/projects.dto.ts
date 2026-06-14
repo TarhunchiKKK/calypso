@@ -11,23 +11,23 @@ import { FindProjectsFiltersGrpc } from "./projects.model";
 const protobufPackage = "projects";
 
 export interface DuplicateProjectGrpcRequest {
-  id: string;
-  title: string;
-  creatorId: string;
+    id: string;
+    title: string;
+    creatorId: string;
 }
 
 export interface FindAllProjectsGrpcRequest {
-  userId: string;
-  filters: FindProjectsFiltersGrpc | undefined;
-  pagination: PaginationRequestGrpc | undefined;
+    userId: string;
+    filters: FindProjectsFiltersGrpc | undefined;
+    pagination: PaginationRequestGrpc | undefined;
 }
 
 export interface FindOneProjectGrpcRequest {
-  id: string;
-  userId: string;
+    id: string;
+    userId: string;
 }
 
 export interface RemoveProjectGrpcRequest {
-  id: string;
-  userId: string;
+    id: string;
+    userId: string;
 }

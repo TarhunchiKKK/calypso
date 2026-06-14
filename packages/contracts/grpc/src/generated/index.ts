@@ -8,7 +8,7 @@ export * from "./common/formattable";
 export * from "./common/geometry";
 export * from "./common/util";
 export * from "./core/auth";
-export * from "./google/protobuf/any";  
+export * from "./google/protobuf/any";
 export * from "./google/protobuf/empty";
 export * from "./media/media.dto";
 export * from "./media/media.models";

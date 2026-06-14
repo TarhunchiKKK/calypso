@@ -4,14 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { MediaApi } from "@/entities/media";
 import { stopPropagationHandler } from "@/shared/lib/js";
-import {
-    Button,
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    Input,
-} from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { BoardsApi } from "../api";
 
 type Props = {
@@ -28,27 +21,25 @@ export function CreateBoardForm({ afterSubmit }: Props) {
         },
         onError: () => {
             toast.error("Error creating board");
-        },
+        }
     });
 
     const form = useForm<CreateBoardDto>({
         defaultValues: {
             title: "",
-            icon: "",
+            icon: ""
         },
-        resolver: zodResolver(CreateBoardDtoZodSchema),
+        resolver: zodResolver(CreateBoardDtoZodSchema)
     });
 
     const onSubmit = form.handleSubmit(async (data) => {
         if (!media) {
-            throw new ErrorEvent(
-                "CreateBoardForm: Random media is not defined",
-            );
+            throw new ErrorEvent("CreateBoardForm: Random media is not defined");
         }
 
         await create.mutateAsync({
             ...data,
-            icon: media.url,
+            icon: media.url
         });
     });
 
@@ -62,16 +53,9 @@ export function CreateBoardForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Board title</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder="Enter board title"
-                                onKeyDown={stopPropagationHandler}
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter board title" onKeyDown={stopPropagationHandler} />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

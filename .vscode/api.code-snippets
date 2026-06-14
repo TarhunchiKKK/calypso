@@ -104,17 +104,39 @@
 
     // * Tests
 
-    "Create Test": {
+    "NestJS Bun Unit Test Handler": {
+        "prefix": "t-unit",
         "scope": "typescript",
-        "prefix": "pw-test",
         "body": [
-            "import { expect, test } from \"@playwright/test\";",
+            "import { afterEach, beforeEach, describe, it, expect, mock } from \"bun:test\";",
+            "import { Test, type TestingModule } from \"@nestjs/testing\";",
             "",
-            "test.describe(\"\", () => {",
-            "   test(\"\", async ({ request }) => {",
-            "       $1",
-            "   });",
-            "})"
+            "describe(\"${1:ClassName}\", () => {",
+            "    let handler: ${1:ClassName};",
+            "",
+            "    beforeEach(async () => {",
+            "        const module: TestingModule = await Test.createTestingModule({",
+            "            providers: [",
+            "                ${1:ClassName}",
+            "            ]",
+            "        }).compile();",
+            "",
+            "        handler = module.get(${1:ClassName});",
+            "    });",
+            "",
+            "    afterEach(() => {",
+            "        // clearMock();",
+            "    });",
+            "",
+            "    it(\"\", async () => {",
+            "        $0",
+            "    });",
+            "});"
         ]
+    },
+    "NestJS Bun Unit Test Mock": {
+        "prefix": "t-mock",
+        "scope": "typescript",
+        "body": ["mock(() => Promise.resolve({}))"]
     }
 }

@@ -1,7 +1,7 @@
+import type { Id } from "@lib/common";
 import { Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { Id } from "@lib/common";
 import type { Repository } from "typeorm";
 import type { UpdateBoardDto } from "../dto/update-board.dto";
 import { Board } from "../entities/board.entity";

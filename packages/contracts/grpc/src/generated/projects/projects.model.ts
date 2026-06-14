@@ -9,24 +9,24 @@
 const protobufPackage = "projects";
 
 export interface ProjectCreatorGrpc {
-  id: string;
-  username: string;
-  email: string;
-  avatar?: string | undefined;
+    id: string;
+    username: string;
+    email: string;
+    avatar?: string | undefined;
 }
 
 export interface ProjectGrpc {
-  id: string;
-  title: string;
-  description?: string | undefined;
-  icon: string;
-  creator: ProjectCreatorGrpc | undefined;
-  createdAt: string;
-  updatedAt?: string | undefined;
+    id: string;
+    title: string;
+    description?: string | undefined;
+    icon: string;
+    creator: ProjectCreatorGrpc | undefined;
+    createdAt: string;
+    updatedAt?: string | undefined;
 }
 
 export interface FindProjectsFiltersGrpc {
-  type?: string | undefined;
-  creatorId?: string | undefined;
-  sortOrder?: string | undefined;
+    type?: string | undefined;
+    creatorId?: string | undefined;
+    sortOrder?: string | undefined;
 }

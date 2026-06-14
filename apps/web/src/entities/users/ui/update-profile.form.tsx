@@ -1,19 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-    type Profile,
-    type UpdateProfileDto,
-    UpdateProfileDtoZodSchema,
-} from "@lib/auth";
+import { type Profile, type UpdateProfileDto, UpdateProfileDtoZodSchema } from "@lib/auth";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {
-    Button,
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    Input,
-} from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { UsersApi } from "../api";
 
 type Props = {
@@ -26,9 +15,9 @@ export function UpdateProfileForm({ profile, afterSubmit }: Props) {
     const form = useForm<UpdateProfileDto>({
         defaultValues: {
             username: profile.username,
-            avatar: profile.avatar,
+            avatar: profile.avatar
         },
-        resolver: zodResolver(UpdateProfileDtoZodSchema),
+        resolver: zodResolver(UpdateProfileDtoZodSchema)
     });
 
     const updateProfile = UsersApi.useUpdate({
@@ -39,7 +28,7 @@ export function UpdateProfileForm({ profile, afterSubmit }: Props) {
         },
         onError: () => {
             toast.error("Error via sign up");
-        },
+        }
     });
 
     const onSubmit = form.handleSubmit(async (data) => {
@@ -56,15 +45,9 @@ export function UpdateProfileForm({ profile, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Username</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder="Nickname"
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Nickname" />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
