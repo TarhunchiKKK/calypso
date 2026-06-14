@@ -6,7 +6,7 @@ export const MockUser: User = {
     id: crypto.randomUUID(),
     username: "John Doe",
     email: "john@gmail.com",
-    emailVerified: true,
+    emailVerified: false,
     password: "Password123",
     avatar: "john-doe.png"
 };

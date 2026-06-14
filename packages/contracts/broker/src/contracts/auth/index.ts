@@ -1,4 +1,4 @@
-import { withMessageId } from "deduplication";
+import { withMessageId } from "../../deduplication";
 import type { EmailVerificationBrokerMessage } from "./email-verification.message";
 import type { ResetPasswordBrokerMessage } from "./password-recovery.message";
 

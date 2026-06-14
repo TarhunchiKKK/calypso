@@ -19,6 +19,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
+        // REFACTOR: rename `rmqClient` into `brokerClient` everywhere
         @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
     ) {}
 

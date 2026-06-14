@@ -1,5 +1,5 @@
 import type { OnlyIdDto } from "@api/common";
-import { withMessageId } from "deduplication";
+import { withMessageId } from "../../deduplication";
 
 export const BoardsBrokerContracts = {
     nodesChanged: {
