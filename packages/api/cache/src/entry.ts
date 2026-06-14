@@ -5,3 +5,4 @@ export type { CacheModuleAsyncOptions, CacheModuleOptions } from "./config/di.li
 export { Cache } from "./decorators/cache.decorator";
 export { InvalidateCache } from "./decorators/invalidate-cache.decorator";
 export { ManualCaching } from "./metadata/manual-caching.decorator";
+export * from "./mocks";

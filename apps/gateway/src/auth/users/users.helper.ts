@@ -14,6 +14,7 @@ export class UsersHelper {
         return await this.usersRepository.save(dto);
     }
 
+    // REFACTOR: add existence check
     public async findOneById(id: Id) {
         return await this.usersRepository.findOne({
             where: {
@@ -22,6 +23,7 @@ export class UsersHelper {
         });
     }
 
+    // REFACTOR: add existence check
     public async findOneByEmail(email: string) {
         return await this.usersRepository.findOne({
             where: {
@@ -30,6 +32,7 @@ export class UsersHelper {
         });
     }
 
+    // DELETE: is reusable?
     public async findManyByIds(ids: Id[]) {
         return await this.usersRepository.find({
             where: {
@@ -44,6 +47,7 @@ export class UsersHelper {
         });
     }
 
+    // DELETE: is reusable?
     public async update(user: User, data: Partial<User>) {
         Object.assign(user, data);
 

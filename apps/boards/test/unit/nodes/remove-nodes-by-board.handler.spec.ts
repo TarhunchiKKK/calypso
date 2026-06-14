@@ -8,7 +8,6 @@ import { MockBoard } from "../boards/mocks/board.mocks";
 
 describe("RemoveNodesByBoardCommandHandler", () => {
     let handler: RemoveNodesByBoardCommandHandler;
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -31,7 +30,6 @@ describe("RemoveNodesByBoardCommandHandler", () => {
 
     it("should remove nodes", async () => {
         const command = new RemoveNodesByBoardCommand(MockBoard.id);
-
         const result = await handler.execute(command);
 
         expect(result).toBe(MockBoard.id);

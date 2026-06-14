@@ -11,9 +11,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("UpdateBoardCommandHandler", () => {
     let handler: UpdateBoardCommandHandler;
-
     const boardsRepositoryMock = createRepositoryMock();
-
     const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {
@@ -49,7 +47,6 @@ describe("UpdateBoardCommandHandler", () => {
         boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
         const command = new UpdateBoardCommand(MockBoard.id, dto);
-
         const result = await handler.execute(command);
 
         expect(result).toBe(MockBoard.id);

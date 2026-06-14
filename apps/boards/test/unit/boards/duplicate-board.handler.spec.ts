@@ -12,9 +12,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("DuplicateBoardCommandHandler", () => {
     let handler: DuplicateBoardCommandHandler;
-
     const boardsRepositoryMock = createRepositoryMock();
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -50,11 +48,9 @@ describe("DuplicateBoardCommandHandler", () => {
         const nodes: NodeBase[] = [MockNodes.sticker, MockNodes.arrow].map((node) => ({ ...node, boardId: dto.id })) as unknown as NodeBase[];
 
         boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
-
         nodesModelMock.find.mockResolvedValueOnce(nodes);
 
         const command = new DuplicateBoardCommand(dto);
-
         await handler.execute(command);
 
         expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...MockBoard, title: dto.title, creatorId: dto.creatorId });
@@ -70,11 +66,9 @@ describe("DuplicateBoardCommandHandler", () => {
         };
 
         boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
-
         nodesModelMock.find.mockResolvedValueOnce([]);
 
         const command = new DuplicateBoardCommand(dto);
-
         await handler.execute(command);
 
         expect(boardsRepositoryMock.save).toHaveBeenCalledWith({ ...MockBoard, title: dto.title, creatorId: dto.creatorId });
@@ -89,10 +83,9 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        boardsRepositoryMock.findOne.mockResolvedValue(null);
+        boardsRepositoryMock.findOne.mockResolvedValue(null as any);
 
         const command = new DuplicateBoardCommand(dto);
-
         expect(handler.execute(command)).rejects.toThrow();
 
         expect(boardsRepositoryMock.save).not.toHaveBeenCalled();

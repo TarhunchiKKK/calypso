@@ -9,7 +9,6 @@ import { MockNodes } from "./mocks";
 
 describe("FindAllNodesQueryHandler", () => {
     let handler: FindAllNodesQueryHandler;
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -36,7 +35,6 @@ describe("FindAllNodesQueryHandler", () => {
         nodesModelMock.find.mockResolvedValue(nodes);
 
         const query = new FindAllNodesQuery(MockBoard.id);
-
         const result = await handler.execute(query);
 
         expect(result).toEqual(nodes as any);

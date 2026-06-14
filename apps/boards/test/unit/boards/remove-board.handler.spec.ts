@@ -10,9 +10,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("RemoveBoardCommandHandler", () => {
     let handler: RemoveBoardCommandHandler;
-
     const boardsHelperMock = createBoardsHelperMock();
-
     const boardsRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -42,7 +40,6 @@ describe("RemoveBoardCommandHandler", () => {
         boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
         const command = new RemoveBoardCommand(MockBoard.id);
-
         await handler.execute(command);
 
         expect(boardsHelperMock.findOneById).toHaveBeenCalledWith(MockBoard.id);

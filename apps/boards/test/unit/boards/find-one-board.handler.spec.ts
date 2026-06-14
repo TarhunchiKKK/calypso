@@ -8,7 +8,6 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("FindOneBoardQueryHandler", () => {
     let handler: FindOneBoardQueryHandler;
-
     const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {
@@ -30,10 +29,9 @@ describe("FindOneBoardQueryHandler", () => {
     });
 
     it("should return board", async () => {
-        const query = new FindOneBoardQuery(MockBoard.id);
-
         boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
+        const query = new FindOneBoardQuery(MockBoard.id);
         const result = await handler.execute(query);
 
         expect(result).toEqual(MockBoard);

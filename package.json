@@ -38,7 +38,7 @@
         "clean:dist": "bun x rimraf apps/**/dist packages/**/dist",
         "docker:up": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
         "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
-        "test:current": "turbo run test:unit --filter=media"
+        "test:current": "turbo run test:unit --filter=gateway"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",

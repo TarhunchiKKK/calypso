@@ -10,9 +10,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("ChangeBoardUpdateDateCommandHandler", () => {
     let handler: ChangeBoardUpdateDateCommandHandler;
-
     const boardsRepositoryMock = createRepositoryMock();
-
     const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {
@@ -39,20 +37,18 @@ describe("ChangeBoardUpdateDateCommandHandler", () => {
     });
 
     it("should update board with 'updateDate' field", async () => {
-        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
-
         boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
+        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
         const result = await handler.execute(command);
 
         expect(result).toBe(MockBoard.id);
     });
 
     it("should update board without 'updateDate' field", async () => {
-        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
-
         boardsHelperMock.findOneById.mockResolvedValue(MockBoard);
 
+        const command = new ChangeBoardUpdateDateCommand(MockBoard.id);
         const result = await handler.execute(command);
 
         expect(result).toBe(MockBoard.id);

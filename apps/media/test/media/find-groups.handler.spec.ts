@@ -8,7 +8,6 @@ import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindGroupsQueryHandler", () => {
     let handler: FindGroupsQueryHandler;
-
     const mediaGroupsRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -33,7 +32,6 @@ describe("FindGroupsQueryHandler", () => {
         mediaGroupsRepositoryMock.find.mockResolvedValue([MockMediaGroup]);
 
         const query = new FindGroupsQuery(MockMedia.domain);
-
         const result = await handler.execute(query);
 
         expect(result).toEqual([MockMediaGroup]);
