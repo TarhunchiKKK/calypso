@@ -10,7 +10,6 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("FindAllBoardsQueryHandler", () => {
     let handler: FindAllBoardsQueryHandler;
-
     const boardsRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -50,7 +49,6 @@ describe("FindAllBoardsQueryHandler", () => {
         boardsRepositoryMock.find.mockResolvedValue(boards);
 
         const query = new FindAllBoardsQuery(userId, filters, pagination);
-
         const result = await handler.execute(query);
 
         expect(result).toEqual(boards);

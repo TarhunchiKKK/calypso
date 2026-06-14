@@ -9,7 +9,6 @@ import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindPresetsQueryHandler", () => {
     let handler: FindPresetsQueryHandler;
-
     const mediaRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -39,7 +38,6 @@ describe("FindPresetsQueryHandler", () => {
         mediaRepositoryMock.find.mockResolvedValue([MockMedia]);
 
         const query = new FindPresetsQuery(dto);
-
         const result = await handler.execute(query);
 
         expect(result).toEqual([MockMedia]);

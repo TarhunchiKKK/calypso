@@ -23,7 +23,7 @@ export class RefreshSessionQueryHandler implements IQueryHandler<RefreshSessionQ
         const user = await this.usersHelper.findOneById(payload.id);
 
         if (!user) {
-            throw new UnauthorizedException("profile not found");
+            throw new UnauthorizedException("Profile not found");
         }
 
         const session = this.tokensService.sign(user);

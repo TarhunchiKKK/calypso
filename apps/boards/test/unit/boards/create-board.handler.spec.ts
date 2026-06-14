@@ -8,7 +8,6 @@ import { CreateBoardCommand, CreateBoardCommandHandler } from "src/boards/handle
 
 describe("CreateBoardCommandHandler", () => {
     let handler: CreateBoardCommandHandler;
-
     const boardsRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -37,7 +36,6 @@ describe("CreateBoardCommandHandler", () => {
         };
 
         const command = new CreateBoardCommand(dto);
-
         await handler.execute(command);
 
         expect(boardsRepositoryMock.save).toHaveBeenCalledWith(dto);

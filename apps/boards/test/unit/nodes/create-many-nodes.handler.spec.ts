@@ -10,7 +10,6 @@ import { MockNodes } from "./mocks";
 
 describe("CreateManyNodesCommandHandler", () => {
     let handler: CreateManyNodesCommandHandler;
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -38,7 +37,6 @@ describe("CreateManyNodesCommandHandler", () => {
         };
 
         const command = new CreateManyNodesCommand(dto);
-
         await handler.execute(command);
 
         expect(nodesModelMock.insertMany).toHaveBeenCalled();

@@ -8,7 +8,6 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("BoardsHelper", () => {
     let helper: BoardsHelper;
-
     const boardsRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {

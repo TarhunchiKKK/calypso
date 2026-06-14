@@ -10,7 +10,6 @@ import { MockNodes } from "./mocks";
 
 describe("RemoveManyNodesCommandHandler", () => {
     let handler: RemoveManyNodesCommandHandler;
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -38,7 +37,6 @@ describe("RemoveManyNodesCommandHandler", () => {
         };
 
         const command = new RemoveManyNodesCommand(dto);
-
         await handler.execute(command);
 
         expect(nodesModelMock.deleteMany).toHaveBeenCalled();

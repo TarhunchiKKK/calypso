@@ -8,7 +8,6 @@ import { createUsersHelperMock, MockUser } from "./mocks";
 
 describe("UpdateProfileCommandHandler", () => {
     let handler: UpdateProfileCommandHandler;
-
     const usersHelperMock = createUsersHelperMock();
 
     beforeEach(async () => {
@@ -38,7 +37,6 @@ describe("UpdateProfileCommandHandler", () => {
         usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new UpdateProfileCommand(MockUser.id, dto);
-
         await handler.execute(command);
 
         expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
@@ -54,7 +52,6 @@ describe("UpdateProfileCommandHandler", () => {
         usersHelperMock.findOneById.mockResolvedValue(null as any);
 
         const command = new UpdateProfileCommand(MockUser.id, dto);
-
         expect(handler.execute(command)).rejects.toThrow();
 
         expect(usersHelperMock.update).not.toHaveBeenCalled();

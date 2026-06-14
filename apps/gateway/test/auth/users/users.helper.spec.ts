@@ -1,16 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createRepositoryMock } from "@api/common";
-import type { Profile } from "@lib/auth";
 import { Test, type TestingModule } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import type { CreateUserDto } from "src/auth/users/dto/create-user.dto";
 import { User } from "src/auth/users/entities/user.entity";
 import { UsersHelper } from "src/auth/users/users.helper";
-import { MockUser } from "./mocks";
+import { MockProfile, MockUser } from "./mocks";
 
 describe("UsersHelper", () => {
     let helper: UsersHelper;
-
     const usersRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
@@ -68,10 +66,9 @@ describe("UsersHelper", () => {
 
         expect(Array.isArray(result)).toBeTrue();
         expect(result.length).toBeLessThanOrEqual(users.length);
-
-        for (const user of result) {
+        result.forEach((user) => {
             expect(users.includes(user)).toBeTrue();
-        }
+        });
     });
 
     it("should update user", async () => {
@@ -80,7 +77,7 @@ describe("UsersHelper", () => {
             avatar: "new-avatar.png"
         };
 
-        await helper.update(MockUser, data);
+        await helper.update({ ...MockUser }, data);
 
         expect(usersRepositoryMock.save).toHaveBeenCalledWith({
             ...MockUser,
@@ -89,16 +86,8 @@ describe("UsersHelper", () => {
     });
 
     it("should convert user to profile", async () => {
-        const profile: Profile = {
-            id: MockUser.id,
-            username: MockUser.username,
-            email: MockUser.email,
-            emailVerified: MockUser.emailVerified,
-            avatar: MockUser.avatar
-        };
-
         const result = helper.userToProfile(MockUser);
 
-        expect(result).toEqual(profile);
+        expect(result).toEqual(MockProfile);
     });
 });

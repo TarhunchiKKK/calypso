@@ -10,7 +10,6 @@ import { MockNodes } from "./mocks";
 
 describe("UpdateManyNodesCommandHandler", () => {
     let handler: UpdateManyNodesCommandHandler;
-
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
@@ -38,7 +37,6 @@ describe("UpdateManyNodesCommandHandler", () => {
         };
 
         const command = new UpdateManyNodesCommand(dto);
-
         await handler.execute(command);
 
         expect(nodesModelMock.bulkWrite).toHaveBeenCalled();
