@@ -2,14 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type SignInDto, SignInDtoZodSchema } from "@lib/auth";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {
-    Button,
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    Input,
-} from "@/shared/ui/kit";
+import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from "@/shared/ui/kit";
 import { AuthApi } from "../api";
 
 type Props = {
@@ -20,9 +13,9 @@ export function SignInForm({ afterSubmit }: Props) {
     const form = useForm<SignInDto>({
         defaultValues: {
             email: "",
-            password: "",
+            password: ""
         },
-        resolver: zodResolver(SignInDtoZodSchema),
+        resolver: zodResolver(SignInDtoZodSchema)
     });
 
     const signIn = AuthApi.useSignIn({
@@ -32,7 +25,7 @@ export function SignInForm({ afterSubmit }: Props) {
         },
         onError: () => {
             toast.error("Error via sign in");
-        },
+        }
     });
 
     const onSubmit = form.handleSubmit(async (data) => {
@@ -49,16 +42,9 @@ export function SignInForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Email</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                type="email"
-                                placeholder="yourname@gmail.com"
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} type="email" placeholder="yourname@gmail.com" />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
@@ -70,16 +56,9 @@ export function SignInForm({ afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Password</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                type="password"
-                                placeholder="********"
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} type="password" placeholder="********" />
 
-                            {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
-                            )}
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

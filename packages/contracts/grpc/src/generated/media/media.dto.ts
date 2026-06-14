@@ -11,30 +11,30 @@ import { MediaGroupsListGrpc, MediaListGrpc, PresignUrlPairGrpc } from "./media.
 const protobufPackage = "media";
 
 export interface FindMediaPresetsGrpcRequest {
-  domain: string;
-  groupId?: string | undefined;
+    domain: string;
+    groupId?: string | undefined;
 }
 
 export interface FindMediaPresetsGrpcResponse {
-  data?: MediaListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: MediaListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface FindMediaPresetsGroupsGrpcRequest {
-  domain: string;
+    domain: string;
 }
 
 export interface FindMediaPresetsGroupsGrpcResponse {
-  data?: MediaGroupsListGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: MediaGroupsListGrpc | undefined;
+    error?: GrpcError | undefined;
 }
 
 export interface GetPresignedMediaUrlGrpcRequest {
-  fileName: string;
-  contentType: string;
+    fileName: string;
+    contentType: string;
 }
 
 export interface GetPresignedMediaUrlGrpcResponse {
-  data?: PresignUrlPairGrpc | undefined;
-  error?: GrpcError | undefined;
+    data?: PresignUrlPairGrpc | undefined;
+    error?: GrpcError | undefined;
 }

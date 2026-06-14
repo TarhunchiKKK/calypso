@@ -9,7 +9,7 @@ const INTERVAL = 60;
 export function EmailVerificationButton() {
     const timer = useTimer({
         key: LOCAL_STORAGE_KEY,
-        seconds: INTERVAL,
+        seconds: INTERVAL
     });
 
     const { mutateAsync, isPending } = EmailVerificationApi.useSend({
@@ -20,7 +20,7 @@ export function EmailVerificationButton() {
         },
         onError: () => {
             toast.error("Could not send email");
-        },
+        }
     });
 
     const handleSend = async () => {
@@ -33,11 +33,7 @@ export function EmailVerificationButton() {
                 Verify Email
             </Button>
 
-            {timer.isPending && (
-                <p className="text-secondary">
-                    You can retry after {timer.timeLeft} seconds
-                </p>
-            )}
+            {timer.isPending && <p className="text-secondary">You can retry after {timer.timeLeft} seconds</p>}
         </div>
     );
 }

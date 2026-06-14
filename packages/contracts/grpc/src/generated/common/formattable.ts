@@ -10,13 +10,13 @@ import { Any } from "../google/protobuf/any";
 const protobufPackage = "formattable";
 
 export interface FormattableTextGrpc {
-  text: string;
-  bold?: boolean | undefined;
-  italic?: boolean | undefined;
-  underline?: boolean | undefined;
+    text: string;
+    bold?: boolean | undefined;
+    italic?: boolean | undefined;
+    underline?: boolean | undefined;
 }
 
 export interface FormattableElementGrpc {
-  type: string;
-  children: Any[];
+    type: string;
+    children: Any[];
 }

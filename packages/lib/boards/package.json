@@ -13,9 +13,7 @@
     "main": "./dist/cjs/entry.js",
     "module": "./dist/esm/entry.js",
     "types": "./dist/cjs/entry.d.ts",
-    "files": [
-        "./dist/**"
-    ],
+    "files": ["./dist/**"],
     "scripts": {
         "build": "tsup --config tsup.config.ts",
         "type-check": "tsc --noEmit"

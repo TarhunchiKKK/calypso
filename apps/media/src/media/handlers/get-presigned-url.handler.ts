@@ -1,8 +1,8 @@
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import type { GetPresignedUrlDto, GetPresignedUrlResponse } from "@lib/media";
 import { Inject } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import type { GetPresignedUrlDto, GetPresignedUrlResponse } from "@lib/media";
 import { S3Service } from "../services/s3.service";
 
 export class GetPresignedUrlQuery extends Query<GetPresignedUrlResponse> {

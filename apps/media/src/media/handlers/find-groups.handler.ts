@@ -1,6 +1,6 @@
+import type { MediaDomains } from "@lib/media";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { MediaDomains } from "@lib/media";
 import type { Repository } from "typeorm";
 import { MediaGroup } from "../entities/media-group.entity";
 

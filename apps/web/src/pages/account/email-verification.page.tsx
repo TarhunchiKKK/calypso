@@ -11,7 +11,7 @@ function EmailVerificationPage() {
         },
         onError: () => {
             toast.error("Error via email verifying");
-        },
+        }
     });
 
     useEffect(() => {

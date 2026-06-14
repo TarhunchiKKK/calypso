@@ -10,7 +10,7 @@ export function SignOutDropdownItem() {
     const signOut = AuthApi.useSignOut({
         onSuccess: () => {
             navigate(Routes.auth.signIn);
-        },
+        }
     });
 
     const onSelect = async () => {
@@ -18,11 +18,7 @@ export function SignOutDropdownItem() {
     };
 
     return (
-        <DropdownMenuItem
-            variant="destructive"
-            disabled={signOut.isPending}
-            onSelect={onSelect}
-        >
+        <DropdownMenuItem variant="destructive" disabled={signOut.isPending} onSelect={onSelect}>
             <LogOutIcon />
             Sign Out
         </DropdownMenuItem>

@@ -9,7 +9,7 @@
         "start": "nest start",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
-        "test": "jest",
+        "test:unit": "bun test --preload ../../scripts/bun-test-setup.ts",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "test:watch": "jest --watch",
@@ -42,9 +42,10 @@
         "typeorm": "^0.3.28"
     },
     "devDependencies": {
+        "@config/typescript": "*",
         "@nestjs/cli": "^11.0.14",
         "@nestjs/schematics": "^11.0.9",
-        "@config/typescript": "*",
+        "@nestjs/testing": "^11.1.26",
         "@types/mime-types": "^3.0.1",
         "@types/node": "^22.19.3",
         "jest": "^30.2.0",

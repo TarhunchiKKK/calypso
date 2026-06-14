@@ -4,7 +4,7 @@ import { SignInForm } from "@/entities/auth";
 
 const meta = {
     title: "Features/Auth/Sign In Form",
-    component: SignInForm,
+    component: SignInForm
 } satisfies Meta<typeof SignInForm>;
 
 export default meta;
@@ -14,6 +14,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     decorators: applyDecorators(centered, wrapper({ width: 300 })),
     args: {
-        afterSubmit: () => {},
-    },
+        afterSubmit: () => {}
+    }
 };

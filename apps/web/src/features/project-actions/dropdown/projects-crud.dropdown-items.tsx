@@ -15,14 +15,14 @@ export function DuplicateProjectDropdownItem({ project }: Props) {
         },
         onError: () => {
             toast.error("Cannot duplicate project");
-        },
+        }
     });
 
     const onSelect = async () => {
         await duplicate.mutateAsync({
             id: project.id,
             type: project.type,
-            title: `${project.title} (Copy)`,
+            title: `${project.title} (Copy)`
         });
     };
 

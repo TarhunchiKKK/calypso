@@ -9,7 +9,7 @@
 const protobufPackage = "auth";
 
 export interface UserInfoGrpc {
-  id: string;
-  email?: string | undefined;
-  avatar?: string | undefined;
+    id: string;
+    email?: string | undefined;
+    avatar?: string | undefined;
 }

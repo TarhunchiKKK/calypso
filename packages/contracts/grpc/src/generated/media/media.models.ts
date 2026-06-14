@@ -9,25 +9,25 @@
 const protobufPackage = "media";
 
 export interface MediaGrpc {
-  id: string;
-  url: string;
+    id: string;
+    url: string;
 }
 
 export interface MediaGroupGrpc {
-  id: string;
-  title: string;
-  thumbnail: string;
+    id: string;
+    title: string;
+    thumbnail: string;
 }
 
 export interface MediaListGrpc {
-  media: MediaGrpc[];
+    media: MediaGrpc[];
 }
 
 export interface MediaGroupsListGrpc {
-  groups: MediaGroupGrpc[];
+    groups: MediaGroupGrpc[];
 }
 
 export interface PresignUrlPairGrpc {
-  key: string;
-  url: string;
+    key: string;
+    url: string;
 }

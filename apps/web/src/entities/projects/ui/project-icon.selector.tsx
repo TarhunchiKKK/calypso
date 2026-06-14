@@ -21,7 +21,7 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
         },
         onError: () => {
             toast.error("Thumbnail changing error");
-        },
+        }
     });
 
     const getPresignedUrl = MediaApi.useGetPresignedUrl({
@@ -31,14 +31,14 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
         },
         onError: () => {
             toast.error("Thumbnail changing error");
-        },
+        }
     });
 
     const handleSelect = async (icon: string) => {
         await update.mutateAsync({
             id: project.id,
             type: project.type,
-            icon: icon,
+            icon: icon
         });
 
         if (update.isError) {
@@ -57,16 +57,16 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
 
         const presignedUrl = await getPresignedUrl.mutateAsync({
             fileName: file.name,
-            contentType: file.type,
+            contentType: file.type
         });
 
         await Promise.all([
             update.mutateAsync({
                 id: project.id,
                 type: project.type,
-                icon: presignedUrl.key,
+                icon: presignedUrl.key
             }),
-            S3Service.upload(file, presignedUrl.url),
+            S3Service.upload(file, presignedUrl.url)
         ]);
     };
 
@@ -75,9 +75,7 @@ export function ProjectIconSelector({ project, afterSubmit }: Props) {
             <IconPresetsGrid onSelect={handleSelect} />
 
             <Field className="flex flex-col justify-center items-center">
-                <FieldLabel className="text-base">
-                    Or select from your device:
-                </FieldLabel>
+                <FieldLabel className="text-base">Or select from your device:</FieldLabel>
 
                 <Input
                     type="file"
