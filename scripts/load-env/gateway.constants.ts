@@ -1,4 +1,7 @@
 export const GatewayKeys = {
+    NODE_ENV: "NODE_ENV",
+
+    // Core
     GATEWAY_SERVICE_APP_PORT: "APP_PORT",
 
     // JWT
