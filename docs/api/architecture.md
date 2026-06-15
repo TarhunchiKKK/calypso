@@ -168,6 +168,16 @@ export class BoardsController {
 
 ### How caching is implemented?
 
+Caching is implemented with `@api/cache` package. This package is designed such way as to move as many caching logic as possible to the middleware.
+
+This package export such members:
+
+* `CacheModule` - module class
+* `CacheService` - service for domain access to cache. This service also provides way to get native `Redis` client instance
+* `Cache` - decorator that caches the result of corresponding method. If data already is in cache - request will not be handled
+* `InvalidateCache` - decorator that invalidates cache records on successful request handling
+* `ManualCache` - do not perform any actions. It is only used for signalization about caching without `Cache` and `InvalidateCache` decorators
+
 ### How tests are implemented?
 
 ### How validation is implemented?
