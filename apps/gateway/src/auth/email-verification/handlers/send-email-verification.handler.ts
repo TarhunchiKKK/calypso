@@ -5,7 +5,7 @@ import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import { EmailVerificationCacheKeys, EmailVerificationCacheTtls } from "../lib/cache.lib";
 
 export class SendEmailVerificationCommand extends Command<void> {
@@ -19,8 +19,8 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
-        // REFACTOR: rename `rmqClient` into `brokerClient` everywhere
-        @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
+        // REFACTOR: rename `brokerClient` into `brokerClient` everywhere
+        @Inject(MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
     ) {}
 
     public async execute({ userId }: SendEmailVerificationCommand) {
@@ -28,7 +28,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
 
         const token = await this.saveToken(userId);
 
-        this.rmqClient.emit(...AuthBrokerContracts.emailVerification.get({ user, token }));
+        this.brokerClient.emit(...AuthBrokerContracts.emailVerification.get({ user, token }));
     }
 
     private async checkVerification(userId: Id) {

@@ -5,7 +5,7 @@ import { createBrokerClientMock } from "@contracts/broker";
 import { Test } from "@nestjs/testing";
 import { ResetPasswordCommand, ResetPasswordCommandHandler } from "src/auth/password-recovery/handlers/reset-password.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
 
 describe("ResetPasswordCommandHandler", () => {
@@ -27,7 +27,7 @@ describe("ResetPasswordCommandHandler", () => {
                     useValue: cacheServiceMock
                 },
                 {
-                    provide: MAILS_WORKER_RMQ_INJECTION_TOKEN,
+                    provide: MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN,
                     useValue: brokerClientMock
                 }
             ]

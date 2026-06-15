@@ -10,7 +10,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { BoardsModule } from "./boards/boards.module";
 import { Board } from "./boards/entities/board.entity";
 import { AccessRightsRecord } from "./lib/auth.constants";
-import { RMQ_CLIENT_INJECTION_TOKEN } from "./lib/rmq.constants";
+import { BROKER_CLIENT_INJECTION_TOKEN } from "./lib/broker.constants";
 import { NodesModule } from "./nodes/nodes.module";
 
 @Module({
@@ -36,11 +36,11 @@ import { NodesModule } from "./nodes/nodes.module";
             isGlobal: true,
             clients: [
                 {
-                    name: RMQ_CLIENT_INJECTION_TOKEN,
+                    name: BROKER_CLIENT_INJECTION_TOKEN,
                     imports: [ConfigModule],
                     inject: [ConfigService],
                     useFactory: (configService: ConfigService) => ({
-                        name: RMQ_CLIENT_INJECTION_TOKEN,
+                        name: BROKER_CLIENT_INJECTION_TOKEN,
                         transport: Transport.RMQ,
                         options: {
                             ...CommonBrokerOptions,
