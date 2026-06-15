@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createRepositoryMock } from "@api/common";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Board } from "src/boards/entities/board.entity";
 import { BoardsHelper } from "src/boards/lib/boards.helper";
@@ -8,10 +8,10 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("BoardsHelper", () => {
     let helper: BoardsHelper;
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 BoardsHelper,
                 {
@@ -38,7 +38,7 @@ describe("BoardsHelper", () => {
     });
 
     it("should not found board", async () => {
-        boardsRepositoryMock.findOne.mockResolvedValue(null as unknown as Board);
+        boardsRepositoryMock.findOne.mockResolvedValue(null);
 
         expect(helper.findOneById(MockBoard.id)).rejects.toThrow();
     });

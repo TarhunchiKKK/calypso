@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock } from "@api/common";
 import type { UpdateProfileDto } from "@lib/auth";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { UpdateProfileCommand, UpdateProfileCommandHandler } from "src/auth/users/handlers/update-profile.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
 import { createUsersHelperMock, MockUser } from "./mocks";
@@ -11,7 +11,7 @@ describe("UpdateProfileCommandHandler", () => {
     const usersHelperMock = createUsersHelperMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 UpdateProfileCommandHandler,
                 {
@@ -49,7 +49,7 @@ describe("UpdateProfileCommandHandler", () => {
             avatar: MockUser.avatar
         };
 
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new UpdateProfileCommand(MockUser.id, dto);
         expect(handler.execute(command)).rejects.toThrow();

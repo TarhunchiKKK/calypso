@@ -1,15 +1,14 @@
 import { mock } from "bun:test";
-import type { WithMockedMethods } from "@api/common";
 import type { User } from "@lib/auth";
 import type { UsersHelper } from "src/auth/users/users.helper";
 
 export function createUsersHelperMock() {
     return {
-        findOneById: mock(() => Promise.resolve({})),
-        findOneByEmail: mock(() => Promise.resolve({})),
-        findManyByIds: mock(() => Promise.resolve({})),
-        create: mock(() => Promise.resolve({})),
-        update: mock(() => Promise.resolve({})),
+        findOneById: mock<UsersHelper["findOneById"]>((() => {}) as any),
+        findOneByEmail: mock<UsersHelper["findOneByEmail"]>((() => {}) as any),
+        findManyByIds: mock<UsersHelper["findManyByIds"]>((() => {}) as any),
+        create: mock<UsersHelper["create"]>((() => {}) as any),
+        update: mock<UsersHelper["update"]>((() => {}) as any),
         userToProfile: mock((user: User) => {
             return {
                 id: user.id,
@@ -19,5 +18,5 @@ export function createUsersHelperMock() {
                 avatar: user.avatar
             };
         })
-    } satisfies WithMockedMethods<UsersHelper>;
+    } satisfies Record<keyof UsersHelper, unknown>;
 }

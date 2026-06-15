@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createRepositoryMock } from "@api/common";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import type { CreateUserDto } from "src/auth/users/dto/create-user.dto";
 import { User } from "src/auth/users/entities/user.entity";
@@ -9,10 +9,10 @@ import { MockProfile, MockUser } from "./mocks";
 
 describe("UsersHelper", () => {
     let helper: UsersHelper;
-    const usersRepositoryMock = createRepositoryMock();
+    const usersRepositoryMock = createRepositoryMock<User>();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 UsersHelper,
                 {

@@ -2,18 +2,18 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock } from "@api/common";
 import type { RemoveManyNodesDto } from "@lib/boards";
 import { getModelToken } from "@nestjs/mongoose";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { RemoveManyNodesCommand, RemoveManyNodesCommandHandler } from "src/nodes/handlers/remove-many-nodes.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
-import { MockNodes } from "./mocks";
+import { MockNodesArray } from "./mocks";
 
 describe("RemoveManyNodesCommandHandler", () => {
     let handler: RemoveManyNodesCommandHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 RemoveManyNodesCommandHandler,
                 {
@@ -33,7 +33,7 @@ describe("RemoveManyNodesCommandHandler", () => {
     it("should remove nodes", async () => {
         const dto: RemoveManyNodesDto = {
             boardId: MockBoard.id,
-            ids: [MockNodes.sticker.id, MockNodes.arrow.id]
+            ids: MockNodesArray.map((node) => node.id)
         };
 
         const command = new RemoveManyNodesCommand(dto);

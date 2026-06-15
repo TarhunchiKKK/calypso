@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createConfigServiceMock } from "@api/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
 import { TokensService } from "src/auth/basic/services/tokens.service";
 import { MockUser } from "test/auth/users/mocks";
@@ -14,7 +14,7 @@ describe("TokensService", () => {
     const configServiceMock = createConfigServiceMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 TokensService,
                 {

@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { CacheService, createCacheServiceMock } from "@api/cache";
 import { clearMock } from "@api/common";
 import { createBrokerClientMock } from "@contracts/broker";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { ResetPasswordCommand, ResetPasswordCommandHandler } from "src/auth/password-recovery/handlers/reset-password.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
@@ -15,7 +15,7 @@ describe("ResetPasswordCommandHandler", () => {
     const brokerClientMock = createBrokerClientMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 ResetPasswordCommandHandler,
                 {
@@ -54,7 +54,7 @@ describe("ResetPasswordCommandHandler", () => {
     });
 
     it("should not found user", async () => {
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new ResetPasswordCommand(MockUser.id);
         expect(handler.execute(command)).rejects.toThrow();

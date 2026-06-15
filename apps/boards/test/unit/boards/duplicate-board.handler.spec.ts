@@ -1,22 +1,22 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock, createRepositoryMock } from "@api/common";
 import { getModelToken } from "@nestjs/mongoose";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import type { DuplicateBoardDto } from "src/boards/dto/duplicate-board.dto";
 import { Board } from "src/boards/entities/board.entity";
 import { DuplicateBoardCommand, DuplicateBoardCommandHandler } from "src/boards/handlers/duplicate-board.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
-import { MockNodes } from "../nodes/mocks";
+import { MockNodesArray } from "../nodes/mocks";
 import { MockBoard } from "./mocks/board.mocks";
 
 describe("DuplicateBoardCommandHandler", () => {
     let handler: DuplicateBoardCommandHandler;
-    const boardsRepositoryMock = createRepositoryMock();
-    const nodesModelMock = createMongooseModelMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 DuplicateBoardCommandHandler,
                 {
@@ -45,10 +45,11 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        const nodes: NodeBase[] = [MockNodes.sticker, MockNodes.arrow].map((node) => ({ ...node, boardId: dto.id })) as unknown as NodeBase[];
+        const nodes: NodeBase[] = MockNodesArray.map((node) => ({ ...node, boardId: dto.id }));
 
-        boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
-        nodesModelMock.find.mockResolvedValueOnce(nodes);
+        boardsRepositoryMock.findOne.mockResolvedValue(MockBoard);
+
+        nodesModelMock.find.mockResolvedValue(nodes as any);
 
         const command = new DuplicateBoardCommand(dto);
         await handler.execute(command);
@@ -63,6 +64,12 @@ describe("DuplicateBoardCommandHandler", () => {
             id: crypto.randomUUID(),
             title: "New board",
             creatorId: crypto.randomUUID()
+        };
+
+        const newBoard = {
+            ...MockBoard,
+            title: dto.title,
+            creatorId: dto.creatorId
         };
 
         boardsRepositoryMock.findOne.mockResolvedValueOnce(MockBoard);
@@ -83,7 +90,7 @@ describe("DuplicateBoardCommandHandler", () => {
             creatorId: crypto.randomUUID()
         };
 
-        boardsRepositoryMock.findOne.mockResolvedValue(null as any);
+        boardsRepositoryMock.findOne.mockResolvedValue(null);
 
         const command = new DuplicateBoardCommand(dto);
         expect(handler.execute(command)).rejects.toThrow();

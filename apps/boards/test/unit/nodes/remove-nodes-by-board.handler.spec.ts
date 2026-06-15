@@ -1,17 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock } from "@api/common";
 import { getModelToken } from "@nestjs/mongoose";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { RemoveNodesByBoardCommand, RemoveNodesByBoardCommandHandler } from "src/nodes/handlers/remove-nodes-by-board.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
 
 describe("RemoveNodesByBoardCommandHandler", () => {
     let handler: RemoveNodesByBoardCommandHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 RemoveNodesByBoardCommandHandler,
                 {

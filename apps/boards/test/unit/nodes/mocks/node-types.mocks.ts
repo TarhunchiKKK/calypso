@@ -11,14 +11,14 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as StickerNode["styles"],
+        styles: {} as any,
         text: "Sticker"
     } satisfies StickerNode,
     arrow: {
         id: crypto.randomUUID(),
         type: "arrow",
         locked: false,
-        styles: {} as ArrowNode["styles"],
+        styles: {} as any,
         start: {
             x: 0,
             y: 0,
@@ -40,7 +40,7 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as TextNode["styles"],
+        styles: {} as any,
         content: []
     } satisfies TextNode,
     shape: {
@@ -54,7 +54,7 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as ShapeNode["styles"]
+        styles: {} as any
     } satisfies ShapeNode,
     media: {
         id: crypto.randomUUID(),
@@ -66,7 +66,7 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as MediaNode["styles"],
+        styles: {} as any,
         url: "media-url.png"
     } satisfies MediaNode,
     note: {
@@ -79,7 +79,7 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as NoteNode["styles"],
+        styles: {} as any,
         content: []
     } satisfies NoteNode,
     drawing: {
@@ -92,7 +92,9 @@ export const MockNodes = {
             width: 100,
             height: 100
         },
-        styles: {} as DrawingNode["styles"],
+        styles: {} as any,
         points: []
     } satisfies DrawingNode
 };
+
+export const MockNodesArray = [MockNodes.sticker, MockNodes.arrow, MockNodes.text, MockNodes.shape, MockNodes.media, MockNodes.note, MockNodes.drawing];

@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock } from "@api/common";
 import type { SignUpDto } from "@lib/auth";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { SignUpCommand, SignUpCommandHandler } from "src/auth/basic/handlers/sign-up.handler";
 import { TokensService } from "src/auth/basic/services/tokens.service";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -15,7 +15,7 @@ describe("SignUpCommandHandler", () => {
     const tokensServiceMock = createTokensServiceMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 SignUpCommandHandler,
                 {
@@ -49,7 +49,7 @@ describe("SignUpCommandHandler", () => {
             password: await getMockPasswordHash()
         };
 
-        usersHelperMock.findOneByEmail.mockResolvedValue(null as any);
+        usersHelperMock.findOneByEmail.mockResolvedValue(null);
         usersHelperMock.create.mockResolvedValue(hashedUser);
         tokensServiceMock.sign.mockReturnValue(MockSession);
 
