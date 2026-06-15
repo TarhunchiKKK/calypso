@@ -44,13 +44,14 @@ API contains such microservices:
 
 ### Modules design
 
-The absolute majority of apps modules contains this elements:
+The absolute majority of apps modules contains this elements (some elements can be omitted in certain modules):
 
 * `handlers/` - CQRS handlers
 * `entities/` - stored entities
 * `schemas/` - stored `MongoDB` entities
 * `dto/` - dto's used in module
 * `lib/` - constants for caching, DI and other
+* `swagger/` - contains all code for `Swagger` docs
 * `*.controller.ts` or `controllers/` - module controllers. In modules with multiple traffic types  (`HTTP`, `gRPC` and broker) different controllers process different traffic types.
 * `*.service.ts` - service class that receive data from controller and push this data to corresponding bus (query or command)
 * `*.helper.ts` - class contains reusable logic for data access
@@ -69,7 +70,101 @@ The absolute majority of apps modules contains this elements:
 
 ## Lib
 
-### How Swaagger is implemented?
+### How `Swaagger` is implemented?
+
+`Swagger` functionality is designed such a way as to overlap with business logic as little as possible.
+
+`Swagger` functionality is implemented such way:
+
+1. Create entity api type (this type composes all fields used by dtos).
+
+```typescript
+import type { Board } from "@lib/boards";
+import { ApiProperty } from "@nestjs/swagger";
+
+export class BoardApiType implements Board {
+    @ApiProperty({ type: String, format: "uuid", description: "Unique board id" })
+    public id: string;
+
+    @ApiProperty({ type: String, example: "My board", description: "Board title" })
+    public title: string;
+
+    @ApiProperty({ type: String, nullable: true, description: "Board description" })
+    public description?: string | undefined;
+
+    @ApiProperty({ type: String, format: "uri", description: "Board icon link" })
+    public icon: string;
+
+    @ApiProperty({ type: String, format: "uuid", description: "Board creator id" })
+    public creatorId: string;
+
+    @ApiProperty({ type: Date, format: "date", description: "Board creation date" })
+    public createdAt: Date;
+
+    @ApiProperty({ type: Date, nullable: true, format: "date", description: "Last board update date" })
+    public updatedAt?: Date | undefined;
+}
+```
+
+2. Create dtos api types by applying `@nestjs/swagger` mapped types to entity api types.
+
+```typescript
+import type { Board, CreateBoardDto, UpdateBoardDto } from "@lib/boards";
+import { PartialType, PickType } from "@nestjs/swagger";
+import { BoardApiType } from "./entities.swagger";
+
+export class CreateBoardDtoApiType extends PickType(BoardApiType, ["title", "icon"]) implements CreateBoardDto {}
+
+export class CreateBoardResponseApiType extends BoardApiType implements Board {}
+
+export class UpdateBoardDtoApiType extends PartialType(PickType(BoardApiType, ["title", "description", "icon"])) implements UpdateBoardDto {}
+```
+
+3. Create decorator for controller.
+
+Use `createControllerSwaggerDecorator` function from `@api/common` package to create controller decorator for `Swagger` info.
+
+```typescript
+import { createControllerSwaggerDecorator } from "@api/common";
+import { HttpStatus } from "@nestjs/common";
+import { SwaggerTags } from "src/lib/swagger/swagger.constants";
+import { CreateBoardDtoApiType, CreateBoardResponseApiType, UpdateBoardDtoApiType } from "./dtos.swagger";
+
+export const BoardsControllerApiType = createControllerSwaggerDecorator({
+    tag: SwaggerTags.boards.children.management.name,
+    auth: true,
+    methods: [
+        {
+            name: "create",
+            operation: {
+                summary: "Create new board"
+            },
+            body: {
+                type: CreateBoardDtoApiType
+            },
+            response: [
+                {
+                    status: HttpStatus.OK,
+                    description: "Board created successfully",
+                    type: CreateBoardResponseApiType
+                }
+            ]
+        },
+        // Other methods ...
+    ]
+});
+```
+
+4. Add created decorator to controller class.
+
+
+```typescript
+// Other decorators
+@BoardsControllerApiType()
+export class BoardsController {
+    // Controller implementation
+}
+```
 
 ### How caching is implemented?
 
