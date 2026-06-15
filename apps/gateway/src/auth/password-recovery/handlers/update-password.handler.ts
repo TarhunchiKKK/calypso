@@ -26,7 +26,9 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
     public async execute({ userId, password, token }: UpdatePasswordCommand) {
         const key = await this.verifyToken(userId, token);
 
-        await this.updatePassword(userId, password);
+        await this.usersHelper.update(userId, {
+            password: await argon2.hash(password)
+        });
 
         await this.cacheService.remove(key);
     }
@@ -45,13 +47,5 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
         }
 
         return key;
-    }
-
-    private async updatePassword(userId: Id, password: string) {
-        const user = await this.usersHelper.findOneById(userId);
-
-        await this.usersHelper.update(user, {
-            password: await argon2.hash(password)
-        });
     }
 }

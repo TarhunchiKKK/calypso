@@ -18,8 +18,6 @@ export class UpdateProfileCommandHandler implements ICommandHandler<UpdateProfil
     public constructor(@Inject(UsersHelper) private readonly usersHelper: UsersHelper) {}
 
     public async execute({ userId, dto }: UpdateProfileCommand) {
-        const user = await this.usersHelper.findOneById(userId);
-
-        await this.usersHelper.update(user, dto);
+        await this.usersHelper.update(userId, dto);
     }
 }

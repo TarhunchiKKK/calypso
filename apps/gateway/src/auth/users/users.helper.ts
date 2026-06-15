@@ -51,11 +51,12 @@ export class UsersHelper {
         });
     }
 
-    // DELETE: is reusable?
-    public async update(user: User, data: Partial<User>) {
+    public async update(id: Id, data: Partial<User>) {
+        const user = await this.findOneById(id);
+
         Object.assign(user, data);
 
-        await this.usersRepository.save(user);
+        return await this.usersRepository.save(user);
     }
 
     public userToProfile(user: User): Profile {
