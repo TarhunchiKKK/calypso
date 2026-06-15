@@ -1,7 +1,6 @@
 import { CacheModule, cacheConfigFactory } from "@api/cache";
 import { typeormConfigFactory } from "@api/common";
 import { CommonBrokerOptions } from "@contracts/broker";
-import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
@@ -50,8 +49,6 @@ import { ProjectsModule } from "./services/projects/projects.module";
                 }
             ]
         }),
-        // DELETE
-        HttpModule,
         ProjectsModule,
         BoardsModule,
         BasicAuthModule,

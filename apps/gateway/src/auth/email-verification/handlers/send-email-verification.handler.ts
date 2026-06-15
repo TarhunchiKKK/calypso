@@ -19,7 +19,6 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
-        // REFACTOR: rename `brokerClient` into `brokerClient` everywhere
         @Inject(MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
     ) {}
 

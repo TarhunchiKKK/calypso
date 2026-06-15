@@ -1,7 +1,7 @@
+import type { UpdateManyNodesDto } from "@lib/boards";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
-import type { UpdateManyNodesDto } from "../dto/update-many-nodes.dto";
 import { NodeBase } from "../schemas/node-base.schema";
 
 export class UpdateManyNodesCommand extends Command<void> {
