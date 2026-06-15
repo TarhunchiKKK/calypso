@@ -180,4 +180,28 @@ This package export such members:
 
 ### How tests are implemented?
 
+> [!Note] 
+>
+> API tests are implemented with `bun` runtime.
+> `Bun` has own test runner the syntax of wich is similar to `jest` and `vitest`.
+>
+> This approach gives a significant increase in the tests run rate.
+> Testing libraries like `jest` and `vitest` can not boast of such speed.
+
+The are also reusable mock-creator functions exported by `@api/common`, `@api/cache` and `@contracts/broker` classes:
+
+* `createRepositoryMock` - creates mock of `TypeORM` repository
+* `createMongooseModelMock` - creates mock of `Mongoose` model
+* `createCacheServiceMock` - creates mock of `CacheService class` from `@api/cache` package
+* `clearMock` - function that clears mock data
+* etc.
+
+Local mock-creator functions are declared in corresponding test folders. 
+ 
 ### How validation is implemented?
+
+Validation is implemented with using of `zod` schema validation library.
+
+`@lib/*` packages exports schemas to different domain entities. 
+
+`@api/common` exports `Validation` and `QueryValidation` decorators that uses custom `ZodValidationPipe` under the hood to validate incoming request body and query arguments appropriately.
