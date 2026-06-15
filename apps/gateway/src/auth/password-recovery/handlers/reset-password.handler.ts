@@ -1,11 +1,11 @@
 import { CacheService } from "@api/cache";
 import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
-import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
+import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
 export class ResetPasswordCommand extends Command<void> {
@@ -19,7 +19,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
-        @Inject(MAILS_WORKER_RMQ_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
+        @Inject(MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
     ) {}
 
     public async execute({ userId }: ResetPasswordCommand) {
@@ -27,15 +27,11 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
 
         const token = await this.saveToken(userId);
 
-        this.rmqClient.emit(...AuthBrokerContracts.resetPassword.get({ user, token }));
+        this.brokerClient.emit(...AuthBrokerContracts.resetPassword.get({ user, token }));
     }
 
     private async findUser(userId: Id) {
         const user = await this.usersHelper.findOneById(userId);
-
-        if (!user) {
-            throw new NotFoundException("User not found");
-        }
 
         if (!user.emailVerified) {
             throw new ConflictException("Email not verified");

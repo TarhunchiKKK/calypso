@@ -1,6 +1,6 @@
 import type { Profile } from "@lib/auth";
 import type { Id } from "@lib/common";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { In, type Repository } from "typeorm";
 import type { CreateUserDto } from "./dto/create-user.dto";
@@ -14,16 +14,20 @@ export class UsersHelper {
         return await this.usersRepository.save(dto);
     }
 
-    // REFACTOR: add existence check
     public async findOneById(id: Id) {
-        return await this.usersRepository.findOne({
+        const user = await this.usersRepository.findOne({
             where: {
                 id: id
             }
         });
+
+        if (!user) {
+            throw new NotFoundException("User not found");
+        }
+
+        return user;
     }
 
-    // REFACTOR: add existence check
     public async findOneByEmail(email: string) {
         return await this.usersRepository.findOne({
             where: {
@@ -47,11 +51,12 @@ export class UsersHelper {
         });
     }
 
-    // DELETE: is reusable?
-    public async update(user: User, data: Partial<User>) {
+    public async update(id: Id, data: Partial<User>) {
+        const user = await this.findOneById(id);
+
         Object.assign(user, data);
 
-        await this.usersRepository.save(user);
+        return await this.usersRepository.save(user);
     }
 
     public userToProfile(user: User): Profile {

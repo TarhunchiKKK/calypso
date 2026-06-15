@@ -1,7 +1,7 @@
+import type { CreateManyNodesDto } from "@lib/boards";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
-import type { CreateManyNodesDto } from "../dto/create-many-nodes.dto";
 import { NodeBase } from "../schemas/node-base.schema";
 
 export class CreateManyNodesCommand extends Command<void> {

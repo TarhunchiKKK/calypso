@@ -5,7 +5,7 @@ import { createBrokerClientMock } from "@contracts/broker";
 import { Test } from "@nestjs/testing";
 import { SendEmailVerificationCommand, SendEmailVerificationCommandHandler } from "src/auth/email-verification/handlers/send-email-verification.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
 
 describe("SendEmailVerificationCommandHandler", () => {
@@ -27,7 +27,7 @@ describe("SendEmailVerificationCommandHandler", () => {
                     useValue: cacheServiceMock
                 },
                 {
-                    provide: MAILS_WORKER_RMQ_INJECTION_TOKEN,
+                    provide: MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN,
                     useValue: brokerClientMock
                 }
             ]

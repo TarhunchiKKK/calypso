@@ -1,7 +1,7 @@
+import type { RemoveManyNodesDto } from "@lib/boards";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import type { Model } from "mongoose";
-import type { RemoveManyNodesDto } from "../dto/remove-many-nodes.dto";
 import { NodeBase } from "../schemas/node-base.schema";
 
 export class RemoveManyNodesCommand extends Command<void> {

@@ -1,4 +1,4 @@
-import { rmqMicroserviceConfigFactory } from "@contracts/broker";
+import { brokerMicroserviceConfigFactory } from "@contracts/broker";
 import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
@@ -10,7 +10,7 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
 
-    app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService) as any);
+    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService) as any);
 
     await app.init();
 

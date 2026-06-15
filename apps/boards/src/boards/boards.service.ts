@@ -5,7 +5,7 @@ import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { RMQ_CLIENT_INJECTION_TOKEN } from "../lib/rmq.constants";
+import { BROKER_CLIENT_INJECTION_TOKEN } from "../lib/broker.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
@@ -23,7 +23,7 @@ export class BoardsService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
         @Inject(QueryBus) private readonly queryBus: QueryBus,
-        @Inject(RMQ_CLIENT_INJECTION_TOKEN) private readonly rmqClient: ClientProxy
+        @Inject(BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
     ) {}
 
     public async create(dto: CreateBoardDto) {
@@ -58,7 +58,7 @@ export class BoardsService {
     public async remove(id: Id) {
         const result = await this.commandBus.execute(new RemoveBoardCommand(id));
 
-        this.rmqClient.emit(...BoardsBrokerContracts.boardRemoved.get({ id }));
+        this.brokerClient.emit(...BoardsBrokerContracts.boardRemoved.get({ id }));
 
         return result;
     }

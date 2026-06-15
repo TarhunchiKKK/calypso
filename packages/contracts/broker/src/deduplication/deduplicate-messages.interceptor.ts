@@ -8,8 +8,8 @@ import { DeduplicationTtl } from "./deduplication-ttl.decorator";
 import { DEFAULT_DEDUPLICATION_CACHE_TTL, getDeduplicationCacheKey, MESSAGE_ID_KEY } from "./lib";
 
 @Injectable()
-export class DeduplicateMessageInterceptor implements NestInterceptor {
-    private readonly logger = new Logger(DeduplicateMessageInterceptor.name);
+export class DeduplicateMessagesInterceptor implements NestInterceptor {
+    private readonly logger = new Logger(DeduplicateMessagesInterceptor.name);
 
     public constructor(
         @Inject(CacheService) private readonly cacheService: CacheService,

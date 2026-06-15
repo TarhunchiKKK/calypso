@@ -1,1 +1,1 @@
-export { createBrokerClientMock } from "./client-proxy.mocks";
+export { createBrokerClientMock } from "./broker-client.mocks";

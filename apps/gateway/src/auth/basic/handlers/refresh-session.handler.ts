@@ -1,5 +1,5 @@
 import type { AuthResponse } from "@lib/auth";
-import { Inject, UnauthorizedException } from "@nestjs/common";
+import { Inject } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
 import { TokensService } from "src/auth/basic/services/tokens.service";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -21,10 +21,6 @@ export class RefreshSessionQueryHandler implements IQueryHandler<RefreshSessionQ
         const payload = this.tokensService.verify(refreshToken);
 
         const user = await this.usersHelper.findOneById(payload.id);
-
-        if (!user) {
-            throw new UnauthorizedException("Profile not found");
-        }
 
         const session = this.tokensService.sign(user);
 

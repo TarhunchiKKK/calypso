@@ -1,4 +1,4 @@
-import { rmqMicroserviceConfigFactory } from "@contracts/broker";
+import { brokerMicroserviceConfigFactory } from "@contracts/broker";
 import { BOARD_NODES_PACKAGE_NAME, BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@contracts/grpc";
 import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
@@ -31,7 +31,7 @@ async function bootstrap() {
         }
     });
 
-    app.connectMicroservice<MicroserviceOptions>(rmqMicroserviceConfigFactory(configService));
+    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService));
 
     await app.init();
 

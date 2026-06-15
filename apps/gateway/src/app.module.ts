@@ -1,7 +1,6 @@
 import { CacheModule, cacheConfigFactory } from "@api/cache";
 import { typeormConfigFactory } from "@api/common";
 import { CommonBrokerOptions } from "@contracts/broker";
-import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
@@ -12,7 +11,7 @@ import { EmailVerificationModule } from "./auth/email-verification/email-verific
 import { PasswordRecoveryModule } from "./auth/password-recovery/password-recovery.module";
 import { User } from "./auth/users/entities/user.entity";
 import { UsersModule } from "./auth/users/users.module";
-import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "./lib/di/broker.di";
+import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "./lib/di/broker.di";
 import { BoardsModule } from "./services/boards/boards.module";
 import { MediaModule } from "./services/media/media.module";
 import { ProjectsModule } from "./services/projects/projects.module";
@@ -35,11 +34,11 @@ import { ProjectsModule } from "./services/projects/projects.module";
             isGlobal: true,
             clients: [
                 {
-                    name: MAILS_WORKER_RMQ_INJECTION_TOKEN,
+                    name: MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN,
                     imports: [ConfigModule],
                     inject: [ConfigService],
                     useFactory: (configService: ConfigService) => ({
-                        name: MAILS_WORKER_RMQ_INJECTION_TOKEN,
+                        name: MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN,
                         transport: Transport.RMQ,
                         options: {
                             ...CommonBrokerOptions,
@@ -50,8 +49,6 @@ import { ProjectsModule } from "./services/projects/projects.module";
                 }
             ]
         }),
-        // DELETE
-        HttpModule,
         ProjectsModule,
         BoardsModule,
         BasicAuthModule,

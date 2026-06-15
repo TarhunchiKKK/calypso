@@ -24,7 +24,9 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
     public async execute({ userId, token }: VerifyEmailCommand) {
         const key = await this.verifyToken(userId, token);
 
-        await this.updateUser(userId);
+        await this.usersHelper.update(userId, {
+            emailVerified: true
+        });
 
         await this.cacheService.remove(key);
     }
@@ -43,17 +45,5 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
         }
 
         return key;
-    }
-
-    private async updateUser(userId: Id) {
-        const user = await this.usersHelper.findOneById(userId);
-
-        if (!user) {
-            throw new NotFoundException("User not found");
-        }
-
-        await this.usersHelper.update(user, {
-            emailVerified: true
-        });
     }
 }
