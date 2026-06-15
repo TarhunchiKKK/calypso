@@ -29,7 +29,7 @@ import { MailsServiceDev } from "./services/mails.service.dev";
     providers: [
         {
             provide: MailsService,
-            useClass: dependsOnEnv<Type<any>>(process.env.NODE_ENV, {
+            useClass: dependsOnEnv<Type>(process.env.NODE_ENV, {
                 prod: MailsService,
                 dev: MailsServiceDev
             })
