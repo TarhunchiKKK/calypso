@@ -1,6 +1,8 @@
 export const BoardsServiceKeys = {
-    BOARDS_SERVICE_GRPC_URL: "BOARDS_GRPC_URL",
+    NODE_ENV: "NODE_ENV",
 
+    // Core
+    BOARDS_SERVICE_GRPC_URL: "BOARDS_GRPC_URL",
     BOARD_NODES_SERVICE_GRPC_URL: "BOARD_NODES_GRPC_URL",
 
     // Postgres

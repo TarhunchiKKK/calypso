@@ -1,4 +1,7 @@
 export const MediaServiceKeys = {
+    NODE_ENV: "NODE_ENV",
+
+    // Core
     MEDIA_SERVICE_GRPC_URL: "MEDIA_GRPC_URL",
 
     // Assets

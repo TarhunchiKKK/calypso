@@ -1,4 +1,7 @@
 export const MailsWorkerKeys = {
+    NODE_ENV: "NODE_ENV",
+
+    // RabbitMQ
     MAILS_WORKER_RMQ_QUEUE: "RMQ_QUEUE",
 
     // Mailer

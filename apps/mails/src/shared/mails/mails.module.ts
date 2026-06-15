@@ -1,8 +1,9 @@
-import { Global, Module } from "@nestjs/common";
+import { Global, Module, type Type } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MailerModule } from "@nestjs-modules/mailer";
-import { selectMailsService } from "./di/select-mails-service.di";
+import { dependsOnEnv } from "../../../../../packages/lib/common/dist/cjs/entry";
 import { MailsService } from "./services/mails.service";
+import { MailsServiceDev } from "./services/mails.service.dev";
 
 @Global()
 @Module({
@@ -28,7 +29,10 @@ import { MailsService } from "./services/mails.service";
     providers: [
         {
             provide: MailsService,
-            useClass: selectMailsService()
+            useClass: dependsOnEnv<Type>(process.env.NODE_ENV, {
+                prod: MailsService,
+                dev: MailsServiceDev
+            })
         }
     ],
     exports: [MailsService]
