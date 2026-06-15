@@ -24,9 +24,11 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
     ) {}
 
     public async execute({ userId, password, token }: UpdatePasswordCommand) {
-        await this.verifyToken(userId, token);
+        const key = await this.verifyToken(userId, token);
 
         await this.updatePassword(userId, password);
+
+        await this.cacheService.remove(key);
     }
 
     private async verifyToken(userId: Id, token: string) {
@@ -42,7 +44,7 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
             throw new UnauthorizedException("Incorrect token");
         }
 
-        await this.cacheService.remove(key);
+        return key;
     }
 
     private async updatePassword(userId: Id, password: string) {
