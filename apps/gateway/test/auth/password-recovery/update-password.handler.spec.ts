@@ -89,7 +89,7 @@ describe("UpdatePasswordCommandHandler", () => {
         expect(handler.execute(command)).rejects.toThrow();
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
-        expect(cacheServiceMock.remove).toHaveBeenCalled();
+        expect(cacheServiceMock.remove).not.toHaveBeenCalled();
         expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
         expect(usersHelperMock.update).not.toHaveBeenCalled();
     });
