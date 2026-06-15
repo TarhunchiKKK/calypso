@@ -20,7 +20,6 @@
   - [⚠️ Constraints](#️-constraints)
   - [⚙️ Setup Steps](#️-setup-steps)
 - [✨ Features](#-features)
-  - [🧪 Challenge](#-challenge)
   - [🎨 Node Types](#-node-types)
     - [Sticker](#sticker)
     - [Arrows](#arrows)
@@ -154,7 +153,7 @@ bun build:packages
 
 Example: `.env.example` file.
 
-You also can copy values from `.env.example` file and paste them to `.env` file.
+You also can copy values from `.env.example` file, paste them to `.env` file and add values for empty variables.
 
 5. Load environment variables to appropriate apps:
 
@@ -195,12 +194,6 @@ In browser open the https://localhost:5173 to access the app.
 ## ✨ Features
 
 <img src="./docs/board-editor/screens/index.png" />
-
-### 🧪 Challenge 
-
-- ❌ No state manager
-- ❌ No drag-n-drop libraries
-- ❌ No mouse events handling libraries
 
 ### 🎨 Node Types
 
