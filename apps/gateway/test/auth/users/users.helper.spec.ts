@@ -9,7 +9,7 @@ import { MockProfile, MockUser } from "./mocks";
 
 describe("UsersHelper", () => {
     let helper: UsersHelper;
-    const usersRepositoryMock = createRepositoryMock();
+    const usersRepositoryMock = createRepositoryMock<User>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

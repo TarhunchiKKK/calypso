@@ -54,7 +54,7 @@ describe("ResetPasswordCommandHandler", () => {
     });
 
     it("should not found user", async () => {
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new ResetPasswordCommand(MockUser.id);
         expect(handler.execute(command)).rejects.toThrow();

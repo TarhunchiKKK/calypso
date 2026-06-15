@@ -66,7 +66,7 @@ describe("RefreshSessionQueryHandler", () => {
             avatar: MockUser.avatar
         };
 
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
         tokensServiceMock.verify.mockReturnValue(payload);
 
         const query = new RefreshSessionQuery(MockSession.refreshToken);

@@ -8,7 +8,7 @@ import { MockBoard } from "../boards/mocks/board.mocks";
 
 describe("RemoveNodesByBoardCommandHandler", () => {
     let handler: RemoveNodesByBoardCommandHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

@@ -65,7 +65,7 @@ describe("SignInCommandHandler", () => {
             password: MockUser.password
         };
 
-        usersHelperMock.findOneByEmail.mockResolvedValue(null as any);
+        usersHelperMock.findOneByEmail.mockResolvedValue(null);
 
         const command = new SignInCommand(dto);
         expect(handler.execute(command)).rejects.toThrow();

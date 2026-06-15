@@ -1,13 +1,12 @@
 import { mock } from "bun:test";
-import type { Repository } from "typeorm";
-import type { WithMockedMethods } from "./lib";
+import type { ObjectLiteral, Repository } from "typeorm";
 
-export function createRepositoryMock() {
+export function createRepositoryMock<T extends ObjectLiteral = never>() {
     return {
-        findOne: mock(() => Promise.resolve({})),
-        find: mock(() => Promise.resolve({})),
-        save: mock(() => Promise.resolve({})),
-        remove: mock(() => Promise.resolve({})),
-        delete: mock(() => Promise.resolve({}))
-    } satisfies Partial<WithMockedMethods<Repository<any>>>;
+        findOne: mock<Repository<T>["findOne"]>((() => {}) as any),
+        find: mock<Repository<T>["find"]>((() => {}) as any),
+        save: mock<Repository<T>["save"]>(((data) => Promise.resolve(data)) as any),
+        remove: mock<Repository<T>["remove"]>((() => {}) as any),
+        delete: mock<Repository<T>["delete"]>((() => {}) as any)
+    } satisfies Partial<Record<keyof Repository<T>, unknown>>;
 }

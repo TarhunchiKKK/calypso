@@ -6,11 +6,11 @@ import { Test } from "@nestjs/testing";
 import { UpdateManyNodesCommand, UpdateManyNodesCommandHandler } from "src/nodes/handlers/update-many-nodes.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
-import { MockNodes } from "./mocks";
+import { MockNodesArray } from "./mocks";
 
 describe("UpdateManyNodesCommandHandler", () => {
     let handler: UpdateManyNodesCommandHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
@@ -33,7 +33,7 @@ describe("UpdateManyNodesCommandHandler", () => {
     it("should replace nodes", async () => {
         const dto: UpdateManyNodesDto = {
             boardId: MockBoard.id,
-            nodes: [MockNodes.sticker, MockNodes.arrow]
+            nodes: MockNodesArray
         };
 
         const command = new UpdateManyNodesCommand(dto);

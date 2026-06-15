@@ -10,7 +10,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("FindAllBoardsQueryHandler", () => {
     let handler: FindAllBoardsQueryHandler;
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

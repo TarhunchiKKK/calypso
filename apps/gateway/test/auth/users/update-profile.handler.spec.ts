@@ -49,7 +49,7 @@ describe("UpdateProfileCommandHandler", () => {
             avatar: MockUser.avatar
         };
 
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new UpdateProfileCommand(MockUser.id, dto);
         expect(handler.execute(command)).rejects.toThrow();

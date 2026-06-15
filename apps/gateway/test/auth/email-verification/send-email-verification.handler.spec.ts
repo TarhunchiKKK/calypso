@@ -55,7 +55,7 @@ describe("SendEmailVerificationCommandHandler", () => {
     });
 
     it("should not found user", async () => {
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new SendEmailVerificationCommand(MockUser.id);
         expect(handler.execute(command)).rejects.toThrow();

@@ -1,1 +1,1 @@
-export { MockNodes } from "./node-types.mocks";
+export { MockNodes, MockNodesArray } from "./node-types.mocks";

@@ -9,7 +9,7 @@ import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindPresetsQueryHandler", () => {
     let handler: FindPresetsQueryHandler;
-    const mediaRepositoryMock = createRepositoryMock();
+    const mediaRepositoryMock = createRepositoryMock<Media>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

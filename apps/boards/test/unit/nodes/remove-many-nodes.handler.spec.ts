@@ -6,11 +6,11 @@ import { Test } from "@nestjs/testing";
 import { RemoveManyNodesCommand, RemoveManyNodesCommandHandler } from "src/nodes/handlers/remove-many-nodes.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
-import { MockNodes } from "./mocks";
+import { MockNodesArray } from "./mocks";
 
 describe("RemoveManyNodesCommandHandler", () => {
     let handler: RemoveManyNodesCommandHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
@@ -33,7 +33,7 @@ describe("RemoveManyNodesCommandHandler", () => {
     it("should remove nodes", async () => {
         const dto: RemoveManyNodesDto = {
             boardId: MockBoard.id,
-            ids: [MockNodes.sticker.id, MockNodes.arrow.id]
+            ids: MockNodesArray.map((node) => node.id)
         };
 
         const command = new RemoveManyNodesCommand(dto);

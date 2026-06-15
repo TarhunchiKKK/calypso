@@ -10,7 +10,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("ChangeBoardUpdateDateCommandHandler", () => {
     let handler: ChangeBoardUpdateDateCommandHandler;
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
     const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {

@@ -1,11 +1,10 @@
 import { mock } from "bun:test";
-import type { WithMockedMethods } from "@api/common";
 import type { CacheService } from "cache.service";
 
 export function createCacheServiceMock() {
     return {
-        get: mock(() => Promise.resolve({})),
-        set: mock(() => Promise.resolve({})),
-        remove: mock(() => Promise.resolve({}))
-    } satisfies Partial<WithMockedMethods<CacheService>>;
+        get: mock<CacheService["get"]>((() => {}) as any),
+        set: mock<CacheService["set"]>((() => {}) as any),
+        remove: mock<CacheService["remove"]>((() => {}) as any)
+    } satisfies Partial<Record<keyof CacheService, unknown>>;
 }

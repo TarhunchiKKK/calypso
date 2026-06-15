@@ -52,7 +52,7 @@ describe("UpdatePasswordCommandHandler", () => {
     it("should not found password recovery token", async () => {
         const token = crypto.randomUUID();
 
-        cacheServiceMock.get.mockResolvedValue(null as any);
+        cacheServiceMock.get.mockResolvedValue(null);
         usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
@@ -83,7 +83,7 @@ describe("UpdatePasswordCommandHandler", () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue(token);
-        usersHelperMock.findOneById.mockResolvedValue(null as any);
+        usersHelperMock.findOneById.mockResolvedValue(null);
 
         const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
         expect(handler.execute(command)).rejects.toThrow();

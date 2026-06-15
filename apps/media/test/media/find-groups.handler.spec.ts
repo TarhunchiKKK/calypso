@@ -8,7 +8,7 @@ import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindGroupsQueryHandler", () => {
     let handler: FindGroupsQueryHandler;
-    const mediaGroupsRepositoryMock = createRepositoryMock();
+    const mediaGroupsRepositoryMock = createRepositoryMock<MediaGroup>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

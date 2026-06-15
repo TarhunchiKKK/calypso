@@ -8,7 +8,7 @@ import { CreateBoardCommand, CreateBoardCommandHandler } from "src/boards/handle
 
 describe("CreateBoardCommandHandler", () => {
     let handler: CreateBoardCommandHandler;
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

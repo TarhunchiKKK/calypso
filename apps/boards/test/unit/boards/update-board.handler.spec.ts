@@ -11,8 +11,8 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("UpdateBoardCommandHandler", () => {
     let handler: UpdateBoardCommandHandler;
-    const boardsRepositoryMock = createRepositoryMock();
     const boardsHelperMock = createBoardsHelperMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({

@@ -5,11 +5,11 @@ import { Test } from "@nestjs/testing";
 import { FindAllNodesQuery, FindAllNodesQueryHandler } from "src/nodes/handlers/find-all-nodes.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
-import { MockNodes } from "./mocks";
+import { MockNodesArray } from "./mocks";
 
 describe("FindAllNodesQueryHandler", () => {
     let handler: FindAllNodesQueryHandler;
-    const nodesModelMock = createMongooseModelMock();
+    const nodesModelMock = createMongooseModelMock<NodeBase>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
@@ -30,14 +30,12 @@ describe("FindAllNodesQueryHandler", () => {
     });
 
     it("should find nodes", async () => {
-        const nodes = [MockNodes.sticker, MockNodes.arrow];
-
-        nodesModelMock.find.mockResolvedValue(nodes);
+        nodesModelMock.find.mockResolvedValue(MockNodesArray as any);
 
         const query = new FindAllNodesQuery(MockBoard.id);
         const result = await handler.execute(query);
 
-        expect(result).toEqual(nodes as any);
+        expect(result).toEqual(MockNodesArray as any);
         expect(nodesModelMock.find).toHaveBeenCalled();
     });
 });

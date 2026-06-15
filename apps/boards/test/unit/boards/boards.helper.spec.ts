@@ -8,7 +8,7 @@ import { MockBoard } from "./mocks/board.mocks";
 
 describe("BoardsHelper", () => {
     let helper: BoardsHelper;
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
@@ -38,7 +38,7 @@ describe("BoardsHelper", () => {
     });
 
     it("should not found board", async () => {
-        boardsRepositoryMock.findOne.mockResolvedValue(null as unknown as Board);
+        boardsRepositoryMock.findOne.mockResolvedValue(null);
 
         expect(helper.findOneById(MockBoard.id)).rejects.toThrow();
     });

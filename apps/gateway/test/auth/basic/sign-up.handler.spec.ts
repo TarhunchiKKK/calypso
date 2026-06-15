@@ -49,7 +49,7 @@ describe("SignUpCommandHandler", () => {
             password: await getMockPasswordHash()
         };
 
-        usersHelperMock.findOneByEmail.mockResolvedValue(null as any);
+        usersHelperMock.findOneByEmail.mockResolvedValue(null);
         usersHelperMock.create.mockResolvedValue(hashedUser);
         tokensServiceMock.sign.mockReturnValue(MockSession);
 

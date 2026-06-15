@@ -11,7 +11,7 @@ import { MockBoard } from "./mocks/board.mocks";
 describe("RemoveBoardCommandHandler", () => {
     let handler: RemoveBoardCommandHandler;
     const boardsHelperMock = createBoardsHelperMock();
-    const boardsRepositoryMock = createRepositoryMock();
+    const boardsRepositoryMock = createRepositoryMock<Board>();
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
