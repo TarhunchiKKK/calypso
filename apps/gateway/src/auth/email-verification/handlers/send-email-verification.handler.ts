@@ -1,7 +1,7 @@
 import { CacheService } from "@api/cache";
 import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
-import { ConflictException, Inject, NotFoundException } from "@nestjs/common";
+import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -32,10 +32,6 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
 
     private async checkVerification(userId: Id) {
         const user = await this.usersHelper.findOneById(userId);
-
-        if (!user) {
-            throw new NotFoundException(`User not found`);
-        }
 
         if (user.emailVerified === true) {
             throw new ConflictException("Email already verified");

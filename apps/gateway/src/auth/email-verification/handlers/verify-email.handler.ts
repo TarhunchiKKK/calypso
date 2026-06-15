@@ -48,10 +48,6 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
     private async updateUser(userId: Id) {
         const user = await this.usersHelper.findOneById(userId);
 
-        if (!user) {
-            throw new NotFoundException("User not found");
-        }
-
         await this.usersHelper.update(user, {
             emailVerified: true
         });

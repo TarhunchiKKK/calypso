@@ -50,10 +50,6 @@ export class UpdatePasswordCommandHandler implements ICommandHandler<UpdatePassw
     private async updatePassword(userId: Id, password: string) {
         const user = await this.usersHelper.findOneById(userId);
 
-        if (!user) {
-            throw new NotFoundException("User not found");
-        }
-
         await this.usersHelper.update(user, {
             password: await argon2.hash(password)
         });
