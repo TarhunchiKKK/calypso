@@ -1,9 +1,26 @@
 # 🛠️ API Architecture
 
-
 ## Table of contents
 
- <!--TODO: change full paragraph-->
+- [🛠️ API Architecture](#️-api-architecture)
+  - [Table of contents](#table-of-contents)
+  - [📋 About](#-about)
+    - [⚓ Key principles](#-key-principles)
+    - [⌚ When to read this doc ❓](#-when-to-read-this-doc-)
+  - [Core](#core)
+    - [Microservices](#microservices)
+    - [Modules design](#modules-design)
+  - [Broker](#broker)
+    - [How messages deduplication is implemented ❓](#how-messages-deduplication-is-implemented-)
+    - [How `Transactional Outbox` pattern is implemented ❓](#how-transactional-outbox-pattern-is-implemented-)
+  - [Lib](#lib)
+    - [How `Swagger` is implemented ❓](#how-swagger-is-implemented-)
+    - [How caching is implemented ❓](#how-caching-is-implemented-)
+    - [How tests are implemented ❓](#how-tests-are-implemented-)
+    - [How validation is implemented ❓](#how-validation-is-implemented-)
+
+
+<!--TODO: change full paragraph-->
 ## 📋 About
 
 This document describes the internal structure of the whiteboard editor. The editor is the most complex part of the system, as it has many different features, supports many types of nodes, and operates with complex geometric calculations and event processing.
@@ -46,7 +63,7 @@ API contains such microservices:
 
 The absolute majority of apps modules contains this elements (some elements can be omitted in certain modules):
 
-* `handlers/` - CQRS handlers
+* `handlers/` - CQRS handlers (commands and queries are stored together)
 * `entities/` - stored entities
 * `schemas/` - stored `MongoDB` entities
 * `dto/` - dto's used in module
@@ -59,18 +76,22 @@ The absolute majority of apps modules contains this elements (some elements can 
 
 ## Broker
 
-### How messages deduplication is implemented?
+### How messages deduplication is implemented ❓
 
-### How `Transactional Outbox` is pattern implemented?
-<!--TODO: implement-->
+Every broker message accepts property with random value. This property performs the role of unique message id.  
 
-### How message acknowledgements are implemented?
+Broker messages deduplication is implemented by `DeduplicateMessages` and `DeduplicationTtl` decorators exported from `@contracts/broker` package.
+This decorators call `CacheService` from `@api/cache` package to store processed messages ids in cache. 
+
+This decorators can be applied to certain controller methods or to full controller class. So when new message comes to handler `DeduplicateMessages` decorator looks for message with such id in cache. 
+
+### How `Transactional Outbox` pattern is implemented ❓
 
 <!--TODO: implement-->
 
 ## Lib
 
-### How `Swaagger` is implemented?
+### How `Swagger` is implemented ❓
 
 `Swagger` functionality is designed such a way as to overlap with business logic as little as possible.
 
@@ -109,7 +130,6 @@ export class BoardApiType implements Board {
 2. Create dtos api types by applying `@nestjs/swagger` mapped types to entity api types.
 
 ```typescript
-import type { Board, CreateBoardDto, UpdateBoardDto } from "@lib/boards";
 import { PartialType, PickType } from "@nestjs/swagger";
 import { BoardApiType } from "./entities.swagger";
 
@@ -127,7 +147,6 @@ Use `createControllerSwaggerDecorator` function from `@api/common` package to cr
 ```typescript
 import { createControllerSwaggerDecorator } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { SwaggerTags } from "src/lib/swagger/swagger.constants";
 import { CreateBoardDtoApiType, CreateBoardResponseApiType, UpdateBoardDtoApiType } from "./dtos.swagger";
 
 export const BoardsControllerApiType = createControllerSwaggerDecorator({
@@ -154,19 +173,20 @@ export const BoardsControllerApiType = createControllerSwaggerDecorator({
     ]
 });
 ```
+import { SwaggerTags } from "src/lib/swagger/swagger.constants";
 
 4. Add created decorator to controller class.
 
 
 ```typescript
-// Other decorators
+// Other decorators ...
 @BoardsControllerApiType()
 export class BoardsController {
-    // Controller implementation
+    // Controller implementation ...
 }
 ```
 
-### How caching is implemented?
+### How caching is implemented ❓
 
 Caching is implemented with `@api/cache` package. This package is designed such way as to move as many caching logic as possible to the middleware.
 
@@ -178,12 +198,12 @@ This package export such members:
 * `InvalidateCache` - decorator that invalidates cache records on successful request handling
 * `ManualCache` - do not perform any actions. It is only used for signalization about caching without `Cache` and `InvalidateCache` decorators
 
-### How tests are implemented?
+### How tests are implemented ❓
 
 > [!Note] 
 >
 > API tests are implemented with `bun` runtime.
-> `Bun` has own test runner the syntax of wich is similar to `jest` and `vitest`.
+> `Bun` has own test runner the syntax of which is similar to `jest` and `vitest`.
 >
 > This approach gives a significant increase in the tests run rate.
 > Testing libraries like `jest` and `vitest` can not boast of such speed.
@@ -198,7 +218,7 @@ The are also reusable mock-creator functions exported by `@api/common`, `@api/ca
 
 Local mock-creator functions are declared in corresponding test folders. 
  
-### How validation is implemented?
+### How validation is implemented ❓
 
 Validation is implemented with using of `zod` schema validation library.
 
