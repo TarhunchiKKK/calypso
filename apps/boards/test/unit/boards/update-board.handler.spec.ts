@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createRepositoryMock } from "@api/common";
 import type { UpdateBoardDto } from "@lib/boards";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Board } from "src/boards/entities/board.entity";
 import { UpdateBoardCommand, UpdateBoardCommandHandler } from "src/boards/handlers/update-board.handler";
@@ -15,7 +15,7 @@ describe("UpdateBoardCommandHandler", () => {
     const boardsHelperMock = createBoardsHelperMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 UpdateBoardCommandHandler,
                 {

@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { CacheService, createCacheServiceMock } from "@api/cache";
 import { clearMock } from "@api/common";
 import { createBrokerClientMock } from "@contracts/broker";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { SendEmailVerificationCommand, SendEmailVerificationCommandHandler } from "src/auth/email-verification/handlers/send-email-verification.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
 import { MAILS_WORKER_RMQ_INJECTION_TOKEN } from "src/lib/di/broker.di";
@@ -15,7 +15,7 @@ describe("SendEmailVerificationCommandHandler", () => {
     const brokerClientMock = createBrokerClientMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 SendEmailVerificationCommandHandler,
                 {

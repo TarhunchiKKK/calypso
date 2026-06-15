@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createRepositoryMock } from "@api/common";
 import type { FindPresetsDto } from "@lib/media";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Media } from "src/media/entities/media.entity";
 import { FindPresetsQuery, FindPresetsQueryHandler } from "src/media/handlers/find-presets.handlers";
@@ -12,7 +12,7 @@ describe("FindPresetsQueryHandler", () => {
     const mediaRepositoryMock = createRepositoryMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 FindPresetsQueryHandler,
                 {

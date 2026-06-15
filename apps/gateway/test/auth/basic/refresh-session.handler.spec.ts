@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock } from "@api/common";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { RefreshSessionQuery, RefreshSessionQueryHandler } from "src/auth/basic/handlers/refresh-session.handler";
 import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
 import { TokensService } from "src/auth/basic/services/tokens.service";
@@ -14,7 +14,7 @@ describe("RefreshSessionQueryHandler", () => {
     const tokensServiceMock = createTokensServiceMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 RefreshSessionQueryHandler,
                 {

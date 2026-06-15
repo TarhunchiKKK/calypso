@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { CacheService, createCacheServiceMock } from "@api/cache";
 import { clearMock } from "@api/common";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { VerifyEmailCommand, VerifyEmailCommandHandler } from "src/auth/email-verification/handlers/verify-email.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
@@ -12,7 +12,7 @@ describe("VerifyEmailCommandHandler", () => {
     const cacheServiceMock = createCacheServiceMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 VerifyEmailCommandHandler,
                 {

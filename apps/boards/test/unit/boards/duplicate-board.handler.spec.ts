@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock, createRepositoryMock } from "@api/common";
 import { getModelToken } from "@nestjs/mongoose";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import type { DuplicateBoardDto } from "src/boards/dto/duplicate-board.dto";
 import { Board } from "src/boards/entities/board.entity";
@@ -16,7 +16,7 @@ describe("DuplicateBoardCommandHandler", () => {
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 DuplicateBoardCommandHandler,
                 {

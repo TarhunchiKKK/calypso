@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock } from "@api/common";
 import type { CreateManyNodesDto } from "@lib/boards";
 import { getModelToken } from "@nestjs/mongoose";
-import { Test, type TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { CreateManyNodesCommand, CreateManyNodesCommandHandler } from "src/nodes/handlers/create-many-nodes.handler";
 import { NodeBase } from "src/nodes/schemas/node-base.schema";
 import { MockBoard } from "../boards/mocks/board.mocks";
@@ -13,7 +13,7 @@ describe("CreateManyNodesCommandHandler", () => {
     const nodesModelMock = createMongooseModelMock();
 
     beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             providers: [
                 CreateManyNodesCommandHandler,
                 {
