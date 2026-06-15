@@ -1,1 +1,1 @@
-export { BrokerValidation } from "./broker-payload.decorator";
+export { BrokerValidation } from "./broker-validation.decorator";
