@@ -22,9 +22,11 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
     ) {}
 
     public async execute({ userId, token }: VerifyEmailCommand) {
-        await this.verifyToken(userId, token);
+        const key = await this.verifyToken(userId, token);
 
         await this.updateUser(userId);
+
+        await this.cacheService.remove(key);
     }
 
     private async verifyToken(userId: Id, token: string) {
@@ -40,7 +42,7 @@ export class VerifyEmailCommandHandler implements ICommandHandler<VerifyEmailCom
             throw new UnauthorizedException("Incorrect token");
         }
 
-        await this.cacheService.remove(key);
+        return key;
     }
 
     private async updateUser(userId: Id) {

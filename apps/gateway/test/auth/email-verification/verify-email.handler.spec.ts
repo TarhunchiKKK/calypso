@@ -86,7 +86,7 @@ describe("VerifyEmailCommandHandler", () => {
         expect(handler.execute(command)).rejects.toThrow();
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
-        expect(cacheServiceMock.remove).toHaveBeenCalled();
+        expect(cacheServiceMock.remove).not.toHaveBeenCalled();
         expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
     });
 });
