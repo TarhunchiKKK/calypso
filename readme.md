@@ -40,6 +40,7 @@
     - [Nodes context menu](#nodes-context-menu)
     - [Window shifting and zooming](#window-shifting-and-zooming)
   - [✌ Hot Keys](#-hot-keys)
+  - [API](#api)
 - [🧐 What's next?](#-whats-next)
 
 ## About 
@@ -83,10 +84,13 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 
 - **🖥️ Framework**: [NestJS](https://nestjs.com/)
 - **🏛️ Architecture**: Microservices, CQRS
-- **🚚 Transporters**: [gRPC](https://grpc.io/), [RabbitMQ](https://www.rabbitmq.com/docs)
+- **🚚 Protocol**: [gRPC](https://grpc.io/), [RabbitMQ](https://www.rabbitmq.com/docs)
 - **🗄️ ORM's**: [TypeORM](https://typeorm.io/), [Mongoose](https://mongoosejs.com/)
+- **📚 Cache**: [Redis](https://redis.io/?ref=soroushjp.com)
 - **🔐 Authentication & Authorization**: [JWT](https://www.jwt.io/)
 - **✅ Validation**: [Zod](https://zod.dev/)
+- **📚 Docs**: [Swagger](https://swagger.io/)
+- **🧪 Testing**: [Bun Test Runner](https://bun.com/docs/test)
 
 ### 🏗️ Infrastructure
 
@@ -545,6 +549,14 @@ Actions:
         </tbody>
     </table>
 </div>
+
+
+### API
+
+- [ ] `Transactional Outbox` pattern implementation
+- [x] Broker messages deduplication
+- [ ] OAuth 2.0 implementation 
+- [x] `Swagger` docs + client generation
 
 
 ## 🧐 What's next?
