@@ -29,7 +29,6 @@
         "lint:check": "bunx --bun biome lint",
         "lint:fix": "bunx --bun biome lint --write",
         "knip": "knip",
-        "env:load": "bun run scripts/load-env/index.script.ts",
         "env:refresh-example": "bun run scripts/refresh-env-example.script.ts",
         "clean": "bun run clean:pm && bun run clean:node_modules && bun run clean:turbo && bun run clean:dist",
         "clean:pm": "bun pm cache rm",
