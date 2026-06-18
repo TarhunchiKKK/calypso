@@ -3,10 +3,10 @@ import { GrpcLoggingInterceptor } from "./interceptors/grpc.logging.interceptor"
 import { HttpLoggingInterceptor } from "./interceptors/http.logging.interceptor";
 import { RmqLoggingInterceptor } from "./interceptors/rmq.logging.interceptor";
 import { LokiLogger } from "./loggers/loki.logger";
-import { LoggerAsyncOptions, LoggerOptions } from "config/types";
-import { AppLogger } from "loggers/app.logger";
-import { selectLogger } from "lib/select-logger.helper";
-import { LOGGER_OPTIONS_INJECTION_TOKEN } from "config/constants";
+import { LoggerAsyncOptions, LoggerOptions } from "./config/types";
+import { AppLogger } from "./loggers/app.logger";
+import { selectLogger } from "./lib/select-logger.helper";
+import { LOGGER_OPTIONS_INJECTION_TOKEN } from "./config/constants";
 
 const interceptors = [HttpLoggingInterceptor, RmqLoggingInterceptor, GrpcLoggingInterceptor];
 

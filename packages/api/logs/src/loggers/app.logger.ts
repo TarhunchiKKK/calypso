@@ -1,5 +1,5 @@
 import { LoggerService, LogLevel } from "@nestjs/common";
-import { LogMetadata } from "lib/types";
+import { LogMetadata } from "../lib/types";
 
 export abstract class AppLogger implements LoggerService {
     public abstract log(message: any, metadata: LogMetadata): void;

@@ -1,4 +1,4 @@
-import { LokiLogger } from "entry";
+import { LokiLogger } from "../loggers/loki.logger";
 import { LoggerDriver } from "../config/types";
 
 export function selectLogger(driver: LoggerDriver) {

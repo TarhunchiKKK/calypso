@@ -1,11 +1,10 @@
 import { CallHandler, ExecutionContext, Inject, NestInterceptor } from "@nestjs/common";
-import { LokiLogger } from "entry";
-import { AppLogger } from "loggers/app.logger";
+import { AppLogger } from "../loggers/app.logger";
 
 export abstract class BaseLoggingInterceptor<TMetadata> implements NestInterceptor {
     protected abstract readonly contextName: string;
 
-    public constructor(@Inject(LokiLogger) protected readonly logger: AppLogger) {}
+    public constructor(@Inject(AppLogger) protected readonly logger: AppLogger) {}
 
     public abstract intercept(context: ExecutionContext, next: CallHandler);
 
