@@ -2,23 +2,30 @@ import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestI
 import { LokiLogger } from "entry";
 import { TRACE_ID_HTTP_HEADER } from "lib/constants";
 import { tap } from "rxjs";
+import { BaseLoggingInterceptor } from "./base.logging.interceptor";
+
+type Metadata = {
+    metadata: {
+        context: string;
+        method: string;
+        url: string;
+    };
+    request: any;
+    response: any;
+};
 
 @Injectable()
-export class HttpLoggingInterceptor implements NestInterceptor {
-    private contextName = HttpLoggingInterceptor.name;
-
-    public constructor(@Inject(LokiLogger) private readonly logger: LokiLogger) {}
+export class HttpLoggingInterceptor extends BaseLoggingInterceptor<Metadata> {
+    protected readonly contextName = HttpLoggingInterceptor.name;
 
     public intercept(context: ExecutionContext, next: CallHandler) {
-        const { request, response, metadata } = this.getMetadata(context);
+        const metadataExists = this.getMetadata(context);
 
-        if (!metadata) {
-            const controller = context.getClass().name;
-            const method = context.getHandler().name;
-
-            this.logger.warn(`Middleware was applied to non-http method "${controller}.${method}"`, { context: this.contextName });
-            return next.handle();
+        if (!metadataExists) {
+            return this.incorrectContext(context, next);
         }
+
+        const { metadata, request, response } = metadataExists;
 
         this.logger.debug(`HTTP Request Started: ${metadata.method} ${metadata.url}`, metadata);
 
@@ -33,23 +40,21 @@ export class HttpLoggingInterceptor implements NestInterceptor {
         );
     }
 
-    private getMetadata(context: ExecutionContext) {
+    protected getMetadata(context: ExecutionContext) {
         const http = context.switchToHttp();
         const request = http.getRequest();
         const response = http.getResponse();
 
         if (context.getType() !== "http") {
-            return { request, response };
+            return null;
         }
 
         const metadata = {
-            traceId: request.headers[TRACE_ID_HTTP_HEADER] ?? crypto.randomUUID(),
             method: request.method,
             url: request.url,
             context: this.contextName
         };
 
-        response.setHeader(TRACE_ID_HTTP_HEADER, metadata.traceId);
 
         return { metadata, request, response };
     }

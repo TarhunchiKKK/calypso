@@ -1,23 +1,23 @@
-import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor } from "@nestjs/common";
-import { LokiLogger } from "entry";
-import { Observable, tap } from "rxjs";
+import { CallHandler, ExecutionContext, Injectable } from "@nestjs/common";
 import { RmqContext } from "@nestjs/microservices";
+import { BaseLoggingInterceptor } from "./base.logging.interceptor";
+
+type Metadata = {
+    context: string;
+    pattern: string;
+    message: Record<string, any>;
+    args: ReturnType<RmqContext["getArgs"]>;
+};
 
 @Injectable()
-export class RmqLoggingInterceptor implements NestInterceptor {
-    private readonly contextName = RmqLoggingInterceptor.name;
-
-    public constructor(@Inject(LokiLogger) private readonly logger: LokiLogger) {}
+export class RmqLoggingInterceptor extends BaseLoggingInterceptor<Metadata> {
+    protected readonly contextName = RmqLoggingInterceptor.name;
 
     public intercept(context: ExecutionContext, next: CallHandler) {
         const metadata = this.getMetadata(context);
 
         if (!metadata) {
-            const controller = context.getClass().name;
-            const method = context.getHandler().name;
-
-            this.logger.warn(`Middleware was applied to non-RabbitMQ handler "${controller}.${method}"`, { context: this.contextName });
-            return next.handle();
+            return this.incorrectContext(context, next);
         }
 
         const startTime = Date.now();
@@ -33,7 +33,7 @@ export class RmqLoggingInterceptor implements NestInterceptor {
         );
     }
 
-    private getMetadata(context: ExecutionContext) {
+    protected getMetadata(context: ExecutionContext) {
         if (context.getType() !== "rpc") {
             return null;
         }
@@ -49,8 +49,7 @@ export class RmqLoggingInterceptor implements NestInterceptor {
             context: this.contextName,
             pattern: rmqContext.getPattern(),
             message: rmqContext.getMessage(),
-            args: rmqContext.getArgs(),
-            data: rmq.getData()
+            args: rmqContext.getArgs()
         };
     }
 }

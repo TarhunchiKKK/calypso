@@ -1,22 +1,22 @@
-import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor } from "@nestjs/common";
-import { LokiLogger } from "entry";
+import { CallHandler, ExecutionContext, Injectable } from "@nestjs/common";
 import { tap } from "rxjs";
+import { BaseLoggingInterceptor } from "./base.logging.interceptor";
+
+type Metadata = {
+    data: any;
+    context: any;
+    handler: string;
+};
 
 @Injectable()
-export class GrpcLoggingInterceptor implements NestInterceptor {
-    private readonly contextName = GrpcLoggingInterceptor.name;
+export class GrpcLoggingInterceptor extends BaseLoggingInterceptor<Metadata> {
+    protected readonly contextName = GrpcLoggingInterceptor.name;
 
-    public constructor(@Inject(LokiLogger) private readonly logger: LokiLogger) {}
-
-    public intercept(context: ExecutionContext, next: CallHandler<any>) {
+    public intercept(context: ExecutionContext, next: CallHandler) {
         const metadata = this.getMetadata(context);
 
         if (!metadata) {
-            const controller = context.getClass().name;
-            const method = context.getHandler().name;
-
-            this.logger.warn(`Middleware was applied to non-grpc handler "${controller}.${method}"`, { context: this.contextName });
-            return next.handle();
+            return this.incorrectContext(context, next);
         }
 
         const startTime = Date.now();
@@ -49,7 +49,7 @@ export class GrpcLoggingInterceptor implements NestInterceptor {
         const handler = context.getHandler().name;
 
         return {
-            data,
+            data: data,
             context: grpcContext,
             handler: `${controller}.${handler}`
         };

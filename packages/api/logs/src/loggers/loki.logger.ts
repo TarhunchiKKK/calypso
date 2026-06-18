@@ -1,9 +1,9 @@
 import { dependsOnEnv } from "@lib/common";
 import { Inject, Injectable, type LoggerService } from "@nestjs/common";
-import { LOGGER_OPTIONS_INJECTION_TOKEN } from "config/constants";
-import { getPinoOptionsDev, getPinoOptionsProd, type PinoOptionsFactory } from "config/pino";
-import type { LokiLoggerOptions } from "config/types";
-import { LogMetadata } from "lib/types";
+import { LOGGER_OPTIONS_INJECTION_TOKEN } from "../config/constants";
+import { getPinoOptionsDev, getPinoOptionsProd, type PinoOptionsFactory } from "../config/pino";
+import type { LokiLoggerOptions } from "../config/types";
+import type { LogMetadata } from "../lib/types";
 import pino from "pino";
 
 @Injectable()
