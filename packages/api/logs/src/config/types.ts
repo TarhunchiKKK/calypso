@@ -1,17 +1,14 @@
 import type { ModuleMetadata } from "@nestjs/common";
 
-export type LoggerModuleOptions = {
-    appName: string;
-
-    lokiUrl: string;
-
+export type LokiLoggerOptions = {
     envMode: unknown;
 
-    batchInterval?: number;
+    appLabel: string;
+
+    lokiUrl: string;
 };
 
-export type LoggerModuleAsyncOptions = Pick<ModuleMetadata, "imports"> & {
+export type LokiLoggerAsyncOptions = Pick<ModuleMetadata, "imports"> & {
     inject?: any[];
-
-    useFactory: (...args: any) => LoggerModuleOptions | Promise<LoggerModuleOptions>;
+    useFactory: (...args: any[]) => LokiLoggerOptions | Promise<LokiLoggerOptions>;
 };

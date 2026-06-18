@@ -1,44 +1,42 @@
-import { dependsOnEnv } from "@lib/common";
 import { type DynamicModule, Module } from "@nestjs/common";
-import { type PinoConfigFactory, pinoConfigFactoryDev, pinoConfigFactoryProd } from "config/pino.factories";
-import type { LoggerModuleAsyncOptions, LoggerModuleOptions } from "config/types";
-import { LoggerModule as PinoLoggerModule } from "nestjs-pino";
+import type { LokiLoggerAsyncOptions, LokiLoggerOptions } from "config/types";
+import { LokiLogger } from "loggers/loki.logger";
+import { HttpLoggingInterceptor } from "middleware/http.logging.interceptor";
+
+const interceptors = [HttpLoggingInterceptor];
 
 @Module({})
 export class LoggerModule {
-    public static forRoot(options: LoggerModuleOptions): DynamicModule {
+    public static forRoot(options: LokiLoggerOptions): DynamicModule {
         return {
             module: LoggerModule,
-            imports: [
-                PinoLoggerModule.forRoot(
-                    dependsOnEnv<PinoConfigFactory>(options.envMode, {
-                        prod: pinoConfigFactoryProd,
-                        dev: pinoConfigFactoryDev
-                    })(options)
-                )
+            providers: [
+                {
+                    provide: LokiLogger,
+                    useValue: new LokiLogger(options)
+                },
+                ...interceptors
             ],
-            exports: [PinoLoggerModule]
+            exports: [LokiLogger]
         };
     }
 
-    public static forRootAsync(options: LoggerModuleAsyncOptions): DynamicModule {
+    public static forRootAsync(options: LokiLoggerAsyncOptions): DynamicModule {
         return {
             module: LoggerModule,
-            imports: [
-                PinoLoggerModule.forRootAsync({
-                    imports: options.imports || [],
-                    inject: options.inject || [],
-                    useFactory: async (...args: any[]) => {
-                        const loggerOptions = await options.useFactory(...args);
-
-                        return dependsOnEnv<PinoConfigFactory>(loggerOptions.envMode, {
-                            prod: pinoConfigFactoryProd,
-                            dev: pinoConfigFactoryDev
-                        })(loggerOptions);
+            imports: options.imports ?? [],
+            providers: [
+                {
+                    provide: LokiLogger,
+                    inject: options.inject ?? [],
+                    useFactory: async (...args) => {
+                        const lokiLoggerOptions = await options.useFactory(...args);
+                        return new LokiLogger(lokiLoggerOptions);
                     }
-                })
+                },
+                ...interceptors
             ],
-            exports: [PinoLoggerModule]
+            exports: [LokiLogger]
         };
     }
 }
