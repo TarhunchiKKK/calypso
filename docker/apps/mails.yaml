@@ -1,0 +1,19 @@
+services:
+  mails-worker:
+    image: calypso-mails:latest
+    container_name: mails-worker
+    build:
+      context: ../../
+      dockerfile: ./docker/Dockerfile
+      args:
+        - APP_NAME=mails
+    env_file:
+      - ../../.env
+      - ../../apps/mails/.env
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    external: true
+    name: api-network

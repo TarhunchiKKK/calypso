@@ -11,6 +11,8 @@ services:
       - ${BOARDS_SERVICE_SQL_DB_PORT}:5432
     volumes:
       - boards-sql-db-data:/var/lib/postgresql/data
+    networks:
+      - api-network
 
   boards-nosql-db:
     container_name: boards-nosql-db
@@ -19,6 +21,8 @@ services:
       - MONGO_INITDB_DATABASE=${BOARDS_SERVICE_NOSQL_DB_NAME}
     ports:
       - ${BOARDS_SERVICE_NOSQL_DB_PORT}:27017
+    networks:
+      - api-network
 
   boards-cache:
     container_name: boards-cache
@@ -28,7 +32,32 @@ services:
       - ${BOARDS_SERVICE_REDIS_PORT}:6379
     volumes:
       - boards-cache-data:/data
+    networks:
+      - api-network
+
+  boards-service:
+    image: calypso-boards:latest
+    container_name: boards-service
+    build:
+      context: ../../
+      dockerfile: ./docker/Dockerfile
+      args:
+        - APP_NAME=boards
+      env_file:
+        - ../../.env
+        - ../../apps/boards/.env
+      depends_on:
+        - boards-slq-db
+        - boards-nosql-db
+        - boards-cache
+      networks:
+        - api-network
 
 volumes:
   boards-sql-db-data:
   boards-cache-data:
+
+networks:
+  api-network:
+    external: true
+    name: api-network

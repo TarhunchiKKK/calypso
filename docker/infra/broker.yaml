@@ -1,0 +1,14 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: broker
+    ports:
+      - ${RMQ_PORT}:5672
+      - ${RMQ_MANAGEMENT_PORT}:15672
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    external: true
+    name: api-network
