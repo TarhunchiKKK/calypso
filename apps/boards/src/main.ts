@@ -26,7 +26,7 @@ async function bootstrap() {
         options: {
             package: BOARD_NODES_PACKAGE_NAME,
             protoPath: "node_modules/@contracts/grpc/proto/boards/nodes.service.proto",
-            url: configService.getOrThrow<string>("BOARD_NODES__GRPC_URL"),
+            url: configService.getOrThrow<string>("BOARD_NODES_GRPC_URL"),
             loader: GrpcLoaderOptions
         }
     });
