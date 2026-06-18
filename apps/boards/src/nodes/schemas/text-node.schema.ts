@@ -1,6 +1,6 @@
 import type { NodeBase, TextNode as TextNodeType } from "@lib/boards";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { FormattableElement, OmitFields, Rect } from "@lib/common";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 class TextNode implements OmitFields<TextNodeType, keyof NodeBase> {

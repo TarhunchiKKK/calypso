@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createMongooseModelMock } from "@api/common";
+import { clearMock, createMongooseModelMock } from "@api/common/mocks";
 import type { CreateManyNodesDto } from "@lib/boards";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";

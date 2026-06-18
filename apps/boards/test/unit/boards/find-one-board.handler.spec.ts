@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common";
+import { clearMock } from "@api/common/mocks";
 import { Test } from "@nestjs/testing";
 import { FindOneBoardQuery, FindOneBoardQueryHandler } from "src/boards/handlers/find-one-board.handler";
 import { BoardsHelper } from "src/boards/lib/boards.helper";

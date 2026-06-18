@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common";
+import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import type { PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Test } from "@nestjs/testing";

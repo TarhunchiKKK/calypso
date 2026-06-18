@@ -1,6 +1,6 @@
 import type { NodeBase, ShapeNode as ShapeNodeType, ShapeVariants } from "@lib/boards";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { OmitFields, Rect } from "@lib/common";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 class ShapeNode implements OmitFields<ShapeNodeType, keyof NodeBase> {

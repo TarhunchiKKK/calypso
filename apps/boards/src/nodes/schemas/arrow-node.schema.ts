@@ -1,6 +1,6 @@
 import type { ArrowNode as ArrowNodeType, NodeBase } from "@lib/boards";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { OmitFields, RelativePoint } from "@lib/common";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 class ArrowNode implements OmitFields<ArrowNodeType, keyof NodeBase> {
