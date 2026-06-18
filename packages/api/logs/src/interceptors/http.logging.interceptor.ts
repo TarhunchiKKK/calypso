@@ -1,6 +1,4 @@
-import { type CallHandler, type ExecutionContext, Inject, Injectable, type NestInterceptor } from "@nestjs/common";
-import { LokiLogger } from "entry";
-import { TRACE_ID_HTTP_HEADER } from "lib/constants";
+import { type CallHandler, type ExecutionContext, Injectable } from "@nestjs/common";
 import { tap } from "rxjs";
 import { BaseLoggingInterceptor } from "./base.logging.interceptor";
 
@@ -54,7 +52,6 @@ export class HttpLoggingInterceptor extends BaseLoggingInterceptor<Metadata> {
             url: request.url,
             context: this.contextName
         };
-
 
         return { metadata, request, response };
     }

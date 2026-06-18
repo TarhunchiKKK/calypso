@@ -5,9 +5,10 @@ import { getPinoOptionsDev, getPinoOptionsProd, type PinoOptionsFactory } from "
 import type { LokiLoggerOptions } from "../config/types";
 import type { LogMetadata } from "../lib/types";
 import pino from "pino";
+import { AppLogger } from "./app.logger";
 
 @Injectable()
-export class LokiLogger implements LoggerService {
+export class LokiLogger implements AppLogger {
     private pinoLogger: pino.Logger;
 
     public constructor(@Inject(LOGGER_OPTIONS_INJECTION_TOKEN) private readonly options: LokiLoggerOptions) {

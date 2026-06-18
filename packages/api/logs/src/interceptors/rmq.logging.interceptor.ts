@@ -1,6 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable } from "@nestjs/common";
 import { RmqContext } from "@nestjs/microservices";
 import { BaseLoggingInterceptor } from "./base.logging.interceptor";
+import { tap } from "rxjs";
 
 type Metadata = {
     context: string;
