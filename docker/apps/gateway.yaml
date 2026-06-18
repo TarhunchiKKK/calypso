@@ -34,7 +34,7 @@ services:
       args:
         - APP_NAME=gateway
     ports:
-      - "3000:3000"
+      - "3000:${APP_PORT}"
     env_file:
       - ../../.env
       - ../../apps/gateway/.env
