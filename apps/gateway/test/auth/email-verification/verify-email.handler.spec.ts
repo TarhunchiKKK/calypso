@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService, createCacheServiceMock } from "@api/cache";
-import { clearMock } from "@api/common";
+import { CacheService } from "@api/cache";
+import { createCacheServiceMock } from "@api/cache/mocks";
+import { clearMock } from "@api/common/mocks";
+import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { VerifyEmailCommand, VerifyEmailCommandHandler } from "src/auth/email-verification/handlers/verify-email.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -38,55 +40,36 @@ describe("VerifyEmailCommandHandler", () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue(token);
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new VerifyEmailCommand(MockUser.id, token);
         await handler.execute(command);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
+        expect(usersHelperMock.update).toHaveBeenCalledWith(MockUser.id, { emailVerified: true });
     });
 
     it("should not found verification token", async () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue(null);
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new VerifyEmailCommand(MockUser.id, token);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(NotFoundException);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).not.toHaveBeenCalled();
     });
 
     it("should receive incorrect token", async () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue("another-token");
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new VerifyEmailCommand(MockUser.id, token);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(UnauthorizedException);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).not.toHaveBeenCalled();
-    });
-
-    it("should not found user", async () => {
-        const token = crypto.randomUUID();
-
-        cacheServiceMock.get.mockResolvedValue(token);
-        usersHelperMock.findOneById.mockResolvedValue(null);
-
-        const command = new VerifyEmailCommand(MockUser.id, token);
-        expect(handler.execute(command)).rejects.toThrow();
-
-        expect(cacheServiceMock.get).toHaveBeenCalled();
-        expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
     });
 });

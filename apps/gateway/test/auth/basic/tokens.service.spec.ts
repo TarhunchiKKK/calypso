@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createConfigServiceMock } from "@api/common";
+import { clearMock, createConfigServiceMock } from "@api/common/mocks";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { Test } from "@nestjs/testing";

@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { clearMock, createMongooseModelMock, createRepositoryMock } from "@api/common/mocks";
+import { NotFoundException } from "@nestjs/common";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
@@ -93,7 +94,7 @@ describe("DuplicateBoardCommandHandler", () => {
         boardsRepositoryMock.findOne.mockResolvedValue(null);
 
         const command = new DuplicateBoardCommand(dto);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(NotFoundException);
 
         expect(boardsRepositoryMock.save).not.toHaveBeenCalled();
         expect(nodesModelMock.find).not.toHaveBeenCalled();

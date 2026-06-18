@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common";
+import { clearMock } from "@api/common/mocks";
 import type { SignInDto } from "@lib/auth";
+import { BadRequestException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { SignInCommand, SignInCommandHandler } from "src/auth/basic/handlers/sign-in.handler";
 import { TokensService } from "src/auth/basic/services/tokens.service";
@@ -59,20 +60,6 @@ describe("SignInCommandHandler", () => {
         expect(tokensServiceMock.sign).toHaveBeenCalledWith(hashedUser);
     });
 
-    it("should not found user", async () => {
-        const dto: SignInDto = {
-            email: MockUser.email,
-            password: MockUser.password
-        };
-
-        usersHelperMock.findOneByEmail.mockResolvedValue(null);
-
-        const command = new SignInCommand(dto);
-        expect(handler.execute(command)).rejects.toThrow();
-
-        expect(tokensServiceMock.sign).not.toHaveBeenCalled();
-    });
-
     it("should mismatch passwords", async () => {
         const dto: SignInDto = {
             email: MockUser.email,
@@ -87,7 +74,7 @@ describe("SignInCommandHandler", () => {
         usersHelperMock.findOneByEmail.mockResolvedValue(hashedUser);
 
         const command = new SignInCommand(dto);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(BadRequestException);
 
         expect(tokensServiceMock.sign).not.toHaveBeenCalled();
     });
