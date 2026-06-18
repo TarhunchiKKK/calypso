@@ -1,9 +1,11 @@
 import { type DynamicModule, Module } from "@nestjs/common";
 import type { LokiLoggerAsyncOptions, LokiLoggerOptions } from "config/types";
 import { LokiLogger } from "loggers/loki.logger";
+import { GrpcLoggingInterceptor } from "middleware/grpc.logging.interceptor";
 import { HttpLoggingInterceptor } from "middleware/http.logging.interceptor";
+import { RmqLoggingInterceptor } from "middleware/rmq.logging.interceptor";
 
-const interceptors = [HttpLoggingInterceptor];
+const interceptors = [HttpLoggingInterceptor, RmqLoggingInterceptor, GrpcLoggingInterceptor];
 
 @Module({})
 export class LoggerModule {
