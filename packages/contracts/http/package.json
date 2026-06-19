@@ -1,8 +1,16 @@
 {
     "name": "@contracts/http",
     "version": "0.0.0",
-    "private": true,
-    "license": "MIT",
+    "main": "./dist/entry.js",
+    "dependencies": {
+        "openapi-fetch": "^0.17.0"
+    },
+    "devDependencies": {
+        "@config/typescript": "*",
+        "@types/node": "^22.10.7",
+        "openapi-typescript": "^7.13.0",
+        "typescript": "5.5.4"
+    },
     "exports": {
         ".": {
             "types": "./dist/entry.d.ts",
@@ -10,29 +18,17 @@
             "require": "./dist/entry.js"
         }
     },
-    "main": "./dist/entry.js",
-    "types": "./dist/entry.d.ts",
     "files": ["./dist/**"],
+    "license": "MIT",
+    "private": true,
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "build": "tsc -b -v",
         "generate:json": "openapi-typescript ./swagger/swagger.json -o ./src/generated.ts",
         "generate:yaml": "openapi-typescript ./swagger/swagger.yaml -o ./src/generated.ts",
         "type-check": "tsc --noEmit"
     },
-    "devDependencies": {
-        "@config/typescript": "*",
-        "@types/node": "^22.10.7",
-        "openapi-typescript": "^7.13.0",
-        "rxjs": "^7.8.2",
-        "typescript": "5.5.4"
-    },
-    "peerDependencies": {
-        "rxjs": "^7.8.0"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {
-        "openapi-fetch": "^0.17.0"
-    }
+    "types": "./dist/entry.d.ts"
 }

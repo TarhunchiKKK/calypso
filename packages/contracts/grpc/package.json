@@ -24,7 +24,7 @@
         "google-proto-files": "^5.0.1"
     },
     "devDependencies": {
-        "@api/logs":"*",
+        "@api/logs": "*",
         "@lib/boards": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
@@ -37,7 +37,7 @@
         "typescript": "5.5.4"
     },
     "peerDependencies": {
-        "@api/logs":"*",
+        "@api/logs": "*",
         "@lib/boards": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.0.0",
