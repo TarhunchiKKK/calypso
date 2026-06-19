@@ -1,3 +1,5 @@
+import { HttpExceptionFilter } from "@api/common";
+import { AppLogger } from "@api/logs";
 import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
@@ -6,13 +8,19 @@ import { AppModule } from "./app.module";
 import { setupSwagger } from "./lib/swagger/swagger.setup";
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-
-    const configService = app.get(ConfigService);
+    const app = await NestFactory.create(AppModule, {
+        bufferLogs: true
+    });
 
     setupSwagger(app);
 
+    const logger = app.get(AppLogger);
+    app.useLogger(logger);
+    app.useGlobalFilters(new HttpExceptionFilter(logger));
+
     app.use(cookieParser());
+
+    const configService = app.get(ConfigService);
 
     app.enableCors({
         origin: configService.getOrThrow("FRONTEND_URL"),

@@ -1,4 +1,5 @@
 import { Validation } from "@api/common";
+import { Logging } from "@api/logs";
 import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@lib/auth";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import type { Request, Response } from "express";
@@ -10,6 +11,7 @@ import { CookieService } from "./services/cookie.service";
 import { BasicAuthControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("auth/basic")
+@Logging("http")
 @BasicAuthControllerApiType()
 export class BasicAuthController {
     public constructor(

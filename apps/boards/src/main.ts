@@ -1,3 +1,4 @@
+import { AppLogger } from "@api/logs";
 import { brokerMicroserviceConfigFactory } from "@contracts/broker";
 import { BOARD_NODES_PACKAGE_NAME, BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@contracts/grpc";
 import { Logger } from "@nestjs/common";
@@ -7,7 +8,12 @@ import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {
+        bufferLogs: true
+    });
+
+    const logger = app.get(AppLogger);
+    app.useLogger(logger);
 
     const configService = app.get(ConfigService);
 

@@ -1,4 +1,5 @@
 import { QueryValidation, Validation } from "@api/common";
+import { Logging } from "@api/logs";
 import { ExtractGrpc } from "@contracts/grpc";
 import type { Id, PaginationOptions } from "@lib/common";
 import {
@@ -15,15 +16,16 @@ import {
     UpdateProjectDtoZodSchema
 } from "@lib/projects";
 import { Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
 import { Authorization } from "src/auth/basic/security/authorization.decorator";
 import { Authorized } from "src/auth/basic/security/authorized.decorator";
-import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
 import { ProjectsService } from "./projects.service";
 import { ProjectsControllerApiType } from "./swagger/controller.swagger";
 
 @Controller("projects")
 @ExtractGrpc()
 @Authorization()
+@Logging("http")
 @ProjectsControllerApiType()
 export class ProjectsController {
     public constructor(@Inject(ProjectsService) private projectsService: ProjectsService) {}

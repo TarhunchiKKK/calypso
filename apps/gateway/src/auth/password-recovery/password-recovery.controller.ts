@@ -1,4 +1,5 @@
 import { Validation } from "@api/common";
+import { Logging } from "@api/logs";
 import { type UpdatePasswordDto, UpdatePasswordDtoZodSchema } from "@lib/auth";
 import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { TokenPayload } from "../basic/lib/tokens.types";
@@ -9,6 +10,7 @@ import { PasswordRecoveryControllerApiType } from "./swagger/controller.swagger"
 
 @Controller("password-recovery")
 @Authorization()
+@Logging("http")
 @PasswordRecoveryControllerApiType()
 export class PasswordRecoveryController {
     public constructor(@Inject(PasswordRecoveryService) private readonly passwordRecoveryService: PasswordRecoveryService) {}
