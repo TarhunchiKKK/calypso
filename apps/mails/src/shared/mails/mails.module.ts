@@ -29,10 +29,13 @@ import { MailsServiceDev } from "./services/mails.service.dev";
     providers: [
         {
             provide: MailsService,
-            useClass: dependsOnEnv<Type>(process.env.NODE_ENV, {
-                prod: MailsService,
-                dev: MailsServiceDev
-            })
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => {
+                return dependsOnEnv<Type>(configService.getOrThrow("NODE_ENV"), {
+                    prod: MailsService,
+                    dev: MailsServiceDev
+                });
+            }
         }
     ],
     exports: [MailsService]
