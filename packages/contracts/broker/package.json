@@ -8,6 +8,11 @@
             "types": "./dist/entry.d.ts",
             "import": "./dist/entry.js",
             "require": "./dist/entry.js"
+        },
+        "./mocks": {
+            "types": "./dist/mocks/index.d.ts",
+            "import": "./dist/mocks/index.js",
+            "require": "./dist/mocks/index.js"
         }
     },
     "main": "./dist/entry.js",
@@ -23,6 +28,7 @@
         "@lib/auth": "*"
     },
     "devDependencies": {
+        "@api/logs":"*",
         "@config/typescript": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
@@ -41,6 +47,7 @@
         "zod": "^4.4.3"
     },
     "peerDependencies": {
+        "@api/logs":"*",
         "@lib/common": "*",
         "@nestjs/common": "^11.0.0",
         "@nestjs/config": "^4.0.0",

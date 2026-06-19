@@ -1,3 +1,4 @@
+import { Logging } from "@api/logs";
 import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
 import type { TokenPayload } from "../basic/lib/tokens.types";
 import { Authorization } from "../basic/security/authorization.decorator";
@@ -7,6 +8,7 @@ import { EmailVerificationControllerApiTypes } from "./swagger/controller.swagge
 
 @Controller("email-verification")
 @Authorization()
+@Logging("http")
 @EmailVerificationControllerApiTypes()
 export class EmailVerificationController {
     public constructor(@Inject(EmailVerificationService) private readonly emailVerificationService: EmailVerificationService) {}

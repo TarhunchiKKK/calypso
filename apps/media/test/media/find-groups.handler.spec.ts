@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common";
+import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { MediaGroup } from "src/media/entities/media-group.entity";

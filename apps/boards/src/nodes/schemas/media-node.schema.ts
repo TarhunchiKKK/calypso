@@ -1,6 +1,6 @@
 import type { MediaNode as MediaNodeType, NodeBase } from "@lib/boards";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { OmitFields, Rect } from "@lib/common";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 class MediaNode implements OmitFields<MediaNodeType, keyof NodeBase> {

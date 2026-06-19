@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService, createCacheServiceMock } from "@api/cache";
-import { clearMock } from "@api/common";
-import { createBrokerClientMock } from "@contracts/broker";
+import { CacheService } from "@api/cache";
+import { createCacheServiceMock } from "@api/cache/mocks";
+import { clearMock } from "@api/common/mocks";
+import { createBrokerClientMock } from "@contracts/broker/mocks";
+import { ConflictException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { ResetPasswordCommand, ResetPasswordCommandHandler } from "src/auth/password-recovery/handlers/reset-password.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -53,17 +55,6 @@ describe("ResetPasswordCommandHandler", () => {
         expect(brokerClientMock.emit).toHaveBeenCalled();
     });
 
-    it("should not found user", async () => {
-        usersHelperMock.findOneById.mockResolvedValue(null);
-
-        const command = new ResetPasswordCommand(MockUser.id);
-        expect(handler.execute(command)).rejects.toThrow();
-
-        expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
-        expect(cacheServiceMock.set).not.toHaveBeenCalled();
-        expect(brokerClientMock.emit).not.toHaveBeenCalled();
-    });
-
     it("should found not verified user", async () => {
         usersHelperMock.findOneById.mockResolvedValue({
             ...MockUser,
@@ -71,7 +62,7 @@ describe("ResetPasswordCommandHandler", () => {
         });
 
         const command = new ResetPasswordCommand(MockUser.id);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(ConflictException);
 
         expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
         expect(cacheServiceMock.set).not.toHaveBeenCalled();

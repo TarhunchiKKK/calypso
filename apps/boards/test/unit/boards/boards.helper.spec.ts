@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common";
+import { clearMock, createRepositoryMock } from "@api/common/mocks";
+import { NotFoundException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Board } from "src/boards/entities/board.entity";
@@ -40,6 +41,6 @@ describe("BoardsHelper", () => {
     it("should not found board", async () => {
         boardsRepositoryMock.findOne.mockResolvedValue(null);
 
-        expect(helper.findOneById(MockBoard.id)).rejects.toThrow();
+        expect(helper.findOneById(MockBoard.id)).rejects.toThrow(NotFoundException);
     });
 });

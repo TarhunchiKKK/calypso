@@ -1,3 +1,4 @@
+import { AppLogger } from "@api/logs";
 import { brokerMicroserviceConfigFactory } from "@contracts/broker";
 import { BOARD_NODES_PACKAGE_NAME, BOARDS_PACKAGE_NAME, GrpcLoaderOptions } from "@contracts/grpc";
 import { Logger } from "@nestjs/common";
@@ -7,7 +8,12 @@ import { type MicroserviceOptions, Transport } from "@nestjs/microservices";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {
+        bufferLogs: true
+    });
+
+    const logger = app.get(AppLogger);
+    app.useLogger(logger);
 
     const configService = app.get(ConfigService);
 
@@ -26,12 +32,12 @@ async function bootstrap() {
         options: {
             package: BOARD_NODES_PACKAGE_NAME,
             protoPath: "node_modules/@contracts/grpc/proto/boards/nodes.service.proto",
-            url: configService.getOrThrow<string>("BOARD_NODES__GRPC_URL"),
+            url: configService.getOrThrow<string>("BOARD_NODES_GRPC_URL"),
             loader: GrpcLoaderOptions
         }
     });
 
-    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService));
+    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService) as any);
 
     await app.init();
 

@@ -11,6 +11,8 @@ services:
       - ${MEDIA_SERVICE_SQL_DB_PORT}:5432
     volumes:
       - media-sql-db-data:/var/lib/postgresql/data
+    networks:
+      - api-network
 
   media-cache:
     container_name: media-cache
@@ -20,7 +22,31 @@ services:
       - ${MEDIA_SERVICE_REDIS_PORT}:6379
     volumes:
       - media-cache-data:/data
+    networks:
+      - api-network
+
+  media-service:
+    image: calypso-media:latest
+    container_name: media-service
+    build:
+      context: ../../
+      dockerfile: ./docker/Dockerfile
+      args:
+        - APP_NAME=media
+    env_file:
+      - ../../.env
+      - ../../apps/media/.env
+    depends_on:
+      - media-sql-db
+      - media-cache
+    networks:
+      - api-network
 
 volumes:
   media-sql-db-data:
   media-cache-data:
+
+networks:
+  api-network:
+    external: true
+    name: api-network

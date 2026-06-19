@@ -1,12 +1,14 @@
 import { type OnlyIdDto, OnlyIdDtoZodSchema } from "@api/common";
-import { BoardsBrokerContracts, BrokerValidation, DeduplicateMessages, DeduplicationTtl } from "@contracts/broker";
-import { Controller, Inject } from "@nestjs/common";
+import { Logging } from "@api/logs";
+import { BoardsBrokerContracts, BrokerController, BrokerValidation, DeduplicateMessages, DeduplicationTtl } from "@contracts/broker";
+import { Inject } from "@nestjs/common";
 import { EventPattern } from "@nestjs/microservices";
 import { BoardsService } from "../boards.service";
 import { BOARD_REMOVED_DEDUPLICATION_TTL, NODES_CHANGED_DEDUPLICATION_TTL } from "../lib/broker.constants";
 
-@Controller()
+@BrokerController()
 @DeduplicateMessages()
+@Logging("broker")
 export class BoardsRmqController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 

@@ -1,4 +1,5 @@
 import { Cache, InvalidateCache } from "@api/cache";
+import { Logging } from "@api/logs";
 import {
     BoardNodesGrpcMapper,
     type BoardNodesServiceController,
@@ -17,6 +18,7 @@ import { NodesService } from "../nodes.service";
 
 @GrpcController()
 @BoardNodesServiceControllerMethods()
+@Logging("grpc")
 export class NodesGrpcController implements UnwrapGrpcResponse<BoardNodesServiceController> {
     public constructor(@Inject(NodesService) private readonly nodesService: NodesService) {}
 

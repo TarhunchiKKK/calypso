@@ -1,4 +1,5 @@
 import { CacheModule, cacheConfigFactory } from "@api/cache";
+import { LoggerModule, lokiLoggerConfigFactory } from "@api/logs";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
@@ -9,6 +10,11 @@ import { MailsModule } from "./shared/mails/mails.module";
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         CqrsModule.forRoot(),
+        LoggerModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: lokiLoggerConfigFactory
+        }),
         CacheModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],

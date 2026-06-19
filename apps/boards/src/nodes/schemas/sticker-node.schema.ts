@@ -1,6 +1,6 @@
 import type { NodeBase, StickerNode as StickerNodeType } from "@lib/boards";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import type { OmitFields, Rect } from "@lib/common";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 class StickerNode implements OmitFields<StickerNodeType, keyof NodeBase> {

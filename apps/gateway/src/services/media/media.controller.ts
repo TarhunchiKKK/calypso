@@ -1,4 +1,5 @@
 import { QueryValidation } from "@api/common";
+import { Logging } from "@api/logs";
 import { ExtractGrpc } from "@contracts/grpc";
 import { type FindPresetsDto, FindPresetsDtoZodSchema, type GetPresignedUrlDto, GetPresignedUrlDtoZodSchema, type MediaDomains } from "@lib/media";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Param } from "@nestjs/common";
@@ -9,6 +10,7 @@ import { MediaControllerApiType } from "./swagger/controller.swagger";
 @Controller("media")
 @ExtractGrpc()
 @Authorization()
+@Logging("http")
 @MediaControllerApiType()
 export class MediaController {
     public constructor(@Inject(MediaService) private readonly mediaService: MediaService) {}

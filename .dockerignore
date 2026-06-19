@@ -1,11 +1,36 @@
-**/node_modules
-**/dist
-**/.turbo
-**/.next
-**/coverage
-**/.cache
-**/.DS_Store
-.git
+# Dependencies & Build
+node_modules/
+dist/
+*.tsbuildinfo
+.turbo/
+scripts/
+
+# Tests & Logs
+test/
+coverage/
+*.log
+
+# Environment
+*.env
+*.env.*
+!.env.example
+
+# Docs
+docs/
+.storybook/
+readme.md
+license
+
+# Git
+.git/
 .gitignore
-.cursor
-data
+.github/
+
+# IDE Files
+.cursor/
+.vscode/
+.ide/
+
+# Data
+data/
+assets/

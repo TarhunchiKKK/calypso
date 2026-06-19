@@ -17,6 +17,7 @@
     "dependencies": {
         "@api/cache": "*",
         "@api/common": "*",
+        "@api/logs": "*",
         "@contracts/broker": "*",
         "@lib/auth": "*",
         "@nestjs-modules/mailer": "^2.3.6",

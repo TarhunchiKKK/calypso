@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService, createCacheServiceMock } from "@api/cache";
-import { clearMock } from "@api/common";
+import { CacheService } from "@api/cache";
+import { createCacheServiceMock } from "@api/cache/mocks";
+import { clearMock } from "@api/common/mocks";
+import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { UpdatePasswordCommand, UpdatePasswordCommandHandler } from "src/auth/password-recovery/handlers/update-password.handler";
 import { UsersHelper } from "src/auth/users/users.helper";
@@ -38,14 +40,12 @@ describe("UpdatePasswordCommandHandler", () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue(token);
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
         await handler.execute(command);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
         expect(usersHelperMock.update).toHaveBeenCalled();
     });
 
@@ -53,14 +53,12 @@ describe("UpdatePasswordCommandHandler", () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue(null);
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(NotFoundException);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).not.toHaveBeenCalled();
         expect(usersHelperMock.update).not.toHaveBeenCalled();
     });
 
@@ -68,29 +66,12 @@ describe("UpdatePasswordCommandHandler", () => {
         const token = crypto.randomUUID();
 
         cacheServiceMock.get.mockResolvedValue("another-token");
-        usersHelperMock.findOneById.mockResolvedValue(MockUser);
 
         const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(UnauthorizedException);
 
         expect(cacheServiceMock.get).toHaveBeenCalled();
         expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).not.toHaveBeenCalled();
-        expect(usersHelperMock.update).not.toHaveBeenCalled();
-    });
-
-    it("should not found user", async () => {
-        const token = crypto.randomUUID();
-
-        cacheServiceMock.get.mockResolvedValue(token);
-        usersHelperMock.findOneById.mockResolvedValue(null);
-
-        const command = new UpdatePasswordCommand(MockUser.id, MockUser.password, token);
-        expect(handler.execute(command)).rejects.toThrow();
-
-        expect(cacheServiceMock.get).toHaveBeenCalled();
-        expect(cacheServiceMock.remove).not.toHaveBeenCalled();
-        expect(usersHelperMock.findOneById).toHaveBeenCalledWith(MockUser.id);
         expect(usersHelperMock.update).not.toHaveBeenCalled();
     });
 });

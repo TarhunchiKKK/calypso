@@ -1,4 +1,5 @@
 import { Cache } from "@api/cache";
+import { Logging } from "@api/logs";
 import {
     type FindMediaPresetsGroupsGrpcRequest,
     type FindMediaPresetsGrpcRequest,
@@ -15,6 +16,7 @@ import { MediaService } from "./media.service";
 
 @GrpcController()
 @MediaServiceControllerMethods()
+@Logging("grpc")
 export class MediaController implements UnwrapGrpcResponse<MediaServiceController> {
     public constructor(@Inject(MediaService) private readonly mediaService: MediaService) {}
 

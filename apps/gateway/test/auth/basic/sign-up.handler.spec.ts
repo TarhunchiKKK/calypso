@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common";
+import { clearMock } from "@api/common/mocks";
 import type { SignUpDto } from "@lib/auth";
+import { ConflictException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { SignUpCommand, SignUpCommandHandler } from "src/auth/basic/handlers/sign-up.handler";
 import { TokensService } from "src/auth/basic/services/tokens.service";
@@ -72,7 +73,7 @@ describe("SignUpCommandHandler", () => {
         usersHelperMock.findOneByEmail.mockResolvedValue(MockUser);
 
         const command = new SignUpCommand(dto);
-        expect(handler.execute(command)).rejects.toThrow();
+        expect(handler.execute(command)).rejects.toThrow(ConflictException);
 
         expect(tokensServiceMock.sign).not.toHaveBeenCalled();
     });

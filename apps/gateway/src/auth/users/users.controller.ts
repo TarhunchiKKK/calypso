@@ -1,4 +1,5 @@
 import { Validation } from "@api/common";
+import { Logging } from "@api/logs";
 import { type UpdateProfileDto, UpdateProfileDtoZodSchema } from "@lib/auth";
 import { Controller, HttpCode, HttpStatus, Inject, Patch } from "@nestjs/common";
 import type { TokenPayload } from "../basic/lib/tokens.types";
@@ -9,6 +10,7 @@ import { UsersService } from "./users.service";
 
 @Controller("users")
 @Authorization()
+@Logging("http")
 @UsersControllerApiType()
 export class UsersController {
     public constructor(@Inject(UsersService) private readonly usersService: UsersService) {}

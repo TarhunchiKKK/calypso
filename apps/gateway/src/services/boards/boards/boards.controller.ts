@@ -1,4 +1,5 @@
 import { Validation } from "@api/common";
+import { Logging } from "@api/logs";
 import { ExtractGrpc } from "@contracts/grpc";
 import { type CreateBoardDto, CreateBoardDtoZodSchema, type UpdateBoardDto, UpdateBoardDtoZodSchema } from "@lib/boards";
 import type { Id } from "@lib/common";
@@ -12,6 +13,7 @@ import { BoardsControllerApiType } from "./swagger/controller.swagger";
 @Controller("boards/management")
 @ExtractGrpc()
 @Authorization()
+@Logging("http")
 @BoardsControllerApiType()
 export class BoardsController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
