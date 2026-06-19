@@ -4,7 +4,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { AuthModule } from "./modules/auth/auth.module";
-import { MailsModule } from "./shared/mails/mails.module";
+import { MailsModule } from "./shared/mails";
 
 @Module({
     imports: [

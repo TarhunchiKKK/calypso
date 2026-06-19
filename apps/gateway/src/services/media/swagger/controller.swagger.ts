@@ -2,7 +2,7 @@ import { createControllerSwaggerDecorator } from "@api/common";
 import type { MediaDomains } from "@lib/media";
 import { HttpStatus } from "@nestjs/common";
 import { SwaggerTags } from "src/lib/swagger/swagger.constants";
-import { FindPresentDtoApiType, GetPresignedUrlDtoApiType } from "./dtos.swagger";
+import { FindPresentDtoApiType, GetPresignedUrlDtoApiType, GetPresignedUrlResponseApiType } from "./dtos.swagger";
 import { MediaApiType } from "./entities.swagger";
 
 export const MediaControllerApiType = createControllerSwaggerDecorator({
@@ -59,8 +59,8 @@ export const MediaControllerApiType = createControllerSwaggerDecorator({
             response: [
                 {
                     status: HttpStatus.OK,
-                    description: "Media successfully found",
-                    type: [MediaApiType],
+                    description: "Presigned url successfully generated",
+                    type: GetPresignedUrlResponseApiType,
                     isArray: true
                 }
             ]
