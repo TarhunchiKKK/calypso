@@ -7,7 +7,7 @@ const middlewaresMap = {
     http: {
         interceptors: [HttpLoggingInterceptor]
     },
-    rmq: {
+    broker: {
         interceptors: [RmqLoggingInterceptor]
     },
     grpc: {

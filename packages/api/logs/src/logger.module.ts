@@ -1,15 +1,15 @@
-import { type DynamicModule, Module } from "@nestjs/common";
+import { type DynamicModule, Global, Module } from "@nestjs/common";
+import { LOGGER_OPTIONS_INJECTION_TOKEN } from "./config/constants";
+import type { LoggerAsyncOptions, LoggerOptions } from "./config/types";
 import { GrpcLoggingInterceptor } from "./interceptors/grpc.logging.interceptor";
 import { HttpLoggingInterceptor } from "./interceptors/http.logging.interceptor";
 import { RmqLoggingInterceptor } from "./interceptors/rmq.logging.interceptor";
-import { LokiLogger } from "./loggers/loki.logger";
-import { LoggerAsyncOptions, LoggerOptions } from "./config/types";
-import { AppLogger } from "./loggers/app.logger";
 import { selectLogger } from "./lib/select-logger.helper";
-import { LOGGER_OPTIONS_INJECTION_TOKEN } from "./config/constants";
+import { AppLogger } from "./loggers/app.logger";
 
 const interceptors = [HttpLoggingInterceptor, RmqLoggingInterceptor, GrpcLoggingInterceptor];
 
+@Global()
 @Module({})
 export class LoggerModule {
     public static forRoot(options: LoggerOptions): DynamicModule {
@@ -26,7 +26,7 @@ export class LoggerModule {
                 },
                 ...interceptors
             ],
-            exports: [LokiLogger]
+            exports: [AppLogger]
         };
     }
 
@@ -50,7 +50,7 @@ export class LoggerModule {
                 },
                 ...interceptors
             ],
-            exports: [LokiLogger]
+            exports: [AppLogger]
         };
     }
 }

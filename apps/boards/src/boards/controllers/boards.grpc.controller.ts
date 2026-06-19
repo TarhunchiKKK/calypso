@@ -1,4 +1,5 @@
 import { Cache, InvalidateCache } from "@api/cache";
+import { Logging } from "@api/logs";
 import {
     type BoardsServiceController,
     BoardsServiceControllerMethods,
@@ -22,6 +23,7 @@ import { BoardsCacheKeys, BoardsCacheTtls } from "../lib/cache.lib";
 
 @GrpcController()
 @BoardsServiceControllerMethods()
+@Logging("grpc")
 export class BoardsGrpcController implements UnwrapGrpcResponse<BoardsServiceController> {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 

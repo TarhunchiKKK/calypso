@@ -1,4 +1,4 @@
-export { lokiLoggerFactory } from "./config/factories";
+export { lokiLoggerConfigFactory } from "./config/factories";
+export { Logging } from "./decorators/logging.decorator";
 export { LoggerModule } from "./logger.module";
-export { AppLogger } from "./loggers/app.logger"
-export {Logging } from "./decorators/logging.decorator"
+export { AppLogger } from "./loggers/app.logger";

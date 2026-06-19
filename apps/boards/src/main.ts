@@ -31,7 +31,7 @@ async function bootstrap() {
         }
     });
 
-    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService));
+    app.connectMicroservice<MicroserviceOptions>(brokerMicroserviceConfigFactory(configService) as any);
 
     await app.init();
 

@@ -1,7 +1,7 @@
 import type { ConfigService } from "@nestjs/config";
 import type { LokiLoggerOptions } from "./types";
 
-export function lokiLoggerFactory(configService: ConfigService): LokiLoggerOptions {
+export function lokiLoggerConfigFactory(configService: ConfigService): LokiLoggerOptions {
     return {
         driver: "loki",
         envMode: configService.getOrThrow<string>("NODE_ENV"),
