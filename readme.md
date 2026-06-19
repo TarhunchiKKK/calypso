@@ -18,7 +18,7 @@
 - [🚀 Run App Locally](#-run-app-locally)
   - [📋 Requirements](#-requirements)
   - [⚠️ Constraints](#️-constraints)
-  - [⚙️ Setup Steps](#️-setup-steps)
+  <!-- - [⚙️ Setup Steps](#️-setup-steps)  -->
 - [✨ Features](#-features)
   - [🎨 Node Types](#-node-types)
     - [Sticker](#sticker)
@@ -131,7 +131,7 @@ Built as a full-stack solution, it focuses on seamless synchronization, low-late
 > 
 > Do not use text nodes now. They are currently not work correctly.
 
-### ⚙️ Setup Steps
+<!-- ### ⚙️ Setup Steps
 
 1. Checkout code:
 
@@ -193,7 +193,7 @@ Wait for all apps to start.
 
 Now you application is still running.
 
-In browser open the https://localhost:5173 to access the app.
+In browser open the https://localhost:5173 to access the app. -->
 
 ## ✨ Features
 
