@@ -28,6 +28,7 @@
         "@lib/auth": "*"
     },
     "devDependencies": {
+        "@api/logs":"*",
         "@config/typescript": "*",
         "@lib/common": "*",
         "@nestjs/common": "^11.1.16",
@@ -46,6 +47,7 @@
         "zod": "^4.4.3"
     },
     "peerDependencies": {
+        "@api/logs":"*",
         "@lib/common": "*",
         "@nestjs/common": "^11.0.0",
         "@nestjs/config": "^4.0.0",

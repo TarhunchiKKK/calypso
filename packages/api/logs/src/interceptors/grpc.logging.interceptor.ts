@@ -1,10 +1,10 @@
-import { CallHandler, ExecutionContext, Injectable } from "@nestjs/common";
+import { type CallHandler, type ExecutionContext, Injectable } from "@nestjs/common";
 import { tap } from "rxjs";
 import { BaseLoggingInterceptor } from "./base.logging.interceptor";
 
 type Metadata = {
-    data: any;
-    context: any;
+    data: unknown;
+    context: unknown;
     handler: string;
 };
 
