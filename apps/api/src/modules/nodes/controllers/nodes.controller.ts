@@ -1,9 +1,17 @@
-import { type CreateManyNodesDto, CreateManyNodesDtoZodSchema } from "@lib/boards";
-import { Controller, Inject } from "@nestjs/common";
+import {
+    type CreateManyNodesDto,
+    CreateManyNodesDtoZodSchema,
+    type RemoveManyNodesDto,
+    RemoveManyNodesDtoZodSchema,
+    type UpdateManyNodesDto,
+    UpdateManyNodesDtoZodSchema
+} from "@lib/boards";
+import type { Id } from "@lib/common";
+import { Controller, Get, Inject, Param } from "@nestjs/common";
 import { InvalidateCache } from "src/infra/cache/decorators/invalidate-cache.decorator";
 import { Logging } from "src/infra/logs/decorators/logging.decorator";
 import { Validation } from "src/shared/validation";
-import { NodesCacheKeys, NodesCacheTtls } from "../lib/cache.lib";
+import { NodesCacheKeys } from "../lib/cache.lib";
 import { NodesService } from "../nodes.service";
 
 @Controller("nodes")
@@ -16,21 +24,18 @@ export class NodesController {
         await this.nodesService.createMany(dto);
     }
 
-    @Cache((dto: FindAll) => NodesCacheKeys.byBoardId(dto.boardId), NodesCacheTtls.byBoardId)
-    public async findAll(dto: FindAllBoardNodesGrpcRequest) {
-        return await this.nodesService.findAll(dto.boardId);
+    @Get(":boardId")
+    public async findAll(@Param("boardId") boardId: Id) {
+        return await this.nodesService.findAll(boardId);
     }
 
-    @InvalidateCache((dto: UpdateManyBoardNodesGrpcRequest) => [NodesCacheKeys.byBoardId(dto.boardId)])
-    public async updateMany(dto: UpdateManyBoardNodesGrpcRequest) {
-        await this.nodesService.updateMany({
-            boardId: dto.boardId,
-            nodes: dto.nodes.map(BoardNodesGrpcMapper.fromGrpc)
-        });
+    @InvalidateCache((dto: UpdateManyNodesDto) => [NodesCacheKeys.byBoardId(dto.boardId)])
+    public async updateMany(@Validation(UpdateManyNodesDtoZodSchema) dto: UpdateManyNodesDto) {
+        await this.nodesService.updateMany(dto);
     }
 
-    @InvalidateCache((dto: RemoveManyBoardNodesGrpcRequest) => [NodesCacheKeys.byBoardId(dto.boardId)])
-    public async removeMany(dto: RemoveManyBoardNodesGrpcRequest) {
+    @InvalidateCache((dto: RemoveManyNodesDto) => [NodesCacheKeys.byBoardId(dto.boardId)])
+    public async removeMany(@Validation(RemoveManyNodesDtoZodSchema) dto: RemoveManyNodesDto) {
         await this.nodesService.removeMany(dto);
     }
 }

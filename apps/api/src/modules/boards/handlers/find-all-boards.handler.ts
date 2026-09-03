@@ -23,7 +23,9 @@ export class FindAllBoardsQueryHandler implements IQueryHandler<FindAllBoardsQue
         return await this.boardsRepository.find({
             where: {
                 // TODO: add search by creatorId (userId - access for me, creatorId - board creator)
-                creatorId: userId
+                creator: {
+                    id: userId
+                }
             },
             skip: pagination.page * pagination.count,
             take: pagination.count,

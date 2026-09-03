@@ -1,9 +1,9 @@
-import { CacheService } from "@api/cache";
 import type { Id } from "@lib/common";
 import { Inject, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import * as argon2 from "argon2";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { CacheService } from "src/infra/cache/cache.service";
+import { UsersHelper } from "../../users/users.helper";
 import { PasswordRecoveryCacheKeys } from "../lib/cache.lib";
 
 export class UpdatePasswordCommand extends Command<void> {

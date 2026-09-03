@@ -1,8 +1,8 @@
-import { Validation } from "@api/common";
-import { Logging } from "@api/logs";
 import { type SignInDto, SignInDtoZodSchema, type SignUpDto, SignUpDtoZodSchema } from "@lib/auth";
 import { Controller, Get, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import type { Request, Response } from "express";
+import { Logging } from "src/infra/logs/decorators/logging.decorator";
+import { Validation } from "src/shared/validation";
 import type { TokenPayload } from "./lib/tokens.types";
 import { Authorization } from "./security/authorization.decorator";
 import { Authorized } from "./security/authorized.decorator";

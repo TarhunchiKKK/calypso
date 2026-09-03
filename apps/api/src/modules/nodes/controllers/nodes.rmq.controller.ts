@@ -1,8 +1,8 @@
-import { type OnlyIdDto, OnlyIdDtoZodSchema } from "@api/common";
-import { Logging } from "@api/logs";
 import { BoardsBrokerContracts, BrokerController, BrokerValidation, DeduplicateMessages, DeduplicationTtl } from "@contracts/broker";
 import { Inject } from "@nestjs/common";
 import { EventPattern } from "@nestjs/microservices";
+import { Logging } from "src/infra/logs/decorators/logging.decorator";
+import { type OnlyIdDto, OnlyIdDtoZodSchema } from "src/shared/dto";
 import { BOARD_REMOVED_DEDUPLICATION_TTL } from "../lib/broker.constants";
 import { NodesService } from "../nodes.service";
 

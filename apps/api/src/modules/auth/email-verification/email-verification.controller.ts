@@ -1,5 +1,5 @@
-import { Logging } from "@api/logs";
 import { Controller, HttpCode, HttpStatus, Inject, Param, Patch, Post } from "@nestjs/common";
+import { Logging } from "src/infra/logs/decorators/logging.decorator";
 import type { TokenPayload } from "../basic/lib/tokens.types";
 import { Authorization } from "../basic/security/authorization.decorator";
 import { Authorized } from "../basic/security/authorized.decorator";

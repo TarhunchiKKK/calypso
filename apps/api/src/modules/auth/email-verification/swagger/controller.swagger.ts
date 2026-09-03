@@ -1,6 +1,5 @@
-import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { SwaggerTags } from "src/lib/swagger/swagger.constants";
+import { createControllerSwaggerDecorator, EmptyApiType, SwaggerTags } from "src/shared/swagger";
 
 export const EmailVerificationControllerApiTypes = createControllerSwaggerDecorator({
     tag: SwaggerTags.auth.children.emailVerification.name,

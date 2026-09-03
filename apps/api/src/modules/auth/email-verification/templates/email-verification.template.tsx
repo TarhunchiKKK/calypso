@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppHeading, AppSection, AppText, LinkButton, Template } from "src/shared/components";
+import { AppHeading, AppSection, AppText, LinkButton, Template } from "src/infra/mails/components";
 
 type Props = {
     baseUrl: string;

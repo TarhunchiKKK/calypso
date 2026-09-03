@@ -44,6 +44,7 @@
         "class-validator": "^0.15.1",
         "clsx": "^2.1.1",
         "cookie-parser": "^1.4.7",
+        "ioredis": "^6.0.0",
         "mime-types": "^3.0.2",
         "mongoose": "^9.9.4",
         "ms": "^2.1.3",
