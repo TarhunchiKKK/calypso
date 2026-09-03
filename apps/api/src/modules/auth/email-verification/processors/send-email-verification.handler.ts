@@ -1,5 +1,5 @@
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { SendMailCommandHandler } from "src/modules/mails/shared/core";
+import { SendMailCommandHandler } from "src/infra/mails/handlers";
 import { EmailVerificationTemplate } from "../templates/email-verification.template";
 
 export class SendEmailVerificationCommand extends Command<void> {

@@ -2,7 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 import type { ConfigService } from "@nestjs/config";
 import { Resend } from "resend";
 import type { SendMailDto } from "../dto/send-mail.dto";
-import type { IMailsService } from "../interfaces/mails.service.interface";
+import type { IMailsService } from "./mails-service.interface";
 
 @Injectable()
 export class MailsServiceDev implements IMailsService {

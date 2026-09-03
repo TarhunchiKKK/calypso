@@ -1,9 +1,9 @@
 import { Body, Head, Html, Preview, Tailwind } from "@react-email/components";
-import type { PropsWithChildren } from "react";
+// biome-ignore lint/style/useImportType: This is necessary for jsx parsing
 import * as React from "react";
 import { SupportSection } from "./support-section.component";
 
-type Props = PropsWithChildren<{
+type Props = React.PropsWithChildren<{
     preview: string;
 }>;
 

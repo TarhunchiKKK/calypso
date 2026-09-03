@@ -4,6 +4,7 @@
         "baseUrl": "./",
         "outDir": "./dist",
         "types": ["bun"],
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "jsx": "react"
     }
 }
