@@ -1,5 +1,5 @@
+import type { User } from "@lib/auth";
 import { ApiProperty } from "@nestjs/swagger";
-import type { User } from "src/auth/users/entities/user.entity";
 
 export class UserApiType implements User {
     @ApiProperty({ type: String, format: "uuid", description: "Unique user id" })

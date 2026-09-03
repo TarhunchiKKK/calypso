@@ -1,7 +1,7 @@
 import type { NodeTypes } from "@lib/boards";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { NodesGrpcController } from "./controllers/nodes.grpc.controller";
+import { NodesController } from "./controllers/nodes.grpc.controller";
 import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQueryHandler } from "./handlers/find-all-nodes.handler";
@@ -38,7 +38,7 @@ export const NodesMongooseModule = MongooseModule.forFeatureAsync([
 
 @Module({
     imports: [NodesMongooseModule],
-    controllers: [NodesGrpcController, NodesRmqController],
+    controllers: [NodesController, NodesRmqController],
     providers: [
         NodesService,
         CreateManyNodesCommandHandler,

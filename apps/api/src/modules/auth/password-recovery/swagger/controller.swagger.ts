@@ -1,6 +1,5 @@
-import { createControllerSwaggerDecorator, EmptyApiType } from "@api/common";
 import { HttpStatus } from "@nestjs/common";
-import { SwaggerTags } from "src/lib/swagger/swagger.constants";
+import { createControllerSwaggerDecorator, EmptyApiType, SwaggerTags } from "src/shared/swagger";
 import { UpdatePasswordDtoApiType } from "./dto.swagger";
 
 export const PasswordRecoveryControllerApiType = createControllerSwaggerDecorator({

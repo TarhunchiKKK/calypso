@@ -1,10 +1,8 @@
-import { BoardsBrokerContracts } from "@contracts/broker";
 import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from "@lib/boards";
 import type { Id } from "@lib/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/broker.constants";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";

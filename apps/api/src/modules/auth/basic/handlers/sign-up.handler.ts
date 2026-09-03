@@ -2,8 +2,8 @@ import type { AuthResponse, SignUpDto } from "@lib/auth";
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import * as argon2 from "argon2";
-import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { UsersHelper } from "../../users/users.helper";
+import { TokensService } from "../services/tokens.service";
 
 export class SignUpCommand extends Command<AuthResponse> {
     public constructor(public dto: SignUpDto) {

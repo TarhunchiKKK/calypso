@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import type { MediaDomains } from "@lib/media";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
-import type { MediaDomains } from "@lib/media";
 import * as mime from "mime-types";
 import type { Repository } from "typeorm";
 import { Media } from "../entities/media.entity";

@@ -1,11 +1,7 @@
-import { BoardsBrokerContracts } from "@contracts/broker";
-import { BoardsGrpcMapper } from "@contracts/grpc";
 import type { Id, PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import type { ClientProxy } from "@nestjs/microservices";
-import { BROKER_CLIENT_INJECTION_TOKEN } from "../lib/broker.constants";
 import type { CreateBoardDto } from "./dto/create-board.dto";
 import type { DuplicateBoardDto } from "./dto/duplicate-board.dto";
 import type { UpdateBoardDto } from "./dto/update-board.dto";
@@ -22,33 +18,23 @@ import { UpdateBoardCommand } from "./handlers/update-board.handler";
 export class BoardsService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
-        @Inject(QueryBus) private readonly queryBus: QueryBus,
-        @Inject(BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
+        @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
     public async create(dto: CreateBoardDto) {
-        const board = await this.commandBus.execute(new CreateBoardCommand(dto));
-        return BoardsGrpcMapper.toGrpc(board);
+        return await this.commandBus.execute(new CreateBoardCommand(dto));
     }
 
     public async duplicate(dto: DuplicateBoardDto) {
-        const board = await this.commandBus.execute(new DuplicateBoardCommand(dto));
-
-        return BoardsGrpcMapper.toGrpc(board);
+        return await this.commandBus.execute(new DuplicateBoardCommand(dto));
     }
 
     public async findAll(userId: Id, filters: ProjectFilters, pagination: PaginationOptions) {
-        const boards = await this.queryBus.execute(new FindAllBoardsQuery(userId, filters, pagination));
-
-        const mappedBoards = boards.map(BoardsGrpcMapper.toGrpc);
-
-        return { boards: mappedBoards };
+        return await this.queryBus.execute(new FindAllBoardsQuery(userId, filters, pagination));
     }
 
     public async findOne(boardId: Id) {
-        const board = await this.queryBus.execute(new FindOneBoardQuery(boardId));
-
-        return BoardsGrpcMapper.toGrpc(board);
+        return await this.queryBus.execute(new FindOneBoardQuery(boardId));
     }
 
     public async update(id: Id, dto: UpdateBoardDto) {

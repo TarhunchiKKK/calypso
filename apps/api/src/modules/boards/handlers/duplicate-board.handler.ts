@@ -4,7 +4,7 @@ import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { InjectModel } from "@nestjs/mongoose";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Model } from "mongoose";
-import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { NodeBase } from "src/modules/nodes/schemas/node-base.schema";
 import type { Repository } from "typeorm";
 import type { DuplicateBoardDto } from "../dto/duplicate-board.dto";
 import { Board } from "../entities/board.entity";

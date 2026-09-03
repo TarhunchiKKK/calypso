@@ -1,5 +1,4 @@
-import type { FindMediaPresetsGrpcRequest } from "@contracts/grpc";
-import type { MediaDomains } from "@lib/media";
+import type { FindPresetsDto, MediaDomains } from "@lib/media";
 
 export const MediaCacheKeys = {
     groups: {
@@ -7,7 +6,7 @@ export const MediaCacheKeys = {
     },
     media: {
         byDomain: (domain: MediaDomains) => `media:${domain}`,
-        byDomainAndGroupId: (dto: FindMediaPresetsGrpcRequest) => `media:${dto.domain}:${dto.groupId}`
+        byDomainAndGroupId: (dto: FindPresetsDto) => `media:${dto.domain}:${dto.groupId}`
     }
 };
 

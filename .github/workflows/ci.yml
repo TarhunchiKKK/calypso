@@ -40,5 +40,5 @@ jobs:
             - name: Setup environment
               uses: ./.github/actions/setup
 
-            - name: Unit Tests
+            - name: Unit tests
               run: bun run test:unit

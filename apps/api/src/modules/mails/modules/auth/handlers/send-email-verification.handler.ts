@@ -1,7 +1,5 @@
-import type { EmailVerificationBrokerMessage } from "@contracts/broker";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { render } from "@react-email/components";
-import { SendMailCommandHandler } from "src/shared/core";
+import { SendMailCommandHandler } from "src/modules/mails/shared/core";
 import { EmailVerificationTemplate } from "../templates/email-verification.template";
 
 export class SendEmailVerificationCommand extends Command<void> {

@@ -12,13 +12,8 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@api/cache": "*",
-        "@api/common": "*",
-        "@api/logs": "*",
         "@aws-sdk/client-s3": "^3.1125.0",
         "@aws-sdk/s3-request-presigner": "^3.1125.0",
-        "@contracts/broker": "*",
-        "@contracts/grpc": "*",
         "@grpc/grpc-js": "^1.14.3",
         "@lib/auth": "*",
         "@lib/boards": "*",

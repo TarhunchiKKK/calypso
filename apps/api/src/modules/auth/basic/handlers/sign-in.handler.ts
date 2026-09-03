@@ -2,8 +2,8 @@ import type { AuthResponse, SignInDto } from "@lib/auth";
 import { BadRequestException, Inject, NotFoundException } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import * as argon2 from "argon2";
-import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { UsersHelper } from "../../users/users.helper";
+import { TokensService } from "../services/tokens.service";
 
 export class SignInCommand extends Command<AuthResponse> {
     public constructor(public dto: SignInDto) {

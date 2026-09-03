@@ -1,5 +1,5 @@
-import { AppLogger } from "@api/logs";
 import { type ArgumentsHost, Catch, type ExceptionFilter, type HttpException, HttpStatus, Inject } from "@nestjs/common";
+import { AppLogger } from "src/infra/logs/loggers/app.logger";
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {

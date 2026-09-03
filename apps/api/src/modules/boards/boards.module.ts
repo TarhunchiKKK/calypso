@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { NodesMongooseModule } from "src/nodes/nodes.module";
+import { NodesMongooseModule } from "../nodes/nodes.module";
 import { BoardsService } from "./boards.service";
 import { BoardsGrpcController } from "./controllers/boards.grpc.controller";
 import { BoardsRmqController } from "./controllers/boards.rmq.controller";

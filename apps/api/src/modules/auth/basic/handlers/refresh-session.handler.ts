@@ -1,8 +1,8 @@
 import type { AuthResponse } from "@lib/auth";
 import { Inject } from "@nestjs/common";
 import { type IQueryHandler, Query, QueryHandler } from "@nestjs/cqrs";
-import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { UsersHelper } from "../../users/users.helper";
+import { TokensService } from "../services/tokens.service";
 
 export class RefreshSessionQuery extends Query<AuthResponse> {
     public constructor(public refreshToken: string) {

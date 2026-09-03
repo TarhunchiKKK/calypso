@@ -1,11 +1,9 @@
-import { CacheService } from "@api/cache";
-import { AuthBrokerContracts } from "@contracts/broker";
 import type { Id } from "@lib/common";
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import type { ClientProxy } from "@nestjs/microservices";
-import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { CacheService } from "src/infra/cache/cache.service";
+import { UsersHelper } from "../../users/users.helper";
 import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
 export class ResetPasswordCommand extends Command<void> {

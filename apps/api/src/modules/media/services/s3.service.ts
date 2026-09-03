@@ -2,6 +2,7 @@ import { CreateBucketCommand, DeleteBucketCommand, HeadBucketCommand, PutBucketP
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
+// REFACTOR: Move to `infra`
 @Injectable()
 export class S3Service {
     public readonly client: S3Client;

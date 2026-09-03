@@ -1,6 +1,6 @@
+import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@lib/media";
 import { Inject, Injectable } from "@nestjs/common";
 import { QueryBus } from "@nestjs/cqrs";
-import type { FindPresetsDto, GetPresignedUrlDto, MediaDomains } from "@lib/media";
 import { FindGroupsQuery } from "./handlers/find-groups.handler";
 import { FindPresetsQuery } from "./handlers/find-presets.handlers";
 import { GetPresignedUrlQuery } from "./handlers/get-presigned-url.handler";
