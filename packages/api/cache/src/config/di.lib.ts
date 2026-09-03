@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: `any` type is necessary for inline type usage */
-import type { ModuleMetadata } from "@nestjs/common";
+import type { ModuleMetadata, Type } from "@nestjs/common";
 
 export const CACHE_OPTIONS_INJECTION_TOKEN = Symbol();
 
@@ -13,8 +13,10 @@ export type CacheModuleOptions = {
     defaultTtl: number;
 };
 
-export type CacheModuleAsyncOptions = Pick<ModuleMetadata, "imports"> & {
-    inject?: any[];
+export type CacheOptionsFactory = {
+    createCacheOptions: () => CacheModuleOptions | Promise<CacheModuleOptions>;
+};
 
-    useFactory?: (...args: any[]) => CacheModuleOptions | Promise<CacheModuleOptions>;
+export type CacheModuleAsyncOptions = Pick<ModuleMetadata, "imports"> & {
+    useClass: Type<CacheOptionsFactory>;
 };
