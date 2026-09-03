@@ -1,4 +1,0 @@
-networks:
-  api-network:
-    name: api-network
-    driver: bridge
