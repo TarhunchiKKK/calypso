@@ -1,18 +1,18 @@
 name: Storybook Build
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-            - name: Storybook
-              working-directory: ./apps/web
-              run: bun storybook:build
+      - name: Storybook
+        working-directory: ./apps/web
+        run: bun storybook:build

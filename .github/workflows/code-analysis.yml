@@ -1,17 +1,31 @@
 name: Code Analysis
 
 on:
-    workflow_dispatch:
+  schedule:
+    - cron: '0 17 * * 4'
+  workflow_dispatch:
 
 jobs:
-    analyze:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-            - name: Knip
-              run: bun knip
+      - name: Type check
+        run: bun run type-check
+    
+  knip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Unused code analysis
+        run: bun run knip

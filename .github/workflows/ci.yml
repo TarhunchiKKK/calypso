@@ -1,44 +1,44 @@
 name: CI
 
 on:
-    push:
+  push:
 
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-            - name: Format
-              run: bun format:check
+      - name: Format
+        run: bun format:check
 
-            - name: Lint
-              run: bun lint:check
+      - name: Lint
+        run: bun lint:check
 
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-            - name: Build
-              run: bun run build
+      - name: Build
+        run: bun run build
 
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-            - name: Unit tests
-              run: bun run test:unit
+      - name: Unit tests
+        run: bun run test:unit
