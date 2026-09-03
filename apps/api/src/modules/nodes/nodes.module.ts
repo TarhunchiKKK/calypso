@@ -18,26 +18,26 @@ import { ShapeNodeSchema } from "./schemas/shape-node.schema";
 import { StickerNodeSchema } from "./schemas/sticker-node.schema";
 import { TextNodeSchema } from "./schemas/text-node.schema";
 
-export const NodesMongooseModule = MongooseModule.forFeatureAsync([
-    {
-        imports: [],
-        name: NodeBase.name,
-        useFactory: () => {
-            const schema = NodeBaseSchema;
-            schema.discriminator("sticker" satisfies NodeTypes, StickerNodeSchema);
-            schema.discriminator("arrow" satisfies NodeTypes, ArrowNodeSchema);
-            schema.discriminator("text" satisfies NodeTypes, TextNodeSchema);
-            schema.discriminator("shape" satisfies NodeTypes, ShapeNodeSchema);
-            schema.discriminator("media" satisfies NodeTypes, MediaNodeSchema);
-            schema.discriminator("note" satisfies NodeTypes, NoteNodeSchema);
-            schema.discriminator("drawing" satisfies NodeTypes, DrawingNodeSchema);
-            return schema;
-        }
-    }
-]);
-
 @Module({
-    imports: [NodesMongooseModule],
+    imports: [
+        MongooseModule.forFeatureAsync([
+            {
+                imports: [],
+                name: NodeBase.name,
+                useFactory: () => {
+                    const schema = NodeBaseSchema;
+                    schema.discriminator("sticker" satisfies NodeTypes, StickerNodeSchema);
+                    schema.discriminator("arrow" satisfies NodeTypes, ArrowNodeSchema);
+                    schema.discriminator("text" satisfies NodeTypes, TextNodeSchema);
+                    schema.discriminator("shape" satisfies NodeTypes, ShapeNodeSchema);
+                    schema.discriminator("media" satisfies NodeTypes, MediaNodeSchema);
+                    schema.discriminator("note" satisfies NodeTypes, NoteNodeSchema);
+                    schema.discriminator("drawing" satisfies NodeTypes, DrawingNodeSchema);
+                    return schema;
+                }
+            }
+        ])
+    ],
     controllers: [NodesController, NodesRmqController],
     providers: [
         NodesService,
