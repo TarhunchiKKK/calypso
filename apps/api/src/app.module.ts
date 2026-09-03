@@ -1,9 +1,10 @@
+import { BullModule } from "@nestjs/bullmq";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { CqrsModule } from "@nestjs/cqrs";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { CacheConfigService, MongooseConfigService, S3ConfigService, TypeOrmConfigService } from "./config";
+import { BullConfigService, CacheConfigService, MongooseConfigService, S3ConfigService, TypeOrmConfigService } from "./config";
 import { CacheModule } from "./infra/cache/cache.module";
 import { S3Module } from "./infra/s3/s3.module";
 import { BasicAuthModule } from "./modules/auth/basic/basic-auth.module";
@@ -18,6 +19,7 @@ import { NodesModule } from "./modules/nodes/nodes.module";
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         CqrsModule.forRoot(),
+        BullModule.forRootAsync({ useClass: BullConfigService }),
         TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
         MongooseModule.forRootAsync({ useClass: MongooseConfigService }),
         CacheModule.forRootAsync({ useClass: CacheConfigService }),

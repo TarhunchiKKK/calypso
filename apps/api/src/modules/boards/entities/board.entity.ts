@@ -1,6 +1,6 @@
 import type { Board as BoardType } from "@lib/boards";
-import type { Id } from "@lib/common";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { User } from "src/modules/auth/users/entities/user.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Board implements BoardType {
@@ -16,12 +16,12 @@ export class Board implements BoardType {
     @Column()
     public icon: string;
 
-    @Column()
-    public creatorId: Id;
-
     @CreateDateColumn()
     public createdAt: Date;
 
     @UpdateDateColumn()
     public updatedAt?: Date;
+
+    @ManyToOne(() => User)
+    public creator: User;
 }

@@ -1,3 +1,4 @@
+export { BullConfigService } from "./bull.service";
 export { CacheConfigService } from "./cache.service";
 export { MailerConfigService } from "./mailer.service";
 export { MongooseConfigService } from "./mongoose.service";
