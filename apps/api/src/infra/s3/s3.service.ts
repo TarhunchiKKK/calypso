@@ -13,6 +13,17 @@ export class S3Service {
         this.client = new S3Client(this.options.client);
     }
 
+    public async upload(key: string, contentType: string, buffer: Buffer) {
+        const command = new PutObjectCommand({
+            Bucket: this.options.bucket,
+            Key: key,
+            Body: buffer,
+            ContentType: contentType
+        });
+
+        await this.client.send(command);
+    }
+
     public async getPresignedUrl(dto: GetPresignedUrlDto) {
         const extension = dto.fileName.split(".").pop();
         const uniqueKey = `${crypto.randomUUID()}.${extension}`;

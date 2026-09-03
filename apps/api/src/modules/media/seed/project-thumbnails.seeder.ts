@@ -1,14 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
 import type { MediaDomains } from "@lib/media";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as mime from "mime-types";
+import { S3Service } from "src/infra/s3/s3.service";
 import type { Repository } from "typeorm";
 import { Media } from "../entities/media.entity";
-import { S3Service } from "../services/s3.service";
 
 const domain: MediaDomains = "project-thumbnails";
 const defaultContentType = "application/octet-stream";
@@ -85,14 +84,7 @@ export class ProjectThumbnailsSeeder {
         const key = `presets/${domain}/${fileName}`;
         const contentType = mime.lookup(fileName) || defaultContentType;
 
-        const command = new PutObjectCommand({
-            Bucket: this.s3Service.bucket,
-            Key: key,
-            Body: fileBuffer,
-            ContentType: contentType
-        });
-
-        await this.s3Service.client.send(command);
+        await this.s3Service.upload(key, contentType, fileBuffer);
 
         return key;
     }

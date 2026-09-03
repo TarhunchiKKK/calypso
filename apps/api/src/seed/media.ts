@@ -2,11 +2,11 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { AppModule } from "src/app.module";
+import { S3Service } from "src/infra/s3/s3.service";
 import { Media } from "src/modules/media/entities/media.entity";
 import { MediaGroup } from "src/modules/media/entities/media-group.entity";
 import { BoardNodeMediaSeeder } from "src/modules/media/seed/board-node-media.seeder";
 import { ProjectThumbnailsSeeder } from "src/modules/media/seed/project-thumbnails.seeder";
-import { S3Service } from "src/modules/media/services/s3.service";
 import type { Repository } from "typeorm";
 
 async function bootstrap() {
