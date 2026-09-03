@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createMongooseModelMock } from "@api/common/mocks";
 import type { UpdateManyNodesDto } from "@lib/boards";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
-import { UpdateManyNodesCommand, UpdateManyNodesCommandHandler } from "src/nodes/handlers/update-many-nodes.handler";
-import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { UpdateManyNodesCommand, UpdateManyNodesCommandHandler } from "src/modules/nodes/handlers/update-many-nodes.handler";
+import { NodeBase } from "src/modules/nodes/schemas/node-base.schema";
+import { clearMock, createMongooseModelMock } from "test/mocks";
 import { MockBoard } from "../boards/mocks/board.mocks";
 import { MockNodesArray } from "./mocks";
 

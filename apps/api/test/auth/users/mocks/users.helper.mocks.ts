@@ -1,6 +1,6 @@
 import { mock } from "bun:test";
 import type { User } from "@lib/auth";
-import type { UsersHelper } from "src/auth/users/users.helper";
+import type { UsersHelper } from "src/modules/auth/users/users.helper";
 
 export function createUsersHelperMock() {
     return {

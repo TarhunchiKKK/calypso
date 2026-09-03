@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
+import type { CreateBoardDto } from "@lib/boards";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import type { CreateBoardDto } from "src/boards/dto/create-board.dto";
-import { Board } from "src/boards/entities/board.entity";
-import { CreateBoardCommand, CreateBoardCommandHandler } from "src/boards/handlers/create-board.handler";
+import { Board } from "src/modules/boards/entities/board.entity";
+import { CreateBoardCommand, CreateBoardCommandHandler } from "src/modules/boards/handlers/create-board.handler";
+import { clearMock, createRepositoryMock } from "test/mocks";
 
 describe("CreateBoardCommandHandler", () => {
     let handler: CreateBoardCommandHandler;

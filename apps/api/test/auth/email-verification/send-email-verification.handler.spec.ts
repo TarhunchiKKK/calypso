@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService } from "@api/cache";
-import { createCacheServiceMock } from "@api/cache/mocks";
-import { clearMock } from "@api/common/mocks";
-import { createBrokerClientMock } from "@contracts/broker/mocks";
 import { ConflictException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
-import { SendEmailVerificationCommand, SendEmailVerificationCommandHandler } from "src/auth/email-verification/handlers/send-email-verification.handler";
-import { UsersHelper } from "src/auth/users/users.helper";
-import { MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN } from "src/lib/di/broker.di";
+import { CacheService } from "src/infra/cache/cache.service";
+import {
+    SendEmailVerificationCommand,
+    SendEmailVerificationCommandHandler
+} from "src/modules/auth/email-verification/handlers/send-email-verification.handler";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
+import { clearMock, createCacheServiceMock } from "test/mocks";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
 
 describe("SendEmailVerificationCommandHandler", () => {

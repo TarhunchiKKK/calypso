@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import { NotFoundException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { Board } from "src/boards/entities/board.entity";
-import { BoardsHelper } from "src/boards/lib/boards.helper";
+import { Board } from "src/modules/boards/entities/board.entity";
+import { BoardsHelper } from "src/modules/boards/lib/boards.helper";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { MockBoard } from "./mocks/board.mocks";
 
 describe("BoardsHelper", () => {

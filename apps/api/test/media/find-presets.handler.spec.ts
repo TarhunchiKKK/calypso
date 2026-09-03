@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import type { FindPresetsDto } from "@lib/media";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { Media } from "src/media/entities/media.entity";
-import { FindPresetsQuery, FindPresetsQueryHandler } from "src/media/handlers/find-presets.handlers";
+import { Media } from "src/modules/media/entities/media.entity";
+import { FindPresetsQuery, FindPresetsQueryHandler } from "src/modules/media/handlers/find-presets.handlers";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindPresetsQueryHandler", () => {

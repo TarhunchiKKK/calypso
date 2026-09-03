@@ -1,4 +1,4 @@
-import type { MediaGroup } from "src/media/entities/media-group.entity";
+import type { MediaGroup } from "src/modules/media/entities/media-group.entity";
 
 export const MockMediaGroup: MediaGroup = {
     id: crypto.randomUUID(),

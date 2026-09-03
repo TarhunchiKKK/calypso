@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createMongooseModelMock } from "@api/common/mocks";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
-import { RemoveNodesByBoardCommand, RemoveNodesByBoardCommandHandler } from "src/nodes/handlers/remove-nodes-by-board.handler";
-import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { RemoveNodesByBoardCommand, RemoveNodesByBoardCommandHandler } from "src/modules/nodes/handlers/remove-nodes-by-board.handler";
+import { NodeBase } from "src/modules/nodes/schemas/node-base.schema";
+import { clearMock, createMongooseModelMock } from "test/mocks";
 import { MockBoard } from "../boards/mocks/board.mocks";
 
 describe("RemoveNodesByBoardCommandHandler", () => {

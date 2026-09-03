@@ -1,11 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService } from "@api/cache";
-import { createCacheServiceMock } from "@api/cache/mocks";
-import { clearMock } from "@api/common/mocks";
 import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
-import { VerifyEmailCommand, VerifyEmailCommandHandler } from "src/auth/email-verification/handlers/verify-email.handler";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { CacheService } from "src/infra/cache/cache.service";
+import { VerifyEmailCommand, VerifyEmailCommandHandler } from "src/modules/auth/email-verification/handlers/verify-email.handler";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
+import { clearMock, createCacheServiceMock } from "test/mocks";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
 
 describe("VerifyEmailCommandHandler", () => {

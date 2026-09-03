@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common/mocks";
 import type { UpdateProfileDto } from "@lib/auth";
 import { Test } from "@nestjs/testing";
-import { UpdateProfileCommand, UpdateProfileCommandHandler } from "src/auth/users/handlers/update-profile.handler";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { UpdateProfileCommand, UpdateProfileCommandHandler } from "src/modules/auth/users/handlers/update-profile.handler";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
+import { clearMock } from "test/mocks";
 import { createUsersHelperMock, MockUser } from "./mocks";
 
 describe("UpdateProfileCommandHandler", () => {

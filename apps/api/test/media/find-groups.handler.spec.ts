@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { MediaGroup } from "src/media/entities/media-group.entity";
-import { FindGroupsQuery, FindGroupsQueryHandler } from "src/media/handlers/find-groups.handler";
+import { MediaGroup } from "src/modules/media/entities/media-group.entity";
+import { FindGroupsQuery, FindGroupsQueryHandler } from "src/modules/media/handlers/find-groups.handler";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { MockMedia, MockMediaGroup } from "./mocks";
 
 describe("FindGroupsQueryHandler", () => {

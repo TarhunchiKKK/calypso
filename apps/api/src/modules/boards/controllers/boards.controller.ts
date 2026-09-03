@@ -6,6 +6,6 @@ import { BoardsService } from "../boards.service";
 @Controller("boards")
 @Logging("grpc")
 @Authorization()
-export class BoardsGrpcController {
+export class BoardsController {
     public constructor(@Inject(BoardsService) private readonly boardsService: BoardsService) {}
 }

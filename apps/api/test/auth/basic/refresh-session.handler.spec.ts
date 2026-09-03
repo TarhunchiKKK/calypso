@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common/mocks";
 import { Test } from "@nestjs/testing";
-import { RefreshSessionQuery, RefreshSessionQueryHandler } from "src/auth/basic/handlers/refresh-session.handler";
-import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
-import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { RefreshSessionQuery, RefreshSessionQueryHandler } from "src/modules/auth/basic/handlers/refresh-session.handler";
+import type { TokenPayload } from "src/modules/auth/basic/lib/tokens.types";
+import { TokensService } from "src/modules/auth/basic/services/tokens.service";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
 import { createUsersHelperMock, MockProfile, MockUser } from "test/auth/users/mocks";
+import { clearMock } from "test/mocks";
 import { createTokensServiceMock, MockSession } from "./mocks";
 
 describe("RefreshSessionQueryHandler", () => {

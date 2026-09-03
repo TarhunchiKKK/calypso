@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createMongooseModelMock, createRepositoryMock } from "@api/common/mocks";
 import { NotFoundException } from "@nestjs/common";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import type { DuplicateBoardDto } from "src/boards/dto/duplicate-board.dto";
-import { Board } from "src/boards/entities/board.entity";
-import { DuplicateBoardCommand, DuplicateBoardCommandHandler } from "src/boards/handlers/duplicate-board.handler";
-import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import type { DuplicateBoardDto } from "src/modules/boards/dto/duplicate-board.dto";
+import { Board } from "src/modules/boards/entities/board.entity";
+import { DuplicateBoardCommand, DuplicateBoardCommandHandler } from "src/modules/boards/handlers/duplicate-board.handler";
+import { NodeBase } from "src/modules/nodes/schemas/node-base.schema";
+import { clearMock, createMongooseModelMock, createRepositoryMock } from "test/mocks";
 import { MockNodesArray } from "../nodes/mocks";
 import { MockBoard } from "./mocks/board.mocks";
 

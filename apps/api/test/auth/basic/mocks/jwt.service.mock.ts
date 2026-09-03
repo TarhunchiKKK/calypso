@@ -1,6 +1,6 @@
 import { mock } from "bun:test";
-import type { WithMockedMethods } from "@api/common";
 import type { JwtService } from "@nestjs/jwt";
+import type { WithMockedMethods } from "test/mocks";
 
 export function createJwtServiceMock() {
     return {

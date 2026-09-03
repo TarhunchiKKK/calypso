@@ -1,4 +1,4 @@
-import type { Media } from "src/media/entities/media.entity";
+import type { Media } from "src/modules/media/entities/media.entity";
 
 export const MockMedia: Media = {
     id: crypto.randomUUID(),

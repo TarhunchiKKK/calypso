@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock } from "@api/common/mocks";
 import type { SignUpDto } from "@lib/auth";
 import { ConflictException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
-import { SignUpCommand, SignUpCommandHandler } from "src/auth/basic/handlers/sign-up.handler";
-import { TokensService } from "src/auth/basic/services/tokens.service";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { SignUpCommand, SignUpCommandHandler } from "src/modules/auth/basic/handlers/sign-up.handler";
+import { TokensService } from "src/modules/auth/basic/services/tokens.service";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
 import { createUsersHelperMock, MockUser } from "test/auth/users/mocks";
 import { getMockPasswordHash, MockProfile } from "test/auth/users/mocks/user.mocks";
+import { clearMock } from "test/mocks";
 import { createTokensServiceMock, MockSession } from "./mocks";
 
 describe("SignUpCommandHandler", () => {

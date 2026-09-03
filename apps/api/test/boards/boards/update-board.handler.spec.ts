@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import type { UpdateBoardDto } from "@lib/boards";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { Board } from "src/boards/entities/board.entity";
-import { UpdateBoardCommand, UpdateBoardCommandHandler } from "src/boards/handlers/update-board.handler";
-import { BoardsHelper } from "src/boards/lib/boards.helper";
+import { Board } from "src/modules/boards/entities/board.entity";
+import { UpdateBoardCommand, UpdateBoardCommandHandler } from "src/modules/boards/handlers/update-board.handler";
+import { BoardsHelper } from "src/modules/boards/lib/boards.helper";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { createBoardsHelperMock } from "./mocks";
 import { MockBoard } from "./mocks/board.mocks";
 

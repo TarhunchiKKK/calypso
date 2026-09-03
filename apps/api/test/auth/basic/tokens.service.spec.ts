@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createConfigServiceMock } from "@api/common/mocks";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { Test } from "@nestjs/testing";
-import type { TokenPayload } from "src/auth/basic/lib/tokens.types";
-import { TokensService } from "src/auth/basic/services/tokens.service";
+import type { TokenPayload } from "src/modules/auth/basic/lib/tokens.types";
+import { TokensService } from "src/modules/auth/basic/services/tokens.service";
 import { MockUser } from "test/auth/users/mocks";
+import { clearMock, createConfigServiceMock } from "test/mocks";
 import { createJwtServiceMock, MockSession } from "./mocks";
 
 describe("TokensService", () => {

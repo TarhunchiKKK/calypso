@@ -1,11 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { CacheService } from "@api/cache";
-import { createCacheServiceMock } from "@api/cache/mocks";
-import { clearMock } from "@api/common/mocks";
 import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
-import { UpdatePasswordCommand, UpdatePasswordCommandHandler } from "src/auth/password-recovery/handlers/update-password.handler";
-import { UsersHelper } from "src/auth/users/users.helper";
+import { CacheService } from "src/infra/cache/cache.service";
+import { UpdatePasswordCommand, UpdatePasswordCommandHandler } from "src/modules/auth/password-recovery/handlers/update-password.handler";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
+import { clearMock, createCacheServiceMock } from "test/mocks";
 import { createUsersHelperMock, MockUser } from "../users/mocks";
 
 describe("UpdatePasswordCommandHandler", () => {

@@ -1,6 +1,5 @@
-import type { Profile } from "@lib/auth";
+import type { Profile, User } from "@lib/auth";
 import * as argon2 from "argon2";
-import type { User } from "src/auth/users/entities/user.entity";
 
 export const MockUser: User = {
     id: crypto.randomUUID(),

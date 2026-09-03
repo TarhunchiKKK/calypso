@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createMongooseModelMock } from "@api/common/mocks";
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
-import { FindAllNodesQuery, FindAllNodesQueryHandler } from "src/nodes/handlers/find-all-nodes.handler";
-import { NodeBase } from "src/nodes/schemas/node-base.schema";
+import { FindAllNodesQuery, FindAllNodesQueryHandler } from "src/modules/nodes/handlers/find-all-nodes.handler";
+import { NodeBase } from "src/modules/nodes/schemas/node-base.schema";
+import { clearMock, createMongooseModelMock } from "test/mocks";
 import { MockBoard } from "../boards/mocks/board.mocks";
 import { MockNodesArray } from "./mocks";
 

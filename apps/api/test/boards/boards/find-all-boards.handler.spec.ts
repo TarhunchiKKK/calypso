@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import type { PaginationOptions } from "@lib/common";
 import type { ProjectFilters } from "@lib/projects";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { Board } from "src/boards/entities/board.entity";
-import { FindAllBoardsQuery, FindAllBoardsQueryHandler } from "src/boards/handlers/find-all-boards.handler";
+import { Board } from "src/modules/boards/entities/board.entity";
+import { FindAllBoardsQuery, FindAllBoardsQueryHandler } from "src/modules/boards/handlers/find-all-boards.handler";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { MockBoard } from "./mocks/board.mocks";
 
 describe("FindAllBoardsQueryHandler", () => {

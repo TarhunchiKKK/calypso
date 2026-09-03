@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { clearMock, createRepositoryMock } from "@api/common/mocks";
 import { NotFoundException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import type { CreateUserDto } from "src/auth/users/dto/create-user.dto";
-import { User } from "src/auth/users/entities/user.entity";
-import { UsersHelper } from "src/auth/users/users.helper";
+import type { CreateUserDto } from "src/modules/auth/users/dto/create-user.dto";
+import { User } from "src/modules/auth/users/entities/user.entity";
+import { UsersHelper } from "src/modules/auth/users/users.helper";
+import { clearMock, createRepositoryMock } from "test/mocks";
 import { MockProfile, MockUser } from "./mocks";
 
 describe("UsersHelper", () => {

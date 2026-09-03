@@ -1,5 +1,5 @@
 import { mock } from "bun:test";
-import type { CacheService } from "cache.service";
+import type { CacheService } from "src/infra/cache/cache.service";
 
 export function createCacheServiceMock() {
     return {
