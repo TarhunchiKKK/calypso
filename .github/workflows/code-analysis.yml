@@ -1,10 +1,10 @@
-name: Storybook Build
+name: Code Analysis
 
 on:
     workflow_dispatch:
 
 jobs:
-    lint:
+    analyze:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -13,6 +13,5 @@ jobs:
             - name: Setup environment
               uses: ./.github/actions/setup
 
-            - name: Storybook
-              working-directory: ./apps/web
-              run: bun storybook:build
+            - name: Knip
+              run: bun knip
