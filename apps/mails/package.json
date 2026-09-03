@@ -15,10 +15,6 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@api/cache": "*",
-        "@api/common": "*",
-        "@api/logs": "*",
-        "@contracts/broker": "*",
         "@nestjs-modules/mailer": "^2.3.6",
         "@nestjs/common": "^11.1.18",
         "@nestjs/config": "^4.0.3",

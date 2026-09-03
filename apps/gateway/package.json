@@ -12,11 +12,6 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@api/cache": "*",
-        "@api/common": "*",
-        "@api/logs": "*",
-        "@contracts/broker": "*",
-        "@contracts/grpc": "*",
         "@grpc/grpc-js": "^1.14.3",
         "@lib/auth": "*",
         "@lib/boards": "*",
