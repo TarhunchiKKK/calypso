@@ -13,16 +13,16 @@ export class SendResetPasswordCommand extends Command<void> {
 }
 
 @CommandHandler(SendResetPasswordCommand)
-export class SendResetPasswordCommandHandler  implements ICommandHandler<SendResetPasswordCommand> {
-    private readonly baseUrl: string
+export class SendResetPasswordCommandHandler implements ICommandHandler<SendResetPasswordCommand> {
+    private readonly baseUrl: string;
 
     public constructor(
         @Inject(ConfigService) private readonly configService: ConfigService,
         @Inject(MailsService) private readonly mailsService: MailsService
     ) {
-        this.baseUrl = this.configService.getOrThrow("WEB_URL")
-    }   
-    
+        this.baseUrl = this.configService.getOrThrow("WEB_URL");
+    }
+
     public async execute({ dto: { user, token } }: SendResetPasswordCommand) {
         const template = ResetPasswordTemplate({
             baseUrl: this.baseUrl,

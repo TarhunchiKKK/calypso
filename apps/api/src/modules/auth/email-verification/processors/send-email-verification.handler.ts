@@ -8,22 +8,20 @@ import { MailsService } from "src/infra/mails/services/mails.service";
 export class SendEmailVerificationCommand extends Command<void> {
     public constructor(public dto: EmailVerificationBrokerMessage) {
         super();
-    } 
+    }
 }
 
 @CommandHandler(SendEmailVerificationCommand)
-export class SendEmailVerificationCommandHandler  implements ICommandHandler<SendEmailVerificationCommand> {
-     private readonly baseUrl: string
-    
-        public constructor(
-            @Inject(ConfigService) private readonly configService: ConfigService,
-            @Inject(MailsService) private readonly mailsService: MailsService
-        ) {
-            this.baseUrl = this.configService.getOrThrow("WEB_URL")
-        }   
-        
-       
-    
+export class SendEmailVerificationCommandHandler implements ICommandHandler<SendEmailVerificationCommand> {
+    private readonly baseUrl: string;
+
+    public constructor(
+        @Inject(ConfigService) private readonly configService: ConfigService,
+        @Inject(MailsService) private readonly mailsService: MailsService
+    ) {
+        this.baseUrl = this.configService.getOrThrow("WEB_URL");
+    }
+
     public async execute({ dto: { user, token } }: SendEmailVerificationCommand) {
         const template = EmailVerificationTemplate({
             baseUrl: this.baseUrl,
