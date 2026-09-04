@@ -39,7 +39,7 @@
         "indentStyle": "space",
         "indentWidth": 4,
         "lineEnding": "lf",
-        "lineWidth": 160,
+        "lineWidth": 180,
         "attributePosition": "auto",
         "bracketSameLine": false,
         "bracketSpacing": true,

@@ -1,19 +1,19 @@
-import type { ResetPasswordBrokerMessage } from "@contracts/broker";
-import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import { render } from "@react-email/components";
-import { ResetPasswordTemplate } from "../templates/reset-password.template";
 import { Inject } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
+import { render } from "@react-email/components";
 import { MailsService } from "src/infra/mails/services/mails.service";
+import { ResetPasswordTemplate } from "../../email-verification/templates/reset-password.template";
+import type { SendResetPasswordMailDto } from "../dto/send-reset-password-mail.dto";
 
-export class SendResetPasswordCommand extends Command<void> {
-    public constructor(public dto: ResetPasswordBrokerMessage) {
+export class SendResetPasswordMailCommand extends Command<void> {
+    public constructor(public dto: SendResetPasswordMailDto) {
         super();
     }
 }
 
-@CommandHandler(SendResetPasswordCommand)
-export class SendResetPasswordCommandHandler implements ICommandHandler<SendResetPasswordCommand> {
+@CommandHandler(SendResetPasswordMailCommand)
+export class SendResetPasswordMailCommandHandler implements ICommandHandler<SendResetPasswordMailCommand> {
     private readonly baseUrl: string;
 
     public constructor(
@@ -23,16 +23,16 @@ export class SendResetPasswordCommandHandler implements ICommandHandler<SendRese
         this.baseUrl = this.configService.getOrThrow("WEB_URL");
     }
 
-    public async execute({ dto: { user, token } }: SendResetPasswordCommand) {
+    public async execute({ dto }: SendResetPasswordMailCommand) {
         const template = ResetPasswordTemplate({
             baseUrl: this.baseUrl,
-            token: token
+            token: dto.token
         });
 
         const html = await render(template);
 
         await this.mailsService.sendMail({
-            to: user.email,
+            to: dto.email,
             subject: "Password Recovery",
             html: html
         });
