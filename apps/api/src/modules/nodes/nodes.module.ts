@@ -1,13 +1,15 @@
 import type { NodeTypes } from "@lib/boards";
+import { BullModule } from "@nestjs/bullmq";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { NodesController } from "./controllers/nodes.controller";
-import { NodesRmqController } from "./controllers/nodes.rmq.controller";
 import { CreateManyNodesCommandHandler } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQueryHandler } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommandHandler } from "./handlers/remove-many-nodes.handler";
 import { RemoveNodesByBoardCommandHandler } from "./handlers/remove-nodes-by-board.handler";
 import { UpdateManyNodesCommandHandler } from "./handlers/update-many-nodes.handler";
+import { NODES_QUEUE } from "./lib/bullmq.lib";
+import { NodesController } from "./nodes.controller";
+import { NodesProcessor } from "./nodes.processor";
 import { NodesService } from "./nodes.service";
 import { ArrowNodeSchema } from "./schemas/arrow-node.schema";
 import { DrawingNodeSchema } from "./schemas/drawing-node.schema";
@@ -36,11 +38,15 @@ import { TextNodeSchema } from "./schemas/text-node.schema";
                     return schema;
                 }
             }
-        ])
+        ]),
+        BullModule.registerQueue({
+            name: NODES_QUEUE
+        })
     ],
-    controllers: [NodesController, NodesRmqController],
+    controllers: [NodesController],
     providers: [
         NodesService,
+        NodesProcessor,
         CreateManyNodesCommandHandler,
         FindAllNodesQueryHandler,
         UpdateManyNodesCommandHandler,

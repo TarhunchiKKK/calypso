@@ -2,7 +2,9 @@ import type { CreateManyNodesDto, RemoveManyNodesDto, UpdateManyNodesDto } from 
 import type { Id } from "@lib/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import type { ClientProxy } from "@nestjs/microservices";
+import type { Queue } from "bullmq";
+import type { OnlyIdDto } from "src/shared/dto";
+import { BOARDS_QUEUE, type BoardsQueueJobs } from "../boards/lib/bullmq.lib";
 import { CreateManyNodesCommand } from "./handlers/create-many-nodes.handler";
 import { FindAllNodesQuery } from "./handlers/find-all-nodes.handler";
 import { RemoveManyNodesCommand } from "./handlers/remove-many-nodes.handler";
@@ -14,14 +16,14 @@ export class NodesService {
     public constructor(
         @Inject(CommandBus) private readonly commandBus: CommandBus,
         @Inject(QueryBus) private readonly queryBus: QueryBus,
-        @Inject(BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
+        @Inject(BOARDS_QUEUE) private readonly boardsQueue: Queue
     ) {}
 
     public async createMany(dto: CreateManyNodesDto) {
         if (dto.nodes.length !== 0) {
             await this.commandBus.execute(new CreateManyNodesCommand(dto));
 
-            this.brokerClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
+            await this.boardsQueue.add("update-date" satisfies BoardsQueueJobs, { id: dto.boardId } satisfies OnlyIdDto);
         }
     }
 
@@ -33,7 +35,7 @@ export class NodesService {
         if (dto.nodes.length !== 0) {
             await this.commandBus.execute(new UpdateManyNodesCommand(dto));
 
-            this.brokerClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
+            await this.boardsQueue.add("update-date" satisfies BoardsQueueJobs, { id: dto.boardId } satisfies OnlyIdDto);
         }
     }
 
@@ -41,7 +43,7 @@ export class NodesService {
         if (dto.ids.length !== 0) {
             await this.commandBus.execute(new RemoveManyNodesCommand(dto));
 
-            this.brokerClient.emit(...BoardsBrokerContracts.nodesChanged.get({ id: dto.boardId }));
+            await this.boardsQueue.add("update-date" satisfies BoardsQueueJobs, { id: dto.boardId } satisfies OnlyIdDto);
         }
     }
 

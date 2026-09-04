@@ -102,6 +102,8 @@
         "body": "MongooseModule.forFeature([{ name: $1.name, schema: $1Schema }])"
     },
 
+    // * BullMQ
+
     "Create processor": {
         "scope": "typescript",
         "prefix": "n-bullmq-processor",
@@ -120,7 +122,7 @@
             "    public async process(job: Job<unknown, unknown, $1QueueJobs>) {",
             "        switch (job.name) {",
             "            default:",
-            "                throw new Error(`[${EmailVerificationProcessor}] Unknown job: ${job.name}`);",
+            "                throw new Error(`[${$1Processor.name}] Unknown job: ${job.name}`);",
             "        }",
             "    }",
             "}"

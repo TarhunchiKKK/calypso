@@ -17,7 +17,7 @@ export class EmailVerificationProcessor extends WorkerHost {
                 break;
             }
             default:
-                throw new Error(`[${EmailVerificationProcessor}] Unknown job: ${job.name}`);
+                throw new Error(`[${EmailVerificationProcessor.name}] Unknown job: ${job.name}`);
         }
     }
 }

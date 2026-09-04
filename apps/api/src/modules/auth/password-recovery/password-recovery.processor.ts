@@ -16,7 +16,7 @@ export class PasswordRecoveryProcessor extends WorkerHost {
                 await this.passwordRecoveryService.sendMail(job.data as SendResetPasswordMailQueueData);
                 break;
             default:
-                throw new Error(`[EmailVerificationProcessor] Unknown job: ${job.name}`);
+                throw new Error(`[${PasswordRecoveryProcessor.name}] Unknown job: ${job.name}`);
         }
     }
 }

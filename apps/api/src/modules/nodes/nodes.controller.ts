@@ -11,8 +11,8 @@ import { Controller, Get, Inject, Param } from "@nestjs/common";
 import { InvalidateCache } from "src/infra/cache/decorators/invalidate-cache.decorator";
 import { Logging } from "src/infra/logs/decorators/logging.decorator";
 import { Validation } from "src/shared/validation";
-import { NodesCacheKeys } from "../lib/cache.lib";
-import { NodesService } from "../nodes.service";
+import { NodesCacheKeys } from "./lib/cache.lib";
+import { NodesService } from "./nodes.service";
 
 @Controller("nodes")
 @Logging("grpc")
