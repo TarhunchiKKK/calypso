@@ -1,10 +1,10 @@
 import type { Id } from "@lib/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
-import type { SendResetPasswordMailDto } from "./dto/send-reset-password-mail.dto";
 import { ResetPasswordCommand } from "./handlers/reset-password.handler";
 import { SendResetPasswordMailCommand } from "./handlers/send-reset-password-mail.handler";
 import { UpdatePasswordCommand } from "./handlers/update-password.handler";
+import type { SendResetPasswordMailQueueData } from "./lib/bullmq.lib";
 
 @Injectable()
 export class PasswordRecoveryService {
@@ -14,7 +14,7 @@ export class PasswordRecoveryService {
         return await this.commandBus.execute(new ResetPasswordCommand(userId));
     }
 
-    public async sendMail(dto: SendResetPasswordMailDto) {
+    public async sendMail(dto: SendResetPasswordMailQueueData) {
         await this.commandBus.execute(new SendResetPasswordMailCommand(dto));
     }
 

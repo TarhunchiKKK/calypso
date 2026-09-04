@@ -1,10 +1,10 @@
 import type { Id } from "@lib/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
-import type { SendEmailVerificationMailDto } from "./dto/send-email-verification-mail.dto";
 import { SendEmailVerificationCommand } from "./handlers/send-email-verification.handler";
 import { SendEmailVerificationMailCommand } from "./handlers/send-email-verification-mail.handler";
 import { VerifyEmailCommand } from "./handlers/verify-email.handler";
+import type { SendEmailVerificationMailQueueData } from "./lib/bullmq.lib";
 
 @Injectable()
 export class EmailVerificationService {
@@ -14,7 +14,7 @@ export class EmailVerificationService {
         await this.commandBus.execute(new SendEmailVerificationCommand(userId));
     }
 
-    public async sendMail(dto: SendEmailVerificationMailDto) {
+    public async sendMail(dto: SendEmailVerificationMailQueueData) {
         await this.commandBus.execute(new SendEmailVerificationMailCommand(dto));
     }
 
