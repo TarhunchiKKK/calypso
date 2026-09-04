@@ -1,5 +1,5 @@
 import { Body, Head, Html, Preview, Tailwind } from "@react-email/components";
-// biome-ignore lint/style/useImportType: This is necessary for jsx parsing
+// biome-ignore lint/style/useImportType: This is necessary for valid jsx parsing
 import * as React from "react";
 import { SupportSection } from "./support-section.component";
 
