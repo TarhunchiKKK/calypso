@@ -1,3 +1,9 @@
-export const EMAIL_VERIFICATION_BULLMQ_QUEUE = Symbol().toString();
+export const EMAIL_VERIFICATION_QUEUE = Symbol().toString();
 
 export type EmailVerificationQueueJobs = "send-mail";
+
+export type SendEmailVerificationMailQueueData = {
+    email: string;
+
+    token: string;
+};

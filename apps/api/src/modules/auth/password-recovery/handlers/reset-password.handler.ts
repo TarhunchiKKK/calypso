@@ -1,9 +1,10 @@
 import type { Id } from "@lib/common";
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { ClientProxy } from "@nestjs/microservices";
+import type { Queue } from "bullmq";
 import { CacheService } from "src/infra/cache/cache.service";
 import { UsersHelper } from "../../users/users.helper";
+import { PASSWORD_RECOVERY_QUEUE, type PasswordRecoveryQueueJobs, type SendResetPasswordMailQueueData } from "../lib/bullmq.lib";
 import { PasswordRecoveryCacheKeys, PasswordRecoveryCacheTtls } from "../lib/cache.lib";
 
 export class ResetPasswordCommand extends Command<void> {
@@ -17,7 +18,7 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
-        @Inject(MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
+        @Inject(PASSWORD_RECOVERY_QUEUE) private readonly passwordRecoveryQueue: Queue
     ) {}
 
     public async execute({ userId }: ResetPasswordCommand) {
@@ -25,7 +26,13 @@ export class ResetPasswordCommandHandler implements ICommandHandler<ResetPasswor
 
         const token = await this.saveToken(userId);
 
-        this.brokerClient.emit(...AuthBrokerContracts.resetPassword.get({ user, token }));
+        await this.passwordRecoveryQueue.add(
+            "send-mail" satisfies PasswordRecoveryQueueJobs,
+            {
+                email: user.email,
+                token: token
+            } satisfies SendResetPasswordMailQueueData
+        );
     }
 
     private async findUser(userId: Id) {

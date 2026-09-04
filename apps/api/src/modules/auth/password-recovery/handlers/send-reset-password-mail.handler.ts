@@ -4,10 +4,10 @@ import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { render } from "@react-email/components";
 import { MailsService } from "src/infra/mails/services/mails.service";
 import { ResetPasswordTemplate } from "../../email-verification/templates/reset-password.template";
-import type { SendResetPasswordMailDto } from "../dto/send-reset-password-mail.dto";
+import type { SendResetPasswordMailQueueData } from "../lib/bullmq.lib";
 
 export class SendResetPasswordMailCommand extends Command<void> {
-    public constructor(public dto: SendResetPasswordMailDto) {
+    public constructor(public dto: SendResetPasswordMailQueueData) {
         super();
     }
 }

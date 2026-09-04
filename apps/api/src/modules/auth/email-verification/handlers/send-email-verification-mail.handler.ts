@@ -3,11 +3,11 @@ import { ConfigService } from "@nestjs/config";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
 import { render } from "@react-email/components";
 import { MailsService } from "src/infra/mails/services/mails.service";
-import type { SendEmailVerificationMailDto } from "../dto/send-email-verification-mail.dto";
+import type { SendEmailVerificationMailQueueData } from "../lib/bullmq.lib";
 import { EmailVerificationTemplate } from "../templates/email-verification.template";
 
 export class SendEmailVerificationMailCommand extends Command<void> {
-    public constructor(public dto: SendEmailVerificationMailDto) {
+    public constructor(public dto: SendEmailVerificationMailQueueData) {
         super();
     }
 }

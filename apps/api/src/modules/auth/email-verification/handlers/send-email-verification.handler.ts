@@ -1,9 +1,11 @@
 import type { Id } from "@lib/common";
+import { InjectQueue } from "@nestjs/bullmq";
 import { ConflictException, Inject } from "@nestjs/common";
 import { Command, CommandHandler, type ICommandHandler } from "@nestjs/cqrs";
-import type { ClientProxy } from "@nestjs/microservices";
+import type { Queue } from "bullmq";
 import { CacheService } from "src/infra/cache/cache.service";
 import { UsersHelper } from "../../users/users.helper";
+import { EMAIL_VERIFICATION_QUEUE, type EmailVerificationQueueJobs, type SendEmailVerificationMailQueueData } from "../lib/bullmq.lib";
 import { EmailVerificationCacheKeys, EmailVerificationCacheTtls } from "../lib/cache.lib";
 
 export class SendEmailVerificationCommand extends Command<void> {
@@ -17,7 +19,7 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
     public constructor(
         @Inject(UsersHelper) private readonly usersHelper: UsersHelper,
         @Inject(CacheService) private readonly cacheService: CacheService,
-        @Inject(MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN) private readonly brokerClient: ClientProxy
+        @InjectQueue(EMAIL_VERIFICATION_QUEUE) private readonly emailVerificationQueue: Queue
     ) {}
 
     public async execute({ userId }: SendEmailVerificationCommand) {
@@ -25,7 +27,13 @@ export class SendEmailVerificationCommandHandler implements ICommandHandler<Send
 
         const token = await this.saveToken(userId);
 
-        this.brokerClient.emit(...AuthBrokerContracts.emailVerification.get({ user, token }));
+        this.emailVerificationQueue.add(
+            "send-mail" satisfies EmailVerificationQueueJobs,
+            {
+                email: user.email,
+                token: token
+            } satisfies SendEmailVerificationMailQueueData
+        );
     }
 
     private async checkVerification(userId: Id) {
