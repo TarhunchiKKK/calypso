@@ -20,7 +20,6 @@
         "build": "turbo run build",
         "build:packages": "turbo run build --filter=@config/* --filter=@lib/* --filter=@contracts/*",
         "type-check": "turbo run type-check",
-        "type-check:packages": "turbo run type-check --filter=@repo/* --filter=@api/* --filter=@lib/*",
         "test:unit": "turbo run test:unit",
         "test:unit:web": "turbo run test:unit --filter=web",
         "format:check": "bunx biome format",
@@ -29,15 +28,11 @@
         "lint:check": "bunx --bun biome lint",
         "lint:fix": "bunx --bun biome lint --write",
         "knip": "knip",
-        "env:refresh-examples": "bun run scripts/refresh-env-examples.script.ts",
         "clean": "bun run clean:pm && bun run clean:node_modules && bun run clean:turbo && bun run clean:dist",
         "clean:pm": "bun pm cache rm",
         "clean:turbo": "bun x rimraf .turbo apps/**/.turbo packages/**/.turbo",
         "clean:node_modules": "bun x rimraf node_modules apps/**/node_modules packages/**/node_modules",
-        "clean:dist": "bun x rimraf apps/**/dist packages/**/dist",
-        "docker:up": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml --env-file .env up",
-        "docker:down": "docker compose -f docker/infra.yaml -f docker/gateway.yaml -f docker/boards.yaml -f docker/media.yaml down",
-        "test:current": "turbo run test:unit --filter=media"
+        "clean:dist": "bun x rimraf apps/**/dist packages/**/dist"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",
