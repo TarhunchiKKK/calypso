@@ -1,6 +1,6 @@
 import type { Project as ProjectType, ProjectTypes } from "@lib/projects";
 import { User } from "src/modules/auth/users/entities/user.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Project implements ProjectType {
@@ -14,7 +14,7 @@ export class Project implements ProjectType {
     public title: string;
 
     @Column({ nullable: true, default: null })
-    public description?: string | undefined;
+    public description?: string;
 
     @Column({ nullable: false })
     public icon: string;
@@ -22,8 +22,8 @@ export class Project implements ProjectType {
     @CreateDateColumn()
     public createdAt: Date;
 
-    @UpdateDateColumn()
-    public updatedAt?: Date | undefined;
+    @Column({ nullable: true, default: () => new Date() })
+    public lastAccessedAt?: Date;
 
     @ManyToOne(() => User)
     public creator: User;

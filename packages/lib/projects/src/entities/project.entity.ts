@@ -12,7 +12,7 @@ export const ProjectZodSchema = z.object({
     icon: z.string(),
     creator: ProjectCreatorZodSchema,
     createdAt: z.date(),
-    updatedAt: z.date().optional()
+    lastAccessedAt: z.date().optional()
 });
 
 export type Project = z.infer<typeof ProjectZodSchema>;

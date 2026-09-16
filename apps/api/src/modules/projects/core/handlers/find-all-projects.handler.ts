@@ -7,11 +7,11 @@ import { Repository } from "typeorm";
 
 export class FindAllProjectsQuery extends Query<Project[]> {
     public constructor(
-         public userId: Id,
+        public userId: Id,
         public filters: ProjectFilters,
         public pagination: PaginationOptions
     ) {
-        super()
+        super();
     }
 }
 
@@ -19,9 +19,9 @@ export class FindAllProjectsQuery extends Query<Project[]> {
 export class FindAllProjectsQueryHandler implements IQueryHandler<FindAllProjectsQuery> {
     public constructor(@InjectRepository(Project) private readonly projectsRepository: Repository<Project>) {}
 
-    public async execute({ userId,filters,pagination }: FindAllProjectsQuery) {
+    public async execute({ userId, filters, pagination }: FindAllProjectsQuery) {
         return await this.projectsRepository.find({
-             where: {
+            where: {
                 // TODO: add search by creatorId (userId - access for me, creatorId - board creator)
                 creator: {
                     id: filters.own ? userId : undefined
@@ -34,6 +34,6 @@ export class FindAllProjectsQueryHandler implements IQueryHandler<FindAllProject
                 createdAt: filters.sortOrder === "last-created" ? "DESC" : undefined,
                 updatedAt: filters.sortOrder === "last-modified" ? "DESC" : undefined
             }
-        })
+        });
     }
 }

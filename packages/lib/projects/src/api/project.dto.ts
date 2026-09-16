@@ -20,10 +20,11 @@ export const FindOneProjectDtoZodSchema = ProjectZodSchema.pick({
 });
 
 export const UpdateProjectDtoZodSchema = ProjectZodSchema.pick({
-    type: true,
     title: true,
-    icon: true
-}).partial({ title: true, icon: true });
+    description: true,
+    icon: true,
+    lastAccessedAt: true
+}).partial();
 
 export const RemoveProjectDtoZodSchema = ProjectZodSchema.pick({
     id: true,
