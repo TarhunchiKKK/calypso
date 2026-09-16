@@ -10,8 +10,7 @@ export default {
         "packages/contracts/http/src/generated.ts",
         "packages/contracts/grpc/src/generated/**/*.{ts,tsx}"
     ],
-    ignoreBinaries: ["protoc"],
-    ignoreDependencies: ["google-proto-files", "ts-proto", "react-dom", "pino-loki", "@react-email/html"],
+    ignoreDependencies: ["pino-loki", "@react-email/html"],
     rules: {
         files: "error",
         classMembers: "error",
