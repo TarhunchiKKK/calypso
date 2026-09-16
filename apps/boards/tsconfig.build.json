@@ -1,7 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "exclude": ["node_modules", "test", "dist", "jest.config.ts"],
-    "compilerOptions": {
-        "strictNullChecks": true
-    }
-}

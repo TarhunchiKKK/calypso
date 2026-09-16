@@ -1,2 +1,0 @@
-export const BOARDS_GRPC_CLIENT_INJECTION_TOKEN = Symbol();
-export const BOARD_NODES_GRPC_CLIENT_INJECTION_TOKEN = Symbol();

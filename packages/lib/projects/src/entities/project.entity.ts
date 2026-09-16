@@ -1,4 +1,5 @@
 import { IdZodSchema } from "@lib/common";
+import { ProjectCreatorZodSchema } from "entry";
 import z from "zod";
 
 export const ProjectZodSchema = z.object({
@@ -6,7 +7,7 @@ export const ProjectZodSchema = z.object({
     title: z.string(),
     description: z.string().optional(),
     icon: z.string(),
-    creatorId: IdZodSchema,
+    creator: ProjectCreatorZodSchema,
     createdAt: z.date(),
     updatedAt: z.date().optional()
 });

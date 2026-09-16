@@ -1,8 +1,0 @@
-{
-    "extends": "@config/typescript/nestjs.json",
-    "compilerOptions": {
-        "baseUrl": "./",
-        "outDir": "./dist",
-        "strictNullChecks": true
-    }
-}

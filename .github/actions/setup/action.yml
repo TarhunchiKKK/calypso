@@ -1,0 +1,14 @@
+name: Setup Environment
+description: Composite action to setup Bun, install dependencies and build packages
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: Build packages
+      run: bun run build:packages

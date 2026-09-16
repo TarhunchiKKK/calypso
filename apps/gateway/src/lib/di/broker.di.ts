@@ -1,1 +1,0 @@
-export const MAILS_WORKER_BROKER_CLIENT_INJECTION_TOKEN = Symbol();
