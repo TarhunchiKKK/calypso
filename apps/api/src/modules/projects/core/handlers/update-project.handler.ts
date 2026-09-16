@@ -4,7 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Project } from "../entities/project.entity";
 import { Repository } from "typeorm";
 import { Id } from "@lib/common";
-import { NotFoundException } from "@nestjs/common";
+import { BaseProjectsHandler } from "./base-projects.handler";
 
 export class UpdateProjectCommand extends Command<Project> {
     public constructor(public projectId: Id, public dto: UpdateProjectDto) {
@@ -13,8 +13,10 @@ export class UpdateProjectCommand extends Command<Project> {
 }
 
 @CommandHandler(UpdateProjectCommand)
-export class UpdateProjectCommandHandler implements ICommandHandler<UpdateProjectCommand> {
-    public constructor(@InjectRepository(Project) private readonly projectsRepository: Repository<Project>) {}
+export class UpdateProjectCommandHandler extends BaseProjectsHandler implements ICommandHandler<UpdateProjectCommand> {
+    public constructor(@InjectRepository(Project)  projectsRepository: Repository<Project>) {
+        super(projectsRepository)
+    }
 
     public async execute({ projectId, dto }: UpdateProjectCommand) {
         const project = await this.findProject(projectId)
@@ -25,17 +27,4 @@ export class UpdateProjectCommandHandler implements ICommandHandler<UpdateProjec
         return await this.projectsRepository.save(project)
     }
 
-    private async findProject(projectId: Id) {
-        const project = await this.projectsRepository.findOne({
-            where: {
-                id: projectId
-            }
-        })
-
-        if (!project) {
-            throw new NotFoundException("Project not found")
-        }
-
-        return project;
-    }
 }
