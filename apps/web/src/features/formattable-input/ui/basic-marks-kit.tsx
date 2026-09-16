@@ -1,16 +1,6 @@
 "use client";
 
-import {
-    BoldRules,
-    CodeRules,
-    HighlightRules,
-    ItalicRules,
-    MarkComboRules,
-    StrikethroughRules,
-    SubscriptRules,
-    SuperscriptRules,
-    UnderlineRules
-} from "@platejs/basic-nodes";
+import { BoldRules, CodeRules, HighlightRules, ItalicRules, MarkComboRules, StrikethroughRules, SubscriptRules, SuperscriptRules, UnderlineRules } from "@platejs/basic-nodes";
 import {
     BoldPlugin,
     CodePlugin,

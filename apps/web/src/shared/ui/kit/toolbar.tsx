@@ -52,9 +52,7 @@ const toolbarButtonVariants = cva(
 );
 
 const dropdownArrowVariants = cva(
-    cn(
-        "inline-flex items-center justify-center rounded-r-md font-medium text-foreground text-sm transition-colors disabled:pointer-events-none disabled:opacity-50"
-    ),
+    cn("inline-flex items-center justify-center rounded-r-md font-medium text-foreground text-sm transition-colors disabled:pointer-events-none disabled:opacity-50"),
     {
         defaultVariants: {
             size: "sm",
@@ -80,15 +78,7 @@ type ToolbarButtonProps = {
 } & Omit<React.ComponentPropsWithoutRef<typeof ToolbarToggleItem>, "asChild" | "value"> &
     VariantProps<typeof toolbarButtonVariants>;
 
-export const ToolbarButton = withTooltip(function ToolbarButton({
-    children,
-    className,
-    isDropdown,
-    pressed,
-    size = "sm",
-    variant,
-    ...props
-}: ToolbarButtonProps) {
+export const ToolbarButton = withTooltip(function ToolbarButton({ children, className, isDropdown, pressed, size = "sm", variant, ...props }: ToolbarButtonProps) {
     return typeof pressed === "boolean" ? (
         <ToolbarToggleGroup disabled={props.disabled} value="single" type="single">
             <ToolbarToggleItem
@@ -157,12 +147,7 @@ export function ToolbarSplitButtonPrimary({ children, className, size = "sm", va
     );
 }
 
-export function ToolbarSplitButtonSecondary({
-    className,
-    size,
-    variant,
-    ...props
-}: React.ComponentPropsWithoutRef<"span"> & VariantProps<typeof dropdownArrowVariants>) {
+export function ToolbarSplitButtonSecondary({ className, size, variant, ...props }: React.ComponentPropsWithoutRef<"span"> & VariantProps<typeof dropdownArrowVariants>) {
     return (
         <span
             className={cn(

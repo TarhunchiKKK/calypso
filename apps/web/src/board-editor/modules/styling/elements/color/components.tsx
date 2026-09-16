@@ -14,15 +14,7 @@ export function BackgroundColor({ values: colors, update }: ElementProps<"backgr
         }));
     };
 
-    return (
-        <ColorsDropdown
-            title="Background"
-            placeholder={BackgroundColorPlaceholder}
-            colors={colors}
-            renderItem={renderBackgroundColorItem}
-            onSelect={handleSelect}
-        />
-    );
+    return <ColorsDropdown title="Background" placeholder={BackgroundColorPlaceholder} colors={colors} renderItem={renderBackgroundColorItem} onSelect={handleSelect} />;
 }
 
 export function TextColor({ values: colors, update }: ElementProps<"textColor">) {

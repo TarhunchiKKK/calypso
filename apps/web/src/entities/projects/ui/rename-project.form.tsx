@@ -48,12 +48,7 @@ export function RenameProjectForm({ project, afterSubmit }: Props) {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>New title</FieldLabel>
 
-                            <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder="Enter new name of this project"
-                                onKeyDown={stopPropagationHandler}
-                            />
+                            <Input {...field} aria-invalid={fieldState.invalid} placeholder="Enter new name of this project" onKeyDown={stopPropagationHandler} />
 
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>

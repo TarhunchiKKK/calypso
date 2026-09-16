@@ -29,10 +29,7 @@ export type ViewState =
 
 type SingleNodeViewStates = Extract<ViewState, ArrowBindingViewState | ResizingViewState | EditingViewState>;
 
-type MultipleNodesViewStates = Extract<
-    ViewState,
-    SelectionViewState | SelectionWindowViewState | DraggingViewState | StylingViewState | NodesContextMenuViewState
->;
+type MultipleNodesViewStates = Extract<ViewState, SelectionViewState | SelectionWindowViewState | DraggingViewState | StylingViewState | NodesContextMenuViewState>;
 
 type ViewStatesWithStartPoint = Extract<ViewState, SelectionWindowViewState | DraggingViewState>;
 

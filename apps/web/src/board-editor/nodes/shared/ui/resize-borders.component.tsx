@@ -30,10 +30,7 @@ export function ResizeBorders({ rect, diagonal, onResizeStart }: Props) {
 
                     <div className="absolute -right-1 -top-1 w-2 h-2 rounded-full cursor-ne-resize bg-resizing" onMouseDown={(e) => onResizeStart("ne", e)} />
 
-                    <div
-                        className="absolute -right-1 -bottom-1 w-2 h-2 rounded-full cursor-se-resize bg-resizing"
-                        onMouseDown={(e) => onResizeStart("se", e)}
-                    />
+                    <div className="absolute -right-1 -bottom-1 w-2 h-2 rounded-full cursor-se-resize bg-resizing" onMouseDown={(e) => onResizeStart("se", e)} />
 
                     <div className="absolute -left-1 -bottom-1 w-2 h-2 rounded-full cursor-sw-resize bg-resizing" onMouseDown={(e) => onResizeStart("sw", e)} />
                 </>

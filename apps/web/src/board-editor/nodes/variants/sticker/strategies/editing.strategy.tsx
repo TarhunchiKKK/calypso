@@ -21,8 +21,6 @@ export class StickerEditingStrategy extends NodeEditingStrategy {
             textAlign: node.data.styles.textAlign
         };
 
-        return (
-            <TextareaAutoFontSize value={node.data.text} onChange={handleChange} styles={textareaStyles} keyHandlers={this.getDefaultKeyHandlers(handlers)} />
-        );
+        return <TextareaAutoFontSize value={node.data.text} onChange={handleChange} styles={textareaStyles} keyHandlers={this.getDefaultKeyHandlers(handlers)} />;
     }
 }
