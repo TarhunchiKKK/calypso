@@ -14,6 +14,7 @@ import { UsersModule } from "./modules/auth/users/users.module";
 import { BoardsModule } from "./modules/boards/boards.module";
 import { MediaModule } from "./modules/media/media.module";
 import { NodesModule } from "./modules/nodes/nodes.module";
+import { ProjectsModule } from "./modules/projects/core/projects.module";
 
 @Module({
     imports: [
@@ -29,6 +30,7 @@ import { NodesModule } from "./modules/nodes/nodes.module";
         EmailVerificationModule,
         PasswordRecoveryModule,
         BoardsModule,
+        ProjectsModule,
         NodesModule,
         MediaModule
     ]

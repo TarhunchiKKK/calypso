@@ -2,10 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { ConflictException } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { CacheService } from "src/infra/cache/cache.service";
-import {
-    SendEmailVerificationCommand,
-    SendEmailVerificationCommandHandler
-} from "src/modules/auth/email-verification/handlers/send-email-verification.handler";
+import { SendEmailVerificationCommand, SendEmailVerificationCommandHandler } from "src/modules/auth/email-verification/handlers/send-email-verification.handler";
 import { UsersHelper } from "src/modules/auth/users/users.helper";
 import { clearMock, createCacheServiceMock } from "test/mocks";
 import { createUsersHelperMock, MockUser } from "../users/mocks";

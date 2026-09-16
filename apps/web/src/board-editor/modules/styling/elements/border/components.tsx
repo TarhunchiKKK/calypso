@@ -2,14 +2,7 @@ import type { NodeStyles } from "@lib/boards";
 import { Dropdown } from "@/shared/ui";
 import { ColorsDropdown } from "../../lib/colors-dropdown.component";
 import type { ElementProps } from "../../lib/types";
-import {
-    BoarderRadiusPlaceholder,
-    BorderColorPlaceholder,
-    BorderStylePlaceholder,
-    getBoarderRadiuses,
-    getBorderStyles,
-    renderBorderRadiusItem
-} from "./constants";
+import { BoarderRadiusPlaceholder, BorderColorPlaceholder, BorderStylePlaceholder, getBoarderRadiuses, getBorderStyles, renderBorderRadiusItem } from "./constants";
 
 export function BorderStyle({ values, update }: ElementProps<"borderStyle">) {
     const borderStyles = getBorderStyles(values);
@@ -38,9 +31,7 @@ export function BorderColor({ values: colors, update }: ElementProps<"borderColo
         }));
     };
 
-    return (
-        <ColorsDropdown title="Border Color" placeholder={BorderColorPlaceholder} colors={colors} renderItem={renderBorderRadiusItem} onSelect={handleSelect} />
-    );
+    return <ColorsDropdown title="Border Color" placeholder={BorderColorPlaceholder} colors={colors} renderItem={renderBorderRadiusItem} onSelect={handleSelect} />;
 }
 
 export function BorderRadius({ values, update }: ElementProps<"borderRadius">) {

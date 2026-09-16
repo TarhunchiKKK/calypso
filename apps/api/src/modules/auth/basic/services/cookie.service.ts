@@ -27,8 +27,7 @@ export class CookieService {
     public setToken(response: Response, tokenType: TokenType, token: string) {
         const cookieField = this.getTokenField(tokenType);
 
-        const expiration: string =
-            tokenType === "access" ? this.configService.getOrThrow("ACCESS_COOKIE_EXPIRATION") : this.configService.getOrThrow("REFRESH_COOKIE_EXPIRATION");
+        const expiration: string = tokenType === "access" ? this.configService.getOrThrow("ACCESS_COOKIE_EXPIRATION") : this.configService.getOrThrow("REFRESH_COOKIE_EXPIRATION");
 
         response.cookie(cookieField, token, {
             httpOnly: this.configService.getOrThrow("COOKIE_HTTP_ONLY") === "true",

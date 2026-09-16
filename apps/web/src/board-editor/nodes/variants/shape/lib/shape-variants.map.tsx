@@ -7,17 +7,7 @@ type CreateFunction = (node: ShapeNode, handler: NodeHandlers) => React.ReactNod
 
 export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
     rectangle: (node, handlers) => {
-        return (
-            <rect
-                x={0}
-                y={0}
-                width={node.rect.width}
-                height={node.rect.height}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
-        );
+        return <rect x={0} y={0} width={node.rect.width} height={node.rect.height} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />;
     },
     circle: (node, handlers) => {
         const dimensions = {
@@ -33,48 +23,28 @@ export const ShapeVariantsMap: Record<ShapeVariants, CreateFunction> = {
         const referencePoints = computeShapeReferencePoints(node);
 
         return (
-            <polygon
-                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
+            <polygon points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />
         );
     },
     diamond: (node, handlers) => {
         const referencePoints = computeShapeReferencePoints(node);
 
         return (
-            <polygon
-                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
+            <polygon points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />
         );
     },
     star: (node, handlers) => {
         const referencePoints = computeShapeReferencePoints(node);
 
         return (
-            <polygon
-                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
+            <polygon points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />
         );
     },
     hexagon: (node, handlers) => {
         const referencePoints = computeShapeReferencePoints(node);
 
         return (
-            <polygon
-                points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")}
-                fill={node.styles.backgroundColor}
-                stroke={node.styles.borderColor}
-                {...handlers}
-            />
+            <polygon points={referencePoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={node.styles.backgroundColor} stroke={node.styles.borderColor} {...handlers} />
         );
     }
 };

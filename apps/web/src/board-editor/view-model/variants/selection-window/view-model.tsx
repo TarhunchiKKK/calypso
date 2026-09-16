@@ -11,11 +11,7 @@ export const useSelectionWindowViewModel: ViewModelHook<SelectionWindowViewState
 
     return (viewState) => {
         return {
-            nodes: SelectionWindowNodesMapper.create()
-                .setNodes(nodesModel.nodes)
-                .setSelectedIds(viewState.nodeIds)
-                .setSelectionWindowIds(selectionWindow.selectedNodesIds)
-                .map(),
+            nodes: SelectionWindowNodesMapper.create().setNodes(nodesModel.nodes).setSelectedIds(viewState.nodeIds).setSelectionWindowIds(selectionWindow.selectedNodesIds).map(),
             window: {
                 onMouseMove: (e) => {
                     selectionWindow.onWindowMouseMove(viewState, e);

@@ -9,11 +9,7 @@ type Props = PropsWithChildren<{
 
 export function LinkButton({ href, children }: Props) {
     return (
-        <Link
-            href={href}
-            style={{ backgroundColor: Colors.primary }}
-            className="inline-flex justify-center items-center rounded-full text-sm font-medium text-white px-5 py-2"
-        >
+        <Link href={href} style={{ backgroundColor: Colors.primary }} className="inline-flex justify-center items-center rounded-full text-sm font-medium text-white px-5 py-2">
             {children}
         </Link>
     );

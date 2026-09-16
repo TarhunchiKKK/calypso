@@ -1,14 +1,6 @@
 import type { ViewModelParams } from "@/board-editor/view-model/types";
 import { HotKeyUtils } from "@/shared/lib/hot-keys";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuTrigger
-} from "@/shared/ui/kit";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/shared/ui/kit";
 import { Items } from "./ui.constants";
 
 type Props = {

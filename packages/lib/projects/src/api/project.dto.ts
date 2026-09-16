@@ -1,28 +1,37 @@
+import { ProjectZodSchema } from "entry";
 import type z from "zod";
-import { ProjectWithTypeZodSchema } from "../entities/project.entity";
 
-export const DuplicateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+export const CreateProjectDtoZodSchema = ProjectZodSchema.pick({
+    title: true,
+    type: true,
+    description: true,
+    icon: true
+});
+
+export const DuplicateProjectDtoZodSchema = ProjectZodSchema.pick({
     id: true,
     type: true,
     title: true
 });
 
-export const FindOneProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+export const FindOneProjectDtoZodSchema = ProjectZodSchema.pick({
     id: true,
     type: true
 });
 
-export const UpdateProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
-    type: true,
+export const UpdateProjectDtoZodSchema = ProjectZodSchema.pick({
     title: true,
-    icon: true
-}).partial({ title: true, icon: true });
+    description: true,
+    icon: true,
+    lastAccessedAt: true
+}).partial();
 
-export const RemoveProjectDtoZodSchema = ProjectWithTypeZodSchema.pick({
+export const RemoveProjectDtoZodSchema = ProjectZodSchema.pick({
     id: true,
     type: true
 });
 
+export type CreateProjectDto = z.infer<typeof CreateProjectDtoZodSchema>;
 export type DuplicateProjectDto = z.infer<typeof DuplicateProjectDtoZodSchema>;
 export type FindOneProjectDto = z.infer<typeof FindOneProjectDtoZodSchema>;
 export type UpdateProjectDto = z.infer<typeof UpdateProjectDtoZodSchema>;

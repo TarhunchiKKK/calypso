@@ -9,8 +9,7 @@ function linesIntersecting(line1: { start: Point; end: Point }, line2: { start: 
     };
 
     return (
-        ccw(line1.start, line2.start, line2.end) !== ccw(line1.end, line2.start, line2.end) &&
-        ccw(line1.start, line1.end, line2.start) !== ccw(line1.start, line1.end, line2.end)
+        ccw(line1.start, line2.start, line2.end) !== ccw(line1.end, line2.start, line2.end) && ccw(line1.start, line1.end, line2.start) !== ccw(line1.start, line1.end, line2.end)
     );
 }
 
