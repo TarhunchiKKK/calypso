@@ -6,8 +6,11 @@ import { Project } from "../entities/project.entity";
 import { Repository } from "typeorm";
 
 export class CreateProjectCommand extends Command<Project> {
-    public constructor(public creatorId: Id, public dto: CreateProjectDto) {
-        super()
+    public constructor(
+        public creatorId: Id,
+        public dto: CreateProjectDto
+    ) {
+        super();
     }
 }
 
@@ -15,8 +18,8 @@ export class CreateProjectCommand extends Command<Project> {
 export class CreateProjectCommandHandler implements ICommandHandler<CreateProjectCommand> {
     public constructor(@InjectRepository(Project) private readonly projectsRepository: Repository<Project>) {}
 
-    public async execute({creatorId, dto }: CreateProjectCommand) {
-        return  await this.projectsRepository.save({
+    public async execute({ creatorId, dto }: CreateProjectCommand) {
+        return await this.projectsRepository.save({
             title: dto.title,
             type: dto.type,
             description: dto.description,
@@ -24,6 +27,6 @@ export class CreateProjectCommandHandler implements ICommandHandler<CreateProjec
             creator: {
                 id: creatorId
             }
-        })
+        });
     }
 }

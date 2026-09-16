@@ -5,9 +5,8 @@ export const CreateProjectDtoZodSchema = ProjectZodSchema.pick({
     title: true,
     type: true,
     description: true,
-    icon: true,
-     
-}) 
+    icon: true
+});
 
 export const DuplicateProjectDtoZodSchema = ProjectZodSchema.pick({
     id: true,
@@ -31,7 +30,7 @@ export const RemoveProjectDtoZodSchema = ProjectZodSchema.pick({
     type: true
 });
 
-export type CreateProjectDto = z.infer<typeof CreateProjectDtoZodSchema>
+export type CreateProjectDto = z.infer<typeof CreateProjectDtoZodSchema>;
 export type DuplicateProjectDto = z.infer<typeof DuplicateProjectDtoZodSchema>;
 export type FindOneProjectDto = z.infer<typeof FindOneProjectDtoZodSchema>;
 export type UpdateProjectDto = z.infer<typeof UpdateProjectDtoZodSchema>;

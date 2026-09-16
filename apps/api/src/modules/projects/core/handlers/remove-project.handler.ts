@@ -7,21 +7,19 @@ import { Repository } from "typeorm";
 
 export class RemoveProjectCommand extends Command<void> {
     public constructor(public projectId: Id) {
-        super()
+        super();
     }
 }
 
 @CommandHandler(RemoveProjectCommand)
 export class RemoveProjectCommandHandler extends BaseProjectsHandler implements ICommandHandler<RemoveProjectCommand> {
     public constructor(@InjectRepository(Project) projectsRepository: Repository<Project>) {
-        super(projectsRepository)
+        super(projectsRepository);
     }
 
     public async execute({ projectId }: RemoveProjectCommand) {
-        const project = await this.findProject(projectId)
+        const project = await this.findProject(projectId);
 
-        await this.projectsRepository.remove(project)
+        await this.projectsRepository.remove(project);
     }
-
-    
 }
